@@ -1,5 +1,14 @@
 # Changelog
 
+## v6.1 — 2026-11-02 · External design case library
+
+- 验证 UI/UX Pro Max 是结构化行业/风格建议库；VoltAgent awesome-design-md 包含 84 个品牌 DESIGN.md 分析文档。
+- 新增 84 项可追溯的外部案例轻量索引，含固定上游快照 commit、MIT 来源、风格/用途候选、核验状态。
+- 新增 `scripts/search_design_cases.py` 按需检索；先看内容及风格匹配，再打开源 DESIGN.md，严禁冒充品牌官方设计规范。
+- 不复制第三方图片、品牌标识、专有字体或整个文档；保留旧版本所有组件和动效功能。
+
+---
+
 ## v6.0 — 2026-11-02 · Design intelligence / P0–P3
 
 - P0：建立八种保持作者审美差异的风格档案；按 Persuade/Operate/Read/Experience 模式选择构图；加入 Art Direction 自评。

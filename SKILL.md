@@ -3,13 +3,27 @@ name: mauforma
 description: MauForma — Web-first, framework-aware, component-first frontend design and implementation Skill for Vue/Nuxt, React/Next, Svelte/SvelteKit, Angular, Solid, Astro and vanilla HTML/CSS/JS. Establish design tokens and reusable components before pages; create coherent visual systems, accessible responsive UI, purposeful motion and detailed good/bad examples. Priority depth: admin/SaaS interfaces, applicable to all websites and web apps. Includes Anime.js v4 catalog, React Bits / Vue Bits / Inspira UI creative components, Ant Design / Ant Design Vue and other enterprise libraries, Motion/GSAP/CSS engine choices, and enforceable agent prompts.
 ---
 
-# MauForma · Web-first 前端视觉与工程 Skill v6.0
+# MauForma · Web-first 前端视觉与工程 Skill v6.1
 
 **品牌**：MauForma（Maurice + Forma）。原 Soft Precision UI v5.0 的完整能力保留，现已扩充为内容驱动艺术指导、设计知识库、项目级设计规范、组件工程与 QA 的综合 Web Skill。
 
 **定位**：网页设计与前端实现（Web-first）。支持所有网页类型，**当前专项深化后台管理/SaaS**，但绝不把其他网站套成后台模板。框架：Vue 3 / Nuxt、React / Next.js、Svelte / SvelteKit、Angular、Solid、Astro、HTML/CSS/JS；若是 Electron/Tauri 的 **Web 前端层**也适用。**不以 SwiftUI、AppKit、原生 Android 等非 Web UI 为直接适用对象**。
 
 **主原则**：审美统一 ≠ 每页一个模板。统一设计语言 + 共用组件 + 符合具体业务的信息架构 + 恰当动效 + 可访问、可测试的功能。允许自主创作主题色，不固定用户参考网站的蓝紫粉渐变。
+
+## v6.1 · 真实案例库按需复用
+
+**优先复用已有的外部优秀案例，不重新编造品牌设计细节**：行业/风格规则参考 UI/UX Pro Max；真实品牌 `DESIGN.md` 案例参考 VoltAgent 的 84 个文档。前者是设计策略库，不等同于真实品牌案例；后者是社区分析/启发式转译，不是品牌官方 Design System。
+
+设计访谈中应先根据真实用途和内容使用 `scripts/search_design_knowledge.py` 收敛方向，再运行：
+
+```bash
+python3 scripts/search_design_cases.py --query "咖啡 门店 食物" --style premium-showcase --limit 5
+```
+
+仅对命中的案例按需打开对应上游 `DESIGN.md`；**不能只根据案例名称或索引就声称掌握该品牌的实际设计**。`sampled` 表示本次读取过相关正文；`candidate` 表示尚待核验的候选；`indexed_unreviewed` 只是外部来源登记。遇到过时或不可靠的数据，重新检查原始网站/真实截图，并标注推断或未知。严禁无许可复制品牌图片、商标、专有字体或 Pro 内容。
+
+文档与索引：`references/external-design-case-library.md`、`assets/external-design-cases.json`。保留上游仓库的 MIT 许可和出处说明，但其许可证不赋予第三方品牌资产使用权。用户已确定风格时不得被案例推荐覆盖。
 
 ## v6.0 · 设计能力与工程审查的任务路由
 
@@ -49,6 +63,7 @@ MauForma 不是固定的“极简皮肤”，也不是默认全站都用大图/�
 | 任务 | 必读文件 |
 | --- | --- |
 | 用户不确定视觉风格 / 需要设计访谈 | `references/design-discovery-interview.md`、`examples/design-discovery-dialogues.md` |
+| 真实品牌优秀案例 / DESIGN.md 参考 | `references/external-design-case-library.md`、`assets/external-design-cases.json`、`scripts/search_design_cases.py` |
 | 风格知识库 / 艺术指导 / 作者审美 | `references/aesthetic-authorship.md`、`references/design-style-catalog.md`、`references/art-direction-critique.md`、`assets/style-knowledge.json`、`scripts/search_design_knowledge.py` |
 | 参考网页/截图提取设计 DNA | `references/design-dna-protocol.md`、`examples/design-dna-record.json` |
 | 项目 Master 与页面差异 | `references/project-design-hierarchy.md`、`examples/design-system/MASTER.md` |
@@ -110,6 +125,7 @@ MauForma 不是固定的“极简皮肤”，也不是默认全站都用大图/�
 
 ```bash
 python3 scripts/search_design_knowledge.py --query "甜品 食物 产品 摄影" --mode Persuade --json
+python3 scripts/search_design_cases.py --query "甜品 咖啡 门店" --style premium-showcase --json
 python3 scripts/init_design_system.py --project-root ./ --name "Project" --style functional --page dashboard --mode Operate
 # 审核选择之后加 --apply 写入；已有文件不会覆盖
 python3 scripts/validate_intelligence.py

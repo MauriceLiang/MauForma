@@ -1,4 +1,4 @@
-# MauForma v6.0
+# MauForma v6.1
 
 **Web Design & Frontend Engineering Skill**  
 *统一视觉语言、可复用组件、创意动效与跨框架前端工程规范。*
@@ -7,7 +7,7 @@ MauForma 由 Maurice 的品牌前缀 **Mau** 与代表形态/形式的 **Forma**
 
 ## 安装（Codex / Agent Skills）
 
-解压 ZIP，复制完整 `mauforma/` 文件夹至：
+优先从 [GitHub 主仓库](https://github.com/MauriceLiang/MauForma) 获取最新版本，复制完整仓库文件至 Skills 目录（或使用 Git 克隆并保持更新）：
 
 - 全局：`~/.agents/skills/mauforma/`
 - 项目级：`<项目目录>/.agents/skills/mauforma/`
@@ -23,6 +23,13 @@ $mauforma
 统一 Design Tokens 与共享组件，通过组件验收后再实现业务页面。
 按产品类型选择适当动效，并在浏览器中检查响应式、主题、交互状态和可访问性。
 ```
+
+## v6.1 · 外部优秀案例库复用
+
+- [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) 提供大量风格、产品类型和配色/UX 的结构化**设计建议**；它不是按真实品牌逐个记录的网站案例集。
+- [VoltAgent awesome-design-md](https://github.com/VoltAgent/awesome-design-md) 提供 84 个带 `DESIGN.md` 的品牌网站设计分析。MauForma 以本地轻量[案例索引](assets/external-design-cases.json)保存外部链接、匹配关键词、风格建议和核验状态，而不是整库搬运。
+- `python3 scripts/search_design_cases.py --query "咖啡 门店" --style premium-showcase --limit 5` 按需查找。对具体案例必须读取源文档与核对真实页面，不能把社区 Inspired Interpretation 说成品牌官方设计系统。
+- 来源、版权、检索与使用原则见 [外部案例库说明](references/external-design-case-library.md)。保留全部原创八种风格资料库及现有工程规则，不把每个品牌当成固定网页模板。
 
 ## v6.0 · 设计智能与质量工具
 
