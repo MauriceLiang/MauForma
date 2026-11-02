@@ -28,6 +28,28 @@
         },
         "primary_task": {
           "type": "string"
+        },
+        "content_types": {
+          "type": "array",
+          "description": "网站计划展示的具体内容，例如照片、功能截图、文章、商品、工单和图表",
+          "items": {
+            "type": "string"
+          }
+        },
+        "website_purpose": {
+          "type": "string",
+          "description": "用用户能理解的语言记录网站用途"
+        },
+        "visitor_primary_action": {
+          "type": "string",
+          "description": "用户进入网站后最希望完成的动作"
+        },
+        "available_assets": {
+          "type": "array",
+          "description": "用户确认拥有的素材，不能假定有高质量照片或视频",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -176,6 +198,30 @@
               "type": "string"
             }
           }
+        },
+        "selected_direction": {
+          "type": "object",
+          "description": "记录用户所选的方案；推荐不等于确认",
+          "required": [
+            "value",
+            "source"
+          ],
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "source": {
+              "enum": [
+                "confirmed",
+                "delegated",
+                "inherited",
+                "unresolved"
+              ]
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
         }
       }
     },
@@ -189,6 +235,128 @@
       "type": "array",
       "items": {
         "type": "string"
+      }
+    },
+    "discovery": {
+      "type": "object",
+      "description": "只收集影响设计方向的实际缺口",
+      "properties": {
+        "user_knows_style": {
+          "type": "boolean"
+        },
+        "questions_asked": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "known_content": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unverified_assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "recommended_directions": {
+      "type": "array",
+      "description": "用户尚不明确风格时，Agent 根据用途与内容推荐的少量具体方案；不视为已确认",
+      "items": {
+        "type": "object",
+        "required": [
+          "label",
+          "first_screen",
+          "information_density",
+          "visual_focus",
+          "rationale",
+          "tradeoff"
+        ],
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "first_screen": {
+            "type": "string"
+          },
+          "layout": {
+            "type": "string"
+          },
+          "information_density": {
+            "type": "string"
+          },
+          "visual_focus": {
+            "type": "string"
+          },
+          "palette_mood": {
+            "type": "string"
+          },
+          "motion_experience": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "tradeoff": {
+            "type": "string"
+          },
+          "is_primary_recommendation": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "narrowed_choices": {
+      "type": "array",
+      "description": "在用户初选方向后，按需记录更细分、易懂的关键属性及效果",
+      "items": {
+        "type": "object",
+        "required": [
+          "attribute",
+          "options"
+        ],
+        "properties": {
+          "attribute": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "label",
+                "visual_effect"
+              ],
+              "properties": {
+                "label": {
+                  "type": "string"
+                },
+                "visual_effect": {
+                  "type": "string"
+                },
+                "tradeoff": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "chosen_value": {
+            "type": "string"
+          },
+          "source": {
+            "enum": [
+              "confirmed",
+              "delegated",
+              "inherited",
+              "unresolved"
+            ]
+          }
+        }
       }
     }
   }

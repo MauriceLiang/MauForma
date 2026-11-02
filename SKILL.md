@@ -19,10 +19,23 @@ description: MauForma — Web-first, framework-aware, component-first frontend d
 
 实施流程：项目分析 → 用户设计选择/继承 → 视觉构图与信息层级 → Design Tokens → 共享组件 → 页面实现 → 动效与浏览器验收。后台的高效操作和展示页的大幅主视觉都可以在同一设计体系下共存。
 
+### 用户不确定风格时：先问内容，再让用户选择（强制分支）
+
+**不得让不知道设计术语的用户直接从“极简/科技/编辑式”等抽象风格词中盲选。** 若用户说“不知道、没想法、你推荐”，按如下顺序：
+
+1. **内容发现**：检查已有项目；仅询问缺失的网站用途、要展示的内容（产品图片、作品、文字、商品、数据或功能）及用户最希望访客完成的操作。优先自然语言、每轮 1–2 个问题，不问已知信息。
+2. **Agent 自行分析**：基于业务目标、内容形态、素材质量与目标用户推导首要视觉焦点、合适构图、各页面的信息密度、动效必要性。不要要求用户先掌握设计知识。
+3. **给出 2–3 个具体方案**：每套用用户能想象的语言说明首屏第一眼看到什么、图文比例与布局、显示多少信息、色彩气质、动画行为和利弊；标明有依据的首推方案。避免只给抽象名称。
+4. **用户选方向后再缩小范围**：按所选方案，仅就关键而未知的属性每轮提供 2–3 个细化选项（例如“全幅商品大图”或“左大图右文案”），解释视觉与体验差异，允许融合或委托 Agent 决定。不要一次抛出十项专业问题。
+5. **记录真实决策来源**：Agent 推荐不等于用户已确认。保留 `confirmed/delegated/inherited/unresolved` 来源标记。已有品牌规范、明确偏好或小范围修复跳过完整流程。
+
+详细规则与场景判断：`references/design-discovery-interview.md`；可直接模仿的逐轮对话：`examples/design-discovery-dialogues.md`。主题色、圆角、Anime.js/React Bits 等是视觉方向明确后才评估的实施细节，不应成为首次提问的负担。
+
 ## 阅读路由：只读取与任务有关的参考文件
 
 | 任务 | 必读文件 |
 | --- | --- |
+| 用户不确定视觉风格 / 需要设计访谈 | `references/design-discovery-interview.md`、`examples/design-discovery-dialogues.md` |
 | 所有前端实现 | `references/frontend-architecture-and-gates.md`、`references/design-system.md`、`references/component-first.md` |
 | 判断网站类型与密度 | `references/web-scope-and-app-types.md`、`references/good-vs-bad.md` |
 | Vue / Nuxt | `references/framework-vue-nuxt.md`、`examples/vue3-web-components.md` |
@@ -39,7 +52,7 @@ description: MauForma — Web-first, framework-aware, component-first frontend d
 ## 不可跳过的前端执行顺序
 
 1. **Gate 0：侦察**。读取 `package.json`、锁文件、现有路由、框架、UI 库、样式系统、构建命令、页面结构、测试约定，记录技术选择依据；已有项目不能随意换框架。
-2. **Gate A：视觉方案**。针对业务类型给出信息架构、视觉密度、色彩角色、Typography、Spacing、Radius、Elevation、Motion Tokens（浅/深色）。在整个项目只有一个真实 Tokens 来源，非每页硬编码颜色。
+2. **Gate A：视觉方案**。如果用户不确定风格，先按“用途/内容发现 → Agent 推荐少量具体方案 → 用户选择 → 细化属性”的流程确认设计方向；针对业务类型给出信息架构、视觉密度、色彩角色、Typography、Spacing、Radius、Elevation、Motion Tokens（浅/深色）。在整个项目只有一个真实 Tokens 来源，非每页硬编码颜色。
 3. **Gate B：组件优先**。列出复用/改造/新增组件清单，先建立或修正 `UiButton/Field/Dialog/PageHeader/Navigation/Table/Feedback` 等共享组件及各状态，制作组件展示页。**Gate B 未通过，不允许批量铺业务页**。但修复单个故障时不必强制重构全站。
 4. **Gate C：业务与动效**。按真实业务组合组件，先保证真实状态、API、权限与数据流程。先确定场景：
    - **官网/品牌/产品介绍/作品集**：允许按需选择 React Bits、Vue Bits、Inspira UI、Magic UI、Aceternity UI 的**单个**创意组件，不能取代原有功能组件；先检查原生框架、许可证、WebGL/GSAP 依赖、动效减弱和移动端回退。
