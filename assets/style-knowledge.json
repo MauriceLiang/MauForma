@@ -1,0 +1,597 @@
+{
+  "version": "1.0",
+  "updated": "2026-11-02",
+  "schema_note": "Dials are 0–10 advisory ranges, not hard design limits; user choice overrides recommendations. Aesthetic profiles synthesized for MauForma.",
+  "styles": [
+    {
+      "id": "editorial",
+      "name": "Editorial / 杂志编辑式",
+      "modes": [
+        "Read",
+        "Persuade",
+        "Experience"
+      ],
+      "sites": [
+        "architecture",
+        "art",
+        "photography",
+        "editorial",
+        "cultural-media",
+        "brand-story"
+      ],
+      "keywords": [
+        "杂志",
+        "建筑",
+        "摄影",
+        "艺术",
+        "文化",
+        "阅读",
+        "editorial",
+        "architecture",
+        "magazine",
+        "brand story"
+      ],
+      "first_impression": "如翻阅高质量文化杂志：标题、摄影和内容按叙事节奏交替出现",
+      "layout": "大图、非对称栅格、疏密有致的长短段落；正文限宽，分隔线表示信息结构而非装饰",
+      "typography": "表现力强的标题字重或有辨识度的衬线字，正文排版保障长文阅读",
+      "palette": "从作品与品牌内容提取中性色及少量强调色，不自动套黑白模板",
+      "motion": "轻微图像揭示与章节切换；避免连续文字滚动妨碍阅读",
+      "dials": {
+        "variance": [
+          6,
+          9
+        ],
+        "motion": [
+          1,
+          5
+        ],
+        "density": [
+          2,
+          6
+        ]
+      },
+      "assets": [
+        "版权清晰、可裁切的摄影/作品素材",
+        "可用的品牌故事或内容文本"
+      ],
+      "why": "读者需要用视觉与文字共同理解观点；变化的尺度与版面制造叙事层级",
+      "tradeoffs": [
+        "信息结构复杂时需更谨慎的移动端重排",
+        "缺乏有质量的内容时会显空泛"
+      ],
+      "good_case": "建筑工作室以一张完整项目摄影作为视觉主体，正文以编辑式版面解释设计过程",
+      "bad_case": "CRM 工单列表用杂志式错位卡片展示每条工单",
+      "inspiration": [
+        "anthropic-frontend-design",
+        "taste-leonxlnx"
+      ],
+      "origin": "MauForma authored synthesis; not a verbatim taxonomy of referenced authors",
+      "source_urls": [
+        {
+          "id": "anthropic-frontend-design",
+          "url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design"
+        },
+        {
+          "id": "taste-leonxlnx",
+          "url": "https://github.com/Leonxlnx/taste-skill"
+        }
+      ]
+    },
+    {
+      "id": "experimental",
+      "name": "Experimental / 实验性艺术指导",
+      "modes": [
+        "Experience",
+        "Persuade"
+      ],
+      "sites": [
+        "creative-studio",
+        "portfolio",
+        "art-exhibition",
+        "fashion-campaign",
+        "experimental-brand"
+      ],
+      "keywords": [
+        "创意",
+        "潮流",
+        "实验",
+        "艺术展",
+        "作品集",
+        "fashion",
+        "portfolio",
+        "creative",
+        "experimental",
+        "gallery"
+      ],
+      "first_impression": "大胆的留白、错位与尺度冲突产生难以与通用模板混淆的辨识度",
+      "layout": "非对称版式、重叠、不同图像比例、刻意的不均衡秩序；移动端重新设计阅读顺序",
+      "typography": "强对比字号、具有品牌个性的字形；以可阅读的正文作稳定基线",
+      "palette": "服从作品主题，可高对比也可极端克制，不限定 AI 紫色或玻璃拟态",
+      "motion": "可使用叙事性时间轴、视差、滚动章节与磁吸反馈；明确退出和 reduced-motion 回退",
+      "dials": {
+        "variance": [
+          8,
+          10
+        ],
+        "motion": [
+          5,
+          9
+        ],
+        "density": [
+          1,
+          5
+        ]
+      },
+      "assets": [
+        "视觉资产或可制作的原创视觉元素",
+        "充足的浏览器与移动端调试时间"
+      ],
+      "why": "本身出售创意与作品的站点，独特视觉体验就是产品价值的一部分",
+      "tradeoffs": [
+        "高差异布局需额外响应式和无障碍验证",
+        "复杂动效需性能预算和静态回退"
+      ],
+      "good_case": "创意工作室首页用非对称作品全景和自定义标题构图建立独特风格",
+      "bad_case": "财务审核页面为了非对称视觉让确认按钮位置持续变化",
+      "inspiration": [
+        "taste-leonxlnx",
+        "anthropic-frontend-design"
+      ],
+      "origin": "MauForma authored synthesis; not a verbatim taxonomy of referenced authors",
+      "source_urls": [
+        {
+          "id": "taste-leonxlnx",
+          "url": "https://github.com/Leonxlnx/taste-skill"
+        },
+        {
+          "id": "anthropic-frontend-design",
+          "url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design"
+        }
+      ]
+    },
+    {
+      "id": "premium-showcase",
+      "name": "Premium Showcase / 高级产品展示",
+      "modes": [
+        "Persuade",
+        "Experience"
+      ],
+      "sites": [
+        "food",
+        "car",
+        "furniture",
+        "fashion",
+        "consumer-electronics",
+        "jewelry"
+      ],
+      "keywords": [
+        "食物",
+        "餐饮",
+        "甜品",
+        "汽车",
+        "珠宝",
+        "家具",
+        "服装",
+        "商品",
+        "food",
+        "car",
+        "premium",
+        "product",
+        "photography"
+      ],
+      "first_impression": "一个精心拍摄的产品占据最大视觉面积，其他信息为其服务",
+      "layout": "主体图像/视频占主舞台，有限 CTA 与标题，按材质/体验分段讲故事；详情和购买流程提升信息密度",
+      "typography": "精确的大标题与短文案，不以繁多营销小标签稀释焦点",
+      "palette": "从产品质感与摄影环境推导氛围，食品可鲜明温暖但不是固定规则",
+      "motion": "自然推近、图像切换和少量视差；避免模糊/粒子遮住产品细节",
+      "dials": {
+        "variance": [
+          3,
+          7
+        ],
+        "motion": [
+          2,
+          7
+        ],
+        "density": [
+          1,
+          4
+        ]
+      },
+      "assets": [
+        "高分辨率真实产品摄影或可信的专业插画",
+        "商品信息和明确 CTA"
+      ],
+      "why": "感官商品的形态、质感与色彩能更有效触发兴趣，放大主体比罗列全部信息更有说服力",
+      "tradeoffs": [
+        "素材低质时大图会放大缺点",
+        "列表/搜索/结账必须采用更高的可比较密度"
+      ],
+      "good_case": "蛋糕品牌首页突出一张高质量蛋糕特写，下方分段展示新品与门店",
+      "bad_case": "把所有 16 件商品缩成等大的首屏小方卡，无法形成主视觉",
+      "inspiration": [
+        "anthropic-frontend-design",
+        "impeccable"
+      ],
+      "origin": "MauForma authored synthesis; not a verbatim taxonomy of referenced authors",
+      "source_urls": [
+        {
+          "id": "anthropic-frontend-design",
+          "url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design"
+        },
+        {
+          "id": "impeccable",
+          "url": "https://github.com/pbakaus/impeccable"
+        }
+      ]
+    },
+    {
+      "id": "playful",
+      "name": "Playful / 活泼趣味",
+      "modes": [
+        "Persuade",
+        "Experience",
+        "Read"
+      ],
+      "sites": [
+        "children-education",
+        "games",
+        "entertainment",
+        "indie-brand",
+        "creative-product"
+      ],
+      "keywords": [
+        "儿童",
+        "娱乐",
+        "游戏",
+        "趣味",
+        "插画",
+        "潮玩",
+        "kids",
+        "playful",
+        "education",
+        "game",
+        "fun"
+      ],
+      "first_impression": "鲜明但组织良好的颜色、插画与富有性格的反馈，营造可探索的轻松氛围",
+      "layout": "友善的容器形态、图像化内容分组、适当的非对称点缀；操作层级始终清晰",
+      "typography": "圆润或有个性的显示字体；正文有足够的可读性",
+      "palette": "清晰的色彩体系允许更高饱和度，但不把每个交互元素都设为强调色",
+      "motion": "小范围弹性、趣味 hover、正确答案/解锁反馈；避免无限动画与眩晕",
+      "dials": {
+        "variance": [
+          5,
+          8
+        ],
+        "motion": [
+          3,
+          8
+        ],
+        "density": [
+          2,
+          6
+        ]
+      },
+      "assets": [
+        "插画/品牌角色/有授权的视觉资源",
+        "明确的辅助与错误状态设计"
+      ],
+      "why": "互动感与情绪激励能提高探索意愿，尤其适合娱乐和轻量教育任务",
+      "tradeoffs": [
+        "过度趣味化会削弱专业可信度",
+        "强动效需支持减少动态效果"
+      ],
+      "good_case": "儿童学习平台用角色插画与有意义的闯关反馈提升参与感",
+      "bad_case": "医疗告知表单用持续弹跳与彩虹状态按钮",
+      "inspiration": [
+        "taste-leonxlnx",
+        "anthropic-frontend-design"
+      ],
+      "origin": "MauForma authored synthesis; not a verbatim taxonomy of referenced authors",
+      "source_urls": [
+        {
+          "id": "taste-leonxlnx",
+          "url": "https://github.com/Leonxlnx/taste-skill"
+        },
+        {
+          "id": "anthropic-frontend-design",
+          "url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design"
+        }
+      ]
+    },
+    {
+      "id": "cinematic",
+      "name": "Cinematic / 沉浸式叙事",
+      "modes": [
+        "Persuade",
+        "Experience"
+      ],
+      "sites": [
+        "gaming",
+        "film",
+        "digital-art",
+        "product-launch",
+        "interactive-story"
+      ],
+      "keywords": [
+        "游戏",
+        "影视",
+        "故事",
+        "发布会",
+        "沉浸",
+        "叙事",
+        "game",
+        "film",
+        "cinematic",
+        "launch",
+        "story"
+      ],
+      "first_impression": "舞台式镜头、分镜节奏与沉浸视觉使访客在滚动中逐步理解主题",
+      "layout": "全幅媒体、章节节奏、静与动交替；导航/CTA 始终可达",
+      "typography": "大幅但高对比可读的标题与字幕",
+      "palette": "由影片/产品世界观决定，深色不等于必须霓虹",
+      "motion": "时间轴、滚动同步转场、分层景深和连续场景；触摸/弱网提供静态版",
+      "dials": {
+        "variance": [
+          6,
+          9
+        ],
+        "motion": [
+          7,
+          10
+        ],
+        "density": [
+          1,
+          4
+        ]
+      },
+      "assets": [
+        "已授权视频/图像帧",
+        "可维护的媒体分辨率与回退资产"
+      ],
+      "why": "体验本身是说服手段，连续画面更适合展示过程与世界观",
+      "tradeoffs": [
+        "高视频/Canvas/WebGL 成本",
+        "滚动控制与无障碍需要特殊处理"
+      ],
+      "good_case": "游戏世界观页面以分幕图像揭示角色与玩法，并提供跳过动画",
+      "bad_case": "客户服务后台每次切换列表都执行整屏转场",
+      "inspiration": [
+        "taste-leonxlnx",
+        "impeccable"
+      ],
+      "origin": "MauForma authored synthesis; not a verbatim taxonomy of referenced authors",
+      "source_urls": [
+        {
+          "id": "taste-leonxlnx",
+          "url": "https://github.com/Leonxlnx/taste-skill"
+        },
+        {
+          "id": "impeccable",
+          "url": "https://github.com/pbakaus/impeccable"
+        }
+      ]
+    },
+    {
+      "id": "calm-minimal",
+      "name": "Calm Minimal / 克制极简",
+      "modes": [
+        "Operate",
+        "Read",
+        "Persuade"
+      ],
+      "sites": [
+        "developer-tools",
+        "professional-software",
+        "enterprise-service",
+        "documentation",
+        "productivity"
+      ],
+      "keywords": [
+        "开发工具",
+        "专业",
+        "效率",
+        "极简",
+        "文档",
+        "developer",
+        "saas",
+        "minimal",
+        "professional",
+        "software"
+      ],
+      "first_impression": "平静、清楚的排版和节制的色彩，让内容而非装饰成为焦点",
+      "layout": "一致的基线和间距、有限卡片边界、清晰的功能导航；按页面任务调整密度",
+      "typography": "系统或品牌字体均可，重视字重与数字可读性",
+      "palette": "中性底色和少量有明确含义的强调色，深色/浅色均可",
+      "motion": "120–240ms 的状态反馈，尽量不使用持续循环动画",
+      "dials": {
+        "variance": [
+          1,
+          4
+        ],
+        "motion": [
+          1,
+          4
+        ],
+        "density": [
+          3,
+          7
+        ]
+      },
+      "assets": [
+        "清晰的信息架构和真实产品数据"
+      ],
+      "why": "用户以高频任务和内容理解为主，降低视觉噪声能减少学习与操作成本",
+      "tradeoffs": [
+        "如果所有元素权重完全相等仍会显得乏味",
+        "高质感来自细节，不是单纯去装饰"
+      ],
+      "good_case": "SSH 工具网站以真实 UI 截图和清楚功能说明配合留白",
+      "bad_case": "把每个标题叠 3 行英文标签以制造所谓高级感",
+      "inspiration": [
+        "impeccable",
+        "anthropic-frontend-design"
+      ],
+      "origin": "MauForma authored synthesis; not a verbatim taxonomy of referenced authors",
+      "source_urls": [
+        {
+          "id": "impeccable",
+          "url": "https://github.com/pbakaus/impeccable"
+        },
+        {
+          "id": "anthropic-frontend-design",
+          "url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design"
+        }
+      ]
+    },
+    {
+      "id": "functional",
+      "name": "Functional / 高效功能型",
+      "modes": [
+        "Operate"
+      ],
+      "sites": [
+        "erp",
+        "crm",
+        "admin",
+        "operations",
+        "analytics",
+        "dashboard",
+        "editor"
+      ],
+      "keywords": [
+        "后台",
+        "工单",
+        "管理",
+        "表格",
+        "分析",
+        "erp",
+        "crm",
+        "admin",
+        "dashboard",
+        "analytics",
+        "table",
+        "workflow"
+      ],
+      "first_impression": "搜索、筛选、主要任务与状态一眼可达，不用滚动寻找基础操作",
+      "layout": "紧凑 PageHeader、任务优先侧栏、分区清楚的数据表与状态反馈，减少卡片套娃",
+      "typography": "清楚的字段标签、对齐数字和易扫描的表格行",
+      "palette": "语义状态与业务优先级明确，装饰性渐变不是默认",
+      "motion": "保存/切换/状态更新的短动效；复杂动画仅在解释任务时使用",
+      "dials": {
+        "variance": [
+          1,
+          4
+        ],
+        "motion": [
+          1,
+          3
+        ],
+        "density": [
+          6,
+          9
+        ]
+      },
+      "assets": [
+        "真实的字段、权限与流程定义",
+        "可测试的操作状态"
+      ],
+      "why": "用户主要价值来自迅速完成任务，不是欣赏首屏画面；更高的信息可扫描性提升效率",
+      "tradeoffs": [
+        "视觉冲击可低于品牌官网",
+        "必须精确管理响应式折叠与窄屏交互"
+      ],
+      "good_case": "维修工单首先展示待处理列表、过滤器和优先状态，次页再查看统计",
+      "bad_case": "用户管理页用超大 Hero 和装饰英文把列表挤出首屏",
+      "inspiration": [
+        "impeccable",
+        "vercel-web-guidelines"
+      ],
+      "origin": "MauForma authored synthesis; not a verbatim taxonomy of referenced authors",
+      "source_urls": [
+        {
+          "id": "impeccable",
+          "url": "https://github.com/pbakaus/impeccable"
+        },
+        {
+          "id": "vercel-web-guidelines",
+          "url": "https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines"
+        }
+      ]
+    },
+    {
+      "id": "reading-first",
+      "name": "Reading First / 阅读优先",
+      "modes": [
+        "Read"
+      ],
+      "sites": [
+        "docs",
+        "knowledge-base",
+        "news",
+        "education",
+        "long-form",
+        "research"
+      ],
+      "keywords": [
+        "文档",
+        "文章",
+        "知识库",
+        "新闻",
+        "课程",
+        "研究",
+        "阅读",
+        "docs",
+        "reading",
+        "article",
+        "news",
+        "guide"
+      ],
+      "first_impression": "内容结构在初次浏览时就容易理解，阅读过程没有不必要的干扰",
+      "layout": "合理行宽、章节层级、目录和锚点，长文留白依赖段落关系而非空洞",
+      "typography": "可持续阅读的字号、行高、对比度与长段落换行，标题呈现章节逻辑",
+      "palette": "以文字/背景对比和链接可辨认为主，品牌装饰用量克制",
+      "motion": "少动画，目录定位与状态反馈为主；避免滚动时对正文进行逐字动画",
+      "dials": {
+        "variance": [
+          1,
+          5
+        ],
+        "motion": [
+          0,
+          3
+        ],
+        "density": [
+          3,
+          7
+        ]
+      },
+      "assets": [
+        "可靠的文章与标题结构",
+        "可搜索的索引/导航"
+      ],
+      "why": "读者需要构建信息模型并持续阅读，过度动效与不规则分栏会增加认知负担",
+      "tradeoffs": [
+        "视觉实验性适度收敛以换取理解效率",
+        "移动端需控制段落宽度与固定目录行为"
+      ],
+      "good_case": "技术文档首页分类清楚，正文宽度适中，复制代码与目录跳转易用",
+      "bad_case": "每滚动到一段文字就触发强烈模糊入场导致阅读中断",
+      "inspiration": [
+        "impeccable",
+        "anthropic-frontend-design"
+      ],
+      "origin": "MauForma authored synthesis; not a verbatim taxonomy of referenced authors",
+      "source_urls": [
+        {
+          "id": "impeccable",
+          "url": "https://github.com/pbakaus/impeccable"
+        },
+        {
+          "id": "anthropic-frontend-design",
+          "url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design"
+        }
+      ]
+    }
+  ]
+}
