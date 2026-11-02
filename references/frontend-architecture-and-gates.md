@@ -1,0 +1,49 @@
+# 前端项目架构与验收门槛
+
+## Phase 0：项目现状盘点
+
+- 从 `package.json` / 锁文件 / `vite.config.*` / `next.config.*` / `nuxt.config.*` / `angular.json` 等判断现有架构。
+- 列出路由、权限、i18n、数据请求、表单、测试与样式工具；对现有组件做实例检索：button/input/dialog/table/toast/sidebar。
+- 报告：已有 / 可复用 / 有缺陷需改造 / 需要新增。不要因为截图里推荐某个库就改变依赖。
+
+## Phase A：设计语言与 Design Tokens
+
+单一来源定义：`--color-bg/surface/surface-muted/text/text-muted/accent/on-accent/border/focus/success/warning/danger`，以及 `--font-*`、`--space-*`、`--radius-*`、`--shadow-*`、`--motion-*`。用语义 token 替换页面级硬编码，浅色/深色各有明确对比度和层级。
+
+**门槛 A**：提供至少两张“组件状态 + 页面主要区域”的预览或可运行展示；没有主题定义，不进入多个页面开发。
+
+## Phase B：组件系统先行
+
+- 原语组件（UI primitives）：Button、Input、Textarea、Checkbox、Select、Dialog、Popover、Tooltip、Tabs、Toast、Loader、Icon。
+- 复合组件（composites）：Field + Error、SearchField、DataTable、FilterBar、Pagination、EmptyState、ConfirmDialog、PageHeader、Sidebar、FormActions。
+- 页面模板（patterns）：列表筛选页、详情页、创建/编辑页、设置页、向导、内容页、展示型 Hero、商品详情。
+- 组件契约：稳定的 props/variants/size/state/slots(or children)/events；视觉 token 集中处理；键盘/焦点/ARIA 语义明确。
+- 状态覆盖：normal、hover、pressed、focus-visible、disabled、loading、success、error、empty；重要业务还需 pending/offline/permission denied。
+- 组件示例页：至少能查看基础组件的尺寸、变体、状态、长中英文内容，以及暗色主题。
+
+**门槛 B**：业务页不直接重造基础按钮、弹窗、表单字段；多个页面统一依赖共享组件。对于小修小补任务可局部适用，不要求先重建全项目。
+
+## Phase C：真实页面开发
+
+- 页面标题按照产品类型处理：后台优先紧凑、营销首屏可大幅排版。
+- 带真实数据口径；提交按钮有 loading、错误、成功、重复提交保护；删除/权限操作处理确认。
+- 接口数据与本地状态分离；SSR 页面避免 hydration 失配；图表/编辑器只在需要时客户端加载。
+- 动效先选择需要表达的信息：反馈、层级、状态、重排、方向；再选择引擎。交互应可中断且回退可用。
+
+## Phase D：测试与审查
+
+- 单元/组件（Vitest/Testing Library，按项目）与 E2E（Playwright/Cypress，按项目）结合；至少覆盖主线业务。
+- 浏览器实际检查：360/390/768/1024/1440 等代表视口（不是固定唯一断点）、深浅模式、触摸、键盘、放大、长文本、错误/加载/空状态。
+- 视觉 QA：标题层级、颜色、边界、圆角、间距、图标、按钮优先级、图表标签、表格可读性。
+- 动效 QA：prefers-reduced-motion、组件卸载清理、路由快速切换、低性能设备、无动画时核心内容可见。
+- 交付：变更清单、设计 Token、组件复用映射、动效选型理由、真实测试证据及未测项。
+
+## 依赖准入门槛（每安装一个库回答）
+
+| 问题 | 说明 |
+|---|---|
+| 需要解决什么具体缺口？ | 不能只说更炫酷 |
+| 原生 CSS / 现有库为什么不够？ | 简单按钮过渡不应额外装 GSAP |
+| 是否支持当前框架/SSR/版本？ | Vue 和 React 包不同；确认准确导入与 lifecycle |
+| 是否有可访问性、性能、许可证与安全风险？ | 动效不可制造闪烁和可读性问题 |
+| 是否有替换与清理方案？ | 组件 ownership 与依赖数尽量收敛 |

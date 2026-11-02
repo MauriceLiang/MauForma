@@ -1,0 +1,19 @@
+/* Productivity density profile. Load themes.css first; choose this instead of web-tokens.css.
+ * New cross-project recommendation; not an original site token set.
+ */
+.spui--desktop {
+  --spui-radius-panel: 16px;
+  --spui-radius-inner: 10px;
+  --spui-radius-control: 8px;
+  --spui-radius-button: 8px;
+  --spui-radius-dialog: 14px;
+  --spui-content-max: 1200px;
+  --spui-grid-gap: 12px;
+  --spui-panel-pad-x: 16px;
+  --spui-panel-pad-y: 14px;
+  --spui-control-height: 36px;
+  --spui-motion-ui: 160ms;
+  --spui-motion-entry: 280ms;
+  --spui-shadow: 0 2px 12px rgba(0,0,0,.055);
+  --spui-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+}

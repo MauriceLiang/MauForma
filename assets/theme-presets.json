@@ -1,0 +1,52 @@
+{
+  "version": "2.0",
+  "notes": "Six editable example families, NOT obligatory brand choices. Override or replace for each project. Colors are hex; schemes are independent.",
+  "defaults": {
+    "light": {
+      "page-bg": "#F5F5F7", "surface": "#FFFFFF", "surface-soft": "#F9FAFC",
+      "text": "#1D1D1F", "text-soft": "#344054", "text-muted": "#596579",
+      "border": "#E0E4EB", "control-border": "#768295", "focus": "#175CD3",
+      "success": "#067647", "warning": "#984B0D", "danger": "#B42318",
+      "on-accent": "#FFFFFF"
+    },
+    "dark": {
+      "page-bg": "#10151C", "surface": "#1A222D", "surface-soft": "#222D3B",
+      "text": "#F6F8FB", "text-soft": "#D7DEEA", "text-muted": "#B6C2D2",
+      "border": "#3C495B", "control-border": "#8A9CAF", "focus": "#A1C4FF",
+      "success": "#69DCAB", "warning": "#F5BC7E", "danger": "#FF9A91",
+      "on-accent": "#10151C"
+    }
+  },
+  "themes": {
+    "ocean": {
+      "label": "澄净蓝 Ocean", "intent": "冷静、准确、可信赖；工具和信息产品",
+      "light": {"accent": "#175CD3", "page-bg": "#F4F7FC", "surface-soft": "#F7FAFE", "focus": "#175CD3"},
+      "dark": {"accent": "#90BDFF", "focus": "#90BDFF"}
+    },
+    "forest": {
+      "label": "雾松绿 Forest", "intent": "安静、有生命力；创作和长期使用的产品",
+      "light": {"accent": "#147D64", "page-bg": "#F3F8F5", "surface-soft": "#F6FAF8", "focus": "#147D64"},
+      "dark": {"accent": "#76DBB2", "focus": "#76DBB2"}
+    },
+    "copper": {
+      "label": "暖陶棕 Copper", "intent": "温暖、编辑感、亲切；内容和品牌应用",
+      "light": {"accent": "#A14B20", "page-bg": "#FAF7F3", "surface-soft": "#FDFBF8", "focus": "#A14B20"},
+      "dark": {"accent": "#FFC08B", "focus": "#FFC08B"}
+    },
+    "violet": {
+      "label": "暮影紫 Violet", "intent": "创造性但不喧闹；创意工作台",
+      "light": {"accent": "#6941C6", "page-bg": "#F7F5FC", "surface-soft": "#FAF9FE", "focus": "#6941C6"},
+      "dark": {"accent": "#BEA5FF", "focus": "#BEA5FF"}
+    },
+    "slate": {
+      "label": "石墨灰 Slate", "intent": "克制、工具感、长时间工作；开发者软件",
+      "light": {"accent": "#344054", "page-bg": "#F5F6F8", "surface-soft": "#F9FAFC", "focus": "#344054"},
+      "dark": {"accent": "#CBD5E1", "focus": "#CBD5E1"}
+    },
+    "rose": {
+      "label": "深玫红 Rose", "intent": "鲜明而克制的表达；内容和创作产品",
+      "light": {"accent": "#B42349", "page-bg": "#FCF5F7", "surface-soft": "#FFF9FB", "focus": "#B42349"},
+      "dark": {"accent": "#FFA3B8", "focus": "#FFA3B8"}
+    }
+  }
+}

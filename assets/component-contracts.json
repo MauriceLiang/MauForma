@@ -1,0 +1,295 @@
+{
+  "version": "2.1",
+  "note": "Example contract only; implement or adapt components that the current screens require. Existing library APIs take precedence.",
+  "components": [
+    {
+      "name": "UiButton",
+      "responsibility": "Trigger one explicit user action without side effects from rendering",
+      "variants": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "pressed",
+        "focus-visible",
+        "disabled",
+        "loading"
+      ],
+      "api": {
+        "props": [
+          "variant",
+          "size",
+          "disabled",
+          "loading",
+          "type"
+        ],
+        "events": [
+          "click"
+        ],
+        "slots": [
+          "default",
+          "iconStart",
+          "iconEnd"
+        ]
+      },
+      "a11y": "Use button element and semantic type; announce loading, prevent double submission, maintain keyboard focus"
+    },
+    {
+      "name": "UiIconButton",
+      "responsibility": "Compact icon action with an accessible name",
+      "variants": [
+        "ghost",
+        "secondary",
+        "danger"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "pressed",
+        "focus-visible",
+        "disabled",
+        "loading"
+      ],
+      "api": {
+        "props": [
+          "ariaLabel",
+          "variant",
+          "size",
+          "disabled",
+          "loading"
+        ],
+        "events": [
+          "click"
+        ],
+        "slots": [
+          "icon"
+        ]
+      },
+      "a11y": "Must have a meaningful accessible name; tooltips do not replace aria-label"
+    },
+    {
+      "name": "UiField",
+      "responsibility": "Label, hint, input slot, validation, accessible associations",
+      "variants": [
+        "text",
+        "textarea",
+        "select",
+        "search"
+      ],
+      "states": [
+        "default",
+        "focus-visible",
+        "disabled",
+        "required",
+        "error",
+        "success"
+      ],
+      "api": {
+        "props": [
+          "id",
+          "label",
+          "hint",
+          "error",
+          "required",
+          "disabled"
+        ],
+        "events": [
+          "update:modelValue"
+        ],
+        "slots": [
+          "control",
+          "prefix",
+          "suffix"
+        ]
+      },
+      "a11y": "Native label plus aria-describedby and aria-invalid on errors"
+    },
+    {
+      "name": "UiPanel",
+      "responsibility": "Standard surface for one coherent information group",
+      "variants": [
+        "default",
+        "inset",
+        "outlined",
+        "flat"
+      ],
+      "states": [
+        "default",
+        "hover-if-interactive",
+        "focus-if-interactive"
+      ],
+      "api": {
+        "props": [
+          "variant",
+          "padding",
+          "as"
+        ],
+        "events": [],
+        "slots": [
+          "header",
+          "default",
+          "footer"
+        ]
+      },
+      "a11y": "Static panel is not clickable; interactive card must use a real link or button"
+    },
+    {
+      "name": "UiDialog",
+      "responsibility": "Modal decision or input without inaccessible custom focus handling",
+      "variants": [
+        "standard",
+        "critical"
+      ],
+      "states": [
+        "open",
+        "closing",
+        "disabled-action",
+        "loading",
+        "error"
+      ],
+      "api": {
+        "props": [
+          "open",
+          "title",
+          "description",
+          "size"
+        ],
+        "events": [
+          "update:open",
+          "confirm",
+          "cancel"
+        ],
+        "slots": [
+          "default",
+          "footer"
+        ]
+      },
+      "a11y": "Reuse accessible dialog primitive; focus trap, return focus, Escape and labelled dialog"
+    },
+    {
+      "name": "UiNavItem",
+      "responsibility": "Navigate while making active and keyboard focus states clear",
+      "variants": [
+        "sidebar",
+        "tab",
+        "topbar"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "active",
+        "focus-visible",
+        "disabled"
+      ],
+      "api": {
+        "props": [
+          "to",
+          "active",
+          "icon",
+          "disabled"
+        ],
+        "events": [
+          "navigate"
+        ],
+        "slots": [
+          "default"
+        ]
+      },
+      "a11y": "Use links for navigation, aria-current on active target; do not use div click handlers"
+    },
+    {
+      "name": "UiPageHeader",
+      "responsibility": "Task-oriented page header with one semantic title, optional incremental explanation, real breadcrumb navigation and contextual actions; never generates decorative eyebrow or generic hero copy by default",
+      "variants": [
+        "compact",
+        "comfortable"
+      ],
+      "states": [
+        "regular",
+        "long-title",
+        "with-actions",
+        "with-breadcrumbs",
+        "narrow-width"
+      ],
+      "api": {
+        "props": [
+          "title",
+          "description",
+          "breadcrumbs",
+          "density",
+          "titleLevel"
+        ],
+        "events": [],
+        "slots": [
+          "actions",
+          "description",
+          "breadcrumbs"
+        ]
+      },
+      "a11y": "Use a semantic heading level appropriate to document structure; breadcrumb is nav not decorative label; maintain predictable reading and tab order; avoid duplicate document H1"
+    },
+    {
+      "name": "UiStatusBadge",
+      "responsibility": "Display semantic state, not arbitrary accent colors",
+      "variants": [
+        "neutral",
+        "success",
+        "warning",
+        "danger",
+        "info"
+      ],
+      "states": [
+        "default",
+        "with-icon",
+        "compact"
+      ],
+      "api": {
+        "props": [
+          "tone",
+          "size",
+          "icon"
+        ],
+        "events": [],
+        "slots": [
+          "default"
+        ]
+      },
+      "a11y": "Color never the only signal; include a meaningful label or icon with accessible text"
+    },
+    {
+      "name": "UiFeedback",
+      "responsibility": "Represent loading, empty, error and success feedback without inconsistent ad hoc screens",
+      "variants": [
+        "loading",
+        "empty",
+        "error",
+        "success"
+      ],
+      "states": [
+        "default",
+        "retrying",
+        "action-disabled"
+      ],
+      "api": {
+        "props": [
+          "kind",
+          "title",
+          "description"
+        ],
+        "events": [
+          "retry",
+          "action"
+        ],
+        "slots": [
+          "action",
+          "illustration"
+        ]
+      },
+      "a11y": "Status uses proper live region when necessary; retry actions are descriptive"
+    }
+  ]
+}

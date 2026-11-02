@@ -1,0 +1,49 @@
+/* MauForma — optional component visual primitives.
+   Needs themes.css plus one density stylesheet. All behavior remains in your framework.
+   Adapt existing library components instead of duplicating them. */
+.spui { color:var(--spui-text); background:var(--spui-page-bg); font-family:var(--spui-font); }
+.spui *, .spui *::before, .spui *::after {box-sizing:border-box;}
+.spui button, .spui input, .spui textarea { font:inherit; }
+.spui :is(button,a,input,textarea,select,[role="tab"]):focus-visible {
+  outline:3px solid var(--spui-focus); outline-offset:3px;
+}
+.spui .ui-panel {background:var(--spui-surface); color:var(--spui-text); border-radius:var(--spui-radius-panel); padding:var(--spui-panel-pad-y) var(--spui-panel-pad-x); box-shadow:var(--spui-shadow); min-width:0;}
+.spui .ui-panel--flat {box-shadow:none; border:1px solid var(--spui-border);}
+.spui .ui-panel--inset {background:var(--spui-surface-soft); border-radius:var(--spui-radius-inner); box-shadow:none;}
+.spui .ui-button {display:inline-flex; justify-content:center; align-items:center; gap:8px; min-height:var(--spui-control-height); padding:0 17px; border-radius:var(--spui-radius-button); border:1px solid transparent; cursor:pointer; white-space:nowrap; font-weight:600; font-size:14px; line-height:1.3; transition:background-color var(--spui-motion-ui) ease, border-color var(--spui-motion-ui) ease, opacity var(--spui-motion-ui) ease, transform 100ms ease; }
+.spui .ui-button:active:not(:disabled) {transform:translateY(1px)}
+.spui .ui-button--primary {background:var(--spui-accent);color:var(--spui-on-accent);}
+.spui .ui-button--secondary {color:var(--spui-text);background:var(--spui-surface);border-color:var(--spui-control-border);}
+.spui .ui-button--ghost {color:var(--spui-text);background:transparent;}
+.spui .ui-button--danger {color:#fff;background:var(--spui-danger);}
+.spui[data-scheme="dark"] .ui-button--danger {background:var(--spui-danger);color:var(--spui-on-accent);}
+.spui .ui-button:hover:not(:disabled) {opacity:.87;}
+.spui .ui-button:disabled, .spui .ui-button[aria-disabled="true"] {opacity:.5;cursor:not-allowed;transform:none;}
+.spui .ui-button--sm {min-height:calc(var(--spui-control-height) - 8px);padding:0 12px;font-size:13px;}
+.spui .ui-icon-button {width:var(--spui-control-height);padding:0;flex:0 0 var(--spui-control-height);}
+.spui .ui-field {display:grid;gap:7px;min-width:0;}
+.spui .ui-label {font-size:13px;font-weight:600;color:var(--spui-text);line-height:1.35;}
+.spui .ui-hint {font-size:12px;color:var(--spui-text-muted);line-height:1.5;}
+.spui .ui-input {display:block;width:100%;min-width:0;min-height:var(--spui-control-height);padding:10px 12px;border:1px solid var(--spui-control-border);border-radius:var(--spui-radius-control);color:var(--spui-text);background:var(--spui-surface);font-size:14px;line-height:1.5;transition:border-color var(--spui-motion-ui) ease,box-shadow var(--spui-motion-ui) ease;}
+.spui textarea.ui-input {min-height:98px;resize:vertical;}
+.spui .ui-input:focus-visible {border-color:var(--spui-focus);}
+.spui .ui-input[aria-invalid="true"] {border-color:var(--spui-danger);}
+.spui .ui-input:disabled {opacity:.65;cursor:not-allowed;background:var(--spui-surface-soft);}
+.spui .ui-error {font-size:12px;color:var(--spui-danger);line-height:1.5;}
+.spui .ui-badge {display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 10px;border:1px solid var(--spui-border);color:var(--spui-text-soft);background:var(--spui-surface-soft);font-size:12px;font-weight:600;line-height:1.4;}
+.spui .ui-badge::before {content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:none;}
+.spui .ui-badge--success {color:var(--spui-success)}
+.spui .ui-badge--warning {color:var(--spui-warning)}
+.spui .ui-badge--danger {color:var(--spui-danger)}
+.spui .ui-badge--info {color:var(--spui-accent)}
+.spui .ui-nav {display:flex;gap:4px;flex-wrap:wrap;}
+.spui .ui-nav-item {display:inline-flex;align-items:center;justify-content:center;padding:9px 13px;border-radius:var(--spui-radius-control);color:var(--spui-text-soft);text-decoration:none;font-size:13px;line-height:1.3;font-weight:500;transition:background-color var(--spui-motion-ui) ease;}
+.spui .ui-nav-item:hover {background:var(--spui-surface-soft);color:var(--spui-text);}
+.spui .ui-nav-item[aria-current="page"] {color:var(--spui-accent);background:var(--spui-surface-soft);font-weight:700;}
+.spui .ui-divider {height:1px;border:0;background:var(--spui-border);margin:15px 0;}
+.spui .ui-empty {padding:32px 18px;display:grid;gap:9px;justify-items:center;text-align:center;color:var(--spui-text-soft);}
+.spui .ui-empty strong {color:var(--spui-text);font-size:16px;}
+.spui .ui-dialog-surface {max-width:min(540px,calc(100vw - 32px));padding:24px;border-radius:var(--spui-radius-dialog);background:var(--spui-surface);color:var(--spui-text);border:1px solid var(--spui-border);box-shadow:0 14px 50px rgba(0,0,0,.12);}
+@media (prefers-reduced-motion:reduce) {
+  .spui .ui-button,.spui .ui-input,.spui .ui-nav-item {transition-duration:.01ms!important;animation-duration:.01ms!important;}
+}

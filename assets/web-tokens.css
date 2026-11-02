@@ -1,0 +1,19 @@
+/* Showcase density profile. Load themes.css first; this file only defines density.
+ * Inspiration: source site's 32px / 18px radii, 980px content width, 18px grid gap.
+ */
+.spui--showcase {
+  --spui-radius-panel: 32px;
+  --spui-radius-inner: 18px;
+  --spui-radius-control: 16px;
+  --spui-radius-button: 999px;
+  --spui-radius-dialog: 24px;
+  --spui-content-max: 980px;
+  --spui-grid-gap: 18px;
+  --spui-panel-pad-x: 28px;
+  --spui-panel-pad-y: 24px;
+  --spui-control-height: 44px;
+  --spui-motion-ui: 200ms;
+  --spui-motion-entry: 580ms;
+  --spui-shadow: 3px 5px 30px rgba(0,0,0,.08);
+  --spui-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+}

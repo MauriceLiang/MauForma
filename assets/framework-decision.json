@@ -1,0 +1,140 @@
+{
+  "version": "4.0.0",
+  "scope": "web-frontends",
+  "primary": [
+    "vue3",
+    "nuxt",
+    "react",
+    "next"
+  ],
+  "supported": [
+    "vue3",
+    "nuxt",
+    "react",
+    "next",
+    "svelte",
+    "sveltekit",
+    "angular",
+    "solid",
+    "astro",
+    "vanilla"
+  ],
+  "frameworks": {
+    "vue3": {
+      "ui": [
+        "reka-ui",
+        "shadcn-vue",
+        "element-plus",
+        "naive-ui"
+      ],
+      "clientState": [
+        "pinia",
+        "composables"
+      ],
+      "serverState": [
+        "@tanstack/vue-query"
+      ],
+      "chart": [
+        "echarts"
+      ],
+      "motion": [
+        "css",
+        "vue-transition",
+        "motion-v",
+        "animejs",
+        "gsap"
+      ]
+    },
+    "react": {
+      "ui": [
+        "shadcn/ui",
+        "base-ui",
+        "radix-ui",
+        "react-aria"
+      ],
+      "clientState": [
+        "zustand",
+        "react-context"
+      ],
+      "serverState": [
+        "@tanstack/react-query"
+      ],
+      "chart": [
+        "recharts",
+        "echarts"
+      ],
+      "motion": [
+        "css",
+        "motion/react",
+        "animejs",
+        "gsap"
+      ]
+    },
+    "svelte": {
+      "ui": [
+        "bits-ui",
+        "shadcn-svelte"
+      ],
+      "motion": [
+        "svelte-transition",
+        "css",
+        "animejs",
+        "gsap"
+      ]
+    },
+    "angular": {
+      "ui": [
+        "angular-cdk",
+        "angular-material",
+        "primeng"
+      ],
+      "motion": [
+        "css",
+        "animejs",
+        "gsap"
+      ]
+    },
+    "solid": {
+      "ui": [
+        "kobalte",
+        "ark-ui"
+      ],
+      "motion": [
+        "css",
+        "animejs",
+        "gsap"
+      ]
+    },
+    "astro": {
+      "ui": [
+        "astro-components",
+        "react-islands",
+        "vue-islands",
+        "svelte-islands"
+      ],
+      "motion": [
+        "css",
+        "waapi",
+        "animejs"
+      ]
+    },
+    "vanilla": {
+      "ui": [
+        "native-html",
+        "web-components"
+      ],
+      "motion": [
+        "css",
+        "waapi",
+        "animejs"
+      ]
+    }
+  },
+  "policy": {
+    "preserve_existing_stack": true,
+    "shared_components_first": true,
+    "verify_official_api": true,
+    "add_dependencies_on_demand_only": true,
+    "do_not_copy_react_libs_to_vue": true
+  }
+}
