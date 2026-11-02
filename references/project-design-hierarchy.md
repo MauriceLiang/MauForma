@@ -30,3 +30,13 @@
 ## 参考样例
 
 `examples/design-system/MASTER.md` 与 `examples/design-system/pages/home.md`、`examples/design-system/pages/dashboard.md`。这些是演示模板，不是要求用户项目使用完全相同的主题色。
+
+## 可执行的初始化命令
+
+```bash
+python3 scripts/init_design_system.py --project-root . --name "Example" --style editorial --page home --mode Persuade
+# 默认 PREVIEW ONLY
+python3 scripts/init_design_system.py --project-root . --name "Example" --style editorial --source confirmed --page home --mode Persuade --apply
+```
+
+`--source confirmed` **仅当用户明确选择该风格**时使用；AI 自行决定使用 delegated。已存在的 MASTER/decisions/页面文件默认拒绝覆盖，只有用户明确授权并传入 `--force --apply` 才可改写。脚本不会替你推断业务事实和素材。

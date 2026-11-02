@@ -12,6 +12,8 @@ NEEDED = [
     "references/react-component-engineering.md", "references/vue-component-engineering.md",
     "references/browser-qa-protocol.md", "scripts/search_design_knowledge.py",
     "scripts/audit_frontend.py", "tests/test_design_intelligence.py",
+    "scripts/init_design_system.py", "tests/test_design_system_manager.py",
+    "scripts/browser_qa.mjs",
 ]
 REQUIRED_FIELDS = {
     "id", "name", "modes", "sites", "keywords", "first_impression",

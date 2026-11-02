@@ -39,6 +39,8 @@ $mauforma
 
 ```bash
 python3 scripts/search_design_knowledge.py --query "甜品 摄影 到店" --mode Persuade --json
+python3 scripts/init_design_system.py --project-root . --name "Project" --style premium-showcase --page home --mode Persuade
+# 上面仅预览；确认后追加 --apply，已有文件不覆盖
 python3 scripts/validate_intelligence.py
 python3 -m unittest discover -s tests -v
 python3 scripts/audit_frontend.py ./src --format json

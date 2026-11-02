@@ -19,9 +19,10 @@ MauForma 不是固定的“极简皮肤”，也不是默认全站都用大图/�
 2. **Art Direction / Critique**：推荐时给出首屏视觉焦点、图文比例、构图、字体、信息密度、动效、优缺点、素材前提；进入组件开发前先做一次自我批判。详见 `references/art-direction-critique.md`。
 3. **风格与原作者个性**：八种独立风格及适用/反例在 `assets/style-knowledge.json`、`references/design-style-catalog.md`。允许非对称、大留白、大胆排版、强动效，前提是内容、页面目标和性能许可；也允许高密度功能型工作台。三旋钮 `variance/motion/density` 建议范围为 0–10，不是限制上限。
 4. **可持续的设计决定**：在用户项目中建立 `design-system/MASTER.md` 和按页面差异记录的 `design-system/pages/*.md`，并保存含 confirmed/delegated/inherited/unresolved 来源的决策记录。参见 `references/project-design-hierarchy.md`；页面例外不得破坏全局组件行为、品牌 Token 和无障碍。
-5. **Design DNA**：用户给出参考网站/截图时，记录观察 WHAT、解释 WHY（明确区分推断）、证据、放弃的替代布局、可迁移设计原则。详见 `references/design-dna-protocol.md`。
-6. **工程审查与浏览器证据**：Vue/React 使用各自组件契约和性能规则；`python3 scripts/audit_frontend.py <web-src> --format json` 为**静态启发式风险检测**，不能替代真实视觉验收。若项目已有 Playwright，可运行 `node scripts/browser_qa.mjs --url http://localhost:3000` 收集截图/页面错误/溢出线索；未运行必须标记 NOT RUN。详见 `references/browser-qa-protocol.md`。
-7. **只加载需要的知识**：局部修复直接读相关组件与审查规则；完整新网站依次执行内容发现 → 风格方案推荐 → 用户选择 → Master/页面设计规范 → Tokens → 共享组件 → 业务页面 → Browser QA。组件先行 Gate B 仍是强制门槛，不能被创意动效跳过。
+5. **项目文件落地**：`python3 scripts/init_design_system.py --project-root ./ --name "My Product" --style premium-showcase --page home --mode Persuade` 默认仅预览；经用户确认后加 `--apply` 才写文件，默认禁止覆盖现有文件。选择来源必须正确标记，详见 `references/project-design-hierarchy.md`。
+6. **Design DNA**：用户给出参考网站/截图时，记录观察 WHAT、解释 WHY（明确区分推断）、证据、放弃的替代布局、可迁移设计原则。详见 `references/design-dna-protocol.md`。
+7. **工程审查与浏览器证据**：Vue/React 使用各自组件契约和性能规则；`python3 scripts/audit_frontend.py <web-src> --format json` 为**静态启发式风险检测**，不能替代真实视觉验收。若项目已有 Playwright，可运行 `node scripts/browser_qa.mjs --url http://localhost:3000` 收集截图/页面错误/溢出线索；未运行必须标记 NOT RUN。详见 `references/browser-qa-protocol.md`。
+8. **只加载需要的知识**：局部修复直接读相关组件与审查规则；完整新网站依次执行内容发现 → 风格方案推荐 → 用户选择 → Master/页面设计规范 → Tokens → 共享组件 → 业务页面 → Browser QA。组件先行 Gate B 仍是强制门槛，不能被创意动效跳过。
 
 ## 必经设计确认阶段（新增 v5.2）
 
@@ -109,6 +110,8 @@ MauForma 不是固定的“极简皮肤”，也不是默认全站都用大图/�
 
 ```bash
 python3 scripts/search_design_knowledge.py --query "甜品 食物 产品 摄影" --mode Persuade --json
+python3 scripts/init_design_system.py --project-root ./ --name "Project" --style functional --page dashboard --mode Operate
+# 审核选择之后加 --apply 写入；已有文件不会覆盖
 python3 scripts/validate_intelligence.py
 python3 -m unittest discover -s tests -v
 python3 scripts/audit_frontend.py ./src --format json
