@@ -1,5 +1,16 @@
 # Changelog
 
+## v6.0 — 2026-11-02 · Design intelligence / P0–P3
+
+- P0：建立八种保持作者审美差异的风格档案；按 Persuade/Operate/Read/Experience 模式选择构图；加入 Art Direction 自评。
+- P1：新增本地可检索 JSON 风格知识库和推荐 CLI；建立 Design DNA WHAT/WHY/EVIDENCE 协议及全局 Master / 页面差异体系。
+- P2：强化 React / Vue 组件架构、状态边界与性能选择原则；保留现有框架、组件库及动画目录。
+- P3：新增静态 UI 风险扫描、Playwright 可选浏览器证据采集、unittest 和 GitHub Actions 检查。
+- 全部参考均保留来源与适用范围，原创内容独立编写，不复制第三方 Skill 指令或品牌素材。
+- 浏览器 QA 工具须由项目拥有 Playwright 环境才能使用；静态扫描不是运行时功能验证。
+
+---
+
 ## v5.2 — 2026-11-02 · 设计前访谈与视觉选择
 
 - 增加用户参与的设计方向确认：视觉风格、信息密度、主视觉焦点。
