@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+"""Validate original MauForma style knowledge, provenance and required task routes."""
+from __future__ import annotations
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+NEEDED = [
+    "assets/style-knowledge.json", "references/design-style-catalog.md",
+    "references/aesthetic-authorship.md", "references/art-direction-critique.md",
+    "references/design-dna-protocol.md", "references/project-design-hierarchy.md",
+    "references/react-component-engineering.md", "references/vue-component-engineering.md",
+    "references/browser-qa-protocol.md", "scripts/search_design_knowledge.py",
+    "scripts/audit_frontend.py", "tests/test_design_intelligence.py",
+]
+REQUIRED_FIELDS = {
+    "id", "name", "modes", "sites", "keywords", "first_impression",
+    "layout", "typography", "palette", "motion", "dials", "assets",
+    "why", "tradeoffs", "good_case", "bad_case", "source_urls", "origin",
+}
+
+
+def validate() -> list[str]:
+    errors = [f"Missing {p}" for p in NEEDED if not (ROOT / p).is_file()]
+    try:
+        data = json.loads((ROOT / "assets/style-knowledge.json").read_text("utf-8"))
+        styles = data["styles"]
+        if len(styles) != 8:
+            errors.append(f"Expected 8 independent styles, got {len(styles)}")
+        ids = [s["id"] for s in styles]
+        if len(ids) != len(set(ids)):
+            errors.append("Duplicate style ID")
+        for s in styles:
+            missing = REQUIRED_FIELDS - s.keys()
+            if missing:
+                errors.append(f"{s.get('id','?')} missing {sorted(missing)}")
+                continue
+            if not s["why"] or not s["good_case"] or not s["bad_case"] or not s["source_urls"]:
+                errors.append(f"Missing why/examples/provenance for {s['id']}")
+            for dial, bounds in s["dials"].items():
+                if dial not in ("variance", "motion", "density") or len(bounds) != 2 or not 0 <= bounds[0] <= bounds[1] <= 10:
+                    errors.append(f"Invalid {dial} for {s['id']}")
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        errors.append(f"Invalid knowledge data: {exc}")
+    skill = (ROOT / "SKILL.md").read_text("utf-8")
+    for needed in ("search_design_knowledge.py", "art-direction-critique.md", "browser-qa-protocol.md", "project-design-hierarchy.md"):
+        if needed not in skill:
+            errors.append(f"SKILL.md missing task route: {needed}")
+    return errors
+
+
+if __name__ == "__main__":
+    errors = validate()
+    for issue in errors:
+        print("ERROR:", issue)
+    print("MauForma design intelligence:", "PASS" if not errors else "FAIL")
+    raise SystemExit(bool(errors))
