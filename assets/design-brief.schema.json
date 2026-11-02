@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MauForma Project Design Brief",
+  "type": "object",
+  "required": [
+    "project",
+    "decisions"
+  ],
+  "properties": {
+    "project": {
+      "type": "object",
+      "required": [
+        "name",
+        "kind"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "framework": {
+          "type": "string"
+        },
+        "audience": {
+          "type": "string"
+        },
+        "primary_task": {
+          "type": "string"
+        }
+      }
+    },
+    "decisions": {
+      "type": "object",
+      "required": [
+        "visual_style",
+        "information_density",
+        "primary_focus"
+      ],
+      "properties": {
+        "visual_style": {
+          "type": "object",
+          "required": [
+            "value",
+            "source"
+          ],
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "source": {
+              "enum": [
+                "confirmed",
+                "delegated",
+                "inherited",
+                "unresolved"
+              ]
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        "information_density": {
+          "type": "object",
+          "required": [
+            "value",
+            "source"
+          ],
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "source": {
+              "enum": [
+                "confirmed",
+                "delegated",
+                "inherited",
+                "unresolved"
+              ]
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        "primary_focus": {
+          "type": "object",
+          "required": [
+            "value",
+            "source"
+          ],
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "source": {
+              "enum": [
+                "confirmed",
+                "delegated",
+                "inherited",
+                "unresolved"
+              ]
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        "palette": {
+          "type": "object",
+          "required": [
+            "value",
+            "source"
+          ],
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "source": {
+              "enum": [
+                "confirmed",
+                "delegated",
+                "inherited",
+                "unresolved"
+              ]
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        "motion_level": {
+          "type": "object",
+          "required": [
+            "value",
+            "source"
+          ],
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "source": {
+              "enum": [
+                "confirmed",
+                "delegated",
+                "inherited",
+                "unresolved"
+              ]
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        "asset_strategy": {
+          "type": "object",
+          "required": [
+            "value",
+            "source"
+          ],
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "source": {
+              "enum": [
+                "confirmed",
+                "delegated",
+                "inherited",
+                "unresolved"
+              ]
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
