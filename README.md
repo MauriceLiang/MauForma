@@ -1,4 +1,4 @@
-# MauForma v5.1
+# MauForma v5.2
 
 **Web Design & Frontend Engineering Skill**  
 *统一视觉语言、可复用组件、创意动效与跨框架前端工程规范。*
@@ -23,6 +23,10 @@ $mauforma
 统一 Design Tokens 与共享组件，通过组件验收后再实现业务页面。
 按产品类型选择适当动效，并在浏览器中检查响应式、主题、交互状态和可访问性。
 ```
+
+## v5.2 设计选择能力
+
+新建或整体重设计时先确认视觉风格、信息密度和主视觉焦点，再确定设计 Tokens、共享组件与页面实现。具体流程见 [`references/design-discovery-interview.md`](references/design-discovery-interview.md)，设计简报结构见 [`assets/design-brief.schema.json`](assets/design-brief.schema.json)。不重复询问已明确的项目偏好，也不把展示页的低信息密度机械移植到后台表格。
 
 ## 主要能力
 

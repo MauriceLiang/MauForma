@@ -1,5 +1,17 @@
 # Changelog
 
+## v5.2 — 2026-11-02 · 设计前访谈与视觉选择
+
+- 增加用户参与的设计方向确认：视觉风格、信息密度、主视觉焦点。
+- 支持按页面内容自适应密度、视觉层级、构图与留白。
+- 新增 `references/design-discovery-interview.md` 和 `assets/design-brief.schema.json`。
+- 为已有项目、局部修改和用户授权 AI 决定的场景提供免重复提问规则。
+- 保留组件优先、跨框架 Web 支持、创意动效和反面案例审查。
+
+---
+
+# Changelog
+
 ## v5.1 — 2026-11-02 · 更名为 MauForma
 
 - Skill 正式命名 **MauForma**（Maurice + Forma），slug、安装路径和调用命令统一为 `mauforma` / `$mauforma`。
