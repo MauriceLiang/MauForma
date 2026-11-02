@@ -1,0 +1,1619 @@
+{
+  "version": 1,
+  "source_snapshot_sha": "fcc70284932276d085f01ef9f83edde90b1258cb",
+  "source_repository": "https://github.com/VoltAgent/awesome-design-md",
+  "source_license": "MIT",
+  "snapshot_date": "2026-11-02",
+  "disclaimer": "Community design analyses / inspired interpretations, not official brand design systems; verify against live pages before asserting current exact tokens. License of documentation does not grant use of third-party trademarks/fonts/imagery.",
+  "reviewed_examples": 5,
+  "candidate_examples": 17,
+  "cases": [
+    {
+      "id": "1win",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/1win/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/1win/DESIGN.md",
+      "site": "https://getdesign.md/1win/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "1win"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "airbnb",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/airbnb/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/airbnb/DESIGN.md",
+      "site": "https://getdesign.md/airbnb/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "premium-showcase",
+        "editorial"
+      ],
+      "modes": [
+        "Persuade",
+        "Operate"
+      ],
+      "keywords": [
+        "旅游",
+        "住宿",
+        "酒店",
+        "预订",
+        "airbnb",
+        "travel",
+        "booking"
+      ],
+      "analysis_note": "旅宿场景值得优先检查目的地照片与搜索/预订的平衡"
+    },
+    {
+      "id": "airtable",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/airtable/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/airtable/DESIGN.md",
+      "site": "https://getdesign.md/airtable/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "airtable"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "aljazeera",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/aljazeera/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/aljazeera/DESIGN.md",
+      "site": "https://getdesign.md/aljazeera/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "aljazeera"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "apple",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/apple/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/apple/DESIGN.md",
+      "site": "https://getdesign.md/apple/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "sampled",
+      "styles": [
+        "premium-showcase",
+        "calm-minimal"
+      ],
+      "modes": [
+        "Persuade",
+        "Experience"
+      ],
+      "keywords": [
+        "手机",
+        "消费电子",
+        "产品摄影",
+        "硬件",
+        "发布",
+        "apple",
+        "consumer electronics",
+        "product showcase"
+      ],
+      "analysis_note": "大幅产品摄影、浅深画布交替，交互蓝仅表达操作；主体先于装饰"
+    },
+    {
+      "id": "binance",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/binance/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/binance/DESIGN.md",
+      "site": "https://getdesign.md/binance/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "binance"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "bmw-m",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/bmw-m/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/bmw-m/DESIGN.md",
+      "site": "https://getdesign.md/bmw-m/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "bmw-m"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "bmw",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/bmw/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/bmw/DESIGN.md",
+      "site": "https://getdesign.md/bmw/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "premium-showcase",
+        "cinematic"
+      ],
+      "modes": [
+        "Persuade",
+        "Experience"
+      ],
+      "keywords": [
+        "汽车",
+        "品牌",
+        "bmw",
+        "car",
+        "automotive"
+      ],
+      "analysis_note": "汽车品牌候选：核对是否通过车型摄影和叙事构图传达性能"
+    },
+    {
+      "id": "bugatti",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/bugatti/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/bugatti/DESIGN.md",
+      "site": "https://getdesign.md/bugatti/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "bugatti"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "cal",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/cal/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/cal/DESIGN.md",
+      "site": "https://getdesign.md/cal/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "cal"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "claude",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/claude/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/claude/DESIGN.md",
+      "site": "https://getdesign.md/claude/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "claude"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "clay",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/clay/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/clay/DESIGN.md",
+      "site": "https://getdesign.md/clay/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "clay"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "clickhouse",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/clickhouse/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/clickhouse/DESIGN.md",
+      "site": "https://getdesign.md/clickhouse/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "clickhouse"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "cohere",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/cohere/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/cohere/DESIGN.md",
+      "site": "https://getdesign.md/cohere/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "cohere"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "coinbase",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/coinbase/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/coinbase/DESIGN.md",
+      "site": "https://getdesign.md/coinbase/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "coinbase"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "composio",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/composio/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/composio/DESIGN.md",
+      "site": "https://getdesign.md/composio/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "composio"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "cursor",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/cursor/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/cursor/DESIGN.md",
+      "site": "https://getdesign.md/cursor/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "cursor"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "dell-1996",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/dell-1996/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/dell-1996/DESIGN.md",
+      "site": "https://getdesign.md/dell-1996/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "dell-1996"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "dji",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/dji/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/dji/DESIGN.md",
+      "site": "https://getdesign.md/dji/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "dji"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "elevenlabs",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/elevenlabs/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/elevenlabs/DESIGN.md",
+      "site": "https://getdesign.md/elevenlabs/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "elevenlabs"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "expo",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/expo/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/expo/DESIGN.md",
+      "site": "https://getdesign.md/expo/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "expo"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "ferrari",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/ferrari/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/ferrari/DESIGN.md",
+      "site": "https://getdesign.md/ferrari/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "premium-showcase",
+        "cinematic"
+      ],
+      "modes": [
+        "Persuade",
+        "Experience"
+      ],
+      "keywords": [
+        "汽车",
+        "赛车",
+        "性能",
+        "ferrari",
+        "car",
+        "racing"
+      ],
+      "analysis_note": "汽车性能叙事候选，必须阅读原 DESIGN.md 核对"
+    },
+    {
+      "id": "figma",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/figma/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/figma/DESIGN.md",
+      "site": "https://getdesign.md/figma/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "experimental",
+        "calm-minimal"
+      ],
+      "modes": [
+        "Persuade",
+        "Operate"
+      ],
+      "keywords": [
+        "设计工具",
+        "协作",
+        "创意",
+        "figma",
+        "design",
+        "creative"
+      ],
+      "analysis_note": "创意工具候选，重点验证作品/编辑器的视觉展示策略"
+    },
+    {
+      "id": "framer",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/framer/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/framer/DESIGN.md",
+      "site": "https://getdesign.md/framer/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "experimental",
+        "editorial"
+      ],
+      "modes": [
+        "Persuade",
+        "Experience"
+      ],
+      "keywords": [
+        "网页设计",
+        "作品集",
+        "交互",
+        "framer",
+        "creative",
+        "portfolio"
+      ],
+      "analysis_note": "设计工具候选，适合研究构图与网页演示的边界"
+    },
+    {
+      "id": "hashicorp",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/hashicorp/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/hashicorp/DESIGN.md",
+      "site": "https://getdesign.md/hashicorp/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "hashicorp"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "hp",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/hp/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/hp/DESIGN.md",
+      "site": "https://getdesign.md/hp/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "hp"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "ibm",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/ibm/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/ibm/DESIGN.md",
+      "site": "https://getdesign.md/ibm/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "ibm"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "intercom",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/intercom/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/intercom/DESIGN.md",
+      "site": "https://getdesign.md/intercom/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "intercom"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "jobright",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/jobright/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/jobright/DESIGN.md",
+      "site": "https://getdesign.md/jobright/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "jobright"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "kraken",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/kraken/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/kraken/DESIGN.md",
+      "site": "https://getdesign.md/kraken/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "kraken"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "lamborghini",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/lamborghini/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/lamborghini/DESIGN.md",
+      "site": "https://getdesign.md/lamborghini/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "lamborghini"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "linear.app",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/linear.app/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/linear.app/DESIGN.md",
+      "site": "https://getdesign.md/linear.app/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "sampled",
+      "styles": [
+        "calm-minimal",
+        "functional"
+      ],
+      "modes": [
+        "Persuade",
+        "Operate"
+      ],
+      "keywords": [
+        "开发工具",
+        "管理",
+        "深色",
+        "项目管理",
+        "团队协作",
+        "linear",
+        "developer",
+        "issue tracker"
+      ],
+      "analysis_note": "近黑界面、稀少的紫蓝强调色、真实产品截图强调工具本身"
+    },
+    {
+      "id": "lovable",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/lovable/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/lovable/DESIGN.md",
+      "site": "https://getdesign.md/lovable/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "lovable"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "mastercard",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/mastercard/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/mastercard/DESIGN.md",
+      "site": "https://getdesign.md/mastercard/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "mastercard"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "mercury",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/mercury/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/mercury/DESIGN.md",
+      "site": "https://getdesign.md/mercury/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "mercury"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "meta",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/meta/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/meta/DESIGN.md",
+      "site": "https://getdesign.md/meta/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "meta"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "minimax",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/minimax/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/minimax/DESIGN.md",
+      "site": "https://getdesign.md/minimax/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "minimax"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "mintlify",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/mintlify/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/mintlify/DESIGN.md",
+      "site": "https://getdesign.md/mintlify/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "reading-first",
+        "functional"
+      ],
+      "modes": [
+        "Read",
+        "Operate"
+      ],
+      "keywords": [
+        "文档",
+        "开发者文档",
+        "知识库",
+        "API",
+        "mintlify",
+        "docs",
+        "documentation"
+      ],
+      "analysis_note": "开发文档候选，适合研究目录、搜索与代码阅读体验"
+    },
+    {
+      "id": "miro",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/miro/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/miro/DESIGN.md",
+      "site": "https://getdesign.md/miro/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "miro"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "mistral.ai",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/mistral.ai/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/mistral.ai/DESIGN.md",
+      "site": "https://getdesign.md/mistral.ai/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "mistral.ai"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "mongodb",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/mongodb/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/mongodb/DESIGN.md",
+      "site": "https://getdesign.md/mongodb/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "mongodb"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "mydealz",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/mydealz/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/mydealz/DESIGN.md",
+      "site": "https://getdesign.md/mydealz/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "mydealz"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "nerdwallet",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/nerdwallet/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/nerdwallet/DESIGN.md",
+      "site": "https://getdesign.md/nerdwallet/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "nerdwallet"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "nike",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/nike/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/nike/DESIGN.md",
+      "site": "https://getdesign.md/nike/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "experimental",
+        "playful",
+        "premium-showcase"
+      ],
+      "modes": [
+        "Persuade",
+        "Experience"
+      ],
+      "keywords": [
+        "运动",
+        "潮流",
+        "商品",
+        "品牌",
+        "nike",
+        "sports",
+        "fashion"
+      ],
+      "analysis_note": "运动消费品牌候选，检查摄影、动态排版及商品入口关系"
+    },
+    {
+      "id": "nintendo-2001",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/nintendo-2001/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/nintendo-2001/DESIGN.md",
+      "site": "https://getdesign.md/nintendo-2001/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "playful",
+        "experimental"
+      ],
+      "modes": [
+        "Experience"
+      ],
+      "keywords": [
+        "游戏",
+        "复古",
+        "像素",
+        "任天堂",
+        "nintendo",
+        "retro",
+        "game"
+      ],
+      "analysis_note": "复古游戏 UI 候选，保留时代风格但标注其历史语境"
+    },
+    {
+      "id": "notion",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/notion/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/notion/DESIGN.md",
+      "site": "https://getdesign.md/notion/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "reading-first",
+        "calm-minimal",
+        "functional"
+      ],
+      "modes": [
+        "Read",
+        "Operate"
+      ],
+      "keywords": [
+        "笔记",
+        "文档",
+        "协作",
+        "阅读",
+        "notion",
+        "notes",
+        "documentation"
+      ],
+      "analysis_note": "文档与知识工具候选，检查内容阅读与高频操作平衡"
+    },
+    {
+      "id": "nvidia",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/nvidia/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/nvidia/DESIGN.md",
+      "site": "https://getdesign.md/nvidia/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "nvidia"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "ollama",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/ollama/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/ollama/DESIGN.md",
+      "site": "https://getdesign.md/ollama/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "ollama"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "opencode.ai",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/opencode.ai/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/opencode.ai/DESIGN.md",
+      "site": "https://getdesign.md/opencode.ai/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "opencode.ai"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "oracle",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/oracle/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/oracle/DESIGN.md",
+      "site": "https://getdesign.md/oracle/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "oracle"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "oura",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/oura/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/oura/DESIGN.md",
+      "site": "https://getdesign.md/oura/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "oura"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "pinterest",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/pinterest/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/pinterest/DESIGN.md",
+      "site": "https://getdesign.md/pinterest/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "pinterest"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "playstation",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/playstation/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/playstation/DESIGN.md",
+      "site": "https://getdesign.md/playstation/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "cinematic",
+        "playful"
+      ],
+      "modes": [
+        "Persuade",
+        "Experience"
+      ],
+      "keywords": [
+        "游戏",
+        "主机",
+        "playstation",
+        "game",
+        "gaming"
+      ],
+      "analysis_note": "游戏产品候选，检查沉浸视觉与产品功能呈现"
+    },
+    {
+      "id": "posthog",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/posthog/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/posthog/DESIGN.md",
+      "site": "https://getdesign.md/posthog/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "posthog"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "raycast",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/raycast/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/raycast/DESIGN.md",
+      "site": "https://getdesign.md/raycast/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "calm-minimal",
+        "functional"
+      ],
+      "modes": [
+        "Persuade",
+        "Operate"
+      ],
+      "keywords": [
+        "效率工具",
+        "开发",
+        "桌面软件",
+        "raycast",
+        "productivity",
+        "developer"
+      ],
+      "analysis_note": "效率工具候选，检查产品截图、快捷操作与软件气质"
+    },
+    {
+      "id": "renault",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/renault/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/renault/DESIGN.md",
+      "site": "https://getdesign.md/renault/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "renault"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "replicate",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/replicate/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/replicate/DESIGN.md",
+      "site": "https://getdesign.md/replicate/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "replicate"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "resend",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/resend/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/resend/DESIGN.md",
+      "site": "https://getdesign.md/resend/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "resend"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "revolut",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/revolut/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/revolut/DESIGN.md",
+      "site": "https://getdesign.md/revolut/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "revolut"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "runwayml",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/runwayml/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/runwayml/DESIGN.md",
+      "site": "https://getdesign.md/runwayml/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "cinematic",
+        "experimental"
+      ],
+      "modes": [
+        "Persuade",
+        "Experience"
+      ],
+      "keywords": [
+        "视频",
+        "电影",
+        "影像",
+        "AI 创意",
+        "runway",
+        "cinematic",
+        "film",
+        "video"
+      ],
+      "analysis_note": "影视与创意工具候选，检验分镜式展示和动效叙事"
+    },
+    {
+      "id": "sanity",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/sanity/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/sanity/DESIGN.md",
+      "site": "https://getdesign.md/sanity/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "sanity"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "sap",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/sap/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/sap/DESIGN.md",
+      "site": "https://getdesign.md/sap/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "sap"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "sentry",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/sentry/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/sentry/DESIGN.md",
+      "site": "https://getdesign.md/sentry/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "functional",
+        "calm-minimal"
+      ],
+      "modes": [
+        "Operate",
+        "Persuade"
+      ],
+      "keywords": [
+        "监控",
+        "错误",
+        "开发工具",
+        "sentry",
+        "dashboard",
+        "developer",
+        "monitoring"
+      ],
+      "analysis_note": "开发者监控工具候选，检查任务密度与可扫描性"
+    },
+    {
+      "id": "shopify",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/shopify/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/shopify/DESIGN.md",
+      "site": "https://getdesign.md/shopify/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "functional",
+        "calm-minimal"
+      ],
+      "modes": [
+        "Persuade",
+        "Operate"
+      ],
+      "keywords": [
+        "电商",
+        "商品",
+        "开店",
+        "商户",
+        "shopify",
+        "ecommerce",
+        "retail"
+      ],
+      "analysis_note": "电商候选，检查商家获客宣传与实际后台的差异"
+    },
+    {
+      "id": "slack",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/slack/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/slack/DESIGN.md",
+      "site": "https://getdesign.md/slack/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "slack"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "spacex",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/spacex/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/spacex/DESIGN.md",
+      "site": "https://getdesign.md/spacex/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "spacex"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "spotify",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/spotify/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/spotify/DESIGN.md",
+      "site": "https://getdesign.md/spotify/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "spotify"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "starbucks",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/starbucks/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/starbucks/DESIGN.md",
+      "site": "https://getdesign.md/starbucks/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "sampled",
+      "styles": [
+        "premium-showcase",
+        "playful"
+      ],
+      "modes": [
+        "Persuade"
+      ],
+      "keywords": [
+        "咖啡",
+        "餐饮",
+        "门店",
+        "饮品",
+        "零售",
+        "食物",
+        "starbucks",
+        "coffee",
+        "food",
+        "retail"
+      ],
+      "analysis_note": "暖中性表面、多个职责明确的绿色及实物摄影共同表达门店体验"
+    },
+    {
+      "id": "stripe",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/stripe/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/stripe/DESIGN.md",
+      "site": "https://getdesign.md/stripe/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "sampled",
+      "styles": [
+        "editorial",
+        "calm-minimal"
+      ],
+      "modes": [
+        "Persuade",
+        "Operate"
+      ],
+      "keywords": [
+        "支付",
+        "金融",
+        "开发者",
+        "企业官网",
+        "渐变",
+        "stripe",
+        "payments",
+        "financial",
+        "fintech"
+      ],
+      "analysis_note": "品牌网格渐变、严谨信息层级与金额数字排版结合"
+    },
+    {
+      "id": "supabase",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/supabase/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/supabase/DESIGN.md",
+      "site": "https://getdesign.md/supabase/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "supabase"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "superhuman",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/superhuman/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/superhuman/DESIGN.md",
+      "site": "https://getdesign.md/superhuman/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "calm-minimal",
+        "functional"
+      ],
+      "modes": [
+        "Operate",
+        "Persuade"
+      ],
+      "keywords": [
+        "邮件",
+        "效率",
+        "键盘",
+        "superhuman",
+        "productivity",
+        "email"
+      ],
+      "analysis_note": "高效邮件产品候选，检查任务优先与操作密度"
+    },
+    {
+      "id": "tesla",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/tesla/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/tesla/DESIGN.md",
+      "site": "https://getdesign.md/tesla/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "sampled",
+      "styles": [
+        "premium-showcase",
+        "cinematic"
+      ],
+      "modes": [
+        "Persuade",
+        "Experience"
+      ],
+      "keywords": [
+        "汽车",
+        "高端",
+        "产品摄影",
+        "视觉冲击",
+        "tesla",
+        "car",
+        "vehicle",
+        "product showcase"
+      ],
+      "analysis_note": "全屏车辆摄影和极少 UI 让产品形态成为首要视觉焦点"
+    },
+    {
+      "id": "theverge",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/theverge/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/theverge/DESIGN.md",
+      "site": "https://getdesign.md/theverge/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "editorial",
+        "reading-first"
+      ],
+      "modes": [
+        "Read",
+        "Experience"
+      ],
+      "keywords": [
+        "媒体",
+        "新闻",
+        "杂志",
+        "文章",
+        "theverge",
+        "news",
+        "editorial"
+      ],
+      "analysis_note": "数字媒体候选，检验编辑式排版与阅读导航"
+    },
+    {
+      "id": "together.ai",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/together.ai/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/together.ai/DESIGN.md",
+      "site": "https://getdesign.md/together.ai/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "together.ai"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "uber",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/uber/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/uber/DESIGN.md",
+      "site": "https://getdesign.md/uber/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "uber"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "vercel",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/vercel/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/vercel/DESIGN.md",
+      "site": "https://getdesign.md/vercel/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "vercel"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "vodafone",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/vodafone/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/vodafone/DESIGN.md",
+      "site": "https://getdesign.md/vodafone/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "vodafone"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "voltagent",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/voltagent/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/voltagent/DESIGN.md",
+      "site": "https://getdesign.md/voltagent/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "voltagent"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "warp",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/warp/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/warp/DESIGN.md",
+      "site": "https://getdesign.md/warp/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "warp"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "webflow",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/webflow/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/webflow/DESIGN.md",
+      "site": "https://getdesign.md/webflow/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "webflow"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "wired",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/wired/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/wired/DESIGN.md",
+      "site": "https://getdesign.md/wired/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "candidate",
+      "styles": [
+        "editorial",
+        "reading-first"
+      ],
+      "modes": [
+        "Read"
+      ],
+      "keywords": [
+        "科技媒体",
+        "杂志",
+        "文章",
+        "wired",
+        "magazine",
+        "editorial",
+        "reading"
+      ],
+      "analysis_note": "长文与科技杂志候选，检验强排版与连续阅读"
+    },
+    {
+      "id": "wise",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/wise/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/wise/DESIGN.md",
+      "site": "https://getdesign.md/wise/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "wise"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "x.ai",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/x.ai/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/x.ai/DESIGN.md",
+      "site": "https://getdesign.md/x.ai/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "x.ai"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    },
+    {
+      "id": "zapier",
+      "source": "voltagent-awesome-design-md",
+      "source_type": "third_party_design_analysis_not_brand_official",
+      "source_url": "https://github.com/VoltAgent/awesome-design-md/blob/fcc70284932276d085f01ef9f83edde90b1258cb/design-md/zapier/DESIGN.md",
+      "latest_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/zapier/DESIGN.md",
+      "site": "https://getdesign.md/zapier/design-md",
+      "license": "MIT repository document; third-party brand identities/assets are separately protected",
+      "review_status": "indexed_unreviewed",
+      "styles": [],
+      "modes": [],
+      "keywords": [
+        "zapier"
+      ],
+      "analysis_note": "仅记录来源路径；尚未阅读正文，不能对实际风格作确定描述"
+    }
+  ]
+}
