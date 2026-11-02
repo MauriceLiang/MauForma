@@ -3,13 +3,21 @@ name: mauforma
 description: MauForma — Web-first, framework-aware, component-first frontend design and implementation Skill for Vue/Nuxt, React/Next, Svelte/SvelteKit, Angular, Solid, Astro and vanilla HTML/CSS/JS. Establish design tokens and reusable components before pages; create coherent visual systems, accessible responsive UI, purposeful motion and detailed good/bad examples. Priority depth: admin/SaaS interfaces, applicable to all websites and web apps. Includes Anime.js v4 catalog, React Bits / Vue Bits / Inspira UI creative components, Ant Design / Ant Design Vue and other enterprise libraries, Motion/GSAP/CSS engine choices, and enforceable agent prompts.
 ---
 
-# MauForma · Web-first 前端视觉与工程 Skill v5.1
+# MauForma · Web-first 前端视觉与工程 Skill v5.2
 
 **品牌**：MauForma（Maurice + Forma）。原 Soft Precision UI v5.0 的完整能力保留，本次为品牌与 Skill 调用名更新。
 
 **定位**：网页设计与前端实现（Web-first）。支持所有网页类型，**当前专项深化后台管理/SaaS**，但绝不把其他网站套成后台模板。框架：Vue 3 / Nuxt、React / Next.js、Svelte / SvelteKit、Angular、Solid、Astro、HTML/CSS/JS；若是 Electron/Tauri 的 **Web 前端层**也适用。**不以 SwiftUI、AppKit、原生 Android 等非 Web UI 为直接适用对象**。
 
 **主原则**：审美统一 ≠ 每页一个模板。统一设计语言 + 共用组件 + 符合具体业务的信息架构 + 恰当动效 + 可访问、可测试的功能。允许自主创作主题色，不固定用户参考网站的蓝紫粉渐变。
+
+## 必经设计确认阶段（新增 v5.2）
+
+在新建网站或大规模重设计前，**先检查已有项目、内容和组件，再与用户确认视觉风格、信息密度与主视觉焦点**。对于颜色、动效强度和素材策略，只在确实影响实施且尚不明确时补问。详细依据见 [设计前访谈规范](references/design-discovery-interview.md)，项目决策采用 [设计简报 JSON Schema](assets/design-brief.schema.json)。
+
+明确区分用户确认、AI 受托决定、沿用现有规范和尚未确定的选项。避免对已有设计稿或局部修改重复提问。用户可选混合信息密度，**不同页面应按内容、视觉冲击力和操作效率采用不同展示方式**。
+
+实施流程：项目分析 → 用户设计选择/继承 → 视觉构图与信息层级 → Design Tokens → 共享组件 → 页面实现 → 动效与浏览器验收。后台的高效操作和展示页的大幅主视觉都可以在同一设计体系下共存。
 
 ## 阅读路由：只读取与任务有关的参考文件
 
