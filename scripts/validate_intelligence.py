@@ -14,6 +14,8 @@ NEEDED = [
     "scripts/audit_frontend.py", "tests/test_design_intelligence.py",
     "scripts/init_design_system.py", "tests/test_design_system_manager.py",
     "scripts/browser_qa.mjs",
+    "scripts/search_design_cases.py", "references/external-design-case-library.md",
+    "assets/external-design-cases.json", "tests/test_external_design_cases.py",
 ]
 REQUIRED_FIELDS = {
     "id", "name", "modes", "sites", "keywords", "first_impression",
@@ -44,8 +46,26 @@ def validate() -> list[str]:
                     errors.append(f"Invalid {dial} for {s['id']}")
     except (OSError, ValueError, KeyError, TypeError) as exc:
         errors.append(f"Invalid knowledge data: {exc}")
+    try:
+        external = json.loads((ROOT / "assets/external-design-cases.json").read_text("utf-8"))
+        examples = external["cases"]
+        if len(examples) != 84:
+            errors.append(f"External source index expected 84 records, got {len(examples)}")
+        if len({x["id"] for x in examples}) != len(examples):
+            errors.append("Duplicate external design case id")
+        for case in examples:
+            if case["review_status"] not in ("sampled", "candidate", "indexed_unreviewed"):
+                errors.append("Bad external review status: " + case["id"])
+            if not case["source_url"].startswith(
+                "https://github.com/VoltAgent/awesome-design-md/blob/" + external["source_snapshot_sha"] + "/design-md/"
+            ):
+                errors.append("Unpinned or unexpected source: " + case["id"])
+            if case["source_type"] != "third_party_design_analysis_not_brand_official":
+                errors.append("Official-brand confusion: " + case["id"])
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        errors.append(f"External case index error: {exc}")
     skill = (ROOT / "SKILL.md").read_text("utf-8")
-    for needed in ("search_design_knowledge.py", "art-direction-critique.md", "browser-qa-protocol.md", "project-design-hierarchy.md"):
+    for needed in ("search_design_knowledge.py", "art-direction-critique.md", "browser-qa-protocol.md", "project-design-hierarchy.md", "search_design_cases.py", "external-design-case-library.md"):
         if needed not in skill:
             errors.append(f"SKILL.md missing task route: {needed}")
     return errors
