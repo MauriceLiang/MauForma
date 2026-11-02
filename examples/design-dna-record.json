@@ -1,0 +1,33 @@
+{
+  "schema": "MauForma conceptual design DNA example, not actual observation",
+  "subject": "Example: premium dessert landing page",
+  "reference_url": null,
+  "observed_pages": [],
+  "viewports": [],
+  "date": "2026-11-02",
+  "confidence": "illustrative_only_no_actual_site_inspected",
+  "design_map": {
+    "colors": "unknown until observed",
+    "typography": "unknown until observed",
+    "spacing": "unknown",
+    "radius": "unknown",
+    "shadows": "unknown",
+    "grid": "unknown"
+  },
+  "taste_decisions": [
+    {
+      "trigger": "Audience decides whether a product looks appetizing",
+      "decision": "Make one food photograph the first-screen focal point",
+      "reason": "Food texture and color communicate value faster than a dense menu grid",
+      "evidence": "Hypothesis only: not evidence from a real reference site",
+      "rejected_alternative": "Three equal product thumbnails",
+      "inferred": true,
+      "suitable_sites": [
+        "food",
+        "bakery",
+        "premium product landing"
+      ],
+      "risk": "Requires high-resolution lawful photography; use alternate typography-led design if absent"
+    }
+  ]
+}

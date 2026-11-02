@@ -1,0 +1,26 @@
+name: MauForma Skill Quality
+on:
+  push:
+    branches: [main, 'feat/**']
+  pull_request:
+    branches: [main]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate original skill
+        run: |
+          python3 scripts/validate_web_skill.py
+          python3 scripts/validate_design_system.py
+          python3 scripts/validate_motion_catalog.py
+      - name: Validate design intelligence
+        run: |
+          python3 scripts/validate_intelligence.py
+          python3 -m unittest discover -s tests -v
+      - name: Syntax check browser QA script
+        run: node --check scripts/browser_qa.mjs

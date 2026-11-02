@@ -1,4 +1,4 @@
-# MauForma v5.2
+# MauForma v6.0
 
 **Web Design & Frontend Engineering Skill**  
 *统一视觉语言、可复用组件、创意动效与跨框架前端工程规范。*
@@ -23,6 +23,32 @@ $mauforma
 统一 Design Tokens 与共享组件，通过组件验收后再实现业务页面。
 按产品类型选择适当动效，并在浏览器中检查响应式、主题、交互状态和可访问性。
 ```
+
+## v6.0 · 设计智能与质量工具
+
+此次升级按《MauForma 下一阶段升级方案》的 P0–P3 实施，在原有 Vue/React、组件优先和动效体系上**扩展设计决策能力**，没有替换主框架或修改现有 114 种动画配方。
+
+- **八种风格档案**：每种保留独立审美立场、视觉焦点、构图、适用网站、素材前提、优缺点和出处。见 [风格目录](references/design-style-catalog.md) / [结构化知识](assets/style-knowledge.json)。
+- **尊重作者审美**：记录 Impeccable、Anthropic、UI/UX Pro Max、Taste、Vercel/Vue 等设计/工程来源的观点与适用条件，参见 [来源与审美边界](references/aesthetic-authorship.md)。
+- **Art Direction**：根据 Persuade/Operate/Read/Experience 模式推荐 2–3 套方案，必须做内容相关的设计批判，见 [艺术指导](references/art-direction-critique.md)。
+- **可继承的项目设计系统**：全局 MASTER + 页面差异，确保共享设计语言同时允许不同页面密度，见 [层级规则](references/project-design-hierarchy.md)。
+- **Design DNA**：根据实际证据提取参考网站的 WHAT/WHY 与设计权衡；不把推断冒充真实 CSS 数值，见 [协议](references/design-dna-protocol.md)。
+- **工程规范与自动验收**：加强 React/Vue 组件 API 与性能规则，增加静态风险扫描、可选浏览器截图采集、回归测试和 GitHub Actions 工作流。
+
+### 常用命令
+
+```bash
+python3 scripts/search_design_knowledge.py --query "甜品 摄影 到店" --mode Persuade --json
+python3 scripts/init_design_system.py --project-root . --name "Project" --style premium-showcase --page home --mode Persuade
+# 上面仅预览；确认后追加 --apply，已有文件不覆盖
+python3 scripts/validate_intelligence.py
+python3 -m unittest discover -s tests -v
+python3 scripts/audit_frontend.py ./src --format json
+# 仅在项目已安装 Playwright 时（不会自动安装）：
+node scripts/browser_qa.mjs --url http://localhost:3000
+```
+
+静态规则仅返回待核实风险；浏览器截图不等于完成了后端业务验证。对于已有明确风格的用户，不允许用自动推荐覆盖其决定。
 
 ## v5.2 设计选择能力
 
