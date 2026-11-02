@@ -26,7 +26,7 @@ $mauforma
 
 ## v5.2 设计选择能力
 
-新建或整体重设计时先确认视觉风格、信息密度和主视觉焦点，再确定设计 Tokens、共享组件与页面实现。具体流程见 [`references/design-discovery-interview.md`](references/design-discovery-interview.md)，设计简报结构见 [`assets/design-brief.schema.json`](assets/design-brief.schema.json)。不重复询问已明确的项目偏好，也不把展示页的低信息密度机械移植到后台表格。
+新建或整体重设计时，若用户**不知道想要什么风格**，先询问网站用途、主要展示内容及访客最重要的操作；由 Agent 先根据这些内容判断适合的构图、视觉焦点与页面级信息密度，然后给出 2–3 套有清楚区别、可理解的推荐方案。用户选择方向后，才分轮确认更小范围的图片比例、配色氛围、信息密度与动效等属性。已有明确风格则直接沿用，避免重复提问。具体流程见 [`references/design-discovery-interview.md`](references/design-discovery-interview.md)，设计简报结构见 [`assets/design-brief.schema.json`](assets/design-brief.schema.json)。完整对话示例见 [`examples/design-discovery-dialogues.md`](examples/design-discovery-dialogues.md)。不重复询问已明确的项目偏好，也不把展示页的低信息密度机械移植到后台表格。
 
 ## 主要能力
 
@@ -42,6 +42,8 @@ $mauforma
 
 | 路径 | 作用 |
 | --- | --- |
+| `references/design-discovery-interview.md` | 网站用途与内容驱动的两阶段访谈 |
+| `examples/design-discovery-dialogues.md` | 用户不懂风格时的具体问答示例 |
 | `SKILL.md` | 全局指令、阅读路由和强制执行顺序 |
 | `references/design-system.md` | 统一视觉规则和 Design Tokens |
 | `references/component-first.md` | 共享组件优先规范 |
