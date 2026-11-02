@@ -1,119 +1,188 @@
-# MauForma v6.2
+<div align="center">
 
-**Web Design & Frontend Engineering Skill**  
-*统一视觉语言、可复用组件、创意动效与跨框架前端工程规范。*
+<p><sub>WEB DESIGN&nbsp; / &nbsp;FRONTEND ENGINEERING&nbsp; / &nbsp;AGENT SKILL</sub></p>
 
-MauForma 由 Maurice 的品牌前缀 **Mau** 与代表形态/形式的 **Forma** 组合而成。它是此前 Soft Precision UI v5.0 的正式更名版本：**已有设计标准、组件示例、正反案例、动效目录与企业 UI 组件库指南均予以保留**，不改变设计工作的主要执行规则。
+# MauForma
 
-## 安装（Codex / Agent Skills）
+**Design with intent. Build with precision.**
 
-优先从 [GitHub 主仓库](https://github.com/MauriceLiang/MauForma) 获取最新版本，复制完整仓库文件至 Skills 目录（或使用 Git 克隆并保持更新）：
+让设计从真实内容出发，让体验在精确的工程中成形。
 
-- 全局：`~/.agents/skills/mauforma/`
-- 项目级：`<项目目录>/.agents/skills/mauforma/`
+面向现代 Web 的设计与前端工程 Agent Skill。  
+从设计方向、视觉语言和组件系统，到动效选型、代码实现与质量验收。
 
-随后在 Codex 中使用 `$mauforma`。**必须复制整个文件夹**，不能只复制 `SKILL.md`，因为主文件会按任务需要引用 `references/`、`examples/`、`assets/` 与 `scripts/`。
+[快速开始](#快速开始) · [核心能力](#核心能力) · [设计方法](#设计方法) · [参考资料](#参考资料)
 
-例如：
+<sub>Web-first · Framework-aware · Component-first</sub>
 
-```text
+</div>
+
+---
+
+## 为有判断力的设计而构建
+
+**好设计不等于塞进更多信息，也不等于在所有页面使用同一套极简模板。**
+
+食物品牌值得让摄影成为主角；创意作品集可以大胆、不对称；复杂工作台则需要让任务、数据和状态一眼可达。MauForma 不预设唯一正确的审美，而是基于**网站用途、展示内容与访问者目标**，帮助 Agent 提出有依据的视觉方向，并由用户作出最终选择。
+
+它不是 UI 组件库，也不会为了“高级感”默认引入渐变、粒子、3D 或额外动画引擎。
+
+## 核心能力
+
+| | 能力 | 如何发挥作用 |
+| :-- | :-- | :-- |
+| **01** | **Design Discovery** · 设计探索 | 先了解网站做什么、展示什么；当用户不确定风格时，提出 2–3 套具体、可比较的设计方案，而不是要求用户盲选专业名词。 |
+| **02** | **Art Direction** · 视觉指导 | 基于 8 种独立风格档案、页面任务模式与外部设计参考，确定构图、排版、留白、视觉焦点、信息密度及动效。保留不同设计流派的鲜明个性。 |
+| **03** | **Design System & Engineering** · 设计与实现 | 从全局 Tokens、共享组件和页面级规范开始，兼顾 Vue / React 等前端技术栈的组件契约、状态管理及可维护性。 |
+| **04** | **Review & Quality** · 质量验证 | 在源码审查之外，结合浏览器截图、交互、响应式、无障碍与性能约束进行验证。区分“实际通过”与“尚未测试”。 |
+
+### 一致的语言，不相同的页面
+
+MauForma 将页面的核心目标区分为四种模式：
+
+| Persuade · 说服 | Operate · 操作 | Read · 阅读 | Experience · 体验 |
+| :-- | :-- | :-- | :-- |
+| 产品展示、品牌表达、清晰的转化入口 | 搜索、处理任务、可扫描的数据与状态 | 信息层级、合适行宽、连续阅读 | 沉浸视觉、作品本身、探索与互动 |
+
+同一产品可以拥有强调摄影的首页、便于比较的商品目录，以及紧凑高效的管理后台。**统一的是设计语言和组件质量，而非每一页的布局密度。**
+
+## 设计方法
+
+\`\`\`text
+DISCOVER    理解产品用途、展示内容和用户任务
+    ↓
+DIRECT      推荐设计方向，明确视觉焦点与关键属性
+    ↓
+SYSTEMIZE   固化项目决策、全局 Tokens 与页面级覆盖
+    ↓
+BUILD       先构建共享组件，再组合业务页面
+    ↓
+VERIFY      检查真实交互、视觉实现与响应式表现
+\`\`\`
+
+在此过程中，MauForma 会区分**用户确认、委托 Agent 决定、继承既有规范和仍待确认**的选择。推荐不会被冒充为用户决定，也不会在局部修复时重复进行整套设计访谈。
+
+[设计访谈规则](references/design-discovery-interview.md) · [艺术指导与 Critique](references/art-direction-critique.md) · [项目设计系统继承](references/project-design-hierarchy.md)
+
+## 快速开始
+
+### 1. 安装 Skill
+
+将完整仓库放入 Agent Skills 目录，而不是只复制 \`SKILL.md\`。
+
+**全局安装（Codex / Agent Skills）：**
+
+\`\`\`bash
+mkdir -p ~/.agents/skills
+git clone https://github.com/MauriceLiang/MauForma.git ~/.agents/skills/mauforma
+\`\`\`
+
+也可以安装在单个项目中：
+
+\`\`\`bash
+mkdir -p .agents/skills
+git clone https://github.com/MauriceLiang/MauForma.git .agents/skills/mauforma
+\`\`\`
+
+> 以上二选一即可。目录已存在时不要重复克隆；若先前已通过 Git 安装，可进入该目录运行 \`git pull\` 更新。
+
+### 2. 在 Agent 中调用
+
+\`\`\`text
 $mauforma
 
-请先盘点当前 Vue 或 React 项目的组件库和视觉风格；
-统一 Design Tokens 与共享组件，通过组件验收后再实现业务页面。
-按产品类型选择适当动效，并在浏览器中检查响应式、主题、交互状态和可访问性。
-```
+我想为一款新产品设计网站，但还不确定视觉风格。
+请先分析网站用途、展示内容与主要用户任务，
+给出 2–3 套有具体构图差异的视觉方案供我选择。
 
-## v6.2 · 12 项动画与可视化技术选型
+确定后建立 Design Tokens 和共享组件，
+再开发页面并执行响应式、交互与视觉验收。
+\`\`\`
 
-依据用户提供的《12项前端动画与可视化技术选型指南》，新增跨职责的 [12 项技术选型与九种组合](references/visual-tech-selection-12.md) 及 [结构化目录](assets/visual-tech-catalog.json)。既有 GSAP、Anime.js、Three.js、ECharts 规则继续沿用，主要补强 SplitText、PixiJS、Curtains.js、Rough.js、Vivus、SVG Filter、tsParticles、Matter.js 的场景、边界和生命周期。
+已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
-```bash
-python3 scripts/search_visual_tech.py --goal "数据 图表 仪表盘" --json
-python3 scripts/search_visual_tech.py --goal "图像 波纹 扭曲" --json
-```
+## 设计知识与视觉技术
 
-默认优先 CSS/SVG；不把所有 12 项当成待安装依赖。具体 API 与商业许可须按项目实际依赖版本复核。
+<div align="center">
 
-## v6.1 · 外部优秀案例库复用
+| **8** 种原创风格档案 | **84** 个外部品牌设计参考入口 | **114** 种 Anime.js 动效配方 |
+| :--: | :--: | :--: |
+| **12** 项动画与可视化技术 | **9** 组场景化技术组合 | **6** 套主题预设 |
 
-- [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) 提供大量风格、产品类型和配色/UX 的结构化**设计建议**；它不是按真实品牌逐个记录的网站案例集。
-- [VoltAgent awesome-design-md](https://github.com/VoltAgent/awesome-design-md) 提供 84 个带 `DESIGN.md` 的品牌网站设计分析。MauForma 以本地轻量[案例索引](assets/external-design-cases.json)保存外部链接、匹配关键词、风格建议和核验状态，而不是整库搬运。
-- `python3 scripts/search_design_cases.py --query "咖啡 门店" --style premium-showcase --limit 5` 按需查找。对具体案例必须读取源文档与核对真实页面，不能把社区 Inspired Interpretation 说成品牌官方设计系统。
-- 来源、版权、检索与使用原则见 [外部案例库说明](references/external-design-case-library.md)。保留全部原创八种风格资料库及现有工程规则，不把每个品牌当成固定网页模板。
+</div>
 
-## v6.0 · 设计智能与质量工具
+- **风格与案例**：独立保留编辑式、实验性、高级产品展示、活泼趣味、沉浸叙事、克制极简、高效功能型与阅读优先等视觉方向；[查看风格资料库](references/design-style-catalog.md)。外部案例来自 [VoltAgent awesome-design-md](references/external-design-case-library.md) 的来源索引，按需读取，**不是品牌官方设计系统**。
+- **动效与可视化**：从 CSS / SVG、Anime.js、GSAP 到 PixiJS、Three.js、ECharts、Matter.js 等，按明确的视觉需求选择，而不是默认安装全部工具；[查看 12 项技术选型指南](references/visual-tech-selection-12.md)。
+- **跨框架工程**：优先支持 [Vue / Nuxt](references/framework-vue-nuxt.md) 和 [React / Next.js](references/framework-react-next.md)，同时提供 [其他 Web 框架](references/framework-support-matrix.md) 的适配指引。原生 iOS / Android UI 不在本 Skill 的直接实现范围内。
 
-此次升级按《MauForma 下一阶段升级方案》的 P0–P3 实施，在原有 Vue/React、组件优先和动效体系上**扩展设计决策能力**，没有替换主框架或修改现有 114 种动画配方。
+<details>
+<summary><strong>可运行的选型与检查工具</strong></summary>
 
-- **八种风格档案**：每种保留独立审美立场、视觉焦点、构图、适用网站、素材前提、优缺点和出处。见 [风格目录](references/design-style-catalog.md) / [结构化知识](assets/style-knowledge.json)。
-- **尊重作者审美**：记录 Impeccable、Anthropic、UI/UX Pro Max、Taste、Vercel/Vue 等设计/工程来源的观点与适用条件，参见 [来源与审美边界](references/aesthetic-authorship.md)。
-- **Art Direction**：根据 Persuade/Operate/Read/Experience 模式推荐 2–3 套方案，必须做内容相关的设计批判，见 [艺术指导](references/art-direction-critique.md)。
-- **可继承的项目设计系统**：全局 MASTER + 页面差异，确保共享设计语言同时允许不同页面密度，见 [层级规则](references/project-design-hierarchy.md)。
-- **Design DNA**：根据实际证据提取参考网站的 WHAT/WHY 与设计权衡；不把推断冒充真实 CSS 数值，见 [协议](references/design-dna-protocol.md)。
-- **工程规范与自动验收**：加强 React/Vue 组件 API 与性能规则，增加静态风险扫描、可选浏览器截图采集、回归测试和 GitHub Actions 工作流。
+在 MauForma 仓库根目录执行：
 
-### 常用命令
+\`\`\`bash
+# 按内容与访问者目标寻找风格
+python3 scripts/search_design_knowledge.py --query "甜品 摄影 到店" --mode Persuade
 
-```bash
-python3 scripts/search_design_knowledge.py --query "甜品 摄影 到店" --mode Persuade --json
-python3 scripts/init_design_system.py --project-root . --name "Project" --style premium-showcase --page home --mode Persuade
-# 上面仅预览；确认后追加 --apply，已有文件不覆盖
+# 查找适合的品牌设计参考
+python3 scripts/search_design_cases.py --query "咖啡 门店" --style premium-showcase
+
+# 按目标视觉效果选择实现技术
+python3 scripts/search_visual_tech.py --goal "数据 图表 仪表盘"
+
+# 预览项目级设计系统的文件规划（默认不覆盖已有文件）
+python3 scripts/init_design_system.py --project-root . --name "My Website" --style premium-showcase --page home --mode Persuade
+
+# 静态代码风险审查：将 ./src 替换为实际项目的源码路径
+python3 scripts/audit_frontend.py ./src --format json
+
+# 校验 Skill 数据及回归测试
 python3 scripts/validate_intelligence.py
 python3 -m unittest discover -s tests -v
-python3 scripts/audit_frontend.py ./src --format json
-# 仅在项目已安装 Playwright 时（不会自动安装）：
-node scripts/browser_qa.mjs --url http://localhost:3000
-```
+\`\`\`
 
-静态规则仅返回待核实风险；浏览器截图不等于完成了后端业务验证。对于已有明确风格的用户，不允许用自动推荐覆盖其决定。
+浏览器截图工具 \`scripts/browser_qa.mjs\` 需要目标项目已有 Playwright 和可访问的开发服务器；静态扫描或截图**不能单独证明**业务流程与视觉质量已经验收。
 
-## v5.2 设计选择能力
+</details>
 
-新建或整体重设计时，若用户**不知道想要什么风格**，先询问网站用途、主要展示内容及访客最重要的操作；由 Agent 先根据这些内容判断适合的构图、视觉焦点与页面级信息密度，然后给出 2–3 套有清楚区别、可理解的推荐方案。用户选择方向后，才分轮确认更小范围的图片比例、配色氛围、信息密度与动效等属性。已有明确风格则直接沿用，避免重复提问。具体流程见 [`references/design-discovery-interview.md`](references/design-discovery-interview.md)，设计简报结构见 [`assets/design-brief.schema.json`](assets/design-brief.schema.json)。完整对话示例见 [`examples/design-discovery-dialogues.md`](examples/design-discovery-dialogues.md)。不重复询问已明确的项目偏好，也不把展示页的低信息密度机械移植到后台表格。
+## 参考资料
 
-## 主要能力
+| 设计与体验 | 前端工程与质量 |
+| :-- | :-- |
+| [设计发现与用户选择](references/design-discovery-interview.md) | [组件优先开发](references/component-first.md) |
+| [风格档案与艺术指导](references/design-style-catalog.md) | [React 组件工程](references/react-component-engineering.md) |
+| [外部品牌设计案例](references/external-design-case-library.md) | [Vue 组件工程](references/vue-component-engineering.md) |
+| [Design DNA 参考网站分析](references/design-dna-protocol.md) | [动画生命周期与资源清理](references/animation-integration-lifecycle.md) |
+| [设计系统 MASTER 与页面覆盖](references/project-design-hierarchy.md) | [前端审查与浏览器 QA](references/browser-qa-protocol.md) |
+| [12 项动画与可视化技术选型](references/visual-tech-selection-12.md) | [全局规则与阅读路由](SKILL.md) |
 
-- **广泛的 Web 框架**：Vue 3 / Nuxt、React / Next.js；兼顾 Svelte、Angular、Solid、Astro、原生 HTML/CSS/JavaScript。
-- **组件优先**：现有组件盘点、主题 Token、共享组件、组件展示、业务组合、浏览器 QA 分阶段执行。
-- **视觉设计**：可定制颜色主题、浅/深色、不同布局密度、字体/圆角/间距/阴影与一致性审查。
-- **反例审查**：后台功能页的无效 Eyebrow、重复英文与巨型 Hero，以及其他网页形态的常见反面案例。
-- **创意动效**：Anime.js 114 种组合配方、45 个缓动名称、16 个代码示例；React Bits、Vue Bits、Inspira UI、Magic UI、Aceternity UI 的创意组件选型。
-- **成熟组件库**：Ant Design / Ant Design Vue、Element Plus、Naive UI、MUI、Mantine、PrimeVue 等的选型与统一接入。
-- **工程边界**：区分 React/Vue 实现与生命周期；避免重复依赖、过度动画和未测试的交互。
+**交互演示资源**：仓库内的 [主题预览](assets/preview.html)、[创意效果展示](assets/creative-effects-gallery.html) 与 [动效目录](assets/motion-gallery.html) 为 HTML 文件，下载或克隆后可在浏览器中打开。
 
-## 核心文件
+## 项目原则
 
-| 路径 | 作用 |
-| --- | --- |
-| `references/design-discovery-interview.md` | 网站用途与内容驱动的两阶段访谈 |
-| `examples/design-discovery-dialogues.md` | 用户不懂风格时的具体问答示例 |
-| `SKILL.md` | 全局指令、阅读路由和强制执行顺序 |
-| `references/design-system.md` | 统一视觉规则和 Design Tokens |
-| `references/component-first.md` | 共享组件优先规范 |
-| `references/framework-vue-nuxt.md` | Vue / Nuxt 实现指导 |
-| `references/framework-react-next.md` | React / Next 实现指导 |
-| `references/creative-component-libraries.md` | React Bits、Vue Bits 等创意组件指南 |
-| `references/enterprise-ui-library-guide.md` | Ant Design 等成熟组件库指南 |
-| `references/animejs-motion-recipes.md` | 114 种动效的视觉说明、适用与避雷 |
-| `references/animejs-easing-complete.md` | 45 个 Anime.js 内置缓动 |
-| `references/quality-antipatterns-by-page-type.md` | 跨页面类型的正反例审查 |
-| `examples/prompt-library-web.md` | Web Agent 提示词与使用方式 |
-| `assets/creative-effects-gallery.html` | 12 组原创视觉效果演示 |
-| `assets/motion-gallery.html` | 114 种动效和缓动的交互演示 |
-| `assets/preview.html` | 主题色与密度预览 |
-| `scripts/validate_web_skill.py` | 文档、框架和文件关系检查 |
+**Design is a decision. Engineering makes it dependable.**
 
-## 保留的兼容性细节
+视觉风格由内容与用户目标决定；组件系统负责统一质量；动效必须有实际价值；所有声称的测试结果都应有可核对的执行证据。
 
-为了避免破坏已使用旧版样式资源的网页，**CSS 的内部技术命名空间保留 `.spui` 和 `--spui-*`**，不作为 Skill 的公开名称。公开调用命令、目录、元数据、示例提示词与展示标题统一为 **MauForma / `mauforma`**。如未来要变更 CSS 变量命名，应单独提供迁移指南，而非在品牌更名时静默破坏代码。
+MauForma 借鉴其他优秀设计与工程 Skills 的方法，但不会将其审美主张平均化为一种模板。外部文档与品牌案例保留来源归属；引用第三方源码、字体、图片或商业组件时，应单独核对相应授权。
 
-## 验证
+<details>
+<summary>兼容性与版本记录</summary>
 
-```bash
-python3 scripts/validate_web_skill.py
-python3 scripts/validate_design_system.py
-python3 scripts/validate_motion_catalog.py
-```
+MauForma 延续原 Soft Precision UI 的设计资源。为避免破坏已有项目，内部 CSS 命名空间仍保留 \`.spui\` 与 \`--spui-*\`；公开的 Skill 名称与调用命令统一为 \`mauforma\` / \`$mauforma\`。
 
-更多版本记录见 `CHANGELOG.md`。
+版本变化及新增能力见 [CHANGELOG.md](CHANGELOG.md)。现有 GitHub Actions 工作流见 [Skill Quality](.github/workflows/skill-quality.yml)。
+
+</details>
+
+---
+
+<div align="center">
+
+**MauForma**
+
+<sub>Thoughtful design. Consistent systems. Reliable interfaces.</sub>
+
+[GitHub](https://github.com/MauriceLiang/MauForma) · [Skill](SKILL.md) · [Changelog](CHANGELOG.md)
+
+</div>
