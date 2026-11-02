@@ -60,3 +60,7 @@
 ## v5 视觉组件 ≠ 底层动画引擎
 
 React Bits/Vue Bits/Inspira UI/Magic UI/Aceternity UI 是**可选的组件与效果源码库**，并非新的一套底层统一动画引擎；组件内部可能使用 GSAP、Motion、OGL/WebGL 等。先查组件文件具体依赖，再决定是否仍需 Anime.js、GSAP 或 Motion，避免同一 DOM 属性由多套动画同时操纵。见 `references/creative-component-libraries.md`。
+
+## v6.2 · 超出通用动画库的专项技术
+
+此表主要回答“选哪个**动画引擎**”；PixiJS、Three.js、Curtains.js、ECharts、Rough.js、Vivus、SVG Filter、tsParticles、Matter.js 并非同一类别的竞品。按内容与所需图形特征，参阅 [12 项动画与可视化技术选型](visual-tech-selection-12.md) 与 `assets/visual-tech-catalog.json`。GSAP SplitText 与 anime.js splitText 是不同 API；原生 SVG Filter 不应被当成额外依赖。若日常微交互能用 CSS/框架原生能力完成，则不必引入以上库。

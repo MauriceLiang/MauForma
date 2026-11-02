@@ -21,3 +21,7 @@
 - 同一工程最多设置一个主要命令式动画引擎；多个引擎同时存在必须按独立区域和职责划分。
 - 加入时同步更新 `animation-engine-selection.md`、`animation-integration-lifecycle.md`、`examples/prompt-library-web.md` 与验证清单。
 - 不要宣称列出了所有可能动效：API 有限，但组合无限。
+
+## v6.2 · 新增专项渲染能力的分类
+
+不能将所有 Canvas/WebGL/物理技术都误记为“动画引擎”。增加新工具时，先分组为动画编排 / 文本拆分 / 2D 渲染 / 3D 渲染 / DOM-WebGL / 图表 / 手绘 SVG / 描边 / 浏览器滤镜 / 粒子 / 物理，再对照 `assets/visual-tech-catalog.json`，确认现有技术无法解决后才新增依赖。关于组合、可访问性、移动端 GPU 限制和失败回退参见 `references/visual-tech-selection-12.md`。

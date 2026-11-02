@@ -1,4 +1,4 @@
-# MauForma v6.1
+# MauForma v6.2
 
 **Web Design & Frontend Engineering Skill**  
 *统一视觉语言、可复用组件、创意动效与跨框架前端工程规范。*
@@ -23,6 +23,17 @@ $mauforma
 统一 Design Tokens 与共享组件，通过组件验收后再实现业务页面。
 按产品类型选择适当动效，并在浏览器中检查响应式、主题、交互状态和可访问性。
 ```
+
+## v6.2 · 12 项动画与可视化技术选型
+
+依据用户提供的《12项前端动画与可视化技术选型指南》，新增跨职责的 [12 项技术选型与九种组合](references/visual-tech-selection-12.md) 及 [结构化目录](assets/visual-tech-catalog.json)。既有 GSAP、Anime.js、Three.js、ECharts 规则继续沿用，主要补强 SplitText、PixiJS、Curtains.js、Rough.js、Vivus、SVG Filter、tsParticles、Matter.js 的场景、边界和生命周期。
+
+```bash
+python3 scripts/search_visual_tech.py --goal "数据 图表 仪表盘" --json
+python3 scripts/search_visual_tech.py --goal "图像 波纹 扭曲" --json
+```
+
+默认优先 CSS/SVG；不把所有 12 项当成待安装依赖。具体 API 与商业许可须按项目实际依赖版本复核。
 
 ## v6.1 · 外部优秀案例库复用
 

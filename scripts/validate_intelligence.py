@@ -16,6 +16,8 @@ NEEDED = [
     "scripts/browser_qa.mjs",
     "scripts/search_design_cases.py", "references/external-design-case-library.md",
     "assets/external-design-cases.json", "tests/test_external_design_cases.py",
+    "assets/visual-tech-catalog.json", "references/visual-tech-selection-12.md",
+    "scripts/search_visual_tech.py", "tests/test_visual_tech_selection.py",
 ]
 REQUIRED_FIELDS = {
     "id", "name", "modes", "sites", "keywords", "first_impression",
@@ -64,8 +66,31 @@ def validate() -> list[str]:
                 errors.append("Official-brand confusion: " + case["id"])
     except (OSError, ValueError, KeyError, TypeError) as exc:
         errors.append(f"External case index error: {exc}")
+    try:
+        visual = json.loads((ROOT / "assets/visual-tech-catalog.json").read_text("utf-8"))
+        tools = visual["tools"]
+        if len(tools) != 12 or len({t["id"] for t in tools}) != 12:
+            errors.append("Expected 12 distinct visual technologies")
+        required = {"id", "name", "kind", "keywords", "goal", "best_for", "avoid", "combines_with",
+                    "lightweight_alternative", "frameworks", "perf", "api", "coverage"}
+        for tool in tools:
+            if not required.issubset(tool):
+                errors.append("Incomplete visual technology: " + str(tool.get("id")))
+            if not tool["api"].startswith("https://"):
+                errors.append("Missing official HTTPS source: " + tool["id"])
+        ids = {t["id"] for t in tools} | {"native-css", "native-svg"}
+        if len(visual["scenarios"]) != 9:
+            errors.append("Expected 9 scenario combinations")
+        for combo in visual["scenarios"]:
+            if not set(combo["recommended"] + combo["optional"]).issubset(ids):
+                errors.append("Unknown technology in scenario " + combo["id"])
+        native = next((t for t in tools if t["id"] == "svg-filter"), {})
+        if native.get("kind") != "browser-native":
+            errors.append("SVG Filter must remain a native browser technique")
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        errors.append(f"Visual technology catalog error: {exc}")
     skill = (ROOT / "SKILL.md").read_text("utf-8")
-    for needed in ("search_design_knowledge.py", "art-direction-critique.md", "browser-qa-protocol.md", "project-design-hierarchy.md", "search_design_cases.py", "external-design-case-library.md"):
+    for needed in ("search_design_knowledge.py", "art-direction-critique.md", "browser-qa-protocol.md", "project-design-hierarchy.md", "search_design_cases.py", "external-design-case-library.md", "search_visual_tech.py", "visual-tech-selection-12.md"):
         if needed not in skill:
             errors.append(f"SKILL.md missing task route: {needed}")
     return errors

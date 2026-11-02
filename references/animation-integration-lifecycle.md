@@ -35,3 +35,14 @@
 - 浏览器减少动效时弹窗仍立即可交互，主要文字即刻可见。
 - 快速点开关闭十次不会叠加十个监听器。
 - 列表筛选不会把数据重排动画误当数据真实值变化。
+
+## v6.2 · Canvas/WebGL、图表与物理引擎
+
+- PixiJS / Three.js / Curtains.js：组件卸载时释放 renderer、scene 资源、材质、纹理、事件与 `requestAnimationFrame`；静态 DOM 保留语义与替代图片。需明确设备像素比上限与弱性能回退。
+- ECharts：容器 resize 与数据流分离，组件卸载 `dispose` 实例；图表可能不能代替屏幕阅读器可访问的数据摘要或表格。
+- tsParticles：可见时按需启动，后台与 `prefers-reduced-motion` 时暂停；释放实例和监听器。
+- Matter.js：物理世界、runner 与渲染层分离；清除 runner、world、鼠标约束和事件。
+- SplitText：处理字体加载、窄屏换行和重新拆分；撤回 DOM wrappers/动画实例，保留屏幕阅读器语义。
+- SVG Filter：浏览器原生能力，不代表没有 GPU 成本；大面积持续模糊和位移必须实测。
+
+验收至少覆盖首次启动、连续挂载/卸载 10 次、窗口宽度变化、减少动效、WebGL 失败、资源缺失、图表为空、浏览器切到后台。更多选型见 `references/visual-tech-selection-12.md`。
