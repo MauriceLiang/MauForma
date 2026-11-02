@@ -3,13 +3,23 @@ name: mauforma
 description: MauForma — Web-first, framework-aware, component-first frontend design and implementation Skill for Vue/Nuxt, React/Next, Svelte/SvelteKit, Angular, Solid, Astro and vanilla HTML/CSS/JS. Establish design tokens and reusable components before pages; create coherent visual systems, accessible responsive UI, purposeful motion and detailed good/bad examples. Priority depth: admin/SaaS interfaces, applicable to all websites and web apps. Includes Anime.js v4 catalog, React Bits / Vue Bits / Inspira UI creative components, Ant Design / Ant Design Vue and other enterprise libraries, Motion/GSAP/CSS engine choices, and enforceable agent prompts.
 ---
 
-# MauForma · Web-first 前端视觉与工程 Skill v6.1
+# MauForma · Web-first 前端视觉与工程 Skill v6.2
 
 **品牌**：MauForma（Maurice + Forma）。原 Soft Precision UI v5.0 的完整能力保留，现已扩充为内容驱动艺术指导、设计知识库、项目级设计规范、组件工程与 QA 的综合 Web Skill。
 
 **定位**：网页设计与前端实现（Web-first）。支持所有网页类型，**当前专项深化后台管理/SaaS**，但绝不把其他网站套成后台模板。框架：Vue 3 / Nuxt、React / Next.js、Svelte / SvelteKit、Angular、Solid、Astro、HTML/CSS/JS；若是 Electron/Tauri 的 **Web 前端层**也适用。**不以 SwiftUI、AppKit、原生 Android 等非 Web UI 为直接适用对象**。
 
 **主原则**：审美统一 ≠ 每页一个模板。统一设计语言 + 共用组件 + 符合具体业务的信息架构 + 恰当动效 + 可访问、可测试的功能。允许自主创作主题色，不固定用户参考网站的蓝紫粉渐变。
+
+## v6.2 · 动画与可视化技术按场景选型
+
+针对用户提供的《12 项前端动画与可视化技术选型指南》，**先明确视觉或数据目标，再选择技术，不因为想让页面酷炫就安装 12 项依赖**。这 12 项分属动画控制、文本拆分、2D/3D 渲染、WebGL 图像、业务图表、手绘、SVG 滤镜、粒子和物理引擎，不是 12 个相互替代的动画库。
+
+- 查 `references/visual-tech-selection-12.md`，或使用 `python3 scripts/search_visual_tech.py --goal "商品 3D 产品旋转" --json` 查询候选。数据索引 `assets/visual-tech-catalog.json` 包含 12 项定位、场景、避雷、替代方案与 9 种组合。
+- **默认** HTML/CSS/SVG + 框架原生动画；短时间线才选 Anime.js 或 GSAP；特殊文本、图表、2D/3D、shader、粒子和物理需求明确后才引入专项库。
+- SplitText 可能指 GSAP 插件，也可能是 anime.js `splitText`：两套 API 独立，优先复用项目现有动画栈；SVG Filter 是浏览器原生能力而非 npm 库；Matter.js 物理计算不替代 PixiJS 绘制。
+- 不允许同时让 CSS/GSAP/Motion/Anime.js 控制同一元素同一属性；Vue/React 卸载时释放时间线、Canvas/WebGL、图表、物理 runner、观察器和事件监听器。
+- 强制 reduced-motion、失败静态回退、按需加载和目标设备实测，不以工具存在证明当前项目性能或动效已验收。用户明确选择的风格优先于自动技术推荐。
 
 ## v6.1 · 真实案例库按需复用
 
@@ -79,6 +89,7 @@ MauForma 不是固定的“极简皮肤”，也不是默认全站都用大图/�
 | 提示词与 Agent 协作 | `references/ai-frontend-prompt-policy.md`、`examples/prompt-library-web.md` |
 | 创意官网、产品宣传与互动视觉 | `references/creative-component-libraries.md`、`examples/creative-library-recipes-react-vue.md`、`assets/creative-effects-gallery.html` |
 | Ant Design、Ant Design Vue、Element Plus、MUI 等后台组件库 | `references/enterprise-ui-library-guide.md`、`references/framework-support-matrix.md` |
+| 12 项动画/可视化技术选型 | `references/visual-tech-selection-12.md`、`assets/visual-tech-catalog.json`、`scripts/search_visual_tech.py` |
 | 动画选择 | `references/animation-engine-selection.md`、`references/animation-integration-lifecycle.md` |
 | Anime.js 动效目录 | `references/animejs-official-capabilities.md`、`references/animejs-motion-recipes.md`、`references/animejs-easing-complete.md` |
 | 反例、审查与交付 | `references/quality-antipatterns-by-page-type.md`、`references/page-header-antipatterns.md`、`references/ui-review-rubric.md`、`references/visual-qa.md` |
@@ -125,6 +136,7 @@ MauForma 不是固定的“极简皮肤”，也不是默认全站都用大图/�
 
 ```bash
 python3 scripts/search_design_knowledge.py --query "甜品 食物 产品 摄影" --mode Persuade --json
+python3 scripts/search_visual_tech.py --goal "手绘 插画" --json
 python3 scripts/search_design_cases.py --query "甜品 咖啡 门店" --style premium-showcase --json
 python3 scripts/init_design_system.py --project-root ./ --name "Project" --style functional --page dashboard --mode Operate
 # 审核选择之后加 --apply 写入；已有文件不会覆盖

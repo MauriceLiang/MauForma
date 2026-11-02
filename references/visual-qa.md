@@ -39,3 +39,13 @@
 - [ ] 主操作靠近页面标题，核心列表或表单在常见窗口中尽早可见。
 - [ ] 同类功能页通过 `UiPageHeader` 或现有等价组件保持一致；真实面包屑、技术术语及必要提醒得以保留。
 - [ ] 对照 `references/page-header-antipatterns.md` 与 `assets/page-header-antipattern-gallery.html`，记录修复前后截图和明确理由。
+
+## v6.2 · 复杂视觉技术专项检查
+
+- [ ] 技术是按明确的视觉需求选型，已说明相对 CSS/SVG/已有库的增益，而非为效果堆库。
+- [ ] 同一 DOM 元素/属性没有被 CSS、GSAP、Motion、Anime.js 重复控制。
+- [ ] SplitText 标题字体加载/断点变化后仍可访问、语义正确，长文没有多余拆字。
+- [ ] Three.js / PixiJS / Curtains.js / tsParticles 在卸载、隐藏或失败时停止和回收，提供静态回退。
+- [ ] ECharts 图表数据来自真实业务且按需销毁，重要数值可通过文本或可访问表格理解。
+- [ ] Matter.js 不负责 UI DOM 本身的交互语义，键盘操作/业务操作没有被物理效果阻碍。
+- [ ] 在目标设备实测帧率、内存、CPU/GPU、缩放与窄屏，明确哪些条件未测。

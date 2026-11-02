@@ -1,0 +1,639 @@
+{
+  "version": "1.0",
+  "source": "User-provided《12项前端动画与可视化技术选型指南》",
+  "source_date": "2026-11-02",
+  "taxonomy_note": "12 entries span animation engines, plugins, charting, renderers, browser native effects, and physics; they are not mutually replaceable.",
+  "verification": "GSAP SplitText and Anime.js splitText were crosschecked with official docs 2026-11-02; remaining links from supplied guide, recheck API/license at install time.",
+  "selection_policy": {
+    "default": "CSS/SVG and framework-native first; only import specialized libraries for clearly stated needs",
+    "conflict": "Do not allow two animation systems to control the same element/property",
+    "accessibility": "prefers-reduced-motion and semantic DOM fallback are required",
+    "performance": "Use device-specific evidence rather than claiming universal benchmarks",
+    "source_of_truth": "User-confirmed design decisions take precedence over auto-selection"
+  },
+  "tools": [
+    {
+      "id": "gsap",
+      "name": "GSAP",
+      "kind": "animation-engine",
+      "tier": "timeline",
+      "keywords": [
+        "复杂时间线",
+        "多阶段",
+        "滚动叙事",
+        "视差",
+        "标题入场",
+        "gsap",
+        "scrolltrigger",
+        "timeline",
+        "scroll animation"
+      ],
+      "goal": "多元素精密编排、滚动驱动叙事",
+      "best_for": [
+        "品牌产品介绍",
+        "滚动叙事",
+        "高表现力首屏"
+      ],
+      "avoid": [
+        "简单 hover",
+        "常规业务表单",
+        "已有引擎控制同一属性"
+      ],
+      "combines_with": [
+        "splittext",
+        "threejs",
+        "curtainsjs"
+      ],
+      "lightweight_alternative": "CSS/WAAPI 或原框架转场",
+      "frameworks": "Vue/React 挂载后作用于 ref；清理 GSAP 上下文、ScrollTrigger 和监听器",
+      "perf": "避免重复布局测量，优先 transform/opacity",
+      "api": "https://gsap.com/docs/v3/",
+      "coverage": "existing"
+    },
+    {
+      "id": "animejs",
+      "name": "anime.js",
+      "kind": "animation-engine",
+      "tier": "micro-and-svg",
+      "keywords": [
+        "局部动画",
+        "微交互",
+        "按钮反馈",
+        "svg动画",
+        "stagger",
+        "形状过渡",
+        "anime",
+        "animejs",
+        "timeline"
+      ],
+      "goal": "DOM/SVG 小范围动画、stagger 与短时间线",
+      "best_for": [
+        "局部视觉反馈",
+        "SVG 插画",
+        "轻量品牌交互"
+      ],
+      "avoid": [
+        "用其替代纯 CSS hover",
+        "同元素同属性与 GSAP 双重管理"
+      ],
+      "combines_with": [
+        "splittext",
+        "svg-filter"
+      ],
+      "lightweight_alternative": "CSS/WAAPI",
+      "frameworks": "Vue onMounted/React effect 注册，卸载停止；按实际 anime.js 版本区分 API",
+      "perf": "按需加载功能模块，减少长时间运行时间线",
+      "api": "https://animejs.com/documentation/",
+      "coverage": "existing"
+    },
+    {
+      "id": "splittext",
+      "name": "SplitText（GSAP / anime.js 对应实现）",
+      "kind": "text-utility",
+      "tier": "text-reveal",
+      "keywords": [
+        "逐字",
+        "逐词",
+        "逐行",
+        "文字揭示",
+        "文字动画",
+        "标题动画",
+        "文本拆分",
+        "splittext",
+        "text reveal",
+        "type reveal"
+      ],
+      "goal": "按行、词、字拆分文字并分别入场",
+      "best_for": [
+        "品牌标题",
+        "章节标题",
+        "短句揭示"
+      ],
+      "avoid": [
+        "长篇正文逐字滚动",
+        "字体加载后不重排",
+        "屏幕阅读器重复朗读"
+      ],
+      "combines_with": [
+        "gsap",
+        "animejs"
+      ],
+      "lightweight_alternative": "不拆分文字的 CSS 单次淡入",
+      "frameworks": "两个库的 SplitText API 不可互换；字体加载和响应式后重新拆分并释放节点",
+      "perf": "每个字增加节点；只拆需要的粒度",
+      "api": "https://gsap.com/docs/v3/Plugins/SplitText/",
+      "alternate_api": "https://animejs.com/documentation/text/splittext/",
+      "coverage": "new"
+    },
+    {
+      "id": "pixijs",
+      "name": "PixiJS",
+      "kind": "2d-renderer",
+      "tier": "gpu-2d",
+      "keywords": [
+        "2d",
+        "二维",
+        "精灵",
+        "canvas",
+        "gpu",
+        "互动海报",
+        "游戏",
+        "精灵渲染",
+        "pixi",
+        "pixijs",
+        "interactive poster"
+      ],
+      "goal": "大量 2D 精灵、纹理、交互对象的高频渲染",
+      "best_for": [
+        "2D 互动海报",
+        "2D 游戏",
+        "展览互动墙"
+      ],
+      "avoid": [
+        "普通表单/卡片",
+        "一个小图标",
+        "普通 HTML 文本排版"
+      ],
+      "combines_with": [
+        "matterjs"
+      ],
+      "lightweight_alternative": "原生 SVG/Canvas 或 DOM",
+      "frameworks": "Canvas 与 DOM 分层，挂载后创建 renderer，路由离开销毁纹理/renderer",
+      "perf": "控制纹理/精灵数量、分辨率和帧率",
+      "api": "https://pixijs.com/",
+      "coverage": "new"
+    },
+    {
+      "id": "threejs",
+      "name": "Three.js",
+      "kind": "3d-renderer",
+      "tier": "gpu-3d",
+      "keywords": [
+        "3d",
+        "三维",
+        "模型",
+        "产品旋转",
+        "空间漫游",
+        "webgl",
+        "threejs",
+        "three.js",
+        "3d product"
+      ],
+      "goal": "3D 模型、光照材质、相机与空间交互",
+      "best_for": [
+        "3D 产品展厅",
+        "设备模型旋转",
+        "沉浸式场景"
+      ],
+      "avoid": [
+        "纯 2D 特效",
+        "只有按钮悬停",
+        "无可用模型和降级预算"
+      ],
+      "combines_with": [
+        "gsap"
+      ],
+      "lightweight_alternative": "摄影或预渲染序列帧 / 静态产品图",
+      "frameworks": "SSR 延迟客户端加载，卸载释放几何体/材质/纹理及 requestAnimationFrame",
+      "perf": "控制模型面数、纹理、设备像素比与 GPU 占用",
+      "api": "https://threejs.org/manual/",
+      "coverage": "existing"
+    },
+    {
+      "id": "curtainsjs",
+      "name": "Curtains.js",
+      "kind": "dom-webgl-bridge",
+      "tier": "webgl-image",
+      "keywords": [
+        "图像扭曲",
+        "图片波纹",
+        "视频扭曲",
+        "图片过渡",
+        "shader",
+        "着色器",
+        "curtains",
+        "curtainsjs",
+        "image distortion"
+      ],
+      "goal": "DOM 布局中的图像/视频映射为 WebGL 平面与 shader 特效",
+      "best_for": [
+        "创意作品集",
+        "视频过渡",
+        "图片悬停波纹"
+      ],
+      "avoid": [
+        "不需要 shader 的普通图片",
+        "复杂通用 3D 场景",
+        "低端设备常驻大面积扭曲"
+      ],
+      "combines_with": [
+        "gsap"
+      ],
+      "lightweight_alternative": "CSS transform/filter 或 SVG Filter",
+      "frameworks": "保留 DOM 内容的可访问语义，WebGL 作为增强层；失效显示原始图片",
+      "perf": "持续 shader 计算注意 GPU/设备像素比；路由卸载回收资源",
+      "api": "https://www.curtainsjs.com/",
+      "coverage": "new"
+    },
+    {
+      "id": "echarts",
+      "name": "Apache ECharts",
+      "kind": "charting",
+      "tier": "data-charts",
+      "keywords": [
+        "数据",
+        "统计",
+        "图表",
+        "仪表盘",
+        "折线图",
+        "柱状图",
+        "关系图",
+        "科学可视化",
+        "echarts",
+        "dashboard",
+        "chart",
+        "analytics"
+      ],
+      "goal": "业务数据的交互式统计图表与仪表盘",
+      "best_for": [
+        "后台/BI",
+        "运营分析",
+        "科研数据",
+        "实时监控"
+      ],
+      "avoid": [
+        "装饰型动画",
+        "极简单个数字",
+        "没有真实数据含义的图形"
+      ],
+      "combines_with": [],
+      "lightweight_alternative": "HTML 表格/简单原生 SVG（极少量图表）",
+      "frameworks": "Vue/React 使用框架状态同步，变化时 resize，卸载 dispose 图表实例",
+      "perf": "按需导入/懒初始化，数据更新避免全量重绘",
+      "api": "https://echarts.apache.org/en/",
+      "coverage": "existing"
+    },
+    {
+      "id": "roughjs",
+      "name": "Rough.js",
+      "kind": "vector-illustration",
+      "tier": "handdrawn-svg",
+      "keywords": [
+        "手绘",
+        "草图",
+        "白板",
+        "插画",
+        "教育",
+        "手绘流程图",
+        "rough",
+        "roughjs",
+        "sketch",
+        "handdrawn"
+      ],
+      "goal": "画出手绘笔触的 Canvas/SVG 图形",
+      "best_for": [
+        "教育插画",
+        "白板",
+        "草图式流程图",
+        "活泼品牌"
+      ],
+      "avoid": [
+        "精密数据后台的全部 UI",
+        "要求严格几何精度的图表",
+        "误以为自带完整时序动画"
+      ],
+      "combines_with": [
+        "gsap",
+        "svg-filter"
+      ],
+      "lightweight_alternative": "普通 SVG/Canvas",
+      "frameworks": "组件生成手绘矢量后保持路径和标签可访问；动画另选引擎",
+      "perf": "大型重复绘制路径需缓存和减少重算",
+      "api": "https://roughjs.com/",
+      "coverage": "new"
+    },
+    {
+      "id": "vivus",
+      "name": "Vivus",
+      "kind": "svg-stroke",
+      "tier": "path-draw",
+      "keywords": [
+        "svg描边",
+        "路径绘制",
+        "logo描绘",
+        "路线描线",
+        "签名",
+        "vivus",
+        "svg drawing",
+        "line drawing"
+      ],
+      "goal": "SVG stroke 路径逐步显现",
+      "best_for": [
+        "Logo 开场",
+        "地图路线",
+        "线稿插画"
+      ],
+      "avoid": [
+        "只有填充没有可绘 stroke 的图",
+        "单纯 CSS 就能解决的短路径"
+      ],
+      "combines_with": [
+        "gsap"
+      ],
+      "lightweight_alternative": "CSS stroke-dasharray / stroke-dashoffset",
+      "frameworks": "实例仅绑定当前 SVG，离开页面及时停止和回收",
+      "perf": "复杂路径与频繁重播限制开销",
+      "api": "https://github.com/maxwellito/vivus",
+      "coverage": "new"
+    },
+    {
+      "id": "svg-filter",
+      "name": "SVG Filter",
+      "kind": "browser-native",
+      "tier": "filters",
+      "keywords": [
+        "svg滤镜",
+        "模糊",
+        "波纹",
+        "扭曲",
+        "光影",
+        "液态",
+        "svg filter",
+        "blur",
+        "displacement"
+      ],
+      "goal": "浏览器原生 SVG 滤镜图形处理（并非 npm 动画库）",
+      "best_for": [
+        "局部波纹",
+        "纹理扭曲",
+        "发光/模糊",
+        "图像变形"
+      ],
+      "avoid": [
+        "大面积高频滤镜",
+        "低端设备无回退",
+        "把滤镜当作时间线引擎"
+      ],
+      "combines_with": [
+        "gsap",
+        "animejs"
+      ],
+      "lightweight_alternative": "CSS filter / 基础静态效果",
+      "frameworks": "直接内联 SVG filter 或定义引用；根据 CSS/JS 动态驱动参数",
+      "perf": "大面积复杂滤镜应测试 GPU 负载、浏览器差异",
+      "api": "https://developer.mozilla.org/en-US/docs/Web/SVG/Guides/SVG_filters",
+      "coverage": "new"
+    },
+    {
+      "id": "tsparticles",
+      "name": "tsParticles",
+      "kind": "particles",
+      "tier": "particle-effects",
+      "keywords": [
+        "粒子",
+        "彩纸",
+        "烟花",
+        "科技背景",
+        "点线网络",
+        "星星",
+        "particles",
+        "tsparticles",
+        "confetti"
+      ],
+      "goal": "可配置粒子背景和事件性庆祝视觉",
+      "best_for": [
+        "节庆页面",
+        "完成任务庆祝",
+        "有目的的科技视觉背景"
+      ],
+      "avoid": [
+        "所有页面常驻粒子",
+        "普通表格",
+        "减少动效设置下仍持续运行"
+      ],
+      "combines_with": [],
+      "lightweight_alternative": "静态图/短 CSS 动画",
+      "frameworks": "按需加载粒子模块，置于独立增强层，与业务 DOM 分离并清理",
+      "perf": "限制粒子数量/帧率，后台页面或不可见时暂停",
+      "api": "https://particles.js.org/",
+      "coverage": "new"
+    },
+    {
+      "id": "matterjs",
+      "name": "Matter.js",
+      "kind": "physics-engine",
+      "tier": "2d-physics",
+      "keywords": [
+        "物理",
+        "刚体",
+        "碰撞",
+        "重力",
+        "弹跳",
+        "自由落体",
+        "拖拽球",
+        "matter",
+        "matterjs",
+        "2d physics",
+        "collision"
+      ],
+      "goal": "计算二维刚体、重力、碰撞与约束；不负责完整网页渲染",
+      "best_for": [
+        "2D 互动玩具",
+        "物理实验教学",
+        "有碰撞的互动海报"
+      ],
+      "avoid": [
+        "普通列表拖拽/排序",
+        "仅需 CSS 弹性过渡",
+        "用物理模拟替代真实表单"
+      ],
+      "combines_with": [
+        "pixijs"
+      ],
+      "lightweight_alternative": "CSS/GSAP 的简单自由落体过渡；无需碰撞不引入",
+      "frameworks": "物理 world 与渲染层职责分离；挂载初始化，卸载清理 runner/world/监听器",
+      "perf": "限制物体数、碰撞对、约束数量和高频同步",
+      "api": "https://brm.io/matter-js/",
+      "coverage": "new"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "simple-saas",
+      "name": "普通企业官网/SaaS",
+      "goal": [
+        "按钮",
+        "页面过渡",
+        "企业",
+        "官网",
+        "saas",
+        "微交互"
+      ],
+      "recommended": [
+        "native-css",
+        "animejs"
+      ],
+      "optional": [
+        "gsap"
+      ],
+      "why": "常规结构依赖 HTML/CSS，局部必要时引入一种动画库",
+      "avoid": "不要以营销特效覆盖后台业务区域"
+    },
+    {
+      "id": "brand-story",
+      "name": "高品质品牌/滚动叙事",
+      "goal": [
+        "品牌",
+        "滚动",
+        "复杂时间线",
+        "标题",
+        "storytelling",
+        "marketing",
+        "scroll"
+      ],
+      "recommended": [
+        "gsap",
+        "splittext"
+      ],
+      "optional": [
+        "curtainsjs"
+      ],
+      "why": "GSAP 组织时间线，文字拆分只在标题需要时加入；图像 shader 只作为增强",
+      "avoid": "不要在每一段正文拆字或默认加入 WebGL"
+    },
+    {
+      "id": "three-d-product",
+      "name": "3D 产品展示",
+      "goal": [
+        "3D",
+        "产品模型",
+        "空间",
+        "三维",
+        "three"
+      ],
+      "recommended": [
+        "threejs",
+        "gsap"
+      ],
+      "optional": [],
+      "why": "Three.js 负责 3D，GSAP 按需负责相机/模型动画",
+      "avoid": "模型不可用或低性能设备应转静态图"
+    },
+    {
+      "id": "dashboard",
+      "name": "数据大屏/管理后台",
+      "goal": [
+        "数据",
+        "分析",
+        "图表",
+        "后台",
+        "BI",
+        "dashboard"
+      ],
+      "recommended": [
+        "echarts",
+        "native-css"
+      ],
+      "optional": [],
+      "why": "图表负责表达真实数据，CSS 处理操作层轻量反馈",
+      "avoid": "不用 PixiJS 来重做日常折线图"
+    },
+    {
+      "id": "poster-game",
+      "name": "创意 2D 海报/小游戏",
+      "goal": [
+        "2D",
+        "互动海报",
+        "游戏",
+        "物理",
+        "sprite"
+      ],
+      "recommended": [
+        "pixijs"
+      ],
+      "optional": [
+        "matterjs"
+      ],
+      "why": "PixiJS 绘制图形；只有真实碰撞需要时才叠加 Matter.js",
+      "avoid": "Matter.js 不是渲染引擎"
+    },
+    {
+      "id": "illustration",
+      "name": "手绘插画/教育",
+      "goal": [
+        "手绘",
+        "草图",
+        "儿童",
+        "教育",
+        "sketch"
+      ],
+      "recommended": [
+        "roughjs",
+        "native-svg"
+      ],
+      "optional": [
+        "gsap"
+      ],
+      "why": "Rough.js 负责手绘效果，动画仍需另行选择",
+      "avoid": "不要强行将精密后台控件全部变成手绘"
+    },
+    {
+      "id": "celebration",
+      "name": "庆祝/粒子背景",
+      "goal": [
+        "庆祝",
+        "粒子",
+        "节日",
+        "科技背景",
+        "confetti"
+      ],
+      "recommended": [
+        "tsparticles",
+        "native-css"
+      ],
+      "optional": [],
+      "why": "粒子作为背景或反馈层；业务流程保持可访问",
+      "avoid": "减少动画时停止，不让常驻粒子抢占性能"
+    },
+    {
+      "id": "svg-line",
+      "name": "Logo 路线线稿",
+      "goal": [
+        "logo",
+        "svg",
+        "描边",
+        "路线",
+        "签名",
+        "line"
+      ],
+      "recommended": [
+        "vivus"
+      ],
+      "optional": [
+        "gsap"
+      ],
+      "why": "只有路径描边就先选 Vivus 或 CSS，不必多引擎",
+      "avoid": "fill-only SVG 不是可描边的 stroke 路径"
+    },
+    {
+      "id": "image-distortion",
+      "name": "波纹/液态图片",
+      "goal": [
+        "波纹",
+        "扭曲",
+        "液态",
+        "图像",
+        "滤镜",
+        "distort"
+      ],
+      "recommended": [
+        "svg-filter"
+      ],
+      "optional": [
+        "curtainsjs"
+      ],
+      "why": "简单变形先 SVG/CSS，必须用 shader 时再考虑 Curtains.js",
+      "avoid": "大面积连续 GPU 滤镜必须测性能和做静态降级"
+    }
+  ]
+}

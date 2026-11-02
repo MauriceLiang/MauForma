@@ -1,5 +1,15 @@
 # Changelog
 
+## v6.2 — 2026-11-02 · Animation and visualization selection
+
+- 整合用户提供的 12 项动画与可视化技术指南，与原有 GSAP、Anime.js、Three.js、ECharts/React/Vue 规范去重。
+- 新增 `assets/visual-tech-catalog.json`：12 项能力、9 种场景搭配、适用边界、替代与官方链接。
+- 新增 `references/visual-tech-selection-12.md`、`scripts/search_visual_tech.py`，按视觉需求推荐技术而非默认安装。
+- 澄清 GSAP SplitText 与 anime.js splitText、SVG Filter 原生性质、PixiJS/Matter.js 分工；加强设备性能、生命周期和 reduced-motion 要求。
+- 新增回归测试，未安装任何动画/渲染依赖；旧版主题、组件、动效目录保留。
+
+---
+
 ## v6.1 — 2026-11-02 · External design case library
 
 - 验证 UI/UX Pro Max 是结构化行业/风格建议库；VoltAgent awesome-design-md 包含 84 个品牌 DESIGN.md 分析文档。
