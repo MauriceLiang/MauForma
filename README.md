@@ -48,7 +48,7 @@ MauForma 将页面的核心目标区分为四种模式：
 
 ## 设计方法
 
-\`\`\`text
+```text
 DISCOVER    理解产品用途、展示内容和用户任务
     ↓
 DIRECT      推荐设计方向，明确视觉焦点与关键属性
@@ -58,7 +58,7 @@ SYSTEMIZE   固化项目决策、全局 Tokens 与页面级覆盖
 BUILD       先构建共享组件，再组合业务页面
     ↓
 VERIFY      检查真实交互、视觉实现与响应式表现
-\`\`\`
+```
 
 在此过程中，MauForma 会区分**用户确认、委托 Agent 决定、继承既有规范和仍待确认**的选择。推荐不会被冒充为用户决定，也不会在局部修复时重复进行整套设计访谈。
 
@@ -68,27 +68,27 @@ VERIFY      检查真实交互、视觉实现与响应式表现
 
 ### 1. 安装 Skill
 
-将完整仓库放入 Agent Skills 目录，而不是只复制 \`SKILL.md\`。
+将完整仓库放入 Agent Skills 目录，而不是只复制 `SKILL.md`。
 
 **全局安装（Codex / Agent Skills）：**
 
-\`\`\`bash
+```bash
 mkdir -p ~/.agents/skills
 git clone https://github.com/MauriceLiang/MauForma.git ~/.agents/skills/mauforma
-\`\`\`
+```
 
 也可以安装在单个项目中：
 
-\`\`\`bash
+```bash
 mkdir -p .agents/skills
 git clone https://github.com/MauriceLiang/MauForma.git .agents/skills/mauforma
-\`\`\`
+```
 
-> 以上二选一即可。目录已存在时不要重复克隆；若先前已通过 Git 安装，可进入该目录运行 \`git pull\` 更新。
+> 以上二选一即可。目录已存在时不要重复克隆；若先前已通过 Git 安装，可进入该目录运行 `git pull` 更新。
 
 ### 2. 在 Agent 中调用
 
-\`\`\`text
+```text
 $mauforma
 
 我想为一款新产品设计网站，但还不确定视觉风格。
@@ -97,19 +97,15 @@ $mauforma
 
 确定后建立 Design Tokens 和共享组件，
 再开发页面并执行响应式、交互与视觉验收。
-\`\`\`
+```
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
 ## 设计知识与视觉技术
 
-<div align="center">
-
 | **8** 种原创风格档案 | **84** 个外部品牌设计参考入口 | **114** 种 Anime.js 动效配方 |
 | :--: | :--: | :--: |
 | **12** 项动画与可视化技术 | **9** 组场景化技术组合 | **6** 套主题预设 |
-
-</div>
 
 - **风格与案例**：独立保留编辑式、实验性、高级产品展示、活泼趣味、沉浸叙事、克制极简、高效功能型与阅读优先等视觉方向；[查看风格资料库](references/design-style-catalog.md)。外部案例来自 [VoltAgent awesome-design-md](references/external-design-case-library.md) 的来源索引，按需读取，**不是品牌官方设计系统**。
 - **动效与可视化**：从 CSS / SVG、Anime.js、GSAP 到 PixiJS、Three.js、ECharts、Matter.js 等，按明确的视觉需求选择，而不是默认安装全部工具；[查看 12 项技术选型指南](references/visual-tech-selection-12.md)。
@@ -120,7 +116,7 @@ $mauforma
 
 在 MauForma 仓库根目录执行：
 
-\`\`\`bash
+```bash
 # 按内容与访问者目标寻找风格
 python3 scripts/search_design_knowledge.py --query "甜品 摄影 到店" --mode Persuade
 
@@ -139,9 +135,9 @@ python3 scripts/audit_frontend.py ./src --format json
 # 校验 Skill 数据及回归测试
 python3 scripts/validate_intelligence.py
 python3 -m unittest discover -s tests -v
-\`\`\`
+```
 
-浏览器截图工具 \`scripts/browser_qa.mjs\` 需要目标项目已有 Playwright 和可访问的开发服务器；静态扫描或截图**不能单独证明**业务流程与视觉质量已经验收。
+浏览器截图工具 `scripts/browser_qa.mjs` 需要目标项目已有 Playwright 和可访问的开发服务器；静态扫描或截图**不能单独证明**业务流程与视觉质量已经验收。
 
 </details>
 
@@ -169,7 +165,7 @@ MauForma 借鉴其他优秀设计与工程 Skills 的方法，但不会将其审
 <details>
 <summary>兼容性与版本记录</summary>
 
-MauForma 延续原 Soft Precision UI 的设计资源。为避免破坏已有项目，内部 CSS 命名空间仍保留 \`.spui\` 与 \`--spui-*\`；公开的 Skill 名称与调用命令统一为 \`mauforma\` / \`$mauforma\`。
+MauForma 延续原 Soft Precision UI 的设计资源。为避免破坏已有项目，内部 CSS 命名空间仍保留 `.spui` 与 `--spui-*`；公开的 Skill 名称与调用命令统一为 `mauforma` / `$mauforma`。
 
 版本变化及新增能力见 [CHANGELOG.md](CHANGELOG.md)。现有 GitHub Actions 工作流见 [Skill Quality](.github/workflows/skill-quality.yml)。
 

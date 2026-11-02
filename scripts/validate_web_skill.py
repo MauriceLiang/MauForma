@@ -26,6 +26,26 @@ for md in root.rglob('*.md'):
  for path in re.findall(r'(?<![\w/])(?:references|examples|assets|scripts)/[a-zA-Z0-9_./-]+\.(?:md|css|html|json|vue|tsx|py)',source):
   path=path.rstrip('.,;')
   if not (root/path).exists(): errors.append(f'Broken link in {md.relative_to(root)}: {path}')
+# README syntax checks: GitHub renders escaped backticks literally,
+# so ensure fenced examples and inline code are not accidentally escaped.
+readme = (root / 'README.md').read_text('utf-8')
+if chr(92) + chr(96) in readme:
+ errors.append('README.md contains escaped backticks; fenced or inline Markdown may render as plain text')
+open_fence = None
+for line_no, line in enumerate(readme.splitlines(), 1):
+ if not line.startswith('```'):
+  continue
+ if open_fence is None:
+  if not re.fullmatch(r'```[a-zA-Z0-9_+-]*', line):
+   errors.append(f'Invalid README code fence opener at line {line_no}: {line!r}')
+  open_fence = line_no
+ elif line == '```':
+  open_fence = None
+ else:
+  errors.append(f'Unclosed README code fence at line {open_fence}; invalid closer at line {line_no}')
+if open_fence is not None:
+ errors.append(f'Unclosed README code fence starting at line {open_fence}')
+
 motion=json.loads((root/'assets/motion-effects.json').read_text('utf-8'))
 print('Motion JSON root:',type(motion).__name__)
 print('Web frameworks:', ', '.join(dec['supported']))
