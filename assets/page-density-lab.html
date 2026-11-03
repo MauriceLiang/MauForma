@@ -44,7 +44,7 @@ main{max-width:1200px;margin:auto;padding:38px 24px 80px}.micro{font-size:11px;l
   <div class="overview-top"><div><div class="h2">总览</div><p class="sub" id="headline-sub">继续上次的仓库分析。</p></div><span class="pill">演示数据</span></div>
   <section class="task surface"><div class="eyebrow" id="task-eyebrow">当前仓库</div><h3 id="task-headline">demo-labs / steady-core</h3>
     <p class="desc" id="task-desc">这是一条演示仓库记录，可继续进入详情。真实采集状态以项目数据为准。</p>
-    <div class="row"><button class="btn primary" id="primary-action" type="button">查看示例分析</button><button class="btn" type="button">选择仓库</button></div>
+    <div class="row"><button class="btn primary" id="primary-action" type="button">查看示例分析</button><button class="btn" id="secondary-choice" type="button">选择仓库</button></div>
     <div class="context"><span class="pill">Mock / 未连接真实 GitHub</span></div>
   </section>
   <div class="extra"><span id="continuation-label">需要帮助？</span><a class="link" href="#help" id="help-link">查看使用说明</a><span class="first-help" id="first-help-details">先选择仓库，之后可启动采集；详细步骤在帮助页查看。</span></div>
@@ -80,6 +80,7 @@ document.querySelector('#first-visit').addEventListener('change',e=>{
  document.querySelector('#task-desc').textContent=first?'选择公开仓库后，才能开始采集和查看分析。详细说明可随时打开帮助。':'这是一条演示仓库记录，可继续进入详情。真实采集状态以项目数据为准。';
  document.querySelector('#primary-action').textContent=first?'选择仓库':'查看示例分析';
  document.querySelector('#first-help-details').style.display=first?'inline':'none';
+ document.querySelector('#secondary-choice').style.display=first?'none':'';
  document.querySelector('#continuation-label').textContent=first?'第一次使用？':'需要帮助？';
 });
 for(const b of document.querySelectorAll('button.btn'))b.addEventListener('click',()=>{document.querySelector('#rationale').textContent='这是纯视觉结构实验室，按钮没有连接仓库、数据源或实际导航。';});

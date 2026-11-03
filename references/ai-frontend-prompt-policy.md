@@ -82,3 +82,7 @@ Agent 不可以只问“想要哪种风格”，也不可以未经分析就直�
 ## v6.7 · Navigation Architecture 是设计决策，不是 CSS SideBar 变体
 
 新项目或重大改版先数清高频一级栏目、树形层级、主要设备与横向空间，分辨顶栏的全局 scope、侧栏的局部 scope、页面 Tab 及底部上下文操作。提供适合项目的少量 Top/Side/混合方案，明确手机端哪几个入口可见、其他去哪里、如何保留 route IDs/状态。未确认架构不能由 Agent 偷偷批准，用户有明确位置偏好则遵从，局部小修不重问。详见 `references/navigation-architecture.md`，并维护 `design-system/navigation-decision.json`。选择导航结构不等于获得换色授权。
+
+## v6.8 · 高级留白首先是内容策划
+
+用户反馈“信息太多”时先盘点当前路由全部任务、介绍、教程、动作、指标与状态，按 primary/supporting/conditional/deferred/removed 决策，**先删或下沉重复块，再做卡片与空间**。总览应给出清楚的下一步操作，首次引导按状态出现；分析详情可以更多指标/趋势/筛选但不藏数据口径。不能把同一页面所有功能说明塞到首页，不用固定 padding/min-height/小字体假装高端。任何推迟内容保留清楚路径，已确认的颜色/导航/密度继续沿用。依 `references/page-density-and-content-priority.md` 和 `references/whitespace-and-surface-composition.md`，在真实路由分别复核。

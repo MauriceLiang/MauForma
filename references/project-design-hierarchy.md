@@ -56,3 +56,7 @@ python3 scripts/init_design_system.py --project-root . --name "Example" --style 
 ## v6.7 · 导航 IA 记录与断点映射
 
 项目可建立 `design-system/navigation-decision.json`，参考 `assets/navigation-decision.schema.json`：记录真实一级目的地 ID、任务/设备/层级、候选架构、用户确认或授权的来源以及 desktop/mobile 的可见+overflow 路由映射。**推荐仍 pending 时不可把候选固化成已确认架构**。MASTER 记录全局导航职责和组件契约，页面 override 只保留有意义的局部 Tab/对象树例外；不在每个路由重复自建一套侧边菜单。跨断点需保存当前页面、过滤条件与对象上下文。可运行 `scripts/validate_navigation_architecture.py <decision-path>` 做静态一致性审查。
+
+## v6.8 · 页面级内容筛选与密度决策
+
+可在用户项目保存 `design-system/pages/content-plan.json`，形状参考 `assets/page-content-plan.schema.json`；按路由记录 primary_task、用户状态、每块内容是 primary/supporting/conditional/deferred/removed、次级入口、页面级 airy/balanced/productive/compact 和实际验证。MASTER 保留共用主题/字级/间距 Token，不强制所有页面复制同一组卡片或固定留白比例。用户选择来源为 confirmed/delegated/inherited/provisional，不将 Agent 推荐冒充批准。真实关键信息不能仅为了留白被删除。

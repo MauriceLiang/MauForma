@@ -60,3 +60,17 @@
 > 详细的后台 PageHeader 反例继续参阅 `page-header-antipatterns.md`、`assets/page-header-antipattern-gallery.html`。
 
 > v6.3：针对 #23–29 的图文对照、色彩逻辑和允许的例外，见 `sidebar-navigation-design.md`、`workspace-component-refinement.md`，以及 `assets/sidebar-refinement-gallery.html`。不要仅凭一条 CSS border-left 推断“AI 生成”或判定组件不合格。
+
+## v6.8 · 留白与页面密度反面案例
+
+| 反例 | 失败原因 | 替代做法 | 适用例外 |
+| --- | --- | --- | --- |
+| 总览有“从仓库开始”、三步教程和三张功能卡 | 全部入口并列，主任务不清楚 | 当前对象 + 一项主操作；教程首访/帮助呈现，功能通过导航访问 | 正式教学门户可能需要公开完整学习路径 |
+| 侧栏有功能入口，首页再铺相同功能卡 | 重复信息无独立价值 | 移除/下沉功能卡；保留重要的真实摘要 | 卡片承载独特数据或当前任务才保留 |
+| 仅把每张卡片的 padding 增大 | 页面信息量没减少，只是更长 | 先筛选主次、删多余容器，再调整空间 | 内容必须共显时可适当加大视口或优化结构 |
+| 数据详情也做成巨型留白版 | 图表、指标不能同屏比较 | Productive/Compact 可更高密度，同时保持标签易读 | 数据还未加载必须展示明确状态 |
+| 通过极小字号/极淡色提高密度 | 信息被视觉隐藏 | 减少重复内容并优化分组，不牺牲来源/图例/样本数 | 纯装饰文字可删 |
+| 卡片外套卡片外再套大面板 | 边框吞噬空间与主次 | Surface Necessity 逐层删除无意义容器 | 真实嵌套对象/交互层级允许必要容器 |
+| 人为固定大 min-height 制造高级留白 | 空白不承载关系，主流程可能被拖远 | Macro/Meso/Micro 按任务关系留白 | 品牌叙事影像有合理大面积主视觉 |
+
+见 `references/page-density-and-content-priority.md` 和 `references/whitespace-and-surface-composition.md`，没有机械的卡片数量/空白百分比硬限制。
