@@ -7,6 +7,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 NEEDED = [
     "assets/style-knowledge.json", "references/design-style-catalog.md",
+    "references/semantic-copy-hygiene.md", "references/typography-hierarchy.md",
+    "assets/typography-role-guidelines.json", "assets/typography-reading-lab.html",
+    "scripts/audit_readability.py", "tests/test_content_typography.py",
     "assets/composition-brief.schema.json", "examples/composition/repo-analysis.json",
     "assets/composition-layout-lab.html", "references/composition-first-design.md",
     "references/palette-art-direction.md", "references/visual-critique-loop.md",
@@ -106,6 +109,11 @@ def validate() -> list[str]:
         errors.extend(validate_composition())
     except (ImportError, OSError, ValueError) as exc:
         errors.append(f"Composition validation unavailable: {exc}")
+    try:
+        from audit_readability import validate_catalog as validate_typography
+        errors.extend(validate_typography())
+    except (ImportError, OSError, ValueError) as exc:
+        errors.append(f"Typography validation unavailable: {exc}")
     skill = (ROOT / "SKILL.md").read_text("utf-8")
     for needed in ("search_design_knowledge.py", "art-direction-critique.md", "browser-qa-protocol.md", "project-design-hierarchy.md", "search_design_cases.py", "external-design-case-library.md", "search_visual_tech.py", "visual-tech-selection-12.md"):
         if needed not in skill:
