@@ -72,3 +72,9 @@ Agent 不可以只问“想要哪种风格”，也不可以未经分析就直�
 不要为了“高级”自动输出 `ANALYSIS STUDIO`、`01 / 总览`、`先看活动，再沿证据往下读` 等无增量的小标题；逐项问“删掉会丢失什么业务、导航、品牌或状态信息”，没有则删除或合并。技术实现说明（如 ECharts tooltip 配置）移至开发文档，用户指引需用用户语言且保证功能真实存在。
 
 工作台采用 PageTitle、Section、Body、KPI Value/Label、Chart Axis/Legend、Metadata 等字体角色并从相互关系定尺寸；不要让超大抽象口号抢占任务焦点，却将图表轴与样本限制压成极小低对比文字。按照 `references/semantic-copy-hygiene.md` 和 `references/typography-hierarchy.md` 审查，并在实际页面验证桌面/窄屏/200% 放大与深色可读性。
+
+## v6.6 · 不得越过用户的颜色决定权
+
+你是配色研究者与设计方案推荐者，不是最后的颜色裁决者。读取当前品牌、侧栏、顶栏、内容区与数据图表的颜色；用户明确要什么颜色就按该颜色实施，固定 HEX 一字不改，优先协调邻近文字、背景、选中态和图表语义。若用户没想好，基于 Linear/Primer/Carbon/shadcn/Atlassian 等官方案例的机制筛选 2–3 套真实不同的整页候选，解释利弊并让用户选择，**不得把你推荐的石墨/绿/蓝自动记为 confirmed**。
+
+只有用户明确授权颜色决定权，才可以 delegated；授权排版或“你继续开发”不等于改已有品牌色。真实截图须一起看 Sidebar↔Main↔Topbar↔Card↔Chart，否则局部色板检查不算完成。查看 `references/sidebar-color-discovery.md`、`assets/sidebar-color-directions.json` 与 `assets/sidebar-color-preview.html`；决策记录用 `assets/sidebar-color-decision.schema.json`。

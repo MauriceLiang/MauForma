@@ -82,3 +82,15 @@
 - [ ] 对于保留大字、品牌副标或正式章节编号，是否说明其内容与页面类型的正当理由？
 
 `python3 scripts/audit_readability.py <src> --format json` 仅返回人工复核候选，不是自动判断或修复。
+
+## v6.6 · SideBar 全局配色与用户确认（Gate A / D）
+
+- [ ] 用户明确说颜色名/HEX 时是否被尊重？若已经选过，是否**没有**重复问颜色或擅自换色？
+- [ ] 颜色未定且任务涉及重新配色时是否展示 **2–3 套 Sidebar + Main + Topbar + Card + Chart** 的整体搭配，而不是三张只看侧栏的纯色卡？
+- [ ] Agent 推荐是否仍是 `pending/unresolved`，没有把“推荐 A”假写为 `confirmed`？用户明确委托颜色时才可使用 `delegated`。
+- [ ] 用户给定的精确 HEX 是否在最终 Token 里完全一致？如因可读性存在风险，是否明确解释并调整文字或辅助表面，不私自换用户目标颜色？
+- [ ] 侧栏相对主内容区的色温、亮度与边界有明确理由，是否和顶部栏、卡片、图表序列/状态色协同？
+- [ ] 选中态、hover、focus 在完整页面浅/深主题上可辨认；关键文字与控件/图形对比已在实际渲染中验证？
+- [ ] 浏览器验证的截图包含**完整页面及 sidebar 与 main 的接缝**，不是仅截图侧栏；若未运行浏览器则标记 NOT RUN。
+
+测试命令：`scripts/validate_sidebar_color_decision.py --repository` 只做静态色值和选择记录检验，不对配色美感自动评分。配色方向详见 `references/sidebar-color-discovery.md`。

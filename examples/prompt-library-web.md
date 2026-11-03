@@ -160,3 +160,13 @@ $mauforma
 4) 使用 scripts/audit_readability.py <web-src> --format json 找候选问题，但这不是自动裁决。使用实际浏览器截图验证桌面、窄屏、暗色对比、200% 文字放大；没运行则标 NOT RUN。
 有正式品牌副标、面包屑、真实章节编号的情况下，保留并说明理由。
 ```
+
+## 用户选择侧边导航颜色：整站协调而不擅自替换
+
+```text
+使用 $mauforma。先检查项目现有 Logo/品牌色、Sidebar、Topbar、Main、卡片和图表的颜色 Tokens。
+如果用户已经指定了侧栏主色或精确 HEX，必须照选定值实施，不能因 AI 偏好改色；检查颜色与全站协调，并调整必要的文本/hover/selected/focus 角色以改善对比，若必须更改用户固定值请先征求同意。
+如果用户还没有决定颜色，从 references/sidebar-color-reference-cases.md 的真实设计方法中挑选匹配该项目的 2–3 套全页面色彩组合，说明侧栏与主区的关系、适用性、利弊，展示整页预览并请用户选或自定义；推荐不是用户确认。
+采用后将用户选定的色值、原话、决策来源和全局协调理由记录到 design-system/sidebar-color-decision.json，保证 Master Tokens 唯一。
+真实浏览器检查全页及 Sidebar/Main 接缝、键盘焦点、暗亮模式、图表与重要文字；不能只靠 HEX 静态扫描断言美感。
+```

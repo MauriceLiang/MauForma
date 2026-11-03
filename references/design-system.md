@@ -95,3 +95,9 @@
 ## J. v6.5 · 文案必要性与可读字级
 
 组件不自动给每个标题加 eyebrow、英语副标、伪章节编号或抽象口号。先运行 [文案必要性审查](semantic-copy-hygiene.md)，确认每行可见文案的独立信息价值；再按 [字体层级](typography-hierarchy.md) 与 `assets/typography-role-guidelines.json` 为 PageTitle、Section、Body、Metric、ChartAxis、ChartLegend、Metadata 等角色建立可调整的共享字号。重要数据即使“次级”也要看得清楚。真实工作台截图须检查暗色对比、200% 放大和长中文/英文字段；品牌展示页可拥有不同的字级及强烈艺术构图。
+
+## K. v6.6 · 用户批准、全局协调的导航色彩
+
+对新设计/配色大改，先读取已有品牌与页面全局颜色。用户明确指定色彩/HEX 优先；不明确时，参考官方设计来源后提出 2–3 套**侧栏+主区+顶栏+卡片+数据图**的完整组合供用户选择，不由 Agent 偷偷决定。侧栏可以有独立 tokens，但只能从项目 MASTER 派生，不能作为不同于主内容的独立品牌系统。批准后记录用户原话、来源与精确色值，若需变更已确认品牌色必须取得新许可。
+
+规范：`references/sidebar-color-discovery.md`、`assets/sidebar-color-decision.schema.json`；预览：`assets/sidebar-color-preview.html`；数值对比工具：`scripts/validate_sidebar_color_decision.py`。若工具通过，仅表示所列颜色对有足够数值对比，不代表整页协调性或截图已通过。
