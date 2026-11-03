@@ -1,5 +1,15 @@
 # Changelog
 
+## v6.5 — 2026-11-03 · Semantic copy and readable typography
+
+- 根据新版 RepoVantage 截图识别无信息增量的英文副标、重复小标题、伪章节编号、开发者术语泄漏，以及大小字号差异不合理、图表和样本信息过小的阅读问题。
+- 新增 `references/semantic-copy-hygiene.md` 的 Copy Necessity Gate，区分无用装饰与有意义的面包屑、品牌副标、数据来源和真实流程编号。
+- 新增 `references/typography-hierarchy.md` 与 `assets/typography-role-guidelines.json`，按工作台与品牌展示页面分别定义可调整的字号角色建议，不把设计建议冒充 WCAG 强制字号。
+- 增加源码静态审查 `scripts/audit_readability.py`、测试与 `assets/typography-reading-lab.html` 概念正反例；静态扫描仅提示人工复核，不自动删文字。
+- 将文字必要性/字号层级检查融入 Skill 阅读路由、设计门槛和 QA；不修改用户实际 RepoVantage 代码，不声明实际浏览器验证已完成。
+
+---
+
 ## v6.4 — 2026-11-03 · Composition First, palette reasoning and screenshot redesign
 
 - 将内容证据、页面任务、无装饰灰阶构图放到配色和共享组件实现之前；保留已经确认的设计和局部修复免完整访谈例外。

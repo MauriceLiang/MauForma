@@ -3,13 +3,22 @@ name: mauforma
 description: MauForma — Web-first, framework-aware, component-first frontend design and implementation Skill for Vue/Nuxt, React/Next, Svelte/SvelteKit, Angular, Solid, Astro and vanilla HTML/CSS/JS. Establish design tokens and reusable components before pages; create coherent visual systems, accessible responsive UI, purposeful motion and detailed good/bad examples. Priority depth: admin/SaaS interfaces, applicable to all websites and web apps. Includes Anime.js v4 catalog, React Bits / Vue Bits / Inspira UI creative components, Ant Design / Ant Design Vue and other enterprise libraries, Motion/GSAP/CSS engine choices, and enforceable agent prompts.
 ---
 
-# MauForma · Web-first 前端视觉与工程 Skill v6.4
+# MauForma · Web-first 前端视觉与工程 Skill v6.5
 
 **品牌**：MauForma（Maurice + Forma）。原 Soft Precision UI v5.0 的完整能力保留，现已扩充为内容驱动艺术指导、设计知识库、项目级设计规范、组件工程与 QA 的综合 Web Skill。
 
 **定位**：网页设计与前端实现（Web-first）。支持所有网页类型，**当前专项深化后台管理/SaaS**，但绝不把其他网站套成后台模板。框架：Vue 3 / Nuxt、React / Next.js、Svelte / SvelteKit、Angular、Solid、Astro、HTML/CSS/JS；若是 Electron/Tauri 的 **Web 前端层**也适用。**不以 SwiftUI、AppKit、原生 Android 等非 Web UI 为直接适用对象**。
 
 **主原则**：审美统一 ≠ 每页一个模板。统一设计语言 + 共用组件 + 符合具体业务的信息架构 + 恰当动效 + 可访问、可测试的功能。允许自主创作主题色，不固定用户参考网站的蓝紫粉渐变。
+
+## v6.5 · 文案必要性与角色化字体层级
+
+新的 RepoVantage 截图揭示了两个独立问题：`ANALYSIS STUDIO`、`仓库活动与协作 · 交互原型`、`01 / 总览`、`先看活动，再沿证据往下读` 等**没有信息增量的装饰文字**，以及过大的抽象 H1 与难以阅读的图表刻度、KPI 标签、样本数等之间的字级失衡。**这是内容架构和阅读层级问题，不是简单再换一个字体或颜色。**
+
+- **Copy Necessity Gate**：读取 `references/semantic-copy-hygiene.md`。每个 eyebrow、英文副标、编号、口号和解释文字必须回答“删去会损失什么信息？”没有真实导航、状态、品牌或业务增量时合并/删除，开发者实现备注（如 `ECharts tooltip`）移到技术文档。**正常面包屑、正式品牌 Tagline、真实章节编号、图表单位/来源应保留。**
+- **Type Role Gate**：读取 `references/typography-hierarchy.md` 和 `assets/typography-role-guidelines.json`。按 PageTitle / SectionTitle / Body / KPI / ChartAxis / Legend / Metadata 等角色设计字号、行高、字重和对比，别让工作台巨型口号压过极小的数据标注。所列 px 仅为设计起点，不是 WCAG 的统一字体尺寸规定。
+- **审查与验证**：`python3 scripts/audit_readability.py <web-src> --format json` 只能给出人工复核线索，**不可自动删文案或宣称审美、WCAG 合格**。`assets/typography-reading-lab.html` 是原创正反对照示例。实际验收检查深/浅模式、中文数字混排、长文本、图表真实渲染与 **200% 字体放大**；没有浏览器证据则记为 NOT RUN。
+- **适用范围**：主要针对 Operate/Read 工作台；Persuade/Experience 可在有品牌/叙事理由时使用大标题、英文小字或艺术排版，不能将工作台约束变成所有网站的统一模板。
 
 ## v6.4 · Composition First（从内容证据先决定页面结构）
 
@@ -95,6 +104,8 @@ MauForma 不是固定的“极简皮肤”，也不是默认全站都用大图/�
 
 | 任务 | 必读文件 |
 | --- | --- |
+| 多余小标题 / 伪章节编号 / 自动英文副标 / 开发者文案泄露 | `references/semantic-copy-hygiene.md`、`references/page-header-antipatterns.md`、`scripts/audit_readability.py` |
+| 字号失衡 / 图表刻度难读 / KPI 标签 / 字体层级 | `references/typography-hierarchy.md`、`assets/typography-role-guidelines.json`、`assets/typography-reading-lab.html` |
 | 新网站 / 大改版构图、空间布局和视觉焦点 | `references/composition-first-design.md`、`references/palette-art-direction.md`、`assets/composition-brief.schema.json`、`assets/composition-layout-lab.html` |
 | 用户反馈页面模板化、配色糟糕或截图缺乏美感 | `references/visual-critique-loop.md`、`references/art-direction-critique.md`、`references/visual-qa.md` |
 | 用户不确定视觉风格 / 需要设计访谈 | `references/design-discovery-interview.md`、`examples/design-discovery-dialogues.md` |
@@ -125,12 +136,12 @@ MauForma 不是固定的“极简皮肤”，也不是默认全站都用大图/�
 
 1. **Gate 0：侦察、Design Discovery 和模式识别**。读取既有设计决策（Master/页面例外）；读取 `package.json`、锁文件、现有路由、框架、UI 库、样式系统、构建命令、页面结构、测试约定，记录技术选择依据；已有项目不能随意换框架。
 2. **Gate A：先构图，后艺术指导与配色**。先执行 `references/composition-first-design.md` 的 A0 内容证据 → A1 无装饰构图 → A2 真正不同的区域布局备选 → A3 数据状态 → A4 配色理由；用户自选/授权决定后再进入 Design Tokens。参考 `examples/composition/repo-analysis.json`，可用 `scripts/validate_composition_brief.py` 检查方案是否只是换色。保存用户确认的方向及推荐理由；运行 Art Direction Critique，不把未确认的建议记为用户确认。如果用户不确定风格，先按“用途/内容发现 → Agent 推荐少量具体方案 → 用户选择 → 细化属性”的流程确认设计方向；针对业务类型给出信息架构、视觉密度、色彩角色、Typography、Spacing、Radius、Elevation、Motion Tokens（浅/深色）。在整个项目只有一个真实 Tokens 来源，非每页硬编码颜色。**对侧边栏先分析中性色阶与选中/悬停/焦点的关系，不能把多套蓝色和装饰性状态点随意拼接。**
-3. **Gate B：组件优先**。列出复用/改造/新增组件清单，先建立或修正 `UiButton/Field/Dialog/PageHeader/Navigation/Table/Feedback` 等共享组件及各状态，制作组件展示页。工作台需要进一步区分 Sidebar / RecentItem / Tabs / Table / Search / SplitPane 的**状态与行为契约**，不能全部借用同一种 Active 卡片。**Gate B 未通过，不允许批量铺业务页**。但修复单个故障时不必强制重构全站。
+3. **Gate B：组件优先**。开发共享 PageHeader/Chart/Table 之前需完成 v6.5 文案与字级检查：不自动注入 kicker、抽象口号、数字章节；重要图表刻度、n 值、单位和来源不能做成不可读的小字。列出复用/改造/新增组件清单，先建立或修正 `UiButton/Field/Dialog/PageHeader/Navigation/Table/Feedback` 等共享组件及各状态，制作组件展示页。工作台需要进一步区分 Sidebar / RecentItem / Tabs / Table / Search / SplitPane 的**状态与行为契约**，不能全部借用同一种 Active 卡片。**Gate B 未通过，不允许批量铺业务页**。但修复单个故障时不必强制重构全站。
 4. **Gate C：业务与动效**。按真实业务组合组件，先保证真实状态、API、权限与数据流程。先确定场景：
    - **官网/品牌/产品介绍/作品集**：允许按需选择 React Bits、Vue Bits、Inspira UI、Magic UI、Aceternity UI 的**单个**创意组件，不能取代原有功能组件；先检查原生框架、许可证、WebGL/GSAP 依赖、动效减弱和移动端回退。
    - **管理后台/工作台/企业表单**：优先复用 Ant Design / Ant Design Vue / Element Plus / MUI / Naive UI / Arco / PrimeVue 等**一套**主组件库，按共享 Ui 契约集中主题，默认轻量 CSS/框架微交互，不将 WebGL 背景批量引入业务工作区。
    - 所有动效优先 CSS/框架原生能力；确有需要才选择 Anime.js/Motion/GSAP。避免同一效果叠用多个引擎。
-5. **Gate D：静态风险审查 + 浏览器证据 + 视觉验收**。先进行去装饰/灰阶信息结构测试；若页面最大面积与主任务不一致，应回到 Gate A 改布局，而不是调渐变颜色。优先在现有测试环境完成构建和组件/流程测试，静态扫描只是提示；检查横向溢出、键盘焦点、屏幕阅读器语义、对比度、浅深主题、长文字、响应式、触摸、错误/加载/空状态、减少动态效果、性能、真实流程回归。**暗色导航需用真实截图检查重复强调色、左侧竖条是否有独立语义、最近打开与主导航是否混淆；本规则不机械禁止层级线。**把“未实际运行”如实标明。
+5. **Gate D：静态风险审查 + 浏览器证据 + 视觉验收**。必须检查“小标题删除测试”、标题与 KPI/图例的阅读优先级、暗色文字对比与 200% 字体放大；字级不应简单全部放大或统一缩小。先进行去装饰/灰阶信息结构测试；若页面最大面积与主任务不一致，应回到 Gate A 改布局，而不是调渐变颜色。优先在现有测试环境完成构建和组件/流程测试，静态扫描只是提示；检查横向溢出、键盘焦点、屏幕阅读器语义、对比度、浅深主题、长文字、响应式、触摸、错误/加载/空状态、减少动态效果、性能、真实流程回归。**暗色导航需用真实截图检查重复强调色、左侧竖条是否有独立语义、最近打开与主导航是否混淆；本规则不机械禁止层级线。**把“未实际运行”如实标明。
 
 ## 框架隔离强制规则
 
@@ -170,6 +181,7 @@ python3 scripts/search_design_cases.py --query "甜品 咖啡 门店" --style pr
 python3 scripts/init_design_system.py --project-root ./ --name "Project" --style functional --page dashboard --mode Operate
 # 审核选择之后加 --apply 写入；已有文件不会覆盖
 python3 scripts/validate_intelligence.py
+python3 scripts/audit_readability.py --validate-catalog
 python3 scripts/validate_composition_brief.py examples/composition/repo-analysis.json --repository
 python3 scripts/validate_ui_patterns.py
 python3 -m unittest discover -s tests -v
