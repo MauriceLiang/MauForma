@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MauForma · Composition before color</title>
+<style>
+:root{font-family:system-ui,"PingFang SC",sans-serif;color:#262b28;background:#f3f2ee;--ink:#262b28;--line:#cbd1c9;--accent:#496954}*{box-sizing:border-box}
+body{margin:0}main{max-width:1150px;margin:auto;padding:40px 24px 80px}h1{font-size:clamp(27px,4vw,42px);letter-spacing:-.035em;margin:12px 0}p{line-height:1.6;color:#5c665f}header p{max-width:900px}
+button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin:25px 0}.switch{border:1px solid var(--line);border-radius:7px;background:white;padding:11px 15px;font-size:13px;color:var(--ink)}
+.switch[aria-pressed=true]{background:var(--accent);color:white}.laboratory{border:1px solid var(--line);padding:20px;border-radius:12px;background:#fafaf8}
+.workspace{display:grid;gap:12px;grid-template-columns:minmax(0,1.7fr) minmax(220px,.8fr);grid-template-areas:"head head" "metrics metrics" "trend insight" "queue queue"}
+.workspace[data-view=investigation]{grid-template-areas:"head head" "queue queue" "metrics insight" "trend trend"}
+.workspace[data-view=executive]{grid-template-areas:"head head" "insight insight" "metrics metrics" "trend queue";grid-template-columns:1fr 1fr}
+.zone{border:1px solid var(--line);padding:16px;border-radius:8px;background:white;min-width:0}.head{grid-area:head;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border:0;background:transparent;border-bottom:1px solid var(--line)}
+.metrics{grid-area:metrics;border:0;padding:0;background:transparent;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.metrics>div{border:1px solid var(--line);border-radius:7px;padding:12px;background:white}.trend{grid-area:trend;min-height:270px}.queue{grid-area:queue;min-height:160px}.insight{grid-area:insight;min-height:180px}
+.workspace[data-view=trend] .queue{display:none}.workspace[data-view=investigation] .queue{min-height:295px}.workspace[data-view=investigation] .trend{min-height:155px}
+.workspace[data-view=executive] .insight{min-height:140px}.workspace[data-view=executive] .queue{min-height:200px}
+.title{font-size:20px;font-weight:750}small{color:#68726b}h2{font-size:14px;margin:0 0 7px}h3{font-size:13px;margin:0}.number{font-size:23px;font-weight:750;margin:5px 0}.tag{font-size:10px;color:#667569}.empty{border:1px dashed var(--line);background:#f5f6f3;padding:30px 12px;border-radius:7px;text-align:center;color:#536258;font-size:12px}.empty strong{display:block;color:var(--ink);margin-bottom:6px}
+.rows{display:flex;flex-direction:column;gap:12px;margin-top:25px}.rows div{border-bottom:1px solid var(--line);padding-bottom:10px;font-size:12px;display:flex;justify-content:space-between}.highlight{font-size:18px;line-height:1.45;font-weight:650}
+.foot{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:18px;font-size:13px}.foot strong{display:block;margin-bottom:5px}.foot p{margin:0}
+.no-decoration .laboratory,.no-decoration .zone,.no-decoration .metrics>div{background:transparent;box-shadow:none}.no-decoration .switch[aria-pressed=true]{background:transparent;color:var(--ink)}
+@media(max-width:750px){main{padding:24px 12px 45px}.workspace,.workspace[data-view=investigation],.workspace[data-view=executive]{grid-template-columns:1fr;grid-template-areas:"head" "metrics" "trend" "insight" "queue"}
+.workspace[data-view=investigation]{grid-template-areas:"head" "queue" "metrics" "trend" "insight"}.workspace[data-view=executive]{grid-template-areas:"head" "insight" "metrics" "trend" "queue"}
+.metrics{grid-template-columns:repeat(2,1fr)}.foot{grid-template-columns:1fr}}
+</style></head><body><main><header><small>MAUFORMA / COMPOSITION LAB</small><h1>先定内容构图，再选择颜色。</h1><p>同一个仓库分析需求的三种真实不同布局。切换结构，再移除装饰；如果没有颜色页面就无法说明用户的任务，应该先重排信息，而不是加入蓝紫渐变。</p></header>
+<div class="controls" role="group" aria-label="比较布局">
+<button type="button" class="switch" data-select="trend" aria-pressed="true">01 趋势优先</button>
+<button type="button" class="switch" data-select="investigation" aria-pressed="false">02 排查优先</button>
+<button type="button" class="switch" data-select="executive" aria-pressed="false">03 发现优先</button>
+<label style="display:flex;align-items:center;gap:6px;font-size:13px;margin-left:auto"><input type="checkbox" id="removeDecoration"> 去装饰测试</label>
+</div>
+<div class="laboratory"><div class="workspace" id="workspace" data-view="trend">
+<section class="zone head"><div><small>仓库 / demo-labs</small><div class="title">steady-core</div><small>仓库分析详情</small></div><div><span class="tag">90 天</span> · <span class="tag">演示数据</span></div></section>
+<section class="zone metrics" aria-label="演示指标">
+<div><small>提交数</small><div class="number">1,304</div><span class="tag">DEMO</span></div>
+<div><small>贡献者</small><div class="number">6</div><span class="tag">DEMO</span></div>
+<div><small>Issue P50</small><div class="number">3.4 天</div><span class="tag">DEMO</span></div>
+<div><small>PR P50</small><div class="number">1.8 天</div><span class="tag">DEMO</span></div></section>
+<section class="zone trend"><h2>开发活动趋势</h2><p>数据趋势本身应成为视觉中心。</p><div class="empty" role="status"><strong>暂无可核实的趋势数据</strong>需要真实来源才绘制图表；不会造一条装饰折线。</div></section>
+<section class="zone insight"><h2>关键洞察与证据</h2><p>说明必须与数据来源绑定。</p><div class="highlight">可信结论比蓝色巨幅宣传卡更重要。</div><p>+12% 是原截图中的演示文案，尚无可核实来源。</p></section>
+<section class="zone queue"><h2>Issue / PR 排查</h2><p>高频排查需要真实可筛选对象列表。</p><div class="rows"><div>Issue 待分析 <small>暂无可验证记录</small></div><div>PR 处理时间 <small>暂无可验证记录</small></div></div></section>
+</div></div>
+<div class="foot"><div><strong id="label">趋势优先</strong><p id="reason">优先展示真实开发活动图表及其证据；KPI 只是辅助信息。</p></div><div><strong>使用边界</strong><p>这是结构演示，不是实际 RepoVantage 源码或完成的业务功能。图表与统计未接真实 API。</p></div></div>
+</main>
+<script>
+const explanations={
+trend:["趋势优先","大幅趋势图成为主区域。指标小幅辅助，具体调查下沉。适合观察仓库活动变化。"],
+investigation:["排查优先","Issue/PR 调查列表成为最大的内容区；趋势变为辅助证据。适合定位具体问题。"],
+executive:["发现优先","先给可验证的摘要，再以数字、图表和明细追溯结论。适合快速了解项目状态。"]
+};
+document.querySelectorAll('[data-select]').forEach(button=>button.addEventListener('click',()=>{
+const id=button.dataset.select;document.querySelector('#workspace').dataset.view=id;
+document.querySelectorAll('[data-select]').forEach(other=>other.setAttribute('aria-pressed',String(other===button)));
+document.querySelector('#label').textContent=explanations[id][0];document.querySelector('#reason').textContent=explanations[id][1];
+}));
+document.querySelector('#removeDecoration').addEventListener('change',e=>document.body.classList.toggle('no-decoration',e.target.checked));
+</script></body></html>
