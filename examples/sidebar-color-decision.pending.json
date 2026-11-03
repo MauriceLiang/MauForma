@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "project": "RepoVantage / color recommendation demonstration",
+  "status": "pending",
+  "context": {
+    "page_mode": "Operate",
+    "main_scheme": "mixed",
+    "current_design_source": "Screenshot shows dark-blue sidebar beside a light main region; confirmed user hue absent"
+  },
+  "recommendations": [
+    {
+      "palette_id": "graphite-split",
+      "reason": "保留暗侧栏的结构感，同时用中性石墨缓解蓝色色块过重的问题",
+      "tradeoff": "暗/亮交界仍明显，需设计顶部栏边界"
+    },
+    {
+      "palette_id": "light-unified",
+      "reason": "让侧栏与浅色主内容自然衔接，适合持续阅读和数据比较",
+      "tradeoff": "选中态需要更精确的灰度关系"
+    },
+    {
+      "palette_id": "dark-unified",
+      "reason": "若用户喜欢暗色应用，可让主区与侧栏共同采用独立校验的深色体系",
+      "tradeoff": "数据图表和辅助文字必须单独做暗色可读性校验"
+    }
+  ],
+  "selection": {
+    "palette_id": null,
+    "source": "unresolved",
+    "user_statement": null
+  },
+  "user_constraints": [],
+  "review": {
+    "whole_page_preview": false,
+    "actual_browser_status": "NOT RUN",
+    "tested_regions": [],
+    "notes": "这是候选记录。用户还未选定色彩；没有对真实 RepoVantage 页面进行浏览器复验。"
+  },
+  "resolved_colors": null
+}

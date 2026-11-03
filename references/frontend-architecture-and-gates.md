@@ -55,3 +55,7 @@
 ## v6.5 · Gate A 后、Gate B 前确认文字与排版
 
 构图确定后先完成 `references/semantic-copy-hygiene.md` 删除测试，并按 `references/typography-hierarchy.md` 为页面标题、正文、指标、图表轴/图例和辅助来源建立可调整的角色化 Typography Tokens。PageHeader 的 kicker/description/英语副标必须是可选插槽，没信息增量时默认不渲染。Gate D 检查目标浏览器的暗色文字、中文/数字/仓库名混排以及 200% 文本放大与裁切；只有源码扫描时不得声称视觉可读性已实测。
+
+## v6.6 · Color Choice Gate 不属于 Agent 的任意审美推断
+
+颜色重设计时先盘点全站已有 Tokens、用户确定的品牌色和侧栏/主内容的实际搭配；无色彩约束时提出 2–3 套完整工作台的推荐，等待用户选定或明确授权 Agent 代选。**不得因为开始开发就假定用户批准 Agent 最喜欢的颜色**。如果用户直接说 HEX，保证最终项目角色色精确一致，遇对比问题调整周边颜色并解释。只修改纯功能/保留已确认品牌主题时不强制重问。详见 `references/sidebar-color-discovery.md` 和项目 `design-system/sidebar-color-decision.json`，在浏览器截图里检查 Sidebar、Topbar、Main、Card 和 Chart 一起搭配。

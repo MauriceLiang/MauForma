@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MauForma sidebar / whole-page color decision",
+  "description": "A decision record; cannot turn a recommendation into user approval. When status is approved, validator requires resolved_colors, whole_page_preview, coordination_rationale and valid selection provenance.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project",
+    "status",
+    "context",
+    "recommendations",
+    "selection",
+    "user_constraints",
+    "review"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "project": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "pending",
+        "approved"
+      ]
+    },
+    "context": {
+      "type": "object",
+      "required": [
+        "page_mode",
+        "main_scheme",
+        "current_design_source"
+      ],
+      "properties": {
+        "page_mode": {
+          "enum": [
+            "Operate",
+            "Read",
+            "Persuade",
+            "Experience"
+          ]
+        },
+        "main_scheme": {
+          "enum": [
+            "light",
+            "dark",
+            "mixed",
+            "unknown"
+          ]
+        },
+        "current_design_source": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": [
+          "palette_id",
+          "reason",
+          "tradeoff"
+        ],
+        "properties": {
+          "palette_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 10
+          },
+          "tradeoff": {
+            "type": "string",
+            "minLength": 10
+          }
+        }
+      }
+    },
+    "selection": {
+      "type": "object",
+      "required": [
+        "palette_id",
+        "source",
+        "user_statement"
+      ],
+      "properties": {
+        "palette_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "enum": [
+            "confirmed",
+            "delegated",
+            "inherited",
+            "unresolved"
+          ]
+        },
+        "user_statement": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "user_constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "role",
+          "hex",
+          "source",
+          "user_statement"
+        ],
+        "properties": {
+          "role": {
+            "enum": [
+              "sidebar-bg",
+              "sidebar-selected",
+              "main-bg",
+              "brand-accent",
+              "sidebar-text"
+            ]
+          },
+          "hex": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          },
+          "source": {
+            "enum": [
+              "confirmed",
+              "inherited"
+            ]
+          },
+          "user_statement": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "whole_page_preview",
+        "actual_browser_status",
+        "tested_regions"
+      ],
+      "properties": {
+        "whole_page_preview": {
+          "type": "boolean"
+        },
+        "actual_browser_status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT RUN"
+          ]
+        },
+        "tested_regions": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "sidebar",
+              "topbar",
+              "main",
+              "cards",
+              "charts",
+              "navigation-states",
+              "focus"
+            ]
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "coordination_rationale": {
+          "type": "string",
+          "description": "Explain sidebar/topbar/main/cards/charts palette relationship, required for approved decisions."
+        },
+        "evidence": {
+          "type": "string",
+          "description": "Actual browser capture reference; required when browser status is PASS."
+        }
+      }
+    },
+    "resolved_colors": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "description": "Full-page resolved tokens after choice; user fixed HEX must match exactly.",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -24,7 +24,7 @@
 
 ## 1. 色彩不是随意选择几种“高级蓝”
 
-建立整套语义关系（示例请参考 `assets/sidebar-palette-examples.json`）：
+建立整套语义关系；旧版 `assets/sidebar-palette-examples.json` 只用于**色彩对比与状态结构校验**，不是最终推荐配色。用户真正选色与整页搭配参考 `references/sidebar-color-discovery.md` 和 `assets/sidebar-color-directions.json`：
 
 | 角色 | 责任 |
 | --- | --- |
@@ -88,3 +88,9 @@
 **例外（文档树/IDE）**：左侧树枝线表达层级位置，选择状态则由背景标示；即使同时出现也不是两个毫无信息价值的高亮信号。
 
 可打开 `assets/sidebar-refinement-gallery.html` 进行不同状态的概念对照，但该文件是原创示例，不是用户实际项目的修复截图。真实项目仍要对比实际页面后验收。
+
+## v6.6 · Sidebar 背景、选中态不能由 Agent 擅自决定
+
+面对已给出的侧栏截图，先分析**侧栏 / 主内容 / 顶栏 / 卡片 / 数据图**的整体颜色，不能只凭深色侧栏这一个区域觉得“科技感”而选深蓝。新建/重设计且颜色未定时，读取 [用户主导选色流程](sidebar-color-discovery.md) 与 [真实参考体系研究](sidebar-color-reference-cases.md)，推荐 2–3 套整页配色，并由用户决定。官方案例提供的是颜色语义与层级方法，不是可直接复制的品牌色。
+
+用户明确选择黑、白、绿、紫、蓝、具体 HEX，均应尊重；必要时调整**周围**的 text/selected/hover/focus/main 来符合对比要求，不能秘密篡改固定色。最终用 `assets/sidebar-color-preview.html` 的整页模型预览（只作概念）和真实项目截图对比。未经批准的推荐不可写入项目正式主题，真实已有已确认品牌色可继承。侧栏的独立 Token 仍归全站 MASTER 所有，不允许无理由与顶部栏/主内容出现第二套品牌色。

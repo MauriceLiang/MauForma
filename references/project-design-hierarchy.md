@@ -46,3 +46,9 @@ python3 scripts/init_design_system.py --project-root . --name "Example" --style 
 涉及新建页面/重大改版时，在用户项目中另存 `design-system/composition-brief.json`（结构形状见 `assets/composition-brief.schema.json`），列出内容证据、2–3 个有主区域/排序差异的候选、推荐/选择来源、颜色方向与去装饰审查。具体选定方案由 `design-system/pages/<route>.md` 引用而非重复全文。MASTER 继续负责共享品牌角色和组件 Tokens；结构选择不应自动强制各页面使用相同卡片或同样的 Hero。
 
 运行 `scripts/validate_composition_brief.py <brief-path>` 可检查内容引用、差异与未验证数据的处理，但不证明艺术方向优秀或页面已在浏览器运行。
+
+## v6.6 · 配色选择记录必须进入 MASTER，但推荐色不能提前入库
+
+新配色尚待用户确认时使用项目的 `design-system/sidebar-color-decision.json`（参照 `assets/sidebar-color-decision.schema.json`）记录候选与 `status=pending`；真实项目 Tokens **保持既有已批准方案**，或继续完成无颜色依赖的任务。选择后将选定方案、自定义颜色原话、来源（confirmed / delegated / inherited）和 Sidebar/Topbar/Main/Card/Chart 的协调理由写入记录，再更新唯一的 MASTER Token 来源。
+
+如果用户明确指定 `#RRGGBB`，在选色记录 `user_constraints` 中固定目标角色，发布的 `resolved_colors` 必须原样保留；`scripts/validate_sidebar_color_decision.py` 检查不得无授权覆盖。已有已确定配色可直接 `inherited`，只改功能不需要重开主题选择。
