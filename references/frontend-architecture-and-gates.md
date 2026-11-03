@@ -51,3 +51,7 @@
 ## v6.4 · Gate A 的构图先行前置条件
 
 新建页面或重大视觉重设计必须先读取 `references/composition-first-design.md`，登记真实内容与主任务，构思 2–3 种**信息排序或主内容位置真正不同**的灰阶构图，然后才讨论主题 Token 与组件。用户明确参考图、已有确认布局或局部修复可沿用原样并跳过候选比较。工作台若图表空白且无数据状态，不应标记实现完成。Gate D 中如果截图暴露主视觉与任务不匹配，重新进入 Gate A 调整信息架构，而不是持续微调特效。推荐颜色须有来源与语义职责，见 `references/palette-art-direction.md`。
+
+## v6.5 · Gate A 后、Gate B 前确认文字与排版
+
+构图确定后先完成 `references/semantic-copy-hygiene.md` 删除测试，并按 `references/typography-hierarchy.md` 为页面标题、正文、指标、图表轴/图例和辅助来源建立可调整的角色化 Typography Tokens。PageHeader 的 kicker/description/英语副标必须是可选插槽，没信息增量时默认不渲染。Gate D 检查目标浏览器的暗色文字、中文/数字/仓库名混排以及 200% 文本放大与裁切；只有源码扫描时不得声称视觉可读性已实测。
