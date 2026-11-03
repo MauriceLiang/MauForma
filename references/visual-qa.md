@@ -107,3 +107,16 @@
 - [ ] 真实浏览器桌面/手机截图、菜单开合/导航跳转是否执行？未运行时标 NOT RUN，`assets/navigation-layout-lab.html` 只算概念示例。
 
 规则 `references/navigation-architecture.md`；静态检查 `python3 scripts/validate_navigation_architecture.py --repository`。
+
+## v6.8 · 逐页 Content Curation / Density / Whitespace 验收
+
+- [ ] 总览是不是把“当前任务 + 三步教程 + 功能入口三卡 + 重复链接”全部展现？能否下沉/删除无增量整块内容，而非只调 padding？
+- [ ] 每个页面首要任务明确，主操作不和多个同等级 CTA 竞争？
+- [ ] 同一功能是否同时在导航、介绍卡、帮助卡与页脚反复出现？下沉后依旧有清晰可达入口？
+- [ ] 首访、回访、真实数据、空态、失败时是否按条件展示正确内容，而不是把新手指南永久驻留？
+- [ ] 每个容器是否有独立交互/数据/分组意义，装饰性外卡套内卡已去除？
+- [ ] Overview 可以 airy/balanced，Analysis/Management 可以 productive/compact；密度增大不代表图表标签/来源/错误信息被隐藏或变成 10px？
+- [ ] Macro 组间间距、meso 组内关系、micro 控件间距是否表达真实层级，不靠 min-height 撑空白或一律缩小字体？
+- [ ] 真实桌面与移动/窄屏、文字 200% 放大和不同用户状态是否截图检查，未运行是否标 NOT RUN？
+
+详细要求见 `references/page-density-and-content-priority.md`、`references/whitespace-and-surface-composition.md`、`references/repovantage-overview-density-case.md`；静态工具只能检查决策记录，不能自动评定高级感。

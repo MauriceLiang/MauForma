@@ -180,3 +180,13 @@ $mauforma
 桌面 Side+手机 Bottom 时，保留所有 route IDs 和状态，手机底部仅展示合适的核心入口，其余保持可发现。Side+Bottom task bar 时，底部是当前页面操作而不是第二套导航。
 导航方案确认后才做共用组件和颜色映射；颜色继续遵循用户已选择的主色与 Sidebar/Main 协调规则。真实浏览器测试导航链接、手机抽屉、键盘、焦点、返回、resize 和遮挡，没有运行则写 NOT RUN。
 ```
+
+## 页面信息过满 / 总览高级留白 / 分析页相对高密度
+
+```text
+使用 $mauforma。先检查当前路由真正要完成什么、首次访问与回访/已采集/失败的状态，再完整列出页面上所有教程、介绍卡、功能入口、动作和数据提示。
+逐块判断 primary/supporting/conditional/deferred/removed。总览不能把“从仓库开始 + 三步说明 + 分析功能三卡 + 重复页脚入口”同时渲染；移出后确保帮助或详情页仍有入口。保留 Mock/真实数据来源、警告与错误。
+将首页设计为舒展清楚的任务入口；数据分析详情允许更高信息密度，紧凑组织图表、指标、筛选而不牺牲轴/图例/样本可读性。
+优先删除重复板块与无意义外层容器，再用 macro/meso/micro spacing 表达分组，不用固定 min-height 或大 padding 冒充高级留白。沿用用户确认的导航、配色与密度。
+依据 references/page-density-and-content-priority.md、references/whitespace-and-surface-composition.md、assets/page-density-lab.html；浏览器中复核桌面/窄屏、不同用户状态，没跑就标 NOT RUN。
+```

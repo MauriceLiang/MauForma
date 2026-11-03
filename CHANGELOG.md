@@ -1,5 +1,16 @@
 # Changelog
 
+## v6.8 — 2026-11-03 · Page-level density, content curation and intentional whitespace
+
+- 根据 RepoVantage 最新总览截图，发现操作面板 + 三步教程 + 分析功能三卡 + 重复入口同时出现导致内容拥挤；不是配色、圆角或卡片 padding 的单点问题。
+- 新增 `references/page-density-and-content-priority.md`：页面主任务和访问状态优先，逐块分 primary/supporting/conditional/deferred/removed，次级内容必须可发现、关键数据不能为留白删除。
+- 新增 `references/whitespace-and-surface-composition.md`：macro/meso/micro 组间与组内关系、卡片必要性、反套娃、拒绝固定留白比例。
+- 新增四档页面级密度 `assets/page-density-profiles.json`，以及 `assets/page-content-plan.schema.json`、`examples/page-content-plan-repovantage.json` 与截图复盘。
+- 新增 `assets/page-density-lab.html` 对比过载总览、精选总览/初访与较密的分析详情；静态脚本 `scripts/validate_page_content_plan.py` 和回归测试用于检查结构和保留来源，不代表视觉审美证明。
+- 同步 Skill v6.8、README、设计/QA/Agent 规则及 CI；旧版主题、配色与导航能力保留。未修改 RepoVantage 真实业务源码。
+
+---
+
 ## v6.7 — 2026-11-03 · Navigation architecture and responsive shell decisions
 
 - 将“使用侧边还是顶部/底部导航”提升为独立的 Navigation Architecture Gate：先分析真实一级目的地、任务切换频率、层级、屏幕宽度及全局/局部导航分工，后选择组件与颜色。

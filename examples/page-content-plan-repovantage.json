@@ -1,0 +1,208 @@
+{
+  "schema_version": "1.0",
+  "project": "RepoVantage",
+  "source": "User-provided 2026-11-03 overview screenshot; illustrative plan only, no codebase read",
+  "pages": [
+    {
+      "route": "/overview",
+      "page_role": "overview",
+      "audience_state": "returning",
+      "primary_task": "选择或继续当前仓库分析任务，明确下一步",
+      "density_profile": "airy",
+      "density_decision": {
+        "source": "provisional",
+        "user_statement": null,
+        "reason": "截图中的总览包含重复教程与功能目录，需优先保证入口和动作清楚；须由项目使用者评估"
+      },
+      "content": [
+        {
+          "id": "page-title",
+          "label": "总览",
+          "importance": "critical",
+          "placement": "primary",
+          "reason": "确认当前位置和页面作用",
+          "source": "screenshot"
+        },
+        {
+          "id": "current-repository",
+          "label": "当前仓库身份及必要状态",
+          "importance": "critical",
+          "placement": "primary",
+          "reason": "选择正确目标后才可以继续工作",
+          "source": "screenshot"
+        },
+        {
+          "id": "primary-next-action",
+          "label": "按真实采集状态确定的主要操作",
+          "importance": "critical",
+          "placement": "primary",
+          "reason": "只强调当前可执行的下一步，不制造多个对等主 CTA",
+          "source": "design-inference"
+        },
+        {
+          "id": "data-disclaimer",
+          "label": "演示数据来源提醒",
+          "importance": "critical",
+          "placement": "supporting",
+          "reason": "防止把 Mock 当作真实 GitHub 数据",
+          "source": "screenshot"
+        },
+        {
+          "id": "full-onboarding",
+          "label": "三步使用说明卡片",
+          "importance": "optional",
+          "placement": "conditional",
+          "condition": "first_visit_or_help_request",
+          "reason": "回访总览不必长期占据三卡的面积",
+          "source": "screenshot",
+          "accessible_via": "帮助/使用说明入口"
+        },
+        {
+          "id": "feature-directory",
+          "label": "开发活动/Issue PR/版本发布介绍三卡",
+          "importance": "optional",
+          "placement": "deferred",
+          "reason": "侧栏与分析详情已有更直接的功能路由",
+          "source": "screenshot",
+          "accessible_via": "对应分析页面与侧边导航"
+        },
+        {
+          "id": "repeated-footer-link",
+          "label": "底部返回总览链接",
+          "importance": "optional",
+          "placement": "removed",
+          "reason": "当前已在总览，自我导航重复；如真实路由存在返回逻辑需重新评估",
+          "source": "screenshot",
+          "duplicate_of": "page-title"
+        }
+      ],
+      "actions": [
+        {
+          "id": "continue-analysis",
+          "label": "继续分析 / 开始采集（按状态展示其一）",
+          "priority": "primary",
+          "reason": "围绕当前仓库任务设置唯一主动作"
+        },
+        {
+          "id": "change-repository",
+          "label": "切换仓库",
+          "priority": "secondary",
+          "reason": "操作对象切换，不应比主要任务更抢眼"
+        },
+        {
+          "id": "help",
+          "label": "帮助",
+          "priority": "tertiary",
+          "reason": "需要时可查看详细引导"
+        }
+      ],
+      "layout": {
+        "primary_region": "当前仓库与下一步操作",
+        "above_fold": [
+          "page-title",
+          "current-repository",
+          "primary-next-action",
+          "data-disclaimer"
+        ],
+        "surface_strategy": "flat-main-with-one-task-surface",
+        "spacing_strategy": "generous-between-groups-compact-within",
+        "nested_decorative_cards": false,
+        "notes": "不能用空白 min-height 冒充高级感；重要状态依旧靠近动作"
+      },
+      "review": {
+        "browser_status": "NOT RUN",
+        "evidence": [],
+        "notes": "仅根据用户截图提出内容优先级建议；未检查真实应用状态"
+      }
+    },
+    {
+      "route": "/analysis/:repo",
+      "page_role": "analysis",
+      "audience_state": "data_available",
+      "primary_task": "查看开发趋势、指标与证据并进行筛选对比",
+      "density_profile": "productive",
+      "density_decision": {
+        "source": "provisional",
+        "user_statement": null,
+        "reason": "分析详情需要可比较图表、指标、过滤和来源，密度可高于总览"
+      },
+      "content": [
+        {
+          "id": "repo-context",
+          "label": "当前仓库与时间范围",
+          "importance": "critical",
+          "placement": "primary",
+          "reason": "明确分析对象和窗口",
+          "source": "design-inference"
+        },
+        {
+          "id": "data-chart",
+          "label": "真实趋势图表或明确空/加载/错误状态",
+          "importance": "critical",
+          "placement": "primary",
+          "reason": "详情分析的主体证据",
+          "source": "design-inference"
+        },
+        {
+          "id": "core-metrics",
+          "label": "核心指标与必要样本量",
+          "importance": "critical",
+          "placement": "primary",
+          "reason": "满足判断与对比任务",
+          "source": "design-inference"
+        },
+        {
+          "id": "filters",
+          "label": "时间筛选与必要操作",
+          "importance": "critical",
+          "placement": "supporting",
+          "reason": "直接影响图表和指标范围",
+          "source": "design-inference"
+        },
+        {
+          "id": "coverage-note",
+          "label": "采样范围、数据来源、口径",
+          "importance": "critical",
+          "placement": "supporting",
+          "reason": "解释真实数据的限制",
+          "source": "design-inference"
+        },
+        {
+          "id": "beginner-guide",
+          "label": "三步上手教程",
+          "importance": "optional",
+          "placement": "deferred",
+          "reason": "与当前分析任务无关",
+          "source": "screenshot",
+          "accessible_via": "帮助入口"
+        }
+      ],
+      "actions": [
+        {
+          "id": "filter-time",
+          "label": "调整时间范围",
+          "priority": "secondary",
+          "reason": "与主分析内容紧密联系"
+        }
+      ],
+      "layout": {
+        "primary_region": "图表/指标/筛选",
+        "above_fold": [
+          "repo-context",
+          "data-chart",
+          "core-metrics",
+          "filters"
+        ],
+        "surface_strategy": "functional-data-groups",
+        "spacing_strategy": "tight-inside-related-metrics-clear-between-panels",
+        "nested_decorative_cards": false,
+        "notes": "密度增加但不通过低对比小字或隐藏数据状态实现"
+      },
+      "review": {
+        "browser_status": "NOT RUN",
+        "evidence": [],
+        "notes": "原则性分析详情示例；非 RepoVantage 运行截图"
+      }
+    }
+  ]
+}

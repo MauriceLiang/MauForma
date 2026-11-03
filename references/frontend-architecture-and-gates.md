@@ -63,3 +63,7 @@
 ## v6.7 · 新增 Navigation Architecture Gate（构图前、组件实现前）
 
 在重大设计任务里，先盘点一级目的地、栏目深度与频率，区分 global/local/item/actions/tabs。读 `references/navigation-architecture.md`，评估 Top only、Side、Top+Side、Rail/Split、Mobile Bottom、Responsive Side→Bottom、Top+Bottom、Side+Bottom action bar。对未确认架构，展示 2–3 套有实际层级差异的方案，记录用户选择或显式 delegated；明确继承既有导航或局部修复可跳过。之后才建立 UiNavigation 组件契约与 Tokens。浏览器验收必须包含桌面、手机、窄窗和路由可达性、键盘/focus/ARIA、底部遮挡及任务上下文保持。静态脚本 `scripts/validate_navigation_architecture.py` 不能代替真实流程测试。
+
+## v6.8 · Gate A0：内容优先级先于 Card 网格构建
+
+新建/大改版先逐路由列出 primary_task、访问状态、内容主次与条件/延后入口，参照 `assets/page-content-plan.schema.json`。总览页不要同时生成完整教程、功能目录、每个操作的卡片；优先整块删除测试，并确保次级功能可发现。数据分析页允许较高密度展示可比较的图表、指标与筛选，不能因此缩小关键数据来源或藏掉错误。组件 Gate B 不能因为复用 FeatureGrid/Card 就往所有页面额外加介绍区；Gate D 应按总览、分析、首访、回访分别做截图验收。

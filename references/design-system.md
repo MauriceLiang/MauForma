@@ -101,3 +101,7 @@
 对新设计/配色大改，先读取已有品牌与页面全局颜色。用户明确指定色彩/HEX 优先；不明确时，参考官方设计来源后提出 2–3 套**侧栏+主区+顶栏+卡片+数据图**的完整组合供用户选择，不由 Agent 偷偷决定。侧栏可以有独立 tokens，但只能从项目 MASTER 派生，不能作为不同于主内容的独立品牌系统。批准后记录用户原话、来源与精确色值，若需变更已确认品牌色必须取得新许可。
 
 规范：`references/sidebar-color-discovery.md`、`assets/sidebar-color-decision.schema.json`；预览：`assets/sidebar-color-preview.html`；数值对比工具：`scripts/validate_sidebar_color_decision.py`。若工具通过，仅表示所列颜色对有足够数值对比，不代表整页协调性或截图已通过。
+
+## L. v6.8 · MASTER 共用语言，页面密度由真实任务决定
+
+全局保存共用间距尺度、Typography 角色、颜色语义和组件契约；`overview`、`analysis`、`operations` 的内容量、空间组织与容器策略属于 Page Override。见 `references/page-density-and-content-priority.md`：airy/balanced/productive/compact 是可调起点，不应自动将整站渲染为同一套密集卡片。空间应反映分组而非设定空白比例；先删重复模块再使用 `references/whitespace-and-surface-composition.md` 的 macro/meso/micro 规则。用户已定配色/导航/密度不因优化内容被擅自改动。

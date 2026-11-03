@@ -7,6 +7,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 NEEDED = [
     "assets/style-knowledge.json", "references/design-style-catalog.md",
+    "references/page-density-and-content-priority.md", "references/whitespace-and-surface-composition.md",
+    "references/repovantage-overview-density-case.md", "assets/page-density-profiles.json",
+    "assets/page-content-plan.schema.json", "assets/page-density-lab.html",
+    "examples/page-content-plan-repovantage.json", "scripts/validate_page_content_plan.py",
+    "tests/test_page_content_plan.py",
     "references/navigation-architecture.md", "assets/navigation-pattern-catalog.json",
     "assets/navigation-decision.schema.json", "assets/navigation-layout-lab.html",
     "examples/navigation-decision.pending.json",
@@ -133,6 +138,11 @@ def validate() -> list[str]:
         errors.extend(validate_navigation())
     except (ImportError, OSError, ValueError) as exc:
         errors.append(f"Navigation architecture validation unavailable: {exc}")
+    try:
+        from validate_page_content_plan import validate_repository as validate_page_content
+        errors.extend(validate_page_content())
+    except (ImportError, OSError, ValueError) as exc:
+        errors.append(f"Page content priority validation unavailable: {exc}")
     skill = (ROOT / "SKILL.md").read_text("utf-8")
     for needed in ("search_design_knowledge.py", "art-direction-critique.md", "browser-qa-protocol.md", "project-design-hierarchy.md", "search_design_cases.py", "external-design-case-library.md", "search_visual_tech.py", "visual-tech-selection-12.md"):
         if needed not in skill:

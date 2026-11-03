@@ -1,0 +1,272 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MauForma page-level content and density plan",
+  "description": "Audit page content before layout; no arbitrary whitespace percentage or mandatory card count.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project",
+    "source",
+    "pages"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "project": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "route",
+          "page_role",
+          "audience_state",
+          "primary_task",
+          "density_profile",
+          "density_decision",
+          "content",
+          "actions",
+          "layout",
+          "review"
+        ],
+        "properties": {
+          "route": {
+            "type": "string",
+            "minLength": 1
+          },
+          "page_role": {
+            "enum": [
+              "overview",
+              "onboarding",
+              "analysis",
+              "management",
+              "marketing",
+              "reading",
+              "editor",
+              "other"
+            ]
+          },
+          "audience_state": {
+            "enum": [
+              "first_visit",
+              "returning",
+              "data_available",
+              "empty",
+              "loading",
+              "error",
+              "mixed"
+            ]
+          },
+          "primary_task": {
+            "type": "string",
+            "minLength": 5
+          },
+          "density_profile": {
+            "enum": [
+              "airy",
+              "balanced",
+              "productive",
+              "compact"
+            ]
+          },
+          "density_decision": {
+            "type": "object",
+            "required": [
+              "source",
+              "user_statement",
+              "reason"
+            ],
+            "properties": {
+              "source": {
+                "enum": [
+                  "confirmed",
+                  "delegated",
+                  "inherited",
+                  "provisional"
+                ]
+              },
+              "user_statement": {
+                "type": [
+                  "null",
+                  "string"
+                ]
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 5
+              }
+            }
+          },
+          "content": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "label",
+                "importance",
+                "placement",
+                "reason",
+                "source"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "importance": {
+                  "enum": [
+                    "critical",
+                    "supporting",
+                    "optional"
+                  ]
+                },
+                "placement": {
+                  "enum": [
+                    "primary",
+                    "supporting",
+                    "conditional",
+                    "deferred",
+                    "removed"
+                  ]
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 5
+                },
+                "source": {
+                  "enum": [
+                    "screenshot",
+                    "codebase",
+                    "user-confirmed",
+                    "design-inference",
+                    "verified-external"
+                  ]
+                },
+                "condition": {
+                  "type": "string"
+                },
+                "accessible_via": {
+                  "type": "string"
+                },
+                "duplicate_of": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "label",
+                "priority",
+                "reason"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "priority": {
+                  "enum": [
+                    "primary",
+                    "secondary",
+                    "tertiary"
+                  ]
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 5
+                }
+              }
+            }
+          },
+          "layout": {
+            "type": "object",
+            "required": [
+              "primary_region",
+              "above_fold",
+              "surface_strategy",
+              "spacing_strategy",
+              "nested_decorative_cards",
+              "notes"
+            ],
+            "properties": {
+              "primary_region": {
+                "type": "string",
+                "minLength": 3
+              },
+              "above_fold": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "surface_strategy": {
+                "type": "string",
+                "minLength": 3
+              },
+              "spacing_strategy": {
+                "type": "string",
+                "minLength": 3
+              },
+              "nested_decorative_cards": {
+                "type": "boolean"
+              },
+              "notes": {
+                "type": "string"
+              }
+            }
+          },
+          "review": {
+            "type": "object",
+            "required": [
+              "browser_status",
+              "evidence",
+              "notes"
+            ],
+            "properties": {
+              "browser_status": {
+                "enum": [
+                  "PASS",
+                  "FAIL",
+                  "NOT RUN"
+                ]
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "notes": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
