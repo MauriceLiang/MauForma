@@ -101,6 +101,10 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 文案克制，排版有层级
+
+新增 [文字必要性检查](references/semantic-copy-hygiene.md) 与 [Typography 角色化设计](references/typography-hierarchy.md)：不再自动添加 `ANALYSIS STUDIO`、`01 / 总览`、抽象标语与不面向用户的工程说明；让页面标题、KPI、图表刻度和数据来源各有适合的字级，保留真正有价值的品牌和导航信息。可查看 [正反对照示例](assets/typography-reading-lab.html)。
+
 ## 先决定构图，再讨论配色
 
 从 RepoVantage 等真实页面的失败案例出发，MauForma v6.4 增加 **Composition First** 工作流：先检查真实内容与主要任务，绘制无装饰信息线框，比较 2–3 套**主视觉与区域排序真的不同**的构图，再推导有理由的颜色系统。对于“图表空白却有巨大渐变 Hero”的问题，优先修改页面结构，不再只调整颜色。
@@ -146,6 +150,7 @@ python3 scripts/audit_frontend.py ./src --format json
 
 # 校验 Skill 数据及回归测试
 python3 scripts/validate_intelligence.py
+python3 scripts/audit_readability.py --validate-catalog
 python3 scripts/validate_composition_brief.py examples/composition/repo-analysis.json --repository
 python3 scripts/validate_ui_patterns.py
 python3 -m unittest discover -s tests -v

@@ -1,0 +1,193 @@
+{
+  "version": "1.0",
+  "description": "Design guidance only; roles do not create CSS tokens automatically. Numeric sizes are example starting ranges for CSS px, not WCAG font-size requirements.",
+  "sources": [
+    {
+      "title": "WCAG 2.2 Contrast",
+      "url": "https://www.w3.org/TR/WCAG22/#contrast-minimum"
+    },
+    {
+      "title": "WCAG 2.2 Resize Text",
+      "url": "https://www.w3.org/TR/WCAG22/#resize-text"
+    },
+    {
+      "title": "WCAG 2.2 Text Spacing",
+      "url": "https://www.w3.org/TR/WCAG22/#text-spacing"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "operate-desktop",
+      "purpose": "Analysis studio, dashboards, workspace, repository detail",
+      "roles": [
+        {
+          "id": "page-title",
+          "min_px": 22,
+          "recommended_px": 26,
+          "max_px": 30,
+          "line_height": 1.3,
+          "weight": "600–700",
+          "priority": 1
+        },
+        {
+          "id": "section-title",
+          "min_px": 16,
+          "recommended_px": 18,
+          "max_px": 20,
+          "line_height": 1.4,
+          "weight": "600–650",
+          "priority": 2
+        },
+        {
+          "id": "body",
+          "min_px": 14,
+          "recommended_px": 15,
+          "max_px": 16,
+          "line_height": 1.6,
+          "weight": "400–500",
+          "priority": 3
+        },
+        {
+          "id": "navigation",
+          "min_px": 13,
+          "recommended_px": 14,
+          "max_px": 16,
+          "line_height": 1.5,
+          "weight": "500–600",
+          "priority": 3
+        },
+        {
+          "id": "metric-value",
+          "min_px": 22,
+          "recommended_px": 26,
+          "max_px": 32,
+          "line_height": 1.2,
+          "weight": "600–700",
+          "priority": 1
+        },
+        {
+          "id": "metric-label",
+          "min_px": 12,
+          "recommended_px": 13,
+          "max_px": 14,
+          "line_height": 1.5,
+          "weight": "400–550",
+          "priority": 3
+        },
+        {
+          "id": "chart-axis",
+          "min_px": 12,
+          "recommended_px": 13,
+          "max_px": 14,
+          "line_height": 1.5,
+          "weight": "400–500",
+          "priority": 3
+        },
+        {
+          "id": "chart-legend",
+          "min_px": 12,
+          "recommended_px": 13,
+          "max_px": 14,
+          "line_height": 1.5,
+          "weight": "400–500",
+          "priority": 3
+        },
+        {
+          "id": "metadata",
+          "min_px": 12,
+          "recommended_px": 13,
+          "max_px": 14,
+          "line_height": 1.55,
+          "weight": "400–500",
+          "priority": 4
+        },
+        {
+          "id": "control-label",
+          "min_px": 13,
+          "recommended_px": 14,
+          "max_px": 16,
+          "line_height": 1.4,
+          "weight": "500–600",
+          "priority": 3
+        }
+      ]
+    },
+    {
+      "id": "persuade-landing",
+      "purpose": "Brand/marketing page with legitimate editorial heading",
+      "roles": [
+        {
+          "id": "hero-title",
+          "min_px": 40,
+          "recommended_px": 56,
+          "max_px": 80,
+          "line_height": 1.12,
+          "weight": "550–750",
+          "priority": 1
+        },
+        {
+          "id": "section-title",
+          "min_px": 24,
+          "recommended_px": 30,
+          "max_px": 42,
+          "line_height": 1.25,
+          "weight": "600–700",
+          "priority": 2
+        },
+        {
+          "id": "body",
+          "min_px": 15,
+          "recommended_px": 17,
+          "max_px": 19,
+          "line_height": 1.6,
+          "weight": "400–500",
+          "priority": 3
+        },
+        {
+          "id": "metadata",
+          "min_px": 12,
+          "recommended_px": 14,
+          "max_px": 16,
+          "line_height": 1.5,
+          "weight": "400–500",
+          "priority": 4
+        },
+        {
+          "id": "control-label",
+          "min_px": 14,
+          "recommended_px": 16,
+          "max_px": 18,
+          "line_height": 1.4,
+          "weight": "500–600",
+          "priority": 3
+        }
+      ]
+    }
+  ],
+  "anti_patterns": [
+    {
+      "id": "decorative-duplicate",
+      "description": "Eyebrow or overline repeats the adjacent heading without independent semantic value"
+    },
+    {
+      "id": "fake-bilingual-brand",
+      "description": "Adds ANALYSIS STUDIO / SMART DASHBOARD below product name without an established brand identity"
+    },
+    {
+      "id": "fake-chapter-number",
+      "description": "Adds 01 / Overview for decoration rather than actual steps or readable outline"
+    },
+    {
+      "id": "developer-notes-leak",
+      "description": "Shows ECharts tooltip / implementation notes in end-user interface"
+    },
+    {
+      "id": "undersized-data-text",
+      "description": "Uses tiny low-contrast chart labels and sampling caveats despite being essential information"
+    },
+    {
+      "id": "headline-hijacks-task",
+      "description": "Large generic slogan dominates task-focused data screen"
+    }
+  ]
+}
