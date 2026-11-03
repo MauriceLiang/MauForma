@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MauForma navigation architecture decision",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project",
+    "primary_destinations",
+    "context",
+    "candidates",
+    "selection",
+    "responsive",
+    "review"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "project": {
+      "type": "string",
+      "minLength": 1
+    },
+    "primary_destinations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "frequency"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "frequency": {
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          }
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "required": [
+        "mode",
+        "primary_device",
+        "hierarchy_depth",
+        "task",
+        "existing_navigation"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "Persuade",
+            "Operate",
+            "Read",
+            "Experience"
+          ]
+        },
+        "primary_device": {
+          "enum": [
+            "desktop",
+            "mobile",
+            "mixed"
+          ]
+        },
+        "hierarchy_depth": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "task": {
+          "type": "string",
+          "minLength": 5
+        },
+        "existing_navigation": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": [
+          "pattern_id",
+          "reason",
+          "tradeoff"
+        ],
+        "properties": {
+          "pattern_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 10
+          },
+          "tradeoff": {
+            "type": "string",
+            "minLength": 10
+          }
+        }
+      }
+    },
+    "selection": {
+      "type": "object",
+      "required": [
+        "status",
+        "pattern_id",
+        "source",
+        "user_statement"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "pending",
+            "approved"
+          ]
+        },
+        "pattern_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "enum": [
+            "unresolved",
+            "confirmed",
+            "delegated",
+            "inherited"
+          ]
+        },
+        "user_statement": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "responsive": {
+      "type": "object",
+      "required": [
+        "desktop",
+        "mobile",
+        "same_destination_ids",
+        "context_preserved"
+      ],
+      "properties": {
+        "desktop": {
+          "type": "object",
+          "required": [
+            "mode",
+            "visible_ids"
+          ],
+          "properties": {
+            "mode": {
+              "type": "string",
+              "minLength": 1
+            },
+            "visible_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "mobile": {
+          "type": "object",
+          "required": [
+            "mode",
+            "visible_ids",
+            "overflow_ids"
+          ],
+          "properties": {
+            "mode": {
+              "enum": [
+                "bottom",
+                "bottom-drawer",
+                "drawer",
+                "top-drawer",
+                "top-bottom",
+                "stack",
+                "focus"
+              ]
+            },
+            "visible_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "overflow_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "same_destination_ids": {
+          "type": "boolean"
+        },
+        "context_preserved": {
+          "type": "boolean"
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "browser_status",
+        "breakpoints",
+        "notes"
+      ],
+      "properties": {
+        "browser_status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT RUN"
+          ]
+        },
+        "breakpoints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

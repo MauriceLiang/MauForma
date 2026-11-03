@@ -1,0 +1,331 @@
+{
+  "version": "1.0",
+  "summary": "Original navigation decision patterns, not mandatory templates. Responsive transformation preserves route and destination semantics.",
+  "references": [
+    {
+      "id": "carbon-shell",
+      "title": "IBM Carbon Global header",
+      "url": "https://www.carbondesignsystem.com/building-blocks/core/patterns/global-header",
+      "lesson": "Header-only or header-with-left-panel depending on hierarchy and persistent submenu needs",
+      "applies": [
+        "top",
+        "top-side"
+      ],
+      "limit": "Carbon patterns are for IBM shell; other sites may differ"
+    },
+    {
+      "id": "carbon-left",
+      "title": "IBM Carbon UI Shell left panel",
+      "url": "https://www.carbondesignsystem.com/building-blocks/core/components/ui-shell-left-panel/guidelines",
+      "lesson": "Use side panel for many secondary items or frequent secondary switches; constrain deep nesting",
+      "applies": [
+        "side",
+        "top-side"
+      ],
+      "limit": "More than five secondary items is Carbon guidance, not a universal hard threshold"
+    },
+    {
+      "id": "android-adapt",
+      "title": "Android responsive navigation",
+      "url": "https://developer.android.com/develop/ui/views/layout/build-responsive-navigation",
+      "lesson": "Window width and destination count jointly drive bar rail or drawer",
+      "applies": [
+        "adaptive-side-bottom",
+        "bottom",
+        "side",
+        "rail"
+      ],
+      "limit": "Mobile native patterns are inspiration, not forced Web behavior"
+    },
+    {
+      "id": "android-mobile",
+      "title": "Android layout and navigation patterns",
+      "url": "https://developer.android.com/design/ui/mobile/guides/layout-and-content/layout-and-nav-patterns",
+      "lesson": "Bottom nav exposes roughly three to five top-level destinations, tabs are secondary views",
+      "applies": [
+        "bottom",
+        "top-bottom",
+        "adaptive-side-bottom"
+      ],
+      "limit": "Actual web labels, device and IA still determine selection"
+    },
+    {
+      "id": "apple",
+      "title": "Apple HIG Sidebars and Tab bars",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/sidebars",
+      "lesson": "Sidebar needs space; adaptable navigation can use compact tabs or expanded sidebar",
+      "applies": [
+        "side",
+        "adaptive-side-bottom",
+        "rail"
+      ],
+      "limit": "Apple platform guidance not prescriptive for browser products"
+    },
+    {
+      "id": "microsoft",
+      "title": "Microsoft NavigationView display modes",
+      "url": "https://learn.microsoft.com/windows/uwp/design/controls-and-patterns/navigationview",
+      "lesson": "Top for a few broad peer categories, left for more categories or hierarchy",
+      "applies": [
+        "top",
+        "side"
+      ],
+      "limit": "WinUI native component is used for design reasoning only"
+    },
+    {
+      "id": "atlassian",
+      "title": "Atlassian navigation system layout",
+      "url": "https://atlassian.design/components/navigation-system/layout",
+      "lesson": "Top and side navigation areas should represent distinct scopes",
+      "applies": [
+        "top-side",
+        "side"
+      ],
+      "limit": "Not all Atlassian layout zones required in other products"
+    },
+    {
+      "id": "wai",
+      "title": "W3C WAI Accessible navigation names",
+      "url": "https://w3c.github.io/wai-website/ARIA/apg/practices/names-and-descriptions/",
+      "lesson": "Multiple nav landmarks need differentiated accessible names",
+      "applies": [
+        "top",
+        "side",
+        "bottom",
+        "top-side",
+        "top-bottom"
+      ],
+      "limit": "Semantics alone does not prove full accessibility"
+    }
+  ],
+  "patterns": [
+    {
+      "id": "top",
+      "name": "顶部主导航",
+      "zones": [
+        "top-nav"
+      ],
+      "desktop": "top",
+      "mobile": "drawer",
+      "best_for": [
+        "marketing",
+        "portfolio",
+        "docs-home",
+        "editorial"
+      ],
+      "why": "入口少且平级，主内容/摄影需要完整横向空间",
+      "tradeoff": "更多栏目和多层树不适合长期挤在顶部",
+      "not_for": [
+        "deep-persistent-tree"
+      ],
+      "reference_ids": [
+        "carbon-shell",
+        "microsoft"
+      ]
+    },
+    {
+      "id": "side",
+      "name": "持久侧边导航",
+      "zones": [
+        "side-nav"
+      ],
+      "desktop": "side",
+      "mobile": "drawer",
+      "best_for": [
+        "enterprise",
+        "repository-analytics",
+        "admin",
+        "settings"
+      ],
+      "why": "反复切换的功能分区或持久目录适合纵向扫描",
+      "tradeoff": "占横向空间，不宜强制套手机或营销首页",
+      "not_for": [
+        "immersive-marketing"
+      ],
+      "reference_ids": [
+        "carbon-left",
+        "microsoft"
+      ]
+    },
+    {
+      "id": "top-side",
+      "name": "顶部全局 + 侧边局部",
+      "zones": [
+        "global-header",
+        "side-nav"
+      ],
+      "desktop": "top-side",
+      "mobile": "top-drawer",
+      "best_for": [
+        "enterprise-platform",
+        "multi-workspace",
+        "complex-analytics"
+      ],
+      "why": "全局工作区/账户与产品内任务导航是两个不同层级",
+      "tradeoff": "双层框架占空间；若重复同级链接需删一个",
+      "not_for": [
+        "same-top-level-duplicated"
+      ],
+      "reference_ids": [
+        "carbon-shell",
+        "atlassian"
+      ]
+    },
+    {
+      "id": "rail",
+      "name": "窄轨道 + 对象列表/详情",
+      "zones": [
+        "nav-rail",
+        "object-list",
+        "detail-pane"
+      ],
+      "desktop": "rail-split",
+      "mobile": "stack",
+      "best_for": [
+        "mail",
+        "ide",
+        "file-manager",
+        "knowledge-base"
+      ],
+      "why": "需要并排管理两级对象层级，保留主要内容",
+      "tradeoff": "无标签图标难懂，窄窗可能压缩三列",
+      "not_for": [
+        "few-flat-categories"
+      ],
+      "reference_ids": [
+        "apple",
+        "android-adapt"
+      ]
+    },
+    {
+      "id": "bottom",
+      "name": "手机底部主导航",
+      "zones": [
+        "bottom-nav"
+      ],
+      "desktop": "top",
+      "mobile": "bottom",
+      "best_for": [
+        "mobile-app",
+        "mobile-pwa",
+        "daily-mobile-tool"
+      ],
+      "why": "约三到五个同级高频入口，便于单手反复切换",
+      "tradeoff": "不宜容纳大量分区或当前上下文操作按钮",
+      "not_for": [
+        "too-many-primary"
+      ],
+      "reference_ids": [
+        "android-mobile",
+        "apple"
+      ]
+    },
+    {
+      "id": "adaptive-side-bottom",
+      "name": "桌面侧边 + 手机底部自适应",
+      "zones": [
+        "desktop-side-nav",
+        "mobile-bottom-nav",
+        "overflow-drawer"
+      ],
+      "desktop": "side",
+      "mobile": "bottom-drawer",
+      "best_for": [
+        "responsive-workspace",
+        "repository-analytics",
+        "personal-productivity"
+      ],
+      "why": "宽屏显示完整导航，手机露出高频 3–5 项；完整入口从更多或抽屉可达",
+      "tradeoff": "需要稳定 ID、路由覆盖映射和状态保留；不可同时重复显示",
+      "not_for": [
+        "bottom-exposes-all-ten-items"
+      ],
+      "reference_ids": [
+        "android-adapt",
+        "apple"
+      ]
+    },
+    {
+      "id": "top-bottom",
+      "name": "手机顶部上下文 + 底部主导航",
+      "zones": [
+        "context-header",
+        "bottom-nav"
+      ],
+      "desktop": "top",
+      "mobile": "top-bottom",
+      "best_for": [
+        "mobile-first-dashboard",
+        "consumer-service",
+        "mobile-pwa"
+      ],
+      "why": "顶部解释当前页面和操作，底部负责全局切换，两个区域不重复",
+      "tradeoff": "屏幕垂直空间紧张时需控制 header 高度与键盘遮挡",
+      "not_for": [
+        "same-top-level-duplicated"
+      ],
+      "reference_ids": [
+        "android-mobile",
+        "carbon-shell"
+      ]
+    },
+    {
+      "id": "side-bottom-tools",
+      "name": "侧边导航 + 底部任务操作条",
+      "zones": [
+        "side-nav",
+        "bottom-action-bar"
+      ],
+      "desktop": "side-bottom-tools",
+      "mobile": "drawer-bottom-tools",
+      "best_for": [
+        "editor",
+        "batch-processing",
+        "media-workspace"
+      ],
+      "why": "侧栏负责目的地，底部负责当前对象的操作，两者不是双重主导航",
+      "tradeoff": "固定操作条会占垂直空间，需处理键盘和遮挡",
+      "not_for": [
+        "bottom-action-mislabeled-as-nav"
+      ],
+      "reference_ids": [
+        "carbon-left",
+        "wai"
+      ]
+    },
+    {
+      "id": "focus",
+      "name": "沉浸式/步骤式少导航",
+      "zones": [
+        "context-back"
+      ],
+      "desktop": "focus",
+      "mobile": "focus",
+      "best_for": [
+        "checkout",
+        "onboarding",
+        "fullscreen-editor",
+        "reading-focus"
+      ],
+      "why": "当前任务需要专注，保留清晰返回与退出通路",
+      "tradeoff": "频繁跨任务切换不方便，应确保恢复上下文",
+      "not_for": [
+        "frequent-global-switching"
+      ],
+      "reference_ids": [
+        "apple",
+        "wai"
+      ]
+    }
+  ],
+  "device_rules": {
+    "bottom_primary_heuristic_min": 3,
+    "bottom_primary_heuristic_max": 5,
+    "rule_is_hard_limit_for_simple_preview_only": true,
+    "more_than_max_requires_drawer_or_more": true,
+    "nav_and_actions_are_distinct": true,
+    "do_not_duplicate_same_primary_destinations_in_one_viewport": true,
+    "keep_destination_ids_consistent": true
+  },
+  "provenance": "MauForma design interpretation informed by cited official resources; not a replica of their UI"
+}
