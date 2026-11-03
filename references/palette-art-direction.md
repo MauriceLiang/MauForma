@@ -12,7 +12,7 @@
 4. **颜色职责**：底色与表面层级，主文字/次文字、主要操作/链接、状态成功/警告/错误、数据序列区分。
 5. **差异化理由**：如果所有产品文案换成 SaaS，配色还一样吗？不一样的具体业务线索是什么？
 
-Agent 必须先填写 **palette rationale**，后选具体 HEX；使用调色工具或例子不是理由。
+Agent 必须先填写 **palette rationale**，并判断已确定的品牌色；随后才提出颜色建议，**最终配色由用户选择**。用户明确给出某颜色或 HEX 时不用再请其选候选，直接沿该选择设计其余辅助色；调用调色工具不是用户授权。
 
 ## 推荐色彩方向（不是固定品牌 Token）
 
@@ -50,3 +50,8 @@ Agent 必须先填写 **palette rationale**，后选具体 HEX；使用调色工
 用户已确认的品牌色或参考视觉优先（`confirmed`）；Agent 被授权自主选择时标记 `delegated` 并说明理由；保留项目原有风格标记 `inherited`。待核实不得标注用户确认。对单独的状态点、图表序列颜色，还需关联真实业务含义。
 
 对照已有 `references/theme-design.md` 与 `references/sidebar-navigation-design.md`，它们解决实现层 Tokens；本文件重点解决 **为什么使用这一套色彩氛围**。
+## v6.6 · 推荐权与决定权分离
+
+用户指定任何颜色时该选择优先于 Agent 的偏好；若用户觉得深蓝导航不协调但没决定颜色，先读取 [Sidebar Color Discovery](sidebar-color-discovery.md) 和 [官方设计参考](sidebar-color-reference-cases.md)，分析当前整个页面后提出 2–3 个差异清晰的组合，附对照、理由与权衡。**推荐 ≠ 确认**：未选定保持 `pending/unresolved`，不能直接选首推的石墨、苔绿或蓝紫去改正式 Tokens。只有用户明确委托（`delegated`）时 Agent 才能代选。
+
+一切具体 HEX 用户优先；涉及可读性时修改周边颜色并解释，不擅自替换用户固定值。完整实施检查 Sidebar/Topbar/Main/Card/Chart 的色温、层级、数据语义和状态对比。新示例色板是 MauForma 原创概念而非 Linear、GitHub 等品牌的官方色值。

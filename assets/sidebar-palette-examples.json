@@ -1,8 +1,8 @@
 {
   "version": "1.0",
-  "role": "Illustrative starter palettes, not mandatory MauForma theme presets. Measure contrast and screenshot states in each real product.",
+  "role": "LEGACY CONTRAST FIXTURE ONLY. Not a default palette recommendation. Use assets/sidebar-color-directions.json for whole-page options and require user confirmation per references/sidebar-color-discovery.md.",
   "role_notes": {
-    "background": "Existing page brand tokens should be mapped; do not duplicate a second theme source",
+    "background": "Existing page brand tokens should be mapped; do not duplicate a second theme source; user must approve new sidebar color in context of main content",
     "selection": "Active uses one primary signal. Keyboard focus is an independent accessibility signal",
     "warning": "Orange/red is valid when it conveys actual warning state with text/icon; not a decorative default",
     "rail": "A hierarchy rail or timeline can be justified. An extra selected rail that repeats a bright active background is discouraged as a default."
