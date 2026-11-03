@@ -79,3 +79,6 @@
 若某个 Operate 页面首屏装饰性的 Hero/插画明显大于核心数据、主要图表是空白却没有可见状态、或几乎整个页面都靠色彩表演而结构不成立，**Gate A 不通过**。先调整区域与权重，之后再开始主题与组件代码。
 
 更详细的浏览器自评与返工链路见 `references/visual-critique-loop.md`。
+## v6.8 · 构图前先回答“这个内容应该出现在这一页吗”
+
+先依照 `references/page-density-and-content-priority.md` 将整个路由的内容分为 primary/supporting/conditional/deferred/removed，删减或下沉重复教程、功能目录和竞争 CTA，再开始灰阶构图。不应把所有功能介绍放进首页，然后用更精致的 Card 或网格“优化”它们。总览偏舒展、分析与管理可以密集，但重要图表/来源/状态始终可读。留白的结构依据见 `references/whitespace-and-surface-composition.md`。

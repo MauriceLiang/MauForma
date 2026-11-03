@@ -70,3 +70,7 @@ RepoVantage 新图中的主要阅读障碍，是“品牌英文副标 + 页面�
 ## v6.7 · 导航结构也属于视觉构图
 
 若截图中导航占据过多空间、顶部/侧栏/底部重复入口或手机主内容被一整套侧栏挤压，不应只去调颜色和圆角。先重新判断 IA（global/local/tabs/actions）、实际目的地数及桌面/手机使用习惯，参考 `references/navigation-architecture.md` 比较更合适的结构。对于“侧边+底部”必须判断是否跨设备变形，还是在一屏中将主导航与操作条分工；这两种不可混淆。真实网站截图要覆盖桌面与手机以及抽屉开闭、滚动、fixed 遮挡状态。
+
+## v6.8 · 页面拥挤的根因排查（必须先删信息再调留白）
+
+新增分类：**Content overload**（教程/功能目录/全部 CTA 堆在总览）、**Surface overload**（每段文字都包卡片，卡片套卡片）、**Density mismatch**（总览过密，图表详情反而只有空白/大标题）、**False whitespace**（人为 min-height 撑空区域而未减少内容）。先复核主任务与访问状态 → 下沉/移除不必要模块 → 确保必要内容可达 → 再做 macro/meso/micro 留白和字级调优。对总览与分析详情分开评价；重要数据状态和来源不能删除。见 `references/page-density-and-content-priority.md`。

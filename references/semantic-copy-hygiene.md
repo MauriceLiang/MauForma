@@ -50,3 +50,7 @@
 - 提交前提供真实页面截图和一条简短结论：被删除的重复层级、保留的必要定位、开发者文案是否仍出现在用户界面。截图不可用须标注 NOT RUN。
 
 相关阅读：`references/typography-hierarchy.md`、`references/page-header-antipatterns.md`、`references/visual-critique-loop.md`。
+
+## v6.8 · 从逐句审查升级为逐块审查
+
+一张卡片里的每个字都可能有意义，但它整体仍可能不该出现在总览页。基于 `references/page-density-and-content-priority.md` 对信息块分类：如果功能已在主导航中可到达，首页的三张功能介绍卡可能没有独立作用；如果用户已经开始使用，完整上手教程应改为首次访问/求助时显示。移走内容时要保留可发现的入口，Mock 数据真实度警告不可为留白删去。
