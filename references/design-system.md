@@ -49,7 +49,7 @@
 **优先使用平台原生字体栈，不随意打包受限字体**：`-apple-system`, `BlinkMacSystemFont`, `SF Pro Text`, `PingFang SC`, `Microsoft YaHei`, `sans-serif`。
 
 - 展示型大标题可用 `clamp(56px,10vw,96px)`、600 字重、`1.04` 行高和适量负字距；中文密集笔画尤其要审查负字距是否影响清晰度。
-- 桌面工具推荐页面标题 22–28px、分区标题 16–20px、正文 13–15px、辅助 12–13px；不是强制硬性尺寸，考虑操作系统缩放与动态字体。
+- 工作台推荐页面标题约 22–30px、分区标题 16–20px、主要正文 14–16px；图表刻度、KPI 标签、重要元数据建议 12–14px 起步并保证对比，具体参照 [字体层级](typography-hierarchy.md)。这些是设计建议，不是 WCAG 强制字号，需在实际屏幕上确认。
 - 正文行高通常 1.45–1.65；一行字太宽会增加阅读成本。长正文可加 `max-width` 而不是强行把字号缩小。
 - 字体级差、字重、间距都来自统一 scale，不能每个模块自己决定标题样式。
 - 重要信息的强调色应来自主题，**标题默认使用高对比实色**；渐变标题是可选强调工具。
@@ -91,3 +91,7 @@
 ## I. 高频工作台组件的精修门槛（v6.3）
 
 在执行 Gate B / 组件状态 Gallery 时，额外检查 [高频组件设计](workspace-component-refinement.md) 的七种模式：功能导航和对象列表不能共用一种强激活视觉；色彩使用统一中性色阶和状态角色，不能无意义地堆叠亮条、彩点、渐变、发光与卡片。实例颜色见 `../assets/sidebar-palette-examples.json`，并在真实浅/深模式截图中评估。此处是桌面工作台默认规则，不替代营销与实验性产品的 Art Direction。
+
+## J. v6.5 · 文案必要性与可读字级
+
+组件不自动给每个标题加 eyebrow、英语副标、伪章节编号或抽象口号。先运行 [文案必要性审查](semantic-copy-hygiene.md)，确认每行可见文案的独立信息价值；再按 [字体层级](typography-hierarchy.md) 与 `assets/typography-role-guidelines.json` 为 PageTitle、Section、Body、Metric、ChartAxis、ChartLegend、Metadata 等角色建立可调整的共享字号。重要数据即使“次级”也要看得清楚。真实工作台截图须检查暗色对比、200% 放大和长中文/英文字段；品牌展示页可拥有不同的字级及强烈艺术构图。
