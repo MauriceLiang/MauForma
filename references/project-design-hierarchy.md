@@ -40,3 +40,9 @@ python3 scripts/init_design_system.py --project-root . --name "Example" --style 
 ```
 
 `--source confirmed` **仅当用户明确选择该风格**时使用；AI 自行决定使用 delegated。已存在的 MASTER/decisions/页面文件默认拒绝覆盖，只有用户明确授权并传入 `--force --apply` 才可改写。脚本不会替你推断业务事实和素材。
+
+## v6.4 · 页面级构图计划的保存方式
+
+涉及新建页面/重大改版时，在用户项目中另存 `design-system/composition-brief.json`（结构形状见 `assets/composition-brief.schema.json`），列出内容证据、2–3 个有主区域/排序差异的候选、推荐/选择来源、颜色方向与去装饰审查。具体选定方案由 `design-system/pages/<route>.md` 引用而非重复全文。MASTER 继续负责共享品牌角色和组件 Tokens；结构选择不应自动强制各页面使用相同卡片或同样的 Hero。
+
+运行 `scripts/validate_composition_brief.py <brief-path>` 可检查内容引用、差异与未验证数据的处理，但不证明艺术方向优秀或页面已在浏览器运行。

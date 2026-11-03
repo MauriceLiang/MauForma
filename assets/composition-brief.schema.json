@@ -1,0 +1,361 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MauForma composition decision brief",
+  "description": "Structural intent and evidence; not automatic aesthetic pass.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project",
+    "page",
+    "candidates",
+    "comparison",
+    "review"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "project": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "framework": {
+          "type": "string",
+          "minLength": 0
+        }
+      }
+    },
+    "page": {
+      "type": "object",
+      "required": [
+        "name",
+        "mode",
+        "primary_task",
+        "first_question",
+        "content_inventory"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mode": {
+          "enum": [
+            "Persuade",
+            "Operate",
+            "Read",
+            "Experience"
+          ]
+        },
+        "primary_task": {
+          "type": "string",
+          "minLength": 8
+        },
+        "first_question": {
+          "type": "string",
+          "minLength": 8
+        },
+        "content_inventory": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "kind",
+              "status",
+              "importance"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "kind": {
+                "enum": [
+                  "identity",
+                  "action",
+                  "metric",
+                  "chart",
+                  "table",
+                  "image",
+                  "text",
+                  "status",
+                  "insight",
+                  "navigation",
+                  "filter"
+                ]
+              },
+              "status": {
+                "enum": [
+                  "known",
+                  "demo",
+                  "unverified"
+                ]
+              },
+              "importance": {
+                "enum": [
+                  "primary",
+                  "supporting",
+                  "context"
+                ]
+              },
+              "note": {
+                "type": "string",
+                "minLength": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "archetype",
+          "primary_region",
+          "first_screen",
+          "regions",
+          "palette",
+          "strength",
+          "tradeoff",
+          "why"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "archetype": {
+            "type": "string",
+            "minLength": 3
+          },
+          "primary_region": {
+            "type": "string",
+            "minLength": 1
+          },
+          "first_screen": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "regions": {
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "role",
+                "content_ids",
+                "priority"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "role": {
+                  "enum": [
+                    "context",
+                    "primary",
+                    "secondary",
+                    "control",
+                    "evidence",
+                    "decorative"
+                  ]
+                },
+                "content_ids": {
+                  "type": "array",
+                  "minItems": 0,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "priority": {
+                  "enum": [
+                    "primary",
+                    "supporting",
+                    "context"
+                  ]
+                },
+                "size_hint": {
+                  "type": "string",
+                  "minLength": 0
+                },
+                "state_strategy": {
+                  "type": "string",
+                  "minLength": 0
+                }
+              }
+            }
+          },
+          "palette": {
+            "type": "object",
+            "required": [
+              "direction",
+              "rationale",
+              "source"
+            ],
+            "properties": {
+              "direction": {
+                "type": "string",
+                "minLength": 3
+              },
+              "rationale": {
+                "type": "string",
+                "minLength": 15
+              },
+              "source": {
+                "enum": [
+                  "confirmed",
+                  "delegated",
+                  "inherited",
+                  "unresolved"
+                ]
+              }
+            }
+          },
+          "strength": {
+            "type": "string",
+            "minLength": 10
+          },
+          "tradeoff": {
+            "type": "string",
+            "minLength": 10
+          },
+          "why": {
+            "type": "string",
+            "minLength": 20
+          },
+          "mobile_order": {
+            "type": "array",
+            "minItems": 0,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "comparison": {
+      "type": "object",
+      "required": [
+        "recommended_id",
+        "structural_differences",
+        "selection"
+      ],
+      "properties": {
+        "recommended_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "structural_differences": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "minLength": 8
+          }
+        },
+        "selection": {
+          "type": "object",
+          "required": [
+            "id",
+            "source"
+          ],
+          "properties": {
+            "id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "enum": [
+                "confirmed",
+                "delegated",
+                "inherited",
+                "unresolved"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "decoration_removed_test",
+        "first_screen_task_visible",
+        "data_states",
+        "browser_status"
+      ],
+      "properties": {
+        "decoration_removed_test": {
+          "type": "object",
+          "required": [
+            "passes",
+            "reason"
+          ],
+          "properties": {
+            "passes": {
+              "type": "boolean"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 8
+            }
+          }
+        },
+        "first_screen_task_visible": {
+          "type": "boolean"
+        },
+        "data_states": {
+          "type": "string",
+          "minLength": 8
+        },
+        "browser_status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT RUN"
+          ]
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 0
+        },
+        "issues": {
+          "type": "array",
+          "minItems": 0,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

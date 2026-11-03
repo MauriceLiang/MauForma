@@ -62,7 +62,7 @@ VERIFY      检查真实交互、视觉实现与响应式表现
 
 在此过程中，MauForma 会区分**用户确认、委托 Agent 决定、继承既有规范和仍待确认**的选择。推荐不会被冒充为用户决定，也不会在局部修复时重复进行整套设计访谈。
 
-[设计访谈规则](references/design-discovery-interview.md) · [艺术指导与 Critique](references/art-direction-critique.md) · [项目设计系统继承](references/project-design-hierarchy.md)
+[设计访谈规则](references/design-discovery-interview.md) · [构图决策](references/composition-first-design.md) · [艺术指导与 Critique](references/art-direction-critique.md) · [项目设计系统继承](references/project-design-hierarchy.md)
 
 ## 快速开始
 
@@ -100,6 +100,12 @@ $mauforma
 ```
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
+
+## 先决定构图，再讨论配色
+
+从 RepoVantage 等真实页面的失败案例出发，MauForma v6.4 增加 **Composition First** 工作流：先检查真实内容与主要任务，绘制无装饰信息线框，比较 2–3 套**主视觉与区域排序真的不同**的构图，再推导有理由的颜色系统。对于“图表空白却有巨大渐变 Hero”的问题，优先修改页面结构，不再只调整颜色。
+
+[构图优先设计规则](references/composition-first-design.md) · [配色艺术指导](references/palette-art-direction.md) · [截图批判与返工](references/visual-critique-loop.md) · [三种布局的概念对照](assets/composition-layout-lab.html)
 
 ## 高频工作台组件的视觉细节
 
@@ -140,6 +146,7 @@ python3 scripts/audit_frontend.py ./src --format json
 
 # 校验 Skill 数据及回归测试
 python3 scripts/validate_intelligence.py
+python3 scripts/validate_composition_brief.py examples/composition/repo-analysis.json --repository
 python3 scripts/validate_ui_patterns.py
 python3 -m unittest discover -s tests -v
 ```

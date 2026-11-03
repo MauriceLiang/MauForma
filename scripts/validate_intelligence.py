@@ -7,6 +7,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 NEEDED = [
     "assets/style-knowledge.json", "references/design-style-catalog.md",
+    "assets/composition-brief.schema.json", "examples/composition/repo-analysis.json",
+    "assets/composition-layout-lab.html", "references/composition-first-design.md",
+    "references/palette-art-direction.md", "references/visual-critique-loop.md",
+    "scripts/validate_composition_brief.py", "tests/test_composition_brief.py",
     "references/aesthetic-authorship.md", "references/art-direction-critique.md",
     "references/design-dna-protocol.md", "references/project-design-hierarchy.md",
     "references/react-component-engineering.md", "references/vue-component-engineering.md",
@@ -97,6 +101,11 @@ def validate() -> list[str]:
         errors.extend(validate_ui())
     except (ImportError, OSError, ValueError) as exc:
         errors.append(f"UI-pattern validation unavailable: {exc}")
+    try:
+        from validate_composition_brief import validate_repository as validate_composition
+        errors.extend(validate_composition())
+    except (ImportError, OSError, ValueError) as exc:
+        errors.append(f"Composition validation unavailable: {exc}")
     skill = (ROOT / "SKILL.md").read_text("utf-8")
     for needed in ("search_design_knowledge.py", "art-direction-critique.md", "browser-qa-protocol.md", "project-design-hierarchy.md", "search_design_cases.py", "external-design-case-library.md", "search_visual_tech.py", "visual-tech-selection-12.md"):
         if needed not in skill:
