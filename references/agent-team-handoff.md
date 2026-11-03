@@ -22,3 +22,7 @@
 - 不以“设计图好看”为完成标准；业务逻辑、状态、响应和键盘路径必须可用。
 - 组件 owner 不负责替功能团队伪造接口数据；Feature Developer 不负责私自重新定义色系。
 - Review 问题用“问题位置—反模式—证据—修复—验收”格式记录。
+
+## v6.3 · 视觉审查任务交接
+
+UI Foundation 为 Sidebar/Topbar/Tabs/RecentItem/Table/Search/SplitPane 提供共用状态规范与可访问性；Feature Developer 不得在工作区页自行给选中态叠加强亮条/无意义橙点；QA 逐一检查暗色背景、hover/selected/focus-visible、最近对象与路由的区别，并引用 `references/sidebar-navigation-design.md` 的具体失败症状。任何主动采用强烈视觉/左侧指示线的决定必须说明它表达什么独立信息；禁止仅以个人“AI 味”主观标签替代证据。

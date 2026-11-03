@@ -16,6 +16,9 @@ NEEDED = [
     "scripts/browser_qa.mjs",
     "scripts/search_design_cases.py", "references/external-design-case-library.md",
     "assets/external-design-cases.json", "tests/test_external_design_cases.py",
+    "references/sidebar-navigation-design.md", "references/workspace-component-refinement.md",
+    "assets/sidebar-palette-examples.json", "assets/sidebar-refinement-gallery.html",
+    "scripts/validate_ui_patterns.py", "tests/test_ui_patterns.py",
     "assets/visual-tech-catalog.json", "references/visual-tech-selection-12.md",
     "scripts/search_visual_tech.py", "tests/test_visual_tech_selection.py",
 ]
@@ -89,6 +92,11 @@ def validate() -> list[str]:
             errors.append("SVG Filter must remain a native browser technique")
     except (OSError, ValueError, KeyError, TypeError) as exc:
         errors.append(f"Visual technology catalog error: {exc}")
+    try:
+        from validate_ui_patterns import validate as validate_ui
+        errors.extend(validate_ui())
+    except (ImportError, OSError, ValueError) as exc:
+        errors.append(f"UI-pattern validation unavailable: {exc}")
     skill = (ROOT / "SKILL.md").read_text("utf-8")
     for needed in ("search_design_knowledge.py", "art-direction-critique.md", "browser-qa-protocol.md", "project-design-hierarchy.md", "search_design_cases.py", "external-design-case-library.md", "search_visual_tech.py", "visual-tech-selection-12.md"):
         if needed not in skill:
