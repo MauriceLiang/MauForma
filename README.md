@@ -101,6 +101,12 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 导航不是固定的左侧栏
+
+MauForma v6.7 引入 **Navigation Architecture Gate**：先识别一级栏目数量、用户切换任务的频率、信息层级与屏幕宽度，再比较顶部、侧边、顶部+侧边、图标轨道、手机底部及混合式导航。特别区分**桌面侧栏→手机底部**与**侧栏+底部上下文操作条**，避免重复一套主导航、丢失手机端入口或遮挡内容。
+
+[阅读导航架构选型指南](references/navigation-architecture.md) · [9 种导航模式档案](assets/navigation-pattern-catalog.json) · [桌面/手机交互预览](assets/navigation-layout-lab.html)。导航样式与主题颜色分别记录用户决策，不用设计推荐代替用户选择。
+
 ## 侧边栏配色：Agent 提建议，用户做决定
 
 针对深蓝侧栏与主区域搭配割裂的问题，MauForma 增加 **Color Choice Gate**：先分析当前品牌和整页配色，再参考 [Linear / Carbon / GitHub Primer / shadcn/ui / Atlassian](references/sidebar-color-reference-cases.md) 的设计方法，筛选 2–3 套适合项目的**完整工作台配色**供用户选择。
@@ -160,6 +166,7 @@ python3 scripts/audit_readability.py --validate-catalog
 python3 scripts/validate_composition_brief.py examples/composition/repo-analysis.json --repository
 python3 scripts/validate_ui_patterns.py
 python3 scripts/validate_sidebar_color_decision.py --repository
+python3 scripts/validate_navigation_architecture.py --repository
 python3 -m unittest discover -s tests -v
 ```
 

@@ -7,6 +7,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 NEEDED = [
     "assets/style-knowledge.json", "references/design-style-catalog.md",
+    "references/navigation-architecture.md", "assets/navigation-pattern-catalog.json",
+    "assets/navigation-decision.schema.json", "assets/navigation-layout-lab.html",
+    "examples/navigation-decision.pending.json",
+    "scripts/validate_navigation_architecture.py", "tests/test_navigation_architecture.py",
     "references/sidebar-color-discovery.md", "references/sidebar-color-reference-cases.md",
     "examples/sidebar-color-discovery-dialogues.md", "assets/sidebar-color-directions.json",
     "assets/sidebar-color-preview.html", "assets/sidebar-color-decision.schema.json",
@@ -124,6 +128,11 @@ def validate() -> list[str]:
         errors.extend(validate_sidebar_colors())
     except (ImportError, OSError, ValueError) as exc:
         errors.append(f"Sidebar user color choice validation unavailable: {exc}")
+    try:
+        from validate_navigation_architecture import validate_repository as validate_navigation
+        errors.extend(validate_navigation())
+    except (ImportError, OSError, ValueError) as exc:
+        errors.append(f"Navigation architecture validation unavailable: {exc}")
     skill = (ROOT / "SKILL.md").read_text("utf-8")
     for needed in ("search_design_knowledge.py", "art-direction-critique.md", "browser-qa-protocol.md", "project-design-hierarchy.md", "search_design_cases.py", "external-design-case-library.md", "search_visual_tech.py", "visual-tech-selection-12.md"):
         if needed not in skill:
