@@ -1,0 +1,108 @@
+{
+  "version": "1.0",
+  "role": "Illustrative starter palettes, not mandatory MauForma theme presets. Measure contrast and screenshot states in each real product.",
+  "role_notes": {
+    "background": "Existing page brand tokens should be mapped; do not duplicate a second theme source",
+    "selection": "Active uses one primary signal. Keyboard focus is an independent accessibility signal",
+    "warning": "Orange/red is valid when it conveys actual warning state with text/icon; not a decorative default",
+    "rail": "A hierarchy rail or timeline can be justified. An extra selected rail that repeats a bright active background is discouraged as a default."
+  },
+  "palettes": {
+    "dark": {
+      "scheme": "dark",
+      "colors": {
+        "sidebar-bg": "#17212B",
+        "sidebar-surface": "#1D2935",
+        "sidebar-hover": "#263440",
+        "sidebar-selected": "#2C3A49",
+        "sidebar-text": "#F2F5F7",
+        "sidebar-text-muted": "#B7C3CF",
+        "sidebar-icon": "#B7C3CF",
+        "sidebar-border": "#3A4856",
+        "sidebar-focus": "#B6DCFF",
+        "sidebar-accent": "#A2CBEF",
+        "sidebar-muted-selected": "#26333F"
+      },
+      "test_pairs": [
+        [
+          "sidebar-text",
+          "sidebar-bg",
+          4.5
+        ],
+        [
+          "sidebar-text-muted",
+          "sidebar-bg",
+          4.5
+        ],
+        [
+          "sidebar-text",
+          "sidebar-selected",
+          4.5
+        ],
+        [
+          "sidebar-text-muted",
+          "sidebar-surface",
+          4.5
+        ],
+        [
+          "sidebar-focus",
+          "sidebar-selected",
+          3
+        ],
+        [
+          "sidebar-icon",
+          "sidebar-bg",
+          3
+        ]
+      ]
+    },
+    "light": {
+      "scheme": "light",
+      "colors": {
+        "sidebar-bg": "#F7F9FB",
+        "sidebar-surface": "#FFFFFF",
+        "sidebar-hover": "#EEF2F6",
+        "sidebar-selected": "#E5ECF3",
+        "sidebar-text": "#1C2936",
+        "sidebar-text-muted": "#506276",
+        "sidebar-icon": "#506276",
+        "sidebar-border": "#D3DCE5",
+        "sidebar-focus": "#1B5C90",
+        "sidebar-accent": "#235F91",
+        "sidebar-muted-selected": "#F0F4F7"
+      },
+      "test_pairs": [
+        [
+          "sidebar-text",
+          "sidebar-bg",
+          4.5
+        ],
+        [
+          "sidebar-text-muted",
+          "sidebar-bg",
+          4.5
+        ],
+        [
+          "sidebar-text",
+          "sidebar-selected",
+          4.5
+        ],
+        [
+          "sidebar-text-muted",
+          "sidebar-surface",
+          4.5
+        ],
+        [
+          "sidebar-focus",
+          "sidebar-selected",
+          3
+        ],
+        [
+          "sidebar-icon",
+          "sidebar-bg",
+          3
+        ]
+      ]
+    }
+  }
+}
