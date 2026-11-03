@@ -1,0 +1,318 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "name": "RepoVantage 仓库分析 — 基于截图的构图研究",
+    "framework": "Web 技术栈未从截图确认"
+  },
+  "page": {
+    "name": "仓库分析详情",
+    "mode": "Operate",
+    "primary_task": "查看某个仓库的开发活动变化，并找到提交、Issue 和 PR 的证据",
+    "first_question": "最近开发活动发生了什么变化，证据和可追溯明细在哪里？",
+    "content_inventory": [
+      {
+        "id": "repository-context",
+        "kind": "identity",
+        "status": "known",
+        "importance": "context",
+        "note": "仓库身份、分析日期与刷新操作"
+      },
+      {
+        "id": "period-filter",
+        "kind": "filter",
+        "status": "known",
+        "importance": "context",
+        "note": "30/90/180 天筛选"
+      },
+      {
+        "id": "commits",
+        "kind": "metric",
+        "status": "demo",
+        "importance": "supporting",
+        "note": "1,304 是截图中的演示值，非真实仓库统计"
+      },
+      {
+        "id": "contributors",
+        "kind": "metric",
+        "status": "demo",
+        "importance": "supporting",
+        "note": "6 是截图中的演示值"
+      },
+      {
+        "id": "issue-p50",
+        "kind": "metric",
+        "status": "demo",
+        "importance": "supporting",
+        "note": "3.4 天为演示值"
+      },
+      {
+        "id": "pr-p50",
+        "kind": "metric",
+        "status": "demo",
+        "importance": "supporting",
+        "note": "1.8 天为演示值"
+      },
+      {
+        "id": "trend",
+        "kind": "chart",
+        "status": "unverified",
+        "importance": "primary",
+        "note": "用户截图中的大图表无可见数据，不得擅自补造折线"
+      },
+      {
+        "id": "issue-pr-list",
+        "kind": "table",
+        "status": "unverified",
+        "importance": "supporting",
+        "note": "真实 Issue/PR 明细数据未提供，不应虚构"
+      },
+      {
+        "id": "insight",
+        "kind": "insight",
+        "status": "demo",
+        "importance": "supporting",
+        "note": "+12% 和洞察文案是演示，不得当成事实"
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "id": "trend-first",
+      "name": "趋势优先",
+      "archetype": "data-led-trend-focus",
+      "primary_region": "trend-main",
+      "first_screen": [
+        "repository-toolbar",
+        "kpi-strip",
+        "trend-main"
+      ],
+      "regions": [
+        {
+          "id": "repository-toolbar",
+          "role": "context",
+          "content_ids": [
+            "repository-context",
+            "period-filter"
+          ],
+          "priority": "context",
+          "size_hint": "紧凑标题/筛选/刷新",
+          "state_strategy": ""
+        },
+        {
+          "id": "kpi-strip",
+          "role": "secondary",
+          "content_ids": [
+            "commits",
+            "contributors",
+            "issue-p50",
+            "pr-p50"
+          ],
+          "priority": "supporting",
+          "size_hint": "一行紧凑指标，不使用四张巨卡",
+          "state_strategy": ""
+        },
+        {
+          "id": "trend-main",
+          "role": "primary",
+          "content_ids": [
+            "trend"
+          ],
+          "priority": "primary",
+          "size_hint": "首屏最大内容区；是真实数据而非装饰",
+          "state_strategy": "缺数据明确显示 loading / empty / error"
+        },
+        {
+          "id": "evidence-note",
+          "role": "evidence",
+          "content_ids": [
+            "insight"
+          ],
+          "priority": "supporting",
+          "size_hint": "洞察贴近趋势，提供证据入口",
+          "state_strategy": "演示洞察明确 demo"
+        }
+      ],
+      "palette": {
+        "direction": "暖石墨底 + 米白面板 + 克制的矿物绿数据重点",
+        "rationale": "长时间阅读分析数据优先保证数据信息和阅读对比度，颜色只强调变化与真实状态，不需要蓝紫渐变吸睛",
+        "source": "delegated"
+      },
+      "strength": "最先看到变化趋势和相关数据，适合希望观察变化的人",
+      "tradeoff": "Issue 和 PR 的明细放在后续区域，排查单个异常需继续操作",
+      "why": "这是 Operate/Read 详情页，图表而不是立方体装饰应承担最大面积；KPI 被缩成概要信息，洞察接近来源。",
+      "mobile_order": [
+        "repository-toolbar",
+        "kpi-strip",
+        "trend-main",
+        "evidence-note"
+      ]
+    },
+    {
+      "id": "investigation-first",
+      "name": "排查优先",
+      "archetype": "task-queue-investigation",
+      "primary_region": "investigation-list",
+      "first_screen": [
+        "repository-toolbar",
+        "investigation-list",
+        "cycle-metrics"
+      ],
+      "regions": [
+        {
+          "id": "repository-toolbar",
+          "role": "context",
+          "content_ids": [
+            "repository-context",
+            "period-filter"
+          ],
+          "priority": "context",
+          "size_hint": "紧凑标题/筛选/刷新",
+          "state_strategy": ""
+        },
+        {
+          "id": "investigation-list",
+          "role": "primary",
+          "content_ids": [
+            "issue-pr-list"
+          ],
+          "priority": "primary",
+          "size_hint": "大面积可筛选 Issue/PR 分析列表",
+          "state_strategy": "明细缺失应显示有文案的空状态"
+        },
+        {
+          "id": "cycle-metrics",
+          "role": "secondary",
+          "content_ids": [
+            "issue-p50",
+            "pr-p50"
+          ],
+          "priority": "supporting",
+          "size_hint": "列表附近的周期指标",
+          "state_strategy": ""
+        },
+        {
+          "id": "trend-secondary",
+          "role": "evidence",
+          "content_ids": [
+            "trend"
+          ],
+          "priority": "supporting",
+          "size_hint": "下方辅助曲线，不是首屏主角",
+          "state_strategy": "若无数据不填造曲线"
+        }
+      ],
+      "palette": {
+        "direction": "中性墨白 + 一点低饱和茶绿用于当前筛选",
+        "rationale": "长表格的对齐和阅读效率更重要，强配色会抢占异常记录的识别，强调只用于选择与可靠状态",
+        "source": "delegated"
+      },
+      "strength": "打开就能筛选 Issue/PR 记录并定位异常",
+      "tradeoff": "活动总趋势退居次要，查看整体态势需要向下探索",
+      "why": "如果用户的高频任务是处理/排查异常，最有效的第一屏不是指标卡而是可筛选、可追溯的实际对象。",
+      "mobile_order": [
+        "repository-toolbar",
+        "investigation-list",
+        "cycle-metrics",
+        "trend-secondary"
+      ]
+    },
+    {
+      "id": "summary-first",
+      "name": "发现优先",
+      "archetype": "summary-evidence-first",
+      "primary_region": "executive-summary",
+      "first_screen": [
+        "repository-toolbar",
+        "executive-summary",
+        "kpi-summary"
+      ],
+      "regions": [
+        {
+          "id": "repository-toolbar",
+          "role": "context",
+          "content_ids": [
+            "repository-context",
+            "period-filter"
+          ],
+          "priority": "context",
+          "size_hint": "紧凑标题/筛选/刷新",
+          "state_strategy": ""
+        },
+        {
+          "id": "executive-summary",
+          "role": "primary",
+          "content_ids": [
+            "insight"
+          ],
+          "priority": "primary",
+          "size_hint": "结论文字与来源绑定，不用亮蓝巨卡",
+          "state_strategy": "演示结果必须标注"
+        },
+        {
+          "id": "kpi-summary",
+          "role": "secondary",
+          "content_ids": [
+            "commits",
+            "contributors",
+            "issue-p50",
+            "pr-p50"
+          ],
+          "priority": "supporting",
+          "size_hint": "语义分组的两列数字摘要",
+          "state_strategy": ""
+        },
+        {
+          "id": "evidence-split",
+          "role": "evidence",
+          "content_ids": [
+            "trend",
+            "issue-pr-list"
+          ],
+          "priority": "supporting",
+          "size_hint": "下方曲线与明细展开路径",
+          "state_strategy": "未知数据显式占位、不得假定有图表"
+        }
+      ],
+      "palette": {
+        "direction": "纸白 + 深墨字体 + 只有真实预警才用琥珀色",
+        "rationale": "管理者需要尽快形成可信结论，排版和真实数值比高饱和大色块更易扫读，警告色必须有实际含义",
+        "source": "delegated"
+      },
+      "strength": "非技术管理者可以很快获得可验证的仓库状态摘要",
+      "tradeoff": "趋势证据不是第一眼可见，必须提供清楚的查看依据入口",
+      "why": "如果用户是短时查看项目进展的人，主视觉应为真实结论及其依据而非空图表；没有数据不能凭空输出积极增长判断。",
+      "mobile_order": [
+        "repository-toolbar",
+        "executive-summary",
+        "kpi-summary",
+        "evidence-split"
+      ]
+    }
+  ],
+  "comparison": {
+    "recommended_id": "trend-first",
+    "structural_differences": [
+      "trend-first 的主区域是趋势图；investigation-first 的主区域变成 Issue/PR 明细列表。",
+      "summary-first 先给证据链接的发现，趋势和明细在下方，首屏阅读顺序与前两案有实质区别。"
+    ],
+    "selection": {
+      "id": null,
+      "source": "unresolved"
+    }
+  },
+  "review": {
+    "decoration_removed_test": {
+      "passes": true,
+      "reason": "所有候选均依赖紧凑上下文与业务数据组织，而非渐变 Hero、立方体或装饰性大卡片来表达内容层级。"
+    },
+    "first_screen_task_visible": true,
+    "data_states": "模拟 KPI 必须标注 demo；缺少真实趋势、Issue/PR 时应显示明确的加载/空/错误状态，不能填造折线与结论。",
+    "browser_status": "NOT RUN",
+    "evidence": "基于用户截图的概念性研究，尚未在实际网站中实现或通过浏览器测试。",
+    "issues": [
+      "没有确认用户选择的布局方案",
+      "真实仓库数据和全部交互流程未提供",
+      "未做实际屏幕上的颜色和布局验收"
+    ]
+  }
+}
