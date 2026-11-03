@@ -101,6 +101,14 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 先筛选信息，再设计高级留白
+
+v6.8 新增 **Page Content Curation & Density**：先按真实用户任务决定哪些信息展示在当前页、哪些只在首次使用时出现、哪些移往帮助/明细，再选择 `airy / balanced / productive / compact` 页面级密度。**总览页可以舒展而专注；数据分析页则允许筛选、图表、表格与指标更紧凑**。不再把同一组说明卡片机械复制到所有页面。
+
+基于 RepoVantage 的总览截图，重点删除重复的三步教程、功能介绍卡与伪装高级的外层容器；使用组间/组内层级留白，而不是一味增加 padding。
+
+[内容优先级与密度规则](references/page-density-and-content-priority.md) · [留白/容器必要性](references/whitespace-and-surface-composition.md) · [截图案例复盘](references/repovantage-overview-density-case.md) · [三种布局对照 HTML](assets/page-density-lab.html)
+
 ## 导航不是固定的左侧栏
 
 MauForma v6.7 引入 **Navigation Architecture Gate**：先识别一级栏目数量、用户切换任务的频率、信息层级与屏幕宽度，再比较顶部、侧边、顶部+侧边、图标轨道、手机底部及混合式导航。特别区分**桌面侧栏→手机底部**与**侧栏+底部上下文操作条**，避免重复一套主导航、丢失手机端入口或遮挡内容。
@@ -167,6 +175,7 @@ python3 scripts/validate_composition_brief.py examples/composition/repo-analysis
 python3 scripts/validate_ui_patterns.py
 python3 scripts/validate_sidebar_color_decision.py --repository
 python3 scripts/validate_navigation_architecture.py --repository
+python3 scripts/validate_page_content_plan.py examples/page-content-plan-repovantage.json --repository
 python3 -m unittest discover -s tests -v
 ```
 
