@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "MauForma sidebar / whole-page color decision",
-  "description": "A decision record; cannot turn a recommendation into user approval.",
+  "description": "A decision record; cannot turn a recommendation into user approval. When status is approved, validator requires resolved_colors, whole_page_preview, coordination_rationale and valid selection provenance.",
   "type": "object",
   "required": [
     "schema_version",
@@ -185,8 +185,31 @@
         },
         "notes": {
           "type": "string"
+        },
+        "coordination_rationale": {
+          "type": "string",
+          "description": "Explain sidebar/topbar/main/cards/charts palette relationship, required for approved decisions."
+        },
+        "evidence": {
+          "type": "string",
+          "description": "Actual browser capture reference; required when browser status is PASS."
         }
       }
+    },
+    "resolved_colors": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "description": "Full-page resolved tokens after choice; user fixed HEX must match exactly.",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          }
+        }
+      ]
     }
   }
 }

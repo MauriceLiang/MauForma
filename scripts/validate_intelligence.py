@@ -7,6 +7,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 NEEDED = [
     "assets/style-knowledge.json", "references/design-style-catalog.md",
+    "references/sidebar-color-discovery.md", "references/sidebar-color-reference-cases.md",
+    "examples/sidebar-color-discovery-dialogues.md", "assets/sidebar-color-directions.json",
+    "assets/sidebar-color-preview.html", "assets/sidebar-color-decision.schema.json",
+    "examples/sidebar-color-decision.pending.json",
+    "scripts/validate_sidebar_color_decision.py", "tests/test_sidebar_color_choice.py",
     "references/semantic-copy-hygiene.md", "references/typography-hierarchy.md",
     "assets/typography-role-guidelines.json", "assets/typography-reading-lab.html",
     "scripts/audit_readability.py", "tests/test_content_typography.py",
@@ -114,6 +119,11 @@ def validate() -> list[str]:
         errors.extend(validate_typography())
     except (ImportError, OSError, ValueError) as exc:
         errors.append(f"Typography validation unavailable: {exc}")
+    try:
+        from validate_sidebar_color_decision import validate_repository as validate_sidebar_colors
+        errors.extend(validate_sidebar_colors())
+    except (ImportError, OSError, ValueError) as exc:
+        errors.append(f"Sidebar user color choice validation unavailable: {exc}")
     skill = (ROOT / "SKILL.md").read_text("utf-8")
     for needed in ("search_design_knowledge.py", "art-direction-critique.md", "browser-qa-protocol.md", "project-design-hierarchy.md", "search_design_cases.py", "external-design-case-library.md", "search_visual_tech.py", "visual-tech-selection-12.md"):
         if needed not in skill:

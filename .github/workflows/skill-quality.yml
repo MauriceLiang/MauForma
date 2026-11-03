@@ -24,6 +24,7 @@ jobs:
           python3 scripts/validate_ui_patterns.py
           python3 scripts/validate_composition_brief.py examples/composition/repo-analysis.json --repository
           python3 scripts/audit_readability.py --validate-catalog
+          python3 scripts/validate_sidebar_color_decision.py --repository
           python3 -m unittest discover -s tests -v
       - name: Syntax check browser QA script
         run: node --check scripts/browser_qa.mjs

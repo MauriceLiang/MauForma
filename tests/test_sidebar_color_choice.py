@@ -49,7 +49,7 @@ class SidebarChoiceTests(unittest.TestCase):
             self.assertIn("chart-primary", p["colors"])
 
     def test_exact_user_hex_survives_approval(self):
-        doc = self.approved()
+        doc = self.approved("graphite-split")
         doc["user_constraints"] = [{"role": "sidebar-bg", "hex": "#1C2228", "source": "confirmed",
                                     "user_statement": "侧栏背景必须用 #1C2228"}]
         doc["resolved_colors"]["sidebar-bg"] = "#1C2228"
