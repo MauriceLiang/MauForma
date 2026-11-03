@@ -1,5 +1,16 @@
 # Changelog
 
+## v6.3 — 2026-11-03 · Sidebar polish and high-frequency UI patterns
+
+- 根据用户提供的 RepoVantage 侧边栏截图整理真实反例：过度强调、暗色颜色关系不统一、最近打开与导航样式混用、状态点语义不明。
+- 新增 `references/sidebar-navigation-design.md` 和 `references/workspace-component-refinement.md`，覆盖 Sidebar、Topbar、Card、Data Table、Tabs、Search、Split Pane 七类高频组件及合理例外。
+- 新增浅/深色 `assets/sidebar-palette-examples.json`，保留独立 hover、selected、focus-visible 与业务状态角色。
+- 新增可交互 `assets/sidebar-refinement-gallery.html` 正反示例，以及颜色对比度校验脚本与单元测试。
+- 强化组件契约、Review、团队交接与 CI 任务路由。**不认定所有左侧轨道线均为错误**，对树形层级、章节进度等保留有依据的使用方式。
+- 没有修改用户实际业务仓库的侧边栏，也没有改变六套全局主题与 114 种动效配方。
+
+---
+
 ## v6.2 — 2026-11-02 · Animation and visualization selection
 
 - 整合用户提供的 12 项动画与可视化技术指南，与原有 GSAP、Anime.js、Three.js、ECharts/React/Vue 规范去重。

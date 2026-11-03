@@ -101,6 +101,12 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 高频工作台组件的视觉细节
+
+针对实际生成页面中常见的**侧栏配色割裂、重复高亮竖条、主导航与最近对象同级**等问题，增加导航专属颜色角色、状态语义和可访问选中态规范，并扩展到 Topbar、Card、Table、Tabs、Search 与 Split Pane。可查看 [侧边栏规范](references/sidebar-navigation-design.md)、[工作台组件精修规范](references/workspace-component-refinement.md) 及 [可交互正反例](assets/sidebar-refinement-gallery.html)。
+
+该规范是高频工作台的默认设计建议，而不是对创意网站的审美禁令。具有信息含义的树形层级线和时间轴仍可使用。
+
 ## 设计知识与视觉技术
 
 | **8** 种原创风格档案 | **84** 个外部品牌设计参考入口 | **114** 种 Anime.js 动效配方 |
@@ -134,6 +140,7 @@ python3 scripts/audit_frontend.py ./src --format json
 
 # 校验 Skill 数据及回归测试
 python3 scripts/validate_intelligence.py
+python3 scripts/validate_ui_patterns.py
 python3 -m unittest discover -s tests -v
 ```
 
@@ -149,7 +156,8 @@ python3 -m unittest discover -s tests -v
 | [风格档案与艺术指导](references/design-style-catalog.md) | [React 组件工程](references/react-component-engineering.md) |
 | [外部品牌设计案例](references/external-design-case-library.md) | [Vue 组件工程](references/vue-component-engineering.md) |
 | [Design DNA 参考网站分析](references/design-dna-protocol.md) | [动画生命周期与资源清理](references/animation-integration-lifecycle.md) |
-| [设计系统 MASTER 与页面覆盖](references/project-design-hierarchy.md) | [前端审查与浏览器 QA](references/browser-qa-protocol.md) |
+| [设计系统 MASTER 与页面覆盖](references/project-design-hierarchy.md) | [侧栏及工作台组件规范](references/workspace-component-refinement.md) |
+| [侧栏配色与选中态](references/sidebar-navigation-design.md) | [前端审查与浏览器 QA](references/browser-qa-protocol.md) |
 | [12 项动画与可视化技术选型](references/visual-tech-selection-12.md) | [全局规则与阅读路由](SKILL.md) |
 
 **交互演示资源**：仓库内的 [主题预览](assets/preview.html)、[创意效果展示](assets/creative-effects-gallery.html) 与 [动效目录](assets/motion-gallery.html) 为 HTML 文件，下载或克隆后可在浏览器中打开。

@@ -76,7 +76,7 @@
 - Field：label / hint / error / disabled / required 结构固定。
 - Panel：仅当信息形成独立块时使用，避免“卡片套卡片套卡片”。
 - Status：一套语义色和文案机制，主题变色不改变错误的含义。
-- Nav：导航状态除色差之外还要有易识别的焦点/选中形式。
+- Nav：导航状态除色差之外还要有易识别的焦点/选中形式；**当前路由与键盘焦点是不同状态**。工作台选中项默认用柔和底色 + 文字/图标权重，不额外默认叠加发光竖条；树形层级/时间轴指示线有独立语义时可保留。详见 [侧栏规范](sidebar-navigation-design.md)。
 - Dialog：遵守原生或可访问原语，内容/按钮间距统一，避免过大弹窗。
 
 **严格顺序**：组件清单 → tokens → 组件实现与状态 gallery → 业务页面。详细 API 与例子见 [component-first.md](component-first.md)。
@@ -87,3 +87,7 @@
 - 桌面：支持窄窗口、侧边栏和多面板，避免把小窗口强行塞入宽屏展示布局。
 - SwiftUI/AppKit：优先平台动态色、动态字体、可访问性和系统原生行为，颜色 token 映射即可。
 - 常规动画需支持系统 Reduce Motion；对快速重复操作不采用夸张回弹。
+
+## I. 高频工作台组件的精修门槛（v6.3）
+
+在执行 Gate B / 组件状态 Gallery 时，额外检查 [高频组件设计](workspace-component-refinement.md) 的七种模式：功能导航和对象列表不能共用一种强激活视觉；色彩使用统一中性色阶和状态角色，不能无意义地堆叠亮条、彩点、渐变、发光与卡片。实例颜色见 `../assets/sidebar-palette-examples.json`，并在真实浅/深模式截图中评估。此处是桌面工作台默认规则，不替代营销与实验性产品的 Art Direction。

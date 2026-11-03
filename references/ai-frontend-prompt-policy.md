@@ -56,3 +56,7 @@ Agent 不可以只问“想要哪种风格”，也不可以未经分析就直�
 7. **官网与后台同属一个产品时**，品牌颜色/字体/圆角/图标/可访问性应有共同 Tokens，但视觉密度和动画丰富程度可以区别对待。
 
 具体目录：`references/creative-component-libraries.md`、`references/enterprise-ui-library-guide.md` 和 `examples/creative-library-recipes-react-vue.md`。
+
+## 桌面应用与管理后台的细节治理（v6.3）
+
+当用户提交侧栏、顶栏、卡片、表格、标签页、搜索或分栏的设计问题时，先判断组件真实职责，读取 `references/sidebar-navigation-design.md` 与 `references/workspace-component-refinement.md`。针对暗色侧边栏特别检查中性色阶、选中态与焦点分离、主导航和最近对象不同权重、业务状态点是否有含义。默认不要堆叠同一状态的背景色、左侧强亮条、发光边框和图标色；但具备独立语义的章节线/树形轨道属于可讨论例外。审查必须给出组件归属、截图证据和可重现理由；不得仅凭 CSS 推断其来自 AI。

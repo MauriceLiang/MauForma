@@ -49,3 +49,12 @@
 - [ ] ECharts 图表数据来自真实业务且按需销毁，重要数值可通过文本或可访问表格理解。
 - [ ] Matter.js 不负责 UI DOM 本身的交互语义，键盘操作/业务操作没有被物理效果阻碍。
 - [ ] 在目标设备实测帧率、内存、CPU/GPU、缩放与窄屏，明确哪些条件未测。
+
+## Gate E — 基础组件视觉精修（v6.3）
+
+- [ ] 桌面深色 Sidebar 的背景 / surface / hover / selected / 主次文字 / icon / focus / border 组成可解释的色彩层级，真实文字与焦点对比在其实际背景上可辨认。
+- [ ] 活动导航的高亮底、左侧亮条、图标与发光没有重复表达同一状态；若保留条形指示，应解释其独立的结构、时间线或章节语义。
+- [ ] `aria-current`、hover、focus-visible 分别传达不同状态；即使去掉亮条也不会失去键盘焦点。
+- [ ] 主导航与最近访问对象、帮助提示和账号区域存在清晰职责与视觉层级；业务警告点具备文字或标签。
+- [ ] Topbar、Card、Data Table、Tabs、Search、Split Pane 按 `workspace-component-refinement.md` 核对共享 Token、交互与空/异常状态。
+- [ ] 提交组件样例与真实浅/深主题截图；`sidebar-refinement-gallery.html` 只是正反概念，不能冒充真实业务页面 QA。

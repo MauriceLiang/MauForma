@@ -128,3 +128,7 @@ src/
 - [ ] 所有组件使用 token，并为键盘、错误、禁用和动态内容提供路径。
 - [ ] 页面不会为了挽救“局部好看”使用大量 `!important` 覆盖基础组件。
 - [ ] 任务型页面统一复用 PageHeader 模式，未把营销式 Hero、无意义英文小字、巨大空白变成固定模板。
+
+## 桌面工作台组件（v6.3）
+
+在实际项目需要时优先从现有 UI 库映射/封装 `UiSidebar / UiRecentItem / UiTopbar / UiDataTable / UiTabs / UiSearch / UiSplitPane`，各自职责与交互不同，不要为了统一而将所有对象列表都强行变成与主导航相同的 active 卡片。组件 QA 应分开记录 hover、selected、focus-visible、disabled、long-content、dark/light、collapsed 等状态，尤其不能删除键盘焦点来追求“克制”。参考 `references/sidebar-navigation-design.md`、`references/workspace-component-refinement.md` 与 `assets/sidebar-refinement-gallery.html`。这些是设计规范与概念示例，不是可以直接跨框架复制的生产组件源码。

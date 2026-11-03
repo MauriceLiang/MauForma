@@ -21,6 +21,7 @@ jobs:
       - name: Validate design intelligence
         run: |
           python3 scripts/validate_intelligence.py
+          python3 scripts/validate_ui_patterns.py
           python3 -m unittest discover -s tests -v
       - name: Syntax check browser QA script
         run: node --check scripts/browser_qa.mjs

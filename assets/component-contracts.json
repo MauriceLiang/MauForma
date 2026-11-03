@@ -1,6 +1,6 @@
 {
-  "version": "2.1",
-  "note": "Example contract only; implement or adapt components that the current screens require. Existing library APIs take precedence.",
+  "version": "2.2",
+  "note": "Example contract only; implement or adapt components that the current screens require. Existing library APIs take precedence. High-frequency workspace components added for state/visual contracts; these are templates, not production code.",
   "components": [
     {
       "name": "UiButton",
@@ -290,6 +290,245 @@
         ]
       },
       "a11y": "Status uses proper live region when necessary; retry actions are descriptive"
+    },
+    {
+      "name": "UiSidebar",
+      "responsibility": "Group navigation links, recent objects and footer controls without mixing navigation with activity state",
+      "variants": [
+        "expanded",
+        "collapsed",
+        "comfortable",
+        "compact"
+      ],
+      "states": [
+        "default",
+        "active-route",
+        "focus-visible",
+        "collapsed",
+        "overflow-scroll",
+        "dark",
+        "light"
+      ],
+      "api": {
+        "props": [
+          "sections",
+          "collapsed",
+          "currentRoute"
+        ],
+        "events": [
+          "navigate",
+          "toggleCollapse"
+        ],
+        "slots": [
+          "brand",
+          "navigation",
+          "recent",
+          "footer"
+        ]
+      },
+      "a11y": "Use semantic nav with labelled sections; links use aria-current where appropriate; collapsed state preserves accessible names and keyboard access"
+    },
+    {
+      "name": "UiRecentItem",
+      "responsibility": "Represent a recent object independently from the active route; do not reuse primary navigation active styling",
+      "variants": [
+        "default",
+        "subtle-selected",
+        "with-business-status"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus-visible",
+        "current-object",
+        "unavailable"
+      ],
+      "api": {
+        "props": [
+          "label",
+          "href",
+          "currentObject",
+          "status"
+        ],
+        "events": [
+          "open"
+        ],
+        "slots": [
+          "leading",
+          "trailing"
+        ]
+      },
+      "a11y": "Use a link for navigation; status colors need corresponding text or labels; distinguish current workspace from recent history"
+    },
+    {
+      "name": "UiTopbar",
+      "responsibility": "Provide stable page context and high-value actions without decorative nested containers",
+      "variants": [
+        "standard",
+        "compact",
+        "with-search"
+      ],
+      "states": [
+        "default",
+        "sticky",
+        "narrow",
+        "with-actions"
+      ],
+      "api": {
+        "props": [
+          "breadcrumbs",
+          "title",
+          "density"
+        ],
+        "events": [],
+        "slots": [
+          "navigation",
+          "search",
+          "actions",
+          "account"
+        ]
+      },
+      "a11y": "Breadcrumb semantics and predictable tab order; sticky header must not cover focused elements"
+    },
+    {
+      "name": "UiTabs",
+      "responsibility": "Navigate between related in-page views using one primary selected visual and a separate keyboard focus",
+      "variants": [
+        "underline",
+        "pill"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "selected",
+        "focus-visible",
+        "disabled"
+      ],
+      "api": {
+        "props": [
+          "modelValue",
+          "items",
+          "variant"
+        ],
+        "events": [
+          "update:modelValue"
+        ],
+        "slots": [
+          "tab",
+          "panel"
+        ]
+      },
+      "a11y": "Use accessible tablist/tab/tabpanel relationships or existing tab primitive; support required keyboard navigation and focus"
+    },
+    {
+      "name": "UiDataTable",
+      "responsibility": "Compare real rows and columns with consistent alignment, semantic states and performant scanning",
+      "variants": [
+        "comfortable",
+        "compact"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "sorted",
+        "filtered",
+        "selected",
+        "narrow"
+      ],
+      "api": {
+        "props": [
+          "columns",
+          "rows",
+          "sort",
+          "selection",
+          "loading"
+        ],
+        "events": [
+          "sort",
+          "filter",
+          "select",
+          "paginate"
+        ],
+        "slots": [
+          "toolbar",
+          "cell",
+          "empty",
+          "error"
+        ]
+      },
+      "a11y": "Use table headers and sorting semantics; status meaning is conveyed beyond color; horizontal scroll must be discoverable"
+    },
+    {
+      "name": "UiSearch",
+      "responsibility": "Search within an explicit scope with meaningful query, results and empty-state feedback",
+      "variants": [
+        "inline",
+        "toolbar",
+        "primary"
+      ],
+      "states": [
+        "idle",
+        "focused",
+        "loading",
+        "results",
+        "empty",
+        "error",
+        "disabled"
+      ],
+      "api": {
+        "props": [
+          "modelValue",
+          "scope",
+          "placeholder",
+          "loading"
+        ],
+        "events": [
+          "update:modelValue",
+          "submit",
+          "clear"
+        ],
+        "slots": [
+          "prefix",
+          "actions",
+          "results"
+        ]
+      },
+      "a11y": "Search input has accessible name, keyboard clear behavior and announced result status; shortcuts work only if implemented"
+    },
+    {
+      "name": "UiSplitPane",
+      "responsibility": "Resize adjacent workspaces while preserving minimum sizes and keyboard operation",
+      "variants": [
+        "horizontal",
+        "vertical",
+        "collapsible"
+      ],
+      "states": [
+        "default",
+        "resizing",
+        "collapsed",
+        "narrow",
+        "focus-visible"
+      ],
+      "api": {
+        "props": [
+          "sizes",
+          "minSizes",
+          "maxSizes",
+          "orientation"
+        ],
+        "events": [
+          "resize",
+          "collapse"
+        ],
+        "slots": [
+          "first",
+          "second",
+          "handle"
+        ]
+      },
+      "a11y": "Resizable separator includes appropriate accessible name, orientation, keyboard adjustment and safe focus"
     }
   ]
 }
