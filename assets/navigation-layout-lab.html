@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MauForma · Navigation Architecture Lab</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;color:#243039;background:#f3f5f6;--border:#d4dce0;--accent:#495d5d}
+*{box-sizing:border-box}body{margin:0}button,a{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:2px solid #5688a0;outline-offset:3px}main{max-width:1250px;margin:0 auto;padding:32px 22px 65px}h1{font-size:clamp(26px,3.5vw,41px);line-height:1.2;letter-spacing:-.035em;margin:11px 0}p{line-height:1.65}.lead{max-width:880px;color:#596971;font-size:14px}.micro{font-size:11px;color:#72808b;letter-spacing:.08em;font-weight:650;text-transform:uppercase}.chooser{display:flex;flex-wrap:wrap;gap:8px;margin:25px 0 12px}.chip,.device{border:1px solid #c8d2d7;background:white;border-radius:7px;padding:9px 12px;font-size:13px;color:#384851}.chip[aria-pressed=true],.device[aria-pressed=true]{background:#2c434a;color:#fff;border-color:#2c434a}.devices{display:flex;gap:7px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:10px 0 16px;font-size:12px;color:#586973}.devices>div{display:flex;gap:7px}.stage-wrap{background:#e7ebed;padding:21px;border:1px solid #d4dce0;border-radius:13px;display:flex;justify-content:center;overflow:auto}.stage{width:100%;max-width:1130px;height:565px;background:#fff;overflow:hidden;border:1px solid #c5cfd3;border-radius:11px;display:grid;grid-template-columns:1fr;grid-template-rows:auto 1fr auto;box-shadow:0 13px 32px #2b3c4512;--side-width:210px}.stage[data-viewport=mobile]{width:min(390px,100%);height:635px;max-width:390px}.shell{min-height:0;display:flex;flex-direction:column}.top-nav{min-height:55px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:20px;padding:0 21px;flex-shrink:0}.top-nav strong{font-size:14px;white-space:nowrap}.top-nav .navlinks{display:flex;gap:5px;align-items:center}.navlinks a,.side-nav a,.bottom-nav a{color:#576872;text-decoration:none;display:flex;align-items:center;gap:8px;border-radius:7px;white-space:nowrap}.top-nav .navlinks a{font-size:12px;padding:8px 10px}.navlinks a[aria-current=page],.side-nav a[aria-current=page],.bottom-nav a[aria-current=page]{background:#e0e7ea;color:#203b43;font-weight:650}.top-meta{margin-left:auto;font-size:12px;color:#76848c}.content-shell{display:flex;flex:1;min-height:0}.side-nav{width:var(--side-width);flex:0 0 var(--side-width);border-right:1px solid var(--border);background:#f8f9f9;padding:18px 11px;min-width:0}.side-title{color:#77848a;font-size:11px;margin:3px 12px 13px}.side-nav a{padding:11px 13px;font-size:13px;margin:3px 0}.side-nav a:hover,.top-nav a:hover,.bottom-nav a:hover{background:#edf1f2}.nav-icon{font-size:14px;width:16px;text-align:center;flex:0 0 16px}.page{min-width:0;flex:1;padding:22px;overflow:auto}.page h2{font-size:22px;margin:0 0 6px}.page .description{font-size:13px;color:#677782;margin:0 0 20px}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.metric{border:1px solid var(--border);border-radius:8px;padding:14px}.metric small{color:#667782;font-size:12px}.metric strong{display:block;font-size:25px;letter-spacing:-.035em;margin-top:6px}.panels{display:grid;grid-template-columns:1.5fr 1fr;gap:12px;margin-top:14px}.panel{border:1px solid var(--border);border-radius:8px;padding:15px;min-height:172px}.panel h3{font-size:14px;margin:0 0 8px}.panel p{font-size:12px;color:#667782}.chart{height:68px;margin-top:12px}.chart svg{height:100%;width:100%}.bottom-nav{display:none;align-items:center;justify-content:space-around;gap:3px;border-top:1px solid var(--border);background:#fff;padding:8px 7px}.bottom-nav a{font-size:11px;flex-direction:column;gap:3px;padding:8px 5px;flex:1;min-width:0}.bottom-nav .nav-icon{width:auto}.bottom-actions{display:none;border-top:1px solid var(--border);padding:12px 18px;background:#fff;gap:8px;align-items:center;justify-content:flex-end}.bottom-actions button{border:1px solid var(--border);background:#f4f6f7;padding:8px 12px;border-radius:6px;font-size:12px}.action-head{font-size:12px;color:#576871;margin-right:auto}.object-pane{display:none;width:200px;border-right:1px solid var(--border);background:#fcfcfc;padding:17px 12px}.object-pane h3{font-size:13px}.object-pane div{font-size:12px;padding:11px 10px;border-radius:6px}.object-pane .chosen{background:#e8edef}.rail .side-nav{width:70px;flex-basis:70px}.rail .side-title{display:none}.rail .side-nav a{flex-direction:column;gap:3px;font-size:10px;text-align:center;padding:11px 2px;white-space:normal}.rail .object-pane{display:block}
+.top-only .side-nav,.bottom-only .side-nav,.top-bottom .side-nav,.focus .side-nav{display:none}.top-only .top-nav,.top-side .top-nav,.top-bottom .top-nav,.bottom-only .top-nav,.focus .top-nav,.side-bottom-tools .top-nav{display:flex}.side-only .top-nav,.adaptive .top-nav,.rail .top-nav{display:none}.side-only .side-nav,.top-side .side-nav,.adaptive .side-nav,.side-bottom-tools .side-nav{display:block}
+.top-side .top-nav .navlinks{display:none}.top-side .top-nav .top-meta{margin-left:auto}
+.top-only .top-nav .navlinks,.bottom-only .top-nav .navlinks,.top-bottom .top-nav .navlinks{display:flex}
+.bottom-only .bottom-nav,.top-bottom .bottom-nav{display:flex}.side-bottom-tools .bottom-actions{display:flex}
+.focus .top-nav .navlinks{display:none}.focus .top-meta{display:none}
+.stage[data-viewport=desktop] .adaptive .bottom-nav{display:none}
+.stage[data-viewport=mobile] .top-nav{padding:0 12px;min-height:48px}.stage[data-viewport=mobile] .top-meta{display:none}
+.stage[data-viewport=mobile] .top-nav .navlinks{display:none}.stage[data-viewport=mobile] .top-nav strong{font-size:13px}
+.stage[data-viewport=mobile] .side-nav{display:none}.stage[data-viewport=mobile] .object-pane{display:none}
+.stage[data-viewport=mobile] .adaptive .bottom-nav{display:flex}.stage[data-viewport=mobile] .side-only .top-nav,.stage[data-viewport=mobile] .adaptive .top-nav,.stage[data-viewport=mobile] .top-only .top-nav,.stage[data-viewport=mobile] .rail .top-nav{display:flex}
+.stage[data-viewport=mobile] .page{padding:16px}.stage[data-viewport=mobile] .page h2{font-size:19px}.stage[data-viewport=mobile] .metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.stage[data-viewport=mobile] .metric{padding:10px}.stage[data-viewport=mobile] .metric strong{font-size:20px}.stage[data-viewport=mobile] .panels{grid-template-columns:1fr}.stage[data-viewport=mobile] .panel{min-height:145px}
+.stage[data-viewport=mobile] .side-bottom-tools .bottom-actions{display:flex;padding:9px}.stage[data-viewport=mobile] .bottom-nav a{font-size:10px}
+.mobile-menu{display:none;border:1px solid var(--border);background:white;border-radius:5px;padding:6px 9px;font-size:13px;color:#3a5059}.stage[data-viewport=mobile] .mobile-menu{display:block}.stage[data-viewport=mobile] .top-only .mobile-menu,.stage[data-viewport=mobile] .top-side .mobile-menu,.stage[data-viewport=mobile] .side-only .mobile-menu,.stage[data-viewport=mobile] .adaptive .mobile-menu,.stage[data-viewport=mobile] .rail .mobile-menu,.stage[data-viewport=mobile] .side-bottom-tools .mobile-menu{display:block}
+.mobile-drawer{display:none;position:absolute;z-index:2;inset:48px auto 0 0;width:78%;background:white;border-right:1px solid var(--border);box-shadow:12px 0 20px #0c222228;padding:17px}.mobile-drawer[aria-hidden=false]{display:block}.mobile-drawer a{display:block;padding:10px;border-radius:6px;text-decoration:none;color:#314551;font-size:13px}.mobile-drawer a:hover{background:#eff3f4}.shell{position:relative}
+.bottom-only .top-nav .navlinks,.bottom-only .top-nav .top-meta{display:none}
+.pattern-copy{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}.pattern-copy p{margin:4px 0;font-size:13px;color:#586973}.pattern-copy h3{font-size:15px;margin:0 0 4px}.foot{font-size:12px;color:#6a7881;margin-top:17px}
+@media(max-width:850px){.stage-wrap{padding:10px}.pattern-copy{grid-template-columns:1fr}.top-nav .navlinks{gap:1px}.top-nav .navlinks a{padding:7px}.side-nav{width:170px;flex-basis:170px}.object-pane{width:150px}.page{padding:13px}}
+</style></head><body><main>
+<div class="micro">MAUFORMA / NAVIGATION ARCHITECTURE</div><h1>导航放哪里，由任务和层级决定。</h1><p class="lead">比较顶部、侧边、顶部+侧边、图标轨道、桌面侧边→手机底部，以及侧边导航+底部操作条等结构。这个示例只比较信息架构：没有替你选择品牌色，也没有修改真实产品。</p>
+<div class="chooser" role="group" aria-label="导航结构选项">
+<button type="button" class="chip" data-pattern="top-only" aria-pressed="false">顶部主导航</button>
+<button type="button" class="chip" data-pattern="side-only" aria-pressed="true">持久侧边栏</button>
+<button type="button" class="chip" data-pattern="top-side" aria-pressed="false">顶部 + 侧边</button>
+<button type="button" class="chip" data-pattern="rail" aria-pressed="false">窄轨道 + 对象列表</button>
+<button type="button" class="chip" data-pattern="adaptive" aria-pressed="false">侧边 → 底部</button>
+<button type="button" class="chip" data-pattern="top-bottom" aria-pressed="false">顶部 + 底部导航</button>
+<button type="button" class="chip" data-pattern="side-bottom-tools" aria-pressed="false">侧边 + 底部操作</button>
+<button type="button" class="chip" data-pattern="focus" aria-pressed="false">专注/少导航</button>
+</div>
+<div class="devices"><span id="selection-note">尚未为用户正式选择；仅演示结构差异。</span><div role="group" aria-label="演示视口"><button class="device" type="button" data-viewport-button="desktop" aria-pressed="true">桌面</button><button class="device" type="button" data-viewport-button="mobile" aria-pressed="false">手机</button></div></div>
+<div class="stage-wrap"><div class="stage" data-viewport="desktop">
+  <div class="shell side-only" data-pattern="side-only" id="shell">
+    <header class="top-nav"><strong>RepoVantage</strong><button type="button" class="mobile-menu" aria-label="打开导航菜单" aria-expanded="false">☰</button><nav class="navlinks" aria-label="顶部主导航">
+      <a href="#overview" data-dest="overview">总览</a><a href="#activity" data-dest="activity">开发活动</a><a href="#issues" data-dest="issues">Issue 处理</a><a href="#prs" data-dest="prs">PR 协作</a>
+    </nav><span class="top-meta">当前仓库 · steady-core</span></header>
+    <div class="content-shell">
+    <nav class="side-nav" aria-label="工作区主导航"><div class="side-title">工作区</div>
+      <a href="#overview" data-dest="overview"><span class="nav-icon">▦</span>总览</a>
+      <a href="#activity" data-dest="activity"><span class="nav-icon">⌁</span>开发活动</a>
+      <a href="#issues" data-dest="issues"><span class="nav-icon">◉</span>Issue 处理</a>
+      <a href="#prs" data-dest="prs"><span class="nav-icon">◇</span>PR 协作</a>
+      <a href="#releases" data-dest="releases"><span class="nav-icon">▤</span>版本发布</a>
+    </nav>
+    <aside class="object-pane" aria-label="对象列表"><h3>仓库列表</h3><div class="chosen">steady-core</div><div>vuejs/core</div><div>folio-major</div></aside>
+    <div class="page"><h2 id="page-title">Issue 处理</h2><p class="description">同一项任务，不同的导航位置和分层。</p>
+    <div class="metrics"><div class="metric"><small>待处理 Issue</small><strong>12</strong></div><div class="metric"><small>已关闭 P50</small><strong>3.4 天</strong></div><div class="metric"><small>活跃贡献者</small><strong>6</strong></div></div>
+    <div class="panels"><div class="panel"><h3>项目趋势</h3><p>示例数据不代表真实仓库统计。</p><div class="chart"><svg viewBox="0 0 320 68" preserveAspectRatio="none" aria-hidden="true"><path d="M4 54 L38 47 L76 50 L116 32 L153 38 L200 25 L242 29 L276 14 L317 9" fill="none" stroke="#637c7a" stroke-width="3" stroke-linecap="round"/></svg></div></div><div class="panel"><h3>信息摘要</h3><p>把主要视觉面积留给用户真正需要的工作内容，而不是导航装饰。</p></div></div>
+    </div></div>
+    <nav class="bottom-nav" aria-label="手机主导航"><a href="#overview" data-dest="overview"><span class="nav-icon">▦</span>总览</a><a href="#activity" data-dest="activity"><span class="nav-icon">⌁</span>活动</a><a href="#issues" data-dest="issues"><span class="nav-icon">◉</span>Issue</a><a href="#prs" data-dest="prs"><span class="nav-icon">◇</span>PR</a></nav>
+    <div class="bottom-actions" aria-label="当前页面操作"><span class="action-head">已选择 2 条记录</span><button type="button">批量标记</button><button type="button">导出</button></div>
+    <nav class="mobile-drawer" aria-label="手机完整导航" aria-hidden="true"><a href="#overview" data-dest="overview">总览</a><a href="#activity" data-dest="activity">开发活动</a><a href="#issues" data-dest="issues">Issue 处理</a><a href="#prs" data-dest="prs">PR 协作</a><a href="#releases" data-dest="releases">版本发布</a></nav>
+  </div>
+</div></div>
+<div class="pattern-copy"><div><h3 id="reason-title">持久侧边栏</h3><p id="reason">功能分区较多、用户频繁切换，纵向导航持续可见，避免顶栏塞满。</p></div><div><h3>代价与适用边界</h3><p id="tradeoff">占横向面积，手机需要抽屉或高频入口替代。所有下层对象与当前路由应明确区分。</p></div></div>
+<p class="foot">纯本地概念预览；顶部 + 侧边时顶部表示不同的全局作用域，不重复展示业务频道。示例按钮不是业务 API。布局被用户选择或明确委托后才进入项目设计系统。</p>
+</main>
+<script>
+const shell=document.querySelector('#shell'),stage=document.querySelector('.stage'),menu=shell.querySelector('.mobile-menu'),drawer=shell.querySelector('.mobile-drawer');
+const descriptions={
+'top-only':['顶部主导航','适合少量平级入口、营销品牌首页与需要横向主内容的场景。','有很多分层/常驻子栏目时容易拥挤；窄窗需收进可访问的菜单。'],
+'side-only':['持久侧边栏','适合功能分区较多、切换频繁的桌面工作台。','占横向空间，窄屏变为抽屉。'],
+'top-side':['顶部全局 + 侧边局部','顶部负责产品/工作区和全局工具，侧边负责当前产品/工作区内部导航。','两套导航若显示同一组入口就属重复，应删除其中之一。'],
+'rail':['窄轨道 + 对象列表','IDE/邮件/文件管理等双层导航：先选功能或集合，再选对象。','图标必须易识别；窄窗不应保留三栏挤压主内容。'],
+'adaptive':['桌面侧边 → 手机底部','同一产品桌面展开完整导航，手机只露出 4 个核心目的地，其余用抽屉。','目的地 ID、访问路径与状态必须跨宽度保持一致。'],
+'top-bottom':['顶部上下文 + 手机底部','顶部显示当前对象/搜索/返回，底部为固定的高频主目的地。','两个栏位不能重复一组相同的栏目，须处理键盘和安全区域。'],
+'side-bottom-tools':['侧栏 + 底部任务操作条','侧栏负责去哪里；底栏负责批量操作或当前任务，两个区域职责不同。','底部工具栏不能冒充导航；关闭与短窗遮挡都需要考虑。'],
+'focus':['专注式少导航','结算、全屏编辑和沉浸阅读时可以保留轻量返回而去掉大面积导航。','必须保留可发现的退出、返回和状态恢复方式。']
+};
+function selectPattern(p){
+ shell.className='shell '+p;shell.dataset.pattern=p;
+ document.querySelectorAll('[data-pattern].chip').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.pattern===p)));
+ const d=descriptions[p];document.querySelector('#reason-title').textContent=d[0];document.querySelector('#reason').textContent=d[1];document.querySelector('#tradeoff').textContent=d[2];
+ drawer.setAttribute('aria-hidden','true');menu.setAttribute('aria-expanded','false');
+ if(p==='adaptive' && stage.dataset.viewport==='desktop')shell.querySelector('.bottom-nav').style.display='none';else shell.querySelector('.bottom-nav').style.display='';
+}
+document.querySelectorAll('[data-pattern].chip').forEach(b=>b.addEventListener('click',()=>selectPattern(b.dataset.pattern)));
+document.querySelectorAll('[data-viewport-button]').forEach(b=>b.addEventListener('click',()=>{stage.dataset.viewport=b.dataset.viewportButton;document.querySelectorAll('[data-viewport-button]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));selectPattern(shell.dataset.pattern);}));
+let active='issues';
+function selectDestination(id){active=id;document.querySelector('#page-title').textContent={overview:'总览',activity:'开发活动',issues:'Issue 处理',prs:'PR 协作',releases:'版本发布'}[id]||id;
+ document.querySelectorAll('[data-dest]').forEach(a=>{if(a.dataset.dest===id)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});drawer.setAttribute('aria-hidden','true');menu.setAttribute('aria-expanded','false');}
+document.querySelectorAll('[data-dest]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();selectDestination(a.dataset.dest);}));
+menu.addEventListener('click',()=>{const open=drawer.getAttribute('aria-hidden')==='true';drawer.setAttribute('aria-hidden',String(!open));menu.setAttribute('aria-expanded',String(open));});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){drawer.setAttribute('aria-hidden','true');menu.setAttribute('aria-expanded','false');menu.focus();}});
+selectPattern('side-only');selectDestination(active);
+</script></body></html>
