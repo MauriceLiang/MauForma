@@ -1,0 +1,285 @@
+{
+  "version": "1.0",
+  "description": "Original MauForma paired sidebar + main-content palette examples (never official brand colors and never automatically approved). Keep all selected options pending until a real user confirms or explicitly delegates.",
+  "references": [
+    {
+      "id": "linear",
+      "title": "Linear — design refresh and custom themes",
+      "url": "https://linear.app/now/how-we-redesigned-the-linear-ui",
+      "observed": "Sidebar hierarchy and density are deliberately tuned; theme generation considers base hue, accent and contrast, with light and dark modes",
+      "applies": "Long-running workspaces, project management and high-frequency navigation",
+      "caveat": "Do not assume example palette values replicate Linear production colors"
+    },
+    {
+      "id": "linear-refresh",
+      "title": "Linear — calmer navigation sidebar",
+      "url": "https://linear.app/now/behind-the-latest-design-refresh",
+      "observed": "Navigation should recede so main content receives attention; the sidebar is made visually quieter",
+      "applies": "Projects with data-heavy main panels",
+      "caveat": "This is design reasoning, not proof that dark nav is always preferable"
+    },
+    {
+      "id": "carbon",
+      "title": "IBM Carbon — UI shell left panel",
+      "url": "https://www.carbondesignsystem.com/building-blocks/core/components/ui-shell-left-panel/specifications",
+      "observed": "Default, hover, active, focus and text/icon colors are explicitly tokenized; shell uses theme context",
+      "applies": "Enterprise dashboards and consistent component states",
+      "caveat": "IBM theme tokens are not mandatory for other products"
+    },
+    {
+      "id": "primer",
+      "title": "GitHub Primer — page layout and color usage",
+      "url": "https://primer.style/product/getting-started/foundations/layout/",
+      "observed": "Navigation pane and content have separate spatial responsibilities; focus on content and consistent responsive page regions",
+      "applies": "Developer tools, repositories and workspace side panes",
+      "caveat": "Do not claim that demo colors here are sampled from GitHub's UI"
+    },
+    {
+      "id": "primer-colors",
+      "title": "GitHub Primer — color usage",
+      "url": "https://primer.style/product/getting-started/foundations/color-usage/",
+      "observed": "Color design integrates light/dark schemes with shared component semantics rather than arbitrary local selection",
+      "applies": "Developer-centric workspaces with dense data",
+      "caveat": "Use as a consistency reference, not a license to copy interface branding"
+    },
+    {
+      "id": "shadcn",
+      "title": "shadcn/ui — sidebar theming",
+      "url": "https://ui.shadcn.com/docs/components/base/sidebar",
+      "observed": "Sidebar roles include sidebar background, foreground, primary, accent, border and ring; sidebar can differ from page but belongs in the theme",
+      "applies": "Vue/React implementations using tokens, side-nav states and shared primitives",
+      "caveat": "shadcn sample tokens are not a branding recommendation"
+    },
+    {
+      "id": "atlassian",
+      "title": "Atlassian Design — design tokens",
+      "url": "https://atlassian.design/components/tokens/all-tokens",
+      "observed": "Design tokens are a single source of truth; selected states may use neutral rather than blue colors",
+      "applies": "Cross-page products with many components and theme switching",
+      "caveat": "Feature-flagged selected-state behavior must not be stated as a universal Atlassian UI rule"
+    }
+  ],
+  "palettes": [
+    {
+      "id": "graphite-split",
+      "name": "石墨侧栏 × 明亮内容区",
+      "mode": "light-content-dark-sidebar",
+      "character": "工具感，侧边栏安静，主内容清晰",
+      "best_for": [
+        "developer-tool",
+        "repository-analytics",
+        "desktop-workspace"
+      ],
+      "tradeoff": "暗亮交界较明显，需处理顶部栏、品牌按钮及分隔边界；不适合所有纯浅色品牌",
+      "reference_ids": [
+        "primer",
+        "carbon",
+        "shadcn"
+      ],
+      "source_type": "mauforma_original_interpretation_not_official_colors",
+      "colors": {
+        "main-bg": "#F6F7F8",
+        "main-surface": "#FFFFFF",
+        "main-text": "#20272D",
+        "sidebar-bg": "#20272D",
+        "sidebar-surface": "#283039",
+        "sidebar-selected": "#37424C",
+        "sidebar-hover": "#2D3740",
+        "sidebar-text": "#F1F5F7",
+        "sidebar-text-muted": "#C3CDD3",
+        "sidebar-focus": "#B9D8F2",
+        "sidebar-border": "#43505B",
+        "brand-accent": "#386E60",
+        "chart-primary": "#386E60"
+      }
+    },
+    {
+      "id": "light-unified",
+      "name": "浅灰侧栏 × 白色内容区",
+      "mode": "light-unified",
+      "character": "整页统一、层次细腻，适合长时间查看数据",
+      "best_for": [
+        "enterprise-dashboard",
+        "knowledge-workspace",
+        "repository-analytics"
+      ],
+      "tradeoff": "少了暗色侧边栏的强边界，必须依靠精确的选中态与对比度",
+      "reference_ids": [
+        "carbon",
+        "primer-colors",
+        "atlassian"
+      ],
+      "source_type": "mauforma_original_interpretation_not_official_colors",
+      "colors": {
+        "main-bg": "#F9FAFB",
+        "main-surface": "#FFFFFF",
+        "main-text": "#1E2429",
+        "sidebar-bg": "#F0F2F4",
+        "sidebar-surface": "#FFFFFF",
+        "sidebar-selected": "#DEE5EA",
+        "sidebar-hover": "#E7ECEF",
+        "sidebar-text": "#20282E",
+        "sidebar-text-muted": "#4F5D68",
+        "sidebar-focus": "#245F86",
+        "sidebar-border": "#CBD3D9",
+        "brand-accent": "#374E61",
+        "chart-primary": "#355F75"
+      }
+    },
+    {
+      "id": "warm-paper",
+      "name": "暖纸白 × 沙岩侧栏",
+      "mode": "light-warm",
+      "character": "温暖、稳重，不靠冷蓝色营造专业感",
+      "best_for": [
+        "editorial-workspace",
+        "research-tool",
+        "knowledge-management"
+      ],
+      "tradeoff": "工程分析的冷静气质可能被弱化，需要从品牌性格验证是否合适",
+      "reference_ids": [
+        "atlassian",
+        "shadcn"
+      ],
+      "source_type": "mauforma_original_interpretation_not_official_colors",
+      "colors": {
+        "main-bg": "#FAF8F4",
+        "main-surface": "#FFFFFF",
+        "main-text": "#282823",
+        "sidebar-bg": "#EEEAE2",
+        "sidebar-surface": "#F7F3EB",
+        "sidebar-selected": "#DED6CA",
+        "sidebar-hover": "#E5E0D6",
+        "sidebar-text": "#302E28",
+        "sidebar-text-muted": "#5B5C54",
+        "sidebar-focus": "#765433",
+        "sidebar-border": "#C9C0B4",
+        "brand-accent": "#815A3A",
+        "chart-primary": "#706C40"
+      }
+    },
+    {
+      "id": "dark-unified",
+      "name": "墨黑工作台 × 低饱和青绿",
+      "mode": "dark-unified",
+      "character": "侧栏退后，适合需要长时间聚焦数据和代码的暗色工作台",
+      "best_for": [
+        "developer-tool",
+        "monitoring",
+        "data-dense-dark"
+      ],
+      "tradeoff": "需要专门考虑数据序列色、夜间亮度、图表对比和暗色阴影",
+      "reference_ids": [
+        "linear",
+        "linear-refresh",
+        "carbon"
+      ],
+      "source_type": "mauforma_original_interpretation_not_official_colors",
+      "colors": {
+        "main-bg": "#202629",
+        "main-surface": "#293136",
+        "main-text": "#F3F5F4",
+        "sidebar-bg": "#171E21",
+        "sidebar-surface": "#232C2F",
+        "sidebar-selected": "#2E3F40",
+        "sidebar-hover": "#253034",
+        "sidebar-text": "#E9F0EE",
+        "sidebar-text-muted": "#BCCBC7",
+        "sidebar-focus": "#A8D7C4",
+        "sidebar-border": "#3A494B",
+        "brand-accent": "#77C3A1",
+        "chart-primary": "#94CFB0"
+      }
+    },
+    {
+      "id": "brand-blue",
+      "name": "蓝色品牌保留 × 受控中性表面",
+      "mode": "brand-blue-with-neutral",
+      "character": "品牌明确偏好蓝色时保留蓝，避免主内容和导航处处泛蓝",
+      "best_for": [
+        "brand-inheritance",
+        "user-requests-blue",
+        "developer-tool"
+      ],
+      "tradeoff": "只在用户明确偏好/已有品牌色时优先推荐，避免重新产生自动蓝色模板",
+      "reference_ids": [
+        "linear",
+        "shadcn",
+        "primer-colors"
+      ],
+      "source_type": "mauforma_original_interpretation_not_official_colors",
+      "colors": {
+        "main-bg": "#F4F6FA",
+        "main-surface": "#FFFFFF",
+        "main-text": "#242A36",
+        "sidebar-bg": "#1D2637",
+        "sidebar-surface": "#273247",
+        "sidebar-selected": "#354563",
+        "sidebar-hover": "#2A374D",
+        "sidebar-text": "#F2F5FC",
+        "sidebar-text-muted": "#C2CBDE",
+        "sidebar-focus": "#AACBFF",
+        "sidebar-border": "#40506A",
+        "brand-accent": "#4978D8",
+        "chart-primary": "#4779C4"
+      }
+    }
+  ],
+  "required_roles": [
+    "main-bg",
+    "main-surface",
+    "main-text",
+    "sidebar-bg",
+    "sidebar-surface",
+    "sidebar-selected",
+    "sidebar-hover",
+    "sidebar-text",
+    "sidebar-text-muted",
+    "sidebar-focus",
+    "sidebar-border",
+    "brand-accent",
+    "chart-primary"
+  ],
+  "mandatory_pairs": [
+    [
+      "main-text",
+      "main-bg",
+      4.5
+    ],
+    [
+      "main-text",
+      "main-surface",
+      4.5
+    ],
+    [
+      "sidebar-text",
+      "sidebar-bg",
+      4.5
+    ],
+    [
+      "sidebar-text-muted",
+      "sidebar-bg",
+      4.5
+    ],
+    [
+      "sidebar-text",
+      "sidebar-selected",
+      4.5
+    ],
+    [
+      "sidebar-focus",
+      "sidebar-selected",
+      3
+    ]
+  ],
+  "selection_policy": {
+    "recommended_is_approval": false,
+    "explicit_user_color_priority": true,
+    "change_confirmed_brand_only_after_new_consent": true,
+    "full_page_preview_required": true,
+    "agent_only_recommends_options": 2,
+    "agent_max_options": 3,
+    "agent_delegation_only_with_explicit_permission": true,
+    "static_palette_does_not_prove_visual_harmony": true
+  }
+}
