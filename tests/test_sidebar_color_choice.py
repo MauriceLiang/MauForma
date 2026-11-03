@@ -119,6 +119,19 @@ class SidebarChoiceTests(unittest.TestCase):
             self.assertIn(key, html)
         self.assertIn("用户未确认", html)
 
+    def test_gallery_embedded_colors_match_catalog(self):
+        import re
+        html = (ROOT / "assets/sidebar-color-preview.html").read_text("utf-8")
+        match = re.search(r'<script type="application/json" id="palette-data">(.*?)</script>', html, re.DOTALL)
+        self.assertIsNotNone(match, "Preview needs embedded structured palette data")
+        palettes = json.loads(match.group(1))
+        self.assertEqual(palettes, self.catalog["palettes"])
+        self.assertIn("--on-accent", html)
+
+    def test_legacy_blue_fixture_not_a_default_recommendation(self):
+        old = json.loads((ROOT / "assets/sidebar-palette-examples.json").read_text("utf-8"))
+        self.assertIn("CONTRAST FIXTURE ONLY", old["role"])
+
 
 if __name__ == "__main__":
     unittest.main()
