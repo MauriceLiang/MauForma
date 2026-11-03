@@ -1,5 +1,17 @@
 # Changelog
 
+## v6.6 — 2026-11-03 · User-approved sidebar color & whole-page harmony
+
+- 根据用户新版 RepoVantage 侧边栏截图，将“自选深蓝侧栏”改为 **用户确认后的色彩决策**：Agent 只负责研究、推荐、解释与全页协调，不偷偷覆盖用户指定的颜色/HEX。
+- 官方设计来源研究覆盖 Linear、IBM Carbon、GitHub Primer、shadcn/ui、Atlassian；保留来源、适用场景及限制，不把原创示例色值伪称品牌官方色。
+- 新增 `references/sidebar-color-discovery.md`、`references/sidebar-color-reference-cases.md`、`assets/sidebar-color-directions.json`、`assets/sidebar-color-preview.html`；预览可切换整页搭配并输入自定义 HEX。
+- 新增 `assets/sidebar-color-decision.schema.json`、待确认示例、选择对话和 `scripts/validate_sidebar_color_decision.py`，避免 Agent 推荐被当作用户批准，同时检查用户固定颜色不被擅自覆盖。
+- 强化项目 MASTER/Sidebar/Topbar/Main/Chart 的跨区域配色关系，保留状态语义与键盘焦点；静态检查不能证明实际页面美观。
+- 新增相关测试与 CI，原有主题、配色案例、动效配方和组件体系保留。
+- 未修改 RepoVantage 业务代码，也没有替用户擅自选定新的最终颜色。
+
+---
+
 ## v6.5 — 2026-11-03 · Semantic copy and readable typography
 
 - 根据新版 RepoVantage 截图识别无信息增量的英文副标、重复小标题、伪章节编号、开发者术语泄漏，以及大小字号差异不合理、图表和样本信息过小的阅读问题。

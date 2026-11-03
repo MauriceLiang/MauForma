@@ -101,6 +101,12 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 侧边栏配色：Agent 提建议，用户做决定
+
+针对深蓝侧栏与主区域搭配割裂的问题，MauForma 增加 **Color Choice Gate**：先分析当前品牌和整页配色，再参考 [Linear / Carbon / GitHub Primer / shadcn/ui / Atlassian](references/sidebar-color-reference-cases.md) 的设计方法，筛选 2–3 套适合项目的**完整工作台配色**供用户选择。
+
+支持直接指定颜色名或 HEX，用户指定颜色优先；Agent 不得擅自更换。选定后会一起协调 Sidebar、Topbar、Main、Card 与 Chart，检查文本对比、状态色和暗/亮模式。[查看选色对话规范](references/sidebar-color-discovery.md) · [整页配色预览](assets/sidebar-color-preview.html)。
+
 ## 文案克制，排版有层级
 
 新增 [文字必要性检查](references/semantic-copy-hygiene.md) 与 [Typography 角色化设计](references/typography-hierarchy.md)：不再自动添加 `ANALYSIS STUDIO`、`01 / 总览`、抽象标语与不面向用户的工程说明；让页面标题、KPI、图表刻度和数据来源各有适合的字级，保留真正有价值的品牌和导航信息。可查看 [正反对照示例](assets/typography-reading-lab.html)。
@@ -153,6 +159,7 @@ python3 scripts/validate_intelligence.py
 python3 scripts/audit_readability.py --validate-catalog
 python3 scripts/validate_composition_brief.py examples/composition/repo-analysis.json --repository
 python3 scripts/validate_ui_patterns.py
+python3 scripts/validate_sidebar_color_decision.py --repository
 python3 -m unittest discover -s tests -v
 ```
 
