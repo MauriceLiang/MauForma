@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MauForma · Page Density & Content Curation Laboratory</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;color:#28343c;background:#f1f3f3;--ink:#28343c;--muted:#62717c;--line:#d9dfe2;--surface:#fff;--bg:#f8f9f9;--accent:#3f5760}
+*{box-sizing:border-box}body{margin:0}button{font:inherit;cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid #7593a2;outline-offset:2px}
+main{max-width:1200px;margin:auto;padding:38px 24px 80px}.micro{font-size:11px;letter-spacing:.13em;color:#70838b;font-weight:730;text-transform:uppercase}h1{font-size:clamp(26px,3.5vw,40px);letter-spacing:-.035em;line-height:1.23;margin:12px 0}.lead{color:#5a6972;max-width:890px;font-size:14px;line-height:1.75;margin-bottom:25px}
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:17px}.toolbar button{border:1px solid #cbd5da;background:white;color:#33454e;border-radius:7px;padding:10px 15px;font-size:13px}.toolbar button[aria-pressed=true]{background:#2f464f;color:white;border-color:#2f464f}
+.state-switch{margin-left:auto;font-size:13px;display:flex;align-items:center;gap:8px;color:#516570}.state-switch input{width:16px;height:16px}
+.frame{display:grid;grid-template-columns:184px minmax(0,1fr);border:1px solid #d2dbdf;background:#fff;border-radius:11px;min-height:600px;overflow:hidden;box-shadow:0 11px 36px #1d35400a}
+.aside{border-right:1px solid var(--line);background:#fafbfb;padding:22px 14px;display:flex;flex-direction:column;gap:22px}.brand{font-size:15px;font-weight:690;display:flex;align-items:center;gap:8px}.brand span{background:#dce5e7;color:#425a62;width:26px;height:26px;border-radius:6px;display:grid;place-items:center;font-size:12px}.group-label{font-size:11px;color:#8b969d;padding:0 10px}.sidebar-links{display:grid;gap:3px}.sidebar-links div{border-radius:6px;padding:9px 11px;font-size:12px;color:#64747d}.sidebar-links .sel{background:#e5ebed;color:#263943;font-weight:650}
+.view{background:var(--bg);padding:30px 32px;min-height:600px;min-width:0}.h2{font-size:26px;font-weight:700;letter-spacing:-.02em}.sub{font-size:13px;color:var(--muted);line-height:1.65;margin:8px 0 0}.surface{background:white;border:1px solid var(--line);border-radius:11px}.pill{font-size:11px;color:#5e6e74;background:#eff2f2;border-radius:50px;padding:5px 8px;display:inline-block}.btn{border:1px solid #cad5d9;color:#425761;background:white;border-radius:7px;padding:9px 12px;font-size:12px}.btn.primary{background:#314951;border-color:#314951;color:white}.link{font-size:13px;color:#345767;text-decoration:none;border-bottom:1px solid #9bb2bc}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.overview-top{display:flex;justify-content:space-between;align-items:flex-start;gap:15px}
+.overloaded .intro-block{margin-top:23px;display:grid;grid-template-columns:minmax(0,1fr) minmax(245px,1fr);gap:15px;align-items:center;padding:22px}.overloaded h3{font-size:15px;margin:0 0 8px}.overloaded .intro-block p{font-size:12px;line-height:1.6;color:#71818a;margin:5px 0}.overloaded .embedded{background:#f1f4f5;border:1px solid var(--line);border-radius:9px;padding:12px}
+.overloaded .section{padding:19px;margin-top:15px}.overloaded .section p{font-size:11px;color:#778890;margin:4px 0 15px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.mini{border:1px solid var(--line);border-radius:8px;padding:14px 12px;min-height:120px;background:#fff}.mini strong{font-size:12px}.mini p{font-size:11px;line-height:1.5;color:#71808a;margin:7px 0 18px!important}.mini a{font-size:11px;color:#4e6571}.last{margin-top:18px;padding:15px 0;font-size:11px;color:#819097;border-top:1px solid var(--line)}
+.overloaded{display:none}
+.curated{display:none}.curated .task{padding:30px 31px;margin-top:35px;max-width:790px}.curated .eyebrow{color:#738189;font-size:12px}.curated h3{font-size:21px;letter-spacing:-.02em;margin:10px 0 9px}.curated .desc{max-width:520px;font-size:14px;line-height:1.7;color:#60717a;margin:0 0 24px}.curated .context{margin:20px 0 25px;font-size:13px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.curated .context b{font-size:14px}.curated .extra{margin-top:30px;font-size:13px;color:#6f7f87;display:flex;flex-wrap:wrap;align-items:center;gap:10px}.curated .restrained{margin-top:35px;color:#66767e;font-size:12px;line-height:1.7}.curated .whitespace-marker{font-size:11px;color:#9da9ae;margin-top:45px;max-width:790px;border-top:1px dashed #d8dfe3;padding-top:15px}.curated .first-help{display:none}
+.analysis{display:none}.analysis .headline{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}.analysis .filter{display:flex;gap:7px;flex-wrap:wrap}.analysis .metric-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:22px}.metric{padding:16px}.metric span{font-size:12px;color:#60717a;display:block}.metric strong{font-size:23px;display:block;margin:8px 0}.metric small{font-size:12px;color:#73818a}.analysis .pane-layout{margin-top:13px;display:grid;grid-template-columns:1.5fr .9fr;gap:12px}.analysis .pane{padding:19px;min-height:255px}.analysis h3{font-size:15px;margin:0 0 6px}.analysis .pane p{font-size:12px;color:#6a7b84}.chart-empty{margin-top:20px;border:1px dashed #bac7ce;background:#fafcfc;border-radius:6px;height:143px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;text-align:center;font-size:12px;color:#70828c}.chart-empty b{font-size:13px;color:#40535c}.analysis .detailrow{display:flex;gap:8px;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:12px;color:#718189}.analysis .detailrow strong{font-size:12px;color:#485b65}.analysis .detail-note{font-size:12px;color:#677a82;margin-top:16px}.analysis .status{font-size:12px;color:#56717d}
+.stage[data-variant=overloaded] .overloaded,.stage[data-variant=curated] .curated,.stage[data-variant=analysis] .analysis{display:block}
+.explain{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-top:20px}.explain>div{padding:18px;background:white;border:1px solid var(--line);border-radius:9px}.explain h3{font-size:14px;margin:0 0 9px}.explain p{font-size:13px;line-height:1.65;color:#5d6e76;margin:0}.foot{font-size:12px;line-height:1.7;color:#6e8088;margin-top:16px}
+@media(max-width:850px){main{padding:22px 12px 48px}.frame{grid-template-columns:140px minmax(0,1fr)}.aside{padding:15px 9px}.view{padding:22px 17px}.overloaded .intro-block{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.analysis .pane-layout{grid-template-columns:1fr}}
+@media(max-width:560px){.frame{display:block}.aside{padding:9px 12px;display:flex;flex-direction:row;gap:15px;align-items:center;border-right:0;border-bottom:1px solid var(--line)}.sidebar-links,.group-label{display:none}.view{padding:20px 14px;min-height:500px}.curated .task{padding:23px 19px}.cards{grid-template-columns:1fr}.analysis .metric-row{grid-template-columns:repeat(2,minmax(0,1fr))}.toolbar .state-switch{margin-left:0}.explain{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head>
+<body><main><div class="micro">MauForma / Content & Density Lab</div><h1>高级留白，先从删掉重复信息开始。</h1>
+<p class="lead">同一个 RepoVantage 网站，分别对比“把所有介绍铺满总览”“按当前任务筛选的总览”“允许更高密度的数据分析详情”。留白是内容之间的关系，不是用固定高度制造空白。本页所有数据标签均是说明示例，未连接业务 API。</p>
+<div class="toolbar" role="group" aria-label="切换页面内容密度">
+<button type="button" data-variant="overloaded" aria-pressed="false">Before / 全部内容堆叠</button>
+<button type="button" data-variant="curated" aria-pressed="true">After / 精选总览</button>
+<button type="button" data-variant="analysis" aria-pressed="false">Analysis / 高效数据页</button>
+<label class="state-switch"><input type="checkbox" id="first-visit">模拟首次使用</label>
+</div>
+<div class="stage" id="workbench" data-variant="curated"><div class="frame"><aside class="aside"><div class="brand"><span aria-hidden="true">R</span>RepoVantage</div><div><div class="group-label">工作区</div><nav class="sidebar-links" aria-label="示例主导航"><div class="sel">总览</div><div>仓库</div><div>项目比较</div><div>研究分析</div></nav></div></aside>
+<section class="view" id="main-region">
+<div class="overloaded">
+  <div class="overview-top"><div><div class="h2">总览</div><p class="sub">选择仓库、启动采集，再按说明查看开发活动、协作和版本发布。</p></div><span class="pill">演示数据</span></div>
+  <section class="intro-block surface"><div><h3>从一个仓库开始</h3><p>RepoVantage 将公开仓库的开发、协作与版本信息整理为可查看的分析结果。</p></div><div class="embedded"><span class="pill">当前示例仓库</span><p>demo-labs / steady-core</p><div class="row"><button class="btn">选择仓库</button><button class="btn">开始采集</button><button class="btn primary">查看示例分析</button></div></div></section>
+  <section class="section surface"><h3>使用说明</h3><p>按照顺序完成以下步骤，也可以直接打开示例仓库分析页面。</p><div class="cards"><div class="mini"><strong>① 选择公开仓库</strong><p>前往仓库页添加 GitHub 仓库，再查看相关信息。</p><a href="#demo">前往仓库</a></div><div class="mini"><strong>② 采集并查看进度</strong><p>启动采集后在任务中心查看状态。</p><a href="#demo">查看任务</a></div><div class="mini"><strong>③ 阅读分析结果</strong><p>在仓库分析页阅读活动和发布趋势。</p><a href="#demo">打开分析</a></div></div></section>
+  <section class="section surface"><h3>分析内容</h3><p>采集结果按照主题组织。</p><div class="cards"><div class="mini"><strong>开发活动</strong><p>Commit 与活跃账号</p></div><div class="mini"><strong>Issue 与 PR</strong><p>关闭和合并周期</p></div><div class="mini"><strong>版本发布</strong><p>Release 时间</p></div></div></section>
+  <div class="last">Mock 数据说明：仅演示 · RepoVantage / 交互原型 · 返回总览</div>
+</div>
+<div class="curated">
+  <div class="overview-top"><div><div class="h2">总览</div><p class="sub" id="headline-sub">继续上次的仓库分析。</p></div><span class="pill">演示数据</span></div>
+  <section class="task surface"><div class="eyebrow" id="task-eyebrow">当前仓库</div><h3 id="task-headline">demo-labs / steady-core</h3>
+    <p class="desc" id="task-desc">这是一条演示仓库记录，可继续进入详情。真实采集状态以项目数据为准。</p>
+    <div class="row"><button class="btn primary" id="primary-action" type="button">查看示例分析</button><button class="btn" type="button">选择仓库</button></div>
+    <div class="context"><span class="pill">Mock / 未连接真实 GitHub</span></div>
+  </section>
+  <div class="extra"><span id="continuation-label">需要帮助？</span><a class="link" href="#help" id="help-link">查看使用说明</a><span class="first-help" id="first-help-details">先选择仓库，之后可启动采集；详细步骤在帮助页查看。</span></div>
+  <div class="whitespace-marker">留白用于分隔不同任务；没有再填一整排重复的分析功能入口。</div>
+</div>
+<div class="analysis">
+  <div class="headline"><div><div class="h2">开发活动</div><p class="sub">demo-labs / steady-core · 演示结构</p></div><div class="filter"><button class="btn">30 天</button><button class="btn primary">90 天</button><button class="btn">180 天</button></div></div>
+  <div class="metric-row"><div class="metric surface"><span>提交数</span><strong>—</strong><small>等待真实数据</small></div><div class="metric surface"><span>活跃账号</span><strong>—</strong><small>等待真实数据</small></div><div class="metric surface"><span>Issue 关闭 P50</span><strong>—</strong><small>暂无样本</small></div></div>
+  <div class="pane-layout"><section class="pane surface"><h3>提交与参与趋势</h3><p>日期、提交与参与者对应关系。</p><div class="chart-empty"><b>尚无可验证的趋势数据</b>连接数据源后显示图表和时间范围。</div></section><section class="pane surface"><h3>摘要与数据口径</h3><div class="detailrow"><strong>采集窗口</strong><span>尚未连接</span></div><div class="detailrow"><strong>有效样本</strong><span>暂无</span></div><div class="detailrow"><strong>状态</strong><span>演示布局</span></div><div class="detail-note">这里的信息较多，但每一块服务同一个分析任务，不需要三步上手教程占据主区域。</div></section></div>
+  <p class="status">重要数据来源和采样限制仍要显示；高密度不能靠极小字体或删除提示实现。</p>
+</div></section></div></div>
+<div class="explain"><div><h3 id="rationale-label">精选总览 / Airy</h3><p id="rationale">当前对象与下一步操作成为唯一主视觉；完整教程与重复的功能介绍下沉，只保留一个帮助入口。</p></div><div><h3>评审边界</h3><p>页面示例使用中性色，不代表用户已经选定品牌色。静态演示未接入 RepoVantage 仓库或实际 API；真实内容筛选必须以使用场景、数据状态和用户反馈复核。</p></div></div>
+<p class="foot">参考：Carbon spacing、NN/g Progressive Disclosure、GitLab Pajamas。密度方案仅供比较，不能代替真实业务的桌面/手机与键盘验收。</p>
+</main>
+<script>
+const variants={
+overloaded:['信息堆叠 / Before','所有内容一起出现：三个平级操作、三张步骤卡和三张功能卡同时争抢视觉注意力。'],
+curated:['精选总览 / Airy','先确定当前仓库和下一步动作；已有导航功能不再重复铺卡片，教程改为首次使用或求助时出现。'],
+analysis:['数据分析 / Productive','详情页允许更多相关数据、图表与筛选，但仍保留清楚的图例、采样来源、空状态和布局分组。']
+};
+const wb=document.querySelector('#workbench');
+document.querySelectorAll('[data-variant]').forEach(button=>button.addEventListener('click',()=>{
+ const v=button.dataset.variant;wb.dataset.variant=v;
+ document.querySelectorAll('[data-variant]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+ document.querySelector('#rationale-label').textContent=variants[v][0];
+ document.querySelector('#rationale').textContent=variants[v][1];
+}));
+document.querySelector('#first-visit').addEventListener('change',e=>{
+ const first=e.target.checked;
+ document.querySelector('#headline-sub').textContent=first?'先完成第一步：选择仓库。':'继续上次的仓库分析。';
+ document.querySelector('#task-eyebrow').textContent=first?'开始使用':'当前仓库';
+ document.querySelector('#task-headline').textContent=first?'选择一个仓库':'demo-labs / steady-core';
+ document.querySelector('#task-desc').textContent=first?'选择公开仓库后，才能开始采集和查看分析。详细说明可随时打开帮助。':'这是一条演示仓库记录，可继续进入详情。真实采集状态以项目数据为准。';
+ document.querySelector('#primary-action').textContent=first?'选择仓库':'查看示例分析';
+ document.querySelector('#first-help-details').style.display=first?'inline':'none';
+ document.querySelector('#continuation-label').textContent=first?'第一次使用？':'需要帮助？';
+});
+for(const b of document.querySelectorAll('button.btn'))b.addEventListener('click',()=>{document.querySelector('#rationale').textContent='这是纯视觉结构实验室，按钮没有连接仓库、数据源或实际导航。';});
+</script>
+</body></html>
