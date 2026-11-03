@@ -1,0 +1,103 @@
+{
+  "version": "1.0",
+  "description": "MauForma page-level density starting points. Not automatic aesthetic scores or universal pixel rules. Content-first, user preference overrides defaults.",
+  "sources": [
+    {
+      "name": "Carbon spacing",
+      "url": "https://www.carbondesignsystem.com/building-blocks/foundations/spacing/overview",
+      "applies": "Use space to encode grouping/hierarchy rather than blank percentage quotas"
+    },
+    {
+      "name": "Carbon productive vs expressive",
+      "url": "https://www.carbondesignsystem.com/building-blocks/foundations/typography/style-strategies",
+      "applies": "Data tasks can be denser; expressive or editorial contexts may be more spacious"
+    },
+    {
+      "name": "Nielsen Norman progressive disclosure",
+      "url": "https://www.nngroup.com/articles/progressive-disclosure/",
+      "applies": "Keep frequent task controls visible; defer secondary information with discoverable access"
+    },
+    {
+      "name": "GitLab Pajamas progressive disclosure",
+      "url": "https://design.gitlab.com/patterns/progressive-disclosure/",
+      "applies": "Reduce visible complexity without losing function"
+    },
+    {
+      "name": "Atlassian compact density",
+      "url": "https://community.atlassian.com/forums/discussion/3189883/new-feature-compact-mode-and-max-width-to-support-information-dense-documentation",
+      "applies": "Page-level density can be adjustable for detail work"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "airy",
+      "label": "舒展 / Focused",
+      "fit": [
+        "onboarding",
+        "overview",
+        "marketing",
+        "portfolio",
+        "reading"
+      ],
+      "spacing_strategy": "Generous between distinct task sections; cohesive inside functional groups",
+      "surface_strategy": "Prefer unboxed sections; use a surface only for a genuinely separate object/action or status",
+      "content_strategy": "One clear primary task; secondary details via discernible links or contextual help",
+      "typography_strategy": "Readable role sizes, do not shrink essential information",
+      "exceptions": "Does not mean giant min-height or hiding required warnings"
+    },
+    {
+      "id": "balanced",
+      "label": "均衡 / Everyday",
+      "fit": [
+        "overview",
+        "reading",
+        "general-workspace",
+        "catalog"
+      ],
+      "spacing_strategy": "Consistent group spacing with moderate separation, responsive to content length",
+      "surface_strategy": "Cards for meaningful groups, not every sentence",
+      "content_strategy": "Expose key context and one primary flow, details in next-level pages",
+      "typography_strategy": "Keep hierarchy legible at desktop and mobile",
+      "exceptions": "Can include multiple major groups when task requires them"
+    },
+    {
+      "id": "productive",
+      "label": "高效 / Data",
+      "fit": [
+        "analytics",
+        "management",
+        "reports",
+        "operations"
+      ],
+      "spacing_strategy": "Tighter within data groups and filters; still separate independent tasks",
+      "surface_strategy": "Charts/tables may need containers, avoid nested wrappers",
+      "content_strategy": "Show connected metrics, filters, main evidence and necessary status",
+      "typography_strategy": "Protect chart labels, legends, sample sizes and interactive controls",
+      "exceptions": "Density cannot hide failure, provenance or critical insight"
+    },
+    {
+      "id": "compact",
+      "label": "紧凑 / Expert",
+      "fit": [
+        "expert-analysis",
+        "spreadsheet",
+        "large-tables",
+        "ide"
+      ],
+      "spacing_strategy": "Reduce repeated labels and affordances while preserving click/keyboard accessibility",
+      "surface_strategy": "Structured rows, panes, tables and grids rather than many independent cards",
+      "content_strategy": "Make many task-relevant details scannable; allow switching back to easier mode when needed",
+      "typography_strategy": "No blanket 10px labels; adapt structure before reducing text size",
+      "exceptions": "Use when justified by expert workflow or user choice, not on every page"
+    }
+  ],
+  "policies": {
+    "page_level_not_global": true,
+    "critical_information_never_deleted_for_aesthetics": true,
+    "progressive_disclosure_must_be_discoverable": true,
+    "source_of_truth_user_confirmed_or_inherited": true,
+    "same_product_may_mix_profiles": true,
+    "no_numeric_whitespace_target": true,
+    "content_removal_before_padding_tuning": true
+  }
+}
