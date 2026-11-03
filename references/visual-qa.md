@@ -94,3 +94,16 @@
 - [ ] 浏览器验证的截图包含**完整页面及 sidebar 与 main 的接缝**，不是仅截图侧栏；若未运行浏览器则标记 NOT RUN。
 
 测试命令：`scripts/validate_sidebar_color_decision.py --repository` 只做静态色值和选择记录检验，不对配色美感自动评分。配色方向详见 `references/sidebar-color-discovery.md`。
+
+## v6.7 · 导航架构与响应式可用性（Gate A / D）
+
+- [ ] 一级导航数目/层级/切换频率及全局、当前项目、页面 Tabs、上下文操作已经分开说明？为何选 Top/Side/Rail/Bottom/组合，而不是“后台自动 Sidebar”？
+- [ ] 顶部+侧边时是否**真的不同作用域**；同一视口是否重复同一套一级入口？底部操作按钮是否错误冒充导航？
+- [ ] 桌面侧栏→手机底部时只展示合适数量的高频目的地，其他可从 More/drawer 访问？路由 IDs 和顺序在断点前后稳定？
+- [ ] 小屏、横屏、窄窗口、窗口 resize、浏览器返回、深链接是否保留当前选择、过滤和任务上下文？
+- [ ] fixed/sticky 底栏、键盘、safe area、浮层、抽屉遮罩是否遮挡焦点或主内容？
+- [ ] 多个 `nav` 是否用合理而不同的 accessible names，`aria-current` 用于真实当前页，`aria-selected` 只用于 Tabs？是否支持键盘与 Skip to main？
+- [ ] 用户明确选择的导航结构和颜色是否保留，Agent 推荐没有被当作用户授权？
+- [ ] 真实浏览器桌面/手机截图、菜单开合/导航跳转是否执行？未运行时标 NOT RUN，`assets/navigation-layout-lab.html` 只算概念示例。
+
+规则 `references/navigation-architecture.md`；静态检查 `python3 scripts/validate_navigation_architecture.py --repository`。

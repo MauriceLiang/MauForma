@@ -3,13 +3,26 @@ name: mauforma
 description: MauForma — Web-first, framework-aware, component-first frontend design and implementation Skill for Vue/Nuxt, React/Next, Svelte/SvelteKit, Angular, Solid, Astro and vanilla HTML/CSS/JS. Establish design tokens and reusable components before pages; create coherent visual systems, accessible responsive UI, purposeful motion and detailed good/bad examples. Priority depth: admin/SaaS interfaces, applicable to all websites and web apps. Includes Anime.js v4 catalog, React Bits / Vue Bits / Inspira UI creative components, Ant Design / Ant Design Vue and other enterprise libraries, Motion/GSAP/CSS engine choices, and enforceable agent prompts.
 ---
 
-# MauForma · Web-first 前端视觉与工程 Skill v6.6
+# MauForma · Web-first 前端视觉与工程 Skill v6.7
 
 **品牌**：MauForma（Maurice + Forma）。原 Soft Precision UI v5.0 的完整能力保留，现已扩充为内容驱动艺术指导、设计知识库、项目级设计规范、组件工程与 QA 的综合 Web Skill。
 
 **定位**：网页设计与前端实现（Web-first）。支持所有网页类型，**当前专项深化后台管理/SaaS**，但绝不把其他网站套成后台模板。框架：Vue 3 / Nuxt、React / Next.js、Svelte / SvelteKit、Angular、Solid、Astro、HTML/CSS/JS；若是 Electron/Tauri 的 **Web 前端层**也适用。**不以 SwiftUI、AppKit、原生 Android 等非 Web UI 为直接适用对象**。
 
 **主原则**：审美统一 ≠ 每页一个模板。统一设计语言 + 共用组件 + 符合具体业务的信息架构 + 恰当动效 + 可访问、可测试的功能。可以自主**提案**主题色，但新配色进入正式实施前须尊重用户明确选择与决策来源，不自行固定用户未认可的蓝紫粉或其他颜色。
+
+## v6.7 · Navigation Architecture Gate（位置由任务、层级与屏幕决定）
+
+**不能把“现在做的是 SaaS / 管理台”直接等同于使用左侧导航**；也不能在手机上原封不动塞入一整条 7–10 项的底部导航。导航属于信息架构和交互决策，应当在样式与导航组件实现之前决定。
+
+1. **盘点信息架构**：数清真正的一级目的地及切换频率、栏目层级、页面 Tabs、上下文对象树、全局动作/搜索；区分“导航去哪”和“对当前内容执行什么操作”。看桌面/手机/可缩放窗口的真实使用习惯、内容需要的横向空间与用户已有明确要求。
+2. **基于官方设计方法推荐**：读取 `references/navigation-architecture.md`、`assets/navigation-pattern-catalog.json`，从 Top only、Sidebar、Top+Side、Rail+Split、Mobile Bottom、Desktop Side→Mobile Bottom、Top+Bottom、Side+Bottom Actions、Focus/Minimal 等模式中挑选适合项目的 **2–3 个有实际结构差异**的方案，解释适用理由、局限与移动端变化。不按“网页一律顶部、后台一律侧边”的伪公式选择。
+3. **用户选定/继承**：已有明确导航要求直接遵从；未指定时请用户选或明确委托，Agent 的首推仍为 `pending/unresolved`，不能悄悄固化为用户已确认。已有用户确认的成熟 IA 可继承，局部 Bug 不重复设计访谈。决策模板：`assets/navigation-decision.schema.json`，待确认示例：`examples/navigation-decision.pending.json`。
+4. **解释“侧边+底部”含义**：桌面侧栏 → 手机底部属于**同一导航的自适应位置变更**；桌面侧栏 + 底部批处理/播放操作条属于**导航+上下文动作**，不能把底栏的操作按钮当成另一套全局导航。若 Top+Side 同屏，必须区分顶部全局与左侧局部职责，不得重复整套一级入口。
+5. **响应式路线完整**：底部主导航通常适合 3–5 个同级高频入口；更多目的地应有可发现的 drawer/More 路径，不能删丢。跨断点稳定 route IDs/selected、滚动与任务状态，检验窄窗、旋转、返回、焦点、sticky/fixed 遮挡与安全区。
+6. **真实验收**：参考原创交互式 `assets/navigation-layout-lab.html` 对比桌面/手机架构；用 `python3 scripts/validate_navigation_architecture.py --repository` 做静态校验，**它不是导航可用性或视觉审美通过证明**。真实浏览器仍需验证键盘、路由、深链接、窄屏与实际交互。
+
+导航架构决策和 **v6.6 配色选择是分开的**：选择 Sidebar 不代表允许 Agent 重选深蓝主题。只能使用用户已确定或明确委托的颜色，并保持整个页面协调。原生 Android/Apple/Windows 的官方规范提供设计参考，不能逐条当成 Web 强制尺寸标准。
 
 ## v6.6 · 用户主导配色：Sidebar 必须与整个页面一起设计
 
@@ -22,7 +35,8 @@ description: MauForma — Web-first, framework-aware, component-first frontend d
 3. **等待真实决定**：Agent 的首推只是 `recommended`，不是 `confirmed`。用户选择、自定义颜色或**明确授权** Agent 决定后，才能将配色写成 `approved`；分别标记 `confirmed` / `delegated` / `inherited`。若用户只委托布局设计，不等于授权更改品牌色。
 4. **固定用户指定色**：若指定 `#RRGGBB`，对应角色必须原样保留；若和文字/状态对比冲突，应调整周围的文字、hover/selected、主区表面与边界，并向用户解释，不能悄悄改成 AI 偏好的蓝、绿、灰或另外一串 HEX。
 5. **整页协调而非局部换肤**：把 **Sidebar ↔ Topbar ↔ Main ↔ Card ↔ Chart** 作为一个体系设计，验证色温、色彩权重、区域边界、图表序列与用户操作状态。主题 Token 仍以项目 MASTER 为唯一来源，侧栏角色可独立但不能独立成另一个品牌系统。
-6. **证据与验收**：决策记录形状见 `assets/sidebar-color-decision.schema.json`，未确认示例为 `examples/sidebar-color-decision.pending.json`；用 `python3 scripts/validate_sidebar_color_decision.py --repository` 检查色板/来源/部分对比度与用户 HEX 不被覆盖。真实浏览器需要整页、不同状态与窄屏截图；脚本**不能客观判定美感**。
+6. **证据与验收**：决策记录形状见 `assets/sidebar-color-decision.schema.json`，未确认示例为 `examples/sidebar-color-decision.pending.json`；用 `python3 scripts/validate_sidebar_color_decision.py --repository
+python3 scripts/validate_navigation_architecture.py --repository` 检查色板/来源/部分对比度与用户 HEX 不被覆盖。真实浏览器需要整页、不同状态与窄屏截图；脚本**不能客观判定美感**。
 
 注意：用户确认的蓝、紫、粉、黑、白乃至自定义颜色都可以使用；禁止的是**Agent 在未征求意见时私自套常见模板**，不是任何一种具体颜色。真实品牌副色、警告、成功和数据序列必须保留其独立语义。
 
@@ -55,8 +69,7 @@ description: MauForma — Web-first, framework-aware, component-first frontend d
 
 - 侧边栏任务：必须加载 `references/sidebar-navigation-design.md` 和 `assets/sidebar-palette-examples.json`；先核对现有组件与色阶，分清 current route、recent object、hover、focus-visible 和业务状态。
 - 高频工作台设计：加载 `references/workspace-component-refinement.md`，覆盖 Sidebar、Topbar、Card、Data Table、Tabs、Search 和 Split Pane 七类；默认通过**一种主要选中信号 + 清楚的语义与字级**表达层次，不堆积线条、强阴影、额外卡片与假装饰。
-- 视觉对照：`assets/sidebar-refinement-gallery.html` 是独立可交互正反概念示例（浅/深主题、状态选择、Tab 与分栏键盘交互），不是用户实际项目修复证据。先使用 `python3 scripts/validate_ui_patterns.py
-python3 scripts/validate_sidebar_color_decision.py --repository` 检查色板/引用/示例状态，再在真实业务浏览器截图中验收。
+- 视觉对照：`assets/sidebar-refinement-gallery.html` 是独立可交互正反概念示例（浅/深主题、状态选择、Tab 与分栏键盘交互），不是用户实际项目修复证据。先使用 分别运行 `python3 scripts/validate_ui_patterns.py` 和 `python3 scripts/validate_sidebar_color_decision.py --repository` 检查色板/引用/示例状态，再在真实业务浏览器截图中验收。
 - **审美例外**：有品牌叙事、IDE 树形结构、章节进度或用户明确要求时，轨道线、强视觉配色和创造性构图可以合理存在；不把“AI 味”当成可用正则量化的通用结论。任何例外都应保留独立业务含义、对比度与键盘焦点。
 
 ## v6.2 · 动画与可视化技术按场景选型
@@ -94,7 +107,7 @@ MauForma 不是固定的“极简皮肤”，也不是默认全站都用大图/�
 5. **项目文件落地**：`python3 scripts/init_design_system.py --project-root ./ --name "My Product" --style premium-showcase --page home --mode Persuade` 默认仅预览；经用户确认后加 `--apply` 才写文件，默认禁止覆盖现有文件。选择来源必须正确标记，详见 `references/project-design-hierarchy.md`。
 6. **Design DNA**：用户给出参考网站/截图时，记录观察 WHAT、解释 WHY（明确区分推断）、证据、放弃的替代布局、可迁移设计原则。详见 `references/design-dna-protocol.md`。
 7. **工程审查与浏览器证据**：Vue/React 使用各自组件契约和性能规则；`python3 scripts/audit_frontend.py <web-src> --format json` 为**静态启发式风险检测**，不能替代真实视觉验收。若项目已有 Playwright，可运行 `node scripts/browser_qa.mjs --url http://localhost:3000` 收集截图/页面错误/溢出线索；未运行必须标记 NOT RUN。详见 `references/browser-qa-protocol.md`。
-8. **只加载需要的知识**：局部修复直接读相关组件与审查规则；完整新网站依次执行内容发现 → 风格方案推荐 → 用户选择 → Master/页面设计规范 → Tokens → 共享组件 → 业务页面 → Browser QA。组件先行 Gate B 仍是强制门槛，不能被创意动效跳过。
+8. **只加载需要的知识**：局部修复直接读相关组件与审查规则；完整新网站依次执行内容发现 → **导航 IA 与响应式模式比较/确认** → 风格方案推荐 → 用户选择 → Master/页面设计规范 → Tokens → 共享组件 → 业务页面 → Browser QA。组件先行 Gate B 仍是强制门槛，不能被创意动效跳过。
 
 ## 必经设计确认阶段（新增 v5.2）
 
@@ -125,6 +138,7 @@ MauForma 不是固定的“极简皮肤”，也不是默认全站都用大图/�
 | 新网站 / 大改版构图、空间布局和视觉焦点 | `references/composition-first-design.md`、`references/palette-art-direction.md`、`assets/composition-brief.schema.json`、`assets/composition-layout-lab.html` |
 | 用户反馈页面模板化、配色糟糕或截图缺乏美感 | `references/visual-critique-loop.md`、`references/art-direction-critique.md`、`references/visual-qa.md` |
 | 用户不确定视觉风格 / 需要设计访谈 | `references/design-discovery-interview.md`、`examples/design-discovery-dialogues.md` |
+| 导航位置选型：顶部、侧边、底部、混合导航、手机自适应 | `references/navigation-architecture.md`、`assets/navigation-pattern-catalog.json`、`assets/navigation-layout-lab.html`、`assets/navigation-decision.schema.json` |
 | 用户希望选择侧栏颜色 / 侧栏与主内容配色不搭 | `references/sidebar-color-discovery.md`、`references/sidebar-color-reference-cases.md`、`assets/sidebar-color-directions.json`、`assets/sidebar-color-preview.html` |
 | 侧边栏 / 导航选中态 / 配色协调 | `references/sidebar-navigation-design.md`、`assets/sidebar-palette-examples.json`、`assets/sidebar-refinement-gallery.html` |
 | 顶部导航 / 卡片 / 表格 / Tabs / Search / 分栏 | `references/workspace-component-refinement.md`、`references/visual-qa.md` |
@@ -152,13 +166,13 @@ MauForma 不是固定的“极简皮肤”，也不是默认全站都用大图/�
 ## 不可跳过的前端执行顺序
 
 1. **Gate 0：侦察、Design Discovery 和模式识别**。读取既有设计决策（Master/页面例外）；读取 `package.json`、锁文件、现有路由、框架、UI 库、样式系统、构建命令、页面结构、测试约定，记录技术选择依据；已有项目不能随意换框架。
-2. **Gate A：先构图，后艺术指导与配色**。先执行 `references/composition-first-design.md` 的 A0 内容证据 → A1 无装饰构图 → A2 真正不同的区域布局备选 → A3 数据状态 → A4 配色理由；用户自选/授权决定后再进入 Design Tokens。参考 `examples/composition/repo-analysis.json`，可用 `scripts/validate_composition_brief.py` 检查方案是否只是换色。保存用户确认的方向及推荐理由；运行 Art Direction Critique，不把未确认的建议记为用户确认。如果用户不确定风格，先按“用途/内容发现 → Agent 推荐少量具体方案 → 用户选择 → 细化属性”的流程确认设计方向；针对业务类型给出信息架构、视觉密度、色彩角色、Typography、Spacing、Radius、Elevation、Motion Tokens（浅/深色）。在整个项目只有一个真实 Tokens 来源，非每页硬编码颜色。**对侧边栏先分析中性色阶与选中/悬停/焦点的关系，不能把多套蓝色和装饰性状态点随意拼接。**
-3. **Gate B：组件优先**。如果涉及侧栏/全站颜色变更，先通过 v6.6 Color Choice Gate：已有明确颜色直接继承或按指定 HEX 处理；未知时先展示 2–3 套含主内容的对照，取得用户选择或明确委托后再覆盖全局 Tokens。开发共享 PageHeader/Chart/Table 之前需完成 v6.5 文案与字级检查：不自动注入 kicker、抽象口号、数字章节；重要图表刻度、n 值、单位和来源不能做成不可读的小字。列出复用/改造/新增组件清单，先建立或修正 `UiButton/Field/Dialog/PageHeader/Navigation/Table/Feedback` 等共享组件及各状态，制作组件展示页。工作台需要进一步区分 Sidebar / RecentItem / Tabs / Table / Search / SplitPane 的**状态与行为契约**，不能全部借用同一种 Active 卡片。**Gate B 未通过，不允许批量铺业务页**。但修复单个故障时不必强制重构全站。
+2. **Gate A：先导航架构/构图，后艺术指导与配色**。新站/重大改版先评估全局与局部目的地数量、切换频率和手机/桌面层级；参考 `references/navigation-architecture.md` 的 Navigation Architecture Gate 选择 Top/Side/Bottom/组合与响应式方式，记录用户真实决策。先执行 `references/composition-first-design.md` 的 A0 内容证据 → A1 无装饰构图 → A2 真正不同的区域布局备选 → A3 数据状态 → A4 配色理由；用户自选/授权决定后再进入 Design Tokens。参考 `examples/composition/repo-analysis.json`，可用 `scripts/validate_composition_brief.py` 检查方案是否只是换色。保存用户确认的方向及推荐理由；运行 Art Direction Critique，不把未确认的建议记为用户确认。如果用户不确定风格，先按“用途/内容发现 → Agent 推荐少量具体方案 → 用户选择 → 细化属性”的流程确认设计方向；针对业务类型给出信息架构、视觉密度、色彩角色、Typography、Spacing、Radius、Elevation、Motion Tokens（浅/深色）。在整个项目只有一个真实 Tokens 来源，非每页硬编码颜色。**对侧边栏先分析中性色阶与选中/悬停/焦点的关系，不能把多套蓝色和装饰性状态点随意拼接。**
+3. **Gate B：组件优先**。实现导航组件前必须根据 v6.7 选定架构明确全局/局部/页面内 Tab/底部操作职责，避免把顶部+侧边+底部做成三套相同主菜单；检查自适应路由保留。如果涉及侧栏/全站颜色变更，先通过 v6.6 Color Choice Gate：已有明确颜色直接继承或按指定 HEX 处理；未知时先展示 2–3 套含主内容的对照，取得用户选择或明确委托后再覆盖全局 Tokens。开发共享 PageHeader/Chart/Table 之前需完成 v6.5 文案与字级检查：不自动注入 kicker、抽象口号、数字章节；重要图表刻度、n 值、单位和来源不能做成不可读的小字。列出复用/改造/新增组件清单，先建立或修正 `UiButton/Field/Dialog/PageHeader/Navigation/Table/Feedback` 等共享组件及各状态，制作组件展示页。工作台需要进一步区分 Sidebar / RecentItem / Tabs / Table / Search / SplitPane 的**状态与行为契约**，不能全部借用同一种 Active 卡片。**Gate B 未通过，不允许批量铺业务页**。但修复单个故障时不必强制重构全站。
 4. **Gate C：业务与动效**。按真实业务组合组件，先保证真实状态、API、权限与数据流程。先确定场景：
    - **官网/品牌/产品介绍/作品集**：允许按需选择 React Bits、Vue Bits、Inspira UI、Magic UI、Aceternity UI 的**单个**创意组件，不能取代原有功能组件；先检查原生框架、许可证、WebGL/GSAP 依赖、动效减弱和移动端回退。
    - **管理后台/工作台/企业表单**：优先复用 Ant Design / Ant Design Vue / Element Plus / MUI / Naive UI / Arco / PrimeVue 等**一套**主组件库，按共享 Ui 契约集中主题，默认轻量 CSS/框架微交互，不将 WebGL 背景批量引入业务工作区。
    - 所有动效优先 CSS/框架原生能力；确有需要才选择 Anime.js/Motion/GSAP。避免同一效果叠用多个引擎。
-5. **Gate D：静态风险审查 + 浏览器证据 + 视觉验收**。色彩变更必须查看侧栏与主内容的整页截图，包含 Topbar、Card、Chart 和 hover/selected/focus；检查用户固定 HEX 是否原样保留。必须检查“小标题删除测试”、标题与 KPI/图例的阅读优先级、暗色文字对比与 200% 字体放大；字级不应简单全部放大或统一缩小。先进行去装饰/灰阶信息结构测试；若页面最大面积与主任务不一致，应回到 Gate A 改布局，而不是调渐变颜色。优先在现有测试环境完成构建和组件/流程测试，静态扫描只是提示；检查横向溢出、键盘焦点、屏幕阅读器语义、对比度、浅深主题、长文字、响应式、触摸、错误/加载/空状态、减少动态效果、性能、真实流程回归。**暗色导航需用真实截图检查重复强调色、左侧竖条是否有独立语义、最近打开与主导航是否混淆；本规则不机械禁止层级线。**把“未实际运行”如实标明。
+5. **Gate D：静态风险审查 + 浏览器证据 + 视觉验收**。导航结构变更还必须验证真实桌面/手机/窄窗口和断点前后相同的目的地 ID、主导航可达性、顶部/侧边/底部是否互相重复、返回与上下文状态、键盘焦点、fixed bottom 遮挡。色彩变更必须查看侧栏与主内容的整页截图，包含 Topbar、Card、Chart 和 hover/selected/focus；检查用户固定 HEX 是否原样保留。必须检查“小标题删除测试”、标题与 KPI/图例的阅读优先级、暗色文字对比与 200% 字体放大；字级不应简单全部放大或统一缩小。先进行去装饰/灰阶信息结构测试；若页面最大面积与主任务不一致，应回到 Gate A 改布局，而不是调渐变颜色。优先在现有测试环境完成构建和组件/流程测试，静态扫描只是提示；检查横向溢出、键盘焦点、屏幕阅读器语义、对比度、浅深主题、长文字、响应式、触摸、错误/加载/空状态、减少动态效果、性能、真实流程回归。**暗色导航需用真实截图检查重复强调色、左侧竖条是否有独立语义、最近打开与主导航是否混淆；本规则不机械禁止层级线。**把“未实际运行”如实标明。
 
 ## 框架隔离强制规则
 

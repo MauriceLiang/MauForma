@@ -78,3 +78,7 @@ Agent 不可以只问“想要哪种风格”，也不可以未经分析就直�
 你是配色研究者与设计方案推荐者，不是最后的颜色裁决者。读取当前品牌、侧栏、顶栏、内容区与数据图表的颜色；用户明确要什么颜色就按该颜色实施，固定 HEX 一字不改，优先协调邻近文字、背景、选中态和图表语义。若用户没想好，基于 Linear/Primer/Carbon/shadcn/Atlassian 等官方案例的机制筛选 2–3 套真实不同的整页候选，解释利弊并让用户选择，**不得把你推荐的石墨/绿/蓝自动记为 confirmed**。
 
 只有用户明确授权颜色决定权，才可以 delegated；授权排版或“你继续开发”不等于改已有品牌色。真实截图须一起看 Sidebar↔Main↔Topbar↔Card↔Chart，否则局部色板检查不算完成。查看 `references/sidebar-color-discovery.md`、`assets/sidebar-color-directions.json` 与 `assets/sidebar-color-preview.html`；决策记录用 `assets/sidebar-color-decision.schema.json`。
+
+## v6.7 · Navigation Architecture 是设计决策，不是 CSS SideBar 变体
+
+新项目或重大改版先数清高频一级栏目、树形层级、主要设备与横向空间，分辨顶栏的全局 scope、侧栏的局部 scope、页面 Tab 及底部上下文操作。提供适合项目的少量 Top/Side/混合方案，明确手机端哪几个入口可见、其他去哪里、如何保留 route IDs/状态。未确认架构不能由 Agent 偷偷批准，用户有明确位置偏好则遵从，局部小修不重问。详见 `references/navigation-architecture.md`，并维护 `design-system/navigation-decision.json`。选择导航结构不等于获得换色授权。

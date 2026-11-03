@@ -1,5 +1,17 @@
 # Changelog
 
+## v6.7 — 2026-11-03 · Navigation architecture and responsive shell decisions
+
+- 将“使用侧边还是顶部/底部导航”提升为独立的 Navigation Architecture Gate：先分析真实一级目的地、任务切换频率、层级、屏幕宽度及全局/局部导航分工，后选择组件与颜色。
+- 官方参考 Carbon UI Shell、Android/Material 响应式导航、Apple HIG、Microsoft NavigationView、Atlassian 导航系统与 W3C WAI；明确它们是可迁移的决策原则，不是 Web 必须照抄的模板。
+- 新增 `references/navigation-architecture.md`、`assets/navigation-pattern-catalog.json`（9 种模式）、`assets/navigation-decision.schema.json`、待确认 RepoVantage 示例、`assets/navigation-layout-lab.html` 交互式桌面/手机预览。
+- 解释“Side + Bottom”的两种不同用法：不同断点自适应导航 vs 同屏主导航+底部上下文操作；不同职责不能复制同一套一级路由。
+- 新增 `scripts/validate_navigation_architecture.py` 和回归测试，检测重复/丢失目的地、底部导航过载、用户选择来源、断点状态保留与虚构浏览器验收。
+- 更新主 Skill v6.7 的阅读路由、设计与组件 Gate、README、项目 MASTER/页面级规则、交互/可访问性 QA 和 CI；保留原有用户选色门槛。
+- 此版本只更新 MauForma Skill；未直接修改用户的 RepoVantage 工程或声称真实浏览器功能通过。
+
+---
+
 ## v6.6 — 2026-11-03 · User-approved sidebar color & whole-page harmony
 
 - 根据用户新版 RepoVantage 侧边栏截图，将“自选深蓝侧栏”改为 **用户确认后的色彩决策**：Agent 只负责研究、推荐、解释与全页协调，不偷偷覆盖用户指定的颜色/HEX。

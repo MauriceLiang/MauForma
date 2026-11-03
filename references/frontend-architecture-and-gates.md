@@ -59,3 +59,7 @@
 ## v6.6 · Color Choice Gate 不属于 Agent 的任意审美推断
 
 颜色重设计时先盘点全站已有 Tokens、用户确定的品牌色和侧栏/主内容的实际搭配；无色彩约束时提出 2–3 套完整工作台的推荐，等待用户选定或明确授权 Agent 代选。**不得因为开始开发就假定用户批准 Agent 最喜欢的颜色**。如果用户直接说 HEX，保证最终项目角色色精确一致，遇对比问题调整周边颜色并解释。只修改纯功能/保留已确认品牌主题时不强制重问。详见 `references/sidebar-color-discovery.md` 和项目 `design-system/sidebar-color-decision.json`，在浏览器截图里检查 Sidebar、Topbar、Main、Card 和 Chart 一起搭配。
+
+## v6.7 · 新增 Navigation Architecture Gate（构图前、组件实现前）
+
+在重大设计任务里，先盘点一级目的地、栏目深度与频率，区分 global/local/item/actions/tabs。读 `references/navigation-architecture.md`，评估 Top only、Side、Top+Side、Rail/Split、Mobile Bottom、Responsive Side→Bottom、Top+Bottom、Side+Bottom action bar。对未确认架构，展示 2–3 套有实际层级差异的方案，记录用户选择或显式 delegated；明确继承既有导航或局部修复可跳过。之后才建立 UiNavigation 组件契约与 Tokens。浏览器验收必须包含桌面、手机、窄窗和路由可达性、键盘/focus/ARIA、底部遮挡及任务上下文保持。静态脚本 `scripts/validate_navigation_architecture.py` 不能代替真实流程测试。

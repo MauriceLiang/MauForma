@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "project": "RepoVantage navigation architecture demonstration",
+  "primary_destinations": [
+    {
+      "id": "overview",
+      "label": "总览",
+      "frequency": "high"
+    },
+    {
+      "id": "activity",
+      "label": "开发活动",
+      "frequency": "high"
+    },
+    {
+      "id": "issues",
+      "label": "Issue 处理",
+      "frequency": "high"
+    },
+    {
+      "id": "prs",
+      "label": "PR 协作",
+      "frequency": "high"
+    },
+    {
+      "id": "releases",
+      "label": "版本发布",
+      "frequency": "medium"
+    },
+    {
+      "id": "compare",
+      "label": "项目对比",
+      "frequency": "low"
+    },
+    {
+      "id": "research",
+      "label": "研究分析",
+      "frequency": "low"
+    }
+  ],
+  "context": {
+    "mode": "Operate",
+    "primary_device": "mixed",
+    "hierarchy_depth": 2,
+    "task": "在桌面上查看仓库活动和问题处理，同时移动端快速切换高频模块",
+    "existing_navigation": "Existing desktop sidebar visible in user-provided screenshot; mobile navigation not demonstrated"
+  },
+  "candidates": [
+    {
+      "pattern_id": "side",
+      "reason": "桌面工作台有七个一级入口，持久侧栏便于在模块间频繁切换",
+      "tradeoff": "移动端应转抽屉，无法保持七项常显"
+    },
+    {
+      "pattern_id": "top-side",
+      "reason": "若未来有多个仓库或工作区，可用顶部全局、侧边当前产品导航区分层级",
+      "tradeoff": "当前只有一个工作区时可能增加无必要的固定区域"
+    },
+    {
+      "pattern_id": "adaptive-side-bottom",
+      "reason": "桌面侧栏完整，手机底部只显示四个高频入口，其余进入抽屉",
+      "tradeoff": "需要单独设计更多入口并确保深链接与筛选状态不丢失"
+    }
+  ],
+  "selection": {
+    "status": "pending",
+    "pattern_id": null,
+    "source": "unresolved",
+    "user_statement": null
+  },
+  "responsive": {
+    "desktop": {
+      "mode": "side",
+      "visible_ids": [
+        "overview",
+        "activity",
+        "issues",
+        "prs",
+        "releases",
+        "compare",
+        "research"
+      ]
+    },
+    "mobile": {
+      "mode": "bottom-drawer",
+      "visible_ids": [
+        "overview",
+        "activity",
+        "issues",
+        "prs"
+      ],
+      "overflow_ids": [
+        "releases",
+        "compare",
+        "research"
+      ]
+    },
+    "same_destination_ids": true,
+    "context_preserved": true
+  },
+  "review": {
+    "browser_status": "NOT RUN",
+    "breakpoints": [],
+    "notes": "Illustrative plan, not approved by user. No actual RepoVantage responsive code was changed."
+  }
+}

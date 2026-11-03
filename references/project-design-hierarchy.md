@@ -52,3 +52,7 @@ python3 scripts/init_design_system.py --project-root . --name "Example" --style 
 新配色尚待用户确认时使用项目的 `design-system/sidebar-color-decision.json`（参照 `assets/sidebar-color-decision.schema.json`）记录候选与 `status=pending`；真实项目 Tokens **保持既有已批准方案**，或继续完成无颜色依赖的任务。选择后将选定方案、自定义颜色原话、来源（confirmed / delegated / inherited）和 Sidebar/Topbar/Main/Card/Chart 的协调理由写入记录，再更新唯一的 MASTER Token 来源。
 
 如果用户明确指定 `#RRGGBB`，在选色记录 `user_constraints` 中固定目标角色，发布的 `resolved_colors` 必须原样保留；`scripts/validate_sidebar_color_decision.py` 检查不得无授权覆盖。已有已确定配色可直接 `inherited`，只改功能不需要重开主题选择。
+
+## v6.7 · 导航 IA 记录与断点映射
+
+项目可建立 `design-system/navigation-decision.json`，参考 `assets/navigation-decision.schema.json`：记录真实一级目的地 ID、任务/设备/层级、候选架构、用户确认或授权的来源以及 desktop/mobile 的可见+overflow 路由映射。**推荐仍 pending 时不可把候选固化成已确认架构**。MASTER 记录全局导航职责和组件契约，页面 override 只保留有意义的局部 Tab/对象树例外；不在每个路由重复自建一套侧边菜单。跨断点需保存当前页面、过滤条件与对象上下文。可运行 `scripts/validate_navigation_architecture.py <decision-path>` 做静态一致性审查。

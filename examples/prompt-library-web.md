@@ -170,3 +170,13 @@ $mauforma
 采用后将用户选定的色值、原话、决策来源和全局协调理由记录到 design-system/sidebar-color-decision.json，保证 Master Tokens 唯一。
 真实浏览器检查全页及 Sidebar/Main 接缝、键盘焦点、暗亮模式、图表与重要文字；不能只靠 HEX 静态扫描断言美感。
 ```
+
+## Navigation Architecture Gate / 用途和设备决定导航位置
+
+```text
+使用 $mauforma。先读取项目全部一级目的地、实际导航频率与层级，以及桌面、窄窗、手机的使用路径。区分全局导航、产品内导航、页面 Tabs、对象目录和当前任务操作。
+参考 references/navigation-architecture.md 的官方依据和 9 种模式，给出 2–3 套具有真正 IA 差异的方案，解释为什么适合当前项目、牺牲什么、各断点怎么显示、隐藏入口如何访问。
+用户明确指定顶部/侧边/底部时按要求实施；未定时展示预览并让用户选择或委托。不因 SaaS 自动侧栏，不在顶部+侧边+底部重复一套菜单。
+桌面 Side+手机 Bottom 时，保留所有 route IDs 和状态，手机底部仅展示合适的核心入口，其余保持可发现。Side+Bottom task bar 时，底部是当前页面操作而不是第二套导航。
+导航方案确认后才做共用组件和颜色映射；颜色继续遵循用户已选择的主色与 Sidebar/Main 协调规则。真实浏览器测试导航链接、手机抽屉、键盘、焦点、返回、resize 和遮挡，没有运行则写 NOT RUN。
+```
