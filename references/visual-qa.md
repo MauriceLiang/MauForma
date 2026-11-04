@@ -1,5 +1,16 @@
 # MauForma · 组件优先视觉 QA v2.0
 
+## v6.15 · Component Motion Choreography Gate
+
+- [ ] 全页有哪些**实际存在且重要**的 Button、Tabs/Filters、Accordion/Drawer、Toggle、List/Table、Chart/Media、状态通知？有无组件 Motion Inventory（动效/即时反馈/故意静态的理由）？
+- [ ] 用户确认 B/C 动效方案时，**有没有真正的组件级动作**？仅路由转场、一个 Dialog Fade 或全局 Button Hover 不算完成组件级设计。
+- [ ] 动效机制与功能相匹配：选中指示器真实移动、展开有空间关系、Toggle 状态形变、列表变化保留位置连续性、反馈即时且可读；不全站统一淡入加偏移，也不为数量乱加特效。
+- [ ] 实际 Component Showcase 含前/中/后状态、反向连续触发、触摸/键盘与窄屏、字体放大/长内容。装饰性交互不得遮挡焦点、结果或造成断字/底部裁切。
+- [ ] 选择 `none` 和 `prefers-reduced-motion` 时仍完整可用；任何动画依赖失败都不影响业务状态和文字。
+- [ ] 交付时以组件、触发、机制、目的、实际测试/未测试情况列出证据，`animationDuration>0` 和 Mock smoke 不能直接证明整个项目体验质量。
+
+参考 `references/component-motion-choreography-gate.md`、`assets/component-motion-patterns.json`、`assets/component-motion-lab.html` 与 `scripts/validate_component_motion.py`。
+
 ## v6.14 · Motion Choice & Interaction Experience Gate
 
 - [ ] 新站/重大改版曾提出**可观察、可选择**的动效体验；确认来源是 `confirmed/delegated/inherited`，否则标 `unresolved`，未答复不得自行把全站永远做成无动画。
