@@ -1,5 +1,16 @@
 # Changelog
 
+## v6.13 — 2026-11-04 · Universal surface selection and atomic control geometry
+
+- 新截图暴露“整个筛选/工具栏/连续列表被巨型圆角卡包裹”与中文「查看详情」「重试」被操作列挤为逐字竖排；由此修复**全网站通用的两种设计失败机制**，不再为单个 RepoVantage 页面增补固定配色/尺寸。
+- 新增 `references/surface-architecture-gate.md`：open collection / bounded panel / entity cards / editorial flow / split workspace / hero stage 按语义选型，记录拒绝替代方案的原因；允许真实有用的卡片而非强制扁平化。
+- 新增 `references/control-geometry-gate.md`：短操作文本原子性、按钮/列宽预算、Flex/Grid shrink 问题、整个控件换行或行重排/菜单回退、CJK/英文/200% 与小屏几何检查。单用 nowrap 而产生屏外溢出不算修复。
+- 新增通用设计案例 `assets/surface-control-patterns.json`、静态校验脚本及 Python 反例单测；新增三种表面模式交互实验页和 Chromium 3 宽度×2 字体比例×3 模式 smoke，验证按钮短标签没有折字、溢出、行操作被裁切。
+- 接入 Skill 主流程、Component Craft、Component First、Visual QA、Surface/Whitespace、Run Monitor 指南及 CI；保留所有已有能力。此变更未改动真实 RepoVantage 产品工程；browser smoke 只能证明独立样例的几何质量。
+
+---
+
+
 ## v6.12 — 2026-11-04 · Cross-domain perceptual hierarchy and component craft
 
 - 将字号与组件设计的不足从 RepoVantage 单页问题抽象为**所有 Web 页面的通用设计门禁**，适用 Operate / Persuade / Read / Experience；不强制某种 UI 风格、默认尺寸或项目专属命名。
