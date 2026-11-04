@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0",
+  "description": "Domain-independent motion decision examples. Unresolved choice is NOT a selected zero-motion policy.",
+  "profiles": [
+    {
+      "id": "operations-needs-motion-choice",
+      "mode": "Operate",
+      "project_stage": "major-redesign",
+      "goal": "Scan operational records, filter, open details and resolve errors",
+      "decision": {
+        "source": "unresolved",
+        "level": null,
+        "question_asked": true,
+        "user_evidence": null,
+        "inherited_from": null,
+        "optional_motion_started": false,
+        "rationale": "The product's actual motion preference has not been selected; present choices before optional motion implementation.",
+        "proposals": [
+          {
+            "level": "none",
+            "preview": "Buttons and filters change clearly without spatial animation; dialogs open immediately",
+            "tradeoff": "Minimal motion, less spatial continuity"
+          },
+          {
+            "level": "balanced",
+            "preview": "Press feedback, smooth tab marker, quick dialog transition and state feedback",
+            "tradeoff": "A small amount of rendering and interaction choreography"
+          },
+          {
+            "level": "expressive",
+            "preview": "In addition, a few major context transitions make origin and destination easier to follow",
+            "tradeoff": "More implementation and cross-device performance testing"
+          }
+        ]
+      },
+      "feedback_baseline": [
+        "focus-visible",
+        "selected",
+        "outcome-feedback"
+      ],
+      "interactions": [
+        {
+          "id": "status-filter",
+          "kind": "selection",
+          "purpose": "Keep active filter obvious",
+          "effect": "unresolved",
+          "reduced_motion": "instant selection state",
+          "interruptible": true
+        }
+      ]
+    },
+    {
+      "id": "shop-purchase-experience",
+      "mode": "Persuade",
+      "project_stage": "new-site",
+      "goal": "See product details, choose variation, add product to cart",
+      "decision": {
+        "source": "confirmed",
+        "level": "balanced",
+        "question_asked": true,
+        "user_evidence": "用户：选 B，商品图片切换柔和一点，别做大幅滚动动画",
+        "inherited_from": null,
+        "optional_motion_started": true,
+        "rationale": "Chosen lightweight continuity for visual comparison and fast purchasing.",
+        "proposals": []
+      },
+      "feedback_baseline": [
+        "focus-visible",
+        "selected",
+        "outcome-feedback"
+      ],
+      "interactions": [
+        {
+          "id": "variant-switch",
+          "kind": "selection",
+          "purpose": "Keep product identity continuous while switching variant",
+          "effect": "short fade between media states",
+          "reduced_motion": "instant image change, with selected state",
+          "interruptible": true
+        },
+        {
+          "id": "add-to-cart",
+          "kind": "action",
+          "purpose": "Confirm purchase action without blocking a second action",
+          "effect": "brief button feedback, no artificial loading",
+          "reduced_motion": "immediate labeled confirmation",
+          "interruptible": true
+        }
+      ]
+    },
+    {
+      "id": "portfolio-showcase",
+      "mode": "Experience",
+      "project_stage": "new-site",
+      "goal": "Explore featured work and navigate between pieces",
+      "decision": {
+        "source": "delegated",
+        "level": "expressive",
+        "question_asked": false,
+        "user_evidence": "用户：动画风格和强度你来决定",
+        "inherited_from": null,
+        "optional_motion_started": true,
+        "rationale": "A few featured shared-element transitions support the portfolio's storytelling.",
+        "proposals": []
+      },
+      "feedback_baseline": [
+        "focus-visible",
+        "selected",
+        "outcome-feedback"
+      ],
+      "interactions": [
+        {
+          "id": "gallery-swap",
+          "kind": "navigation",
+          "purpose": "Maintain visual continuity across works",
+          "effect": "selected image transform and fade",
+          "reduced_motion": "instant media swap with visible title and navigation",
+          "interruptible": true
+        }
+      ]
+    },
+    {
+      "id": "course-reading",
+      "mode": "Read",
+      "project_stage": "minor-fix",
+      "goal": "Read long lessons and check short exercises",
+      "decision": {
+        "source": "inherited",
+        "level": "none",
+        "question_asked": false,
+        "user_evidence": null,
+        "inherited_from": "existing-approved-design-system/motion-policy",
+        "optional_motion_started": false,
+        "rationale": "Existing course style explicitly avoids extra transitions; feedback is still mandatory.",
+        "proposals": []
+      },
+      "feedback_baseline": [
+        "focus-visible",
+        "selected",
+        "outcome-feedback"
+      ],
+      "interactions": [
+        {
+          "id": "answer-check",
+          "kind": "feedback",
+          "purpose": "Make validation result readable and accessible",
+          "effect": "none",
+          "reduced_motion": "immediate result text and semantic state",
+          "interruptible": true
+        }
+      ]
+    }
+  ]
+}
