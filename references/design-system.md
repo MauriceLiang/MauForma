@@ -105,3 +105,7 @@
 ## L. v6.8 · MASTER 共用语言，页面密度由真实任务决定
 
 全局保存共用间距尺度、Typography 角色、颜色语义和组件契约；`overview`、`analysis`、`operations` 的内容量、空间组织与容器策略属于 Page Override。见 `references/page-density-and-content-priority.md`：airy/balanced/productive/compact 是可调起点，不应自动将整站渲染为同一套密集卡片。空间应反映分组而非设定空白比例；先删重复模块再使用 `references/whitespace-and-surface-composition.md` 的 macro/meso/micro 规则。用户已定配色/导航/密度不因优化内容被擅自改动。
+
+## M. v6.9 · 网格语义和滚动安全的共享契约
+
+MASTER 中保留 Grid tracks、gutter、页面最大宽度、page-end spacing 与必要的 bottom-bar height/safe-area 语义 Token；各路由在 Page Override 中声明需要的 `shared-row-grid / main-feature-span / editorial-asymmetry` 模式，按任务决定列比例，不强迫统一等高。数据页同级卡片共享行起点；布局变化时更改网格契约而不是零散给 Card 加 margin-top。App Shell 指定唯一可识别的主滚动容器；可滚到底且固定栏不遮挡最后一条记录，按目标浏览器复测。参见 `references/grid-alignment-and-viewport-safety.md`。

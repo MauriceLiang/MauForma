@@ -67,3 +67,11 @@
 ## v6.8 · Gate A0：内容优先级先于 Card 网格构建
 
 新建/大改版先逐路由列出 primary_task、访问状态、内容主次与条件/延后入口，参照 `assets/page-content-plan.schema.json`。总览页不要同时生成完整教程、功能目录、每个操作的卡片；优先整块删除测试，并确保次级功能可发现。数据分析页允许较高密度展示可比较的图表、指标与筛选，不能因此缩小关键数据来源或藏掉错误。组件 Gate B 不能因为复用 FeatureGrid/Card 就往所有页面额外加介绍区；Gate D 应按总览、分析、首访、回访分别做截图验收。
+
+## v6.9 · Gate A/B/D：Grid 行契约 + 滚动终点证据
+
+**Gate A**：内容筛选后建立同级卡片的内容边界、共同列/行线、合理主次比例与移动阅读顺序；对分析页独立两列的无意瀑布结构执行回退。
+
+**Gate B**：共享 ChartPanel、List、MainScroll、BottomActionBar 的尺寸/滚动契约，优先 CSS Grid 与 `minmax(0,1fr)`、必要的 `min-height:0`、正确的 `overflow-y:auto`；fixed 工具条在真实滚动区末尾预留空间，避免 `overflow:hidden` 全局裁切。不同高度不必强制 equal-height 卡。
+
+**Gate D**：真实浏览器滚到终点，验证最后记录/按钮/图表图例、fixed bar、矮窗口、手机安全区与 200% 放大。若只有截图/声明式脚本则标 `NOT RUN`。可选 `scripts/audit_rendered_layout.mjs` 为浏览器首屏/末端输出几何风险线索，不能替代人工视觉/交互验收。案例见 `references/repovantage-release-alignment-case.md`。

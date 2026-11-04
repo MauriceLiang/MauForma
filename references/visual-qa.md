@@ -120,3 +120,18 @@
 - [ ] 真实桌面与移动/窄屏、文字 200% 放大和不同用户状态是否截图检查，未运行是否标 NOT RUN？
 
 详细要求见 `references/page-density-and-content-priority.md`、`references/whitespace-and-surface-composition.md`、`references/repovantage-overview-density-case.md`；静态工具只能检查决策记录，不能自动评定高级感。
+
+## v6.9 · Grid / Alignment / Scroll-End（视觉与运行时双验收）
+
+- [ ] 页面标题、筛选、主内容、同级 ChartPanel 是否使用可追踪的统一内容边界与列 gutter？
+- [ ] 同一排模块顶部是否对齐？若上一排左右高度不同，第二排是否仍在共同的行起点开始（而非两列分别堆叠成瀑布流）？
+- [ ] 3:2 / 8:4 / 主图整行等不对称是否有数据主次和阅读理由？没有则回到 Grid；不强制等宽等高。
+- [ ] 图表、列表轴线、时间范围和单位是否清晰，有共同的内部基线/边距，且没有为了对齐伪造数据尺度？
+- [ ] 真实页面/主滚动容器可以滚到**最后一项内容的边框、图例、按钮与记录**；正常跨首屏滚动不算 Bug。
+- [ ] 滚到底时末端仍有适当内边距，不能被 `overflow:hidden`、固定高度或固定底栏盖住；safe-area 和真实工具栏高度已计算？
+- [ ] 1280×720 等矮窗口、390×844 手机宽度以及更窄视口下没有无法到达的底部控件或非预期横向溢出？
+- [ ] 200% 放大、长标签、图表 tooltip、键盘焦点与页面返回时内容完整可达？
+- [ ] 审查报告将截图中“卡片靠近底边”的**疑似风险**与真实 DOM 的裁切/不可滚动**已确认问题**分开记录？
+- [ ] 实测含首屏截图 + 最大滚动位置截图（含底边）。仅运行 `validate_layout_integrity.py` 不可声明浏览器 PASS。
+
+详细设计 `references/grid-alignment-and-viewport-safety.md`，实例 `references/repovantage-release-alignment-case.md`，可选实测 `node scripts/audit_rendered_layout.mjs --url http://127.0.0.1:5173`（Playwright 需可用）。

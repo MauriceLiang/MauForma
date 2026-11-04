@@ -58,3 +58,7 @@
 - **真实截图证据**：目标桌面/手机、200% 文字放大、键盘焦点、深浅色（按需求）验证；若没运行请标记 NOT RUN。
 
 参考：`references/page-density-and-content-priority.md`、`references/typography-hierarchy.md`、`references/semantic-copy-hygiene.md`。
+
+## v6.9 · 空间层次不代表各列任意错位
+
+Macro/Meso/Micro 留白需要有**共享网格线与行起点**作为参照。数据页可为主图分配更宽面积，图表/列表卡可以高度不同，但不应把两列当成独立瀑布流，让第二排上下错列。若用行起点对齐带来大块无意义空白，可改为主图跨整行或重新筛选模块，而不是插入透明卡片。底部留白用于保障最后一行可滚动完整看见；不是强迫所有内容恰好占满首屏。见 `references/grid-alignment-and-viewport-safety.md`。

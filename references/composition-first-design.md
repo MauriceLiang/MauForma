@@ -82,3 +82,7 @@
 ## v6.8 · 构图前先回答“这个内容应该出现在这一页吗”
 
 先依照 `references/page-density-and-content-priority.md` 将整个路由的内容分为 primary/supporting/conditional/deferred/removed，删减或下沉重复教程、功能目录和竞争 CTA，再开始灰阶构图。不应把所有功能介绍放进首页，然后用更精致的 Card 或网格“优化”它们。总览偏舒展、分析与管理可以密集，但重要图表/来源/状态始终可读。留白的结构依据见 `references/whitespace-and-surface-composition.md`。
+
+## v6.9 · 构图必须能追踪 Grid 行线与底部终点
+
+从页面内容清单进入灰阶线框后，要画出共同容器边界、列分割线与**同一级别面板的共同起始行**。分析页不采用「左列上下独立堆叠 + 右列上下独立堆叠」作为默认，尤其不能因上排两个卡片高度不同导致下一排起点不一致。可用 3:2、8:4 或主图跨全宽，但不同宽度应服务真实数据重要性；Masonry 留给适合的摄影/编辑语境。设计时同步指定主滚动容器、末端 padding 和可能的固定工具栏，确保内容**可滚动到最后，而不是必须首屏塞下**。完整 Gate 见 `references/grid-alignment-and-viewport-safety.md`。
