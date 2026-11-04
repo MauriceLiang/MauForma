@@ -1,5 +1,17 @@
 # MauForma · 组件优先视觉 QA v2.0
 
+## v6.13 · Surface & Control Geometry 独立验收
+
+- [ ] 页面外层 mega-card / 内层工具栏 / 行卡层级是否均有独立语义？如果只是为了把所有内容框起来，是否评估过 open collection 或 single panel？
+- [ ] 是否记录“为什么选这种容器、为什么不选另一个合理形态”；同一组件库中的 Card 不等于页面必需的外框。
+- [ ] 高密度同构列表有稳定表头、列线、行分隔与操作扫描路径；商品/作品媒体卡、品牌 hero、专业分栏仍可根据内容合理保留。
+- [ ] 短按钮、Tab、Badge、导航与状态标签没有中文逐字竖排、英文拆词、被裁切或宽度溢出；完整动作仍可读、可点、可键盘操作。
+- [ ] 控件的**自然宽度+图标+内边距**和动作组/父列的宽度预算匹配；不要靠纯 CSS nowrap 掩盖固定窄列，窄屏优先整控件换行/row reflow/可访问 overflow menu。
+- [ ] 对错误状态、权限不同、动作数量增多、长 CJK/English、手机小视口与 200% 放大在浏览器内验证；截图有操作列和末端滚动证据。未实测标 `NOT AUDITED`。
+- [ ] 可运行 `scripts/validate_surface_control.py --repository` 核对设计决策样例；独立浏览器 demo 的 PASS 不能冒充目标项目已修复。
+
+详见 `references/surface-architecture-gate.md`、`references/control-geometry-gate.md` 与 `assets/surface-control-layout-lab.html`。
+
 ## v6.12 · 所有 Web 页面通用的感知层级与组件质量门禁
 
 - [ ] 当前视口的用户任务、P0/P1/P2/P3 信息分级明确；P0/P1 由决策价值定义，**不是见数字就放大**；用户第一眼与下一操作真实可辨。
