@@ -74,3 +74,7 @@ RepoVantage 新图中的主要阅读障碍，是“品牌英文副标 + 页面�
 ## v6.8 · 页面拥挤的根因排查（必须先删信息再调留白）
 
 新增分类：**Content overload**（教程/功能目录/全部 CTA 堆在总览）、**Surface overload**（每段文字都包卡片，卡片套卡片）、**Density mismatch**（总览过密，图表详情反而只有空白/大标题）、**False whitespace**（人为 min-height 撑空区域而未减少内容）。先复核主任务与访问状态 → 下沉/移除不必要模块 → 确保必要内容可达 → 再做 macro/meso/micro 留白和字级调优。对总览与分析详情分开评价；重要数据状态和来源不能删除。见 `references/page-density-and-content-priority.md`。
+
+## v6.9 · 对齐与页面底部是独立的视觉风险
+
+收到数据页截图后，在处理颜色/小标题/圆角之前做 **Alignment Pass**：标出主内容左右边界、卡片列线、每排顶部。对于「左列排完立刻接下一块、右列独立排完接下一块」的布局，判断是否无意形成 Masonry；数据分析默认改为共享 Grid 行，必要时主图跨整行。随后做 **Scroll-End Pass**：截图只看到最下面的卡片贴近窗口，不足以断言 Bug，必须实际滚动到底检查最后记录、按钮、图表轴/说明和 fixed bar 遮挡。出现不可达底部或横向撑破应返工，不能用 `overflow:hidden` 将问题藏掉。参考 `references/grid-alignment-and-viewport-safety.md`。

@@ -1,0 +1,120 @@
+{
+  "version": "1.0",
+  "description": "Advisory alignment and viewport safety patterns, not hard universal aesthetics or verified site snapshots.",
+  "references": [
+    {
+      "name": "IBM Carbon Grid",
+      "url": "https://www.carbondesignsystem.com/building-blocks/foundations/2x-grid/guidelines",
+      "lesson": "Use aligned columns, rows and gutters for product layouts"
+    },
+    {
+      "name": "MDN minmax",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/minmax",
+      "lesson": "Control grid track minimum sizing to avoid intrinsic blowout"
+    },
+    {
+      "name": "web.dev viewport sizing",
+      "url": "https://web.dev/learn/css/sizing",
+      "lesson": "Use viewport-relative units carefully with dynamic UI chrome"
+    },
+    {
+      "name": "MDN viewport concepts",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/CSSOM_view/Viewport_concepts",
+      "lesson": "Check layout vs visual viewport when keyboards or zoom affect position"
+    }
+  ],
+  "patterns": [
+    {
+      "id": "shared-row-grid",
+      "label": "Shared-row grid",
+      "fit": [
+        "analytics",
+        "operations",
+        "comparison"
+      ],
+      "requires": "grid areas or common row wrapper; explicit reading order",
+      "alignment": [
+        "left-boundary",
+        "top-per-row",
+        "shared-gutters"
+      ],
+      "mobile": "one-column-natural-scroll",
+      "exception": "varying heights allowed; same physical height not universally required"
+    },
+    {
+      "id": "main-feature-span",
+      "label": "Full-width primary content and secondary split",
+      "fit": [
+        "release-timeline",
+        "chart-analysis",
+        "records"
+      ],
+      "requires": "one major row with full-span chart plus compact secondary data row",
+      "alignment": [
+        "content-edges",
+        "secondary-row-top"
+      ],
+      "mobile": "stack-in-task-order",
+      "exception": "content hierarchy must justify the feature span"
+    },
+    {
+      "id": "editorial-asymmetry",
+      "label": "Editorial deliberate asymmetry",
+      "fit": [
+        "marketing",
+        "portfolio",
+        "magazine",
+        "image-gallery"
+      ],
+      "requires": "documented hierarchy and alignment anchors, not arbitrary column drift",
+      "alignment": [
+        "anchor-lines",
+        "typography-baselines"
+      ],
+      "mobile": "preserve-story-order",
+      "exception": "visual narrative is intentionally more important than data comparison"
+    },
+    {
+      "id": "masonry",
+      "label": "Masonry gallery",
+      "fit": [
+        "photo-gallery",
+        "creative-inspiration"
+      ],
+      "requires": "independent-height visual items with no row comparison",
+      "alignment": [
+        "column-edges"
+      ],
+      "mobile": "reflow-or-reorder-explicitly",
+      "exception": "not default for data cards or release metrics"
+    }
+  ],
+  "scroll_modes": [
+    {
+      "id": "document",
+      "layout": "min-height:100dvh and natural document scrolling",
+      "end_guard": "padding after last meaningful content + safe area"
+    },
+    {
+      "id": "app-shell",
+      "layout": "height:100dvh; grid rows auto minmax(0,1fr); main min-height:0; overflow-y:auto",
+      "end_guard": "padding in actual scroll container + safe area"
+    },
+    {
+      "id": "fixed-action-bar",
+      "layout": "fixed actions can overlap main content",
+      "end_guard": "reserve measured fixed bar height + safe area or use normal-flow layout"
+    }
+  ],
+  "gates": {
+    "must_check_shared_row_alignment": true,
+    "allow_intentional_asymmetry": true,
+    "prefer_natural_scroll_to_clipping": true,
+    "must_test_last_scroll_position": true,
+    "must_test_reachable_last_action": true,
+    "avoid_nested_scrollers_without_reason": true,
+    "require_actual_browser_evidence_for_pass": true,
+    "do_not_conflate_below_fold_with_clipping": true,
+    "no_universal_equal_height_rule": true
+  }
+}

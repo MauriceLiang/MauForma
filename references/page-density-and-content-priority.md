@@ -74,3 +74,7 @@
 - [Nielsen Norman Group · Progressive Disclosure](https://www.nngroup.com/articles/progressive-disclosure/)：优先展示核心功能，次要内容清楚披露；必须保证用户找得到隐藏内容。
 - [GitLab Pajamas · Progressive Disclosure](https://design.gitlab.com/patterns/progressive-disclosure/)：把次要信息转入可发现的二级交互，而不是一次性塞进首屏。
 - [Atlassian · Compact density](https://community.atlassian.com/forums/discussion/3189883/new-feature-compact-mode-and-max-width-to-support-information-dense-documentation)：实际产品允许页级紧凑密度设置，不要求全站使用一套密度。
+
+## v6.9 · 密度与对齐、底部安全的关系
+
+高密度数据页不等于两列数据卡片允许无意义独立错列。先做 v6.8 内容删减，再依据 `references/grid-alignment-and-viewport-safety.md` 的共享行/列契约组合相关模块。对于超过当前浏览器高度的真实记录，应允许自然滚动，而非为保持“单屏高级感”截断图表、压缩 Release 或隐藏坐标轴。首屏外的内容不是溢出缺陷；滑不到最后一条记录才需要修复。

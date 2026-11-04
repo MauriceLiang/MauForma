@@ -27,6 +27,8 @@ jobs:
           python3 scripts/validate_sidebar_color_decision.py --repository
           python3 scripts/validate_navigation_architecture.py --repository
           python3 scripts/validate_page_content_plan.py examples/page-content-plan-repovantage.json --repository
+          python3 scripts/validate_layout_integrity.py examples/layout-integrity-repovantage.json --repository
+          node --check scripts/audit_rendered_layout.mjs
           python3 -m unittest discover -s tests -v
       - name: Syntax check browser QA script
         run: node --check scripts/browser_qa.mjs
