@@ -7,6 +7,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 NEEDED = [
     "assets/style-knowledge.json", "references/design-style-catalog.md",
+    "references/comparison-page-design.md", "references/chart-interior-alignment.md",
+    "references/repovantage-comparison-case.md", "assets/comparison-reference-cases.json",
+    "assets/comparison-contract.schema.json", "assets/comparison-layout-lab.html",
+    "examples/comparison-contract-repovantage.json", "scripts/validate_comparison_contract.py",
+    "scripts/audit_comparison_ui.mjs", "tests/test_comparison_contract.py",
     "references/grid-alignment-and-viewport-safety.md",
     "references/repovantage-release-alignment-case.md",
     "assets/layout-integrity-patterns.json", "assets/layout-integrity.schema.json",
@@ -154,6 +159,11 @@ def validate() -> list[str]:
         errors.extend(validate_alignment())
     except (ImportError, OSError, ValueError) as exc:
         errors.append(f"Grid and scroll-end safety validation unavailable: {exc}")
+    try:
+        from validate_comparison_contract import validate_repository as validate_comparison
+        errors.extend(validate_comparison())
+    except (ImportError, OSError, ValueError) as exc:
+        errors.append(f"Comparison data and plot integrity validation unavailable: {exc}")
     skill = (ROOT / "SKILL.md").read_text("utf-8")
     for needed in ("search_design_knowledge.py", "art-direction-critique.md", "browser-qa-protocol.md", "project-design-hierarchy.md", "search_design_cases.py", "external-design-case-library.md", "search_visual_tech.py", "visual-tech-selection-12.md"):
         if needed not in skill:

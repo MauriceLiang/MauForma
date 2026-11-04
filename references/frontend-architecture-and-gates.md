@@ -75,3 +75,11 @@
 **Gate B**：共享 ChartPanel、List、MainScroll、BottomActionBar 的尺寸/滚动契约，优先 CSS Grid 与 `minmax(0,1fr)`、必要的 `min-height:0`、正确的 `overflow-y:auto`；fixed 工具条在真实滚动区末尾预留空间，避免 `overflow:hidden` 全局裁切。不同高度不必强制 equal-height 卡。
 
 **Gate D**：真实浏览器滚到终点，验证最后记录/按钮/图表图例、fixed bar、矮窗口、手机安全区与 200% 放大。若只有截图/声明式脚本则标 `NOT RUN`。可选 `scripts/audit_rendered_layout.mjs` 为浏览器首屏/末端输出几何风险线索，不能替代人工视觉/交互验收。案例见 `references/repovantage-release-alignment-case.md`。
+
+## v6.10 · 比较页面的工程协议
+
+Gate A：选择比较模式前先定义用户的决策问题、对象、共同数据口径和缺失策略，参考 `references/comparison-page-design.md`；不要简单把所有仓库统计图复制并排。
+
+Gate B：RepositoryPicker/Legend/Series/MetricMatrix 共用唯一 ID 与颜色 token；选择、时间窗、过滤、数据来源改变时所有视图同步。表格按对象列/指标行显示，同一指标有单位、sample_size、coverage；缺失值 null 不能自动变成 0。对比首屏强调可信差异，非数据支持的综合赢家禁止。
+
+Gate D：对 Chart Plot 内部坐标、标签碰撞、数据点覆盖和图例绑定做浏览器复核。可用 `scripts/validate_comparison_contract.py` 做声明式数据检查，`scripts/audit_comparison_ui.mjs` 做标注 DOM 的几何风险检查；对 Canvas 内文字未做视觉检查时明确 NOT AUDITED。切换对象和筛选时必须回归数据和表格，不只测试静态页面初始状态。

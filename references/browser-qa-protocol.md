@@ -36,3 +36,7 @@ P0：表单不可用、按钮不可到达、数据不真实、内容被遮挡；
 新增真实浏览器要求：对有长数据、发布记录、多个 Grid 图表的页面，必须验证**初始视口 + 滚动到最末端**。只截图全页顶端不能证明底部可达。可运行 `node scripts/audit_rendered_layout.mjs --url http://127.0.0.1:5173/releases --out layout-audit`，它输出 viewport 初始/末端截图和报告，需要项目已有 Playwright 或用户授权后安装；脚本没运行时为 NOT RUN。
 
 检查浏览器滚动所有者是 document 还是内部 `main-scroll`、最后可交互/内容项滚动可达、fixed BottomBar 不覆盖、safe-area/page-end padding、无意横向溢出、同排数据卡片起点。对于未打标注的第三方组件，脚本可能无法知道“哪个是最后的有意义的内容”；可以在项目上使用 `data-mf-bottom-content`、`data-mf-grid-row`、`data-mf-grid-panel`、`data-mf-fixed-bar` 辅助判断，不能靠脚本提示直接删除或改组件。截图恰好拍在底边 ≠ 已确认裁切，滚动终点实际仍不可达才是高优先级问题。
+
+## v6.10 · 比较页 Browser QA（覆盖不止 DOM Card）
+
+使用用户实际选定的对象与采样数据，执行选择仓库 → 检查选中对象/legend/series/table columns → 时间窗口变更 → 数据缺失/部分覆盖 → 手机宽度 → 滚动最后一行。标注 `data-mf-selected-id` / `data-mf-legend-id` / `data-mf-series-id` / `data-mf-chart-group` / `data-mf-chart-plot` / `data-mf-chart-label` 能帮助 `scripts/audit_comparison_ui.mjs` 提供几何风险线索，但 Canvas 的轴刻度/标签通常不在普通 DOM 中，必须看真实绘图截图或采用图表引擎内部 API；无结构支持时报告 NOT AUDITED。外框等高 ≠ Plot Area/Axis 等高或标签无重叠。不得以“已跑静态测试”代替浏览器截图。

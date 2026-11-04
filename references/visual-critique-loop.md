@@ -78,3 +78,7 @@ RepoVantage 新图中的主要阅读障碍，是“品牌英文副标 + 页面�
 ## v6.9 · 对齐与页面底部是独立的视觉风险
 
 收到数据页截图后，在处理颜色/小标题/圆角之前做 **Alignment Pass**：标出主内容左右边界、卡片列线、每排顶部。对于「左列排完立刻接下一块、右列独立排完接下一块」的布局，判断是否无意形成 Masonry；数据分析默认改为共享 Grid 行，必要时主图跨整行。随后做 **Scroll-End Pass**：截图只看到最下面的卡片贴近窗口，不足以断言 Bug，必须实际滚动到底检查最后记录、按钮、图表轴/说明和 fixed bar 遮挡。出现不可达底部或横向撑破应返工，不能用 `overflow:hidden` 将问题藏掉。参考 `references/grid-alignment-and-viewport-safety.md`。
+
+## v6.10 · 双重图表审查 + 比较任务复盘
+
+对并排图表不仅看外边框与 Grid 行线，还要看 **Plot Area**、X 轴基线、图表数据标签间距与重叠；相同容器高度也可能掩盖两张图的绘图区/单位/刻度不协调。比较页截图同时检查对象身份、图例、实际画出的 series、表格列和首屏真正有助于发现差异的内容。不要用持续占位的筛选侧栏与大块“数据口径”说明卡伪装完整比较体系。见 `references/comparison-page-design.md` 与 `references/chart-interior-alignment.md`。

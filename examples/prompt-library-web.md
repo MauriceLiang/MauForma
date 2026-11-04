@@ -202,3 +202,12 @@ $mauforma
 5. references/grid-alignment-and-viewport-safety.md 和 assets/grid-and-viewport-lab.html 仅是设计指导；可选 node scripts/audit_rendered_layout.mjs --url http://localhost:5173 做浏览器几何审查（需本地 Playwright），没执行写 NOT RUN。
 沿用用户已确认的导航/配色，Agent 的布局建议与真实修复必须区分。
 ```
+
+## 比较页面重构 / 多仓库数据可比性 / 图内轴线标签检查
+
+```text
+使用 $mauforma，先审查现有项目比较页的使用任务：比谁、比什么、哪些数值可以公平比较。参考 references/comparison-page-design.md 中 NN/g、RTINGS、Apple、npmcharts 和 EcosystemPulse 的案例，选择适合的差异摘要、对象列/属性行矩阵、共享时间窗主趋势图等结构，避免一堆毫无主次的图表/空白说明卡。
+确保选中仓库 IDs、图例和图表 series、表格列严格一致；缺失样本显示 no_data/partial，不能把 null 补成 0 或制造赢家。时间范围/单位/聚合粒度一致，不可比时明说。
+检查图表内部 Plot Area、X 轴基线、图例、标注文字，重点处理两个散点标签/平均值重叠；不同图型不强制同 Y 刻度。使用真实浏览器验证选仓库/时间窗联动、手机比较/表格、底部安全；对 Canvas 内标签不能用 DOM 脚本代替眼睛，标 NOT AUDITED。
+用户已确认的品牌颜色/导航保持不变。可运行 scripts/validate_comparison_contract.py 和 scripts/audit_comparison_ui.mjs（需要 Playwright）作辅助。
+```

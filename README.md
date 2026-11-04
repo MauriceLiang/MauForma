@@ -101,6 +101,14 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 比较页面：先让差异有意义，再画多条线
+
+v6.10 新增 **Comparison UX & Chart Integrity Gate**：参考 NN/g、RTINGS、Apple、npmcharts、EcosystemPulse 等真实比较设计，从使用者的比较问题出发，整理**对象条 → 可信差异摘要 → 共同时间窗趋势图 → 同列指标矩阵 → 可展开口径**。同类指标拥有一致单位和采样范围，未采集的数据不伪装成 0 或综合赢家。
+
+还补上以往遗漏的 **图表绘图区/坐标轴/标签级 QA**：外框对齐不能证明图表可读，必须检查内部 Plot Area 与标签重叠。所选仓库、图例、实际序列、对照表列必须一致；浏览器里看不到的 Canvas 标签不能被静态 DOM 脚本冒充已验收。
+
+[比较页设计研究](references/comparison-page-design.md) · [成熟参考与迁移边界](assets/comparison-reference-cases.json) · [图表内部对齐](references/chart-interior-alignment.md) · [交互式比较页示例](assets/comparison-layout-lab.html) · [RepoVantage 截图复盘](references/repovantage-comparison-case.md)
+
 ## 对齐不是让所有卡片一样大
 
 v6.9 加入 **Grid & Viewport Integrity Gate**：数据看板的模块优先共享内容边界和行起点。不同宽度、主图跨行与有业务理由的非对称可以保留；不再将两列数据卡片分别堆叠成无规则的上下错位。摄影、创意、叙事仍然允许合理的 Masonry。
@@ -185,6 +193,7 @@ python3 scripts/validate_sidebar_color_decision.py --repository
 python3 scripts/validate_navigation_architecture.py --repository
 python3 scripts/validate_page_content_plan.py examples/page-content-plan-repovantage.json --repository
 python3 scripts/validate_layout_integrity.py --repository
+python3 scripts/validate_comparison_contract.py examples/comparison-contract-repovantage.json --repository
 python3 -m unittest discover -s tests -v
 ```
 

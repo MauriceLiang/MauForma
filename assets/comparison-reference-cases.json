@@ -1,0 +1,147 @@
+{
+  "version": "1.0",
+  "summary": "Reusable comparison patterns and research; recommendations are contextual and not copied visual design",
+  "references": [
+    {
+      "id": "nng-comparison",
+      "name": "Nielsen Norman Group comparison tables",
+      "url": "https://www.nngroup.com/articles/comparison-tables/",
+      "learn": [
+        "small set of objects",
+        "standard options-columns attributes-rows",
+        "differences filters",
+        "consistent attribute metadata",
+        "mobile tradeoffs"
+      ],
+      "limits": "UX guidance applicable beyond commerce, numeric comparison threshold is guidance not a hard rule",
+      "priority": "high"
+    },
+    {
+      "id": "rtings",
+      "name": "RTINGS headphones compare",
+      "url": "https://www.rtings.com/headphones/tools/compare",
+      "learn": [
+        "main differences first",
+        "side by side tests and criteria",
+        "detailed drilldown"
+      ],
+      "limits": "Consumer hardware ratings are not objective repository engineering winners",
+      "priority": "high"
+    },
+    {
+      "id": "apple-mac",
+      "name": "Apple Mac comparison",
+      "url": "https://www.apple.com/mac/compare/",
+      "learn": [
+        "columns of selected models",
+        "consistent aligned specs",
+        "quick scanning"
+      ],
+      "limits": "Static consumer specs unlike dynamic time series and partial API coverage",
+      "priority": "medium"
+    },
+    {
+      "id": "npmcharts",
+      "name": "npmcharts compare",
+      "url": "https://www.npmcharts.com/compare",
+      "learn": [
+        "overlaid multi-package temporal trend",
+        "same-unit comparisons",
+        "display all selected names"
+      ],
+      "limits": "npm downloads are not directly transferable to commit activity",
+      "priority": "high"
+    },
+    {
+      "id": "ecosystempulse",
+      "name": "EcosystemPulse developer comparisons",
+      "url": "https://ecosystempulse.dev/comparisons.html",
+      "learn": [
+        "comparable measurements",
+        "source-aware evidence",
+        "no fabricated universal winner"
+      ],
+      "limits": "Data page structure may differ, metrics apply to npm ecosystem not GitHub",
+      "priority": "high"
+    },
+    {
+      "id": "baymard",
+      "name": "Baymard comparison tool examples",
+      "url": "https://baymard.com/ecommerce-design-examples/39-comparison-tool",
+      "learn": [
+        "selection and side-by-side usability failures",
+        "research backed examples"
+      ],
+      "limits": "Ecommerce conversion context not analytics workload",
+      "priority": "medium"
+    },
+    {
+      "id": "github-compare",
+      "name": "GitHub compare commits",
+      "url": "https://docs.github.com/en/pull-requests/how-tos/commit-changes/comparing-commits",
+      "learn": [
+        "clear base-vs-compare semantics",
+        "traceable changed files and commits"
+      ],
+      "limits": "For branch/commit diffs, not cross-repository trend comparison",
+      "priority": "medium"
+    }
+  ],
+  "patterns": [
+    {
+      "id": "metric-matrix",
+      "name": "aligned metric table",
+      "fit": [
+        "product-specs",
+        "repository-scorecard",
+        "pricing",
+        "tech-stack"
+      ],
+      "primary": "items as columns, attributes as rows; differences optional; detail on demand",
+      "avoid": "huge tables with unmatched periods or metadata"
+    },
+    {
+      "id": "trend-overlay",
+      "name": "multi-entity overlay timeline",
+      "fit": [
+        "repository-activity",
+        "package-downloads",
+        "periodic-analytics"
+      ],
+      "primary": "shared time x-axis and units; selected series linked to legend",
+      "avoid": "single visible line for three selected entities without explanation"
+    },
+    {
+      "id": "comparison-brief",
+      "name": "summary then evidence",
+      "fit": [
+        "repository-analysis",
+        "decision-support",
+        "software-evaluation"
+      ],
+      "primary": "credible differences summary followed by common metric table and targeted chart",
+      "avoid": "winner headline without data/criteria, giant empty explanation card"
+    },
+    {
+      "id": "two-way-diff",
+      "name": "base-vs-compare differences",
+      "fit": [
+        "commit-branches",
+        "code-diff",
+        "before-after"
+      ],
+      "primary": "clear A/B identities and changed fields/lines",
+      "avoid": "using code diff structure for unrelated GitHub repository trend"
+    }
+  ],
+  "guardrails": {
+    "selected_series_legend_consistency": true,
+    "same_period_and_metric_unit": true,
+    "no_null_as_zero": true,
+    "source_and_sample_coverage": true,
+    "avoid_fabricated_winner": true,
+    "mobile_readability": true,
+    "comparison_is_not_chart_catalog": true,
+    "chart_plot_alignment_and_label_overlap_review": true
+  }
+}

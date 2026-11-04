@@ -135,3 +135,16 @@
 - [ ] 实测含首屏截图 + 最大滚动位置截图（含底边）。仅运行 `validate_layout_integrity.py` 不可声明浏览器 PASS。
 
 详细设计 `references/grid-alignment-and-viewport-safety.md`，实例 `references/repovantage-release-alignment-case.md`，可选实测 `node scripts/audit_rendered_layout.mjs --url http://127.0.0.1:5173`（Playwright 需可用）。
+
+## v6.10 · Chart Interior 与多对象比较页专门 QA
+
+- [ ] **外框对齐还要看图内**：Plot Area 的起点、X 轴/图例基线、边距、日期 label 是否协调，不因面板等高而误认为图内已对齐？
+- [ ] 柱图/散点图上的数字、均值标注与点、边界有没有真实重叠或被裁切？同一数据点是否重复两处文字？
+- [ ] 已选对象 IDs 是否与图例、真实 series（包含 no_data/partial 标记）、表格列完全一致？截图只有一条可见线但选了多个仓库时有没有解释？
+- [ ] 共享时间区间、桶、单位和指标口径是否清楚，未采集/样本不足是否用 null/“—”而不是 0？不同仓库覆盖率是否影响公正性？
+- [ ] 比较任务是否在一屏内能看到选谁、主要区别、趋势和矩阵入口；是否有长驻过宽的选仓库栏、大块信息稀薄的“口径”卡等无效容器？
+- [ ] 表格对象列和指标行稳定、可扫描；用户能切换对比对象/筛选差异/查看详情且全组件同步？
+- [ ] 手机端是否可发现至少二项对比或清楚的对象切换，内容不靠超小字挤成三列？
+- [ ] 真实浏览器有比较前后选择切换、图例/曲线、放大文字、横向/纵向滚动的截图；Canvas 内标签未实际检查时标 NOT AUDITED 而非 PASS。
+
+参考 `references/comparison-page-design.md`、`references/chart-interior-alignment.md`、`references/repovantage-comparison-case.md`。可用 `python3 scripts/validate_comparison_contract.py --repository`，但静态契约测试不等于真实曲线渲染检查。

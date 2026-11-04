@@ -29,6 +29,30 @@ jobs:
           python3 scripts/validate_page_content_plan.py examples/page-content-plan-repovantage.json --repository
           python3 scripts/validate_layout_integrity.py examples/layout-integrity-repovantage.json --repository
           node --check scripts/audit_rendered_layout.mjs
+          python3 scripts/validate_comparison_contract.py examples/comparison-contract-repovantage.json --repository
+          node --check scripts/audit_comparison_ui.mjs
           python3 -m unittest discover -s tests -v
       - name: Syntax check browser QA script
         run: node --check scripts/browser_qa.mjs
+
+  comparison-browser:
+    name: Comparison example browser smoke
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated browser QA dependency
+        run: |
+          npm install --no-save --no-package-lock --ignore-scripts playwright@1.58.2
+          npx playwright install chromium
+      - name: Validate comparison interactions and scroll-end in Chromium
+        run: node tests/comparison_browser_smoke.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: comparison-example-screenshots
+          path: comparison-browser-artifacts/
+          if-no-files-found: ignore

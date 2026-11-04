@@ -1,0 +1,164 @@
+{
+  "schema_version": "1.0",
+  "project": "RepoVantage",
+  "source": "Illustrative compare contract based on user screenshot only, not actual GitHub data",
+  "decision_question": "比较同一时间范围内三个仓库的活跃趋势及可比协作指标",
+  "status": "provisional",
+  "selected_entity_ids": [
+    "demo-labs/steady-core",
+    "demo-labs/grid-lite",
+    "demo-labs/sparse-kit"
+  ],
+  "metric": {
+    "id": "complete_week_commits",
+    "unit": "commits/week",
+    "aggregation": "sum",
+    "direction": "neutral"
+  },
+  "window": {
+    "start": "2026-01-05",
+    "end": "2026-01-25",
+    "granularity": "week",
+    "time_buckets": [
+      "2026-01-05",
+      "2026-01-12",
+      "2026-01-19"
+    ]
+  },
+  "series": [
+    {
+      "entity_id": "demo-labs/steady-core",
+      "status": "available",
+      "legend": "steady-core",
+      "color_token": "series-1",
+      "points": [
+        {
+          "bucket": "2026-01-05",
+          "value": 12
+        },
+        {
+          "bucket": "2026-01-12",
+          "value": 15
+        },
+        {
+          "bucket": "2026-01-19",
+          "value": 14
+        }
+      ]
+    },
+    {
+      "entity_id": "demo-labs/grid-lite",
+      "status": "available",
+      "legend": "grid-lite",
+      "color_token": "series-2",
+      "points": [
+        {
+          "bucket": "2026-01-05",
+          "value": 8
+        },
+        {
+          "bucket": "2026-01-12",
+          "value": 10
+        },
+        {
+          "bucket": "2026-01-19",
+          "value": 9
+        }
+      ]
+    },
+    {
+      "entity_id": "demo-labs/sparse-kit",
+      "status": "partial",
+      "legend": "sparse-kit · 部分数据",
+      "color_token": "series-3",
+      "points": [
+        {
+          "bucket": "2026-01-05",
+          "value": null,
+          "missing_reason": "not-collected"
+        },
+        {
+          "bucket": "2026-01-12",
+          "value": 4
+        },
+        {
+          "bucket": "2026-01-19",
+          "value": null,
+          "missing_reason": "not-collected"
+        }
+      ]
+    }
+  ],
+  "table": {
+    "columns": [
+      "demo-labs/steady-core",
+      "demo-labs/grid-lite",
+      "demo-labs/sparse-kit"
+    ],
+    "metrics": [
+      {
+        "id": "complete_weeks",
+        "unit": "weeks",
+        "direction": "higher",
+        "cells": [
+          {
+            "entity_id": "demo-labs/steady-core",
+            "value": 3,
+            "coverage": "complete",
+            "sample_size": 3
+          },
+          {
+            "entity_id": "demo-labs/grid-lite",
+            "value": 3,
+            "coverage": "complete",
+            "sample_size": 3
+          },
+          {
+            "entity_id": "demo-labs/sparse-kit",
+            "value": 1,
+            "coverage": "partial",
+            "sample_size": 1
+          }
+        ]
+      },
+      {
+        "id": "issue_p50",
+        "unit": "days",
+        "direction": "lower",
+        "cells": [
+          {
+            "entity_id": "demo-labs/steady-core",
+            "value": null,
+            "coverage": "not-collected",
+            "sample_size": 0
+          },
+          {
+            "entity_id": "demo-labs/grid-lite",
+            "value": null,
+            "coverage": "not-collected",
+            "sample_size": 0
+          },
+          {
+            "entity_id": "demo-labs/sparse-kit",
+            "value": null,
+            "coverage": "not-collected",
+            "sample_size": 0
+          }
+        ]
+      }
+    ]
+  },
+  "presentation": {
+    "layout": "selection-strip-summary-trend-matrix",
+    "show_difference_only": false,
+    "show_missing_as": "— 未采集",
+    "show_critical_coverage_notice": true,
+    "chart_labels": "review-in-browser",
+    "selected_count": 3
+  },
+  "review": {
+    "browser_status": "NOT RUN",
+    "evidence": [],
+    "notes": "Synthetic values only. No real GitHub repository statistics claimed."
+  }
+}

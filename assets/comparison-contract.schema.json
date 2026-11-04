@@ -1,0 +1,339 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MauForma Comparison Contract",
+  "description": "Same-unit, same-window, transparent multi-entity comparison. Browser rendering and user consent separate.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project",
+    "source",
+    "decision_question",
+    "status",
+    "selected_entity_ids",
+    "metric",
+    "window",
+    "series",
+    "table",
+    "presentation",
+    "review"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "project": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decision_question": {
+      "type": "string",
+      "minLength": 5
+    },
+    "status": {
+      "enum": [
+        "provisional",
+        "confirmed",
+        "delegated",
+        "inherited"
+      ]
+    },
+    "user_statement": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "selected_entity_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "metric": {
+      "type": "object",
+      "required": [
+        "id",
+        "unit",
+        "aggregation",
+        "direction"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "aggregation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "direction": {
+          "enum": [
+            "lower",
+            "higher",
+            "neutral"
+          ]
+        }
+      }
+    },
+    "window": {
+      "type": "object",
+      "required": [
+        "start",
+        "end",
+        "granularity",
+        "time_buckets"
+      ],
+      "properties": {
+        "start": {
+          "type": "string",
+          "minLength": 1
+        },
+        "end": {
+          "type": "string",
+          "minLength": 1
+        },
+        "granularity": {
+          "enum": [
+            "day",
+            "week",
+            "month",
+            "year"
+          ]
+        },
+        "time_buckets": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "series": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "entity_id",
+          "status",
+          "legend",
+          "color_token",
+          "points"
+        ],
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "available",
+              "partial",
+              "no_data"
+            ]
+          },
+          "legend": {
+            "type": "string",
+            "minLength": 1
+          },
+          "color_token": {
+            "type": "string",
+            "minLength": 1
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "bucket",
+                "value"
+              ],
+              "properties": {
+                "bucket": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "value": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "missing_reason": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "table": {
+      "type": "object",
+      "required": [
+        "columns",
+        "metrics"
+      ],
+      "properties": {
+        "columns": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "unit",
+              "direction",
+              "cells"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              },
+              "direction": {
+                "enum": [
+                  "lower",
+                  "higher",
+                  "neutral"
+                ]
+              },
+              "cells": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "entity_id",
+                    "value",
+                    "coverage",
+                    "sample_size"
+                  ],
+                  "properties": {
+                    "entity_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "value": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "coverage": {
+                      "enum": [
+                        "complete",
+                        "partial",
+                        "not-collected",
+                        "not-applicable",
+                        "insufficient"
+                      ]
+                    },
+                    "sample_size": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "presentation": {
+      "type": "object",
+      "required": [
+        "layout",
+        "show_missing_as",
+        "show_critical_coverage_notice",
+        "chart_labels"
+      ],
+      "properties": {
+        "layout": {
+          "type": "string",
+          "minLength": 1
+        },
+        "show_difference_only": {
+          "type": "boolean"
+        },
+        "show_missing_as": {
+          "type": "string",
+          "minLength": 1
+        },
+        "show_critical_coverage_notice": {
+          "type": "boolean"
+        },
+        "chart_labels": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selected_count": {
+          "type": "integer"
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "browser_status",
+        "evidence",
+        "notes"
+      ],
+      "properties": {
+        "browser_status": {
+          "enum": [
+            "NOT RUN",
+            "PASS",
+            "FAIL"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "plot_labels_verified": {
+          "type": "boolean"
+        },
+        "selected_series_verified": {
+          "type": "boolean"
+        },
+        "viewports": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

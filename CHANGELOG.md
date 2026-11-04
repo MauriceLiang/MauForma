@@ -1,5 +1,17 @@
 # Changelog
 
+## v6.10 — 2026-11-04 · Comparison-page UX, chart plot alignment and selection/data integrity
+
+- 针对 RepoVantage 新截图中外框已对齐但图内 Plot Area 与文字重叠、项目比较流程堆积卡片且缺乏差异分析，新增 v6.10 Comparison UX & Chart Integrity Gate。
+- 研究 NN/g、RTINGS、Apple Compare、npmcharts、EcosystemPulse、Baymard 和 GitHub Compare 等成熟案例，保留各自适合的设计模式与不能生搬的领域限制。
+- 新增 `references/comparison-page-design.md`、`references/chart-interior-alignment.md`、`references/repovantage-comparison-case.md`、`assets/comparison-reference-cases.json`。
+- 新增 `assets/comparison-layout-lab.html`：原创响应式比较页，模拟仓库选择同步趋势图图例、series 和指标矩阵；声明示例数据非真实 GitHub 采集。
+- 新增 `assets/comparison-contract.schema.json`、`examples/comparison-contract-repovantage.json` 与 `scripts/validate_comparison_contract.py`，静态检查 entity IDs、series/legend/table、时间窗、单位、样本覆盖与 null vs zero。
+- 新增 `scripts/audit_comparison_ui.mjs` 可选浏览器几何检查，审计支持标注的 Plot Area、标签交叠、系列身份、横向溢出与底部可达性；Canvas 内标签无结构接口时标 NOT AUDITED。
+- 更新 Skill、README、视觉 QA、浏览器/工程规范、反例和 GitHub CI，保留 v6.9 行列对齐/底部安全能力。此更新不直接修改 RepoVantage 业务网站。
+
+---
+
 ## v6.9 — 2026-11-04 · Grid alignment, intentional asymmetry and bottom-safe scrolling
 
 - 基于 RepoVantage「版本发布」页面三张截图，识别两个独立问题：左右列独立堆叠导致第二排上边缘错位；卡片靠近视口底部需要验证实际能否滚动到最后一条记录。**截图不能直接证明真实裁切，不能把首屏外的内容都称为 Bug。**

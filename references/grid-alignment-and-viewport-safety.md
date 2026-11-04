@@ -148,3 +148,7 @@
 - [MDN Viewport concepts](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/CSSOM_view/Viewport_concepts)：layout viewport 与 visual viewport（含软键盘、缩放）差异。
 
 **外部文档提供技术和设计依据，不存在“任何两张卡片必须对齐到 0px 差”的通用 Web 法规；本 Skill 的对齐阈值仅供风险审查并应与页面语义一起使用。**
+
+## v6.10 · Grid 外框合格不等于 Chart Plot 合格
+
+用户新的发布分析截图显示两个外框上下边缘比较整齐，但 Plot Area 不同、X 轴/数据标签不协调，右侧散点与平均值标注挤在一起。对于图表页面，加查内部 Chart Header、Plot Region、Axis、Legend 与 Footnote。不同类型图不要求强行统一绘图区高度/量程，**要确保图表中真实文字没有重叠、数据时间窗口和单位可理解**。Canvas 文字不能由通用 DOM 自动审计；检查 ECharts 等图表库的 label 布局与真实截图，详见 `references/chart-interior-alignment.md`。
