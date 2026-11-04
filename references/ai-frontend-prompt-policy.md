@@ -15,6 +15,10 @@ Agent 不可以只问“想要哪种风格”，也不可以未经分析就直�
 
 参阅 `references/design-discovery-interview.md` 和 `examples/design-discovery-dialogues.md`，并先于组件和业务页面实施。
 
+## v6.15 · 组件级交互动效要主动设计
+
+当用户已选择/明确授权有动效时，Agent 不得交付“只有路由变化、其余静态”的普通页面。先识别真实的 Tabs、Dropdown、Accordion、Toggle、Button、List、Card、Chart/Status 等重要组件的交互状态，为每个选择有目的的 `motion / immediate-feedback / intentionally-static(reason)`，并按功能区别 indicator-travel、spatial-reveal、state-morph、layout-continuity、semantic-feedback 等，不以统一 fade/scale 冒充高质量交互。高频和关键动作要稳定可中断，用户 `none` 及减少动态效果必须优先；复杂动效只在适用场景选合适引擎。详细规则：`references/component-motion-choreography-gate.md`。
+
 ## v6.14 · 动效选择必须属于用户，不能自行做成全静态
 
 对新网站/整站重设计/显著改变动效的交互改版，先读 `references/motion-consent-experience-gate.md`；未知时**主动向用户提出 2–3 套可观察的动效体验**，如即时但明确的反馈、细腻控件切换、局部表现力转场。解释页面/组件具体能看到什么、性能与减少动效的影响；只问真正未知的动效维度，不要把设计变成问卷。等待用户决定或明确委托；不能“用户没说就全部静止”，也不能“用户没说就全部动画”。用户明确委托动效才是 `delegated`；“继续开发”不是动效授权。已决定的方向直接继承，局部 Bug 不重复询问。即使选无额外运动也要保留 focus/selected/成功失败等明确反馈。选择有动效时验收真实 Tabs/Dialog/导航/状态切换与 reduced-motion，不能仅加入 CSS 类却没有实效。
