@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MauForma · Comparison Workspace Lab</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;background:#f4f6f6;color:#27383e;--line:#d7dfe1;--muted:#66777d;--surface:#fff}
+*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid #5c7e89;outline-offset:3px}
+main{max-width:1190px;margin:auto;padding:34px 24px 70px}h1{font-size:clamp(26px,3.4vw,38px);line-height:1.2;letter-spacing:-.035em;margin:10px 0}.lead{font-size:14px;color:#5d7077;line-height:1.7;max-width:940px}.eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;color:#69818a}.demo{background:#fff;border:1px solid #d1dbdf;border-radius:12px;margin-top:24px;overflow:hidden;box-shadow:0 11px 33px #223b460b}
+.head{border-bottom:1px solid var(--line);padding:22px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.head h2{font-size:22px;margin:0 0 5px;letter-spacing:-.02em}.head p{font-size:13px;color:var(--muted);margin:0}.mark{background:#edf3ef;color:#506d5b;border:1px solid #d2e2d8;font-size:12px;padding:7px 11px;border-radius:50px}
+.body{padding:25px 28px 38px}.sec-title{font-weight:700;font-size:15px;margin:0 0 12px}.minor{font-size:12px;color:#788890}
+.controls{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:22px}
+.picks{display:flex;flex-wrap:wrap;gap:8px}.repo{display:flex;align-items:center;gap:9px;border:1px solid #d5dde1;background:white;color:#35454c;border-radius:7px;padding:9px 12px;font-size:13px;cursor:pointer}.repo:has(input:checked){background:#f0f4f4;border-color:#abbfc2}.repo input{width:15px;height:15px;accent-color:#36555e}
+.swatch{width:9px;height:9px;border-radius:50%;background:var(--swatch)}.time{display:flex;gap:5px;align-items:center;font-size:12px;color:#6b7d84}.time b{border:1px solid #d4dee0;border-radius:6px;color:#425861;background:#f4f6f6;padding:8px 10px}
+.section{margin-top:26px}.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.summary article{padding:17px;background:#f8fafa;border:1px solid #e2e8e9;border-radius:8px}.summary span{font-size:12px;color:#687980}.summary strong{display:block;font-size:21px;margin:7px 0;letter-spacing:-.03em}.summary small{font-size:12px;color:#687981}.summary .number{font-variant-numeric:tabular-nums}
+.panel{border:1px solid #d9e2e4;border-radius:10px;padding:23px;margin-top:20px}.panel-top{display:flex;gap:15px;justify-content:space-between;align-items:start;flex-wrap:wrap}.panel h3{font-size:16px;margin:0 0 6px}.panel p{font-size:12px;color:#728189;margin:0}.legend{display:flex;flex-wrap:wrap;gap:16px;margin:16px 0 4px}.legend>span{font-size:12px;display:flex;align-items:center;gap:7px;color:#5c6e76}.chartplot{width:100%;min-width:0;min-height:255px;display:flex;flex-direction:column;justify-content:center}
+svg{width:100%;height:255px;display:block;overflow:visible}svg .grid{stroke:#e4ebec;stroke-width:1}svg .baseline{stroke:#aab8bc;stroke-width:1}svg text{font:11px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#647680}svg .series{stroke-width:2.8;fill:none;stroke-linejoin:round;stroke-linecap:round}svg .series-dot{stroke:#fff;stroke-width:2}.missing{font-size:12px;color:#746950;background:#fcf8ed;border:1px solid #eee2c1;border-radius:6px;padding:11px 13px;margin-top:13px}
+.matrix-top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.matrix-top label{font-size:12px;color:#60727a;display:flex;gap:7px;align-items:center}.matrix-top input{accent-color:#425e66;width:15px;height:15px}
+.matrix-wrap{overflow:auto;border:1px solid #dbe3e6;border-radius:8px;margin-top:15px}.matrix{border-collapse:collapse;width:100%;min-width:600px;table-layout:fixed}.matrix th,.matrix td{border-bottom:1px solid #e2e9ea;padding:15px 13px;text-align:left;font-size:13px;vertical-align:top}.matrix thead th{background:#f3f6f7;font-size:12px;color:#3f555e}.matrix th:first-child{width:180px;position:sticky;left:0;background:#f8fafa;z-index:1}.matrix thead th:first-child{background:#f3f6f7;z-index:2}.matrix tbody tr:last-child td,.matrix tbody tr:last-child th{border-bottom:0}.matrix th[scope=row]{font-weight:600;color:#3c535b}.matrix .dim{color:#849096;font-size:11px;display:block;margin-top:4px}.matrix .num{font-variant-numeric:tabular-nums;font-weight:600}.matrix .missing-text{font-size:12px;color:#986e32}
+.details{margin-top:18px;border-top:1px solid #dce4e5;padding-top:13px}.details summary{font-size:13px;color:#435c65;cursor:pointer;font-weight:600}.details p{font-size:12px;line-height:1.7;color:#6b7c83;margin:9px 0 0;max-width:850px}
+.bottom{margin-top:22px;font-size:12px;color:#78878d;line-height:1.6;padding-top:18px;border-top:1px solid #dce5e7}
+.notes{margin:18px 0;display:grid;grid-template-columns:1fr 1fr;gap:15px}.notes article{background:white;border:1px solid #dbe3e5;border-radius:8px;padding:18px}.notes h2{font-size:14px;margin:0 0 7px}.notes p{font-size:13px;color:#627780;line-height:1.65;margin:0}.foot{font-size:12px;color:#71848c;line-height:1.6}
+@media(max-width:750px){main{padding:24px 12px 45px}.head,.body{padding:20px 15px}.summary{grid-template-columns:1fr}.summary article{padding:14px}.chartplot{min-height:210px}svg{height:215px}.panel{padding:16px}.matrix th:first-child{width:138px}.notes{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style></head>
+<body><main><div class="eyebrow">MAUFORMA / COMPARISON EXPERIENCE</div><h1>好的比较页，应该先让差异变得清楚。</h1>
+<p class="lead">以仓库分析为例，展示“对象选择 → 可比性/差异摘要 → 一个共同时间轴 → 属性对照矩阵”的信息顺序。以下数值全部为原创模拟数据，不代表任何真实 GitHub 仓库，也不用于技术选型结论。</p>
+<div class="demo"><div class="head"><div><h2>项目比较</h2><p>同一窗口内比较开发活动与可用数据覆盖</p></div><span class="mark">模拟数据 / 非 GitHub 实测</span></div>
+<div class="body">
+<div class="controls"><div><div class="sec-title">选择仓库 <span class="minor" id="count"></span></div><div class="picks" id="repo-picker"></div></div><div class="time">观察窗口 <b>3 个完整周 · 每周</b></div></div>
+<section class="section" aria-label="差异摘要"><h3 class="sec-title">先看差异</h3><div class="summary" id="summary"></div></section>
+<section class="panel" data-mf-chart-group="activity-trend"><div class="panel-top"><div><h3>每周提交趋势</h3><p>统一 X 轴、单位与采样范围 · 仅以演示数据说明比较结构</p></div><span class="minor">单位：次 / 周</span></div>
+<div class="legend" id="legend"></div><div class="chartplot" data-mf-chart-plot><svg id="chart" viewBox="0 0 680 250" preserveAspectRatio="xMidYMid meet" role="img" aria-label="三个仓库的模拟提交趋势"></svg></div>
+<div class="missing" id="coverage">部分仓库存在未采集数据，缺失不按零处理。</div>
+</section>
+<section class="section" aria-label="指标对照">
+ <div class="matrix-top"><div><h3 class="sec-title">指标对照</h3><p class="minor">每个对象占一列，所有指标保持同一行</p></div><label><input id="differences" type="checkbox"/>仅看有差异的指标</label></div>
+ <div class="matrix-wrap"><table class="matrix"><thead><tr id="table-head"></tr></thead><tbody id="table-body"></tbody></table></div>
+</section>
+<details class="details"><summary>数据口径与比较限制</summary><p>真实项目必须核对每个仓库的采样窗口、API 覆盖、去重规则、完整周数、Issue/PR 样本量及缺失类型。绝对提交数不等于工程质量，“样本不足”不能算作零，也不能直接宣称优胜仓库。</p></details>
+<div class="bottom" data-mf-bottom-content>演示说明：可用数据来自本文静态模拟数组。这里不提供真实评分或综合赢家；本示例展示结构和交互，不是已经接入业务 API 的 RepoVantage 页面。</div>
+</div></div>
+<div class="notes"><article><h2>与原页面相比</h2><p>缩短常驻筛选面板，把已选仓库作为可修改的对象条；移除信息稀疏的大口径卡，让趋势图和对照矩阵承担主要任务。</p></article><article><h2>验收重点</h2><p>选中对象、图例、趋势系列和表格列必须一致；缺失点不补零；数据标签、绘图区和最后一行都必须实际检查，不能只验证外层卡片。</p></article></div>
+<p class="foot">参考 NN/g 对比表、RTINGS、Apple Mac Compare 与 npmcharts 等产品的方法；此页面为 MauForma 独立原创演示，不复制其视觉元素。</p>
+</main>
+<script>
+const repos=[
+{id:'demo-labs/steady-core',short:'steady-core',color:'#4b796e',values:[12,15,14],weeks:3},
+{id:'demo-labs/grid-lite',short:'grid-lite',color:'#aa633c',values:[8,10,9],weeks:3},
+{id:'demo-labs/sparse-kit',short:'sparse-kit',color:'#987c9a',values:[null,4,null],weeks:1}
+];
+let selected=new Set(repos.map(x=>x.id));const names=['01-05','01-12','01-19'];
+const picker=document.querySelector('#repo-picker'),legend=document.querySelector('#legend'),summary=document.querySelector('#summary'),chart=document.querySelector('#chart'),head=document.querySelector('#table-head'),body=document.querySelector('#table-body'),coverage=document.querySelector('#coverage');
+function create(tag,cls,text){const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el;}
+function s(tag,attrs={}){const e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));return e;}
+function draw(){
+ const active=repos.filter(r=>selected.has(r.id));picker.replaceChildren();legend.replaceChildren();summary.replaceChildren();head.replaceChildren();body.replaceChildren();chart.replaceChildren();
+ document.querySelector('#count').textContent=active.length+' / 3';
+ for(const r of repos){
+  const l=create('label','repo');l.style.setProperty('--swatch',r.color);
+  const input=create('input');input.type='checkbox';input.checked=selected.has(r.id);input.setAttribute('data-mf-selected-id',r.id); // counts only checked visible markers in custom audit
+  if(!input.checked)input.removeAttribute('data-mf-selected-id');
+  input.addEventListener('change',()=>{if(!input.checked&&selected.size<=2){input.checked=true;return;}input.checked?selected.add(r.id):selected.delete(r.id);draw();});
+  const dot=create('span','swatch');const name=create('span','',r.short);l.append(input,dot,name);picker.append(l);
+ }
+ const summaries=[
+  ['共同时间窗口','3 周','相同 X 轴、相同计数单位'],
+  ['数据覆盖',active.filter(r=>r.weeks===3).length+' / '+active.length,'仓库具有完整周样本'],
+  ['可比性','部分可比','不要将缺失周计算为 0']
+ ];
+ for(const [title,value,desc] of summaries){const el=create('article');el.append(create('span','',title),create('strong','number',value),create('small','',desc));summary.append(el);}
+ for(const r of active){const item=create('span');item.setAttribute('data-mf-legend-id',r.id);const dot=create('span','swatch');dot.style.setProperty('--swatch',r.color);item.append(dot,create('span','',r.short+(r.weeks<3?' · 部分数据':'')));legend.append(item);}
+ // All three series are represented; missing points are explicitly not connected or zero-filled.
+ const X=[120,350,580],y=v=>196-v*8.1;
+ for(let v=0;v<=20;v+=5){const yy=y(v);chart.append(s('line',{x1:54,x2:645,y1:yy,y2:yy,class:'grid'}));const tick=s('text',{x:31,y:yy+4,'text-anchor':'end'});tick.textContent=String(v);chart.append(tick);}
+ chart.append(s('line',{x1:54,x2:645,y1:196,y2:196,class:'baseline'}));
+ for(let i=0;i<names.length;i++){const label=s('text',{x:X[i],y:225,'text-anchor':'middle','data-mf-chart-label':'axis'});label.textContent=names[i];chart.append(label);}
+ for(const r of active){
+  const g=s('g',{'data-mf-series-id':r.id});let current=[];
+  function flush(){if(current.length>1){const p=s('polyline',{points:current.map(x=>x.join(',')).join(' '),stroke:r.color,class:'series'});g.append(p);}current=[];}
+  r.values.forEach((v,i)=>{if(v===null){flush();return;}current.push([X[i],y(v)]);const dot=s('circle',{cx:X[i],cy:y(v),r:5.2,fill:r.color,class:'series-dot'});g.append(dot);});
+  flush();chart.append(g);
+ }
+ coverage.textContent=active.some(r=>r.weeks<3)?'注意：sparse-kit 只有一个完整周；其余日期未采集，不能按 0 次提交处理。':'所选仓库在本演示窗口内均有完整周数据。';
+ head.append(create('th','', '指标'));for(const r of active)head.append(create('th','',r.short));
+ const rows=[
+  {name:'完整周数',unit:'周',values:active.map(r=>r.weeks),diff:true},
+  {name:'窗口内可确认提交',unit:'次',values:active.map(r=>r.values.filter(x=>x!==null).reduce((a,b)=>a+b,0)),diff:true,note:'仅已采集周之和，不能作公平总量排名'},
+  {name:'Issue 关闭 P50',unit:'天',values:active.map(_=>null),diff:false,note:'尚未提供样本'}
+ ];
+ const only=document.querySelector('#differences').checked;
+ for(const row of rows){if(only&&!row.diff)continue;
+  const tr=create('tr');const th=create('th','',row.name);th.setAttribute('scope','row');th.append(create('span','dim',row.unit+(row.note?' · '+row.note:'')));tr.append(th);
+  for(let i=0;i<active.length;i++){const td=create('td');if(row.values[i]===null)td.append(create('span','missing-text','— 未采集'));else {td.append(create('span','num',String(row.values[i])+' '+row.unit));if(row.name==='完整周数'&&active[i].weeks<3)td.append(create('span','dim','部分覆盖'));}tr.append(td);}
+  body.append(tr);
+ }
+}
+document.querySelector('#differences').addEventListener('change',draw);
+draw();
+</script></body></html>
