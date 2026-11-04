@@ -101,6 +101,14 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 组件交互动效：设计手感，不止页面转场
+
+v6.15 新增 **Component Motion Choreography & Art Direction Gate**：选择了细腻/表达型动效后，Agent 必须主动检查页面真实存在的 Tab、Accordion、Toggle、列表、按钮、状态反馈和媒体组件，设计符合职责的局部过渡。不再只给路由切换做 fade，或把所有 Hover/按钮都统一缩放。通过组件级选中指示、空间展开、状态形变、列表变化连续性和即时结果反馈，形成丰富但克制、能被用户察觉的品质。
+
+动效决策仍属于用户；无额外动效或系统 reduced-motion 时保留清楚的交互反馈。实现要按框架、组件及真实状态选择技术，重视性能、中断、焦点与布局安全，不能强制为每个页面安装动画库或使用相同的特效。
+
+[组件动效设计规范](references/component-motion-choreography-gate.md) · [四类网站示例](assets/component-motion-patterns.json) · [组件级交互实验](assets/component-motion-lab.html) · [覆盖检查](scripts/validate_component_motion.py)
+
 ## 交互动效由用户选择，不默认全静止或炫技
 
 v6.14 新增 **Motion Choice & Experience Gate**：新网站、整体重设计或明显交互动效改版时，如尚未有确定偏好，Agent 应主动提出 2–3 套具象的动效体验，让用户决定、混搭或明确授权 Agent。允许完全不加额外运动，但不能取消选中、焦点、加载与结果反馈；选择细腻/表达型动效后必须实际实现 Tab、按钮、弹层、导航、数据变化等真实交互对应的反馈与过渡。

@@ -1,5 +1,9 @@
 # Web 动画引擎选型与候选目录（v4）
 
+## v6.15 · 根据组件机制而非“页面好像需要动画”选技术
+
+新建或重大改版先遵循用户确认的动效强度，再读 `references/component-motion-choreography-gate.md` 按实际组件区分 indicator-travel、spatial reveal、state morph、layout continuity、semantic feedback、media transitions。最常见的指示器/Toggle/Disclosure 先尝试 CSS/原生能力；FLIP/共享元素可按需选 Motion，复杂编排可选 Anime.js/GSAP。**并非所有交互动效都需要安装库，也并非每个 CSS opacity 就代表组件已经精致**。不要只实现页级 Fade。
+
 ## v6.14 · 先确认交互动效体验，再选择工具
 
 `references/motion-consent-experience-gate.md` 是动效的上游规则。用户有权选择不增加视觉运动、细腻反馈/转场或更有表现力的少量场景。重大设计若无已确认/明确委托的动效基调，先用 2–3 个具体体验选项询问，不得因为“默认动画 CSS+框架”就暗自为用户决定无动画或加动画。用户选择“无额外动画”仍必须保留即时、清楚的交互状态反馈；选择 B/C 则对真实交互建立覆盖清单并验收。此页只负责**技术选型**，不负责替用户批准视觉运动。

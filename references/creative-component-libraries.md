@@ -2,6 +2,10 @@
 
 > 核对日期：2026-11-02。此文件提供**可选视觉积木**，而非必须安装的依赖表；具体版本、props、许可证、付费与依赖以组件详情页和仓库版本为准。**组件目录随官网变化，以下是精选且已核对的典型能力，不宣称穷尽全部组件。**
 
+## v6.15 · 创意不止在首屏，组件动效也需要设计
+
+参见 `references/component-motion-choreography-gate.md`：先盘点真实高价值交互，明确普通控件的选中指示器、局部展开、状态形变、内容与布局连续性，再查 React Bits / Vue Bits / Inspira UI / Magic UI / Aceternity UI 是否有**确实合适的单个局部实现**。这不是要求后台安装动态背景、也不是默认所有 hover 卡片加入 3D。营销/作品允许少量强表达的组件，日常操作更重视触觉、位置和结果反馈。品牌创意不应以“全站只做路由淡入”代替。
+
 ## 0. 先分清三个层级
 
 - **功能性组件层（Functional UI）**：Button、Select、Dialog、Form、Table、DatePicker、Tabs、Menu 等；必须正确实现焦点、键盘、ARIA、数据与状态。优先已选定的成熟组件库 / headless primitives，禁止用特效组件代替。
