@@ -1,5 +1,16 @@
 # Changelog
 
+## v6.12 — 2026-11-04 · Cross-domain perceptual hierarchy and component craft
+
+- 将字号与组件设计的不足从 RepoVantage 单页问题抽象为**所有 Web 页面的通用设计门禁**，适用 Operate / Persuade / Read / Experience；不强制某种 UI 风格、默认尺寸或项目专属命名。
+- 新增 `references/perceptual-hierarchy-gate.md`：按真实用户任务建立 P0–P3 信息优先级、灰阶扫读顺序、重要文本不被全局小字号弱化、并防止机械放大所有数字。
+- 新增 `references/component-craft-gate.md`：组件职责、内容层级、尺寸理由、视觉状态、交互与边界的六问；覆盖按钮、Tabs、表格/列表、状态、输入、卡片、对话框及导航，强调组合质量而非默认皮肤。
+- 增加四种产品模式的可机读示例 `assets/visual-priority-patterns.json`、静态契约校验 `scripts/validate_visual_priority.py` 与单测；接入 Skill Gate A/B/D、现有 Typography/Component-First/Visual QA 与 GitHub Actions。
+- 审查约束：静态角色校验不能证明页面美观、可访问性完全达标或真实产品经过 Chromium 检查；现有 v6.11 与此前专项能力不变。
+
+---
+
+
 ## v6.11 — 2026-11-04 · Task center and run monitor UX, verified lifecycle/progress actions
 
 - 用户 RepoVantage「任务中心」截图显示长期大统计侧卡占空间、任务记录行过宽但信息集中左侧、重复“进度百分比未知”文案；判断为任务运行监控信息架构问题，而非再次调卡片 Padding/配色。

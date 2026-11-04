@@ -1,0 +1,207 @@
+{
+  "schema_version": "1.0",
+  "note": "Generic cross-domain examples; tokens and prominence are relative to each product, not fixed pixel requirements.",
+  "pages": [
+    {
+      "id": "operations-queue",
+      "mode": "Operate",
+      "user_goal": "Identify what needs attention and decide next valid action",
+      "density": "productive",
+      "info_items": [
+        {
+          "id": "failed-job",
+          "priority": "P0",
+          "role": "primary-object",
+          "type_role": "primary-content",
+          "decision_reason": "Current object and blocker drive action"
+        },
+        {
+          "id": "reason",
+          "priority": "P1",
+          "role": "critical-state",
+          "type_role": "strong",
+          "decision_reason": "Failure diagnosis must be scanned before retry"
+        },
+        {
+          "id": "updated",
+          "priority": "P2",
+          "role": "metadata",
+          "type_role": "supporting",
+          "decision_reason": "Useful supporting chronology"
+        },
+        {
+          "id": "provenance",
+          "priority": "P3",
+          "role": "data-source",
+          "type_role": "caption",
+          "decision_reason": "Still readable when verifying records"
+        }
+      ],
+      "components": [
+        {
+          "id": "job-row",
+          "type": "record-list",
+          "purpose": "Scan object, status, cause and allowed actions",
+          "states": [
+            "default",
+            "hover",
+            "focus-visible",
+            "error",
+            "loading"
+          ],
+          "long_content_strategy": "Wrap critical reason; overflow long IDs accessibly",
+          "reuse_decision": "reuse"
+        }
+      ]
+    },
+    {
+      "id": "product-purchase",
+      "mode": "Persuade",
+      "user_goal": "Understand product offer and buy or compare",
+      "density": "balanced",
+      "info_items": [
+        {
+          "id": "product",
+          "priority": "P0",
+          "role": "product-identity",
+          "type_role": "display",
+          "decision_reason": "Product is the editorial focus"
+        },
+        {
+          "id": "price",
+          "priority": "P1",
+          "role": "purchase-decision",
+          "type_role": "strong",
+          "decision_reason": "Price and unit affect the decision"
+        },
+        {
+          "id": "social-proof",
+          "priority": "P2",
+          "role": "support",
+          "type_role": "body",
+          "decision_reason": "Useful but not the product itself"
+        },
+        {
+          "id": "terms",
+          "priority": "P3",
+          "role": "legal-constraint",
+          "type_role": "supporting",
+          "decision_reason": "Must remain readable and accessible despite low frequency"
+        }
+      ],
+      "components": [
+        {
+          "id": "purchase-cta",
+          "type": "button",
+          "purpose": "Complete a chosen purchase action",
+          "states": [
+            "default",
+            "hover",
+            "focus-visible",
+            "disabled",
+            "loading",
+            "error"
+          ],
+          "long_content_strategy": "Reflow action label without cutting it",
+          "reuse_decision": "wrap"
+        }
+      ]
+    },
+    {
+      "id": "course-article",
+      "mode": "Read",
+      "user_goal": "Study an explanation, examples, and references",
+      "density": "airy",
+      "info_items": [
+        {
+          "id": "article-heading",
+          "priority": "P0",
+          "role": "subject",
+          "type_role": "page-heading",
+          "decision_reason": "Locates reading topic"
+        },
+        {
+          "id": "body",
+          "priority": "P1",
+          "role": "primary-reading",
+          "type_role": "body",
+          "decision_reason": "Main learning material is not a caption"
+        },
+        {
+          "id": "example",
+          "priority": "P1",
+          "role": "learning-example",
+          "type_role": "body",
+          "decision_reason": "The example is necessary to learn concept"
+        },
+        {
+          "id": "bibliography",
+          "priority": "P3",
+          "role": "sources",
+          "type_role": "supporting",
+          "decision_reason": "Reference remains readable"
+        }
+      ],
+      "components": [
+        {
+          "id": "reading-outline",
+          "type": "navigation",
+          "purpose": "Navigate lessons and headings",
+          "states": [
+            "default",
+            "hover",
+            "focus-visible",
+            "selected"
+          ],
+          "long_content_strategy": "Multi-line headings retain readable hierarchy",
+          "reuse_decision": "reuse"
+        }
+      ]
+    },
+    {
+      "id": "portfolio-gallery",
+      "mode": "Experience",
+      "user_goal": "Explore works and safely navigate the experience",
+      "density": "airy",
+      "info_items": [
+        {
+          "id": "artwork",
+          "priority": "P0",
+          "role": "primary-media",
+          "type_role": "display",
+          "decision_reason": "The work is the focal point"
+        },
+        {
+          "id": "navigation",
+          "priority": "P1",
+          "role": "wayfinding",
+          "type_role": "control",
+          "decision_reason": "Navigation must be discoverable without obscuring the work"
+        },
+        {
+          "id": "credits",
+          "priority": "P3",
+          "role": "attribution",
+          "type_role": "supporting",
+          "decision_reason": "Credits remain accessible but need not dominate"
+        }
+      ],
+      "components": [
+        {
+          "id": "gallery-controls",
+          "type": "navigation",
+          "purpose": "Move between works and exit",
+          "states": [
+            "default",
+            "hover",
+            "focus-visible",
+            "selected",
+            "disabled"
+          ],
+          "long_content_strategy": "Controls reflow on narrow screens; visible labels remain legible",
+          "reuse_decision": "reuse"
+        }
+      ]
+    }
+  ]
+}
