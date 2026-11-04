@@ -101,6 +101,12 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 容器结构与控件宽度：不把所有页面装进圆角巨卡
+
+v6.13 增加 **Surface Architecture Gate** 和 **Control Geometry Gate**：先判断连续列表应直接铺在内容区、使用单层有界面板、还是采用独立商品/作品卡片，禁止以默认 Card 替代设计判断；对短按钮/状态/导航标签要求保持原子完整，窄屏时重排行区、让完整控件换行或转为可访问操作菜单，不允许中文逐字竖排、裁切或出屏。规则适用于营销、阅读、专业工作台、作品展示，而不是针对单个任务中心的 CSS 补丁。
+
+[容器结构选型](references/surface-architecture-gate.md) · [控件宽度与折行](references/control-geometry-gate.md) · [五种跨领域设计计划](assets/surface-control-patterns.json) · [三种结构的交互浏览器示例](assets/surface-control-layout-lab.html)
+
 ## 通用层级与组件质感：先判断主角，再选字号与形态
 
 v6.12 新增两项跨领域的基础能力：**Perceptual Hierarchy Gate** 将实际决策任务拆分为 P0–P3，在设计 Token 与组件之前判断哪些文字、数据、对象、反馈与操作值得突出；**Component Craft Gate** 对 Button、Table/List、Tabs/Filter、Badge、Search、Card、Dialog、Navigation 明确职责、内容层级、状态与尺寸理由。反对“所有字都缩到 12px”，也反对“所有数字都变巨型 KPI”。真正的设计质量来自角色与组件组合关系，而非随便堆 pill、浅灰边框和阴影。
