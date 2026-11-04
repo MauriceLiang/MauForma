@@ -121,9 +121,12 @@ class TaskCenterTests(unittest.TestCase):
     def test_html_and_browser_script_hooks_exist(self):
         h=(ROOT/"assets/task-center-layout-lab.html").read_text("utf-8")
         b=(ROOT/"tests/task_center_browser_smoke.mjs").read_text("utf-8")
-        for key in ("data-mf-task-id","data-mf-task-state","data-mf-task-action","id=\"status-filter\"","id=\"task-detail\""):
-            self.assertIn(key,h)
-        for key in ("data-mf-task-id","data-mf-task-state","data-mf-task-action","scrollHeight"):
-            self.assertIn(key,b)
+        # The sample rows are built dynamically: dataset setters produce data-mf-* DOM attributes.
+        for key in ("dataset.mfTaskId", "dataset.mfTaskState", "dataset.mfTaskAction",
+                    'id="status-filter"', 'id="task-detail"'):
+            self.assertIn(key, h)
+        # Browser smoke tests inspect the actual DOM attributes after JavaScript renders.
+        for key in ("data-mf-task-id", "data-mf-task-state", "data-mf-task-action", "scrollHeight"):
+            self.assertIn(key, b)
 
 if __name__=="__main__":unittest.main()
