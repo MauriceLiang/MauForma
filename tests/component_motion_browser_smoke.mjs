@@ -73,6 +73,7 @@ async function run(){
      const toastDuration=await page.locator('#toast').evaluate(x=>parseFloat(getComputedStyle(x).animationDuration));
      assert.equal(toastDuration>0,moving,'outcome feedback mismatch');
      const card=page.locator('#showcard');
+     await page.locator('#confirm').focus();
      const beforeFocus=await card.evaluate(x=>getComputedStyle(x).borderColor);
      await card.focus();
      const afterFocus=await card.evaluate(x=>getComputedStyle(x).borderColor);
