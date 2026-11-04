@@ -1,5 +1,17 @@
 # MauForma · 组件优先视觉 QA v2.0
 
+## v6.12 · 所有 Web 页面通用的感知层级与组件质量门禁
+
+- [ ] 当前视口的用户任务、P0/P1/P2/P3 信息分级明确；P0/P1 由决策价值定义，**不是见数字就放大**；用户第一眼与下一操作真实可辨。
+- [ ] 在灰阶/去装饰后，首先读到的是重要对象/状态/正文/价格/作品，而不是非必要大标题或空面板；允许不同页面有不同的主角。
+- [ ] 核心内容/必要字段/状态原因并非“全站 12px 小字”，也没有把所有信息统一放大；字体层级来自项目 tokens 与实际字体/语言/密度。
+- [ ] 每个高频组件有独立职责、主/次文本、尺寸/变体/状态、可操作性和长内容策略；组合页面里控件、状态标签、列表行的基线、间距与字重协调。
+- [ ] Badge/小胶囊、面板外壳、彩色状态、虚线/阴影都有可说明的用途；不能用默认组件皮肤代替真正的 Art Direction。
+- [ ] 不同页面模式差异成立：Operate 重扫描，Persuade 重转化，Read 重正文，Experience 重作品和必要控制；不强迫四者采用同一种工作台美学。
+- [ ] 检查真实桌面/窄窗、200% 放大、浅深模式、长中文/英文和错误/加载/空态；是否实际打开浏览器应有明确信息，静态校验结果不等于视觉 PASS。
+
+流程与示例：`references/perceptual-hierarchy-gate.md`、`references/component-craft-gate.md`、`assets/visual-priority-patterns.json`；静态意图检查：`python3 scripts/validate_visual_priority.py --repository`（不评分“高级感”）。
+
 ## Gate A — 主题和 tokens（开始业务页面前）
 - [ ] 产品视觉方向有一句解释；未强制照搬原站粉蓝渐变。
 - [ ] `page/surface/surface-soft/text/accent/on-accent/focus/border/status` 等角色齐全。
