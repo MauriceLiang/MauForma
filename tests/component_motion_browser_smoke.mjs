@@ -17,17 +17,19 @@ async function run(){
     for(const level of ['none','balanced']){
      await page.locator('[data-level="'+level+'"]').click();
      const moving=level==='balanced' && pref==='no-preference';
+     await page.waitForTimeout(290); // settle any previous reverse transition
      const initial=await page.locator('#indicator').evaluate(x=>x.getBoundingClientRect().left);
      await page.locator('#tab-activity').click();
      assert.equal(await page.locator('#tab-result').innerText(),'展示最近活动');
      assert.equal(await page.locator('#tab-activity').getAttribute('aria-selected'),'true');
      const duration=await page.locator('#indicator').evaluate(x=>parseFloat(getComputedStyle(x).transitionDuration));
      assert.equal(duration>0,moving,'indicator transition mismatch');
-     const moved=await page.locator('#indicator').evaluate(x=>x.getBoundingClientRect().left);
-     if(moving)assert.ok(moved>=initial-1,'indicator cannot reverse unexpectedly');
-     await page.waitForTimeout(320);
+     await page.waitForTimeout(65);
+     const mid=await page.locator('#indicator').evaluate(x=>x.getBoundingClientRect().left);
+     await page.waitForTimeout(290);
      const final=await page.locator('#indicator').evaluate(x=>x.getBoundingClientRect().left);
      assert.ok(final>initial+10,'tab indicator must move to different position');
+     if(moving)assert.ok(mid>initial+1 && mid<final-1,'indicator must pass through an intermediate position');
      await page.locator('#tab-summary').click();
      assert.equal(await page.locator('#tab-result').innerText(),'展示概览信息');
      const a=page.locator('#accordion');
@@ -37,8 +39,12 @@ async function run(){
      assert.equal(await a.getAttribute('aria-expanded'),'true');
      const disclosureDuration=await panel.evaluate(x=>parseFloat(getComputedStyle(x).transitionDuration));
      assert.equal(disclosureDuration>0,moving,'accordion transition mismatch');
-     await page.waitForTimeout(320);
-     assert.ok((await panel.boundingBox()).height>35,'expanded disclosure must take space');
+     await page.waitForTimeout(55);
+     const halfway=(await panel.boundingBox()).height;
+     await page.waitForTimeout(290);
+     const fullyOpen=(await panel.boundingBox()).height;
+     assert.ok(fullyOpen>35,'expanded disclosure must take space');
+     if(moving)assert.ok(halfway>1 && halfway<fullyOpen-1,'disclosure must actually open through intermediate geometry');
      await a.click();
      await page.waitForTimeout(320);
      assert.ok((await panel.boundingBox()).height<1,'disclosure must collapse');
@@ -48,8 +54,12 @@ async function run(){
      assert.equal(await page.locator('#switch-label').innerText(),'自动刷新：开启');
      const thumbDuration=await thumb.evaluate(x=>parseFloat(getComputedStyle(x).transitionDuration));
      assert.equal(thumbDuration>0,moving,'switch motion mismatch');
-     await page.waitForTimeout(320);
-     assert.ok((await thumb.evaluate(x=>new DOMMatrix(getComputedStyle(x).transform).m41))>15,'thumb must track state');
+     await page.waitForTimeout(55);
+     const thumbMid=await thumb.evaluate(x=>new DOMMatrix(getComputedStyle(x).transform).m41);
+     await page.waitForTimeout(290);
+     const thumbEnd=await thumb.evaluate(x=>new DOMMatrix(getComputedStyle(x).transform).m41);
+     assert.ok(thumbEnd>15,'thumb must track state');
+     if(moving)assert.ok(thumbMid>1 && thumbMid<thumbEnd-1,'switch thumb must move through intermediate positions');
      await sw.click();
      assert.equal(await sw.getAttribute('aria-checked'),'false');
      const prev=await page.locator('#records li').count();
@@ -62,6 +72,14 @@ async function run(){
      assert.equal(await page.locator('#toast').innerText(),'模拟保存成功');
      const toastDuration=await page.locator('#toast').evaluate(x=>parseFloat(getComputedStyle(x).animationDuration));
      assert.equal(toastDuration>0,moving,'outcome feedback mismatch');
+     const card=page.locator('#showcard');
+     const beforeFocus=await card.evaluate(x=>getComputedStyle(x).borderColor);
+     await card.focus();
+     const afterFocus=await card.evaluate(x=>getComputedStyle(x).borderColor);
+     if(moving)await page.waitForTimeout(290);
+     const settledFocus=await card.evaluate(x=>getComputedStyle(x).borderColor);
+     assert.notEqual(beforeFocus,settledFocus,'focused discovery card must visibly differ');
+     assert.equal(await card.evaluate(x=>document.activeElement===x),true,'card focus must stay reachable');
      const widthOverflow=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+1);
      assert.equal(widthOverflow,false,'Unexpected horizontal overflow');
     }
