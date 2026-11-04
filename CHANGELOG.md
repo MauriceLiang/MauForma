@@ -1,5 +1,17 @@
 # Changelog
 
+## v6.14 — 2026-11-04 · User-owned motion choices and real interaction choreography
+
+- 现有动效规则强调“不要滥用”，却缺乏“**用户可以主动选择是否加入、加入到何种程度**”的硬门禁，容易让 Agent 沉默地把全站做成静态。
+- 新增 `references/motion-consent-experience-gate.md`：新项目/重大重设计向用户提出 2–3 档含真实按钮、Tab、弹窗、导航、状态/内容切换的具体体验，提供推荐但不冒充用户确认；继承已有选择、支持混搭/明确委托，局部修复不重复问。
+- 定义按业务触发的 `trigger → state → purpose → effect → interrupt/reduced` Motion Coverage、共享 tokens 与可中断/卸载/性能门禁；“无额外动效”仍保留完整状态反馈。
+- 新增四类页面的动效决策示例、静态 validator 与回归测试，明确未确认 != `none`，用户授权与减少动效不得省略。
+- 新增三档交互 HTML 实验与 Chromium 实测：宽/窄窗口、系统 reduced motion、有/无/强调动效、Tab、Dialog、状态反馈；独立样例通过并不代表真实业务项目通过。
+- 接入 SKILL、README、访谈、动画技术选择、动画生命周期、Agent 提示词与视觉 QA；继续保留 v6.13 及此前规则。
+
+---
+
+
 ## v6.13 — 2026-11-04 · Universal surface selection and atomic control geometry
 
 - 新截图暴露“整个筛选/工具栏/连续列表被巨型圆角卡包裹”与中文「查看详情」「重试」被操作列挤为逐字竖排；由此修复**全网站通用的两种设计失败机制**，不再为单个 RepoVantage 页面增补固定配色/尺寸。
