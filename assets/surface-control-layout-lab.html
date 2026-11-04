@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MauForma · Surface & Control Layout Lab</title>
+<style>
+  :root{color-scheme:light;--ink:#1c2732;--muted:#677382;--line:#d9e0e6;--canvas:#f5f6f8;--accent:#314e63;font-size:16px}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--canvas);color:var(--ink);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+  .page{max-width:1160px;margin-inline:auto;padding:28px clamp(16px,3.2vw,40px) 80px}
+  h1{font-size:1.55rem;line-height:1.3;margin:0 0 7px;font-weight:680}
+  .intro{font-size:.95rem;line-height:1.55;color:var(--muted);max-width:58ch;margin:0 0 20px}
+  .preview-selector{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+  .atomic{display:inline-flex;align-items:center;justify-content:center;gap:8px;flex:none;inline-size:max-content;max-inline-size:100%;white-space:nowrap;font:inherit;font-size:.92rem;line-height:1.25;border:1px solid #cad4dd;border-radius:8px;background:white;color:var(--ink);padding:10px 12px;min-block-size:40px;cursor:pointer}
+  .atomic:focus-visible{outline:3px solid #477ca4;outline-offset:2px}
+  .atomic[aria-pressed=true]{background:#e8eff3;border-color:#aabdc9;font-weight:650}
+  .atomic .label{white-space:nowrap}
+  .mode-note{margin:0 0 16px;color:var(--muted);line-height:1.55;max-width:70ch;font-size:.88rem}
+  .toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+  h2{margin:0;font-size:1.16rem;line-height:1.4}
+  .subtitle{font-size:.82rem;color:var(--muted)}
+  .records{background:#fff;border-block:1px solid var(--line)}
+  .record-head,.entry{display:grid;grid-template-columns:minmax(145px,1.55fr) minmax(74px,.55fr) minmax(145px,1.45fr) max-content;column-gap:16px;align-items:center}
+  .record-head{padding:12px;color:#556273;background:#f0f3f5;border-bottom:1px solid var(--line);font-size:.8rem;font-weight:650}
+  .entry{min-inline-size:0;padding:17px 12px;border-bottom:1px solid #e4e8eb}
+  .entry:last-child{border-bottom:0}
+  .row-title{font-size:.98rem;font-weight:660;line-height:1.4;overflow-wrap:anywhere}
+  .row-sub,.progress-detail{font-size:.84rem;color:var(--muted);line-height:1.5;margin-top:4px;overflow-wrap:anywhere}
+  .state{display:inline-flex;align-items:center;max-inline-size:100%;white-space:nowrap;background:#edf2f5;border-radius:6px;padding:5px 8px;font-size:.82rem;font-weight:600}
+  .state.failure{background:#fbebea;color:#a33a30}
+  .state.working{background:#e8f2f7;color:#24607a}
+  .progress-line{height:5px;border-radius:8px;background:#e2e7eb;margin-top:10px;overflow:hidden}
+  .progress-line span{display:block;height:100%;background:#435c6d;border-radius:8px}
+  .row-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:8px;min-inline-size:0}
+  .row-actions .atomic{font-size:.89rem;padding:9px 11px}
+  .row-actions .secondary{color:#8b412c;border-color:#dfcfc6;background:#fff9f6}
+  .panel .records{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .cards .records{background:transparent;border:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .cards .record-head{display:none}
+  .cards .entry{grid-template-columns:minmax(0,1fr);gap:10px;background:white;border:1px solid var(--line);border-radius:10px;padding:20px}
+  .cards .row-actions{justify-content:flex-start}
+  .footnote{color:var(--muted);font-size:.82rem;line-height:1.6;margin-top:16px}
+  [hidden]{display:none !important}
+  @media(max-width:1060px){
+    .record-head{display:none}
+    .entry{grid-template-columns:minmax(0,1.5fr) minmax(82px,.55fr) minmax(0,1fr);row-gap:10px}
+    .entry .row-actions{grid-column:1/-1;justify-content:flex-start}
+  }
+  @media(max-width:640px){
+    .entry,.cards .entry{grid-template-columns:minmax(0,1fr);gap:9px;padding:15px 12px}
+    .cards .records{grid-template-columns:minmax(0,1fr)}
+    .entry .row-actions{grid-column:1;justify-content:flex-start}
+    .toolbar{align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>容器与控件尺寸实验</h1>
+  <p class="intro">独立的通用布局样例：同一组虚构记录可以采用开放表格、单层面板或实体卡片。根据业务结构选择，不把某一种形式指定为唯一正确答案。</p>
+  <nav class="preview-selector" aria-label="预览结构">
+    <button type="button" class="atomic" data-mf-atomic-control data-variant="flat" aria-pressed="true"><span class="label" data-mf-control-label>开放表格</span></button>
+    <button type="button" class="atomic" data-mf-atomic-control data-variant="panel" aria-pressed="false"><span class="label" data-mf-control-label>单层面板</span></button>
+    <button type="button" class="atomic" data-mf-atomic-control data-variant="cards" aria-pressed="false"><span class="label" data-mf-control-label>实体卡片</span></button>
+  </nav>
+  <p class="mode-note" id="mode-note">开放表格：连续可扫描的同类记录不必默认装入整页巨型圆角框。</p>
+  <section id="sample" class="flat" aria-label="布局样例">
+    <div class="toolbar"><h2>操作记录</h2><span class="subtitle">演示数据 · 不连接真实服务</span></div>
+    <div class="records">
+      <div class="record-head"><span>对象</span><span>状态</span><span>进展与结果</span><span>操作</span></div>
+      <div class="entry">
+        <div><div class="row-title">知识库数据导入任务</div><div class="row-sub">批处理 · 上一次运行有问题</div></div>
+        <div><span class="state failure">执行失败</span></div>
+        <div><div class="progress-detail">数据校验未通过，需查看错误原因后重试。</div><div class="progress-line"><span style="width:57%"></span></div></div>
+        <div class="row-actions" data-mf-action-group>
+          <button type="button" class="atomic" data-mf-atomic-control><span class="label" data-mf-control-label>查看详情</span></button>
+          <button type="button" class="atomic secondary" data-mf-atomic-control><span class="label" data-mf-control-label>重试</span></button>
+        </div>
+      </div>
+      <div class="entry">
+        <div><div class="row-title">导出教学活动与学习进度汇总报告</div><div class="row-sub">生成文档 · 自动执行</div></div>
+        <div><span class="state working">运行中</span></div>
+        <div><div class="progress-detail">已处理 560 / 960 条数据</div><div class="progress-line"><span style="width:58.3%"></span></div></div>
+        <div class="row-actions" data-mf-action-group>
+          <button type="button" class="atomic" data-mf-atomic-control><span class="label" data-mf-control-label>查看详情</span></button>
+        </div>
+      </div>
+      <div class="entry">
+        <div><div class="row-title">长英文混排对象：catalog-reconciliation-and-weekly-statistics</div><div class="row-sub">历史记录 · 显示长对象名而非裁切操作按钮</div></div>
+        <div><span class="state">已完成</span></div>
+        <div><div class="progress-detail">结果可在详情中查看</div></div>
+        <div class="row-actions" data-mf-action-group>
+          <button type="button" class="atomic" data-mf-atomic-control><span class="label" data-mf-control-label>查看详情</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <p class="footnote">这是用于浏览器几何与折行回归的可交互 Mock；是否使用表格、面板或卡片，必须由真实业务与品牌方向决定。它不证明任何真实产品已经验收。</p>
+</div>
+<script>
+const notes = {
+ flat: "开放表格：连续可扫描的同类记录不必默认装入整页巨型圆角框。",
+ panel: "单层面板：当记录区有独立状态或明确分组时，保留一层有意义的边界。",
+ cards: "实体卡片：当对象具备独立媒体与操作语义时合理，密集同类记录通常不优先。"
+};
+const sample = document.getElementById("sample");
+const note = document.getElementById("mode-note");
+document.querySelectorAll("[data-variant]").forEach(button => button.addEventListener("click", () => {
+  const mode=button.dataset.variant;
+  sample.className=mode;
+  note.textContent=notes[mode];
+  document.querySelectorAll("[data-variant]").forEach(x=>x.setAttribute("aria-pressed",String(x===button)));
+}));
+</script>
+</body>
+</html>
