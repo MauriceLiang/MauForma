@@ -19,7 +19,7 @@ svg{width:100%;height:255px;display:block;overflow:visible}svg .grid{stroke:#e4e
 .details{margin-top:18px;border-top:1px solid #dce4e5;padding-top:13px}.details summary{font-size:13px;color:#435c65;cursor:pointer;font-weight:600}.details p{font-size:12px;line-height:1.7;color:#6b7c83;margin:9px 0 0;max-width:850px}
 .bottom{margin-top:22px;font-size:12px;color:#78878d;line-height:1.6;padding-top:18px;border-top:1px solid #dce5e7}
 .notes{margin:18px 0;display:grid;grid-template-columns:1fr 1fr;gap:15px}.notes article{background:white;border:1px solid #dbe3e5;border-radius:8px;padding:18px}.notes h2{font-size:14px;margin:0 0 7px}.notes p{font-size:13px;color:#627780;line-height:1.65;margin:0}.foot{font-size:12px;color:#71848c;line-height:1.6}
-@media(max-width:750px){main{padding:24px 12px 45px}.head,.body{padding:20px 15px}.summary{grid-template-columns:1fr}.summary article{padding:14px}.chartplot{min-height:210px}svg{height:215px}.panel{padding:16px}.matrix th:first-child{width:138px}.notes{grid-template-columns:1fr}}
+@media(max-width:750px){.chartplot{overflow-x:auto;overflow-y:hidden}svg{min-width:560px}main{padding:24px 12px 45px}.head,.body{padding:20px 15px}.summary{grid-template-columns:1fr}.summary article{padding:14px}.chartplot{min-height:210px}svg{height:215px}.panel{padding:16px}.matrix th:first-child{width:138px}.notes{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style></head>
 <body><main><div class="eyebrow">MAUFORMA / COMPARISON EXPERIENCE</div><h1>好的比较页，应该先让差异变得清楚。</h1>
@@ -28,7 +28,7 @@ svg{width:100%;height:255px;display:block;overflow:visible}svg .grid{stroke:#e4e
 <div class="body">
 <div class="controls"><div><div class="sec-title">选择仓库 <span class="minor" id="count"></span></div><div class="picks" id="repo-picker"></div></div><div class="time">观察窗口 <b>3 个完整周 · 每周</b></div></div>
 <section class="section" aria-label="差异摘要"><h3 class="sec-title">先看差异</h3><div class="summary" id="summary"></div></section>
-<section class="panel" data-mf-chart-group="activity-trend"><div class="panel-top"><div><h3>每周提交趋势</h3><p>统一 X 轴、单位与采样范围 · 仅以演示数据说明比较结构</p></div><span class="minor">单位：次 / 周</span></div>
+<section class="panel" data-mf-chart-group="activity-trend"><div class="panel-top"><div><h3>每周提交趋势</h3><p>统一 X 轴、单位与采样范围 · 仅以演示数据说明比较结构（窄屏可横向滚动图表）</p></div><span class="minor">单位：次 / 周</span></div>
 <div class="legend" id="legend"></div><div class="chartplot" data-mf-chart-plot><svg id="chart" viewBox="0 0 680 250" preserveAspectRatio="xMidYMid meet" role="img" aria-label="三个仓库的模拟提交趋势"></svg></div>
 <div class="missing" id="coverage">部分仓库存在未采集数据，缺失不按零处理。</div>
 </section>
