@@ -1,5 +1,13 @@
 # 前端项目架构与验收门槛
 
+## v6.15 · Component Motion Coverage 与组合体验
+
+Gate A：完成用户动效选择后，从真实页面识别高频/高价值组件及状态变化；为其决定动效/即时反馈/故意静态的理由，**页面级路由转场不能计入组件动效覆盖**。见 `references/component-motion-choreography-gate.md`。
+
+Gate B：为 Tab/Segment、Accordion/Drawer、Toggle、Row/List、Success/Error/Media 等项目真实存在的组件建立组件 Motion Gallery。不要将所有 `hover` 都写成同一个 scale、所有变化都 fade；根据定位、触觉、空间和状态选择合适机制。并非每个项目都必须存在上述组件。
+
+Gate D：在真实浏览器触发至少关键业务交互的前、中、后状态，检查实际位置/展开高度/组件状态/减少动态效果、快速重复和反向。静态脚本 `scripts/validate_component_motion.py` 只是覆盖契约；独立 Mock 预览不能冒充实际产品 QA。
+
 ## v6.14 · Motion Choice Gate：先问，再做动画，最后验证
 
 Gate A（仅新设计/重大动效改版）：查已选品牌/页面动效；未知时推荐 2–3 档有实际视觉差异的交互选择，由用户决定、融合或明确授权 Agent。对话一轮即可、不要重复询问；未回答标 unresolved，**既不能默认全站静态，也不能默认带大量滚动特效**。详见 `references/motion-consent-experience-gate.md`。
