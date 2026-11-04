@@ -6,6 +6,10 @@
 
 先执行 `references/surface-architecture-gate.md`：连续可扫描的信息常先比较 flat list/table 与 single panel，而不是先做 “巨大圆角卡 + 里面的卡”。再执行 `references/control-geometry-gate.md`：短动作标签是原子文本，控件固有尺寸由父表格列/组件组负责，空间不足时整个操作重排；不可通过逐字折行或剪裁获得整齐外框。这是全站通用规则，不抹杀品牌卡片/作品画廊。
 
+## v6.15 · 组件的状态美感包含交互中的变化
+
+当用户已确认/委托有交互动效时，组件设计不仅要对比静态尺寸和字重，还要检查 **Hover/Press/Selected/Expand/Insert/Success** 等真实状态的变化机制。查 `references/component-motion-choreography-gate.md`：按钮与 Tab 不该都仅淡入，选中指示器可沿位置移动、Disclosure 可按空间展开、状态开关可 Morph，列表应保持位置连续性；但高频表格、无状态卡片不因“要动画”而全员动起来。必须尊重 `none` 与 reduced-motion，保持 focus/结果清晰。组件 Gallery 应含静态和实际交互演示，不能凭 CSS 存在自称已验收。
+
 ## 1. 组件设计前的六问（Gate B）
 
 对页面的每个高频组件与复合模式至少回答：
