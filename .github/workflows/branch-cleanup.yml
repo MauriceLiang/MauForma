@@ -1,0 +1,81 @@
+name: MauForma Branch Cleanup
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/branch-cleanup.yml'
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: write
+
+jobs:
+  prune-existing-merged-branches:
+    name: One-time cleanup of previously merged PR heads
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete confirmed merged branch heads (PRs 6-18)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          branches=(
+            'docs/readme-brand-refresh'
+            'feat/comparison-ux-chart-integrity'
+            'feat/composition-first-art-direction'
+            'feat/desktop-ui-polish-and-sidebar-qa'
+            'feat/grid-alignment-scroll-safety'
+            'feat/navigation-architecture-and-adaptive-patterns'
+            'feat/page-density-content-curation'
+            'feat/sidebar-palette-user-choice'
+            'feat/surface-architecture-control-geometry'
+            'feat/task-center-run-ux'
+            'feat/typography-and-microcopy-quality'
+            'feat/universal-typography-component-craft'
+            'fix/readme-markdown-rendering'
+          )
+          for branch in "${branches[@]}"; do
+            if [[ "$branch" == "$DEFAULT_BRANCH" ]]; then
+              echo "Refusing to delete default branch: $branch"
+              exit 1
+            fi
+            encoded=$(python3 -c 'import sys,urllib.parse;print(urllib.parse.quote(sys.argv[1], safe="/"))' "$branch")
+            if gh api "repos/$REPO/branches/$encoded" >/dev/null 2>&1; then
+              gh api --method DELETE "repos/$REPO/git/refs/heads/$encoded"
+              echo "Deleted: $branch"
+            else
+              echo "Already absent: $branch"
+            fi
+          done
+
+  prune-newly-merged-pr-branch:
+    name: Delete source branch after a successful PR merge
+    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete merged PR head (same repository only)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "$BRANCH" || "$BRANCH" == "$DEFAULT_BRANCH" ]]; then
+            echo 'Refusing to delete empty/default branch'
+            exit 1
+          fi
+          encoded=$(python3 -c 'import sys,urllib.parse;print(urllib.parse.quote(sys.argv[1], safe="/"))' "$BRANCH")
+          if gh api "repos/$REPO/branches/$encoded" >/dev/null 2>&1; then
+            gh api --method DELETE "repos/$REPO/git/refs/heads/$encoded"
+            echo "Deleted merged PR branch: $BRANCH"
+          else
+            echo "Merged PR branch already absent: $BRANCH"
+          fi
