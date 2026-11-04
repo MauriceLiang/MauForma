@@ -29,6 +29,8 @@ jobs:
           python3 scripts/validate_page_content_plan.py examples/page-content-plan-repovantage.json --repository
           python3 scripts/validate_layout_integrity.py examples/layout-integrity-repovantage.json --repository
           node --check scripts/audit_rendered_layout.mjs
+          python3 scripts/validate_comparison_contract.py examples/comparison-contract-repovantage.json --repository
+          node --check scripts/audit_comparison_ui.mjs
           python3 -m unittest discover -s tests -v
       - name: Syntax check browser QA script
         run: node --check scripts/browser_qa.mjs

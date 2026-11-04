@@ -3,13 +3,26 @@ name: mauforma
 description: MauForma — Web-first, framework-aware, component-first frontend design and implementation Skill for Vue/Nuxt, React/Next, Svelte/SvelteKit, Angular, Solid, Astro and vanilla HTML/CSS/JS. Establish design tokens and reusable components before pages; create coherent visual systems, accessible responsive UI, purposeful motion and detailed good/bad examples. Priority depth: admin/SaaS interfaces, applicable to all websites and web apps. Includes Anime.js v4 catalog, React Bits / Vue Bits / Inspira UI creative components, Ant Design / Ant Design Vue and other enterprise libraries, Motion/GSAP/CSS engine choices, and enforceable agent prompts.
 ---
 
-# MauForma · Web-first 前端视觉与工程 Skill v6.9
+# MauForma · Web-first 前端视觉与工程 Skill v6.10
 
 **品牌**：MauForma（Maurice + Forma）。原 Soft Precision UI v5.0 的完整能力保留，现已扩充为内容驱动艺术指导、设计知识库、项目级设计规范、组件工程与 QA 的综合 Web Skill。
 
 **定位**：网页设计与前端实现（Web-first）。支持所有网页类型，**当前专项深化后台管理/SaaS**，但绝不把其他网站套成后台模板。框架：Vue 3 / Nuxt、React / Next.js、Svelte / SvelteKit、Angular、Solid、Astro、HTML/CSS/JS；若是 Electron/Tauri 的 **Web 前端层**也适用。**不以 SwiftUI、AppKit、原生 Android 等非 Web UI 为直接适用对象**。
 
 **主原则**：审美统一 ≠ 每页一个模板。统一设计语言 + 共用组件 + 符合具体业务的信息架构 + 恰当动效 + 可访问、可测试的功能。可以自主**提案**主题色，但新配色进入正式实施前须尊重用户明确选择与决策来源，不自行固定用户未认可的蓝紫粉或其他颜色。
+
+## v6.10 · Comparison UX & Chart Integrity Gate（从“多张图”升级为“真正可比较”）
+
+用户的 RepoVantage 新截图显示两类问题：**发布间隔柱图与散点图外框对齐，但绘图区/X 轴基线和标签布局仍不协调甚至重叠；项目比较页选择了三个仓库，却只有一条突出趋势、长驻大型对象列表和信息稀薄的「比较口径」面板，难以快速发现真正差异。** 截图不能证明源码已漏画其他线，必须在数据/浏览器中检查。
+
+- **按任务选择成熟比较模式**：读取 `references/comparison-page-design.md`、`assets/comparison-reference-cases.json`。参考 NN/g comparison tables、RTINGS、Apple Mac Compare、npmcharts、EcosystemPulse、Baymard 与 GitHub commits compare，从“同列同指标的矩阵”“共享时间窗叠加趋势”“先差异摘要再证据”“两版本 Diff”中**挑与当前用户问题相关的模式**；不是对所有数据页照搬商品比较模板，也不随意生成综合赢家。
+- **精简比较流程**：优先明确比较问题 → 2–4 个常见比较对象（仅经验起点，非强制上限）→ 可比性/关键差异 → 一张共同单位时间轴的主趋势图 → 指标矩阵 → 可发现的详细口径和钻取。对象选择与图例保持近邻，可移除/替换。大型“比较口径”空卡、重复图与过长选择侧栏应通过 v6.8 内容筛选，而不是单纯缩小。
+- **数据/视图契约必检**：所选 IDs、图例、每条真实系列、表格列必须一一对应；若无数据，系列明确 `no_data/partial`、空缺按 `null` 显示，不得填 0、假设其他线已画出。单位、聚合粒度、时间窗、采集覆盖与样本量必须一致或明确解释不可比。运行 `python3 scripts/validate_comparison_contract.py examples/comparison-contract-repovantage.json --repository` 检查声明式契约，不能替代真实页面数据流 E2E。
+- **图表内部也要查对齐**：读取 `references/chart-interior-alignment.md`；比外框多检查 Plot Region、X 轴与图例/辅助文本布局、坐标轴单位、数据标签碰撞和边缘裁切。不同图型不强制同高/相同 Y 量程，但**禁止标签重叠、不可读及误导性比较**。Canvas 内文字无法仅凭通用 DOM 几何脚本自动确认，需图库能力及截图人工复核。
+- **运行时检查不可省**：可选 `node scripts/audit_comparison_ui.mjs --url http://127.0.0.1:5173/compare --out compare-audit`（目标项目有 Playwright 才能运行）；支持 `data-mf-selected-id`、`data-mf-legend-id`、`data-mf-series-id`、`data-mf-chart-group`、`data-mf-chart-plot`、`data-mf-chart-label` 等检查钩子。没有标注/Canvas 内绘图不可测时明确报 `NOT AUDITED/PARTIAL`，不伪造自动视觉 PASS。真实 QA 至少覆盖选择变更、图例/图表/矩阵联动、标签、滚动终点和手机可读性。
+- **证据和对照**：`references/repovantage-comparison-case.md` 是基于截图的复盘；`assets/comparison-layout-lab.html` 是独立原创的三仓库模拟数据交互示例，图表/表格数据均明确标模拟，**不是实际 RepoVantage 源码改造**。
+
+继续执行 v6.9 外部网格与底部安全、v6.8 页面信息筛选、v6.6 用户选色；比较 UX 以可验证的数据口径和决策效率为优先目标。
 
 ## v6.9 · Grid & Viewport Integrity Gate（对齐有秩序、内容可滚到底）
 
@@ -19,7 +32,8 @@ description: MauForma — Web-first, framework-aware, component-first frontend d
 - **不对称有理由、不是随机错位**：商业图表、统计、表格等 Operate/Read 任务以稳定可比较的网格为默认；创意作品/摄影图库允许刻意 Masonry 或错列，但必须有阅读/内容/叙事理由。对图表内部的单位、时间轴、标签保留必要一致性，不用强行统一量纲。
 - **底部不能不可达或被盖住**：允许页面高度大于视口并正常滚动。禁止用 `height:100vh;overflow:hidden`、过短容器或底部 fixed 栏把最后一条记录、X 轴或按钮裁掉。明确 window 还是 `main-scroll` 为真实滚动容器，核查 `min-height:0`、Grid `minmax(0,1fr)`、末端 padding、safe area 与固定工具条真实占位。
 - **实际滚动终点验收**：桌面、低高度笔记本、窄屏下从首屏**真正滚到底**，最后一行/按钮/完整卡片底部应可达、无遮挡；若有固定操作条必须为其预留空间。图表/表格有合法局部滚动时应能发现与操作；尽量避免无理由的多级滚动。检查 200% 文字放大与横向溢出。
-- **文档与校验**：参考 `references/repovantage-release-alignment-case.md`、`assets/grid-and-viewport-lab.html`（错列/共享网格/主图全宽 + 矮窗口与底部工具条模拟）。结构计划格式 `assets/layout-integrity.schema.json`，案例 `examples/layout-integrity-repovantage.json`，用 `python3 scripts/validate_layout_integrity.py --repository` 检查声明式行/列/末端策略。可选 `node scripts/audit_rendered_layout.mjs --url http://127.0.0.1:5173` 运行**真实浏览器**几何审计并保存首屏/末端截图；需要目标工程已有 Playwright 或明确授权安装，静态检查不是浏览器 PASS 证明。
+- **文档与校验**：参考 `references/repovantage-release-alignment-case.md`、`assets/grid-and-viewport-lab.html`（错列/共享网格/主图全宽 + 矮窗口与底部工具条模拟）。结构计划格式 `assets/layout-integrity.schema.json`，案例 `examples/layout-integrity-repovantage.json`，用 `python3 scripts/validate_layout_integrity.py --repository
+python3 scripts/validate_comparison_contract.py examples/comparison-contract-repovantage.json --repository` 检查声明式行/列/末端策略。可选 `node scripts/audit_rendered_layout.mjs --url http://127.0.0.1:5173` 运行**真实浏览器**几何审计并保存首屏/末端截图；需要目标工程已有 Playwright 或明确授权安装，静态检查不是浏览器 PASS 证明。
 
 **验收失败应优先回到构图/容器滚动架构，不是随意调小卡片/文字、增加空面板或全局隐藏超出内容。** 保留 v6.8 按页面区分信息密度、v6.7 导航决策与 v6.6 用户颜色选择。
 
@@ -160,6 +174,7 @@ MauForma 不是固定的“极简皮肤”，也不是默认全站都用大图/�
 
 | 任务 | 必读文件 |
 | --- | --- |
+| 多仓库/产品/技术对比页难用、只堆图、图表内部错位/标签重叠 | `references/comparison-page-design.md`、`references/chart-interior-alignment.md`、`assets/comparison-reference-cases.json`、`scripts/audit_comparison_ui.mjs` |
 | 模块上下/左右错列、第二排起点不同、底部卡片接近边界/无法滚动到底 | `references/grid-alignment-and-viewport-safety.md`、`references/repovantage-release-alignment-case.md`、`assets/grid-and-viewport-lab.html`、`scripts/audit_rendered_layout.mjs` |
 | 总览信息过多 / 多层卡片 / 高级留白 / 数据页可更密 | `references/page-density-and-content-priority.md`、`references/whitespace-and-surface-composition.md`、`assets/page-density-profiles.json`、`assets/page-density-lab.html` |
 | 多余小标题 / 伪章节编号 / 自动英文副标 / 开发者文案泄露 | `references/semantic-copy-hygiene.md`、`references/page-header-antipatterns.md`、`scripts/audit_readability.py` |
@@ -195,13 +210,13 @@ MauForma 不是固定的“极简皮肤”，也不是默认全站都用大图/�
 ## 不可跳过的前端执行顺序
 
 1. **Gate 0：侦察、Design Discovery 和模式识别**。读取既有设计决策（Master/页面例外）；读取 `package.json`、锁文件、现有路由、框架、UI 库、样式系统、构建命令、页面结构、测试约定，记录技术选择依据；已有项目不能随意换框架。
-2. **Gate A：先内容筛选、导航架构/构图和 Grid 对齐契约，后艺术指导与配色**。进入排版前读取 v6.9 Grid & Viewport Integrity：明确共享网格的行/列边界、非对称的用途、目标滚动容器与页面底部可达性。数据页不能让两列各自独立向下堆叠，造成同级模块第二排错位。每个页面先执行 v6.8 Content Inventory：确认主任务和用户状态，标记 primary/supporting/conditional/deferred/removed。总览不要同时铺开重复教程和功能目录；分析详情保留完整且可读的证据。再进入导航 IA、灰阶构图和配色。新站/重大改版先评估全局与局部目的地数量、切换频率和手机/桌面层级；参考 `references/navigation-architecture.md` 的 Navigation Architecture Gate 选择 Top/Side/Bottom/组合与响应式方式，记录用户真实决策。先执行 `references/composition-first-design.md` 的 A0 内容证据 → A1 无装饰构图 → A2 真正不同的区域布局备选 → A3 数据状态 → A4 配色理由；用户自选/授权决定后再进入 Design Tokens。参考 `examples/composition/repo-analysis.json`，可用 `scripts/validate_composition_brief.py` 检查方案是否只是换色。保存用户确认的方向及推荐理由；运行 Art Direction Critique，不把未确认的建议记为用户确认。如果用户不确定风格，先按“用途/内容发现 → Agent 推荐少量具体方案 → 用户选择 → 细化属性”的流程确认设计方向；针对业务类型给出信息架构、视觉密度、色彩角色、Typography、Spacing、Radius、Elevation、Motion Tokens（浅/深色）。在整个项目只有一个真实 Tokens 来源，非每页硬编码颜色。**对侧边栏先分析中性色阶与选中/悬停/焦点的关系，不能把多套蓝色和装饰性状态点随意拼接。**
-3. **Gate B：组件优先**。共享 ChartPanel/Table/RecordList 必须有可追踪的共同内容边界与 row/column 约束；不能让内部 canvas 或长标签撑破 `minmax(0,1fr)`。BottomActionBar 若固定必须预留滚动结束空间，或优先进入正常布局。创建 Card / FeatureGrid / Onboarding / DataPanel 前先判断容器是否有独立业务、交互、数据或状态意义；无信息增量则合并/移除，不为了组件复用而增加套娃卡片与重复功能导览。实现导航组件前必须根据 v6.7 选定架构明确全局/局部/页面内 Tab/底部操作职责，避免把顶部+侧边+底部做成三套相同主菜单；检查自适应路由保留。如果涉及侧栏/全站颜色变更，先通过 v6.6 Color Choice Gate：已有明确颜色直接继承或按指定 HEX 处理；未知时先展示 2–3 套含主内容的对照，取得用户选择或明确委托后再覆盖全局 Tokens。开发共享 PageHeader/Chart/Table 之前需完成 v6.5 文案与字级检查：不自动注入 kicker、抽象口号、数字章节；重要图表刻度、n 值、单位和来源不能做成不可读的小字。列出复用/改造/新增组件清单，先建立或修正 `UiButton/Field/Dialog/PageHeader/Navigation/Table/Feedback` 等共享组件及各状态，制作组件展示页。工作台需要进一步区分 Sidebar / RecentItem / Tabs / Table / Search / SplitPane 的**状态与行为契约**，不能全部借用同一种 Active 卡片。**Gate B 未通过，不允许批量铺业务页**。但修复单个故障时不必强制重构全站。
+2. **Gate A：先内容筛选、比较任务/数据契约、导航架构/构图和 Grid 对齐契约，后艺术指导与配色**。若是“项目比较/多对象对比”页面，v6.10 优先定义决策问题、选中对象与实际系列/表格、共同时间窗、指标单位、缺失覆盖，再选择矩阵/趋势/差异摘要结构；不能仅用卡片排版替代比较任务。进入排版前读取 v6.9 Grid & Viewport Integrity：明确共享网格的行/列边界、非对称的用途、目标滚动容器与页面底部可达性。数据页不能让两列各自独立向下堆叠，造成同级模块第二排错位。每个页面先执行 v6.8 Content Inventory：确认主任务和用户状态，标记 primary/supporting/conditional/deferred/removed。总览不要同时铺开重复教程和功能目录；分析详情保留完整且可读的证据。再进入导航 IA、灰阶构图和配色。新站/重大改版先评估全局与局部目的地数量、切换频率和手机/桌面层级；参考 `references/navigation-architecture.md` 的 Navigation Architecture Gate 选择 Top/Side/Bottom/组合与响应式方式，记录用户真实决策。先执行 `references/composition-first-design.md` 的 A0 内容证据 → A1 无装饰构图 → A2 真正不同的区域布局备选 → A3 数据状态 → A4 配色理由；用户自选/授权决定后再进入 Design Tokens。参考 `examples/composition/repo-analysis.json`，可用 `scripts/validate_composition_brief.py` 检查方案是否只是换色。保存用户确认的方向及推荐理由；运行 Art Direction Critique，不把未确认的建议记为用户确认。如果用户不确定风格，先按“用途/内容发现 → Agent 推荐少量具体方案 → 用户选择 → 细化属性”的流程确认设计方向；针对业务类型给出信息架构、视觉密度、色彩角色、Typography、Spacing、Radius、Elevation、Motion Tokens（浅/深色）。在整个项目只有一个真实 Tokens 来源，非每页硬编码颜色。**对侧边栏先分析中性色阶与选中/悬停/焦点的关系，不能把多套蓝色和装饰性状态点随意拼接。**
+3. **Gate B：组件优先**。比较页需复用 RepositoryPicker/ChartLegend/MetricMatrix 等关联组件的统一 entity ID 和颜色 Token，确保选择变更正确刷新图例、系列、指标列。所有图表组件增加 Plot Region/Axis/Label 视觉检查，不只验证 Card 边框；Canvas 标签需要实际浏览器复核。共享 ChartPanel/Table/RecordList 必须有可追踪的共同内容边界与 row/column 约束；不能让内部 canvas 或长标签撑破 `minmax(0,1fr)`。BottomActionBar 若固定必须预留滚动结束空间，或优先进入正常布局。创建 Card / FeatureGrid / Onboarding / DataPanel 前先判断容器是否有独立业务、交互、数据或状态意义；无信息增量则合并/移除，不为了组件复用而增加套娃卡片与重复功能导览。实现导航组件前必须根据 v6.7 选定架构明确全局/局部/页面内 Tab/底部操作职责，避免把顶部+侧边+底部做成三套相同主菜单；检查自适应路由保留。如果涉及侧栏/全站颜色变更，先通过 v6.6 Color Choice Gate：已有明确颜色直接继承或按指定 HEX 处理；未知时先展示 2–3 套含主内容的对照，取得用户选择或明确委托后再覆盖全局 Tokens。开发共享 PageHeader/Chart/Table 之前需完成 v6.5 文案与字级检查：不自动注入 kicker、抽象口号、数字章节；重要图表刻度、n 值、单位和来源不能做成不可读的小字。列出复用/改造/新增组件清单，先建立或修正 `UiButton/Field/Dialog/PageHeader/Navigation/Table/Feedback` 等共享组件及各状态，制作组件展示页。工作台需要进一步区分 Sidebar / RecentItem / Tabs / Table / Search / SplitPane 的**状态与行为契约**，不能全部借用同一种 Active 卡片。**Gate B 未通过，不允许批量铺业务页**。但修复单个故障时不必强制重构全站。
 4. **Gate C：业务与动效**。按真实业务组合组件，先保证真实状态、API、权限与数据流程。先确定场景：
    - **官网/品牌/产品介绍/作品集**：允许按需选择 React Bits、Vue Bits、Inspira UI、Magic UI、Aceternity UI 的**单个**创意组件，不能取代原有功能组件；先检查原生框架、许可证、WebGL/GSAP 依赖、动效减弱和移动端回退。
    - **管理后台/工作台/企业表单**：优先复用 Ant Design / Ant Design Vue / Element Plus / MUI / Naive UI / Arco / PrimeVue 等**一套**主组件库，按共享 Ui 契约集中主题，默认轻量 CSS/框架微交互，不将 WebGL 背景批量引入业务工作区。
    - 所有动效优先 CSS/框架原生能力；确有需要才选择 Anime.js/Motion/GSAP。避免同一效果叠用多个引擎。
-5. **Gate D：静态风险审查 + 浏览器证据 + 视觉验收**。对有图表/多卡片的页面新增**共享网格对齐检查与滚动终点检查**：实测内容超出视口能否正常滚动，最后图表轴、Release 行和按钮是否可见；固定栏是否遮挡，窗口 1280×720/390×844 等低高视口下是否仍可达。不要把“正常需要滚动”误报为 overflow，也不要在未打开浏览器时声称已修复底部裁切。对 Overview、Analytics、Operations 等路由分别审查：总览先减少重复信息和并列 CTA，分析详情保持较高密度且不隐藏数据来源。先筛选内容再调整留白，不允许只加 padding 宣称信息减负。导航结构变更还必须验证真实桌面/手机/窄窗口和断点前后相同的目的地 ID、主导航可达性、顶部/侧边/底部是否互相重复、返回与上下文状态、键盘焦点、fixed bottom 遮挡。色彩变更必须查看侧栏与主内容的整页截图，包含 Topbar、Card、Chart 和 hover/selected/focus；检查用户固定 HEX 是否原样保留。必须检查“小标题删除测试”、标题与 KPI/图例的阅读优先级、暗色文字对比与 200% 字体放大；字级不应简单全部放大或统一缩小。先进行去装饰/灰阶信息结构测试；若页面最大面积与主任务不一致，应回到 Gate A 改布局，而不是调渐变颜色。优先在现有测试环境完成构建和组件/流程测试，静态扫描只是提示；检查横向溢出、键盘焦点、屏幕阅读器语义、对比度、浅深主题、长文字、响应式、触摸、错误/加载/空状态、减少动态效果、性能、真实流程回归。**暗色导航需用真实截图检查重复强调色、左侧竖条是否有独立语义、最近打开与主导航是否混淆；本规则不机械禁止层级线。**把“未实际运行”如实标明。
+5. **Gate D：静态风险审查 + 浏览器证据 + 视觉验收**。比较页必须验证已选对象与图例、可见或明确缺失的序列、矩阵列一致；图内 X 轴/绘图区基线及标签不碰撞，缺失不是零；所选对象切换、不同窗口和移动端比较结构能用。v6.10 可用 `audit_comparison_ui.mjs` 收集浏览器 DOM 风险，无法读 Canvas 内标签时标 NOT AUDITED，并人工看截图。对有图表/多卡片的页面新增**共享网格对齐检查与滚动终点检查**：实测内容超出视口能否正常滚动，最后图表轴、Release 行和按钮是否可见；固定栏是否遮挡，窗口 1280×720/390×844 等低高视口下是否仍可达。不要把“正常需要滚动”误报为 overflow，也不要在未打开浏览器时声称已修复底部裁切。对 Overview、Analytics、Operations 等路由分别审查：总览先减少重复信息和并列 CTA，分析详情保持较高密度且不隐藏数据来源。先筛选内容再调整留白，不允许只加 padding 宣称信息减负。导航结构变更还必须验证真实桌面/手机/窄窗口和断点前后相同的目的地 ID、主导航可达性、顶部/侧边/底部是否互相重复、返回与上下文状态、键盘焦点、fixed bottom 遮挡。色彩变更必须查看侧栏与主内容的整页截图，包含 Topbar、Card、Chart 和 hover/selected/focus；检查用户固定 HEX 是否原样保留。必须检查“小标题删除测试”、标题与 KPI/图例的阅读优先级、暗色文字对比与 200% 字体放大；字级不应简单全部放大或统一缩小。先进行去装饰/灰阶信息结构测试；若页面最大面积与主任务不一致，应回到 Gate A 改布局，而不是调渐变颜色。优先在现有测试环境完成构建和组件/流程测试，静态扫描只是提示；检查横向溢出、键盘焦点、屏幕阅读器语义、对比度、浅深主题、长文字、响应式、触摸、错误/加载/空状态、减少动态效果、性能、真实流程回归。**暗色导航需用真实截图检查重复强调色、左侧竖条是否有独立语义、最近打开与主导航是否混淆；本规则不机械禁止层级线。**把“未实际运行”如实标明。
 
 ## 框架隔离强制规则
 

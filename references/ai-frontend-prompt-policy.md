@@ -90,3 +90,9 @@ Agent 不可以只问“想要哪种风格”，也不可以未经分析就直�
 ## v6.9 · 对齐和底部可达性不可凭静态截图臆断
 
 数据页面先根据用户任务确认对齐契约：共享 Grid 容器的内容边界、列线、行顶部及图表单位。允许 3:2/主图跨行、内容自然不等高；不允许没有阅读理由的左右独立瀑布堆叠，造成第二排错位。创意作品或摄影可刻意不对称，仍需清晰锚点。检查 `references/grid-alignment-and-viewport-safety.md` 和 `references/repovantage-release-alignment-case.md`。真实浏览器一定要**从初始视口滚到最大滚动位置**：检查最后一个卡片/按钮/轴、真实滚动区、固定底栏、safe-area 和横向溢出，绝不能把 `overflow:hidden` 当作修复。截图接近底边只能算疑点，未经运行时确认不得声称“已经裁切”或“已修复”。
+
+## v6.10 · 多对象比较需要可信的数据/视觉结构
+
+用户说“比较页面很难看、难用”时，不是先换蓝紫主题或给卡片统一圆角。先读 `references/comparison-page-design.md`，明确对比任务、筛选对象、对等属性与缺失情况，借鉴 RTINGS、Apple、npmcharts、NN/g 适合的部分。对比页以清楚对象选择、真实差异、共同时序主图、对齐指标矩阵为主要结构；选了三仓库却只显一线，必须查数据及 legend、series 状态，不能偷补假数据。
+
+对两张图外框已齐但内部轴/标签仍错位的情况，进入 `references/chart-interior-alignment.md` 的 Plot Region/Legend/Axis/Label QA；标注碰撞可自动提示，但 ECharts Canvas 文本需要截图或引擎 API，不能声称已全面自动检查。已选用户颜色/导航继续沿用。
