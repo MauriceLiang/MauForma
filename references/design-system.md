@@ -109,3 +109,7 @@
 ## M. v6.9 · 网格语义和滚动安全的共享契约
 
 MASTER 中保留 Grid tracks、gutter、页面最大宽度、page-end spacing 与必要的 bottom-bar height/safe-area 语义 Token；各路由在 Page Override 中声明需要的 `shared-row-grid / main-feature-span / editorial-asymmetry` 模式，按任务决定列比例，不强迫统一等高。数据页同级卡片共享行起点；布局变化时更改网格契约而不是零散给 Card 加 margin-top。App Shell 指定唯一可识别的主滚动容器；可滚到底且固定栏不遮挡最后一条记录，按目标浏览器复测。参见 `references/grid-alignment-and-viewport-safety.md`。
+
+## N. v6.11 · 运行任务组件的状态语义与视觉角色
+
+共享 Status/Priority/Progress/TaskRow 组件应通过明确 lifecycle/permission tokens 实现，避免 Agent 为每个状态随机加一层蓝紫背景或左侧选中线。运行/完成/警告状态可在用户品牌允许的色板中选出克制、可访问的语义色，主要靠文字标签与结构保证理解，不能只靠颜色。状态筛选器、行标记与详情页引用相同 task ID、状态与计数来源；禁用/隐藏未授权的恢复操作。MASTER 仅存组件与语义 Token，是否显示左侧状态侧栏由页面用途决定。

@@ -40,3 +40,7 @@ P0：表单不可用、按钮不可到达、数据不真实、内容被遮挡；
 ## v6.10 · 比较页 Browser QA（覆盖不止 DOM Card）
 
 使用用户实际选定的对象与采样数据，执行选择仓库 → 检查选中对象/legend/series/table columns → 时间窗口变更 → 数据缺失/部分覆盖 → 手机宽度 → 滚动最后一行。标注 `data-mf-selected-id` / `data-mf-legend-id` / `data-mf-series-id` / `data-mf-chart-group` / `data-mf-chart-plot` / `data-mf-chart-label` 能帮助 `scripts/audit_comparison_ui.mjs` 提供几何风险线索，但 Canvas 的轴刻度/标签通常不在普通 DOM 中，必须看真实绘图截图或采用图表引擎内部 API；无结构支持时报告 NOT AUDITED。外框等高 ≠ Plot Area/Axis 等高或标签无重叠。不得以“已跑静态测试”代替浏览器截图。
+
+## v6.11 · 任务列表与详情的浏览器 QA
+
+对 Run Monitor 需实测过滤状态计数及可见任务是否一致、进度是否有实际分子/分母、恢复按钮是否只出现在合法任务、点击详情后是否显示真正阶段/日志、搜索/排序是否保持视图上下文。检查 1440×900 与 390×844 下列表行、长 ID、触摸/键盘和滚动末端。独立概念示例的 `tests/task_center_browser_smoke.mjs` 使用本地 Mock 并对 2 个视口截图；**真实业务**还要集成真实 API、权限、错误、重复操作、后台状态变化与任务重试 E2E，不能因为示例按钮改变了本地内存就称“真实重试完成”。详细规范见 `references/task-center-run-monitor-design.md`。

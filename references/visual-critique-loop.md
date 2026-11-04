@@ -82,3 +82,7 @@ RepoVantage 新图中的主要阅读障碍，是“品牌英文副标 + 页面�
 ## v6.10 · 双重图表审查 + 比较任务复盘
 
 对并排图表不仅看外边框与 Grid 行线，还要看 **Plot Area**、X 轴基线、图表数据标签间距与重叠；相同容器高度也可能掩盖两张图的绘图区/单位/刻度不协调。比较页截图同时检查对象身份、图例、实际画出的 series、表格列和首屏真正有助于发现差异的内容。不要用持续占位的筛选侧栏与大块“数据口径”说明卡伪装完整比较体系。见 `references/comparison-page-design.md` 与 `references/chart-interior-alignment.md`。
+
+## v6.11 · Task Center 截图诊断：功能上墙 ≠ 任务效率
+
+若截图出现状态数字独立大卡却不能用于筛选、宽列表每行大段重复阶段说明、真正需要处理的任务混在已完成记录中，诊断为 `Run Monitor information hierarchy failure`，应重构为可操作状态筛选、扫描型记录、按需详情。复核进度真实性和适用操作，而不只是改变 Card 高度。视觉截图不证明重试/日志/API 真实性，最终要浏览器/E2E 检查。专用案例 `references/repovantage-task-center-case.md`。

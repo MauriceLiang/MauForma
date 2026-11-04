@@ -83,3 +83,11 @@ Gate A：选择比较模式前先定义用户的决策问题、对象、共同�
 Gate B：RepositoryPicker/Legend/Series/MetricMatrix 共用唯一 ID 与颜色 token；选择、时间窗、过滤、数据来源改变时所有视图同步。表格按对象列/指标行显示，同一指标有单位、sample_size、coverage；缺失值 null 不能自动变成 0。对比首屏强调可信差异，非数据支持的综合赢家禁止。
 
 Gate D：对 Chart Plot 内部坐标、标签碰撞、数据点覆盖和图例绑定做浏览器复核。可用 `scripts/validate_comparison_contract.py` 做声明式数据检查，`scripts/audit_comparison_ui.mjs` 做标注 DOM 的几何风险检查；对 Canvas 内文字未做视觉检查时明确 NOT AUDITED。切换对象和筛选时必须回归数据和表格，不只测试静态页面初始状态。
+
+## v6.11 · Run Monitor 工作台的设计与开发门槛
+
+Gate A：根据 `references/task-center-run-monitor-design.md` 先确定是 `run_monitor/human_tasks/mixed`、最常见操作、状态来源和进度/权限契约。采集任务默认先评估顶部可操作的状态筛选 + 扫描型任务列表 + 按需详情，而不是默认两张大卡片或人工 Kanban。
+
+Gate B：RunRow、StatusFilter、ProgressIndicator、RunDetail、RetryAction 从同一 task/run ID 和 lifecycle state 导出。可计算进度必须有稳定分母和同单位；未知进度不等于 0。需要重试/取消时先确认后端接口、权限及重复请求语义；不能无权限渲染可点击假按钮。
+
+Gate D：`scripts/validate_task_center.py` 检查静态数据/操作契约，`tests/task_center_browser_smoke.mjs` 检查独立 Mock 交互和响应式；目标业务必须验证真实服务端状态、错误/日志与权限、过滤计数、长列表及滚动终点。状态刷新时保留用户选择，不因自动重排强制跳动。
