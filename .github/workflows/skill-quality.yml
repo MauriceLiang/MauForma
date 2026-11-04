@@ -25,6 +25,7 @@ jobs:
           python3 scripts/validate_composition_brief.py examples/composition/repo-analysis.json --repository
           python3 scripts/audit_readability.py --validate-catalog
           python3 scripts/validate_visual_priority.py --repository
+          python3 scripts/validate_surface_control.py --repository
           python3 scripts/validate_sidebar_color_decision.py --repository
           python3 scripts/validate_navigation_architecture.py --repository
           python3 scripts/validate_page_content_plan.py examples/page-content-plan-repovantage.json --repository
@@ -33,6 +34,7 @@ jobs:
           python3 scripts/validate_comparison_contract.py examples/comparison-contract-repovantage.json --repository
           python3 scripts/validate_task_center.py examples/task-center-repovantage.json --repository
           node --check scripts/audit_comparison_ui.mjs
+          node --check tests/surface_control_browser_smoke.mjs
           python3 -m unittest discover -s tests -v
       - name: Syntax check browser QA script
         run: node --check scripts/browser_qa.mjs
@@ -52,6 +54,8 @@ jobs:
           npx playwright install chromium
       - name: Validate comparison interactions and scroll-end in Chromium
         run: node tests/comparison_browser_smoke.mjs
+      - name: Validate generic surface modes and atomic control geometry
+        run: node tests/surface_control_browser_smoke.mjs
       - name: Validate task-center interactions, status actions and scroll-end
         run: node tests/task_center_browser_smoke.mjs
       - uses: actions/upload-artifact@v4
@@ -61,4 +65,5 @@ jobs:
           path: |
             comparison-browser-artifacts/
             task-center-browser-artifacts/
+            surface-control-browser-artifacts/
           if-no-files-found: ignore
