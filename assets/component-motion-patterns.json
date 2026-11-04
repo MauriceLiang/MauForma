@@ -1,0 +1,255 @@
+{
+  "schema_version": "1.0",
+  "note": "Four Web domains and a no-motion exception. Data is a design contract, not evidence that a product was tested.",
+  "profiles": [
+    {
+      "id": "operations-workspace",
+      "mode": "Operate",
+      "motion_level": "balanced",
+      "user_choice_source": "confirmed",
+      "interactions": [
+        {
+          "id": "filters",
+          "component": "segmented",
+          "trigger": "selection-change",
+          "mode": "motion",
+          "mechanism": "indicator-travel",
+          "purpose": "See which filter became active without losing orientation",
+          "priority": "high",
+          "alternative": "immediate selected state",
+          "reason": ""
+        },
+        {
+          "id": "detail-disclosure",
+          "component": "accordion",
+          "trigger": "expand-collapse",
+          "mode": "motion",
+          "mechanism": "spatial-reveal",
+          "purpose": "Follow the contextual detail opening beneath the selected record",
+          "priority": "high",
+          "alternative": "instant disclosure",
+          "reason": ""
+        },
+        {
+          "id": "auto-refresh-toggle",
+          "component": "switch",
+          "trigger": "on-off",
+          "mode": "motion",
+          "mechanism": "state-morph",
+          "purpose": "Confirm switching monitoring behavior without guessing",
+          "priority": "high",
+          "alternative": "instant aria-checked and label",
+          "reason": ""
+        },
+        {
+          "id": "reorder",
+          "component": "record-list",
+          "trigger": "sort",
+          "mode": "motion",
+          "mechanism": "layout-continuity",
+          "purpose": "Trace the selected row as sort order changes",
+          "priority": "medium",
+          "alternative": "instant sorted rows",
+          "reason": ""
+        },
+        {
+          "id": "route",
+          "component": "page",
+          "trigger": "navigate",
+          "mode": "static",
+          "mechanism": "none",
+          "purpose": "Keep high-frequency routes immediate",
+          "priority": "low",
+          "alternative": "immediate navigation",
+          "reason": "No route animation needed in a dense task workspace"
+        }
+      ]
+    },
+    {
+      "id": "product-purchase",
+      "mode": "Persuade",
+      "motion_level": "expressive",
+      "user_choice_source": "delegated",
+      "interactions": [
+        {
+          "id": "variant",
+          "component": "product-gallery",
+          "trigger": "variant-select",
+          "mode": "motion",
+          "mechanism": "media-crossfade",
+          "purpose": "Connect changing product variant to new image",
+          "priority": "high",
+          "alternative": "instant selected photo",
+          "reason": ""
+        },
+        {
+          "id": "cart",
+          "component": "button",
+          "trigger": "purchase",
+          "mode": "motion",
+          "mechanism": "semantic-feedback",
+          "purpose": "Acknowledge selected product and successful cart action",
+          "priority": "high",
+          "alternative": "immediate cart count and status",
+          "reason": ""
+        },
+        {
+          "id": "specification",
+          "component": "accordion",
+          "trigger": "open",
+          "mode": "motion",
+          "mechanism": "spatial-reveal",
+          "purpose": "Show product specifications in place",
+          "priority": "medium",
+          "alternative": "instant expanded specifications",
+          "reason": ""
+        },
+        {
+          "id": "product-spotlight",
+          "component": "product-card",
+          "trigger": "hover-focus",
+          "mode": "motion",
+          "mechanism": "depth-shift",
+          "purpose": "Gently distinguish the inspected product without moving vital text",
+          "priority": "low",
+          "alternative": "focus border and static image",
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "id": "lesson-reader",
+      "mode": "Read",
+      "motion_level": "balanced",
+      "user_choice_source": "inherited",
+      "interactions": [
+        {
+          "id": "lesson-chapter",
+          "component": "accordion",
+          "trigger": "expand-collapse",
+          "mode": "motion",
+          "mechanism": "spatial-reveal",
+          "purpose": "Keep the next lesson in context while expanding",
+          "priority": "high",
+          "alternative": "immediately revealed heading and text",
+          "reason": ""
+        },
+        {
+          "id": "answer",
+          "component": "quiz-button",
+          "trigger": "submit",
+          "mode": "motion",
+          "mechanism": "semantic-feedback",
+          "purpose": "Help learners associate answer submission with its result",
+          "priority": "high",
+          "alternative": "immediate result text",
+          "reason": ""
+        },
+        {
+          "id": "outline",
+          "component": "toc-indicator",
+          "trigger": "heading-change",
+          "mode": "motion",
+          "mechanism": "indicator-travel",
+          "purpose": "Preserve reading position across chapters",
+          "priority": "medium",
+          "alternative": "immediate aria-current and highlight",
+          "reason": ""
+        },
+        {
+          "id": "article",
+          "component": "reading-text",
+          "trigger": "scroll",
+          "mode": "static",
+          "mechanism": "none",
+          "purpose": "Keep reading text stable during normal scrolling",
+          "priority": "high",
+          "alternative": "normal document scrolling",
+          "reason": "Moving paragraphs would disrupt sustained reading"
+        }
+      ]
+    },
+    {
+      "id": "creator-gallery",
+      "mode": "Experience",
+      "motion_level": "expressive",
+      "user_choice_source": "confirmed",
+      "interactions": [
+        {
+          "id": "work",
+          "component": "portfolio-gallery",
+          "trigger": "select-work",
+          "mode": "motion",
+          "mechanism": "shared-element",
+          "purpose": "Maintain a sense of image identity between gallery and detail",
+          "priority": "high",
+          "alternative": "immediate accessible title and image",
+          "reason": ""
+        },
+        {
+          "id": "menu",
+          "component": "navigation",
+          "trigger": "open",
+          "mode": "motion",
+          "mechanism": "spatial-reveal",
+          "purpose": "Orient the viewer to the temporary navigation surface",
+          "priority": "medium",
+          "alternative": "immediate accessible menu",
+          "reason": ""
+        },
+        {
+          "id": "next",
+          "component": "carousel-control",
+          "trigger": "click",
+          "mode": "motion",
+          "mechanism": "tactile-press",
+          "purpose": "Give direct feedback to next-work action",
+          "priority": "medium",
+          "alternative": "immediate focused control state",
+          "reason": ""
+        },
+        {
+          "id": "credits",
+          "component": "caption",
+          "trigger": "read",
+          "mode": "static",
+          "mechanism": "none",
+          "purpose": "Keep author and image credits quiet and readable",
+          "priority": "low",
+          "alternative": "static caption",
+          "reason": "No interaction or transition occurs"
+        }
+      ]
+    },
+    {
+      "id": "minimal-form",
+      "mode": "Operate",
+      "motion_level": "none",
+      "user_choice_source": "confirmed",
+      "interactions": [
+        {
+          "id": "validation",
+          "component": "input",
+          "trigger": "invalid",
+          "mode": "feedback",
+          "mechanism": "none",
+          "purpose": "Report validation immediately with accessible text",
+          "priority": "high",
+          "alternative": "immediate error text",
+          "reason": "User requested no extra motion"
+        },
+        {
+          "id": "submit",
+          "component": "button",
+          "trigger": "submit",
+          "mode": "feedback",
+          "mechanism": "none",
+          "purpose": "Confirm form outcome promptly",
+          "priority": "high",
+          "alternative": "immediate status message",
+          "reason": "User requested no extra motion"
+        }
+      ]
+    }
+  ]
+}
