@@ -4,6 +4,10 @@
 
 本 Skill 最重要的工程约束：**产品界面不是由几十个独立设计的页面拼出来的，而是由一套视觉及行为一致的组件组合出来的。**
 
+## v6.13 · 结构与尺寸先于视觉皮肤
+
+在为每个页面组合 Card/Table/Button 前按 `references/surface-architecture-gate.md` 选主容器层级；不能把独立内容区全部包在同一巨型 Card 里才算“组件化”。使用 `references/control-geometry-gate.md` 确保按钮、Tab、Badge、工具条及行操作在父容器变化时完整可读；控件短标签不逐字堆叠，窄屏改成整体换行、结构重排或可访问菜单，所有状态须回归。
+
 ## v6.12 · 组件实现前必须先做视觉职责设计
 
 所有 Web 项目通用：先读 `references/perceptual-hierarchy-gate.md` 确定真正的主/次信息，再读 `references/component-craft-gate.md`，对高频控件审查职责、结构、交互频率、视觉处理、状态与边界。仅实现一套可复用的 Button/Badge 并不意味着组件具有设计质量，多个“美观”原语组合也可能形成凌乱页面。避免把设计方向变成全站一套圆角/pill；不要在营销与阅读页面套用工作台密度。

@@ -19,6 +19,10 @@
 
 这些不是强制指定 `8/16/24/32/48` px 的唯一答案；设计系统应有一致比例，具体随字体、页面模式、视口和内容决定。
 
+## v6.13 · Surface Choice 应先于容器美化
+
+以前的 Surface Necessity 只问边框有没有必要，但未要求对**整个页面的信息结构**比较候选。因此在设计真实页面或大型改版时先执行 `references/surface-architecture-gate.md`：连续记录可平面布局、一个有独立范围的模块可保留 single panel、商品/作品可用 cards，阅读/沉浸式页面有不同的空间语言。不要求统一删卡片。组件窄宽适配再执行 `references/control-geometry-gate.md`，禁止为了维持外框而把短按钮字竖排。
+
 ## 容器/卡片必要性测试（Surface Necessity）
 
 对于每个 panel/card/outline 检查：

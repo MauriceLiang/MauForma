@@ -1,5 +1,13 @@
 # 前端项目架构与验收门槛
 
+## v6.13 · 全类型页面的 Surface / Geometry Gate
+
+Gate A：基于真实用户任务评估 open collection、单层 panel、媒体/商品 cards、editorial flow 或分栏/沉浸 stage；说明所选表面及拒绝候选的理由（`references/surface-architecture-gate.md`）。不把巨型外卡当成后台默认。
+
+Gate B：明确短按钮/Tab/Badge 的 atomic label 与允许语义换行的正文不同；为表格行操作预留自然尺寸预算与 responsive fallback（`references/control-geometry-gate.md`）。`white-space:nowrap` 必须配合 Grid/Flex 父容器策略，否则可能制造横向越界。
+
+Gate D：真实 Chromium 在桌面、390/320px、200% 文字放大和错误状态增加操作时检查短词组不被拆字，点击区域/焦点/最后行可达；可使用 `data-mf-atomic-control` / `data-mf-control-label` 与 `Range.getClientRects()` 测试。独立示例测试不等于业务实现。静态 `scripts/validate_surface_control.py` 只核验结构计划。
+
 ## v6.12 · 全类型页面前置条件（Gate A / B / D）
 
 - Gate A：读取 `references/perceptual-hierarchy-gate.md`，按实际用户任务识别 P0–P3、阅读路径、可见信息与密度，**先判重要性、后定字号与组件形式**。不同页面可有不同 P0（例如价格、正文、作品、当前错误）；不是每个数字都是大 KPI。

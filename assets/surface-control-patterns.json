@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0",
+  "description": "Design-intent examples; never an automatic aesthetic score or a requirement for one surface style.",
+  "profiles": [
+    {
+      "id": "operations-run-list",
+      "mode": "Operate",
+      "goal": "Scan run state and resolve actionable failures",
+      "surfaces": [
+        {
+          "id": "run-list",
+          "pattern": "open-collection",
+          "reason": "One continuous sortable record collection already has a toolbar and column separators",
+          "rejected_pattern": "mega-card",
+          "rejected_reason": "An all-page rounded wrapper adds no independent object or state",
+          "nested_of": null
+        }
+      ],
+      "controls": [
+        {
+          "id": "details",
+          "kind": "row-action",
+          "label": "查看详情",
+          "behavior": "atomic",
+          "fallback": "reflow-row",
+          "states": [
+            "default",
+            "focus-visible",
+            "disabled"
+          ]
+        },
+        {
+          "id": "retry",
+          "kind": "conditional-row-action",
+          "label": "重试",
+          "behavior": "atomic",
+          "fallback": "group-wrap",
+          "states": [
+            "default",
+            "focus-visible",
+            "loading",
+            "error"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "product-catalog",
+      "mode": "Persuade",
+      "goal": "Evaluate products and purchase the selected item",
+      "surfaces": [
+        {
+          "id": "product-gallery",
+          "pattern": "entity-cards",
+          "reason": "Each product has its own image, price and standalone purchase action",
+          "rejected_pattern": "open-collection",
+          "rejected_reason": "A flat row table would undermine the product imagery and comparison intent",
+          "nested_of": null
+        }
+      ],
+      "controls": [
+        {
+          "id": "shop",
+          "kind": "cta",
+          "label": "加入购物车",
+          "behavior": "atomic",
+          "fallback": "stack",
+          "states": [
+            "default",
+            "focus-visible",
+            "disabled",
+            "loading"
+          ]
+        },
+        {
+          "id": "description",
+          "kind": "supporting-copy",
+          "label": "适合不同使用场景的完整介绍",
+          "behavior": "semantic-wrap",
+          "fallback": "stack",
+          "states": [
+            "default",
+            "focus-visible"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "education-article",
+      "mode": "Read",
+      "goal": "Read instructional content and follow references",
+      "surfaces": [
+        {
+          "id": "article",
+          "pattern": "editorial-flow",
+          "reason": "The reading sequence and line measure convey structure without cards for every paragraph",
+          "rejected_pattern": "entity-cards",
+          "rejected_reason": "Separating every paragraph into a card interrupts the continuous argument",
+          "nested_of": null
+        }
+      ],
+      "controls": [
+        {
+          "id": "toc",
+          "kind": "navigation",
+          "label": "前往下一章节",
+          "behavior": "atomic",
+          "fallback": "reflow-row",
+          "states": [
+            "default",
+            "focus-visible"
+          ]
+        },
+        {
+          "id": "excerpt",
+          "kind": "body",
+          "label": "这里可以容纳较长的教学说明与解释性文本",
+          "behavior": "semantic-wrap",
+          "fallback": "stack",
+          "states": [
+            "default",
+            "focus-visible"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "creative-portfolio",
+      "mode": "Experience",
+      "goal": "Explore a selected artwork with unobtrusive navigation",
+      "surfaces": [
+        {
+          "id": "art-stage",
+          "pattern": "hero-stage",
+          "reason": "The featured work is the focal surface and can legitimately use an immersive stage",
+          "rejected_pattern": "open-collection",
+          "rejected_reason": "A flat record grid would lose the intended immersive presentation",
+          "nested_of": null
+        }
+      ],
+      "controls": [
+        {
+          "id": "next",
+          "kind": "navigation",
+          "label": "下一件作品",
+          "behavior": "atomic",
+          "fallback": "reflow-row",
+          "states": [
+            "default",
+            "focus-visible",
+            "disabled"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "settings-configuration",
+      "mode": "Operate",
+      "goal": "Edit a bounded group of account settings",
+      "surfaces": [
+        {
+          "id": "settings",
+          "pattern": "single-panel",
+          "reason": "Distinct form and save/error scope needs an identifiable panel",
+          "rejected_pattern": "entity-cards",
+          "rejected_reason": "Every field as a card makes the form harder to scan",
+          "nested_of": null
+        }
+      ],
+      "controls": [
+        {
+          "id": "save",
+          "kind": "form-action",
+          "label": "保存更改",
+          "behavior": "atomic",
+          "fallback": "stack",
+          "states": [
+            "default",
+            "focus-visible",
+            "disabled",
+            "loading",
+            "error"
+          ]
+        }
+      ]
+    }
+  ]
+}
