@@ -1,5 +1,13 @@
 # 前端项目架构与验收门槛
 
+## v6.14 · Motion Choice Gate：先问，再做动画，最后验证
+
+Gate A（仅新设计/重大动效改版）：查已选品牌/页面动效；未知时推荐 2–3 档有实际视觉差异的交互选择，由用户决定、融合或明确授权 Agent。对话一轮即可、不要重复询问；未回答标 unresolved，**既不能默认全站静态，也不能默认带大量滚动特效**。详见 `references/motion-consent-experience-gate.md`。
+
+Gate B：基于用户确认建立 Motion Tokens 和页面内真实交互列表，必须覆盖其所选强度与 reduced-motion；可以使用已有组件库过渡，不强行引入动画包。基础状态反馈即使无额外动效也必须存在。
+
+Gate D：真实浏览器切换 Tab/弹层/导航/消息/列表与系统 reduced-motion，观察生效的进退场和静态回退，验证快速点击可中断、内容即刻可见、状态与键盘完整。静态决策校验 `scripts/validate_motion_decision.py` 不证明实际动画表现。
+
 ## v6.13 · 全类型页面的 Surface / Geometry Gate
 
 Gate A：基于真实用户任务评估 open collection、单层 panel、媒体/商品 cards、editorial flow 或分栏/沉浸 stage；说明所选表面及拒绝候选的理由（`references/surface-architecture-gate.md`）。不把巨型外卡当成后台默认。
