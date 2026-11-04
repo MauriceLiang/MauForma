@@ -1,5 +1,16 @@
 # Changelog
 
+## v6.15 — 2026-11-04 · Component motion choreography and art direction
+
+- 解决 v6.14 仅要求选择动效强度但 Agent 仍可能只做路由 fade 的缺口。将真实组件状态与动效机制提升到统一 Gate B/QA 覆盖规范，不强制引入无关组件、不盲目增加动画数量。
+- 新增 `references/component-motion-choreography-gate.md`：全局真实交互清单、组件级动效/即时反馈/有理由静态、根据用途选择 indicator travel / spatial reveal / state morph / layout continuity / semantic feedback / media continuity，不用一个 fade+slide 套全站。
+- 新增 `assets/component-motion-patterns.json`、`scripts/validate_component_motion.py` 与 `tests/test_component_motion.py`：涵盖 Operate/Persuade/Read/Experience、无动效用户选择，拒绝只做 page animation、所有组件同一机制、忽略高价值交互与未说明的静态；静态意图校验不证明体验审美质量。
+- 新增原创六组件交互实验页 `assets/component-motion-lab.html` 及 Chromium `tests/component_motion_browser_smoke.mjs`：指示器真实移动、Accordion 尺寸、Toggle 状态形变、列表新增反馈、保存结果、聚焦探索；正常/减少动态效果、桌面/窄屏测试。实验页测试不代表真实产品已通过。
+- 将主 Skill、动效选择、技术选型、创意组件、组件审美、工程 Gate、Agent 提示词、README、视觉 QA 与 CI 衔接；旧版强度确认、减少动态效果、页面内容/响应式规则继续有效。
+
+---
+
+
 ## v6.14 — 2026-11-04 · User-owned motion choices and real interaction choreography
 
 - 现有动效规则强调“不要滥用”，却缺乏“**用户可以主动选择是否加入、加入到何种程度**”的硬门禁，容易让 Agent 沉默地把全站做成静态。
