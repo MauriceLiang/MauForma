@@ -36,6 +36,10 @@
 | Read | 目录选中、内容锚点、注释/折叠状态、练习反馈 | 文章正文频繁滑移，妨碍连续阅读 |
 | Experience | 作品切换、共享视觉元素、定向叙事/画布交互 | 长循环遮挡出口，交互必须等动画播完 |
 
+## v6.15 · 选择了 B/C 仍不代表“组件动效完成”
+
+本规范负责**用户是否同意动效以及强度边界**。实际项目仍须执行 `references/component-motion-choreography-gate.md`：扫描真实存在的组件和状态，给高价值交互选择有意义的动效/即时反馈/有理由的静态；优先组件内指示器、展开、状态形变、位置连续性、真实结果，不允许只交付路由切换或所有组件重复淡入。用户明确选 `none` 与系统减少动态效果继续受到保护，Agent 不得借此擅加大量动效。
+
 ## Gate M2 · 按功能分类，不是“有无特效”的二元选择
 
 为实际存在的交互（不可虚构）逐项记录 `trigger → from/to state → purpose → visual treatment → cancellation/interrupt → reduced-motion alternative`：
