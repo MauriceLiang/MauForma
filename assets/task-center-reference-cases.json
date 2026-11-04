@@ -1,0 +1,150 @@
+{
+  "version": "1.0",
+  "description": "Task-center design reference catalog: background run monitor patterns with clear limitations.",
+  "sources": [
+    {
+      "id": "github-actions",
+      "name": "GitHub Actions Workflow Runs",
+      "url": "https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/monitoring-workflows/viewing-workflow-run-history",
+      "use": [
+        "compact run overview",
+        "run drilldown with job and step logs"
+      ],
+      "fit": [
+        "run_monitor",
+        "ci"
+      ],
+      "avoid": "do not reproduce repository workflow navigation when task center is global"
+    },
+    {
+      "id": "gitlab-pipelines",
+      "name": "GitLab Pipelines and Jobs",
+      "url": "https://docs.gitlab.com/ci/pipelines/",
+      "use": [
+        "status filtering",
+        "stages overview",
+        "pipeline rerun and cancel on detail"
+      ],
+      "fit": [
+        "ci",
+        "multi-stage-runs"
+      ],
+      "avoid": "no fake DAG for simple tasks"
+    },
+    {
+      "id": "trigger-runs",
+      "name": "Trigger.dev Runs",
+      "url": "https://trigger.dev/changelog/live-runs-page",
+      "use": [
+        "in-place status changes",
+        "new runs banner",
+        "parent child status quick view"
+      ],
+      "fit": [
+        "async-jobs",
+        "agent-runs"
+      ],
+      "avoid": "event-rich debugging not required for short basic tasks"
+    },
+    {
+      "id": "inngest",
+      "name": "Inngest Run Inspector",
+      "url": "https://www.inngest.com/docs/platform-and-operations/inspect-events-and-runs",
+      "use": [
+        "filter run list",
+        "error cause and step timeline in details",
+        "retry history"
+      ],
+      "fit": [
+        "event-driven",
+        "debugging"
+      ],
+      "avoid": "event payload should not overwhelm every list item"
+    },
+    {
+      "id": "vercel-deployments",
+      "name": "Vercel Deployments",
+      "url": "https://vercel.com/docs/deployments/managing-deployments",
+      "use": [
+        "status branch environment filtering",
+        "one-item detail and recovery actions"
+      ],
+      "fit": [
+        "deployments",
+        "batch-task-history"
+      ],
+      "avoid": "deployment promotion not equivalent to background retry"
+    },
+    {
+      "id": "linear",
+      "name": "Linear List and Display Options",
+      "url": "https://linear.app/docs/display-options",
+      "use": [
+        "status groups",
+        "user-controlled displayed fields and ordering",
+        "compact scannable lists"
+      ],
+      "fit": [
+        "human_tasks",
+        "mixed",
+        "run_monitor"
+      ],
+      "avoid": "human issue ownership and board mechanics do not model runtime progress"
+    }
+  ],
+  "patterns": [
+    {
+      "id": "run-list",
+      "description": "Unified compact list with filter counts, status, progress, updated time and actions",
+      "fits": [
+        "run_monitor"
+      ],
+      "default": true
+    },
+    {
+      "id": "status-groups",
+      "description": "Groups for attention/running/queued/completed with collapsible lists",
+      "fits": [
+        "run_monitor",
+        "human_tasks"
+      ],
+      "default": false
+    },
+    {
+      "id": "detail-drawer",
+      "description": "Compact list + on-demand run timeline, error and log context",
+      "fits": [
+        "run_monitor",
+        "async-jobs"
+      ],
+      "default": false
+    },
+    {
+      "id": "operator-triage",
+      "description": "Compact filters/side rail + list for large-volume incident triage",
+      "fits": [
+        "run_monitor"
+      ],
+      "default": false
+    },
+    {
+      "id": "human-kanban",
+      "description": "Priority, assignee, workflow phases and board for collaborative human work",
+      "fits": [
+        "human_tasks"
+      ],
+      "default": false
+    }
+  ],
+  "guards": {
+    "no_permanent_stat_column_without_distinct_task": true,
+    "no_repeated_progress_unavailable_sentence": true,
+    "counts_derived_from_visible_data": true,
+    "unknown_progress_is_not_zero": true,
+    "retry_requires_explicit_capability": true,
+    "log_details_progressively_disclosed": true,
+    "focusable_controls": true,
+    "real_api_not_inferred_from_mock": true,
+    "avoid_arbitrary_compact_font_size": true
+  }
+}
