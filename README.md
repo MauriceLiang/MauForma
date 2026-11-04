@@ -101,6 +101,14 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 对齐不是让所有卡片一样大
+
+v6.9 加入 **Grid & Viewport Integrity Gate**：数据看板的模块优先共享内容边界和行起点。不同宽度、主图跨行与有业务理由的非对称可以保留；不再将两列数据卡片分别堆叠成无规则的上下错位。摄影、创意、叙事仍然允许合理的 Masonry。
+
+同时明确 **超出首屏可以正常滚动，但页面底部不能被不可达的固定高度或悬浮工具栏裁掉**。在目标浏览器中检查笔记本较矮窗口、手机端与滚动终点，保证最后一个 Release、图表轴/说明与操作按钮完整可达。
+
+[网格对齐与底部安全规范](references/grid-alignment-and-viewport-safety.md) · [RepoVantage 发布页复盘](references/repovantage-release-alignment-case.md) · [三种网格与滚动对照](assets/grid-and-viewport-lab.html)
+
 ## 先筛选信息，再设计高级留白
 
 v6.8 新增 **Page Content Curation & Density**：先按真实用户任务决定哪些信息展示在当前页、哪些只在首次使用时出现、哪些移往帮助/明细，再选择 `airy / balanced / productive / compact` 页面级密度。**总览页可以舒展而专注；数据分析页则允许筛选、图表、表格与指标更紧凑**。不再把同一组说明卡片机械复制到所有页面。
@@ -176,6 +184,7 @@ python3 scripts/validate_ui_patterns.py
 python3 scripts/validate_sidebar_color_decision.py --repository
 python3 scripts/validate_navigation_architecture.py --repository
 python3 scripts/validate_page_content_plan.py examples/page-content-plan-repovantage.json --repository
+python3 scripts/validate_layout_integrity.py --repository
 python3 -m unittest discover -s tests -v
 ```
 

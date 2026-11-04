@@ -1,5 +1,16 @@
 # Changelog
 
+## v6.9 — 2026-11-04 · Grid alignment, intentional asymmetry and bottom-safe scrolling
+
+- 基于 RepoVantage「版本发布」页面三张截图，识别两个独立问题：左右列独立堆叠导致第二排上边缘错位；卡片靠近视口底部需要验证实际能否滚动到最后一条记录。**截图不能直接证明真实裁切，不能把首屏外的内容都称为 Bug。**
+- 新增 `references/grid-alignment-and-viewport-safety.md`：共享网格列线与行起点、ChartPanel 统一分组、不对称合理例外、自然页面滚动与 App Shell 内部滚动、真实 fixed 工具栏和 safe-area 末端占位。
+- 新增截图专属 `references/repovantage-release-alignment-case.md`、原创可交互 `assets/grid-and-viewport-lab.html`（独立两列 vs 共享 Grid vs 主图整行，模拟矮窗口和底栏）及 `assets/layout-integrity-patterns.json`。
+- 新增 `assets/layout-integrity.schema.json`、`examples/layout-integrity-repovantage.json`、`scripts/validate_layout_integrity.py` 和自动单测，检查是否明确行对齐、移动阅读顺序、滚动末端策略和浏览器证据。
+- 新增可选真实浏览器几何审查 `scripts/audit_rendered_layout.mjs`，输出首屏/末端截图、横向溢出、annotated grid 上边缘错列与固定底栏遮挡线索；没有 Playwright 时明确 NOT RUN，不静默安装。
+- 更新 MauForma 主 Skill、README、视觉 QA、构图/工程原则与 GitHub CI；保留既有内容密度/导航/配色/字体规则。未直接修改 RepoVantage 业务工程或宣称其底部裁切已经修复。
+
+---
+
 ## v6.8 — 2026-11-03 · Page-level density, content curation and intentional whitespace
 
 - 根据 RepoVantage 最新总览截图，发现操作面板 + 三步教程 + 分析功能三卡 + 重复入口同时出现导致内容拥挤；不是配色、圆角或卡片 padding 的单点问题。
