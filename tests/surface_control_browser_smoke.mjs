@@ -1,9 +1,10 @@
 /** Chromium visual geometry smoke for generic surfaces and atomic short actions (demo only). */
-const {chromium} = require('playwright');
-const path = require('path');
-const fs = require('fs');
-const {pathToFileURL} = require('url');
-const assert = require('node:assert/strict');
+import {chromium} from 'playwright';
+import path from 'node:path';
+import fs from 'node:fs';
+import {pathToFileURL, fileURLToPath} from 'node:url';
+import assert from 'node:assert/strict';
+const __dirname=path.dirname(fileURLToPath(import.meta.url));
 
 async function test() {
  const browser=await chromium.launch({headless:true});
