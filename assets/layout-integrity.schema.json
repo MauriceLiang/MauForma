@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MauForma Layout Integrity Plan",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project",
+    "source",
+    "page",
+    "purpose",
+    "intent",
+    "layout",
+    "scroll",
+    "review"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "project": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "page": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 5
+    },
+    "intent": {
+      "enum": [
+        "provisional",
+        "confirmed",
+        "delegated",
+        "inherited"
+      ]
+    },
+    "user_statement": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "layout": {
+      "type": "object",
+      "required": [
+        "pattern_id",
+        "mode",
+        "regions",
+        "align_groups",
+        "intentional_asymmetry_reason",
+        "mobile_order"
+      ],
+      "properties": {
+        "pattern_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mode": {
+          "enum": [
+            "operate",
+            "read",
+            "persuade",
+            "experience"
+          ]
+        },
+        "columns": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "column_ratio": {
+          "type": "string"
+        },
+        "regions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "row",
+              "col"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "row": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "col": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "semantic_group": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "align_groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "ids",
+              "axis"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "ids": {
+                "type": "array",
+                "minItems": 2,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "axis": {
+                "enum": [
+                  "top",
+                  "left",
+                  "right",
+                  "baseline"
+                ]
+              }
+            }
+          }
+        },
+        "intentional_asymmetry_reason": {
+          "type": "string"
+        },
+        "mobile_order": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "surface_strategy": {
+          "type": "string"
+        }
+      }
+    },
+    "scroll": {
+      "type": "object",
+      "required": [
+        "mode",
+        "bottom_safe_area",
+        "has_fixed_bar",
+        "scroll_to_end_required",
+        "end_padding_strategy",
+        "last_content_id"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "document",
+            "app-shell",
+            "fixed-action-bar"
+          ]
+        },
+        "bottom_safe_area": {
+          "type": "boolean"
+        },
+        "has_fixed_bar": {
+          "type": "boolean"
+        },
+        "scroll_to_end_required": {
+          "type": "boolean"
+        },
+        "end_padding_strategy": {
+          "type": "string"
+        },
+        "last_content_id": {
+          "type": "string"
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "browser_status",
+        "viewports",
+        "evidence",
+        "notes"
+      ],
+      "properties": {
+        "browser_status": {
+          "enum": [
+            "NOT RUN",
+            "PASS",
+            "FAIL"
+          ]
+        },
+        "viewports": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

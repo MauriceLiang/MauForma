@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "project": "RepoVantage",
+  "source": "User screenshots 2026-11-04; CSS/DOM uninspected",
+  "page": "release-analysis",
+  "purpose": "read release timeline, compare intervals, inspect releases",
+  "intent": "provisional",
+  "user_statement": null,
+  "layout": {
+    "pattern_id": "shared-row-grid",
+    "mode": "operate",
+    "columns": 2,
+    "column_ratio": "3:2",
+    "regions": [
+      {
+        "id": "timeline",
+        "row": 1,
+        "col": 1,
+        "semantic_group": "release-trends"
+      },
+      {
+        "id": "interval-order",
+        "row": 1,
+        "col": 2,
+        "semantic_group": "release-trends"
+      },
+      {
+        "id": "frequency",
+        "row": 2,
+        "col": 1,
+        "semantic_group": "release-trends"
+      },
+      {
+        "id": "release-list",
+        "row": 2,
+        "col": 2,
+        "semantic_group": "release-trends"
+      }
+    ],
+    "align_groups": [
+      {
+        "id": "first-row",
+        "ids": [
+          "timeline",
+          "interval-order"
+        ],
+        "axis": "top"
+      },
+      {
+        "id": "second-row",
+        "ids": [
+          "frequency",
+          "release-list"
+        ],
+        "axis": "top"
+      }
+    ],
+    "intentional_asymmetry_reason": "3:2 supports wider timeline while preserving release details; all row starts shared",
+    "mobile_order": [
+      "timeline",
+      "interval-order",
+      "frequency",
+      "release-list"
+    ],
+    "surface_strategy": "meaningful charts and list panels, no filler cards"
+  },
+  "scroll": {
+    "mode": "document",
+    "bottom_safe_area": true,
+    "has_fixed_bar": false,
+    "scroll_to_end_required": true,
+    "end_padding_strategy": "actual page bottom padding and safe area; verify in real browser",
+    "last_content_id": "release-list"
+  },
+  "review": {
+    "browser_status": "NOT RUN",
+    "viewports": [],
+    "evidence": [],
+    "notes": "Example is a suggested layout; the screenshot alone does not establish real clipping."
+  }
+}
