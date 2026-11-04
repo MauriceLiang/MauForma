@@ -101,6 +101,14 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 通用层级与组件质感：先判断主角，再选字号与形态
+
+v6.12 新增两项跨领域的基础能力：**Perceptual Hierarchy Gate** 将实际决策任务拆分为 P0–P3，在设计 Token 与组件之前判断哪些文字、数据、对象、反馈与操作值得突出；**Component Craft Gate** 对 Button、Table/List、Tabs/Filter、Badge、Search、Card、Dialog、Navigation 明确职责、内容层级、状态与尺寸理由。反对“所有字都缩到 12px”，也反对“所有数字都变巨型 KPI”。真正的设计质量来自角色与组件组合关系，而非随便堆 pill、浅灰边框和阴影。
+
+这是一套面向 **Operate / Persuade / Read / Experience** 的通用方法，而非 RepoVantage 专用视觉模板；保留项目已有设计和用户已确认选择。静态示例覆盖四种页面，检查工具只能检验角色契约，不能替代实际浏览器截图和审美判断。
+
+[信息显著性与排版](references/perceptual-hierarchy-gate.md) · [跨产品组件设计](references/component-craft-gate.md) · [四种模式的数据样例](assets/visual-priority-patterns.json)
+
 ## 任务中心：状态可扫描，异常可定位，执行可追踪
 
 v6.11 新增 **Task Center & Run Monitor Gate**：针对后台采集、作业队列、CI/CD、异步执行与任务日志，借鉴 GitHub Actions、GitLab、Trigger.dev、Inngest、Linear 和 Vercel 的成熟交互逻辑。优先用**可点击的状态计数与过滤、紧凑任务列表、真实进度、合法的恢复操作与按需详情**替代长期占宽的统计大卡和重复说明。人工待办和机器任务需分开选型，不能把两者机械地套同一个模板。
