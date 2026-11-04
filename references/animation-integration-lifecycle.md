@@ -1,5 +1,9 @@
 # 动画引擎与组件生命周期：适用于所有 Web 框架
 
+## v6.14 · 体验强度和动画生命周期必须共同验收
+
+先根据 `references/motion-consent-experience-gate.md` 检查用户确认/继承/委托的动效选择；新增动画都要有可观察的状态作用、合法退出/反向与取消路径。用浏览器实测快速切换 Tab/路由、反复打开关闭 Dialog、减少动态效果切换（包括已经开始的动画）、系统偏好及弱性能场景。只在 CSS 里写 `prefers-reduced-motion` 并不能自动证明 JS 动画正确取消。
+
 ## 不可违反的技术安全线
 
 - **DOM 所有权**：Vue/React/Svelte/Angular 管理 DOM 渲染。命令式引擎只能在组件挂载后按 `ref` 或作用域目标操作，不应跨组件 query 全站 `.card` 然后控制任意元素。

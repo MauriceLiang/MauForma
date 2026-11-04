@@ -1,5 +1,16 @@
 # MauForma · 组件优先视觉 QA v2.0
 
+## v6.14 · Motion Choice & Interaction Experience Gate
+
+- [ ] 新站/重大改版曾提出**可观察、可选择**的动效体验；确认来源是 `confirmed/delegated/inherited`，否则标 `unresolved`，未答复不得自行把全站永远做成无动画。
+- [ ] 有 2–3 档基于真实交互的区别：例如按钮按压、Tabs 指示/内容、Dialog/Drawer 进退场、状态/数据变化与品牌主视觉；不把“只做 Hover”冒充交互设计完成。
+- [ ] 用户明确选“无额外动效”时状态/焦点/成功/失败仍被及时传达；选择 B/C 时实际组件有合乎用途的流畅过渡，不能只有文字声称。
+- [ ] 转场短而可中断，快速反向/连续点击不闪烁，不影响键盘焦点、页面位置、操作反馈和真实业务提交；避免过多逐行 stagger、假加载/进度和状态丢失。
+- [ ] `prefers-reduced-motion` / 手动减少动效下仍有可见状态、能正常打开关闭弹窗、键盘与结果正常；浏览器和 JS 动画都按实际偏好处理。
+- [ ] 真实浏览器查看前/中/后与移动端、200% 文字、弱性能及长内容；未测项目列明，不能用静态脚本或 Mock 宣称目标产品体验已通过。
+
+详细规范：`references/motion-consent-experience-gate.md`，交互样例：`assets/motion-choice-layout-lab.html`，静态契约：`scripts/validate_motion_decision.py`。
+
 ## v6.13 · Surface & Control Geometry 独立验收
 
 - [ ] 页面外层 mega-card / 内层工具栏 / 行卡层级是否均有独立语义？如果只是为了把所有内容框起来，是否评估过 open collection 或 single panel？

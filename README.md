@@ -101,6 +101,14 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 交互动效由用户选择，不默认全静止或炫技
+
+v6.14 新增 **Motion Choice & Experience Gate**：新网站、整体重设计或明显交互动效改版时，如尚未有确定偏好，Agent 应主动提出 2–3 套具象的动效体验，让用户决定、混搭或明确授权 Agent。允许完全不加额外运动，但不能取消选中、焦点、加载与结果反馈；选择细腻/表达型动效后必须实际实现 Tab、按钮、弹层、导航、数据变化等真实交互对应的反馈与过渡。
+
+动效与配色是两项独立选择，不因用户说“简洁”“高效”就默认为零动画。项目使用共享 Motion Tokens、减少动态效果降级、可取消的过渡与浏览器回归，避免“只有一个 hover 动效”和“安装一堆动画库却拖慢体验”两种极端。
+
+[用户动效选择与实现](references/motion-consent-experience-gate.md) · [跨领域选择契约](assets/motion-decision-patterns.json) · [可交互三档预览](assets/motion-choice-layout-lab.html) · [静态验证脚本](scripts/validate_motion_decision.py)
+
 ## 容器结构与控件宽度：不把所有页面装进圆角巨卡
 
 v6.13 增加 **Surface Architecture Gate** 和 **Control Geometry Gate**：先判断连续列表应直接铺在内容区、使用单层有界面板、还是采用独立商品/作品卡片，禁止以默认 Card 替代设计判断；对短按钮/状态/导航标签要求保持原子完整，窄屏时重排行区、让完整控件换行或转为可访问操作菜单，不允许中文逐字竖排、裁切或出屏。规则适用于营销、阅读、专业工作台、作品展示，而不是针对单个任务中心的 CSS 补丁。
