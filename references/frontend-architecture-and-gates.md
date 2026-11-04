@@ -1,5 +1,11 @@
 # 前端项目架构与验收门槛
 
+## v6.12 · 全类型页面前置条件（Gate A / B / D）
+
+- Gate A：读取 `references/perceptual-hierarchy-gate.md`，按实际用户任务识别 P0–P3、阅读路径、可见信息与密度，**先判重要性、后定字号与组件形式**。不同页面可有不同 P0（例如价格、正文、作品、当前错误）；不是每个数字都是大 KPI。
+- Gate B：读取 `references/component-craft-gate.md`，确定共享组件职责/文本层级/形态依据/交互与状态。预览组件本身以及它们组成的真实内容区域，不用统一 pill/描边冒充质量。
+- Gate D：整页灰阶三秒扫描、真实正常/异常内容、长文与 200% 放大、宽窄窗口的截图验证。静态优先级计划可由 `scripts/validate_visual_priority.py` 核验**覆盖性**，不能宣称视觉优劣已自动判定。小范围修复按现有页面/组件承诺执行，不强制重复全项目探索。
+
 ## Phase 0：项目现状盘点
 
 - 从 `package.json` / 锁文件 / `vite.config.*` / `next.config.*` / `nuxt.config.*` / `angular.json` 等判断现有架构。
