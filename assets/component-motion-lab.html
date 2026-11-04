@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MauForma · Component Motion Showcase</title>
+<style>
+:root{font:16px/1.48 system-ui,-apple-system,"PingFang SC",sans-serif;color-scheme:light;--ink:#24303b;--muted:#677787;--line:#d9e1e6;--surface:#fff;--canvas:#f5f7f8;--focus:#336e96;--speed:240ms;--fast:140ms;--ease:cubic-bezier(.22,.8,.2,1)}
+:root[data-mode=none],:root[data-reduced=true]{--speed:0ms;--fast:0ms}
+@media(prefers-reduced-motion:reduce){:root{--speed:0ms!important;--fast:0ms!important}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--ink)}
+main{max-width:1050px;margin:auto;padding:32px clamp(16px,3vw,38px) 85px}
+h1{font-size:1.7rem;line-height:1.24;margin:0 0 7px}
+.lead,.note{color:var(--muted);margin:0 0 19px;max-width:76ch}
+.controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:24px}
+button{cursor:pointer;font:inherit;background:white;color:inherit;border:1px solid #c6d3db;border-radius:9px;padding:9px 13px;min-block-size:40px;white-space:nowrap}
+button:focus-visible,.showcard:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+button[aria-pressed=true]{background:#e4eef4;border-color:#a5bfce;font-weight:650}
+button:active{transform:scale(.97)}
+button{transition:background-color var(--fast) ease,transform var(--fast) ease}
+.reduce{display:inline-flex;align-items:center;gap:7px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.demo{border:1px solid var(--line);border-radius:13px;background:var(--surface);padding:22px;min-width:0}
+.demo h2{margin:0 0 6px;font-size:1.15rem}
+.demo p{margin:0 0 15px;color:var(--muted);font-size:.88rem}
+.segment{display:flex;position:relative;border-bottom:1px solid var(--line);gap:4px;overflow:visible}
+.segment button{flex:1;border:0;border-radius:5px;background:transparent;position:relative;z-index:1}
+.segment button[aria-selected=true]{font-weight:700}
+.indicator{position:absolute;bottom:-1px;left:0;width:0;height:3px;background:#355e78;border-radius:4px;transition:left var(--speed) var(--ease),width var(--speed) var(--ease);pointer-events:none}
+#tab-result{min-height:28px;padding-top:17px;font-weight:600}
+.reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows var(--speed) var(--ease)}
+.reveal[data-open=true]{grid-template-rows:1fr}
+.reveal>div{min-height:0;overflow:hidden}
+.reveal-body{padding:10px 0 2px;color:#4d606e;max-width:48ch}
+.accordion-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;text-align:left}
+.chevron{display:inline-block;transition:transform var(--speed) var(--ease)}
+.accordion-toggle[aria-expanded=true] .chevron{transform:rotate(180deg)}
+.switch-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.switch-row span{font-weight:600}
+.switch{border:0;background:#cfd9de;border-radius:999px;width:58px;height:35px;padding:4px;min-height:35px;display:flex;align-items:center;transition:background-color var(--fast) ease}
+.switch[aria-checked=true]{background:#527c94}
+.thumb{background:white;border-radius:99px;width:27px;height:27px;box-shadow:0 1px 3px #0003;transition:transform var(--speed) var(--ease);transform:translateX(0)}
+.switch[aria-checked=true] .thumb{transform:translateX(23px)}
+.showcard{border:1px solid var(--line);border-radius:12px;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),#dfeaf0 0,#f9fbfc 45%,#f9fbfc 100%);padding:18px 16px;min-height:110px;transition:box-shadow var(--speed) ease,border-color var(--speed) ease;outline-offset:3px}
+.showcard:hover,.showcard:focus-visible{border-color:#89acbe;box-shadow:0 6px 20px #304d611e}
+.showcard strong{font-size:1rem;display:block;margin-bottom:6px}
+.showcard small{display:block;color:#617180}
+.stack{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.records{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.records li{display:flex;justify-content:space-between;gap:10px;border:1px solid #e1e8eb;padding:10px 13px;border-radius:9px;min-width:0}
+.records li small{color:var(--muted)}
+.records li.new{animation:row-arrive var(--speed) var(--ease) both}
+@keyframes row-arrive{from{opacity:.3;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+.toast{font-weight:650;min-height:30px;padding-top:6px;color:#26654a}
+.toast.show{animation:result-arrive var(--speed) var(--ease) both}
+@keyframes result-arrive{from{opacity:.35;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.meta{font-size:.83rem;color:var(--muted);margin-top:18px}
+@media(max-width:680px){.grid{grid-template-columns:minmax(0,1fr)}.demo{padding:18px}main{padding-top:21px}}
+</style>
+</head>
+<body>
+<main>
+<h1>组件交互动效实验</h1>
+<p class="lead">独立原创示例：同一个页面内部的 Tab 指示器、展开区域、Switch、记录插入、卡片与结果反馈各自采用不同的动效机制，而不是只有页面切换与全局淡入。</p>
+<div class="controls" aria-label="演示偏好">
+<button type="button" data-level="none" aria-pressed="false">即时反馈</button>
+<button type="button" data-level="balanced" aria-pressed="true">细腻动效</button>
+<label class="reduce"><input id="reduce" type="checkbox">减少动态效果</label>
+</div>
+<div class="grid">
+ <section class="demo" aria-labelledby="segment-heading">
+  <h2 id="segment-heading">选中指示器</h2><p>当前选择在两个选项之间连续移动，而不是整页 Fade。</p>
+  <div class="segment" id="segment" role="tablist" aria-label="信息分类">
+   <button id="tab-summary" type="button" role="tab" aria-selected="true" aria-controls="tab-result">概览</button>
+   <button id="tab-activity" type="button" role="tab" aria-selected="false" aria-controls="tab-result">活动</button>
+   <div class="indicator" id="indicator" aria-hidden="true"></div>
+  </div>
+  <div id="tab-result" role="tabpanel" aria-labelledby="tab-summary">展示概览信息</div>
+ </section>
+ <section class="demo" aria-labelledby="reveal-heading">
+  <h2 id="reveal-heading">内容展开</h2><p>按照信息结构展开局部内容；高频操作保持可中断。</p>
+  <button class="accordion-toggle" id="accordion" aria-expanded="false" aria-controls="reveal" type="button">查看使用说明 <span class="chevron" aria-hidden="true">⌄</span></button>
+  <div id="reveal" class="reveal" data-open="false" aria-hidden="true"><div><div class="reveal-body">可以在这里查看条件、帮助文字和下一步操作。展开只影响本区块，不会遮挡其他页面内容。</div></div></div>
+ </section>
+ <section class="demo" aria-labelledby="switch-heading">
+  <h2 id="switch-heading">可感知的状态切换</h2><p>Switch 的滑块沿轨道移动；状态文本和辅助技术结果同步更新。</p>
+  <div class="switch-row"><span id="switch-label">自动刷新：关闭</span><button type="button" class="switch" id="switch" role="switch" aria-checked="false" aria-labelledby="switch-label"><span class="thumb" id="thumb" aria-hidden="true"></span></button></div>
+ </section>
+ <section class="demo" aria-labelledby="spotlight-heading">
+  <h2 id="spotlight-heading">卡片探索</h2><p>聚光与边界反馈仅在指针/焦点查看对象时启用；不干扰正文和业务数据。</p>
+  <div class="showcard" id="showcard" tabindex="0"><strong>示例商品或作品</strong><small>焦点与悬停都能读到相同内容，手机无需 hover 也能使用。</small></div>
+ </section>
+ <section class="demo" aria-labelledby="list-heading">
+  <h2 id="list-heading">列表记录</h2><p>新增记录带来局部提示，不让完整列表每次重播。</p>
+  <button type="button" id="add-record">添加一条记录</button>
+  <ul class="records" id="records"><li><span>已有记录 A</span><small>已存在</small></li><li><span>已有记录 B</span><small>已存在</small></li></ul>
+ </section>
+ <section class="demo" aria-labelledby="result-heading">
+  <h2 id="result-heading">结果反馈</h2><p>先同步可读结果，再增强短暂视觉确认，不延迟业务状态。</p>
+  <button type="button" id="confirm">模拟保存成功</button><div class="toast" id="toast" role="status" aria-live="polite"></div>
+ </section>
+</div>
+<p class="meta">本实验页只用于演示/验收组件机制，非真实生产页面，也不代表所有组件都应在实际项目中动画化。所选强度必须尊重用户确认和系统减少动态效果偏好。</p>
+</main>
+<script>
+const root=document.documentElement;
+root.dataset.mode='balanced';
+const media=matchMedia('(prefers-reduced-motion: reduce)');
+const reduced=document.getElementById('reduce');
+function syncReduce(){root.dataset.reduced=String(media.matches||reduced.checked)}
+syncReduce();reduced.addEventListener('change',syncReduce);media.addEventListener?.('change',syncReduce);
+document.querySelectorAll('[data-level]').forEach(b=>b.addEventListener('click',()=>{
+ root.dataset.mode=b.dataset.level;
+ document.querySelectorAll('[data-level]').forEach(item=>item.setAttribute('aria-pressed',String(item===b)));
+}));
+const segment=document.getElementById('segment'), indicator=document.getElementById('indicator');
+const tabs=[document.getElementById('tab-summary'),document.getElementById('tab-activity')];
+function placeIndicator(tab){indicator.style.left=tab.offsetLeft+'px';indicator.style.width=tab.offsetWidth+'px'}
+placeIndicator(tabs[0]);
+function select(index){tabs.forEach((t,i)=>{t.setAttribute('aria-selected',String(i===index));t.tabIndex=i===index?0:-1});const selected=tabs[index];placeIndicator(selected);
+const result=document.getElementById('tab-result');result.textContent=index===0?'展示概览信息':'展示最近活动';result.setAttribute('aria-labelledby',selected.id)}
+tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>select(i));tab.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const n=(i+(e.key==='ArrowRight'?1:-1)+2)%2;select(n);tabs[n].focus()}})});
+new ResizeObserver(()=>placeIndicator(tabs.find(x=>x.getAttribute('aria-selected')==='true'))).observe(segment);
+const accordion=document.getElementById('accordion'),panel=document.getElementById('reveal');
+accordion.addEventListener('click',()=>{const isOpen=accordion.getAttribute('aria-expanded')==='true';accordion.setAttribute('aria-expanded',String(!isOpen));panel.dataset.open=String(!isOpen);panel.setAttribute('aria-hidden',String(isOpen));panel.inert=isOpen});
+panel.inert=true;
+const toggle=document.getElementById('switch'),switchLabel=document.getElementById('switch-label');
+toggle.addEventListener('click',()=>{const value=toggle.getAttribute('aria-checked')!=='true';toggle.setAttribute('aria-checked',String(value));switchLabel.textContent='自动刷新：'+(value?'开启':'关闭')});
+const card=document.getElementById('showcard');
+card.addEventListener('pointermove',e=>{if(root.dataset.reduced==='true'||root.dataset.mode==='none')return;const r=card.getBoundingClientRect();card.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');card.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%')});
+card.addEventListener('pointerleave',()=>{card.style.removeProperty('--mx');card.style.removeProperty('--my')});
+const records=document.getElementById('records');
+document.getElementById('add-record').addEventListener('click',()=>{const li=document.createElement('li');li.className='new';const n=records.children.length+1;li.innerHTML='<span>新增记录 '+n+'</span><small>刚刚</small>';records.append(li)});
+const toast=document.getElementById('toast');
+document.getElementById('confirm').addEventListener('click',()=>{toast.textContent='模拟保存成功';toast.classList.remove('show');void toast.offsetWidth;toast.classList.add('show')});
+</script>
+</body>
+</html>
