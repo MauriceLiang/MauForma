@@ -1,5 +1,16 @@
 # Changelog
 
+## v6.11 — 2026-11-04 · Task center and run monitor UX, verified lifecycle/progress actions
+
+- 用户 RepoVantage「任务中心」截图显示长期大统计侧卡占空间、任务记录行过宽但信息集中左侧、重复“进度百分比未知”文案；判断为任务运行监控信息架构问题，而非再次调卡片 Padding/配色。
+- 研究 GitHub Actions workflow runs、GitLab Pipelines/Jobs、Trigger.dev Runs/Inspector、Inngest、Vercel Deployments、Linear List/Filters，区分**机器运行监控**与**人工待办**，保留每个产品的适用边界。
+- 新增 `references/task-center-run-monitor-design.md`、`references/repovantage-task-center-case.md`、`assets/task-center-reference-cases.json`。
+- 新增 Run lifecycle/Progress/Retry model `assets/task-center-run.schema.json`、`examples/task-center-repovantage.json`、`scripts/validate_task_center.py`，防止未知进度误报零、状态筛选计数错误、重试权限与状态冲突、伪造通过的浏览器证据。
+- 新增 `assets/task-center-layout-lab.html` 可交互的独立原创 Mock 示意：顶部状态筛选、任务列表、搜索/排序、真实数量进度与按需详情；只在适合的示例任务出现重试且明确提示**不会执行真实服务端请求**。
+- 增加 Python 回归测试和 `tests/task_center_browser_smoke.mjs` 的 Chromium 桌面/手机交互与滚动测试，纳入 GitHub Actions。旧版风格/导航/对齐/数据比较能力保留，本次未修改真实 RepoVantage 业务代码。
+
+---
+
 ## v6.10 — 2026-11-04 · Comparison-page UX, chart plot alignment and selection/data integrity
 
 - 针对 RepoVantage 新截图中外框已对齐但图内 Plot Area 与文字重叠、项目比较流程堆积卡片且缺乏差异分析，新增 v6.10 Comparison UX & Chart Integrity Gate。

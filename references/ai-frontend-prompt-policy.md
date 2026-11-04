@@ -96,3 +96,7 @@ Agent 不可以只问“想要哪种风格”，也不可以未经分析就直�
 用户说“比较页面很难看、难用”时，不是先换蓝紫主题或给卡片统一圆角。先读 `references/comparison-page-design.md`，明确对比任务、筛选对象、对等属性与缺失情况，借鉴 RTINGS、Apple、npmcharts、NN/g 适合的部分。对比页以清楚对象选择、真实差异、共同时序主图、对齐指标矩阵为主要结构；选了三仓库却只显一线，必须查数据及 legend、series 状态，不能偷补假数据。
 
 对两张图外框已齐但内部轴/标签仍错位的情况，进入 `references/chart-interior-alignment.md` 的 Plot Region/Legend/Axis/Label QA；标注碰撞可自动提示，但 ECharts Canvas 文本需要截图或引擎 API，不能声称已全面自动检查。已选用户颜色/导航继续沿用。
+
+## v6.11 · 任务中心不是“大统计卡 + 长列表”的固定生成式模板
+
+对于后台异步任务、采集/Agent Run、CI/CD 列表，先读取 `references/task-center-run-monitor-design.md` 和其中 GitHub Actions、GitLab、Trigger.dev、Inngest、Linear、Vercel 的适用做法。先判断用户是要快速发现异常、跟踪运行还是处理人工待办。默认从可扫描的任务行、可用状态筛选、真实进度/阶段、合法操作与按需日志出发；避免大型统计侧卡、宽行大面积留白、整页通用小字或每行相同的“进度百分比未知”。状态/进度/可重试能力必须由真实数据/权限决定。用户已确认的颜色/导航/密度保持，不替他擅自选择。

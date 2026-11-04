@@ -68,3 +68,7 @@ python3 scripts/init_design_system.py --project-root . --name "Example" --style 
 ## v6.10 · 比较页的数据与可视化对齐契约
 
 在项目比较、套餐比较等路由使用 `design-system/pages/comparison-contract.json`（schema 参考 `assets/comparison-contract.schema.json`）管理对象 ID、指标口径、时序 window/buckets、series/legend、表格列、数据覆盖与真实浏览器 QA。比较数据契约应来自实际源数据并标用户确认的视觉策略，不能默认把 Skill 中静态演示数字复制到业务图表。目标项目需要在 E2E 中验证对象选择/时间切换联动，必要时对 DOM 添加 `data-mf-*` 实测钩子，但不要求框架组件全面改名。
+
+## v6.11 · Run Monitor 页面级状态契约
+
+可在用户项目中保留 `design-system/pages/task-run-contract.json`（结构见 `assets/task-center-run.schema.json`），将 run ID、状态聚合、进度计算单位/分母稳定性、重试权限、详情路径、更新节奏与 E2E 证据与页面设计联动。MASTER 保留共享色彩状态 Token、列表排版和容器对齐；但用户是否要统计侧栏/紧凑列表/详情抽屉应按任务使用方式决定，不在全站强制。不得把示例 Mock 记录复制成生产真实任务。

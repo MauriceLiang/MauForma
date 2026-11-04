@@ -211,3 +211,13 @@ $mauforma
 检查图表内部 Plot Area、X 轴基线、图例、标注文字，重点处理两个散点标签/平均值重叠；不同图型不强制同 Y 刻度。使用真实浏览器验证选仓库/时间窗联动、手机比较/表格、底部安全；对 Canvas 内标签不能用 DOM 脚本代替眼睛，标 NOT AUDITED。
 用户已确认的品牌颜色/导航保持不变。可运行 scripts/validate_comparison_contract.py 和 scripts/audit_comparison_ui.mjs（需要 Playwright）作辅助。
 ```
+
+## 异步任务中心、采集任务列表和工作流运行监控
+
+```text
+使用 $mauforma。对于任务中心/批处理/采集/Agent Runs，先分析用户最关心：正在跑什么、是否失败/卡住、进展到哪、我能做什么、从哪里看日志。参考 references/task-center-run-monitor-design.md 和 assets/task-center-reference-cases.json 中 GitHub Actions、GitLab、Trigger.dev、Inngest、Linear、Vercel 的成熟模式，区别机器 Run 与人工任务。
+先筛选不必要的信息：三个状态数字如果有意义应成为可操作状态 Tab/Filter，而不是长期占用巨大侧卡；任务记录按仓库/类型、状态、实际进度或阶段、更新时刻、合法操作呈现。删除每行重复的“百分比未知”，无确定进度时显示真实阶段，不假造 ETA。
+按生命周期与真实权限决定 retry/cancel；失败/部分覆盖显示有效原因，详细日志/尝试次数/时间线进入详情。过滤计数与实际任务集一致，刷新时保留上下文，200% 放大及手机能滚到最后。
+先执行 scripts/validate_task_center.py 的状态/进度/权限检查，再在真实浏览器验证状态过滤、搜索、重试与详情。assets/task-center-layout-lab.html 是独立模拟示例，不允许将其结果当作 RepoVantage 后端 E2E 已通过。
+保持用户已选配色/导航与页面品牌的一致性。
+```

@@ -1,0 +1,178 @@
+{
+  "schema_version": "1.0",
+  "project": "RepoVantage",
+  "source": "Synthetic task records inspired by user 2026-11-04 task center screenshot; not backend data",
+  "view": {
+    "page_type": "run_monitor",
+    "decision_source": "provisional",
+    "status_filters": [
+      "all",
+      "attention",
+      "running",
+      "queued",
+      "completed"
+    ],
+    "primary_task": "定位运行/异常的仓库采集任务并进入详情或执行合法恢复动作",
+    "default_sort": "attention_then_recent",
+    "display_counts_scope": "all_loaded_records",
+    "refresh_mode": "manual",
+    "last_synced_at": null
+  },
+  "tasks": [
+    {
+      "id": "demo-run-001",
+      "object": "demo-labs/queue-demo",
+      "type": "commits",
+      "state": "running",
+      "updated_at": "2026-11-04T07:40:00+08:00",
+      "phase": "分项拉取",
+      "progress": {
+        "completed": 1200,
+        "total": 6800,
+        "unit": "条",
+        "total_is_stable": true
+      },
+      "error": null,
+      "retryable": false,
+      "allowed_actions": [
+        "details"
+      ],
+      "details_route": "/runs/demo-run-001",
+      "steps": [
+        "连接仓库",
+        "分页拉取",
+        "分析提交"
+      ]
+    },
+    {
+      "id": "demo-run-002",
+      "object": "demo-labs/docs-site",
+      "type": "issues",
+      "state": "queued",
+      "updated_at": "2026-11-04T07:39:00+08:00",
+      "phase": "等待工作槽位",
+      "progress": null,
+      "error": null,
+      "retryable": false,
+      "allowed_actions": [
+        "details"
+      ],
+      "details_route": "/runs/demo-run-002",
+      "steps": [
+        "排队中"
+      ]
+    },
+    {
+      "id": "demo-run-003",
+      "object": "demo-labs/sparse-kit",
+      "type": "pullRequests",
+      "state": "partial",
+      "updated_at": "2026-11-04T07:31:00+08:00",
+      "phase": "部分数据未采集",
+      "progress": {
+        "completed": 412,
+        "total": 500,
+        "unit": "条",
+        "total_is_stable": true
+      },
+      "error": "有 88 条记录尚未成功采集",
+      "retryable": true,
+      "allowed_actions": [
+        "details",
+        "retry"
+      ],
+      "details_route": "/runs/demo-run-003",
+      "steps": [
+        "成功采集",
+        "部分失败"
+      ]
+    },
+    {
+      "id": "demo-run-004",
+      "object": "demo-labs/empty-lite",
+      "type": "releases",
+      "state": "failed",
+      "updated_at": "2026-11-04T07:25:00+08:00",
+      "phase": "请求失败",
+      "progress": null,
+      "error": "上游请求超时",
+      "retryable": true,
+      "allowed_actions": [
+        "details",
+        "retry"
+      ],
+      "details_route": "/runs/demo-run-004",
+      "steps": [
+        "连接仓库",
+        "请求超时"
+      ]
+    },
+    {
+      "id": "demo-run-005",
+      "object": "demo-labs/steady-core",
+      "type": "commits",
+      "state": "succeeded",
+      "updated_at": "2026-11-04T02:14:00+08:00",
+      "phase": "已完成",
+      "progress": {
+        "completed": 6,
+        "total": 6,
+        "unit": "批次",
+        "total_is_stable": true
+      },
+      "error": null,
+      "retryable": false,
+      "allowed_actions": [
+        "details"
+      ],
+      "details_route": "/runs/demo-run-005",
+      "steps": [
+        "采集成功",
+        "分析完成"
+      ]
+    },
+    {
+      "id": "demo-run-006",
+      "object": "demo-labs/tiny-lab",
+      "type": "issues",
+      "state": "running",
+      "updated_at": "2026-11-04T07:38:00+08:00",
+      "phase": "分析分位数",
+      "progress": null,
+      "error": null,
+      "retryable": false,
+      "allowed_actions": [
+        "details"
+      ],
+      "details_route": "/runs/demo-run-006",
+      "steps": [
+        "读取 Issue",
+        "分析中"
+      ]
+    },
+    {
+      "id": "demo-run-007",
+      "object": "精选仓库数据集",
+      "type": "dataset_import",
+      "state": "blocked",
+      "updated_at": "2026-11-04T07:22:00+08:00",
+      "phase": "校验未通过",
+      "progress": null,
+      "error": "样本格式检查失败，需要修正输入数据",
+      "retryable": false,
+      "allowed_actions": [
+        "details"
+      ],
+      "details_route": "/runs/demo-run-007",
+      "steps": [
+        "上传数据",
+        "校验阻塞"
+      ]
+    }
+  ],
+  "review": {
+    "browser_status": "NOT RUN",
+    "evidence": [],
+    "notes": "Synthetic local example; real RepoVantage authorization, logging and retry behavior untested."
+  }
+}

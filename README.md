@@ -101,6 +101,14 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 任务中心：状态可扫描，异常可定位，执行可追踪
+
+v6.11 新增 **Task Center & Run Monitor Gate**：针对后台采集、作业队列、CI/CD、异步执行与任务日志，借鉴 GitHub Actions、GitLab、Trigger.dev、Inngest、Linear 和 Vercel 的成熟交互逻辑。优先用**可点击的状态计数与过滤、紧凑任务列表、真实进度、合法的恢复操作与按需详情**替代长期占宽的统计大卡和重复说明。人工待办和机器任务需分开选型，不能把两者机械地套同一个模板。
+
+新增静态契约检查，明确“尚无可计算总体进度”不等于 `0%`，“需处理”不是单独的生命周期状态，只有服务端能力允许时才显示重试/取消。在独立模拟页面中可测试状态筛选、搜索、详情、模拟重试与响应式滚动；模拟交互**不代表真实后端操作已经成功**。
+
+[任务中心设计与研究](references/task-center-run-monitor-design.md) · [成熟产品参考目录](assets/task-center-reference-cases.json) · [RepoVantage 截图复盘](references/repovantage-task-center-case.md) · [交互示例](assets/task-center-layout-lab.html)
+
 ## 比较页面：先让差异有意义，再画多条线
 
 v6.10 新增 **Comparison UX & Chart Integrity Gate**：参考 NN/g、RTINGS、Apple、npmcharts、EcosystemPulse 等真实比较设计，从使用者的比较问题出发，整理**对象条 → 可信差异摘要 → 共同时间窗趋势图 → 同列指标矩阵 → 可展开口径**。同类指标拥有一致单位和采样范围，未采集的数据不伪装成 0 或综合赢家。
@@ -194,6 +202,7 @@ python3 scripts/validate_navigation_architecture.py --repository
 python3 scripts/validate_page_content_plan.py examples/page-content-plan-repovantage.json --repository
 python3 scripts/validate_layout_integrity.py --repository
 python3 scripts/validate_comparison_contract.py examples/comparison-contract-repovantage.json --repository
+python3 scripts/validate_task_center.py examples/task-center-repovantage.json --repository
 python3 -m unittest discover -s tests -v
 ```
 

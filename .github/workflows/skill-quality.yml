@@ -30,13 +30,14 @@ jobs:
           python3 scripts/validate_layout_integrity.py examples/layout-integrity-repovantage.json --repository
           node --check scripts/audit_rendered_layout.mjs
           python3 scripts/validate_comparison_contract.py examples/comparison-contract-repovantage.json --repository
+          python3 scripts/validate_task_center.py examples/task-center-repovantage.json --repository
           node --check scripts/audit_comparison_ui.mjs
           python3 -m unittest discover -s tests -v
       - name: Syntax check browser QA script
         run: node --check scripts/browser_qa.mjs
 
   comparison-browser:
-    name: Comparison example browser smoke
+    name: Comparison + task-center browser smoke
     runs-on: ubuntu-24.04
     timeout-minutes: 12
     steps:
@@ -50,9 +51,13 @@ jobs:
           npx playwright install chromium
       - name: Validate comparison interactions and scroll-end in Chromium
         run: node tests/comparison_browser_smoke.mjs
+      - name: Validate task-center interactions, status actions and scroll-end
+        run: node tests/task_center_browser_smoke.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: comparison-example-screenshots
-          path: comparison-browser-artifacts/
+          name: product-design-browser-screenshots
+          path: |
+            comparison-browser-artifacts/
+            task-center-browser-artifacts/
           if-no-files-found: ignore

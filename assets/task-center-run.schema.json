@@ -1,0 +1,264 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MauForma Task Center Run Model",
+  "description": "Backend run monitoring with honest progress and permissions. Separate human task management may use different schema.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project",
+    "source",
+    "view",
+    "tasks",
+    "review"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "project": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 5
+    },
+    "view": {
+      "type": "object",
+      "required": [
+        "page_type",
+        "decision_source",
+        "status_filters",
+        "primary_task",
+        "default_sort",
+        "display_counts_scope",
+        "refresh_mode"
+      ],
+      "properties": {
+        "page_type": {
+          "enum": [
+            "run_monitor",
+            "human_tasks",
+            "mixed"
+          ]
+        },
+        "decision_source": {
+          "enum": [
+            "provisional",
+            "confirmed",
+            "delegated",
+            "inherited"
+          ]
+        },
+        "user_statement": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "status_filters": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "all",
+              "attention",
+              "running",
+              "queued",
+              "completed"
+            ]
+          }
+        },
+        "primary_task": {
+          "type": "string",
+          "minLength": 5
+        },
+        "default_sort": {
+          "enum": [
+            "attention_then_recent",
+            "recent_first",
+            "oldest_first"
+          ]
+        },
+        "display_counts_scope": {
+          "enum": [
+            "all_loaded_records",
+            "filtered_records",
+            "server_total"
+          ]
+        },
+        "refresh_mode": {
+          "enum": [
+            "manual",
+            "poll",
+            "sse",
+            "websocket"
+          ]
+        },
+        "last_synced_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "object",
+          "type",
+          "state",
+          "updated_at",
+          "phase",
+          "progress",
+          "error",
+          "retryable",
+          "allowed_actions",
+          "details_route",
+          "steps"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "object": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "enum": [
+              "running",
+              "queued",
+              "waiting",
+              "partial",
+              "failed",
+              "blocked",
+              "succeeded",
+              "canceled"
+            ]
+          },
+          "updated_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "phase": {
+            "type": "string",
+            "minLength": 1
+          },
+          "progress": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "completed": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "total": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              },
+              "total_is_stable": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "completed",
+              "total",
+              "unit",
+              "total_is_stable"
+            ]
+          },
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "retryable": {
+            "type": "boolean"
+          },
+          "allowed_actions": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "details",
+                "retry",
+                "cancel",
+                "resolve"
+              ]
+            }
+          },
+          "details_route": {
+            "type": "string",
+            "minLength": 1
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "browser_status",
+        "evidence",
+        "notes"
+      ],
+      "properties": {
+        "browser_status": {
+          "enum": [
+            "NOT RUN",
+            "PASS",
+            "FAIL"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "string"
+        },
+        "viewports": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "filters_verified": {
+          "type": "boolean"
+        },
+        "actions_verified": {
+          "type": "boolean"
+        },
+        "scrolled_to_end": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

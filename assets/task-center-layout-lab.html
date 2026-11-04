@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MauForma · Task Center Run Monitor</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;color:#25353b;background:#f3f5f5;--text:#25353b;--muted:#66777d;--line:#dbe2e3;--surface:#fff;--accent:#455f66}
+*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid #577a83;outline-offset:3px}
+main{max-width:1240px;margin:auto;padding:34px 23px 60px}h1{font-size:clamp(26px,3.4vw,37px);letter-spacing:-.034em;margin:9px 0}.overline{font-size:11px;font-weight:700;letter-spacing:.12em;color:#687e86}.lead{font-size:14px;color:#61747c;line-height:1.75;max-width:900px;margin:9px 0 24px}
+.shell{background:#fff;border:1px solid #d6dfe2;border-radius:11px;box-shadow:0 11px 35px #233c440a;overflow:hidden}
+.header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:25px 28px 20px}.header h2{font-size:23px;letter-spacing:-.02em;margin:0 0 6px}.header p{font-size:13px;color:#78858a;margin:0}.demo-label{background:#f7f5ee;color:#7b735c;border:1px solid #e9e3d5;border-radius:60px;font-size:11px;padding:8px 11px}
+.content{padding:0 28px 29px}
+.toolbar{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding:17px 0 15px}
+.filters{display:flex;flex-wrap:wrap;gap:5px}.filter{background:transparent;color:#62747b;border:1px solid transparent;padding:9px 12px;border-radius:7px;font-size:13px;display:flex;align-items:center;gap:7px}.filter[aria-pressed=true]{background:#edf2f2;color:#294550;border-color:#d8e1e3;font-weight:650}.filter .count{font-size:11px;color:inherit;opacity:.7;font-variant-numeric:tabular-nums}
+.tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.search{border:1px solid #d5dfe1;border-radius:7px;background:#fff;font-size:13px;padding:9px 12px;min-width:180px;color:#344951}.tools select{border:1px solid #d5dfe1;background:white;color:#405761;padding:9px 11px;font-size:13px;border-radius:7px}.refresh{border:1px solid #d5dfe1;background:white;color:#344f59;border-radius:7px;padding:9px 13px;font-size:13px}
+.headnote{font-size:12px;color:#7b898e;margin:16px 0 10px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.run-header,.run-row{display:grid;grid-template-columns:minmax(215px,2.1fr) minmax(86px,.65fr) minmax(150px,1.3fr) minmax(120px,.85fr) minmax(115px,.75fr);align-items:center;column-gap:16px}
+.run-header{padding:11px 15px;background:#f7f9f9;border:1px solid var(--line);border-radius:7px 7px 0 0;color:#718188;font-size:12px;font-weight:600}
+.run-list{border:1px solid var(--line);border-top:0;border-radius:0 0 8px 8px;overflow:hidden}
+.run-row{padding:15px;border-bottom:1px solid #e6ecee;min-height:75px;position:relative}.run-row:last-child{border-bottom:0}.run-row:focus-within{background:#fafcfc}
+.identity{display:flex;flex-direction:column;min-width:0;gap:5px}.identity strong{font-size:13.5px;color:#293d45;font-weight:660;overflow-wrap:anywhere}.identity small{font-size:12px;color:#75858d}.status{display:inline-flex;gap:6px;align-items:center;width:max-content;font-size:12px;font-weight:620;color:#43565f}.status:before{content:"";width:7px;height:7px;border-radius:50%;background:#8d9ca2;flex:0 0 auto}.status.running:before{background:#5b897f}.status.queued:before{background:#8799a6}.status.partial:before,.status.failed:before,.status.blocked:before{background:#c18a4f}.status.succeeded:before{background:#548979}
+.progress{font-size:12px;color:#4d636a;min-width:0;display:grid;gap:6px}.progress small{color:#7b898e;font-size:11px;display:block;overflow-wrap:anywhere}.progress .bar{height:4px;border-radius:4px;background:#e7eeef;overflow:hidden}.progress .fill{height:100%;background:#73938a;border-radius:4px}.progress .fill.partial{background:#c6a172}
+.when{font-size:12px;color:#718187;font-variant-numeric:tabular-nums}.actions{display:flex;align-items:center;gap:6px;justify-content:flex-end;flex-wrap:wrap}.actions button{border:1px solid #d8e0e1;border-radius:6px;background:white;color:#3b565f;font-size:12px;padding:8px 10px}.actions button.retry{background:#f7f1e8;color:#8b6137;border-color:#e8d8c3}
+.errorline{display:block;font-size:11px;color:#9b7042;line-height:1.4;margin-top:3px;max-width:290px}
+.empty{padding:44px 15px;text-align:center;color:#65767e;font-size:13px}.empty strong{display:block;color:#334b54;margin-bottom:8px;font-size:15px}
+.end{font-size:12px;color:#7c898d;line-height:1.7;margin-top:20px;border-top:1px solid var(--line);padding-top:15px}
+dialog{border:1px solid #cedcde;border-radius:11px;box-shadow:0 28px 90px #1f383b28;padding:0;max-width:min(535px,calc(100vw - 26px));width:100%;color:#283940;background:white}
+dialog::backdrop{background:#1b32385e}dialog .modal{padding:25px}dialog h3{font-size:20px;margin:0 0 7px}dialog p{color:#61757c;line-height:1.7;font-size:13px;margin:9px 0}dialog .mono{font-size:12px;color:#435d68;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.detail-grid{display:grid;grid-template-columns:120px 1fr;gap:10px;border-top:1px solid #e0e6e8;padding-top:14px;margin-top:18px;font-size:13px}.detail-grid dt{color:#7a898e}.detail-grid dd{margin:0;overflow-wrap:anywhere}.step-list{margin:18px 0;padding:13px 16px;background:#f8fafa;border:1px solid #e4eaec;border-radius:7px;font-size:13px;line-height:1.9}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:21px}.modal-actions button{border:1px solid #d5dddf;background:white;border-radius:6px;padding:10px 14px;color:#455e65;font-size:13px}.modal-actions .primary{background:#354f58;color:white}
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:18px 0}.notes article{padding:17px 19px;border:1px solid #dbe3e5;background:white;border-radius:8px}.notes h3{font-size:14px;margin:0 0 8px}.notes p{font-size:13px;color:#667881;line-height:1.7;margin:0}.foot{font-size:12px;color:#71828a;line-height:1.6}
+@media(max-width:930px){.run-header,.run-row{grid-template-columns:minmax(180px,1.8fr) minmax(90px,.8fr) minmax(130px,1fr) minmax(95px,.75fr)}.run-header>div:nth-child(4),.when{display:none}}
+@media(max-width:640px){main{padding:20px 10px 36px}.header{padding:19px 15px}.content{padding:0 13px 22px}.toolbar{align-items:stretch;gap:9px}.tools{width:100%}.search{flex:1;min-width:0}.run-header{display:none}.run-list{border-top:1px solid var(--line);border-radius:8px}.run-row{grid-template-columns:minmax(0,1fr) auto;gap:10px 12px;padding:13px 12px}.identity{grid-column:1 / -1}.status{grid-column:1}.progress{grid-column:1}.actions{grid-column:2;grid-row:2 / 4;align-self:center}.notes{grid-template-columns:1fr}.filter{padding:8px 9px}.header h2{font-size:21px}}
+</style></head>
+<body><main>
+<div class="overline">MAUFORMA / RUN MONITOR LAB</div><h1>任务中心应该帮助处理任务，而不是展示任务卡片。</h1>
+<p class="lead">参考 GitHub Actions、GitLab Pipelines、Trigger.dev、Inngest 与 Linear 的可扫描列表、状态筛选和按需详情。下面是独立交互示例，所有记录和操作均为本地模拟，不访问真实 GitHub 或采集服务。</p>
+<div class="shell"><div class="header"><div><h2>任务中心</h2><p>关注异常，查看正在运行的仓库采集任务</p></div><span class="demo-label">演示数据 · 无真实执行</span></div>
+<div class="content">
+<div class="toolbar"><div class="filters" id="status-filter" role="group" aria-label="按任务状态筛选"></div><div class="tools"><input class="search" id="search-tasks" type="search" placeholder="搜索仓库或任务" aria-label="搜索仓库或任务"><select id="sort-tasks" aria-label="任务排序"><option value="attention">需处理优先</option><option value="recent">最近更新</option></select><button class="refresh" id="refresh" type="button">刷新视图</button></div></div>
+<div class="headnote"><span id="list-summary" aria-live="polite"></span><span>排序和筛选不会改变后台作业</span></div>
+<div class="run-header"><div>任务 / 仓库</div><div>状态</div><div>进度或当前阶段</div><div>更新时间</div><div style="text-align:right">操作</div></div>
+<div class="run-list" id="task-list" aria-label="任务记录"></div>
+<div class="end" data-mf-bottom-content>所有记录与操作均为模拟。真实应用需从服务器获取权限、任务进度与日志；最后一条任务及操作应当可以完整滚动到达。</div>
+</div></div>
+<dialog id="task-detail" aria-labelledby="detail-title"><div class="modal"><h3 id="detail-title">任务详情</h3><p class="mono" id="detail-id"></p><dl class="detail-grid" id="detail-data"></dl><div class="step-list" id="detail-steps"></div><div class="modal-actions"><button type="button" id="close-detail">关闭</button></div></div></dialog>
+<dialog id="retry-dialog" aria-labelledby="retry-title"><div class="modal"><h3 id="retry-title">模拟重试任务</h3><p id="retry-content">本操作只修改当前页面中的演示状态，不会向真实服务端提交重试。</p><div class="modal-actions"><button type="button" id="cancel-retry">取消</button><button class="primary" type="button" id="confirm-retry">仅模拟重试</button></div></div></dialog>
+<div class="notes"><article><h3>从列表中获得明确答案</h3><p>状态数字变成可用的筛选入口；任务身份、真实进度和异常原因靠近排列。只有需要处理的任务才提供相应恢复操作。</p></article><article><h3>复杂信息按需查看</h3><p>长阶段、执行记录及错误原因留在详情中。未知总体进度就显示当前阶段，不使用假进度条或重复“百分比未知”说明。</p></article></div>
+<p class="foot">静态概念页面不能证明实际任务 API、权限、真实重试和日志链路已实现。设计取舍须由目标用户和项目数据复核，颜色遵从产品已有主题。</p>
+</main>
+<script>
+const tasks=[
+{id:"demo-run-001",object:"demo-labs/queue-demo",type:"commits",state:"running",updated_at:"2026-11-04T07:40:00+08:00",phase:"分项拉取",progress:{completed:1200,total:6800,unit:"条",total_is_stable:true},error:null,retryable:false,steps:["连接仓库","分页拉取","分析提交"]},
+{id:"demo-run-002",object:"demo-labs/docs-site",type:"issues",state:"queued",updated_at:"2026-11-04T07:39:00+08:00",phase:"等待工作槽位",progress:null,error:null,retryable:false,steps:["排队中"]},
+{id:"demo-run-003",object:"demo-labs/sparse-kit",type:"pullRequests",state:"partial",updated_at:"2026-11-04T07:31:00+08:00",phase:"部分数据未采集",progress:{completed:412,total:500,unit:"条",total_is_stable:true},error:"有 88 条记录尚未成功采集",retryable:true,steps:["成功采集","部分失败"]},
+{id:"demo-run-004",object:"demo-labs/empty-lite",type:"releases",state:"failed",updated_at:"2026-11-04T07:25:00+08:00",phase:"请求失败",progress:null,error:"上游请求超时",retryable:true,steps:["连接仓库","请求超时"]},
+{id:"demo-run-005",object:"demo-labs/steady-core",type:"commits",state:"succeeded",updated_at:"2026-11-04T02:14:00+08:00",phase:"已完成",progress:{completed:6,total:6,unit:"批次",total_is_stable:true},error:null,retryable:false,steps:["采集成功","分析完成"]},
+{id:"demo-run-006",object:"demo-labs/tiny-lab",type:"issues",state:"running",updated_at:"2026-11-04T07:38:00+08:00",phase:"分析分位数",progress:null,error:null,retryable:false,steps:["读取 Issue","分析中"]},
+{id:"demo-run-007",object:"精选仓库数据集",type:"dataset_import",state:"blocked",updated_at:"2026-11-04T07:22:00+08:00",phase:"校验未通过",progress:null,error:"样本格式检查失败，需要修正输入数据",retryable:false,steps:["上传数据","校验阻塞"]}
+];
+const stateText={running:"运行中",queued:"排队中",partial:"部分完成",failed:"失败",succeeded:"已完成",blocked:"需修复"};
+const typeText={commits:"提交采集",issues:"Issue 采集",pullRequests:"PR 采集",releases:"版本采集",dataset_import:"数据导入"};
+const filters=[["all","全部"],["attention","需处理"],["running","运行中"],["queued","等待中"],["completed","已完成"]];
+const attention=new Set(["partial","failed","blocked"]),running=new Set(["running"]),queued=new Set(["queued","waiting"]),completed=new Set(["succeeded"]);
+let currentFilter="all",pendingRetry=null;
+const byId=id=>document.getElementById(id);
+const list=byId("task-list");
+function create(tag,text,cls){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;}
+function counts(){return {all:tasks.length,attention:tasks.filter(x=>attention.has(x.state)).length,running:tasks.filter(x=>running.has(x.state)).length,queued:tasks.filter(x=>queued.has(x.state)).length,completed:tasks.filter(x=>completed.has(x.state)).length};}
+function inFilter(t){if(currentFilter==="all")return true;if(currentFilter==="attention")return attention.has(t.state);if(currentFilter==="running")return running.has(t.state);if(currentFilter==="queued")return queued.has(t.state);return completed.has(t.state);}
+function formatTime(t){const dt=new Date(t.updated_at);return new Intl.DateTimeFormat("zh-CN",{timeZone:"Asia/Shanghai",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(dt);}
+function render(){
+ const c=counts(),f=byId("status-filter");f.replaceChildren();
+ for(const [key,label] of filters){const b=create("button",undefined,"filter");b.type="button";b.dataset.filter=key;b.setAttribute("aria-pressed",String(key===currentFilter));b.append(create("span",label),create("span",c[key],"count"));b.addEventListener("click",()=>{currentFilter=key;render()});f.append(b);}
+ const term=byId("search-tasks").value.trim().toLowerCase();
+ const visible=tasks.filter(t=>inFilter(t)&&(t.object.toLowerCase().includes(term)||t.type.toLowerCase().includes(term)||t.phase.toLowerCase().includes(term)));
+ if(byId("sort-tasks").value==="attention")visible.sort((a,b)=>Number(attention.has(b.state))-Number(attention.has(a.state))||Date.parse(b.updated_at)-Date.parse(a.updated_at));
+ else visible.sort((a,b)=>Date.parse(b.updated_at)-Date.parse(a.updated_at));
+ byId("list-summary").textContent="显示 "+visible.length+" / "+tasks.length+" 项任务";
+ list.replaceChildren();
+ if(!visible.length){const empty=create("div",undefined,"empty");empty.append(create("strong","没有符合条件的任务"),create("span","调整状态筛选或搜索关键词即可查看其他记录。"));list.append(empty);return;}
+ for(const t of visible){
+  const row=create("div",undefined,"run-row");row.dataset.mfTaskId=t.id;row.dataset.mfTaskState=t.state;
+  const identity=create("div",undefined,"identity");identity.append(create("strong",t.object),create("small",(typeText[t.type]||t.type)+" · "+t.phase));
+  if(t.error)identity.append(create("span",t.error,"errorline"));
+  const status=create("span",stateText[t.state]||t.state,"status "+t.state);
+  const prog=create("div",undefined,"progress");
+  if(t.progress){
+   const p=t.progress;const ratio=p.completed/p.total;const text=p.completed.toLocaleString("zh-CN")+" / "+p.total.toLocaleString("zh-CN")+" "+p.unit;
+   prog.append(create("span",text+(p.total_is_stable?" · "+Math.round(ratio*100)+"%":" · 预计总量")));
+   const bar=create("div",undefined,"bar");const fill=create("div",undefined,"fill"+(t.state==="partial"?" partial":""));fill.style.width=Math.max(0,Math.min(100,ratio*100))+"%";bar.append(fill);prog.append(bar);
+  }else{prog.append(create("span",t.phase));prog.append(create("small","未提供可计算的总体进度"));}
+  const when=create("time",formatTime(t),"when");when.dateTime=t.updated_at;
+  const actions=create("div",undefined,"actions");const details=create("button","详情");details.type="button";details.dataset.mfTaskAction="details";details.addEventListener("click",()=>openDetail(t));actions.append(details);
+  if(t.retryable&&["partial","failed"].includes(t.state)){const retry=create("button","重试","retry");retry.type="button";retry.dataset.mfTaskAction="retry";retry.addEventListener("click",()=>openRetry(t));actions.append(retry);}
+  row.append(identity,status,prog,when,actions);list.append(row);
+ }
+}
+function openDetail(t){
+ byId("detail-title").textContent="任务详情 · "+t.object;byId("detail-id").textContent=t.id+" · 演示记录";
+ const dl=byId("detail-data");dl.replaceChildren();
+ for(const [name,value] of [["任务类型",typeText[t.type]||t.type],["当前状态",stateText[t.state]],["当前阶段",t.phase],["最近更新",formatTime(t)],["进度",t.progress?t.progress.completed+" / "+t.progress.total+" "+t.progress.unit:"无确定总量"],["问题与原因",t.error||"无已知错误"]]){
+  dl.append(create("dt",name),create("dd",value||"—"));
+ }
+ const steps=byId("detail-steps");steps.replaceChildren();steps.append(create("strong","阶段信息（演示）"));const ol=create("ol");for(const step of t.steps)ol.append(create("li",step));steps.append(ol);
+ byId("task-detail").showModal();
+}
+function openRetry(t){pendingRetry=t.id;byId("retry-content").textContent="仅在这份独立示例中模拟重新运行 "+t.object+"。不会调用任何 GitHub 或采集 API，也不证明实际服务允许该操作。";byId("retry-dialog").showModal();}
+byId("close-detail").addEventListener("click",()=>byId("task-detail").close());
+byId("cancel-retry").addEventListener("click",()=>{pendingRetry=null;byId("retry-dialog").close();});
+byId("confirm-retry").addEventListener("click",()=>{
+ const t=tasks.find(x=>x.id===pendingRetry);
+ if(t&&t.retryable&&["partial","failed"].includes(t.state)){
+  t.state="running";t.phase="已模拟重新开始";t.progress=null;t.error=null;t.retryable=false;t.steps.push("模拟重试（未调用服务器）");
+ }
+ pendingRetry=null;byId("retry-dialog").close();render();
+});
+byId("retry-dialog").addEventListener("close",()=>{pendingRetry=null;});
+byId("search-tasks").addEventListener("input",render);
+byId("sort-tasks").addEventListener("change",render);
+byId("refresh").addEventListener("click",()=>{render();byId("list-summary").textContent+=" · 已刷新本地演示视图";});
+render();
+</script></body></html>

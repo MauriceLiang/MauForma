@@ -148,3 +148,18 @@
 - [ ] 真实浏览器有比较前后选择切换、图例/曲线、放大文字、横向/纵向滚动的截图；Canvas 内标签未实际检查时标 NOT AUDITED 而非 PASS。
 
 参考 `references/comparison-page-design.md`、`references/chart-interior-alignment.md`、`references/repovantage-comparison-case.md`。可用 `python3 scripts/validate_comparison_contract.py --repository`，但静态契约测试不等于真实曲线渲染检查。
+
+## v6.11 · Task Center / Run Monitor 专项 QA
+
+- [ ] 是否识别为自动作业监控，而非把人工 Kanban、比较页或指标仪表盘模板直接复用？
+- [ ] 状态概览数字是否有实际用途（筛选、定位）？是否长期占用大面积侧栏却没有独立筛选价值？
+- [ ] 任务行能否快速读到：对象、任务类型、状态、进度/当前阶段、更新时间、允许动作；全列表是否充斥重复模板句或大块空白？
+- [ ] 统计计数是否从同一数据范围推导，`attention` 归类是否一致，过滤后可见行数/计数口径是否清楚？
+- [ ] 进度有真实 completed/total/unit 吗？没有确定分母时是否不绘制虚构百分比；部分完成和错误状态是否明确原因？
+- [ ] 重试仅对有实际能力、授权和合适生命周期的作业出现；阻塞/完成/排队不被误当作可直接重试？
+- [ ] 点击详情后能够查看真实阶段/错误/日志（真实系统），模拟示例不假装服务端已重试成功？
+- [ ] 状态过滤、任务搜索、排序、刷新时不意外丢失用户上下文；自动更新是否说明来源/时点？
+- [ ] 窄屏行/卡仍可读、按钮键盘可达、最后一条任务能正常滚动到底，长仓库名/错误原因不会横向溢出？
+- [ ] 对真实任务页还需后端数据集成/权限/E2E，独立 Mock 示例的 Chromium 测试不能当真实服务验收。
+
+参见 `references/task-center-run-monitor-design.md`、`references/repovantage-task-center-case.md`、`scripts/validate_task_center.py`。

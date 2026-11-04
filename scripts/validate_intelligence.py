@@ -7,6 +7,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 NEEDED = [
     "assets/style-knowledge.json", "references/design-style-catalog.md",
+    "references/task-center-run-monitor-design.md", "references/repovantage-task-center-case.md",
+    "assets/task-center-reference-cases.json", "assets/task-center-run.schema.json",
+    "assets/task-center-layout-lab.html", "examples/task-center-repovantage.json",
+    "scripts/validate_task_center.py", "tests/test_task_center.py",
+    "tests/task_center_browser_smoke.mjs",
     "references/comparison-page-design.md", "references/chart-interior-alignment.md",
     "references/repovantage-comparison-case.md", "assets/comparison-reference-cases.json",
     "assets/comparison-contract.schema.json", "assets/comparison-layout-lab.html",
@@ -164,6 +169,11 @@ def validate() -> list[str]:
         errors.extend(validate_comparison())
     except (ImportError, OSError, ValueError) as exc:
         errors.append(f"Comparison data and plot integrity validation unavailable: {exc}")
+    try:
+        from validate_task_center import validate_repository as validate_run_monitor
+        errors.extend(validate_run_monitor())
+    except (ImportError, OSError, ValueError) as exc:
+        errors.append(f"Task center run monitoring validation unavailable: {exc}")
     skill = (ROOT / "SKILL.md").read_text("utf-8")
     for needed in ("search_design_knowledge.py", "art-direction-critique.md", "browser-qa-protocol.md", "project-design-hierarchy.md", "search_design_cases.py", "external-design-case-library.md", "search_visual_tech.py", "visual-tech-selection-12.md"):
         if needed not in skill:
