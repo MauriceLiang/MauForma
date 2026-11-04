@@ -190,3 +190,15 @@ $mauforma
 优先删除重复板块与无意义外层容器，再用 macro/meso/micro spacing 表达分组，不用固定 min-height 或大 padding 冒充高级留白。沿用用户确认的导航、配色与密度。
 依据 references/page-density-and-content-priority.md、references/whitespace-and-surface-composition.md、assets/page-density-lab.html；浏览器中复核桌面/窄屏、不同用户状态，没跑就标 NOT RUN。
 ```
+
+## 修复数据页面上下错列、底部贴边或内容不可达
+
+```text
+使用 $mauforma。先按页面任务和截图检查 RepoVantage 等工作台：
+1. 标出内容区域左右边界、模块列线、每一排卡片的共同顶部。同级模块不使用两列各自上下堆叠造成第二排错位；用共享 CSS Grid 或主图跨全行结构，列宽可 3:2、8:4 且符合实际重要性，不强制所有卡片等高。
+2. 检查必要图表/模块是否冗余，若有重复先做内容删减；真正数据、版本记录、图例、X 轴、来源说明保持完整可读。
+3. 先区分正常首屏以下内容和无法滚到的裁切。查看 window / main-scroll 的真实滚动，检查 min-height:0、minmax(0,1fr)、fixed 底栏及 safe area 占位。禁止靠 height:100vh + overflow:hidden 假修复。
+4. 在实际浏览器中截图首屏 + 滚动到最大位置的终点，分别查看宽屏、低高笔记本窗口和手机；检查最后记录/按钮、横向溢出与 200% 字体放大。
+5. references/grid-alignment-and-viewport-safety.md 和 assets/grid-and-viewport-lab.html 仅是设计指导；可选 node scripts/audit_rendered_layout.mjs --url http://localhost:5173 做浏览器几何审查（需本地 Playwright），没执行写 NOT RUN。
+沿用用户已确认的导航/配色，Agent 的布局建议与真实修复必须区分。
+```

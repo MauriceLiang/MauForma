@@ -60,3 +60,7 @@ python3 scripts/init_design_system.py --project-root . --name "Example" --style 
 ## v6.8 · 页面级内容筛选与密度决策
 
 可在用户项目保存 `design-system/pages/content-plan.json`，形状参考 `assets/page-content-plan.schema.json`；按路由记录 primary_task、用户状态、每块内容是 primary/supporting/conditional/deferred/removed、次级入口、页面级 airy/balanced/productive/compact 和实际验证。MASTER 保留共用主题/字级/间距 Token，不强制所有页面复制同一组卡片或固定留白比例。用户选择来源为 confirmed/delegated/inherited/provisional，不将 Agent 推荐冒充批准。真实关键信息不能仅为了留白被删除。
+
+## v6.9 · 每页 Grid/Viewport 结构计划与滚动策略
+
+新建数据看板、主要布局重构可在项目保存 `design-system/pages/layout-integrity.json`（参照 `assets/layout-integrity.schema.json`）：记录目的地、任务、grid pattern、行/列及同级对齐组、移动端阅读顺序、主滚动容器、fixed bar 与末端 padding 策略、浏览器截图证据。MASTER 可共享空间、列轨和滚动安全 Token，但**页面不需要采用完全相同的两列比例**。若是 Agent 推断的临时布局记 provisional，不将其冒充用户确认。真实用户指定的品牌/颜色/导航依旧继承。

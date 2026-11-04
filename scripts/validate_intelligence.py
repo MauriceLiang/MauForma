@@ -7,6 +7,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 NEEDED = [
     "assets/style-knowledge.json", "references/design-style-catalog.md",
+    "references/grid-alignment-and-viewport-safety.md",
+    "references/repovantage-release-alignment-case.md",
+    "assets/layout-integrity-patterns.json", "assets/layout-integrity.schema.json",
+    "examples/layout-integrity-repovantage.json", "assets/grid-and-viewport-lab.html",
+    "scripts/validate_layout_integrity.py", "scripts/audit_rendered_layout.mjs",
+    "tests/test_layout_integrity.py",
     "references/page-density-and-content-priority.md", "references/whitespace-and-surface-composition.md",
     "references/repovantage-overview-density-case.md", "assets/page-density-profiles.json",
     "assets/page-content-plan.schema.json", "assets/page-density-lab.html",
@@ -143,6 +149,11 @@ def validate() -> list[str]:
         errors.extend(validate_page_content())
     except (ImportError, OSError, ValueError) as exc:
         errors.append(f"Page content priority validation unavailable: {exc}")
+    try:
+        from validate_layout_integrity import validate_repository as validate_alignment
+        errors.extend(validate_alignment())
+    except (ImportError, OSError, ValueError) as exc:
+        errors.append(f"Grid and scroll-end safety validation unavailable: {exc}")
     skill = (ROOT / "SKILL.md").read_text("utf-8")
     for needed in ("search_design_knowledge.py", "art-direction-critique.md", "browser-qa-protocol.md", "project-design-hierarchy.md", "search_design_cases.py", "external-design-case-library.md", "search_visual_tech.py", "visual-tech-selection-12.md"):
         if needed not in skill:

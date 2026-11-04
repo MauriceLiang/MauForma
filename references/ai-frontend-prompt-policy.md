@@ -86,3 +86,7 @@ Agent 不可以只问“想要哪种风格”，也不可以未经分析就直�
 ## v6.8 · 高级留白首先是内容策划
 
 用户反馈“信息太多”时先盘点当前路由全部任务、介绍、教程、动作、指标与状态，按 primary/supporting/conditional/deferred/removed 决策，**先删或下沉重复块，再做卡片与空间**。总览应给出清楚的下一步操作，首次引导按状态出现；分析详情可以更多指标/趋势/筛选但不藏数据口径。不能把同一页面所有功能说明塞到首页，不用固定 padding/min-height/小字体假装高端。任何推迟内容保留清楚路径，已确认的颜色/导航/密度继续沿用。依 `references/page-density-and-content-priority.md` 和 `references/whitespace-and-surface-composition.md`，在真实路由分别复核。
+
+## v6.9 · 对齐和底部可达性不可凭静态截图臆断
+
+数据页面先根据用户任务确认对齐契约：共享 Grid 容器的内容边界、列线、行顶部及图表单位。允许 3:2/主图跨行、内容自然不等高；不允许没有阅读理由的左右独立瀑布堆叠，造成第二排错位。创意作品或摄影可刻意不对称，仍需清晰锚点。检查 `references/grid-alignment-and-viewport-safety.md` 和 `references/repovantage-release-alignment-case.md`。真实浏览器一定要**从初始视口滚到最大滚动位置**：检查最后一个卡片/按钮/轴、真实滚动区、固定底栏、safe-area 和横向溢出，绝不能把 `overflow:hidden` 当作修复。截图接近底边只能算疑点，未经运行时确认不得声称“已经裁切”或“已修复”。
