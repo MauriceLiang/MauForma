@@ -36,6 +36,7 @@ jobs:
           python3 scripts/validate_task_center.py examples/task-center-repovantage.json --repository
           node --check scripts/audit_comparison_ui.mjs
           node --check tests/surface_control_browser_smoke.mjs
+          node --check tests/surface_control_browser_smoke.mjs
           python3 -m unittest discover -s tests -v
       - name: Syntax check browser QA script
         run: node --check scripts/browser_qa.mjs
@@ -57,6 +58,8 @@ jobs:
         run: node tests/comparison_browser_smoke.mjs
       - name: Validate generic surface modes and atomic control geometry
         run: node tests/surface_control_browser_smoke.mjs
+      - name: Validate generic surface modes and atomic control geometry
+        run: node tests/surface_control_browser_smoke.mjs
       - name: Validate task-center interactions, status actions and scroll-end
         run: node tests/task_center_browser_smoke.mjs
       - uses: actions/upload-artifact@v4
@@ -66,5 +69,6 @@ jobs:
           path: |
             comparison-browser-artifacts/
             task-center-browser-artifacts/
+            surface-control-browser-artifacts/
             surface-control-browser-artifacts/
           if-no-files-found: ignore
