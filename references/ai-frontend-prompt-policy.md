@@ -15,6 +15,10 @@ Agent 不可以只问“想要哪种风格”，也不可以未经分析就直�
 
 参阅 `references/design-discovery-interview.md` 和 `examples/design-discovery-dialogues.md`，并先于组件和业务页面实施。
 
+## v6.16 · 页面间距不是给每张 Card 随便填 padding
+
+对新站和重要页面重设计，必须先判断顶部摘要/图表/操作/说明等各区域与彼此的语义：标题与内容 `inside`、同级 `peer`、独立模块 `section`、Tab/Panel `connected`。明确映射项目 spacing tokens，由父布局分配 block/inline gap；相邻独立模块不应像贴成一张卡，移动端和 200% 放大后不应突然失去分组节奏。用户确认的紧凑/宽松风格要继承，**不要用全局统一 margin 解决问题**。浏览器审查必须看整页与滚动末端、必要时用 `scripts/audit_spacing_rhythm.mjs` 对具名 DOM 关系实测，不假装自动审美。详见 `references/semantic-spacing-rhythm-gate.md`。
+
 ## v6.15 · 组件级交互动效要主动设计
 
 当用户已选择/明确授权有动效时，Agent 不得交付“只有路由变化、其余静态”的普通页面。先识别真实的 Tabs、Dropdown、Accordion、Toggle、Button、List、Card、Chart/Status 等重要组件的交互状态，为每个选择有目的的 `motion / immediate-feedback / intentionally-static(reason)`，并按功能区别 indicator-travel、spatial-reveal、state-morph、layout-continuity、semantic-feedback 等，不以统一 fade/scale 冒充高质量交互。高频和关键动作要稳定可中断，用户 `none` 及减少动态效果必须优先；复杂动效只在适用场景选合适引擎。详细规则：`references/component-motion-choreography-gate.md`。

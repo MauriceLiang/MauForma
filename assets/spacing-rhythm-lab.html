@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MauForma · Semantic Spacing Lab</title>
+<style>
+:root{font:16px/1.5 system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color-scheme:light;color:#24323d;
+ --demo-space-inside:.5rem;--demo-space-peer:.875rem;--demo-space-section:1.25rem;
+ --demo-pad-card:1.125rem;--demo-line:#d9e1e6;--demo-muted:#657582;}
+*{box-sizing:border-box}
+body{margin:0;background:#f3f5f7}
+.page{max-width:1120px;margin:0 auto;padding:24px clamp(12px,3.2vw,36px) 96px}
+h1{font-size:1.65rem;line-height:1.25;margin:0 0 6px}
+.intro{color:var(--demo-muted);margin:0 0 18px;max-width:76ch}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px}
+button{font:inherit;cursor:pointer;background:#fff;border:1px solid #cbd5dc;border-radius:8px;padding:8px 12px;color:inherit;min-height:38px}
+button[aria-pressed="true"]{background:#e1ebf1;border-color:#a4b8c6;font-weight:650}
+button:focus-visible{outline:3px solid #3c7dab;outline-offset:2px}
+.context{font-size:.88rem;color:var(--demo-muted);margin-bottom:14px}
+.stack{display:grid;grid-template-columns:minmax(0,1fr);row-gap:var(--demo-space-section)}
+.card{border:1px solid var(--demo-line);border-radius:11px;background:#fff;padding:var(--demo-pad-card);min-width:0}
+.card h2,.card h3{font-size:1.07rem;margin:0 0 4px;line-height:1.35}
+.card p{font-size:.86rem;color:var(--demo-muted);margin:0}
+.summary{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+.statline{display:flex;gap:24px;flex-wrap:wrap}
+.statline div{min-width:70px}
+.statline strong{font-size:1.45rem;display:block}
+.statline small{color:var(--demo-muted)}
+.chart-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:var(--demo-space-peer)}
+.chart-heading{margin:0 0 var(--demo-space-inside)}
+.chart-heading h2{margin:0 0 3px}
+.chart-body{border-top:1px solid #eef1f3;padding-top:12px;min-height:168px}
+.bars{display:grid;gap:13px}
+.bar{display:grid;grid-template-columns:86px minmax(0,1fr) 36px;gap:10px;align-items:center;font-size:.84rem}
+.bar .track{height:13px;background:#e8eef0;border-radius:3px;overflow:hidden}
+.bar .value{height:100%;background:#3a7892;border-radius:3px}
+.bar small{text-align:right;color:var(--demo-muted)}
+.scatter{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));grid-template-rows:repeat(5,24px);gap:3px;background:repeating-linear-gradient(0deg,transparent 0,transparent 26px,#eaf0f3 27px)}
+.scatter span{width:10px;height:10px;border-radius:50%;align-self:center;justify-self:center;background:#3b8daf}
+.scatter span:nth-child(2n){background:#d77f52}.scatter span:nth-child(3n){width:13px;height:13px}
+.quality-bars{display:grid;gap:12px;padding-top:13px}
+.quality-row{display:grid;grid-template-columns:100px minmax(0,1fr);gap:10px;align-items:center;font-size:.85rem}
+.quality-track{height:14px;background:#e5edf0;border-radius:3px;overflow:hidden}
+.quality-fill{height:100%;background:#3c8b9c}
+.limits{background:#fbfcfd}
+.limits h2{margin-bottom:6px}
+.linked{min-width:0}
+.tab-bar{display:flex;border:1px solid var(--demo-line);border-radius:10px 10px 0 0;overflow:hidden;background:#f9fbfc}
+.tab-bar button{border:none;border-radius:0;min-width:95px;background:transparent}
+.tab-bar button[aria-selected=true]{background:white;font-weight:650}
+.tab-panel{border:1px solid var(--demo-line);border-top:0;border-radius:0 0 10px 10px;background:white;padding:16px;min-height:58px;font-size:.9rem}
+.page[data-spacing-state="bad"] .stack{row-gap:0}
+.page[data-spacing-state="bad"] .chart-grid{gap:0}
+.page[data-spacing-state="bad"] .chart-heading{margin-bottom:0}
+@media(max-width:660px){
+ .chart-grid{grid-template-columns:minmax(0,1fr)}
+ .summary{gap:12px}
+ .statline{gap:12px}
+ .quality-row{grid-template-columns:92px minmax(0,1fr)}
+ .bar{grid-template-columns:65px minmax(0,1fr) 30px;gap:6px}
+ .card{padding:15px}
+}
+</style>
+</head>
+<body>
+<main class="page" id="demo-page" data-spacing-state="good">
+<h1>Semantic Spacing · 模块空间关系</h1>
+<p class="intro">通用原创数据分析样例。切换“错误布局”和“按关系设计”观察：同级图表的横/纵间距、独立功能区的呼吸空间、图表内标题距离，及有意连成一体的 Tabs + Panel。</p>
+<div class="controls" role="group" aria-label="选择间距预览">
+<button type="button" data-state-option="good" aria-pressed="true">按关系设计</button>
+<button type="button" data-state-option="bad" aria-pressed="false">常见错误：模块粘连</button>
+</div>
+<p class="context">本示例的具体像素不是任何产品的强制标准。检测基于本页声明的 spacing tokens 与关系契约。</p>
+<div class="stack">
+ <section class="card summary" data-mf-space-id="overview" aria-label="样本概览">
+  <div><h2>活动样本分析</h2><p>以下为演示数据，帮助比较布局节奏。</p></div>
+  <div class="statline"><div><strong>42</strong><small>对象</small></div><div><strong>18,920</strong><small>事件</small></div><div><strong>4.8%</strong><small>异常占比</small></div></div>
+ </section>
+ <div class="chart-grid" data-mf-space-id="chart-grid">
+  <section class="card" data-mf-space-id="language-card">
+   <div class="chart-heading" data-mf-space-id="language-chart-heading"><h2>分类与处理时长</h2><p>比较每类对象的处理负载</p></div>
+   <div class="chart-body" data-mf-space-id="language-chart-plot">
+    <div class="bars">
+     <div class="bar"><span>类别 A</span><div class="track"><div class="value" style="width:86%"></div></div><small>86</small></div>
+     <div class="bar"><span>类别 B</span><div class="track"><div class="value" style="width:62%"></div></div><small>62</small></div>
+     <div class="bar"><span>类别 C</span><div class="track"><div class="value" style="width:48%"></div></div><small>48</small></div>
+     <div class="bar"><span>类别 D</span><div class="track"><div class="value" style="width:28%"></div></div><small>28</small></div>
+    </div>
+   </div>
+  </section>
+  <section class="card" data-mf-space-id="scatter-card">
+   <div class="chart-heading"><h2>两个指标的对应关系</h2><p>样本数越多，点可能越密集</p></div>
+   <div class="chart-body">
+    <div class="scatter" aria-label="模拟散点图，仅展示样例结构">
+     <span style="grid-column:2;grid-row:4"></span><span style="grid-column:4;grid-row:3"></span><span style="grid-column:6;grid-row:2"></span><span style="grid-column:9;grid-row:1"></span>
+     <span style="grid-column:1;grid-row:5"></span><span style="grid-column:7;grid-row:4"></span><span style="grid-column:5;grid-row:5"></span><span style="grid-column:8;grid-row:3"></span>
+    </div>
+   </div>
+  </section>
+ </div>
+ <section class="card" data-mf-space-id="quality">
+  <h2>字段完整性</h2><p>不同字段的模拟覆盖率</p>
+  <div class="quality-bars">
+   <div class="quality-row"><span>名称</span><div class="quality-track"><div class="quality-fill" style="width:97%"></div></div></div>
+   <div class="quality-row"><span>创建时间</span><div class="quality-track"><div class="quality-fill" style="width:76%"></div></div></div>
+   <div class="quality-row"><span>状态</span><div class="quality-track"><div class="quality-fill" style="width:91%"></div></div></div>
+  </div>
+ </section>
+ <section class="card limits" data-mf-space-id="limits">
+  <h2>数据说明</h2>
+  <p>以上仅为用来检验页面节奏的演示记录，并非真实指标或行业结论。</p>
+ </section>
+ <section class="linked" aria-label="允许零间距的连接组件">
+  <div class="tab-bar" role="tablist" aria-label="连接组件示意" data-mf-space-id="linked-tabs">
+   <button type="button" role="tab" aria-selected="true" id="tab-brief" aria-controls="linked-panel">概览</button>
+   <button type="button" role="tab" aria-selected="false" id="tab-more" aria-controls="linked-panel">明细</button>
+  </div>
+  <div class="tab-panel" role="tabpanel" aria-labelledby="tab-brief" id="linked-panel" data-mf-space-id="linked-panel">这是有意连接的 Tab 与内容面板，0px 间距并不构成设计缺陷。</div>
+ </section>
+</div>
+</main>
+<script>
+const page=document.getElementById('demo-page');
+document.querySelectorAll('[data-state-option]').forEach(button=>button.addEventListener('click',()=>{
+ page.dataset.spacingState=button.dataset.stateOption;
+ document.querySelectorAll('[data-state-option]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+}));
+document.querySelectorAll('[role="tab"]').forEach(tab=>tab.addEventListener('click',()=>{
+ const active=tab.id==='tab-brief';
+ document.querySelectorAll('[role="tab"]').forEach(b=>b.setAttribute('aria-selected',String(b===tab)));
+ const panel=document.getElementById('linked-panel');
+ panel.textContent=active?'这是有意连接的 Tab 与内容面板，0px 间距并不构成设计缺陷。':'关联的第二个内容页仍然与 Tab 直接相邻，维持同一表面。';
+ panel.setAttribute('aria-labelledby',tab.id);
+}));
+</script>
+</body></html>

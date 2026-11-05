@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0",
+  "description": "All examples express proximity by content relationship, not globally required pixel thresholds.",
+  "profiles": [
+    {
+      "id": "analysis-workspace",
+      "mode": "Operate",
+      "density": "productive",
+      "goal": "Compare summary, charts, and data quality without confusing independent sections",
+      "tokens": {
+        "inside": "existing.space.s",
+        "peer": "existing.space.m",
+        "section": "existing.space.l",
+        "page": "existing.space.xl"
+      },
+      "relationships": [
+        {
+          "id": "summary-to-chart-grid",
+          "from": "summary",
+          "to": "chart-grid",
+          "relation": "section",
+          "token": "section",
+          "reason": "Summary and visual analysis answer different questions and must remain distinguishable"
+        },
+        {
+          "id": "chart-a-to-b",
+          "from": "language-chart",
+          "to": "scatter-chart",
+          "relation": "peer",
+          "token": "peer",
+          "reason": "Both graphs are peer analysis cards within one aligned grid"
+        },
+        {
+          "id": "chart-heading-to-plot",
+          "from": "chart-title",
+          "to": "chart-plot",
+          "relation": "inside",
+          "token": "inside",
+          "reason": "Plot and title are one analytical object"
+        },
+        {
+          "id": "tabs-to-tabpanel",
+          "from": "filter-tabs",
+          "to": "filtered-records",
+          "relation": "connected",
+          "token": null,
+          "reason": "They are a single tab selection and content surface"
+        }
+      ]
+    },
+    {
+      "id": "product-store",
+      "mode": "Persuade",
+      "density": "balanced",
+      "goal": "Examine products and decide which variant to purchase",
+      "tokens": {
+        "inside": "store.local",
+        "peer": "store.catalog",
+        "section": "store.content",
+        "page": "store.shell"
+      },
+      "relationships": [
+        {
+          "id": "sku-peers",
+          "from": "product-one",
+          "to": "product-two",
+          "relation": "peer",
+          "token": "peer",
+          "reason": "Equal catalogue objects belong to a consistent rhythm"
+        },
+        {
+          "id": "product-details",
+          "from": "product-title",
+          "to": "product-price",
+          "relation": "inside",
+          "token": "inside",
+          "reason": "The title and price are a single buying decision cluster"
+        },
+        {
+          "id": "story-to-products",
+          "from": "hero",
+          "to": "catalog",
+          "relation": "section",
+          "token": "section",
+          "reason": "Visual story and choice grid represent different tasks"
+        }
+      ]
+    },
+    {
+      "id": "learning-article",
+      "mode": "Read",
+      "density": "airy",
+      "goal": "Follow a chapter with examples and optional exercises",
+      "tokens": {
+        "inside": "course.prose",
+        "peer": "course.exercise-items",
+        "section": "course.chapter",
+        "page": "course.page"
+      },
+      "relationships": [
+        {
+          "id": "chapter-to-exercise",
+          "from": "chapter",
+          "to": "practice",
+          "relation": "section",
+          "token": "section",
+          "reason": "Exercise changes from reading to active practice"
+        },
+        {
+          "id": "figure-caption",
+          "from": "diagram",
+          "to": "caption",
+          "relation": "inside",
+          "token": "inside",
+          "reason": "The caption describes the associated illustration"
+        },
+        {
+          "id": "paragraphs",
+          "from": "para-one",
+          "to": "para-two",
+          "relation": "connected",
+          "token": null,
+          "reason": "Continuous prose shares typographic rhythm and no card boundary is needed"
+        }
+      ]
+    },
+    {
+      "id": "creative-portfolio",
+      "mode": "Experience",
+      "density": "expressive",
+      "goal": "Inspect artwork and navigate related featured projects",
+      "tokens": {
+        "inside": "portfolio.caption",
+        "peer": "portfolio.gallery",
+        "section": "portfolio.scene",
+        "page": "portfolio.edge"
+      },
+      "relationships": [
+        {
+          "id": "photo-credit",
+          "from": "media",
+          "to": "credit",
+          "relation": "inside",
+          "token": "inside",
+          "reason": "Attribution remains adjacent to its artwork"
+        },
+        {
+          "id": "art-peers",
+          "from": "artwork-a",
+          "to": "artwork-b",
+          "relation": "peer",
+          "token": "peer",
+          "reason": "Equal works keep the underlying gallery rhythm even when composition varies"
+        },
+        {
+          "id": "stage-to-detail",
+          "from": "stage",
+          "to": "project-story",
+          "relation": "section",
+          "token": "section",
+          "reason": "Large visual stage transitions into readable project detail"
+        },
+        {
+          "id": "overlay-label",
+          "from": "image",
+          "to": "overlay",
+          "relation": "anchored",
+          "token": null,
+          "reason": "The label is attached to the image with intentional overlay"
+        }
+      ]
+    }
+  ]
+}

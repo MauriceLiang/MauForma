@@ -1,5 +1,16 @@
 # Changelog
 
+## v6.16 — 2026-11-05 · Semantic spacing and cross-module visual rhythm
+
+- 针对“明明已对齐/组件本身不差，却出现独立分析模块上下紧贴、横向 gap 与纵向 gap 失调”的普遍失败机制，新增全 Web 类型通用 **Semantic Spacing & Spatial Rhythm Gate**。
+- 新增 `references/semantic-spacing-rhythm-gate.md`：空间关系 `inside / peer / section / connected / anchored / editorial`，项目级 `inline / inside / peer / section / page` tokens。强调父级布局 gap 与组件内 padding 分离，允许有理由的零间距共边和编辑式非对称，不做全站强制像素表。
+- 新增四类网页的通用设计意图 `assets/spacing-rhythm-patterns.json`、静态校验 `scripts/validate_spacing_rhythm.py` 与单元回归测试；不把某一个研究分析页面当通用视觉模板。
+- 新增可切换“合理间距/错误贴合”的原创浏览器示例 `assets/spacing-rhythm-lab.html`、关系几何契约 `assets/spacing-rhythm-lab-contract.json`、可在被标记真实 DOM 使用的 `scripts/audit_spacing_rhythm.mjs` 和 Chromium 反例回归 `tests/spacing_rhythm_browser_smoke.mjs`（宽屏、320/390 窄窗、100/200% 字体；能检出无意贴合，不误报有意连接）。
+- 接入主 Skill Gate A/B/D、间距/表面/对齐/组件/Agent/视觉 QA、README 与 CI，保留用户已确认的设计风格、密度与动效选择。静态契约和独立实验的浏览器通过不等于真实 RepoVantage 页面已经修复。
+
+---
+
+
 ## v6.15 — 2026-11-04 · Component motion choreography and art direction
 
 - 解决 v6.14 仅要求选择动效强度但 Agent 仍可能只做路由 fade 的缺口。将真实组件状态与动效机制提升到统一 Gate B/QA 覆盖规范，不强制引入无关组件、不盲目增加动画数量。

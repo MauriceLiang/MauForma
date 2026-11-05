@@ -2,6 +2,10 @@
 
 适用所有 Web 网站及应用（Operate / Persuade / Read / Experience）。**大圆角框、没有区分层级的多层卡片、到处是边框**是常见机械式生成结果，但“去 AI 味”并不等于删除所有 Card。表面结构应由内容实体、任务边界、对比需求、交互/状态独立性与艺术方向决定；不能从页面模板逆推业务。
 
+## v6.16 · Surface 决策与 Gap 决策不能混为一谈
+
+先决定需不需要面板，再依据 `references/semantic-spacing-rhythm-gate.md` 决定主容器与相邻模块的 **inside / peer / section / connected** 空间关系。独立图表允许分别用 Card，但不能因为同处一个父框就让它们上下紧贴；两个本来相连的 Tabs/Panel 则可以共边，不必强行插入 16px。不要以 padding 代替外部 gap，也不要因为视觉拥挤就无差别删除所有 Card。
+
 ## 1. Gate A：Surface Decision Tree（先选形态，后画框）
 
 1. **这些内容是否是同一个可连续扫描或比较的集合？** 若是记录、订单、流水、成员、课程目录、任务等同类条目，优先评估 **open collection / flat table / list**：页头、工具条、表头、行分隔，必要时仅一层轻边界。列表中的每行不是天生一张 Card。

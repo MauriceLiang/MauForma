@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "description": "Original layout lab. Tokens represent this demo's project decisions, not universal design minimums.",
+  "pairs": [
+    {
+      "id": "overview-to-charts",
+      "from": "overview",
+      "to": "chart-grid",
+      "axis": "block",
+      "relation": "separated",
+      "token": "--demo-space-section",
+      "group": "section"
+    },
+    {
+      "id": "language-to-scatter",
+      "from": "language-card",
+      "to": "scatter-card",
+      "axis": "auto",
+      "relation": "separated",
+      "token": "--demo-space-peer",
+      "group": "peer"
+    },
+    {
+      "id": "charts-to-quality",
+      "from": "chart-grid",
+      "to": "quality",
+      "axis": "block",
+      "relation": "separated",
+      "token": "--demo-space-section",
+      "group": "section"
+    },
+    {
+      "id": "quality-to-limits",
+      "from": "quality",
+      "to": "limits",
+      "axis": "block",
+      "relation": "separated",
+      "token": "--demo-space-section",
+      "group": "section"
+    },
+    {
+      "id": "chart-heading-to-plot",
+      "from": "language-chart-heading",
+      "to": "language-chart-plot",
+      "axis": "block",
+      "relation": "separated",
+      "token": "--demo-space-inside",
+      "group": "inside"
+    },
+    {
+      "id": "tabs-to-panel",
+      "from": "linked-tabs",
+      "to": "linked-panel",
+      "axis": "block",
+      "relation": "connected",
+      "max_abs_gap_px": 1.5,
+      "group": "connected"
+    }
+  ],
+  "coherence": [
+    {
+      "group": "section",
+      "max_difference_ratio": 0.18,
+      "why": "Independent section gaps use one parent stack token in this example"
+    }
+  ]
+}

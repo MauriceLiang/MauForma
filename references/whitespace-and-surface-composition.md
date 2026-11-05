@@ -1,5 +1,11 @@
 # Whitespace & Surface Restraint · 让留白表达关系，而不是留着空
 
+## v6.16 · Spacing Relationship Map 和节奏验收（通用）
+
+早期 macro / meso / micro 规则只定性描述“组间大、组内小”，但未强制检查**真实模块之间的间距**。现在先读 `references/semantic-spacing-rhythm-gate.md`，在页面级为 `inside/peer/section/connected/anchored` 的相邻关系分配空间 token，再由父级 Grid/Stack 提供 gap；组件的内边距不能代替组间 gap。检查同排 `column-gap` 与跨行 `row-gap`，以及响应式后变成单列时的节奏。卡片与卡片几乎贴合不总是坏事：Tab/Panel 或表头/表体的共边可有意连接；两个独立图表/数据区因误用 `row-gap:0` 被粘连则需返工。
+
+在真实浏览器截图里判断视觉权重与光学留白，并可用 `scripts/audit_spacing_rhythm.mjs` + 显式 `data-mf-space-id`/项目关系契约测有限的几何；静态间距表不能直接证明页面美感。优先修结构、父 gap 和信息关系，**不要给所有卡片统一叠加 margin**，否则同级/嵌套和移动端会失控。
+
 ## 不要做什么
 
 - ❌ 为了“高级”强制每个页面都铺超大上下边距，致使主操作滚到首屏以下。

@@ -4,6 +4,10 @@
 
 本 Skill 最重要的工程约束：**产品界面不是由几十个独立设计的页面拼出来的，而是由一套视觉及行为一致的组件组合出来的。**
 
+## v6.16 · 同级组件之间的空间由布局负责
+
+按 `references/semantic-spacing-rhythm-gate.md` 先判断当前组件间属于内部从属、同级并列、跨区章节或连体结构；`Card` 只负责自己内容的 padding，不应该因为缺少 Layout/Stack 规范就让两个独立模块紧贴。共享 `PageSection/PanelGrid/Stack` 负责 spacing tokens 和响应式 gap，且上下/左右都要检查，不能只保证 CSS Grid 对齐；不要把全部同类组件一律加固定 margin。不同产品可有不同密度和艺术留白。
+
 ## v6.13 · 结构与尺寸先于视觉皮肤
 
 在为每个页面组合 Card/Table/Button 前按 `references/surface-architecture-gate.md` 选主容器层级；不能把独立内容区全部包在同一巨型 Card 里才算“组件化”。使用 `references/control-geometry-gate.md` 确保按钮、Tab、Badge、工具条及行操作在父容器变化时完整可读；控件短标签不逐字堆叠，窄屏改成整体换行、结构重排或可访问菜单，所有状态须回归。
