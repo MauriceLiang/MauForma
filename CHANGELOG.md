@@ -1,5 +1,17 @@
 # Changelog
 
+## v6.17 — 2026-11-05 · Icon Art Direction & Semantic Fit
+
+- 解决“图标虽然不完全错误，但轮廓廉价/含义牵强/同组视觉重量混乱”的跨页面问题；强调图标候选筛选**先于**统一尺寸、描边等样式修补。
+- 新增 `references/icon-art-direction-gate.md`：界面任务与对象语义、2+ 经核实官方候选、图标库与用户品牌偏好、整套图标视觉语言、真实 16/20/24 类尺寸、对比度/光学对齐/可访问交互/版本许可；不将特定截图当作所有 Web 的图标模板，也不强制每个控件都带 icon。
+- 新增 `assets/icon-curation-patterns.json`、`scripts/validate_icon_curation.py` 和 Python 反例回归：四类 Web 任务中明确语义与候选来源，拒绝重复图形、无验证来源、虚构图标、只图标按钮缺少可访问名称。
+- 新增含真实官方 Lucide SVG 的交互对照 `assets/icon-art-direction-lab.html`、上游完整许可证 `assets/icon-art-direction-lucide-license.txt`、可对显式标记 DOM 使用的 `scripts/audit_icon_consistency.mjs` 和 Chromium 3 宽度×2 图标尺寸 smoke：发现缺失/错位/描边不一/混搭并验证恢复。
+- 将主 SKILL、Sidebar、Component-First、Component Craft、Frontend Gates、AI Agent 提示词、Visual QA、工作台组件规范、README、CI 串通；旧版间距/动画/布局规则不变。
+- **限制**：静态契约中候选在当前上游核实，并不代表未来安装版本永远包含；独立示例 Browser PASS 不等于真实 RepoVantage 已修改或所有图标“客观美观”。
+
+---
+
+
 ## v6.16 — 2026-11-05 · Semantic spacing and cross-module visual rhythm
 
 - 针对“明明已对齐/组件本身不差，却出现独立分析模块上下紧贴、横向 gap 与纵向 gap 失调”的普遍失败机制，新增全 Web 类型通用 **Semantic Spacing & Spatial Rhythm Gate**。
