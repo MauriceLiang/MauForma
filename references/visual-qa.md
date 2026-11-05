@@ -1,5 +1,18 @@
 # MauForma · 组件优先视觉 QA v2.0
 
+## v6.18 · Reference Learning, Design Transfer & Public Safety Gate
+
+- [ ] 用户明确作品归属时是否按原意处理，未凭截图猜测“内部/第三方”来源？
+- [ ] 参考素材**只用于分析**，没有上传原图、裁剪/打码/重编码版本、data URI、截图附件到公开 repo、PR、Actions artifacts？
+- [ ] 提取的是 `特征 → 效果 → 任务价值 → 适用条件 → 例外 → 可迁移规则`，而非 CSS/业务字段/整页像素照搬？
+- [ ] 公共样例是否重新选择产品领域、栏目与虚构数据；是否完全没有来源项目可识别名称、地址、标志或业务记录？
+- [ ] 若选用 Clean Enterprise，是否因为当前产品内容与用户选择合适，而不是覆盖不同网站的品牌、艺术方向、交互动效？
+- [ ] 独立 Demo 是否使用官方核验的图标资源和许可，图标/字体/导航/数据密度经浏览器验证，主任务和响应式可用？
+- [ ] 发布前人工检查 commit/PR/新增文件，不能只凭 `scripts/validate_design_reference.py` PASS 宣称任何隐私/版权审查已经完全通过。
+- [ ] 真实系统未修改时，明确仅完成 Skill/原创 Demo 的验收，不冒称原产品效果已实现。
+
+规范：`references/design-reference-learning-gate.md`、`references/clean-enterprise-design.md`；原创案例与检查：`examples/design-reference-learning/reference-principles.json`、`tests/design_reference_browser_smoke.mjs`。
+
 ## v6.17 · Icon Art Direction & Semantic Fit Gate
 
 - [ ] 主导航、高频操作、核心状态所用图标的语义是否**准确、熟悉、无需费力猜测**？是否真正需要 icon？抽象功能不用乱造脑电/闪电/星星。
