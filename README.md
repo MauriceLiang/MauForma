@@ -101,6 +101,14 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 语义间距与视觉节奏：模块不能无理由粘连
+
+v6.16 新增 **Semantic Spacing & Spatial Rhythm Gate**：从真实模块间的语义关系决定间距，而非“所有 Card 统一 margin”或盲目沿用同一组像素。把标题/图表内部、同级卡片、不同任务区和有意连接的 Tab/Panel 明确区分，并从项目已有 tokens 推导 `inline / inside / peer / section / page` 的空间节奏。父级 Grid/Stack 管理 gap，组件内部 padding 不代替外部留白；横向列 gutter 正确不代表纵向模块间距正确。
+
+新增可切换“合理空间关系 / 错误模块贴合”的原创实验，提供可给真实项目加标记的浏览器几何审计脚本，在不同视口/文本放大下识别零间距、异常大小和不合理的同级节奏；真正连体的组件允许 `0px`。几何 PASS 仅证明标记区域遵循声明式 Token，不证明所有页面视觉美观。仍保持不同网站、密度和品牌风格的设计自由度。
+
+[空间关系规范](references/semantic-spacing-rhythm-gate.md) · [跨领域四类例子](assets/spacing-rhythm-patterns.json) · [交互正反例](assets/spacing-rhythm-lab.html) · [浏览器几何审计](scripts/audit_spacing_rhythm.mjs)
+
 ## 组件交互动效：设计手感，不止页面转场
 
 v6.15 新增 **Component Motion Choreography & Art Direction Gate**：选择了细腻/表达型动效后，Agent 必须主动检查页面真实存在的 Tab、Accordion、Toggle、列表、按钮、状态反馈和媒体组件，设计符合职责的局部过渡。不再只给路由切换做 fade，或把所有 Hover/按钮都统一缩放。通过组件级选中指示、空间展开、状态形变、列表变化连续性和即时结果反馈，形成丰富但克制、能被用户察觉的品质。
