@@ -15,6 +15,10 @@ Agent 不可以只问“想要哪种风格”，也不可以未经分析就直�
 
 参阅 `references/design-discovery-interview.md` 和 `examples/design-discovery-dialogues.md`，并先于组件和业务页面实施。
 
+## v6.18 · 从设计参考学习，但不把参考带到公共交付物
+
+收到用户喜欢的 UI 参考时，尊重明确的原创归属，不随意推断是内部或第三方资料。将参考中的可读字号、图标、选中态、数据密度、间距、色彩角色转成**通用决策规则**，不抄原图的字段、配色像素、完整布局或品牌信息。若用户禁止图片入库，则**任何**原图、裁剪/模糊/打码/重编码变体、可识别项目数据和品牌都不得进入仓库代码、测试、PR、Actions artifact。需 demo 时另做无关联的全新虚构界面、数据及动作。参见 `references/design-reference-learning-gate.md`；Clean Enterprise 是可选风格 `references/clean-enterprise-design.md`，不能擅自成为全站默认。发布前人工核对全部改动，脚本只是辅助。
+
 ## v6.17 · Icon 不是代码生成器的自动默认素材
 
 新项目/主要视觉重构若要使用图标，必须先判断每个主要图标的含义（是否真的需要），用现有系统或官方成熟图标库查询、验证两个以上合理候选，选择**清晰好看又符合业务语义**的集合，再在 Icon Gallery 与真实导航中验证。优先统一家族、轮廓/负空间/光学重量，与字号和 Active/Badge/Focus 协调。不要随意叠加 emoji、AI 编造图标、混用线/实心，不能用“所有 SVG 宽高是 20px”直接宣布高质量。找不到合适的图标可不用 icon，品牌/自有标识单独处理。详见 `references/icon-art-direction-gate.md`。
