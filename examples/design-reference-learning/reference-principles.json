@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0",
+  "publication_policy": "synthesized-principles-only",
+  "public_reference_media_allowed": false,
+  "description": "Original, reusable design observations for four web page modes; no source artwork, identifiers or business records.",
+  "profiles": [
+    {
+      "id": "operate-learning-planner",
+      "mode": "Operate",
+      "goal": "Plan learning tasks and scan actionable completion status",
+      "insights": [
+        {
+          "role": "navigation",
+          "observed_trait": "Comfortably sized labels and visually balanced symbols",
+          "visual_effect": "Calm consistent scan path",
+          "task_benefit": "Find sections without decoding icons",
+          "applicable_context": "Recurring workspace navigation",
+          "tradeoff": "Large labels may need responsive reflow",
+          "transfer_rule": "Use shared nav typography and optically aligned icons",
+          "avoid_copying": "Do not copy a particular organization's menu labels or glyph layout"
+        },
+        {
+          "role": "selection",
+          "observed_trait": "Soft background coupled with a clear foreground change",
+          "visual_effect": "Selection stands out without noisy decoration",
+          "task_benefit": "Maintain wayfinding",
+          "applicable_context": "Dense persistent navigation",
+          "tradeoff": "Selected text still needs accessible contrast",
+          "transfer_rule": "Design one role-based active state at project tokens",
+          "avoid_copying": "Do not copy reference pixel colors or sidebar geometry"
+        },
+        {
+          "role": "data-density",
+          "observed_trait": "Legible rows, aligned columns and minimal badge decoration",
+          "visual_effect": "Records remain airy yet productive",
+          "task_benefit": "Compare repeated objects quickly",
+          "applicable_context": "Text-heavy tabular data",
+          "tradeoff": "On mobile use local scroll or a distinct list layout",
+          "transfer_rule": "Prefer table when fields are genuinely comparable; keep key text readable",
+          "avoid_copying": "Do not reproduce any specific record categories, fields or values"
+        }
+      ]
+    },
+    {
+      "id": "persuade-product-page",
+      "mode": "Persuade",
+      "goal": "Help visitors evaluate a product and choose an action",
+      "insights": [
+        {
+          "role": "color",
+          "observed_trait": "Neutral surroundings and a limited accent",
+          "visual_effect": "Visual hierarchy is concentrated",
+          "task_benefit": "Product and primary CTA are easy to locate",
+          "applicable_context": "Conversion-focused storefront",
+          "tradeoff": "Brand identity may require richer colors",
+          "transfer_rule": "Map surface/primary/semantic colors by role rather than inheriting a palette",
+          "avoid_copying": "Do not reuse source branding or exact palette"
+        },
+        {
+          "role": "typography",
+          "observed_trait": "Strong product name and readable supporting facts",
+          "visual_effect": "Clear reading order",
+          "task_benefit": "Reduce decision friction",
+          "applicable_context": "Product and subscription pages",
+          "tradeoff": "Hero display may be intentionally more expressive",
+          "transfer_rule": "Use task priority and font metrics to assign hierarchy",
+          "avoid_copying": "Do not clone a specific management-screen heading structure"
+        }
+      ]
+    },
+    {
+      "id": "read-course-guide",
+      "mode": "Read",
+      "goal": "Read long lessons and understand adjacent examples",
+      "insights": [
+        {
+          "role": "typography",
+          "observed_trait": "Main text is comfortably readable and metadata quieter",
+          "visual_effect": "Low-effort sustained reading",
+          "task_benefit": "Long reading sessions stay comfortable",
+          "applicable_context": "Docs/tutorial/editorial content",
+          "tradeoff": "Long prose needs different line length and spacing than tables",
+          "transfer_rule": "Calibrate body line measure, headings and supporting text as separate roles",
+          "avoid_copying": "Do not port dense table spacing to articles"
+        },
+        {
+          "role": "navigation",
+          "observed_trait": "Current location uses a restrained highlight",
+          "visual_effect": "Wayfinding is present but not dominant",
+          "task_benefit": "Readers can resume the right section",
+          "applicable_context": "Long documentation outlines",
+          "tradeoff": "Visible focus and keyboard access remain necessary",
+          "transfer_rule": "Use active chapter style without replicating a source sidebar",
+          "avoid_copying": "Do not reproduce any source section taxonomy"
+        }
+      ]
+    },
+    {
+      "id": "experience-gallery",
+      "mode": "Experience",
+      "goal": "Discover and navigate creative works",
+      "insights": [
+        {
+          "role": "surface",
+          "observed_trait": "Supporting controls avoid competing with the main content",
+          "visual_effect": "Focused visual stage",
+          "task_benefit": "Artwork remains primary",
+          "applicable_context": "Portfolio and visual storytelling",
+          "tradeoff": "Important controls must remain discoverable",
+          "transfer_rule": "Reduce surrounding chrome but retain accessible navigation",
+          "avoid_copying": "Do not convert a creative stage into a business grid"
+        },
+        {
+          "role": "icons",
+          "observed_trait": "Simple, readable shapes stay consistent at real size",
+          "visual_effect": "Quiet supporting navigation",
+          "task_benefit": "Controls are easy to recognize",
+          "applicable_context": "Previous/next, close, gallery",
+          "tradeoff": "Some actions need visible labels",
+          "transfer_rule": "Curate a coherent icon family and verify semantic fit",
+          "avoid_copying": "Do not extract logos or icons from a reference image"
+        }
+      ]
+    }
+  ],
+  "demo": {
+    "id": "fictional-study-planner",
+    "source_provenance": "synthetic",
+    "image_policy": "none",
+    "scenario": "Learning workflow planning with entirely fictional labels and records",
+    "transfer_focus": [
+      "navigation typography",
+      "restrained selected state",
+      "optically consistent icon family",
+      "readable row density",
+      "muted surfaces with clear primary action"
+    ],
+    "intentionally_different": [
+      "new product purpose",
+      "new navigation taxonomy",
+      "new data fields",
+      "new local filtering and details interaction"
+    ],
+    "visual_style": "Clean Enterprise is an optional art-direction candidate, not a mandatory template"
+  }
+}

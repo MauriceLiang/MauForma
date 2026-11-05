@@ -1,5 +1,15 @@
 # 前端项目架构与验收门槛
 
+## v6.18 · Design Reference Learning Gate（抽象迁移，保护来源）
+
+Gate 0：用户提供视觉参考时，尊重明确的原创归属，未经允许不保存/上传图片、变体、真实项目识别信息。先读 `references/design-reference-learning-gate.md`；源内容只支持**当前任务**洞察提取，公开成果只允许通用规则和独立构建的虚构示例。不得在 PR、截图 artifact、commit 描述中引入原始素材。
+
+Gate A：提炼 `observed_trait → task_benefit → applicable_context → transfer_rule → avoid_copying`，在跨域场景判断何时有效、何时不适用。Clean Enterprise（`references/clean-enterprise-design.md`）只是可选风格候选，现有品牌和用户选择权更高。
+
+Gate B：按实际产品任务建立全新组件/导航/信息组织，不复制参考栏位、项目名称、实际数据或布局的可识别组合。图标可从官方公开资源按许可证合规使用。
+
+Gate D：提交前检查公共文件及发布文本无参考图片或可识别内容；对全新示例进行 Chromium 可访问性、交互、尺寸及 responsive QA。静态验证：`scripts/validate_design_reference.py --repository`。静态检查不能代替人工隐私/视觉审查，也不能证明真实客户页面已修改。
+
 ## v6.17 · Icon Art Direction Gate（语义优先 + 全组视觉一致）
 
 Gate A：在导航架构和信息结构明确后，检查已有图标包/版本、用户已确认风格。为主要导航/高频动作搜索并核实至少两个真实候选，基于任务语义和视觉轮廓进行选择；不要为每个文字标签机械添加图标，也不把 RepoVantage 的例子当全站默认字典。参见 `references/icon-art-direction-gate.md`。

@@ -101,6 +101,14 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 设计参考学习：保留优点，不复制来源页面
+
+v6.18 引入 **Design Reference Learning Gate**：对用户提供的优秀 UI 参考，先提炼字体、导航选中、图标、配色角色、信息密度、分区节奏等可迁移原则，说明它们为什么有效、适合什么项目以及不能照搬什么。用户声明为原创设计时必须尊重归属；参考图片本身及任何变体**不进入仓库或 PR**，示例也不包含来源中的可识别项目资料。
+
+**Clean Enterprise** 作为可选风格档案，强调克制、中性背景、清晰字号、适度表格密度、轻量选中态及图标光学品质，但不是所有网站的默认模板。新增原创的虚构学习管理界面作为可运行示例，并使用单独从官方核实的 Element Plus Icons（MIT 许可），保留源码许可，不依赖用户提供的任何图片。
+
+[设计参考学习与发布边界](references/design-reference-learning-gate.md) · [可选清爽工作台风格](references/clean-enterprise-design.md) · [跨网站迁移契约](examples/design-reference-learning/reference-principles.json) · [原创交互示例](examples/clean-enterprise-demo/index.html)
+
 ## 图标艺术指导：选对符号，比随便统一大小更重要
 
 v6.17 新增 **Icon Art Direction & Semantic Fit Gate**：图标不是根据菜单名盲选的装饰。新的页面设计会先判断哪些导航、操作、状态真正需要 icon，再比较可用官方图标库中的实际候选（语义/轮廓/细节/辨识度），最后在整组导航中协调图形风格、线条、光学重量与字体比例。**语义准确、图标本身好看、整套统一，是先于 CSS 尺寸检查的设计工作。**
