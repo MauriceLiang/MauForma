@@ -1,5 +1,17 @@
 # MauForma · 组件优先视觉 QA v2.0
 
+## v6.16 · Semantic Spacing / Visual Rhythm Gate
+
+- [ ] 当前页面的独立章节、同级卡片、内部标题/内容、真正连接的控件是否明确区分？组间距离能让用户清楚识别任务边界，连接结构是否有理由共边？
+- [ ] 不因为多个模块都“对齐”就宣布合格；双卡同行有横向 gutter，但**第一排与第二排是否因 `row-gap:0` 粘连**？横竖转换后 gap 是否保留？
+- [ ] `space.inline/inside/peer/section/page` 映射项目已有 tokens 和密度，父 Grid/Stack 管理 sibling gap，Card padding 管理内部空间；不用统一为所有元素加 margin 冒充节奏。
+- [ ] 小标题—所属图/说明的间距小于或在语义上更紧密于独立区块关系；页头与图表、摘要与分析、图表与数据质量/章节说明等阅读路径是否通顺？
+- [ ] 设计有意使用 0 gap 的 Tab/Panel、Table Head/Body、分栏连体容器，不能机械误报；Anchored Popover/Overlay 按定位和可用性交互验收。
+- [ ] 桌面/小屏、200% 字体、错误/空态、展开/收起、固定操作条与页面底部实际滚动后，间距不因重排消失或挤出可读内容。
+- [ ] 真实浏览器可用时用 `scripts/audit_spacing_rhythm.mjs` 对**已明确标注的 DOM 关系**查间距/共边和横向越界，未标注标 NOT AUDITED；视觉优劣仍需人工看整页截图，不能用脚本 PASS 充当审美评分。
+
+规则：`references/semantic-spacing-rhythm-gate.md`；四域样例：`assets/spacing-rhythm-patterns.json`；可交互正反例：`assets/spacing-rhythm-lab.html`；静态角色检查：`scripts/validate_spacing_rhythm.py`。
+
 ## v6.15 · Component Motion Choreography Gate
 
 - [ ] 全页有哪些**实际存在且重要**的 Button、Tabs/Filters、Accordion/Drawer、Toggle、List/Table、Chart/Media、状态通知？有无组件 Motion Inventory（动效/即时反馈/故意静态的理由）？
