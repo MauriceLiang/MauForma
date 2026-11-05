@@ -1,5 +1,13 @@
 # 前端项目架构与验收门槛
 
+## v6.17 · Icon Art Direction Gate（语义优先 + 全组视觉一致）
+
+Gate A：在导航架构和信息结构明确后，检查已有图标包/版本、用户已确认风格。为主要导航/高频动作搜索并核实至少两个真实候选，基于任务语义和视觉轮廓进行选择；不要为每个文字标签机械添加图标，也不把 RepoVantage 的例子当全站默认字典。参见 `references/icon-art-direction-gate.md`。
+
+Gate B：共享 `IconBox/NavItem/IconButton/Status` 组件里使用同一个主图标体系；Gallery 展示实际字号、图标/文本/Badge、选中/hover/focus 和主题，不只是单个 SVG。自定义/品牌 glyph 属于合法例外，但要记录来源与许可、视觉边界。
+
+Gate D：图标是否真实加载且可辨识、无多套画风混合、无突然视觉重量变化、无压缩/偏移、图标按钮的文字或 aria-label 可用。显式 DOM 标记可以用 `scripts/audit_icon_consistency.mjs` 检查几何和 style 风险；**脚本无法替代语义辨识或人类审美判断**。
+
 ## v6.16 · Semantic Spacing & Rhythm Gate（所有网页类型）
 
 Gate A：在已确定的页面信息结构中，把相邻模块标为 `inside/peer/section/connected/anchored` 等空间关系。根据用户已选视觉方向和业务密度映射 `inline/inside/peer/section/page` 空间 Token；不能因为统一卡片组件就平均间距，也不能因为没要求动画/颜色就忽略空间节奏。参考 `references/semantic-spacing-rhythm-gate.md`。
