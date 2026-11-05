@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dayline · 虚构学习计划演示</title>
+<!-- Original synthetic demonstration; no user-provided image or project data.
+     Icon paths are from official Element Plus Icons (MIT); see element-plus-icons-license.txt -->
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft Yahei",sans-serif;color:#283341;background:#f6f7fa;font-size:16px;
+--canvas:#f6f7fa;--surface:#fff;--ink:#273243;--muted:#5d6a7a;--line:#e3e8f0;--accent:#5576cc;--accent-soft:#edf2ff;--radius:10px;--space:18px}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);background:var(--canvas)}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,.table-scroller:focus-visible{outline:3px solid #376cb8;outline-offset:2px}
+.shell{display:grid;grid-template-columns:224px minmax(0,1fr);min-height:100dvh}
+.sidebar{background:#fff;border-right:1px solid var(--line);padding:22px 12px;display:flex;flex-direction:column;gap:28px;min-width:0}
+.brand{display:flex;align-items:center;gap:11px;padding:2px 11px 0;font-size:.96rem;font-weight:720;letter-spacing:-.02em}
+.brand-shape{width:28px;height:28px;border-radius:9px;background:linear-gradient(140deg,#4b72c1 20%,#829de0);position:relative;flex:none}
+.brand-shape:after{content:"";position:absolute;inset:7px;border-radius:4px;border:2px solid #fff}
+.brand small{display:block;color:var(--muted);font-size:.69rem;font-weight:500;letter-spacing:.02em}
+.sidebar-title{margin:0 0 9px;padding-inline:12px;color:#6d7787;font-size:.76rem;font-weight:670}
+.nav{display:grid;gap:3px}
+.navbutton{display:flex;align-items:center;gap:11px;padding:11px 12px;min-width:0;width:100%;border:0;border-radius:8px;background:transparent;color:#455165;text-align:left;font-size:.93rem;font-weight:540;line-height:1.4;white-space:nowrap}
+.navbutton:hover{background:#f5f7fb}
+.navbutton[aria-current="page"]{background:var(--accent-soft);color:var(--accent);font-weight:700}
+.iconbox{width:19px;height:19px;flex:0 0 19px;display:inline-flex;align-items:center;justify-content:center}
+.iconbox svg{display:block;width:100%;height:100%;fill:currentColor}
+.navlabel{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.sidefoot{margin-top:auto;color:#768393;font-size:.72rem;padding:13px;border-top:1px solid var(--line)}
+.content{min-width:0;padding:26px clamp(16px,3vw,38px) 90px;max-width:1440px;width:100%}
+.header{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;margin-bottom:22px}
+.eyebrow{color:#66768a;font-size:.78rem;margin:0 0 5px;font-weight:600}
+h1{font-size:1.58rem;line-height:1.32;margin:0 0 7px;font-weight:720}
+.lead{font-size:.86rem;color:var(--muted);margin:0;line-height:1.55;max-width:65ch}
+.demo-tag{border:1px solid #dde6e7;background:#fff;color:#3f7966;font-size:.77rem;padding:7px 10px;border-radius:99px;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.demo-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:#459779}
+.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space);margin-bottom:var(--space)}
+.summary-item{min-width:0;border:1px solid var(--line);border-radius:var(--radius);background:#fff;padding:18px 20px}
+.summary-item span{display:block;font-size:.8rem;color:var(--muted);margin-bottom:9px}
+.summary-item strong{font-size:1.54rem;line-height:1.2;font-weight:740;font-variant-numeric:tabular-nums}
+.summary-item small{display:block;margin-top:6px;color:#6e7a88;font-size:.77rem}
+.workarea{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:18px 18px 15px}
+h2{font-size:1.07rem;margin:0 0 4px;font-weight:690}
+.toolbar-sub{margin:0;color:var(--muted);font-size:.78rem}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.search{height:37px;width:min(250px,100%);display:flex;align-items:center;gap:8px;border:1px solid #ccd6e1;border-radius:8px;padding:0 10px;background:#fff;min-width:0}
+.search input{min-width:0;width:100%;border:0;background:transparent;color:var(--ink);font-size:.85rem;outline:none}
+.search:focus-within{outline:2px solid #8eb0ed;outline-offset:1px}
+.search .iconbox{width:16px;height:16px;flex-basis:16px;color:#6d7d90}
+.select{height:37px;border:1px solid #ccd6e1;background:#fff;border-radius:8px;padding:0 11px;color:var(--ink);font-size:.84rem}
+.table-scroller{overflow-x:auto;max-width:100%;border-top:1px solid var(--line);scrollbar-color:#bfcbda #eef2f5}
+table{border-collapse:collapse;width:100%;min-width:740px;table-layout:fixed}
+th,td{text-align:left;padding:13px 15px;border-bottom:1px solid #e7ecf1;vertical-align:middle;font-size:.85rem;line-height:1.4}
+th{font-size:.76rem;color:#5e6c7d;font-weight:660;background:#fbfcfd}
+th:nth-child(1){width:27%}th:nth-child(2){width:18%}th:nth-child(3){width:16%}th:nth-child(4){width:16%}th:nth-child(5){width:13%}th:nth-child(6){width:10%}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#f8faff}
+.titlecell{font-weight:630;color:#29384a}
+.muted{color:#617083}
+.status{font-weight:610;font-size:.81rem}
+.status[data-state="done"]{color:#26765f}
+.status[data-state="active"]{color:#3c6fc1}
+.status[data-state="paused"]{color:#986c2b}
+.row-action{border:1px solid #d0dbe6;background:#fff;padding:6px 10px;border-radius:7px;white-space:nowrap;font-size:.82rem;color:#3b597e;min-height:30px}
+.row-action:hover{border-color:#9cb3ce;background:#f7faff}
+.table-bottom{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 18px;color:#637284;font-size:.78rem;flex-wrap:wrap;border-top:1px solid var(--line)}
+.note{margin-top:22px;color:#6a7989;font-size:.78rem;line-height:1.55}
+dialog{border:1px solid var(--line);border-radius:14px;padding:24px;max-width:min(440px,calc(100vw - 28px));color:var(--ink);box-shadow:0 16px 50px #29405b29}
+dialog::backdrop{background:#20364d7a}
+dialog h2{margin-bottom:10px}
+dialog p{font-size:.9rem;line-height:1.6;color:var(--muted)}
+.dialog-actions{display:flex;justify-content:flex-end}
+@media(max-width:840px){.shell{grid-template-columns:minmax(0,1fr)}.sidebar{border-right:0;border-bottom:1px solid var(--line);gap:13px;padding:14px}.brand{padding:0 4px}.sidebar-title,.sidefoot{display:none}.nav{display:flex;overflow-x:auto;gap:4px;max-width:100%;padding-bottom:2px}.navbutton{width:auto;flex:none;min-height:42px;padding:10px 12px}.content{padding-top:20px}}
+@media(max-width:540px){.summary{grid-template-columns:minmax(0,1fr);gap:9px}.summary-item{padding:12px 15px}.summary-item small{margin-top:2px}.summary-item strong{font-size:1.35rem}.header{align-items:flex-start}.toolbar{padding:15px}.actions{width:100%}.search{flex:1 1 180px;width:auto}h1{font-size:1.42rem}.content{padding-inline:13px}}
+@media(prefers-reduced-motion:no-preference){.navbutton,.row-action{transition:background-color .14s ease,color .14s ease,border-color .14s ease}}
+</style></head>
+<body>
+<div class="shell" data-demo-source="synthetic">
+  <aside class="sidebar" aria-label="演示导航">
+    <div class="brand"><span class="brand-shape" aria-hidden="true"></span><span>Dayline<small>Learning space · 演示</small></span></div>
+    <div>
+      <p class="sidebar-title">学习工作区</p>
+      <nav class="nav" id="side-nav" aria-label="学习导航"></nav>
+    </div>
+    <div class="sidefoot">全部内容均为虚构的交互示例</div>
+  </aside>
+  <main class="content" id="main">
+    <div class="header">
+      <div><p class="eyebrow">学习工作区 / 任务概览</p><h1>学习计划</h1>
+      <p class="lead">整理近期学习主题，快速了解进度并查看下一步安排。</p></div>
+      <div class="demo-tag">本地模拟数据</div>
+    </div>
+    <section class="summary" aria-label="学习数据概览">
+      <div class="summary-item"><span>计划专题</span><strong>8</strong><small>本周演示计划</small></div>
+      <div class="summary-item"><span>正在进行</span><strong>4</strong><small>需要继续跟进</small></div>
+      <div class="summary-item"><span>已完成</span><strong>3</strong><small>仅用于界面预览</small></div>
+    </section>
+    <section class="workarea" aria-labelledby="workheading">
+      <div class="toolbar"><div><h2 id="workheading">专题进度</h2><p class="toolbar-sub">比较任务进度和最近更新，使用筛选条件定位条目。</p></div>
+        <div class="actions">
+          <label class="search" aria-label="搜索专题"><span data-icon="search" class="iconbox" aria-hidden="true"></span>
+            <input id="search-input" type="search" placeholder="搜索学习主题" aria-label="搜索学习主题"></label>
+          <label><span class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">选择进度状态</span>
+            <select id="status-filter" class="select" aria-label="选择进度状态">
+              <option value="all">全部状态</option><option value="active">进行中</option><option value="done">已完成</option><option value="paused">待开始</option>
+            </select></label>
+        </div>
+      </div>
+      <div class="table-scroller" tabindex="0" role="region" aria-label="可横向滚动的学习计划表格">
+        <table aria-label="虚构学习计划列表"><thead><tr>
+          <th scope="col">学习主题</th><th scope="col">类型</th><th scope="col">预计用时</th><th scope="col">最近更新</th><th scope="col">状态</th><th scope="col">操作</th>
+        </tr></thead><tbody id="records">
+          <tr data-title="语义 HTML" data-status="active" data-kind="基础练习"><td class="titlecell">语义 HTML</td><td class="muted">基础练习</td><td>3 小时</td><td class="muted">11 月 03 日</td><td><span class="status" data-state="active">进行中</span></td><td><button class="row-action" type="button">查看</button></td></tr>
+          <tr data-title="布局与排版" data-status="done" data-kind="设计实践"><td class="titlecell">布局与排版</td><td class="muted">设计实践</td><td>2 小时</td><td class="muted">11 月 02 日</td><td><span class="status" data-state="done">已完成</span></td><td><button class="row-action" type="button">查看</button></td></tr>
+          <tr data-title="接口请求基础" data-status="active" data-kind="代码练习"><td class="titlecell">接口请求基础</td><td class="muted">代码练习</td><td>4 小时</td><td class="muted">11 月 01 日</td><td><span class="status" data-state="active">进行中</span></td><td><button class="row-action" type="button">查看</button></td></tr>
+          <tr data-title="单元测试入门" data-status="paused" data-kind="基础练习"><td class="titlecell">单元测试入门</td><td class="muted">基础练习</td><td>2 小时</td><td class="muted">10 月 30 日</td><td><span class="status" data-state="paused">待开始</span></td><td><button class="row-action" type="button">查看</button></td></tr>
+          <tr data-title="可访问性检查" data-status="done" data-kind="阅读记录"><td class="titlecell">可访问性检查</td><td class="muted">阅读记录</td><td>1 小时</td><td class="muted">10 月 29 日</td><td><span class="status" data-state="done">已完成</span></td><td><button class="row-action" type="button">查看</button></td></tr>
+          <tr data-title="组件状态设计" data-status="active" data-kind="设计实践"><td class="titlecell">组件状态设计</td><td class="muted">设计实践</td><td>3 小时</td><td class="muted">10 月 28 日</td><td><span class="status" data-state="active">进行中</span></td><td><button class="row-action" type="button">查看</button></td></tr>
+          <tr data-title="版本控制整理" data-status="done" data-kind="代码练习"><td class="titlecell">版本控制整理</td><td class="muted">代码练习</td><td>1 小时</td><td class="muted">10 月 27 日</td><td><span class="status" data-state="done">已完成</span></td><td><button class="row-action" type="button">查看</button></td></tr>
+          <tr data-title="异步流程理解" data-status="active" data-kind="阅读记录"><td class="titlecell">异步流程理解</td><td class="muted">阅读记录</td><td>2 小时</td><td class="muted">10 月 26 日</td><td><span class="status" data-state="active">进行中</span></td><td><button class="row-action" type="button">查看</button></td></tr>
+        </tbody></table>
+      </div>
+      <div class="table-bottom"><span id="result-count" role="status" aria-live="polite">显示 8 条虚构记录</span><span>此页面只用于设计与交互验证</span></div>
+    </section>
+    <p class="note">这是一份独立创建的学习管理演示，与任何真实产品无关。字体、图标、色彩、间距和数据密度均可依据实际项目重新确定，不是 MauForma 全站默认模板。</p>
+  </main>
+</div>
+<dialog id="detail-dialog" aria-labelledby="dialog-title">
+  <h2 id="dialog-title">任务详情</h2><p id="dialog-copy"></p><div class="dialog-actions"><button type="button" id="close-dialog" class="row-action">关闭</button></div>
+</dialog>
+<script>
+const ICONS={"grid":"<path fill=\"currentColor\" d=\"M640 384v256H384V384zm64 0h192v256H704zm-64 512H384V704h256zm64 0V704h192v192zm-64-768v192H384V128zm64 0h192v192H704zM320 384v256H128V384zm0 512H128V704h192zm0-768v192H128V128z\"/>","reading":"<path fill=\"currentColor\" d=\"m512 863.4 384-54.9V169.8l-370.4 53a96 96 0 0 1-27.2 0l-370.4-53v638.7zm-375-757 370.5 53a32 32 0 0 0 9 0l370.5-53a64 64 0 0 1 73 63.4v638.7a64 64 0 0 1-55 63.4l-388.5 55.5a32 32 0 0 1-9 0L119 871.9a64 64 0 0 1-55-63.4V169.8a64 64 0 0 1 73-63.4\"/><path fill=\"currentColor\" d=\"M480 192h64v704h-64z\"/>","calendar":"<path fill=\"currentColor\" d=\"M128 384v512h768V192H768v32a32 32 0 1 1-64 0v-32H320v32a32 32 0 0 1-64 0v-32H128v128h768v64zm192-256h384V96a32 32 0 1 1 64 0v32h160a32 32 0 0 1 32 32v768a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h160V96a32 32 0 0 1 64 0zm-32 384h64a32 32 0 0 1 0 64h-64a32 32 0 0 1 0-64m0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64m192-192h64a32 32 0 0 1 0 64h-64a32 32 0 0 1 0-64m0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64m192-192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64m0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64\"/>","folder":"<path fill=\"currentColor\" d=\"M128 192v640h768V320H485.8L357.5 192zm-32-64h287.9l128.4 128H928a32 32 0 0 1 32 32v576a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32\"/>","setting":"<path fill=\"currentColor\" d=\"M600.7 64a32 32 0 0 1 30.5 22.2l35.2 109.4a348 348 0 0 1 42.4 24.5l112.4-24.2a32 32 0 0 1 34.4 15.4l88.7 153.5a32 32 0 0 1-4 37.5l-77.1 85.1a357 357 0 0 1 0 49l77 85.3a32 32 0 0 1 4.1 37.5l-88.7 153.6a32 32 0 0 1-34.4 15.3l-112.4-24.2q-20.2 13.6-42.4 24.5l-35.2 109.4a32 32 0 0 1-30.5 22.2H423.3a32 32 0 0 1-30.5-22.2l-35.1-109.3a352 352 0 0 1-42.6-24.7l-112.3 24.3a32 32 0 0 1-34.4-15.4L79.7 659.2a32 32 0 0 1 4-37.5l77.1-85.3a357 357 0 0 1 0-48.8l-77-85.3a32 32 0 0 1-4.1-37.5l88.7-153.6a32 32 0 0 1 34.4-15.3l112.3 24.3a355 355 0 0 1 42.6-24.7l35.2-109.3A32 32 0 0 1 423.2 64zm-23.4 64H446.7l-36.3 113-24.5 12a294 294 0 0 0-34.9 20.2l-22.6 15.3-116.2-25-65.3 113 79.7 88.3-2 27.1a293 293 0 0 0 0 40.2l2 27.1-79.8 88.2L212 760.6l116.2-25 22.7 15.2a294 294 0 0 0 34.8 20.1l24.5 12L446.7 896h130.7L614 782.8l24.4-11.9a288 288 0 0 0 34.8-20l22.6-15.3 116.3 25 65.2-113.2-79.7-88.2 2-27.1a293 293 0 0 0 0-40.3l-2-27.1 79.8-88.1L812 263.4l-116.3 25-22.6-15.2a288 288 0 0 0-34.8-20.1L614 241zM512 320a192 192 0 1 1 0 384 192 192 0 0 1 0-384m0 64a128 128 0 1 0 0 256 128 128 0 0 0 0-256\"/>","search":"<path fill=\"currentColor\" d=\"m795.9 750.7 125 125a32 32 0 0 1-45.3 45.2l-125-125a416 416 0 1 1 45.3-45.2zM480 832a352 352 0 1 0 0-704 352 352 0 0 0 0 704\"/>","arrow-right":"<path fill=\"currentColor\" d=\"M340.9 149.3a30.6 30.6 0 0 0 0 42.8L652.7 512 341 831.9a30.6 30.6 0 0 0 0 42.7 29 29 0 0 0 41.7 0l331.6-340.3a32 32 0 0 0 0-44.6L382.6 149.4a29 29 0 0 0-41.7 0z\"/>"};
+const NAV=[
+ ["overview","学习概览","grid"],["plan","学习清单","reading"],["calendar","复习日程","calendar"],["resources","课程资料","folder"],["settings","显示偏好","setting"]
+];
+function icon(name){
+ const wrap=document.createElement('span');wrap.className='iconbox';
+ const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+ svg.setAttribute('viewBox','0 0 1024 1024');svg.setAttribute('aria-hidden','true');svg.setAttribute('focusable','false');svg.dataset.iconName=name;
+ svg.innerHTML=ICONS[name];wrap.append(svg);return wrap;
+}
+for(const host of document.querySelectorAll('[data-icon]'))host.append(...icon(host.dataset.icon).childNodes);
+const nav=document.querySelector('#side-nav');let active='plan';
+function updateNav(){
+ nav.replaceChildren();
+ for(const [id,label,glyph] of NAV){
+  const button=document.createElement('button');button.className='navbutton';button.type='button';
+  button.dataset.navId=id;button.setAttribute('aria-current',active===id?'page':'false');button.append(icon(glyph));
+  const text=document.createElement('span');text.className='navlabel';text.textContent=label;button.append(text);
+  button.addEventListener('click',()=>{active=id;updateNav();nav.querySelector('[data-nav-id="'+id+'"]')?.focus()});
+  nav.append(button);
+ }
+}
+updateNav();
+const search=document.getElementById('search-input'),filter=document.getElementById('status-filter');
+const rows=[...document.querySelectorAll('#records tr')];
+function applyFilter(){
+ const q=search.value.trim().toLowerCase(),state=filter.value;let n=0;
+ for(const row of rows){
+  const visible=(state==='all'||row.dataset.status===state)&&
+   (row.dataset.title.toLowerCase().includes(q)||row.dataset.kind.toLowerCase().includes(q));
+  row.hidden=!visible;if(visible)n++;
+ }
+ document.getElementById('result-count').textContent='显示 '+n+' 条虚构记录';
+}
+search.addEventListener('input',applyFilter);filter.addEventListener('change',applyFilter);
+const dialog=document.getElementById('detail-dialog');
+for(const row of rows){
+ row.querySelector('.row-action').addEventListener('click',()=>{
+  document.getElementById('dialog-copy').textContent='“'+row.dataset.title+'”为虚构学习专题。当前状态：'+row.querySelector('.status').textContent+'。';
+  dialog.showModal();
+ });
+}
+document.getElementById('close-dialog').addEventListener('click',()=>dialog.close());
+</script></body></html>
