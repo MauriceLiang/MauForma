@@ -1,5 +1,13 @@
 # 前端项目架构与验收门槛
 
+## v6.16 · Semantic Spacing & Rhythm Gate（所有网页类型）
+
+Gate A：在已确定的页面信息结构中，把相邻模块标为 `inside/peer/section/connected/anchored` 等空间关系。根据用户已选视觉方向和业务密度映射 `inline/inside/peer/section/page` 空间 Token；不能因为统一卡片组件就平均间距，也不能因为没要求动画/颜色就忽略空间节奏。参考 `references/semantic-spacing-rhythm-gate.md`。
+
+Gate B：让父级 Grid/Stack/PageSection 管理同级和章节 gap，区分 Card 内边距；同一图表行的 column-gap 与行间 row-gap 都要设计，移动端由横转纵保持相应 peer gap。连续列表、Tab+Panel 等合法连体结构可共边，但必须注明原因，不靠负 margin 掩盖错误。
+
+Gate D：在浏览器含横竖/小视口、200% 字体、异常数据、底部滚动、固定栏情况下查看整页节奏。带 `data-mf-space-id` 的项目可提供独立关系契约给 `scripts/audit_spacing_rhythm.mjs` 实测，正常没有标注时不可编造结果。静态 `scripts/validate_spacing_rhythm.py --repository` 只验证例子的设计完整性。
+
 ## v6.15 · Component Motion Coverage 与组合体验
 
 Gate A：完成用户动效选择后，从真实页面识别高频/高价值组件及状态变化；为其决定动效/即时反馈/故意静态的理由，**页面级路由转场不能计入组件动效覆盖**。见 `references/component-motion-choreography-gate.md`。
