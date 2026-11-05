@@ -1,0 +1,396 @@
+{
+  "schema_version": "1.0",
+  "scope": "Generic semantic icon shortlisting; brand glyphs, logos and illustration are separate exemptions. These choices are contextual examples, not mandatory icons for all products.",
+  "profiles": [
+    {
+      "id": "operations-navigation",
+      "mode": "Operate",
+      "goal": "Find repository data, compare objects, review analytics and manage tasks",
+      "library": "Lucide",
+      "library_source": "https://lucide.dev/",
+      "style": "outline",
+      "license": "ISC",
+      "icon_size_role": "navigation",
+      "icons": [
+        {
+          "id": "overview",
+          "label": "总览",
+          "semantic_intent": "See aggregate project activity",
+          "presentation": "icon-and-text",
+          "chosen": "layout-dashboard",
+          "reason": "A neutral dashboard/overview silhouette rather than a specific report",
+          "candidates": [
+            {
+              "name": "layout-dashboard",
+              "source": "https://lucide.dev/icons/layout-dashboard",
+              "verified": true,
+              "rationale": "Relevant established visual metaphor for the actual task"
+            },
+            {
+              "name": "chart-column-increasing",
+              "source": "https://lucide.dev/icons/chart-column-increasing",
+              "verified": true,
+              "rationale": "A bar chart implies a statistics-only page"
+            }
+          ]
+        },
+        {
+          "id": "repositories",
+          "label": "仓库",
+          "semantic_intent": "Browse and organize tracked repositories",
+          "presentation": "icon-and-text",
+          "chosen": "folder",
+          "reason": "A recognizable folder for a collection of repositories",
+          "candidates": [
+            {
+              "name": "folder",
+              "source": "https://lucide.dev/icons/folder",
+              "verified": true,
+              "rationale": "Relevant established visual metaphor for the actual task"
+            },
+            {
+              "name": "boxes",
+              "source": "https://lucide.dev/icons/boxes",
+              "verified": true,
+              "rationale": "Boxes can mean deployment packages or inventory and is too detailed"
+            }
+          ]
+        },
+        {
+          "id": "compare",
+          "label": "项目比较",
+          "semantic_intent": "Contrast two projects and their differences",
+          "presentation": "icon-and-text",
+          "chosen": "arrow-left-right",
+          "reason": "Two opposing arrows communicate generic comparison",
+          "candidates": [
+            {
+              "name": "arrow-left-right",
+              "source": "https://lucide.dev/icons/arrow-left-right",
+              "verified": true,
+              "rationale": "Relevant established visual metaphor for the actual task"
+            },
+            {
+              "name": "git-compare",
+              "source": "https://lucide.dev/icons/git-compare",
+              "verified": true,
+              "rationale": "Git topology implies comparing branches or commits rather than projects"
+            }
+          ]
+        },
+        {
+          "id": "analysis",
+          "label": "研究分析",
+          "semantic_intent": "Inspect statistical charts and relationships",
+          "presentation": "icon-and-text",
+          "chosen": "chart-scatter",
+          "reason": "Scatter chart matches the actual chart-based analysis workflow",
+          "candidates": [
+            {
+              "name": "chart-scatter",
+              "source": "https://lucide.dev/icons/chart-scatter",
+              "verified": true,
+              "rationale": "Relevant established visual metaphor for the actual task"
+            },
+            {
+              "name": "flask-conical",
+              "source": "https://lucide.dev/icons/flask-conical",
+              "verified": true,
+              "rationale": "Flask can suggest wet laboratory work rather than charts"
+            }
+          ]
+        },
+        {
+          "id": "tasks",
+          "label": "任务中心",
+          "semantic_intent": "Inspect and act on queued tasks",
+          "presentation": "icon-and-text",
+          "chosen": "list-todo",
+          "reason": "List with incomplete checkbox conveys mixed in-progress tasks",
+          "candidates": [
+            {
+              "name": "list-todo",
+              "source": "https://lucide.dev/icons/list-todo",
+              "verified": true,
+              "rationale": "Relevant established visual metaphor for the actual task"
+            },
+            {
+              "name": "list-checks",
+              "source": "https://lucide.dev/icons/list-checks",
+              "verified": true,
+              "rationale": "All-check marks lean toward completed checklist"
+            }
+          ]
+        },
+        {
+          "id": "settings",
+          "label": "设置",
+          "semantic_intent": "Change application preferences",
+          "presentation": "icon-and-text",
+          "chosen": "settings-2",
+          "reason": "Two control knobs are clear at small navigation size",
+          "candidates": [
+            {
+              "name": "settings-2",
+              "source": "https://lucide.dev/icons/settings-2",
+              "verified": true,
+              "rationale": "Relevant established visual metaphor for the actual task"
+            },
+            {
+              "name": "sliders-horizontal",
+              "source": "https://lucide.dev/icons/sliders-horizontal",
+              "verified": true,
+              "rationale": "Dense multi-slider glyph competes with the simple neighboring icons"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shopping-navigation",
+      "mode": "Persuade",
+      "goal": "Browse a catalog, save favorites and search products",
+      "library": "Lucide",
+      "library_source": "https://lucide.dev/",
+      "style": "outline",
+      "license": "ISC",
+      "icon_size_role": "navigation",
+      "icons": [
+        {
+          "id": "catalog",
+          "label": "商品目录",
+          "semantic_intent": "Browse products and their purchase options",
+          "presentation": "icon-and-text",
+          "chosen": "shopping-bag",
+          "reason": "Purchase bag evokes shopping without dense implementation details",
+          "candidates": [
+            {
+              "name": "shopping-bag",
+              "source": "https://lucide.dev/icons/shopping-bag",
+              "verified": true,
+              "rationale": "Relevant established visual metaphor for the actual task"
+            },
+            {
+              "name": "boxes",
+              "source": "https://lucide.dev/icons/boxes",
+              "verified": true,
+              "rationale": "Boxes suggests backoffice inventory"
+            }
+          ]
+        },
+        {
+          "id": "saved",
+          "label": "收藏",
+          "semantic_intent": "View saved favorites",
+          "presentation": "icon-and-text",
+          "chosen": "heart",
+          "reason": "Heart is a familiar favorite/save metaphor in shopping",
+          "candidates": [
+            {
+              "name": "heart",
+              "source": "https://lucide.dev/icons/heart",
+              "verified": true,
+              "rationale": "Relevant established visual metaphor for the actual task"
+            },
+            {
+              "name": "bookmark",
+              "source": "https://lucide.dev/icons/bookmark",
+              "verified": true,
+              "rationale": "Bookmark leans toward documents, which can still be appropriate elsewhere"
+            }
+          ]
+        },
+        {
+          "id": "product-search",
+          "label": "搜索商品",
+          "semantic_intent": "Search the product catalog",
+          "presentation": "icon-and-text",
+          "chosen": "search",
+          "reason": "Magnifier is globally familiar for search",
+          "candidates": [
+            {
+              "name": "search",
+              "source": "https://lucide.dev/icons/search",
+              "verified": true,
+              "rationale": "Relevant established visual metaphor for the actual task"
+            },
+            {
+              "name": "arrow-right",
+              "source": "https://lucide.dev/icons/arrow-right",
+              "verified": true,
+              "rationale": "Generic arrow does not denote searching"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "course-navigation",
+      "mode": "Read",
+      "goal": "Browse lessons, return to saved content and find explanations",
+      "library": "Lucide",
+      "library_source": "https://lucide.dev/",
+      "style": "outline",
+      "license": "ISC",
+      "icon_size_role": "navigation",
+      "icons": [
+        {
+          "id": "lessons",
+          "label": "课程内容",
+          "semantic_intent": "Read lessons and chapters",
+          "presentation": "icon-and-text",
+          "chosen": "book-open",
+          "reason": "Open book directly denotes instructional reading",
+          "candidates": [
+            {
+              "name": "book-open",
+              "source": "https://lucide.dev/icons/book-open",
+              "verified": true,
+              "rationale": "Relevant established visual metaphor for the actual task"
+            },
+            {
+              "name": "folder",
+              "source": "https://lucide.dev/icons/folder",
+              "verified": true,
+              "rationale": "Folder conveys files rather than reading"
+            }
+          ]
+        },
+        {
+          "id": "saved-lesson",
+          "label": "书签",
+          "semantic_intent": "Return to marked chapters",
+          "presentation": "icon-and-text",
+          "chosen": "bookmark",
+          "reason": "Bookmark is specific to reading location",
+          "candidates": [
+            {
+              "name": "bookmark",
+              "source": "https://lucide.dev/icons/bookmark",
+              "verified": true,
+              "rationale": "Relevant established visual metaphor for the actual task"
+            },
+            {
+              "name": "heart",
+              "source": "https://lucide.dev/icons/heart",
+              "verified": true,
+              "rationale": "Heart fits affective preference more than a place in text"
+            }
+          ]
+        },
+        {
+          "id": "search-lessons",
+          "label": "课程搜索",
+          "semantic_intent": "Find a term or course",
+          "presentation": "icon-and-text",
+          "chosen": "search",
+          "reason": "Magnifier maps to search regardless of language",
+          "candidates": [
+            {
+              "name": "search",
+              "source": "https://lucide.dev/icons/search",
+              "verified": true,
+              "rationale": "Relevant established visual metaphor for the actual task"
+            },
+            {
+              "name": "arrow-right",
+              "source": "https://lucide.dev/icons/arrow-right",
+              "verified": true,
+              "rationale": "Arrow suggests navigation without identifying the query action"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "creative-navigation",
+      "mode": "Experience",
+      "goal": "Explore works, browse an image gallery and navigate between selections",
+      "library": "Lucide",
+      "library_source": "https://lucide.dev/",
+      "style": "outline",
+      "license": "ISC",
+      "icon_size_role": "navigation",
+      "icons": [
+        {
+          "id": "featured-work",
+          "label": "作品",
+          "semantic_intent": "Inspect selected visual works",
+          "presentation": "icon-and-text",
+          "chosen": "image",
+          "reason": "Simple image frame indicates media artwork",
+          "candidates": [
+            {
+              "name": "image",
+              "source": "https://lucide.dev/icons/image",
+              "verified": true,
+              "rationale": "Relevant established visual metaphor for the actual task"
+            },
+            {
+              "name": "folder",
+              "source": "https://lucide.dev/icons/folder",
+              "verified": true,
+              "rationale": "Folder implies file manager rather than media"
+            }
+          ]
+        },
+        {
+          "id": "gallery",
+          "label": "画廊",
+          "semantic_intent": "Browse multiple related images",
+          "presentation": "icon-and-text",
+          "chosen": "gallery-horizontal",
+          "reason": "Gallery panes convey a sequence/collection",
+          "candidates": [
+            {
+              "name": "gallery-horizontal",
+              "source": "https://lucide.dev/icons/gallery-horizontal",
+              "verified": true,
+              "rationale": "Relevant established visual metaphor for the actual task"
+            },
+            {
+              "name": "image",
+              "source": "https://lucide.dev/icons/image",
+              "verified": true,
+              "rationale": "Single image denotes individual artwork"
+            }
+          ]
+        },
+        {
+          "id": "next-work",
+          "label": "下一项作品",
+          "semantic_intent": "Navigate to the next work",
+          "presentation": "icon-and-text",
+          "chosen": "arrow-right",
+          "reason": "Forward arrow is a familiar next affordance",
+          "candidates": [
+            {
+              "name": "arrow-right",
+              "source": "https://lucide.dev/icons/arrow-right",
+              "verified": true,
+              "rationale": "Relevant established visual metaphor for the actual task"
+            },
+            {
+              "name": "search",
+              "source": "https://lucide.dev/icons/search",
+              "verified": true,
+              "rationale": "Magnifier suggests searching rather than moving forward"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "role": "brand-mark",
+      "policy": "separate-library",
+      "reason": "Trademark and supplied logos are distinct from UI icons and must not be replaced by generic outlines"
+    },
+    {
+      "role": "abstract-concept",
+      "policy": "text-only",
+      "reason": "When no recognizable shape exists, avoid arbitrary geometric icon clutter"
+    }
+  ]
+}

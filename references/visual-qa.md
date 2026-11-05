@@ -1,5 +1,17 @@
 # MauForma · 组件优先视觉 QA v2.0
 
+## v6.17 · Icon Art Direction & Semantic Fit Gate
+
+- [ ] 主导航、高频操作、核心状态所用图标的语义是否**准确、熟悉、无需费力猜测**？是否真正需要 icon？抽象功能不用乱造脑电/闪电/星星。
+- [ ] 关键图标是否从实际已确认的家族/版本挑选，比较了有价值的语义候选并记录理由？有品牌既定选择时是否继承？
+- [ ] 整个 Icon Set 的外轮廓、描边/实心风格、负空间、复杂度与图形视觉重量是否一致？是否出现一项巨大密集、相邻项特别空/细？
+- [ ] 实际界面用 16/20/24 类场景大小渲染并与中文字形、Badge、Active/hover/focus、主题状态共同检验；不能以 SVG 宽高统一替代整套视觉审查。
+- [ ] 同一个导航/工具栏是否混用无规则的 emoji / 自绘 SVG / 第三方 filled / outline、是否使用图标字库造成体积与闪烁问题？合理品牌/logo 例外需声明。
+- [ ] 真实 Icon 组件是否加载成功、不被压缩/裁切、分组中含可访问名称的图标按钮正常可用？无可见文案时不靠图标猜测动作。
+- [ ] 可用 `scripts/audit_icon_consistency.mjs` 检查**显式标注的**图标组尺寸、描边/家族、渲染问题；审美/语义仍要看整页或对照 Gallery，人评未做需标 NOT VISUALLY VERIFIED。
+
+规范 `references/icon-art-direction-gate.md`，候选示例 `assets/icon-curation-patterns.json`，整组演示 `assets/icon-art-direction-lab.html`。
+
 ## v6.16 · Semantic Spacing / Visual Rhythm Gate
 
 - [ ] 当前页面的独立章节、同级卡片、内部标题/内容、真正连接的控件是否明确区分？组间距离能让用户清楚识别任务边界，连接结构是否有理由共边？

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MauForma Icon Art Direction Lab</title>
+<!-- Demo icon artwork: Lucide Icons and Contributors, ISC License. See assets/icon-art-direction-lucide-license.txt.
+These are verified upstream SVG paths from lucide-icons/lucide. 'Unreviewed' intentionally misuses familiar designs and inconsistent CSS
+and is not a recommendation that any of those official icons are intrinsically unattractive. -->
+<style>
+:root{font:16px/1.45 -apple-system,BlinkMacSystemFont,system-ui,"PingFang SC","Microsoft Yahei",sans-serif;color-scheme:light;color:#25303a;background:#f5f7f8}
+*{box-sizing:border-box}
+main{max-width:970px;margin:0 auto;padding:28px clamp(14px,3vw,34px) 80px}
+h1{font-size:1.65rem;margin:0 0 6px}p{color:#5b6b79;max-width:72ch;margin:0 0 19px}
+.controls{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:16px}
+button{border:1px solid #c8d4dd;background:white;font:inherit;border-radius:8px;padding:8px 13px;min-height:40px;color:inherit;cursor:pointer}
+button[aria-pressed=true]{background:#dfebf1;border-color:#a5bdca;font-weight:650}
+button:focus-visible,.navitem:focus-visible{outline:3px solid #3678a3;outline-offset:2px}
+.layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px}
+.panel{border:1px solid #dbe2e7;background:#fff;border-radius:13px;padding:18px;min-width:0}
+.panel h2{font-size:1.1rem;margin:0 0 3px}.hint{font-size:.86rem;color:#61717e;margin:0 0 15px}
+nav{display:grid;gap:5px}
+.navitem{display:flex;align-items:center;gap:12px;border:0;border-radius:9px;text-align:left;width:100%;padding:9px 12px;min-height:46px;max-width:100%;background:transparent;line-height:1.35;white-space:nowrap;cursor:pointer}
+.navitem[aria-current=page]{background:#e5edf1;font-weight:650}
+.iconbox{inline-size:var(--icon-size,20px);block-size:var(--icon-size,20px);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.iconbox svg{width:100%;height:100%;display:block;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.iconbox [data-mf-ui-icon]{overflow:visible}
+.navitem .label{flex:1;min-width:0}
+.navitem .count{font-size:.82rem;background:#eef1f3;border-radius:6px;padding:2px 7px}
+.navitem[aria-current=page] .count{background:#385b70;color:white}
+[data-icon-mode=bad] .navitem:nth-child(2) .iconbox{--icon-size:27px}
+[data-icon-mode=bad] .navitem:nth-child(3) .iconbox{--icon-size:16px}
+[data-icon-mode=bad] .navitem:nth-child(5) .iconbox{--icon-size:24px}
+[data-icon-mode=bad] .navitem:nth-child(2) svg{stroke-width:3.2}
+[data-icon-mode=bad] .navitem:nth-child(4) svg{stroke-width:1}
+[data-icon-mode=bad] .navitem:nth-child(6) svg{stroke-width:2.8}
+[data-icon-mode=bad] .navitem:nth-child(4) .iconbox{transform:translateY(-3px)}
+.description{border-left:3px solid #94afbe;padding:2px 0 2px 12px;color:#4e626f;font-size:.92rem;margin:14px 0}
+.view16 .iconbox{--icon-size:16px}
+.view16 [data-icon-mode=bad] .navitem:nth-child(2) .iconbox{--icon-size:22px}
+.view16 [data-icon-mode=bad] .navitem:nth-child(3) .iconbox{--icon-size:13px}
+.view16 [data-icon-mode=bad] .navitem:nth-child(5) .iconbox{--icon-size:21px}
+.note{font-size:.86rem;margin-top:14px}
+kbd{font:inherit;background:#f0f3f5;padding:1px 5px;border-radius:4px}
+@media(max-width:680px){.layout{grid-template-columns:minmax(0,1fr)}.panel{padding:15px}.navitem{min-height:42px}}
+</style></head>
+<body>
+<main id="lab" data-icon-mode="good">
+<h1>Icon Art Direction · 图标语义与整组品质</h1>
+<p>完整导航组的图标需要统一轮廓和视觉重量，也要对得上实际功能。本实验展示同一批官方 SVG 在不同语义选择与样式管理下的差异，并非规定任何网站必须使用这些图标。</p>
+<div class="controls" role="group" aria-label="设计审查选项">
+<button data-mode="good" type="button" aria-pressed="true">已筛选：语义与风格统一</button>
+<button data-mode="bad" type="button" aria-pressed="false">反例：未经筛选的混搭</button>
+<button data-scale="20" type="button" aria-pressed="true">标准图标</button>
+<button data-scale="16" type="button" aria-pressed="false">紧凑图标</button>
+</div>
+<div class="layout">
+<section class="panel">
+<h2>导航图标实际渲染</h2>
+<p class="hint">同一组导航：一致的尺寸、描边、间距与选中状态</p>
+<nav aria-label="演示导航" id="nav-demo" data-mf-icon-group="main-navigation"></nav>
+</section>
+<section class="panel">
+<h2>设计判断</h2>
+<p class="hint">图标不是根据菜单字面意思盲猜的装饰</p>
+<div id="reason" class="description" role="status">优先清晰的轮廓，并在组内比较语义、视觉重量和实际显示尺寸。</div>
+<p>示例中“比较”优先考虑两对象对照，而不是 Git 分支操作；“研究分析”优先考虑统计图表，而不是实验室器皿。这只是<strong>当前上下文</strong>的决定，不能推广成绝对映射。</p>
+<p>点击菜单可检查选中项。菜单仍有可见文字和焦点；品牌图形、媒体插图、图标按钮需要单独遵循各自的语义与无障碍规范。</p>
+</section>
+</div>
+<p class="note">图标来自 Lucide（ISC），仅在本实验中用于验证规范；原始路径与许可说明见仓库。<kbd>Tab</kbd> 可聚焦各项导航。</p>
+</main>
+<script>
+const ICONS={"layout-dashboard":"<rect width=\"7\" height=\"9\" x=\"3\" y=\"3\" rx=\"1\" /><rect width=\"7\" height=\"5\" x=\"14\" y=\"3\" rx=\"1\" /><rect width=\"7\" height=\"9\" x=\"14\" y=\"12\" rx=\"1\" /><rect width=\"7\" height=\"5\" x=\"3\" y=\"16\" rx=\"1\" />","folder":"<path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\" />","arrow-left-right":"<path d=\"M8 3 4 7l4 4\" /><path d=\"M4 7h16\" /><path d=\"m16 21 4-4-4-4\" /><path d=\"M20 17H4\" />","chart-scatter":"<circle cx=\"7.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\" /><circle cx=\"18.5\" cy=\"5.5\" r=\".5\" fill=\"currentColor\" /><circle cx=\"11.5\" cy=\"11.5\" r=\".5\" fill=\"currentColor\" /><circle cx=\"7.5\" cy=\"16.5\" r=\".5\" fill=\"currentColor\" /><circle cx=\"17.5\" cy=\"14.5\" r=\".5\" fill=\"currentColor\" /><path d=\"M3 3v16a2 2 0 0 0 2 2h16\" />","list-todo":"<path d=\"M13 5h8\" /><path d=\"M13 12h8\" /><path d=\"M13 19h8\" /><path d=\"m3 17 2 2 4-4\" /><rect x=\"3\" y=\"4\" width=\"6\" height=\"6\" rx=\"1\" />","settings-2":"<path d=\"M14 17H5\" /><path d=\"M19 7h-9\" /><circle cx=\"17\" cy=\"17\" r=\"3\" /><circle cx=\"7\" cy=\"7\" r=\"3\" />","boxes":"<path d=\"M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z\" /><path d=\"m7 16.5-4.74-2.85\" /><path d=\"m7 16.5 5-3\" /><path d=\"M7 16.5v5.17\" /><path d=\"M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z\" /><path d=\"m17 16.5-5-3\" /><path d=\"m17 16.5 4.74-2.85\" /><path d=\"M17 16.5v5.17\" /><path d=\"M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z\" /><path d=\"M12 8 7.26 5.15\" /><path d=\"m12 8 4.74-2.85\" /><path d=\"M12 13.5V8\" />","git-compare-arrows":"<circle cx=\"5\" cy=\"6\" r=\"3\" /><path d=\"M12 6h5a2 2 0 0 1 2 2v7\" /><path d=\"m15 9-3-3 3-3\" /><circle cx=\"19\" cy=\"18\" r=\"3\" /><path d=\"M12 18H7a2 2 0 0 1-2-2V9\" /><path d=\"m9 15 3 3-3 3\" />","flask-conical":"<path d=\"M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2\" /><path d=\"M6.453 15h11.094\" /><path d=\"M8.5 2h7\" />","list-checks":"<path d=\"M13 5h8\" /><path d=\"M13 12h8\" /><path d=\"M13 19h8\" /><path d=\"m3 17 2 2 4-4\" /><path d=\"m3 7 2 2 4-4\" />","sliders-horizontal":"<path d=\"M10 5H3\" /><path d=\"M12 19H3\" /><path d=\"M14 3v4\" /><path d=\"M16 17v4\" /><path d=\"M21 12h-9\" /><path d=\"M21 19h-5\" /><path d=\"M21 5h-7\" /><path d=\"M8 10v4\" /><path d=\"M8 12H3\" />","chart-column-increasing":"<path d=\"M13 17V9\" /><path d=\"M18 17V5\" /><path d=\"M3 3v16a2 2 0 0 0 2 2h16\" /><path d=\"M8 17v-3\" />"};
+const LABELS=["总览","仓库","项目比较","研究分析","任务中心","设置"];
+const IDS=["overview","repository","compare","analysis","tasks","settings"];
+const GOOD=["layout-dashboard","folder","arrow-left-right","chart-scatter","list-todo","settings-2"];
+const BAD=["layout-dashboard","boxes","git-compare-arrows","flask-conical","list-checks","sliders-horizontal"];
+const lab=document.getElementById('lab'),nav=document.getElementById('nav-demo'),reason=document.getElementById('reason');
+let mode='good',selected='settings';
+function icon(name,pack){
+ const span=document.createElement('span');span.className='iconbox';
+ const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+ svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('aria-hidden','true');
+ svg.dataset.mfUiIcon='';svg.dataset.mfIconName=name;svg.dataset.mfIconPack=pack;
+ svg.innerHTML=ICONS[name];span.appendChild(svg);
+ return span;
+}
+function render(){
+ lab.dataset.iconMode=mode;
+ nav.textContent='';
+ IDS.forEach((id,index)=>{
+  const item=document.createElement('button');item.type='button';item.className='navitem';
+  item.dataset.navId=id;item.setAttribute('aria-current',id===selected?'page':'false');
+  const name=(mode==='good'?GOOD:BAD)[index];
+  const pack=(mode==='bad' && index===2)?'unreviewed-mix':'lucide';
+  item.append(icon(name,pack));
+  const t=document.createElement('span');t.className='label';t.textContent=LABELS[index];item.append(t);
+  if(index===1||index===4){const badge=document.createElement('span');badge.className='count';badge.textContent=index===1?'7':'3';item.append(badge)}
+  item.addEventListener('click',()=>{selected=id;render();nav.querySelector('[data-nav-id="'+id+'"]')?.focus()});
+  nav.append(item);
+ });
+ reason.textContent=mode==='good'?
+ '已筛选：熟悉的语义图形、清晰轮廓、相同家族与光学比例。选中态由导航背景承载，不乱换 icon 风格。':
+ '反例：语义偏差、复杂度不匹配、描边与大小参差、局部偏移，即使每个 SVG 本身来自成熟图标库，也会破坏整体质感。';
+ document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));
+}
+document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;render()}));
+document.querySelectorAll('[data-scale]').forEach(b=>b.addEventListener('click',()=>{
+ lab.classList.toggle('view16',b.dataset.scale==='16');
+ document.querySelectorAll('[data-scale]').forEach(v=>v.setAttribute('aria-pressed',String(v===b)));
+}));
+render();
+</script></body></html>

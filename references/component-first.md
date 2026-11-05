@@ -4,6 +4,10 @@
 
 本 Skill 最重要的工程约束：**产品界面不是由几十个独立设计的页面拼出来的，而是由一套视觉及行为一致的组件组合出来的。**
 
+## v6.17 · Icon 也是组件先行的设计产物
+
+在大量布局复制之前按 `references/icon-art-direction-gate.md` 审阅现有/候选图标库，确认一级导航与高频操作各自的对象/动作语义，再在 Gallery 中展示真实尺寸的整组 Icon 与 Label/Badge/Active/Focus/Theme。优先一个主 UI 图标家族，尺寸/轮廓/光学重量一致；必要时为品牌、插画或特殊领域使用受控例外。图标可以省略，但不能因为有 `Icon` 组件就填充抽象或无关图形。
+
 ## v6.16 · 同级组件之间的空间由布局负责
 
 按 `references/semantic-spacing-rhythm-gate.md` 先判断当前组件间属于内部从属、同级并列、跨区章节或连体结构；`Card` 只负责自己内容的 padding，不应该因为缺少 Layout/Stack 规范就让两个独立模块紧贴。共享 `PageSection/PanelGrid/Stack` 负责 spacing tokens 和响应式 gap，且上下/左右都要检查，不能只保证 CSS Grid 对齐；不要把全部同类组件一律加固定 margin。不同产品可有不同密度和艺术留白。
