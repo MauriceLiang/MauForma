@@ -101,6 +101,16 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 图标艺术指导：选对符号，比随便统一大小更重要
+
+v6.17 新增 **Icon Art Direction & Semantic Fit Gate**：图标不是根据菜单名盲选的装饰。新的页面设计会先判断哪些导航、操作、状态真正需要 icon，再比较可用官方图标库中的实际候选（语义/轮廓/细节/辨识度），最后在整组导航中协调图形风格、线条、光学重量与字体比例。**语义准确、图标本身好看、整套统一，是先于 CSS 尺寸检查的设计工作。**
+
+可根据网站任务与品牌气质选用 Lucide、Tabler、Phosphor 等成熟图标库；并不强迫所有项目使用 Lucide、统一 20px 或全站线描。品牌 Logo、插画和未使用图标是合法例外；抽象概念没有熟悉符号时可以只用文字。
+
+新增整组图标对照实验：用经过核实的官方 SVG 展示“经过筛选”与“语义和描边未经审查”的视觉差异。静态候选契约与 Chromium 检查能识别缺失、尺寸不一、混搭和错位等风险，但**不冒充客观美感评分**。实验中的第三方 SVG 保留原许可证。
+
+[图标选型与艺术指导](references/icon-art-direction-gate.md) · [四种网站任务案例](assets/icon-curation-patterns.json) · [可交互整组图标实验](assets/icon-art-direction-lab.html) · [图标一致性审计](scripts/audit_icon_consistency.mjs)
+
 ## 语义间距与视觉节奏：模块不能无理由粘连
 
 v6.16 新增 **Semantic Spacing & Spatial Rhythm Gate**：从真实模块间的语义关系决定间距，而非“所有 Card 统一 margin”或盲目沿用同一组像素。把标题/图表内部、同级卡片、不同任务区和有意连接的 Tab/Panel 明确区分，并从项目已有 tokens 推导 `inline / inside / peer / section / page` 的空间节奏。父级 Grid/Stack 管理 gap，组件内部 padding 不代替外部留白；横向列 gutter 正确不代表纵向模块间距正确。
