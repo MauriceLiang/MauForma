@@ -37,8 +37,10 @@ def validate_plan(plan:object,require_modes=False)->list[str]:
    key=i.get("id");chosen=i.get("chosen");cands=i.get("candidates",[])
    if not isinstance(key,str) or not key or key in entries:errors.append(f"{pid}: duplicate/missing icon target")
    entries.add(key)
+   # UI labels can be one or two CJK characters; require meaning in the separate rationale.
    for field in ("label","semantic_intent","reason"):
-    if not isinstance(i.get(field),str) or len(i[field].strip())<6:
+    minimum=1 if field=="label" else 6
+    if not isinstance(i.get(field),str) or len(i[field].strip())<minimum:
      errors.append(f"{pid}/{key}: missing meaningful {field}")
    if not isinstance(chosen,str) or not chosen:errors.append(f"{pid}/{key}: missing chosen icon")
    if chosen in glyphs:errors.append(f"{pid}/{key}: repeated symbol in distinct navigation item; review semantic collision")
