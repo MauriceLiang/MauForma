@@ -28,6 +28,7 @@ jobs:
           python3 scripts/validate_surface_control.py --repository
           python3 scripts/validate_motion_decision.py --repository
           python3 scripts/validate_component_motion.py --repository
+          python3 scripts/validate_spacing_rhythm.py --repository
           python3 scripts/validate_sidebar_color_decision.py --repository
           python3 scripts/validate_navigation_architecture.py --repository
           python3 scripts/validate_page_content_plan.py examples/page-content-plan-repovantage.json --repository
@@ -39,6 +40,8 @@ jobs:
           node --check tests/surface_control_browser_smoke.mjs
           node --check tests/motion_choice_browser_smoke.mjs
           node --check tests/component_motion_browser_smoke.mjs
+          node --check scripts/audit_spacing_rhythm.mjs
+          node --check tests/spacing_rhythm_browser_smoke.mjs
           python3 -m unittest discover -s tests -v
       - name: Syntax check browser QA script
         run: node --check scripts/browser_qa.mjs
@@ -64,6 +67,8 @@ jobs:
         run: node tests/motion_choice_browser_smoke.mjs
       - name: Validate component motion choreography in Chromium
         run: node tests/component_motion_browser_smoke.mjs
+      - name: Validate semantic spacing, responsive rhythm, intentional connections
+        run: node tests/spacing_rhythm_browser_smoke.mjs
       - name: Validate task-center interactions, status actions and scroll-end
         run: node tests/task_center_browser_smoke.mjs
       - uses: actions/upload-artifact@v4
@@ -76,4 +81,5 @@ jobs:
             surface-control-browser-artifacts/
             motion-choice-browser-artifacts/
             component-motion-browser-artifacts/
+            spacing-rhythm-browser-artifacts/
           if-no-files-found: ignore
