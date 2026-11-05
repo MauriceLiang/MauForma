@@ -41,7 +41,7 @@
 **主家族原则**：同一个导航/同级控制组不得混用线描、双色、实心 3D、图标字体等不相关风格；品牌 Logo、数据语义符号、插画或产品既有图形属于可以记录的例外。允许同一套具有官方配套的 outline/filled 状态变体，但需验证 selected 的光学重量不会突然变大、变形或“闪跳”。不为追求风格统一硬选一个语义错误的图标：可有受控的替代家族、经过系统化绘制的自定义图标，或干脆去掉图标。
 
 可比的正式来源：
-- Lucide icon selection & design: https://lucide.dev/guide/lucide/icon-guide 和 https://lucide.dev/icons/
+- Lucide icon selection & design: https://github.com/lucide-icons/lucide/blob/main/docs/how-to/icon-guide.md 和 https://lucide.dev/icons/
 - Tabler design specification: https://docs.tabler.io/icons/design-guide
 - Phosphor: https://phosphoricons.com/
 - IBM Carbon UI Icon Guidelines: https://www.carbondesignsystem.com/building-blocks/foundations/icons/guidelines
