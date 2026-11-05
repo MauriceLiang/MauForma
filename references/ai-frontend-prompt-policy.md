@@ -15,6 +15,10 @@ Agent 不可以只问“想要哪种风格”，也不可以未经分析就直�
 
 参阅 `references/design-discovery-interview.md` 和 `examples/design-discovery-dialogues.md`，并先于组件和业务页面实施。
 
+## v6.17 · Icon 不是代码生成器的自动默认素材
+
+新项目/主要视觉重构若要使用图标，必须先判断每个主要图标的含义（是否真的需要），用现有系统或官方成熟图标库查询、验证两个以上合理候选，选择**清晰好看又符合业务语义**的集合，再在 Icon Gallery 与真实导航中验证。优先统一家族、轮廓/负空间/光学重量，与字号和 Active/Badge/Focus 协调。不要随意叠加 emoji、AI 编造图标、混用线/实心，不能用“所有 SVG 宽高是 20px”直接宣布高质量。找不到合适的图标可不用 icon，品牌/自有标识单独处理。详见 `references/icon-art-direction-gate.md`。
+
 ## v6.16 · 页面间距不是给每张 Card 随便填 padding
 
 对新站和重要页面重设计，必须先判断顶部摘要/图表/操作/说明等各区域与彼此的语义：标题与内容 `inside`、同级 `peer`、独立模块 `section`、Tab/Panel `connected`。明确映射项目 spacing tokens，由父布局分配 block/inline gap；相邻独立模块不应像贴成一张卡，移动端和 200% 放大后不应突然失去分组节奏。用户确认的紧凑/宽松风格要继承，**不要用全局统一 margin 解决问题**。浏览器审查必须看整页与滚动末端、必要时用 `scripts/audit_spacing_rhythm.mjs` 对具名 DOM 关系实测，不假装自动审美。详见 `references/semantic-spacing-rhythm-gate.md`。
