@@ -17,7 +17,9 @@ REQUIRED=(
  "assets/spacing-rhythm-patterns.json",
  "assets/spacing-rhythm-lab.html","assets/spacing-rhythm-lab-contract.json",
  "scripts/validate_spacing_rhythm.py","scripts/audit_spacing_rhythm.mjs",
- "tests/test_spacing_rhythm.py","tests/spacing_rhythm_browser_smoke.mjs"
+ "tests/test_spacing_rhythm.py","tests/spacing_rhythm_browser_smoke.mjs",
+ "references/spacing-regression-protection-gate.md",
+ "scripts/audit_panel_spacing.mjs","tests/panel_spacing_browser_smoke.mjs"
 )
 
 def validate_plan(data:object,require_modes:bool=False)->list[str]:
@@ -70,7 +72,7 @@ def validate_repository()->list[str]:
     issues=[f"Missing required resource: {p}" for p in REQUIRED if not (ROOT/p).is_file()]
     if issues:return issues
     skill=(ROOT/"SKILL.md").read_text("utf-8")
-    for name in ("semantic-spacing-rhythm-gate.md","validate_spacing_rhythm.py","audit_spacing_rhythm.mjs"):
+    for name in ("semantic-spacing-rhythm-gate.md","validate_spacing_rhythm.py","audit_spacing_rhythm.mjs","spacing-regression-protection-gate.md","audit_panel_spacing.mjs"):
         if name not in skill:issues.append(f"SKILL.md missing spacing gate route: {name}")
     try:issues.extend(validate_plan(json.loads(SAMPLE.read_text("utf-8")),require_modes=True))
     except (OSError,ValueError) as e:issues.append(str(e))

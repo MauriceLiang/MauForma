@@ -1,5 +1,16 @@
 # Changelog
 
+## v6.19 — 2026-11-06 · Real-page spacing regression protection
+
+- 修复语义间距已经有规则，但 Agent 不标记真实页面/只验证 Skill 演示就把独立区块 `row-gap` 归零的漏检；既有间距受 preserve-first 保护。
+- 新增 `references/spacing-regression-protection-gate.md`，将实际页面 before/after 观察、独立 Section/Peer 不得无理由贴合、用户已确认密度优先、合法 connected 例外作为优化门禁。
+- 新增 `scripts/audit_panel_spacing.mjs`：不用 DOM 标记也能基于计算样式/几何对常见 Grid/Flex 面板进行风险扫描，可与同页面/视口 before 基线比较非零间距的大幅退化；覆盖不足或不同比例会明确报错。
+- 新增 `tests/panel_spacing_browser_smoke.mjs` 作为独立合成正反例：宽/窄/200% 字体下测试正常、零间距、缩小、恢复、声明式共边的区别，不使用任何用户截图。
+- 接入 SKILL、Spacing、Grid、Whitespace、Frontend Gate、Agent Prompt、Visual QA、README、CI；此测试不表示实际业务系统已修改或审美得分。
+
+---
+
+
 ## v6.17 — 2026-11-05 · Icon Art Direction & Semantic Fit
 
 - 解决“图标虽然不完全错误，但轮廓廉价/含义牵强/同组视觉重量混乱”的跨页面问题；强调图标候选筛选**先于**统一尺寸、描边等样式修补。

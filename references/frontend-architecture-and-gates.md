@@ -1,5 +1,13 @@
 # 前端项目架构与验收门槛
 
+## v6.19 · Spacing preservation and real-page verification
+
+Gate 0 / A：对已有布局的改动先保存其独立模块的间距基线，明确 section/peer/connected 的语义，不得因为“简洁”“尽量一屏”就将无关模块共边。见 `references/spacing-regression-protection-gate.md`。
+
+Gate B：独立 Surface 的间距由父级 Grid/Stack tokens 维护；紧凑调整不自动拥有删掉 `row-gap` 的授权。需要有理由且仍可感知的模块边界。
+
+Gate D：在真实目标路由对比 before/after 的模块几何和全页截图。用 `scripts/audit_panel_spacing.mjs` 在没有 `data-mf-space-id` 时执行风险扫描，用 `scripts/audit_spacing_rhythm.mjs` 在有精确关系契约时校验。只测 demo、无检测覆盖、基线不可比应明示，不能假装已通过。
+
 ## v6.18 · Design Reference Learning Gate（抽象迁移，保护来源）
 
 Gate 0：用户提供视觉参考时，尊重明确的原创归属，未经允许不保存/上传图片、变体、真实项目识别信息。先读 `references/design-reference-learning-gate.md`；源内容只支持**当前任务**洞察提取，公开成果只允许通用规则和独立构建的虚构示例。不得在 PR、截图 artifact、commit 描述中引入原始素材。

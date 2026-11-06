@@ -2,6 +2,10 @@
 
 适用于所有 Web（Operate / Persuade / Read / Experience）、全部框架和视觉风格。**布局对齐 ≠ 模块间距正确**：两个分析图表可以共享边界和行起点，却因纵向 `gap:0` 与上下卡片贴合，导致信息区域像一整块没有节奏的白板。仅修圆角、加阴影或单独给每张 Card 增加 padding 都不能解决“组与组的关系”。
 
+## v6.19 · 已有间距不允许在优化中无意清零
+
+v6.16 的显式契约只在 Agent 标记 DOM 时有效。所有已有产品的视觉重构还必须执行 `references/spacing-regression-protection-gate.md`：先记录真实页面的 before 空间关系，保持独立模块的正常 gap，再在 after 实测。没标记也先用 `scripts/audit_panel_spacing.mjs` 对 Grid/Flex 中明显的 Card/Panel 做启发式扫描（可发现 0 gap 和基线大幅缩水）。不要把“更紧凑”解释为 `row-gap:0`；只用独立样例测试不能交付真实页面，复杂开放式模块未被脚本识别时需说明并人工复核。
+
 ## Gate SR0 · Spatial Relationship Map（先辨认空间关系，再分配距离）
 
 对实际页面的可见区域建立简单关系图（不用问用户每一处距离）：明确父级布局、相邻对象、阅读顺序和下列一种关系：

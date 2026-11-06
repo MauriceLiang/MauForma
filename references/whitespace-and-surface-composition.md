@@ -1,5 +1,9 @@
 # Whitespace & Surface Restraint · 让留白表达关系，而不是留着空
 
+## v6.19 · Preserve by default
+
+当用户仅要求优化现有界面的美观/密度，不能自行移除已形成的独立 Section/Peer 外部间距。父级 Grid/Stack 的 gap 与 Card padding 是两件事；相比把下一排区块拼到上一排，优先调整无意义的文案、重复面板和信息结构。以 `references/spacing-regression-protection-gate.md` 为保护门禁，真实浏览器的 before/after 与 `scripts/audit_panel_spacing.mjs` 是必要证据，而不只是代码看着紧凑。
+
 ## v6.16 · Spacing Relationship Map 和节奏验收（通用）
 
 早期 macro / meso / micro 规则只定性描述“组间大、组内小”，但未强制检查**真实模块之间的间距**。现在先读 `references/semantic-spacing-rhythm-gate.md`，在页面级为 `inside/peer/section/connected/anchored` 的相邻关系分配空间 token，再由父级 Grid/Stack 提供 gap；组件的内边距不能代替组间 gap。检查同排 `column-gap` 与跨行 `row-gap`，以及响应式后变成单列时的节奏。卡片与卡片几乎贴合不总是坏事：Tab/Panel 或表头/表体的共边可有意连接；两个独立图表/数据区因误用 `row-gap:0` 被粘连则需返工。

@@ -1,5 +1,17 @@
 # MauForma · 组件优先视觉 QA v2.0
 
+## v6.19 · Real-page panel spacing regression
+
+- [ ] 优化前是否识别并保留现有页面中独立分析/摘要/图表/元数据区的组间留白？没有用户要求不能自行设 `row-gap:0`。
+- [ ] 是否分别检查同排 `column-gap` 与下一排 `row-gap`，以及切为单列时有没有贴合？
+- [ ] 有否在真实路由、同一数据/宽度/字号下采集 before 并对照 after？只通过独立 Skill 示例测试不算目标页面通过。
+- [ ] 无 DOM 标记时是否使用 `scripts/audit_panel_spacing.mjs` 检查大块面板（仅启发式），有精确关系则用 `scripts/audit_spacing_rhythm.mjs`；未覆盖的开放式/嵌套结构是否人工审查？
+- [ ] `UNJUSTIFIED_PANEL_CONTACT` 或 `SPACING_REGRESSION` 出现时是否返工，而不是全标 connected 或用 padding 伪装？
+- [ ] Tab/Panel、表头/表体等确实共边的结构是否保留其正常语义？
+- [ ] 桌面、320/390 宽度、200% 字体、滚动尾部和交互状态下空间关系是否稳定？
+
+规范：`references/spacing-regression-protection-gate.md`；独立回归：`tests/panel_spacing_browser_smoke.mjs`。
+
 ## v6.18 · Reference Learning, Design Transfer & Public Safety Gate
 
 - [ ] 用户明确作品归属时是否按原意处理，未凭截图猜测“内部/第三方”来源？
