@@ -43,6 +43,8 @@ jobs:
           node --check tests/motion_choice_browser_smoke.mjs
           node --check tests/component_motion_browser_smoke.mjs
           node --check scripts/audit_spacing_rhythm.mjs
+          node --check scripts/audit_panel_spacing.mjs
+          node --check tests/panel_spacing_browser_smoke.mjs
           node --check tests/spacing_rhythm_browser_smoke.mjs
           node --check scripts/audit_icon_consistency.mjs
           node --check tests/icon_art_direction_browser_smoke.mjs
@@ -74,6 +76,8 @@ jobs:
         run: node tests/component_motion_browser_smoke.mjs
       - name: Validate semantic spacing, responsive rhythm, intentional connections
         run: node tests/spacing_rhythm_browser_smoke.mjs
+      - name: Validate unannotated panel spacing and regression in Chromium
+        run: node tests/panel_spacing_browser_smoke.mjs
       - name: Validate curated icon geometry, labels and consistency in Chromium
         run: node tests/icon_art_direction_browser_smoke.mjs
       - name: Validate synthetic reference-learning demo in Chromium
@@ -91,6 +95,7 @@ jobs:
             motion-choice-browser-artifacts/
             component-motion-browser-artifacts/
             spacing-rhythm-browser-artifacts/
+            panel-spacing-browser-artifacts/
             icon-art-direction-browser-artifacts/
             reference-learning-browser-artifacts/
           if-no-files-found: ignore
