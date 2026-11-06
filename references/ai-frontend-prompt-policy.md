@@ -15,6 +15,12 @@ Agent 不可以只问“想要哪种风格”，也不可以未经分析就直�
 
 参阅 `references/design-discovery-interview.md` 和 `examples/design-discovery-dialogues.md`，并先于组件和业务页面实施。
 
+## v6.20 · 模糊页面优化必须主动诊断，而不是被动等问题单
+
+用户说“用 MauForma 优化这个页面”即触发**实际页面主动视觉审查**。不需要用户明确说出“独立模块零间距”“字号太小”“图标难看”。先开真实页面，检查空间结构、重要文字、组件密度、图标和色彩、交互与响应式，列出有证据的最高优先级问题并修复。在页面原本已经有不合理共边时，不能因为 before 没变化就认定它合理；先运行 `scripts/audit_existing_visual_defects.mjs`，再用 v6.19 的 baseline 工具保护其他正常间距。开放式/非标准 surface 依然需要全页截图与人工审查。不能只运行 Skill 演示后宣称真实产品已验收，浏览器无法使用时须说明限制。用户纯请求报告/具体 Bug 则按任务边界执行，不借机擅自改品牌/交互决策。
+
+详细规则：`references/proactive-visual-defect-discovery-gate.md`。
+
 ## v6.19 · 视觉优化不可通过移除外部模块间距解决
 
 新的设计方向或更紧凑的布局，不代表用户同意将原本独立的指标、图表、摘要、下一排卡片拼到一起。必须保留现有页面在语义上独立的区域间距，先审真实路由 before，再改父 Grid/Stack gap 并做 after 对照。不加 DOM 标记也应执行 `scripts/audit_panel_spacing.mjs` 风险筛查；有显式契约再用 `scripts/audit_spacing_rhythm.mjs` 精确复核。脚本不识别的开放式布局需结合全页截图审核。失去纵向 `row-gap`、无理由共边或非零却大幅缩水均为需要处理的设计回归。见 `references/spacing-regression-protection-gate.md`。
