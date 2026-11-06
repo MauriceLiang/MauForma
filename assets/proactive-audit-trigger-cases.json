@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0",
+  "description": "Cross-domain task-intent triggers. A vague optimization request is authorization to diagnose and fix evidenced UI issues, not to invent defects or override brand decisions.",
+  "cases": [
+    {
+      "id": "vague-workspace",
+      "mode": "Operate",
+      "prompt": "把当前页面整体优化一下，体验更精致",
+      "expected_path": "discover-repair-verify",
+      "scan": [
+        "spacing",
+        "typography",
+        "component-fit",
+        "icons-color",
+        "states-responsive"
+      ],
+      "reason": "No named defect, so agent must inspect the running page for existing issues before changing CSS"
+    },
+    {
+      "id": "vague-product",
+      "mode": "Persuade",
+      "prompt": "这个产品页面可以更好看吗，直接帮我优化",
+      "expected_path": "discover-repair-verify",
+      "scan": [
+        "spacing",
+        "typography",
+        "component-fit",
+        "icons-color",
+        "states-responsive"
+      ],
+      "reason": "Inspect CTA emphasis, content hierarchy, whitespace and usability rather than only reskinning buttons"
+    },
+    {
+      "id": "vague-reader",
+      "mode": "Read",
+      "prompt": "把这个文档站打磨得舒服一些",
+      "expected_path": "discover-repair-verify",
+      "scan": [
+        "spacing",
+        "typography",
+        "component-fit",
+        "icons-color",
+        "states-responsive"
+      ],
+      "reason": "Examine readable line length, section rhythm and navigation without forcing a management dashboard"
+    },
+    {
+      "id": "vague-portfolio",
+      "mode": "Experience",
+      "prompt": "改善这个作品展示页的视觉体验",
+      "expected_path": "discover-repair-verify",
+      "scan": [
+        "spacing",
+        "typography",
+        "component-fit",
+        "icons-color",
+        "states-responsive"
+      ],
+      "reason": "Preserve art direction and evaluate spatial continuity, visual focus and interactive affordances"
+    },
+    {
+      "id": "explicit-zero-gap",
+      "mode": "Operate",
+      "prompt": "把下面两张独立卡片贴合的问题修复",
+      "expected_path": "scoped-diagnose-repair-verify",
+      "scan": [
+        "spacing",
+        "states-responsive"
+      ],
+      "reason": "Target the reported spacing defect and adjacent responsive context, do not force full unrelated redesign"
+    },
+    {
+      "id": "bug-only",
+      "mode": "Operate",
+      "prompt": "修复登录表单提交时的接口报错",
+      "expected_path": "scoped-functional-fix",
+      "scan": [
+        "states-responsive"
+      ],
+      "reason": "An unrelated runtime bug does not require a broad aesthetic redesign"
+    },
+    {
+      "id": "analysis-only",
+      "mode": "Read",
+      "prompt": "请只评估页面设计问题，暂时不要改代码",
+      "expected_path": "diagnose-report-only",
+      "scan": [
+        "spacing",
+        "typography",
+        "component-fit",
+        "icons-color",
+        "states-responsive"
+      ],
+      "reason": "Respect explicit analysis-only boundary; still inspect for existing defects"
+    }
+  ]
+}
