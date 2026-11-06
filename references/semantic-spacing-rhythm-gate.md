@@ -2,6 +2,10 @@
 
 适用于所有 Web（Operate / Persuade / Read / Experience）、全部框架和视觉风格。**布局对齐 ≠ 模块间距正确**：两个分析图表可以共享边界和行起点，却因纵向 `gap:0` 与上下卡片贴合，导致信息区域像一整块没有节奏的白板。仅修圆角、加阴影或单独给每张 Card 增加 padding 都不能解决“组与组的关系”。
 
+## v6.20 · 默认优化先发现坏的原状，再保护好的间距
+
+如果页面一开始就把两个独立 Section 拼在一起，v6.19 的“保持原有间距”不能证明那种状态合理。泛化优化首先执行 `references/proactive-visual-defect-discovery-gate.md`，对真实页面调用 `scripts/audit_existing_visual_defects.mjs` 无基线/无标记风险发现，区别普通 Block Flow、Grid/Flex 和简单包装层。现有错误应修复；原有良好的 spacing 再由 before/after 保护。脚本识别的主要是明显面板，开放式/Canvas/复杂嵌套仍需视觉审查。
+
 ## v6.19 · 已有间距不允许在优化中无意清零
 
 v6.16 的显式契约只在 Agent 标记 DOM 时有效。所有已有产品的视觉重构还必须执行 `references/spacing-regression-protection-gate.md`：先记录真实页面的 before 空间关系，保持独立模块的正常 gap，再在 after 实测。没标记也先用 `scripts/audit_panel_spacing.mjs` 对 Grid/Flex 中明显的 Card/Panel 做启发式扫描（可发现 0 gap 和基线大幅缩水）。不要把“更紧凑”解释为 `row-gap:0`；只用独立样例测试不能交付真实页面，复杂开放式模块未被脚本识别时需说明并人工复核。
