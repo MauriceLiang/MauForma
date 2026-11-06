@@ -2,6 +2,10 @@
 
 借鉴 Anthropic Webapp Testing 的真实浏览器思路，本文件不把静态检查等同于浏览器运行。使用本项目已有 Playwright/浏览器测试设施；没有时先说明限制，不静默安装新浏览器或远程驱动。
 
+## v6.20 · 模糊优化的主动浏览器诊断
+
+用户只说“优化这个页面”时，**先对实际页面做基线无关的缺陷扫描**，不要把运行原有间距基线当作默认通过，也不要只跑 Skill 自带的 Mock。按 `references/proactive-visual-defect-discovery-gate.md` 从实际页面首/中/末、主要状态、宽窄屏检查空间/主次文字/组件/图标配色/交互；可运行 `node scripts/audit_existing_visual_defects.mjs --url <current-page>` 找到 Block/Grid/Flex 或简单包装层中可见面板的既有贴合。再用 v6.19 的 before/after 对比防止引入新问题。工具有覆盖盲点，实际页面未打开不得称为 Browser PASS；含用户隐私的截图和识别信息不得上传公共仓库或 CI artifact。
+
 ## 必选验收矩阵（按实际项目选用）
 
 - 视口：桌面 1440px、常见笔记本 1024px、手机 390px 或产品主要断点；检查横向溢出、主视觉裁切、字断行与布局回流。
