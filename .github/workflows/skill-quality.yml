@@ -31,6 +31,7 @@ jobs:
           python3 scripts/validate_spacing_rhythm.py --repository
           python3 scripts/validate_icon_curation.py --repository
           python3 scripts/validate_design_reference.py --repository
+          python3 scripts/validate_proactive_audit.py --repository
           python3 scripts/validate_sidebar_color_decision.py --repository
           python3 scripts/validate_navigation_architecture.py --repository
           python3 scripts/validate_page_content_plan.py examples/page-content-plan-repovantage.json --repository
@@ -44,6 +45,8 @@ jobs:
           node --check tests/component_motion_browser_smoke.mjs
           node --check scripts/audit_spacing_rhythm.mjs
           node --check scripts/audit_panel_spacing.mjs
+          node --check scripts/audit_existing_visual_defects.mjs
+          node --check tests/existing_visual_defect_browser_smoke.mjs
           node --check tests/panel_spacing_browser_smoke.mjs
           node --check tests/spacing_rhythm_browser_smoke.mjs
           node --check scripts/audit_icon_consistency.mjs
@@ -78,6 +81,8 @@ jobs:
         run: node tests/spacing_rhythm_browser_smoke.mjs
       - name: Validate unannotated panel spacing and regression in Chromium
         run: node tests/panel_spacing_browser_smoke.mjs
+      - name: Validate detection of pre-existing visible defects in Chromium
+        run: node tests/existing_visual_defect_browser_smoke.mjs
       - name: Validate curated icon geometry, labels and consistency in Chromium
         run: node tests/icon_art_direction_browser_smoke.mjs
       - name: Validate synthetic reference-learning demo in Chromium

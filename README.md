@@ -101,6 +101,14 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 模糊提示词也必须主动找出问题
+
+v6.20 引入 **Proactive Visual Defect Discovery Gate**：用户说“用 MauForma 优化页面”不再要求先把所有设计缺陷逐条指出。Agent 应先检查真实页面的五大维度——结构间距、文字层级、组件/信息密度、图标/配色、交互/响应式——找出有证据的问题并排序，优先修复实际缺陷，再重新打开页面复验。
+
+关键升级是把**主动发现旧问题**与**防止引入新问题**分开：`scripts/audit_existing_visual_defects.mjs` 不需要原始间距基线或预设 DOM 标记，能够发现部分普通 Block Flow、Grid/Flex 和包装层里已经存在的面板贴合；原有 `scripts/audit_panel_spacing.mjs` 继续对比优化前后的间距退化。两者均为启发式检查，不能替代实际界面的视觉评审，不会擅改用户确认的品牌色或交互动效。
+
+[主动缺陷诊断规则](references/proactive-visual-defect-discovery-gate.md) · [无基线缺陷扫描](scripts/audit_existing_visual_defects.mjs) · [模糊优化意图案例](assets/proactive-audit-trigger-cases.json)
+
 ## 模块间距回归保护：优化不能擅自让区块贴合
 
 v6.19 新增 **Spacing Regression Protection Gate**。已有页面的设计优化必须先保留用户认可的独立 Section/Peer 间距，不能以“简洁、紧凑、首屏多放些内容”为理由统一清空 `row-gap`。跨行空间、同排间距和 Card 内 padding 是不同职责；真正一体式的 Tab/Panel 仍可以共边。

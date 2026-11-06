@@ -2,6 +2,12 @@
 
 跨框架、跨网站类型适用。与 `references/semantic-spacing-rhythm-gate.md` 配合：v6.16 规定如何设计空间关系，但过去默认 Agent 会给实际 DOM 加空间标记和执行契约，遗漏时仍能把大区块的 `row-gap` 清零并误称页面“更紧凑”。这版把**现有布局的间距保留与回归检查**提升为更新/优化时的硬门禁。
 
+## v6.20 · 只保护正确的间距，不能保护“已经错误的现状”
+
+v6.19 的 before/after 保护会阻止**新增**退化，但不能代替**首次主动诊断**。已有页面若本来两个独立大卡就贴在一起，before 不能被解读为“用户认可的间距”。模糊优化请求必须先执行 `references/proactive-visual-defect-discovery-gate.md`，用 `scripts/audit_existing_visual_defects.mjs` 对当前真实页面做无需基线的发现；报告现有贴合风险，辨别是真正独立 Section/Peer 还是有意连体的 Tab/Panel。需要修复的问题不能靠“保留原貌”来跳过。
+
+之后才使用本文件的 before/after 检查保留**已经合理的**空间关系。自动扫描不能替代完整截图/业务语义判断，未覆盖的部分必须明确说明。
+
 ## Gate SG0 · Preserve by default：设计优化不能擅自消灭既有留白
 
 - 用户要求“优化”“更精致”“清爽”“让首屏装下更多内容”“简约/低密度”等，并不意味着授权把**原本独立的模块**拼接、把 `row-gap` 归零、删掉父 `gap`、或用负 `margin` 收缩视觉分隔。

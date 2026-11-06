@@ -1,5 +1,15 @@
 # 前端项目架构与验收门槛
 
+## v6.20 · Defect-first default for vague optimization tasks
+
+Gate 0：解析任务意图。“优化页面”默认是主动诊断+修复，而非只调 CSS Tokens；单点功能 Bug 不强制全站审美改版；仅评估不改代码。先读 `references/proactive-visual-defect-discovery-gate.md`。
+
+Gate A：先看运行中页面真实缺陷，覆盖空间/字号/组件/图标与色彩/交互响应式。即使原布局本来就没有 Section 间距，也必须发现并判定，无理由独立模块接壤属于待审查风险；不能靠 preserve-baseline 视为正确。无基线可运行 `scripts/audit_existing_visual_defects.mjs`，它只是启发式。
+
+Gate B/C：优先修复影响阅读和任务的高价值问题，保持已有正确结构、品牌/动效和用户确认的设计决定。对 Block Flow、Grid/Flex、嵌套包装层的模块间距都要检查，不把 padding 伪装成外部 gap。
+
+Gate D：重新打开**被修改的真实页面**验证缺陷消失，再以原 v6.19 before/after 保护良好间距，补充人工截图审查与窄屏。只跑 Skill 独立 demo 的 smoke 不是业务页面的视觉验收。
+
 ## v6.19 · Spacing preservation and real-page verification
 
 Gate 0 / A：对已有布局的改动先保存其独立模块的间距基线，明确 section/peer/connected 的语义，不得因为“简洁”“尽量一屏”就将无关模块共边。见 `references/spacing-regression-protection-gate.md`。

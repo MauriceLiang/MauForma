@@ -1,5 +1,16 @@
 # Changelog
 
+## v6.20 — 2026-11-06 · Proactive visual defect discovery on vague optimization prompts
+
+- 修正 v6.19 的核心缺口：before/after 可以避免**新增**间距退化，却不能发现页面一开始已经存在的独立模块贴合；模糊“优化页面”要求 Agent **主动诊断真实页面的现有缺陷**，不能只刷颜色/字号/圆角。
+- 新增 `references/proactive-visual-defect-discovery-gate.md`：按模糊优化、点名视觉问题、功能 Bug、只评估四类任务触发不同执行路径；默认五维审查 → 证据排序 → 修复 → 真实页面复验，旧错误不当作正常基线。
+- 新增 `scripts/audit_existing_visual_defects.mjs`：无需 before/标记，在普通 Block Flow、Grid/Flex 和嵌套包装层中发现已有的显著面板共边/重叠，同时保留有理由的连体例外并明确覆盖局限。
+- 新增 `assets/proactive-audit-trigger-cases.json`、`scripts/validate_proactive_audit.py` 与 Python 反例测试；原创 `tests/existing_visual_defect_browser_smoke.mjs` 在三种窗口宽度×两种字号下验证“首次扫描现状失败 → 修复后通过”、局部 connected 例外与对整页伪豁免的拒绝。
+- 接入主 Skill、Spacing/Regression、Frontend、Agent Prompt、Visual QA、Browser QA、Critique Loop、README/CI。没有放入用户提供的截图或识别数据。脚本通过只是启发式风险检查，不等于真实页面审美成功。
+
+---
+
+
 ## v6.19 — 2026-11-06 · Real-page spacing regression protection
 
 - 修复语义间距已经有规则，但 Agent 不标记真实页面/只验证 Skill 演示就把独立区块 `row-gap` 归零的漏检；既有间距受 preserve-first 保护。
