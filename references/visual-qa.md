@@ -1,5 +1,16 @@
 # MauForma · 组件优先视觉 QA v2.0
 
+## v6.20 · Proactive defect discovery for vague prompts
+
+- [ ] 用户只说“优化页面/更精致”时，有没有主动诊断真实页面现有缺陷，而不等用户列举每一个问题？
+- [ ] 是否至少检查空间分隔、字号与层级、组件密度、图标/配色、交互与响应式五方面；列出证据充分的主要风险，不为了凑数编造问题？
+- [ ] 是否先用 `scripts/audit_existing_visual_defects.mjs` 查首次出现的独立模块共边，而不是只比较 before/after 并保护历史坏状态？
+- [ ] 修复后的实际页面（而非仅 Skill Demo）是否重新打开复验，原来的问题确实消失？如未完成是否标 UNFIXED 或 NOT AUDITED？
+- [ ] 对真正有语义的 Tab/Panel 共边是否保留，是否避免无根据统一设置所有卡片间距？
+- [ ] 用户只要求评估时是否没有擅改代码，局部功能故障是否没有借机重设计品牌或全站？
+
+规范：`references/proactive-visual-defect-discovery-gate.md`；原创建模测试：`tests/existing_visual_defect_browser_smoke.mjs`。
+
 ## v6.19 · Real-page panel spacing regression
 
 - [ ] 优化前是否识别并保留现有页面中独立分析/摘要/图表/元数据区的组间留白？没有用户要求不能自行设 `row-gap:0`。
