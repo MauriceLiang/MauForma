@@ -15,6 +15,10 @@ Agent 不可以只问“想要哪种风格”，也不可以未经分析就直�
 
 参阅 `references/design-discovery-interview.md` 和 `examples/design-discovery-dialogues.md`，并先于组件和业务页面实施。
 
+## v6.19 · 视觉优化不可通过移除外部模块间距解决
+
+新的设计方向或更紧凑的布局，不代表用户同意将原本独立的指标、图表、摘要、下一排卡片拼到一起。必须保留现有页面在语义上独立的区域间距，先审真实路由 before，再改父 Grid/Stack gap 并做 after 对照。不加 DOM 标记也应执行 `scripts/audit_panel_spacing.mjs` 风险筛查；有显式契约再用 `scripts/audit_spacing_rhythm.mjs` 精确复核。脚本不识别的开放式布局需结合全页截图审核。失去纵向 `row-gap`、无理由共边或非零却大幅缩水均为需要处理的设计回归。见 `references/spacing-regression-protection-gate.md`。
+
 ## v6.18 · 从设计参考学习，但不把参考带到公共交付物
 
 收到用户喜欢的 UI 参考时，尊重明确的原创归属，不随意推断是内部或第三方资料。将参考中的可读字号、图标、选中态、数据密度、间距、色彩角色转成**通用决策规则**，不抄原图的字段、配色像素、完整布局或品牌信息。若用户禁止图片入库，则**任何**原图、裁剪/模糊/打码/重编码变体、可识别项目数据和品牌都不得进入仓库代码、测试、PR、Actions artifact。需 demo 时另做无关联的全新虚构界面、数据及动作。参见 `references/design-reference-learning-gate.md`；Clean Enterprise 是可选风格 `references/clean-enterprise-design.md`，不能擅自成为全站默认。发布前人工核对全部改动，脚本只是辅助。
