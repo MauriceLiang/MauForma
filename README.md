@@ -101,6 +101,14 @@ $mauforma
 
 已有设计稿或项目时也可直接要求 MauForma **沿用现有设计语言、审查问题或重构共享组件**，无需重复选择风格。
 
+## 模块间距回归保护：优化不能擅自让区块贴合
+
+v6.19 新增 **Spacing Regression Protection Gate**。已有页面的设计优化必须先保留用户认可的独立 Section/Peer 间距，不能以“简洁、紧凑、首屏多放些内容”为理由统一清空 `row-gap`。跨行空间、同排间距和 Card 内 padding 是不同职责；真正一体式的 Tab/Panel 仍可以共边。
+
+新增 `scripts/audit_panel_spacing.mjs`，无需预先添加 `data-mf-space-id`，即可对真实页面常见 Grid/Flex 下的 panel 进行启发式间距扫描；可生成 before 并将 after 与之比对，发现非零但明显缩小的间距。原有 `audit_spacing_rhythm.mjs` 仍用于带语义/token 的精确契约。**自动扫描不能覆盖所有布局，也不能充当审美评分**：要检查真实路由的全页截图、窄屏、字体放大与滚动末尾，不能只测 Skill 演示。
+
+[空间回归保护规范](references/spacing-regression-protection-gate.md) · [无标记 Panel 检查](scripts/audit_panel_spacing.mjs) · [交互式正反回归](tests/panel_spacing_browser_smoke.mjs)
+
 ## 设计参考学习：保留优点，不复制来源页面
 
 v6.18 引入 **Design Reference Learning Gate**：对用户提供的优秀 UI 参考，先提炼字体、导航选中、图标、配色角色、信息密度、分区节奏等可迁移原则，说明它们为什么有效、适合什么项目以及不能照搬什么。用户声明为原创设计时必须尊重归属；参考图片本身及任何变体**不进入仓库或 PR**，示例也不包含来源中的可识别项目资料。
