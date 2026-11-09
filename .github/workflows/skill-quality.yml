@@ -33,6 +33,8 @@ jobs:
           python3 scripts/validate_design_reference.py --repository
           python3 scripts/validate_proactive_audit.py --repository
           python3 scripts/validate_product_experience.py
+          python3 scripts/validate_settings_form_layout.py --repository
+          node --check tests/settings_form_browser_smoke.mjs
           python3 scripts/validate_sidebar_color_decision.py --repository
           python3 scripts/validate_navigation_architecture.py --repository
           python3 scripts/validate_page_content_plan.py examples/page-content-plan-repovantage.json --repository
@@ -84,6 +86,8 @@ jobs:
         run: node tests/panel_spacing_browser_smoke.mjs
       - name: Validate detection of pre-existing visible defects in Chromium
         run: node tests/existing_visual_defect_browser_smoke.mjs
+      - name: Validate settings/form layout in Chromium
+        run: node tests/settings_form_browser_smoke.mjs
       - name: Validate curated icon geometry, labels and consistency in Chromium
         run: node tests/icon_art_direction_browser_smoke.mjs
       - name: Validate synthetic reference-learning demo in Chromium
