@@ -3,13 +3,24 @@ name: mauforma
 description: MauForma — Web-first, framework-aware, component-first frontend design and implementation Skill for Vue/Nuxt, React/Next, Svelte/SvelteKit, Angular, Solid, Astro and vanilla HTML/CSS/JS. Establish design tokens and reusable components before pages; create coherent visual systems, accessible responsive UI, purposeful motion and detailed good/bad examples. Product-context routing across consumer, learning, content, commerce, creative, marketing and admin, with UX-first structure and staged visual refinement. Includes Anime.js v4 catalog, React Bits / Vue Bits / Inspira UI creative components, Ant Design / Ant Design Vue and other enterprise libraries, Motion/GSAP/CSS engine choices, and enforceable agent prompts.
 ---
 
-# MauForma · Web-first 前端视觉与工程 Skill v6.21
+# MauForma · Web-first 前端视觉与工程 Skill v6.22
 
 **品牌**：MauForma（Maurice + Forma）。原 Soft Precision UI v5.0 的完整能力保留，现已扩充为内容驱动艺术指导、设计知识库、项目级设计规范、组件工程与 QA 的综合 Web Skill。
 
 **定位**：网页设计与前端实现（Web-first）。支持所有网页类型，**保留后台/SaaS 专项能力，并根据消费者、教育、内容、创作、商业与后台场景切换 UX 策略**，不把其他网站套成后台模板。框架：Vue 3 / Nuxt、React / Next.js、Svelte / SvelteKit、Angular、Solid、Astro、HTML/CSS/JS；若是 Electron/Tauri 的 **Web 前端层**也适用。**不以 SwiftUI、AppKit、原生 Android 等非 Web UI 为直接适用对象**。
 
 **主原则**：审美统一 ≠ 每页一个模板。统一设计语言 + 共用组件 + 符合具体业务的信息架构 + 恰当动效 + 可访问、可测试的功能。可以自主**提案**主题色，但新配色进入正式实施前须尊重用户明确选择与决策来源，不自行固定用户未认可的蓝紫粉或其他颜色。
+
+## v6.22 · Settings & Form Scenario Layout Gate（设置行与连续表单分开设计）
+
+**在设置、注册、结账、资料编辑、账户配置及混合页面中，产品类型路由后必须继续判断每个区域的提交语义。** 读取 `references/settings-form-layout-gate.md`。本规则接入 PX1/PX2 与 R1/R2，不代替已批准的设计系统或全局页面模式。
+
+- **独立设置**：短名称/说明在左，Switch、Select、小按钮等紧凑控件在右；每条独立成行，按语义分组，**组间距离大于组内距离**。宽度不足时改上下排列，不能压扁控件或截断说明。
+- **连续表单**：一组字段整体提交（注册、结账、复杂账户编辑）默认标签在上、输入在下；字段、帮助与错误提示归属同一簇，输入填满**适宽表单内容列**而非无限拉长整页。
+- **混合页面必须分区域路由**：设置里的密码、SMTP、地址和 API Key 多字段表单采用纵向字段簇，其他可独立保存的偏好仍用设置行。按实际操作与验证逻辑判定，不按“设置页”三个字一刀切。
+- **表面去壳要有边界**：优先去掉无意义的整页大 Card/嵌套卡片，但保留有真实任务范围的单层容器、分隔、组间留白和既有布局契约；不得造成旧版出现过的独立模块粘连。
+- **危险操作隔离、保存反馈真实**：删除/清空/重置单独分区并确认；控件要有可见关联标签，真实的成功/错误/恢复反馈，不许把示例 Mock 当已保存。
+- **验收而非只宣告设计正确**：检查 360px 窄屏、宽屏、200% 字体、长文案、错误、保存失败、焦点、末尾可达性；没有实际浏览器和后端证据标 NOT TESTED。使用 `assets/settings-form-layout-cases.json`、`examples/settings-form-layout-demo.html` 和 `scripts/validate_settings_form_layout.py --repository` 验证知识库与虚构示例，不能当真实产品通过。
 
 ## v6.21 · Product Experience Routing & Progressive Visual Refinement（先 UX 后 UI，分阶段精修）
 
