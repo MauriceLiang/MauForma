@@ -1,5 +1,16 @@
 # Changelog
 
+## v6.21 — 2026-11-09 · Product experience routing & progressive visual refinement
+
+- 针对“消费者/教育产品被设计成通用后台”的系统性偏差，将产品类型与现有 Persuade/Operate/Read/Experience 页面模式分成两个判断维度；新站/核心页面重构先过业务任务、主行动和信息架构，再进入配色与组件。
+- 新增 `references/product-experience-routing-gate.md`、原创 `assets/product-experience-routes.json`：含后台、消费者、学习、内容、商店、创作、营销和局部 Bug 的反例，阻止无理由套用侧边栏/KPI 模板；“换名测试”仅作启发式。
+- 新增 `references/progressive-visual-refinement-gate.md`、`assets/refinement-stage-cases.json`：R0 现状诊断 → R1 体验结构/视觉中心 → R2 间距布局 → R3 排版配色图标/Emoji → R4 圆角/控件 → R5 真实页面对比。结构问题必须退回 R1，不能只换主题就宣布完成。
+- 补充 `examples/progressive-refinement-scenarios.md`，使用完全虚构的后台/消费者/局部问题案例，不收录用户提交的四张参考图或可识别业务信息。不强制去掉所有 emoji、渐变或品牌艺术风格。
+- 将新门禁接入主 SKILL、README、Agent 提示词、视觉诊断及评分；新增 `scripts/validate_product_experience.py` 和 `tests/test_product_experience.py` 的静态用例/反例检查，接入质量 CI。
+- 自动校验仅证明规则/案例结构自洽；不代表真实网站已通过视觉审查、无障碍验证或用户测试。
+
+---
+
 ## v6.20 — 2026-11-06 · Proactive visual defect discovery on vague optimization prompts
 
 - 修正 v6.19 的核心缺口：before/after 可以避免**新增**间距退化，却不能发现页面一开始已经存在的独立模块贴合；模糊“优化页面”要求 Agent **主动诊断真实页面的现有缺陷**，不能只刷颜色/字号/圆角。

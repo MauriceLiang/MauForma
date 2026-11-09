@@ -1,0 +1,158 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Synthetic cross-domain cases for classifying product experience before page layout; examples are independently invented and not derived from user screenshots.",
+  "cases": [
+    {
+      "id": "operations-console",
+      "product_type": "Admin / Operations",
+      "page_mode": "Operate",
+      "audience": "shift supervisor",
+      "user_job": "identify and resolve failed inventory transfers",
+      "primary_action": "Open unresolved transfer",
+      "priority_content": [
+        "pending transfers",
+        "failure reason",
+        "age and owner"
+      ],
+      "layout_directions": [
+        "queue-first",
+        "exception-first"
+      ],
+      "anti_pattern": "large greeting and decorative KPI cards conceal actionable failures",
+      "requires_ux_restructure": true
+    },
+    {
+      "id": "consumer-tracker",
+      "product_type": "Consumer Utility",
+      "page_mode": "Operate",
+      "audience": "returning individual user",
+      "user_job": "resume a saved household plan",
+      "primary_action": "Continue plan",
+      "priority_content": [
+        "last saved step",
+        "next task",
+        "completion feedback"
+      ],
+      "layout_directions": [
+        "next-action-first",
+        "activity-history-first"
+      ],
+      "anti_pattern": "generic management dashboard shows activity counts but no next step",
+      "requires_ux_restructure": true
+    },
+    {
+      "id": "learning-session",
+      "product_type": "Learning / Education",
+      "page_mode": "Experience",
+      "audience": "returning learner",
+      "user_job": "complete the next meaningful practice session",
+      "primary_action": "Begin next session",
+      "priority_content": [
+        "available practice",
+        "current stage",
+        "last verified progress"
+      ],
+      "layout_directions": [
+        "session-first",
+        "learning-path-first"
+      ],
+      "anti_pattern": "changing project to lesson is the only distinction from enterprise dashboard",
+      "requires_ux_restructure": true
+    },
+    {
+      "id": "media-library",
+      "product_type": "Content / Media",
+      "page_mode": "Read",
+      "audience": "casual reader",
+      "user_job": "find an article on a chosen topic",
+      "primary_action": "Read selected article",
+      "priority_content": [
+        "relevant story",
+        "topic filters",
+        "reading context"
+      ],
+      "layout_directions": [
+        "editorial-first",
+        "search-first"
+      ],
+      "anti_pattern": "all content cards share the same labels and have no discovery cues",
+      "requires_ux_restructure": true
+    },
+    {
+      "id": "independent-shop",
+      "product_type": "Commerce",
+      "page_mode": "Persuade",
+      "audience": "first-time buyer",
+      "user_job": "compare reusable water bottles and buy one",
+      "primary_action": "View product details",
+      "priority_content": [
+        "product differences",
+        "price and availability",
+        "shipping information"
+      ],
+      "layout_directions": [
+        "comparison-first",
+        "product-grid-first"
+      ],
+      "anti_pattern": "decorative discounts suppress real price and product information",
+      "requires_ux_restructure": true
+    },
+    {
+      "id": "story-editor",
+      "product_type": "Creative Tool",
+      "page_mode": "Operate",
+      "audience": "writer working on a draft",
+      "user_job": "continue editing and safely save a draft",
+      "primary_action": "Edit draft",
+      "priority_content": [
+        "active document",
+        "save state",
+        "preview"
+      ],
+      "layout_directions": [
+        "canvas-first",
+        "outline-first"
+      ],
+      "anti_pattern": "dashboard cards displace the main editing canvas",
+      "requires_ux_restructure": true
+    },
+    {
+      "id": "gallery-portfolio",
+      "product_type": "Marketing / Portfolio",
+      "page_mode": "Persuade",
+      "audience": "visitor exploring work",
+      "user_job": "understand creative work and contact the author",
+      "primary_action": "Explore featured project",
+      "priority_content": [
+        "featured creative work",
+        "portfolio context",
+        "contact route"
+      ],
+      "layout_directions": [
+        "featured-work-first",
+        "collection-first"
+      ],
+      "anti_pattern": "admin sidebar and analytics widgets distract from work",
+      "requires_ux_restructure": true
+    },
+    {
+      "id": "approved-local-fix",
+      "product_type": "Consumer Utility",
+      "page_mode": "Operate",
+      "audience": "returning individual user",
+      "user_job": "change a notification toggle in an already approved settings view",
+      "primary_action": "Save preference",
+      "priority_content": [
+        "current value",
+        "save confirmation",
+        "error state"
+      ],
+      "layout_directions": [
+        "preserve-approved-layout",
+        "scoped-control-fix"
+      ],
+      "anti_pattern": "unnecessary homepage redesign while only fixing a toggle",
+      "requires_ux_restructure": false
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0",
+  "description": "Independent scenarios illustrating staged review, legitimate exceptions, and the stop-on-UX-failure rule.",
+  "order": [
+    "R0",
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5"
+  ],
+  "gates": [
+    {
+      "id": "R0",
+      "name": "Baseline and diagnosis",
+      "must_check": [
+        "current task",
+        "evidence",
+        "existing decisions",
+        "defect priority"
+      ],
+      "stop_if": "no inspected source or unverified assumptions are presented as facts"
+    },
+    {
+      "id": "R1",
+      "name": "Experience and composition",
+      "must_check": [
+        "product-specific task",
+        "primary action",
+        "information hierarchy",
+        "alternative structure when failed"
+      ],
+      "stop_if": "core product UX remains generic or primary task is missing"
+    },
+    {
+      "id": "R2",
+      "name": "Layout and spacing",
+      "must_check": [
+        "inside-peer-section-connected relationships",
+        "horizontal and vertical rhythm",
+        "viewport and scroll reachability"
+      ],
+      "stop_if": "independent sections collide or content becomes unreachable"
+    },
+    {
+      "id": "R3",
+      "name": "Typography palette and icons",
+      "must_check": [
+        "legibility",
+        "semantic colors",
+        "icon relevance",
+        "emoji role"
+      ],
+      "stop_if": "brand choice is overwritten or critical information loses contrast"
+    },
+    {
+      "id": "R4",
+      "name": "Radius and component finish",
+      "must_check": [
+        "radius hierarchy",
+        "component role consistency",
+        "interaction states"
+      ],
+      "stop_if": "component finish breaks behavior or accessibility"
+    },
+    {
+      "id": "R5",
+      "name": "Compare and verify",
+      "must_check": [
+        "same route-state-viewport before-after",
+        "task improvement",
+        "responsive and reduced motion",
+        "honest verification status"
+      ],
+      "stop_if": "claimed complete without evidence or unresolved P0 task issues"
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "children-story-learning",
+      "product_type": "Learning / Education",
+      "situation": "playful illustrations and intentional emoji convey lesson content",
+      "decision": "preserve_brand_expression",
+      "reason": "visual play has a purpose and is not automatically a defect"
+    },
+    {
+      "id": "connected-tabs",
+      "product_type": "Admin / Operations",
+      "situation": "tabs and their associated pane deliberately share a border",
+      "decision": "allow_connected_zero_gap",
+      "reason": "semantically one control"
+    },
+    {
+      "id": "approved-one-button-fix",
+      "product_type": "Consumer Utility",
+      "situation": "user requested a single button error fix with approved layout",
+      "decision": "scoped_repair",
+      "reason": "avoid unapproved information architecture changes"
+    },
+    {
+      "id": "structural-education-failure",
+      "product_type": "Learning / Education",
+      "situation": "homepage only offers KPIs and generic cards with no next practice task",
+      "decision": "return_to_R1",
+      "reason": "color and radius cannot repair missing task architecture"
+    },
+    {
+      "id": "decorative-emoji-dashboard",
+      "product_type": "Admin / Operations",
+      "situation": "unrelated emoji beside every KPI and alert",
+      "decision": "consider_replace_or_remove",
+      "reason": "inconsistent decoration obstructs scanning"
+    },
+    {
+      "id": "high-contrast-creative",
+      "product_type": "Marketing / Portfolio",
+      "situation": "approved bold gradients express a distinctive creative brand",
+      "decision": "preserve_brand_expression",
+      "reason": "saturation is not intrinsically AI-generated"
+    }
+  ]
+}

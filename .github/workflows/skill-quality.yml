@@ -32,6 +32,7 @@ jobs:
           python3 scripts/validate_icon_curation.py --repository
           python3 scripts/validate_design_reference.py --repository
           python3 scripts/validate_proactive_audit.py --repository
+          python3 scripts/validate_product_experience.py
           python3 scripts/validate_sidebar_color_decision.py --repository
           python3 scripts/validate_navigation_architecture.py --repository
           python3 scripts/validate_page_content_plan.py examples/page-content-plan-repovantage.json --repository
