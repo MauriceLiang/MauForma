@@ -1,5 +1,15 @@
 # Changelog
 
+## v6.22 — 2026-11-09 · Settings & Form Scenario Layout Gate
+
+- 设置、表单与混合页面进一步按**保存和提交语义**分流：独立短设置项采用左名称右控件，连续字段采用上标签下输入，混合配置按子区域组合，而非只根据页面名称套布局。
+- 去除不必要的页面外层大卡与重复容器时保留必要有界面板、组间留白和分割；危险操作单独分组、确认，长字段与错误支持窄屏和 200% 字体。
+- 新增 `references/settings-form-layout-gate.md`、`assets/settings-form-layout-cases.json`、原创 `examples/settings-form-layout-demo.html`，静态/变异测试及 Playwright 宽窄屏交互回归。
+- 同步 SKILL、README、Product Routing、R0–R5、Agent 提示词、视觉 QA、Frontend Gate、CI；示例和脚本 PASS 不能代表真实产品保存行为或审美通过。
+
+---
+
+
 ## v6.21 — 2026-11-09 · Product experience routing & progressive visual refinement
 
 - 针对“消费者/教育产品被设计成通用后台”的系统性偏差，将产品类型与现有 Persuade/Operate/Read/Experience 页面模式分成两个判断维度；新站/核心页面重构先过业务任务、主行动和信息架构，再进入配色与组件。
