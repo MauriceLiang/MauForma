@@ -36,6 +36,14 @@
 | **03** | **Design System & Engineering** · 设计与实现 | 从全局 Tokens、共享组件和页面级规范开始，兼顾 Vue / React 等前端技术栈的组件契约、状态管理及可维护性。 |
 | **04** | **Review & Quality** · 质量验证 | 在源码审查之外，结合浏览器截图、交互、响应式、无障碍与性能约束进行验证。区分“实际通过”与“尚未测试”。 |
 
+### v6.21 · 先看产品，再决定怎么精修
+
+MauForma 现在将 **产品体验类型（Admin / Consumer / Learning / Content / Commerce / Creative）** 与 **页面任务模式（Persuade / Operate / Read / Experience）** 分开判断。学习站不能只把后台的“项目”改成“课程”；运营控制台也不必强行做成营销网页。
+
+当用户要求“优化这个页面”时，先检查任务与信息架构是否正确，再分阶段改进：**R0 诊断 → R1 视觉中心与 UX 结构 → R2 间距/格线 → R3 字体/配色/图标 → R4 圆角/组件 → R5 实际页面前后复验**。结构性失败不能靠换肤通过；已确认的局部 Bug 则只修受影响范围。
+
+[产品体验路由](references/product-experience-routing-gate.md) · [分阶段视觉精修](references/progressive-visual-refinement-gate.md) · [原创跨产品案例](examples/progressive-refinement-scenarios.md)
+
 ### 一致的语言，不相同的页面
 
 MauForma 将页面的核心目标区分为四种模式：
@@ -49,15 +57,15 @@ MauForma 将页面的核心目标区分为四种模式：
 ## 设计方法
 
 ```text
-DISCOVER    理解产品用途、展示内容和用户任务
+DISCOVER    判断产品类型、用户任务、真实内容与使用情境
     ↓
-DIRECT      推荐设计方向，明确视觉焦点与关键属性
+DIRECT      先验证信息架构与下一步行动，再确定视觉中心
     ↓
 SYSTEMIZE   固化项目决策、全局 Tokens 与页面级覆盖
     ↓
 BUILD       先构建共享组件，再组合业务页面
     ↓
-VERIFY      检查真实交互、视觉实现与响应式表现
+VERIFY      按 R0–R5 对照诊断、阶段性改进与真实页面复验
 ```
 
 在此过程中，MauForma 会区分**用户确认、委托 Agent 决定、继承既有规范和仍待确认**的选择。推荐不会被冒充为用户决定，也不会在局部修复时重复进行整套设计访谈。
