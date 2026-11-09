@@ -26,6 +26,10 @@ MauForma 不再只以页面名（Dashboard / Home / Table）或「Persuade / Ope
 
 第二轴沿用 Persuade / Operate / Read / Experience 四种页面任务模式。示例：消费者学习首页可以是 Learning × Operate/Experience；管理员告警页是 Admin × Operate。两者可以共用按钮、列表，却不应强制共用首页信息结构。
 
+### 页面内子场景补充：Settings / Form / Hybrid（v6.22）
+
+产品类型确定后，还要按**真实提交单位**识别局部页面布局：独立生效的短设置项走左右设置行；多字段整体提交走上标签/下输入的纵向字段簇；混合页面分区域处理。该判断不取代产品类型或 Operate 等页面模式。须记录危险操作、错误信息、响应式和确认的既有设计；详细入口见 [Settings & Form Layout Gate](settings-form-layout-gate.md)。
+
 ## PX2 · UX-first 信息架构门禁
 
 任何新页面的核心结构确定前，都要给出简短的 Page Purpose Card：
