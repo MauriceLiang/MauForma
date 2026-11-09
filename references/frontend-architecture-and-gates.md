@@ -60,6 +60,12 @@ Gate B：基于用户确认建立 Motion Tokens 和页面内真实交互列表�
 
 Gate D：真实浏览器切换 Tab/弹层/导航/消息/列表与系统 reduced-motion，观察生效的进退场和静态回退，验证快速点击可中断、内容即刻可见、状态与键盘完整。静态决策校验 `scripts/validate_motion_decision.py` 不证明实际动画表现。
 
+## v6.22 · 设置与表单按交互语义选择布局
+
+Gate A：当页面包含设置/注册/结账/连续录入/混合配置时，先读取 `references/settings-form-layout-gate.md`，按单项独立生效或整组提交分别使用设置行或纵向字段簇；危险操作分区，保留原有 IA 与组件。
+Gate B：设置分组以 group-gap > item-gap 建立清晰层级，控件不能被左侧说明挤压；表单输入占满有上限的内容列，label、帮助和错误信息关联；必要容器可保留，去壳不去间距。
+Gate D：在实际页面检测宽/窄屏、长翻译、200% 字体、保存/提交失败与底部可达性。参考独立虚构演示和 Chromium 回归，未验证实际产品时不能标记通过。
+
 ## v6.13 · 全类型页面的 Surface / Geometry Gate
 
 Gate A：基于真实用户任务评估 open collection、单层 panel、媒体/商品 cards、editorial flow 或分栏/沉浸 stage；说明所选表面及拒绝候选的理由（`references/surface-architecture-gate.md`）。不把巨型外卡当成后台默认。

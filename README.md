@@ -36,6 +36,14 @@
 | **03** | **Design System & Engineering** · 设计与实现 | 从全局 Tokens、共享组件和页面级规范开始，兼顾 Vue / React 等前端技术栈的组件契约、状态管理及可维护性。 |
 | **04** | **Review & Quality** · 质量验证 | 在源码审查之外，结合浏览器截图、交互、响应式、无障碍与性能约束进行验证。区分“实际通过”与“尚未测试”。 |
 
+### v6.22 · 设置页与连续表单必须先判断保存语义
+
+新增 **Settings & Form Scenario Layout Gate**：可独立修改的设置项优先采用「左文字/右控件」分组列表；注册、结账、复杂配置等需要整体提交的表单优先采用「上标签/下输入」字段簇，保留足够输入宽度和完整的错误提示。混合设置页按子区域分别判定，不能只看页面标题。
+
+设置页优化时优先移除没有独立语义的页面外层大卡，但**不删除必要的分隔与组间间距**；危险操作必须独立成组。窄屏允许重排而非压缩开关和输入框。新增虚构的可交互设置/表单试验页、场景契约、静态反例及 Chromium 响应式检查；所有示例均不连接实际后端。
+
+[设置与表单布局规范](references/settings-form-layout-gate.md) · [布局场景案例](assets/settings-form-layout-cases.json) · [可交互排版演示](examples/settings-form-layout-demo.html)
+
 ### v6.21 · 先看产品，再决定怎么精修
 
 MauForma 现在将 **产品体验类型（Admin / Consumer / Learning / Content / Commerce / Creative）** 与 **页面任务模式（Persuade / Operate / Read / Experience）** 分开判断。学习站不能只把后台的“项目”改成“课程”；运营控制台也不必强行做成营销网页。

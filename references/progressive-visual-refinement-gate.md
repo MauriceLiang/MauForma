@@ -29,6 +29,8 @@
 
 ## R2 · Layout & Spacing（间距、格线、密度）
 
+**v6.22 场景排版检查**：在 Settings / Form / Hybrid 页面进入 R2 时，必须先通过 [Settings & Form Layout Gate](settings-form-layout-gate.md)：独立设置短控件左右排列（必要时窄屏折叠）、连续表单上下字段簇、混合区域按保存语义划分；分组留白和危险操作不能被“去掉外层卡片”一起删除。字段错误、控件压缩、保存/提交反馈是 R5 实际复验项目。
+
 区分 inside / peer / section / connected / anchored 的空间语义；检查行列对齐、父级 gap 与内 padding、页面尾部余量、滚动可达性、窄屏重排。独立内容区域不得无意零间距贴合，合法的 Tab 与 Panel、表头与数据可以共边。减少重复标题和多余卡片，而不是给所有容器机械设置相同的 16px。
 
 复用 [语义间距](semantic-spacing-rhythm-gate.md)、[间距回归](spacing-regression-protection-gate.md)、[视口安全](grid-alignment-and-viewport-safety.md) 的既有规则和检查工具。

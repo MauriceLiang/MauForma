@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MauForma · Settings & Forms Layout Lab</title>
+<style>
+  :root{color-scheme:light;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#1b2028;background:#f8f9fa;font-size:16px}
+  *{box-sizing:border-box}
+  body{margin:0}
+  button,input,select{font:inherit}
+  button,select,input[type=checkbox]{cursor:pointer}
+  :focus-visible{outline:3px solid #255cc7;outline-offset:3px}
+  .page{max-width:1080px;margin:0 auto;padding:40px 28px 88px}
+  h1{font-size:28px;line-height:1.2;margin:0}
+  .intro{color:#555f69;line-height:1.6;margin:12px 0 32px}
+  h2{font-size:21px;line-height:1.35;margin:0 0 8px}
+  h3{font-size:16px;line-height:1.4;margin:0}
+  .note,.help{color:#5c6874;font-size:14px;line-height:1.55}
+  .note{margin:2px 0 12px}
+  .settings-group + .settings-group{margin-top:40px}
+  .settings-group h2{padding-bottom:8px}
+  .settings-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(150px,max-content);align-items:center;gap:24px;min-height:76px;padding:16px 0;border-bottom:1px solid #dfe3e8}
+  .settings-row .details{min-width:0}
+  .settings-row .details p{margin:5px 0 0}
+  .settings-row .control{min-width:0;justify-self:end}
+  .settings-row select{width:168px;max-width:100%;padding:9px 12px;border:1px solid #a9b1ba;border-radius:7px;background:white}
+  .settings-row label{font-weight:600}
+  input[type=checkbox]{width:20px;height:20px;accent-color:#215bb9;vertical-align:middle}
+  .toggle-label{display:inline-flex;gap:10px;align-items:center;font-weight:500!important;white-space:nowrap}
+  .settings-status{margin:14px 0 0;min-height:1.6em;color:#315a3e;font-size:14px}
+  .danger-zone{margin-top:40px;padding-top:24px;border-top:2px solid #ad413e}
+  .danger-zone p{margin:5px 0 16px}
+  .danger-zone button{border:1px solid #b3403a;color:#982b27;background:transparent;border-radius:7px;padding:10px 16px}
+  .form-section{margin-top:66px;padding-top:28px;border-top:1px solid #dce0e5}
+  .form-column{width:100%;max-width:620px}
+  .form-field{display:flex;flex-direction:column;align-items:stretch;gap:7px;margin-top:20px}
+  .form-field label{font-size:15px;font-weight:600}
+  .form-field input{width:100%;min-width:0;border:1px solid #9da7b1;background:#fff;border-radius:7px;padding:12px}
+  .field-error{font-size:14px;line-height:1.5;color:#9a2929;overflow-wrap:anywhere;min-height:1px}
+  .form-field [aria-invalid=true]{border-color:#ad413e}
+  .form-action{margin-top:24px;background:#202832;border:1px solid #202832;color:white;border-radius:7px;padding:11px 18px}
+  .form-status{min-height:1.5em;margin:12px 0;color:#315a3e}
+  .section-footer{padding-top:28px;color:#626c75;font-size:13px}
+  @media(max-width:640px){
+    .page{padding:24px 18px 78px}
+    .settings-row{grid-template-columns:minmax(0,1fr);gap:10px;align-items:start;padding:17px 0}
+    .settings-row .control{justify-self:start;max-width:100%}
+    .settings-group + .settings-group{margin-top:32px}
+    .form-section{margin-top:48px}
+  }
+</style>
+</head>
+<body>
+<main class="page">
+  <h1>偏好设置与资料填写</h1>
+  <p class="intro">完全虚构的布局示例：独立生效的偏好采用左右设置行，连续填写的资料表单采用上下字段簇。页面没有无意义的大卡片。</p>
+  <section aria-labelledby="preferences">
+    <div class="settings-group">
+      <h2 id="preferences">使用偏好</h2>
+      <p class="note">每个设置项可独立调整，不依赖整页提交。</p>
+      <div class="settings-row" data-mf-settings-row>
+        <div class="details"><h3 id="theme-name">界面主题</h3><p class="help">选择阅读时更舒适的外观。</p></div>
+        <div class="control"><select id="theme" aria-labelledby="theme-name"><option>跟随系统</option><option>浅色</option><option>深色</option></select></div>
+      </div>
+      <div class="settings-row" data-mf-settings-row>
+        <div class="details"><h3 id="digest-name">每周摘要</h3><p class="help">每周收到一份简短的个人进展概览。</p></div>
+        <div class="control"><label class="toggle-label"><input id="digest" type="checkbox" aria-labelledby="digest-name"><span aria-hidden="true">启用</span></label></div>
+      </div>
+    </div>
+    <div class="settings-group">
+      <h2>辅助选项</h2>
+      <div class="settings-row" data-mf-settings-row>
+        <div class="details"><h3 id="language-name">语言</h3><p class="help">影响界面文本，不更改已有内容。</p></div>
+        <div class="control"><select id="language" aria-labelledby="language-name"><option>简体中文</option><option>English</option></select></div>
+      </div>
+    </div>
+    <p class="settings-status" data-mf-status role="status" aria-live="polite">示例状态：尚未修改任何设置。</p>
+    <div class="danger-zone" data-mf-danger aria-labelledby="danger-title">
+      <h2 id="danger-title">危险操作</h2>
+      <p class="help">不可撤销操作必须单独分组，并说明风险。演示不会修改任何真实账户。</p>
+      <button id="delete-demo" type="button">演示删除确认</button>
+    </div>
+  </section>
+
+  <section class="form-section" aria-labelledby="form-title">
+    <h2 id="form-title">联系资料表单</h2>
+    <p class="note">此处是多字段整体提交，标签在上、输入在下，验证信息紧贴所属字段。所有数据仅在演示页面内处理。</p>
+    <form id="profile-form" class="form-column" novalidate>
+      <div class="form-field" data-mf-field>
+        <label for="full-name">称呼</label>
+        <input id="full-name" name="full-name" autocomplete="name" aria-describedby="name-help" required>
+        <span class="help" id="name-help">请输入希望显示的称呼。</span>
+      </div>
+      <div class="form-field" data-mf-field>
+        <label for="email">联系邮箱</label>
+        <input id="email" name="email" type="email" autocomplete="email" aria-describedby="email-help email-error" required>
+        <span class="help" id="email-help">用于接收相关通知。</span>
+        <span class="field-error" id="email-error" role="alert"></span>
+      </div>
+      <button class="form-action" type="submit">验证表单</button>
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+  <p class="section-footer">MauForma 布局试验 · 不连接真实服务，不宣称保存成功。</p>
+</main>
+<script>
+  const status = document.querySelector('[data-mf-status]');
+  for (const el of document.querySelectorAll('#theme, #digest, #language')) {
+    el.addEventListener('change', () => { status.textContent = '演示已更新显示状态；没有连接服务器。'; });
+  }
+  document.querySelector('#delete-demo').addEventListener('click', () => {
+    status.textContent = window.confirm('确认查看这个虚构的删除演示？不涉及任何真实数据。')
+      ? '已确认演示。没有真实数据被删除。' : '已取消删除演示。';
+  });
+  const form = document.querySelector('#profile-form');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const name = document.querySelector('#full-name');
+    const email = document.querySelector('#email');
+    const error = document.querySelector('#email-error');
+    const out = document.querySelector('#form-status');
+    const valid = email.value.trim() && email.checkValidity();
+    email.setAttribute('aria-invalid', String(!valid));
+    error.textContent = valid ? '' : '请填写有效的邮箱地址。此处错误信息可以换行，不会被固定高度或横向两列截断。';
+    if (!name.value.trim()) {
+      out.textContent = '请先填写称呼。';
+      name.focus();
+    } else if (!valid) {
+      out.textContent = '请检查联系邮箱。';
+      email.focus();
+    } else {
+      out.textContent = '演示校验已通过；未向服务器发送或保存数据。';
+    }
+  });
+</script>
+</body>
+</html>
