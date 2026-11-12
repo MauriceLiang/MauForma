@@ -19,7 +19,7 @@ main{max-width:1250px;margin:0 auto;padding:32px 22px 60px}header{display:flex;a
 <div class="choice-list" id="choices" role="group" aria-label="对比示例配色"></div>
 <div class="controls"><label for="target">自定义位置<select id="target"><option value="sidebar-bg">侧栏背景</option><option value="main-bg">主内容背景</option><option value="brand-accent">品牌强调色</option><option value="sidebar-selected">导航选中背景</option></select></label><label for="custom-color">颜色选择<input id="custom-color" type="color" value="#20272d"></label><label for="hex">HEX 色值<input id="hex" type="text" maxlength="7" value="#20272D" aria-describedby="warning"></label><button id="reset" type="button">恢复候选配色</button><div class="note">自定义颜色按原值预览，不会偷偷替换色相；若导致文字难读，会显示提示，需另行调整辅助色。</div></div>
 <div class="layout" aria-label="工作台整体配色预览">
-<aside class="sidebar" aria-label="工作区导航"><div class="brand"><div class="mark" aria-hidden="true">R</div><div class="brand-name">RepoVantage</div></div><div class="sidebar-caption">工作区</div>
+<aside class="sidebar" aria-label="工作区导航"><div class="brand"><div class="mark" aria-hidden="true">R</div><div class="brand-name">示例工作台</div></div><div class="sidebar-caption">工作区</div>
 <nav class="nav" aria-label="主导航"><button class="item" type="button"><span aria-hidden="true">▦</span>总览</button><button class="item" type="button"><span aria-hidden="true">⌁</span>开发活动</button><button class="item" type="button" aria-current="page"><span aria-hidden="true">◉</span>Issue 处理</button><button class="item" type="button"><span aria-hidden="true">◇</span>项目对比</button></nav>
 <div class="space"></div><div class="who"><span>RV</span>个人工作区</div></aside>
 <section class="app" aria-label="数据分析主内容"><div class="top"><span class="crumb">仓库 / steady-core</span><button class="action" type="button" id="action">查看数据</button></div>
@@ -57,6 +57,6 @@ function apply(value){if(!/^#[0-9a-f]{6}$/i.test(value)){warning.textContent='�
 picker.addEventListener('input',e=>apply(e.target.value));
 hex.addEventListener('change',e=>apply(e.target.value.trim()));
 document.querySelector('#reset').addEventListener('click',()=>load(current));
-document.querySelector('#action').addEventListener('click',()=>warning.textContent='这是纯视觉示例：按钮没有连接 RepoVantage API，也没有更改任何真实数据。');
+document.querySelector('#action').addEventListener('click',()=>warning.textContent='这是纯视觉示例：按钮没有连接 示例工作台 API，也没有更改任何真实数据。');
 load(current);
 </script></body></html>
