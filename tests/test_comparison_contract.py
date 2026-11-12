@@ -11,7 +11,7 @@ from validate_comparison_contract import validate_catalog,validate_contract,vali
 class ComparisonTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.example=json.loads((ROOT/"examples/comparison-contract-repovantage.json").read_text("utf-8"))
+        cls.example=json.loads((ROOT/"examples/comparison-contract-demo.json").read_text("utf-8"))
         cls.catalog=json.loads((ROOT/"assets/comparison-reference-cases.json").read_text("utf-8"))
     def expect(self,data,msg):
         errs=validate_contract(data)

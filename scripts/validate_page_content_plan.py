@@ -13,15 +13,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "assets/page-density-profiles.json"
-EXAMPLE = ROOT / "examples/page-content-plan-repovantage.json"
+EXAMPLE = ROOT / "examples/page-content-plan-demo.json"
 FILES = (
     "references/page-density-and-content-priority.md",
     "references/whitespace-and-surface-composition.md",
-    "references/repovantage-overview-density-case.md",
+    "references/overview-density-case.md",
     "assets/page-density-profiles.json",
     "assets/page-content-plan.schema.json",
     "assets/page-density-lab.html",
-    "examples/page-content-plan-repovantage.json",
+    "examples/page-content-plan-demo.json",
     "scripts/validate_page_content_plan.py",
     "tests/test_page_content_plan.py",
 )
@@ -174,7 +174,7 @@ def validate_repository() -> list[str]:
     try:
         errors.extend(validate_plan(json.loads(EXAMPLE.read_text(encoding="utf-8"))))
     except (OSError, ValueError, KeyError, TypeError) as exc:
-        errors.append(f"Invalid RepoVantage page content example: {exc}")
+        errors.append(f"Invalid Synthetic Demo page content example: {exc}")
     skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
     for key in ("page-density-and-content-priority.md", "whitespace-and-surface-composition.md",
                 "validate_page_content_plan.py"):

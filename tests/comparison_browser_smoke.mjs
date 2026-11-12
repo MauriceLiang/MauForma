@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Real Chromium smoke test for the *MauForma example only*, NOT RepoVantage.
+ * Real Chromium smoke test for the *MauForma example only*, NOT Synthetic Demo.
  * Renders local HTML, selects/deselects entities, checks legends/series/table,
  * scroll-end reachability and narrow-screen root overflow, saves screenshots.
  */
