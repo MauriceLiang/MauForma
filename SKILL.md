@@ -126,7 +126,7 @@ python3 -m unittest discover -s tests -v
 - **导航/配色/容器**：`references/sidebar-color-reference-cases.md`、`references/workspace-component-refinement.md`、`references/whitespace-and-surface-composition.md`、`references/clean-enterprise-design.md`、`assets/navigation-pattern-catalog.json`。
 - **布局与内容**：`scripts/validate_navigation_architecture.py`、`scripts/validate_sidebar_color_decision.py`、`scripts/validate_layout_integrity.py`、`scripts/audit_rendered_layout.mjs`、`scripts/validate_page_content_plan.py`、`scripts/validate_spacing_rhythm.py`。
 - **组件与视觉**：`scripts/validate_surface_control.py`、`scripts/validate_visual_priority.py`、`scripts/validate_icon_curation.py`、`scripts/audit_icon_consistency.mjs`、`scripts/validate_design_reference.py`、`scripts/validate_component_motion.py`。
-- **内容与交互状态**：`scripts/validate_comparison_contract.py`、`scripts/audit_comparison_ui.mjs`、`scripts/validate_task_center.py`、`assets/task-center-layout-lab.html`、`scripts/validate_motion_decision.py`、`scripts/validate_proactive_audit.py`。
+- **内容与交互状态**：`scripts/audit_readability.py`、`scripts/validate_comparison_contract.py`、`scripts/audit_comparison_ui.mjs`、`scripts/validate_task_center.py`、`assets/task-center-layout-lab.html`、`scripts/validate_motion_decision.py`、`scripts/validate_proactive_audit.py`。
 
 ## 6. 交付格式
 
