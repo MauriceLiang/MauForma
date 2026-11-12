@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "project": "RepoVantage / color recommendation demonstration",
+  "project": "Synthetic Demo / color recommendation demonstration",
   "status": "pending",
   "context": {
     "page_mode": "Operate",
@@ -34,7 +34,7 @@
     "whole_page_preview": false,
     "actual_browser_status": "NOT RUN",
     "tested_regions": [],
-    "notes": "这是候选记录。用户还未选定色彩；没有对真实 RepoVantage 页面进行浏览器复验。"
+    "notes": "这是候选记录。用户还未选定色彩；没有对真实 Synthetic Demo 页面进行浏览器复验。"
   },
   "resolved_colors": null
 }

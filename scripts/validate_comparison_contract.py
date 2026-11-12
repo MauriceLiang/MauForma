@@ -12,15 +12,15 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 CATALOG=ROOT/"assets/comparison-reference-cases.json"
-EXAMPLE=ROOT/"examples/comparison-contract-repovantage.json"
+EXAMPLE=ROOT/"examples/comparison-contract-demo.json"
 REQUIRED=(
  "references/comparison-page-design.md",
  "references/chart-interior-alignment.md",
- "references/repovantage-comparison-case.md",
+ "references/comparison-ux-case.md",
  "assets/comparison-reference-cases.json",
  "assets/comparison-contract.schema.json",
  "assets/comparison-layout-lab.html",
- "examples/comparison-contract-repovantage.json",
+ "examples/comparison-contract-demo.json",
  "scripts/validate_comparison_contract.py",
  "scripts/audit_comparison_ui.mjs",
  "tests/test_comparison_contract.py",
