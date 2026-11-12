@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "project": "RepoVantage",
-  "source": "Illustrative compare contract based on user screenshot only, not actual GitHub data",
+  "project": "Synthetic Demo",
+  "source": "Illustrative compare contract with generated teaching values and no real product data",
   "decision_question": "比较同一时间范围内三个仓库的活跃趋势及可比协作指标",
   "status": "provisional",
   "selected_entity_ids": [

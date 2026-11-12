@@ -12,7 +12,7 @@ class LayoutIntegrityTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.catalog=json.loads((ROOT/"assets/layout-integrity-patterns.json").read_text("utf-8"))
-        cls.sample=json.loads((ROOT/"examples/layout-integrity-repovantage.json").read_text("utf-8"))
+        cls.sample=json.loads((ROOT/"examples/layout-integrity-demo.json").read_text("utf-8"))
 
     def expect(self,plan,fragment):
         errors=validate_plan(plan,self.catalog)

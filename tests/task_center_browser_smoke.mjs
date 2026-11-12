@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** MauForma standalone demo browser QA (not RepoVantage backend E2E). */
+/** MauForma standalone demo browser QA (not Synthetic Demo backend E2E). */
 import assert from "node:assert/strict";
 import path from "node:path";
 import { mkdir } from "node:fs/promises";

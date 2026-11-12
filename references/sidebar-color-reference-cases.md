@@ -6,7 +6,7 @@
 | --- | --- | --- | --- | --- |
 | **Linear** | [2024 UI redesign](https://linear.app/now/how-we-redesigned-the-linear-ui) / [后续导航降噪讨论](https://linear.app/now/behind-the-latest-design-refresh) | 侧栏不抢主内容、设计先考虑界面密度与对比度；底色 / 强调色 / 对比构成完整主题 | 任务与项目管理、开发者工具、密集工作台 | 不可得出“Linear 深灰最适合所有网站”的结论 |
 | **IBM Carbon** | [UI shell left panel](https://www.carbondesignsystem.com/building-blocks/core/components/ui-shell-left-panel/specifications) / [selected colors](https://www.carbondesignsystem.com/building-blocks/foundations/color/overview) | enabled/hover/active/focus 的语义 Token 分开定义，选中由背景+文字/图标层级表达 | 企业后台、运营系统、复杂的侧栏导航 | 不直接复制 IBM 的 Token 值作为用户品牌色 |
-| **GitHub Primer** | [Layout](https://primer.style/product/getting-started/foundations/layout/) / [Color usage](https://primer.style/product/getting-started/foundations/color-usage/) | 侧栏辅助主内容，支持 split page；横跨光/暗模式的语义颜色及响应式布局 | 仓库、代码分析、知识结构与列表/详情系统 | 不把 GitHub 原 UI 的样式机械复制到 RepoVantage |
+| **GitHub Primer** | [Layout](https://primer.style/product/getting-started/foundations/layout/) / [Color usage](https://primer.style/product/getting-started/foundations/color-usage/) | 侧栏辅助主内容，支持 split page；横跨光/暗模式的语义颜色及响应式布局 | 仓库、代码分析、知识结构与列表/详情系统 | 不把 GitHub 原 UI 的样式机械复制到 示例产品 |
 | **shadcn/ui** | [Sidebar theming](https://ui.shadcn.com/docs/components/base/sidebar) | 侧栏拥有 background、foreground、primary、accent、border、ring 等独立角色，同时仍由整体主题协调 | React/Vue 等组件工程与可复用 Theme 方案 | shadcn 颜色样例≠用户已经选择的品牌色 |
 | **Atlassian Design** | [Design tokens](https://atlassian.design/components/tokens/all-tokens) | Token 单一来源，selected 状态未必必须使用蓝色；可以用中性状态减低视觉噪声 | 企业协作、项目看板、多主题应用 | 不应把某个特性标志下的表现描述为 Atlassian 永远唯一的做法 |
 

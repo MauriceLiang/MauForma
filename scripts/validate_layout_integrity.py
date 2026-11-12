@@ -11,14 +11,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT/"assets/layout-integrity-patterns.json"
-EXAMPLE = ROOT/"examples/layout-integrity-repovantage.json"
+EXAMPLE = ROOT/"examples/layout-integrity-demo.json"
 REQUIRED = (
  "references/grid-alignment-and-viewport-safety.md",
- "references/repovantage-release-alignment-case.md",
+ "references/grid-alignment-case.md",
  "assets/layout-integrity-patterns.json",
  "assets/layout-integrity.schema.json",
  "assets/grid-and-viewport-lab.html",
- "examples/layout-integrity-repovantage.json",
+ "examples/layout-integrity-demo.json",
  "scripts/validate_layout_integrity.py",
  "scripts/audit_rendered_layout.mjs",
  "tests/test_layout_integrity.py",

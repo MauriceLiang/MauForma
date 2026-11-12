@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "project": "RepoVantage",
+  "project": "Synthetic Demo",
   "source": "User screenshots 2026-11-04; CSS/DOM uninspected",
   "page": "release-analysis",
   "purpose": "read release timeline, compare intervals, inspect releases",

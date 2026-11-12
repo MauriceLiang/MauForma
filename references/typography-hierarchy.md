@@ -76,4 +76,4 @@
 - 必须查看图表真实渲染，轴标签不能只凭 ECharts / Chart.js 配置宣称已可读。
 - 如果没运行浏览器，只能报告“静态建议”，不能声称字号在真实屏幕验收过。
 
-对照 `assets/typography-reading-lab.html`，这是展示用示例页面，不是用户 RepoVantage 工程代码。文案必要性见 `references/semantic-copy-hygiene.md`。
+对照 `assets/typography-reading-lab.html`，这是展示用示例页面，不是用户 合成示例 工程代码。文案必要性见 `references/semantic-copy-hygiene.md`。

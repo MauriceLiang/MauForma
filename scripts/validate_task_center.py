@@ -12,14 +12,14 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 CATALOG=ROOT/"assets/task-center-reference-cases.json"
-EXAMPLE=ROOT/"examples/task-center-repovantage.json"
+EXAMPLE=ROOT/"examples/task-center-demo.json"
 REQUIRED=(
 "references/task-center-run-monitor-design.md",
-"references/repovantage-task-center-case.md",
+"references/run-monitor-case.md",
 "assets/task-center-reference-cases.json",
 "assets/task-center-run.schema.json",
 "assets/task-center-layout-lab.html",
-"examples/task-center-repovantage.json",
+"examples/task-center-demo.json",
 "scripts/validate_task_center.py",
 "tests/test_task_center.py",
 "tests/task_center_browser_smoke.mjs",

@@ -1,6 +1,6 @@
 # MauForma · 组件优先视觉 QA v2.0
 
-## v6.22 · Settings / Form / Hybrid scenario QA
+## Settings / Form / Hybrid scenario QA
 
 - [ ] 对每个区域是否先确认「单条独立生效 / 多字段整体提交 / 混合」而非按页面标题套模板？
 - [ ] 紧凑设置项是否标题/说明左、操作右，组内紧凑且组间明确更宽？窄屏能重排而非压缩？
@@ -10,7 +10,7 @@
 - [ ] 真实设置保存失败、表单错误/成功、键盘焦点与底部可达性是否实测；未测是否标 NOT TESTED？
 - [ ] demo 的浏览器 PASS 是否没有冒充真实项目效果？详见 `references/settings-form-layout-gate.md`。
 
-## v6.20 · Proactive defect discovery for vague prompts
+## Proactive defect discovery for vague prompts
 
 - [ ] 用户只说“优化页面/更精致”时，有没有主动诊断真实页面现有缺陷，而不等用户列举每一个问题？
 - [ ] 是否至少检查空间分隔、字号与层级、组件密度、图标/配色、交互与响应式五方面；列出证据充分的主要风险，不为了凑数编造问题？
@@ -21,7 +21,7 @@
 
 规范：`references/proactive-visual-defect-discovery-gate.md`；原创建模测试：`tests/existing_visual_defect_browser_smoke.mjs`。
 
-## v6.19 · Real-page panel spacing regression
+## Real-page panel spacing regression
 
 - [ ] 优化前是否识别并保留现有页面中独立分析/摘要/图表/元数据区的组间留白？没有用户要求不能自行设 `row-gap:0`。
 - [ ] 是否分别检查同排 `column-gap` 与下一排 `row-gap`，以及切为单列时有没有贴合？
@@ -33,7 +33,7 @@
 
 规范：`references/spacing-regression-protection-gate.md`；独立回归：`tests/panel_spacing_browser_smoke.mjs`。
 
-## v6.18 · Reference Learning, Design Transfer & Public Safety Gate
+## Reference Learning, Design Transfer & Public Safety Gate
 
 - [ ] 用户明确作品归属时是否按原意处理，未凭截图猜测“内部/第三方”来源？
 - [ ] 参考素材**只用于分析**，没有上传原图、裁剪/打码/重编码版本、data URI、截图附件到公开 repo、PR、Actions artifacts？
@@ -46,7 +46,7 @@
 
 规范：`references/design-reference-learning-gate.md`、`references/clean-enterprise-design.md`；原创案例与检查：`examples/design-reference-learning/reference-principles.json`、`tests/design_reference_browser_smoke.mjs`。
 
-## v6.17 · Icon Art Direction & Semantic Fit Gate
+## Icon Art Direction & Semantic Fit Gate
 
 - [ ] 主导航、高频操作、核心状态所用图标的语义是否**准确、熟悉、无需费力猜测**？是否真正需要 icon？抽象功能不用乱造脑电/闪电/星星。
 - [ ] 关键图标是否从实际已确认的家族/版本挑选，比较了有价值的语义候选并记录理由？有品牌既定选择时是否继承？
@@ -58,7 +58,7 @@
 
 规范 `references/icon-art-direction-gate.md`，候选示例 `assets/icon-curation-patterns.json`，整组演示 `assets/icon-art-direction-lab.html`。
 
-## v6.16 · Semantic Spacing / Visual Rhythm Gate
+## Semantic Spacing / Visual Rhythm Gate
 
 - [ ] 当前页面的独立章节、同级卡片、内部标题/内容、真正连接的控件是否明确区分？组间距离能让用户清楚识别任务边界，连接结构是否有理由共边？
 - [ ] 不因为多个模块都“对齐”就宣布合格；双卡同行有横向 gutter，但**第一排与第二排是否因 `row-gap:0` 粘连**？横竖转换后 gap 是否保留？
@@ -70,7 +70,7 @@
 
 规则：`references/semantic-spacing-rhythm-gate.md`；四域样例：`assets/spacing-rhythm-patterns.json`；可交互正反例：`assets/spacing-rhythm-lab.html`；静态角色检查：`scripts/validate_spacing_rhythm.py`。
 
-## v6.15 · Component Motion Choreography Gate
+## Component Motion Choreography Gate
 
 - [ ] 全页有哪些**实际存在且重要**的 Button、Tabs/Filters、Accordion/Drawer、Toggle、List/Table、Chart/Media、状态通知？有无组件 Motion Inventory（动效/即时反馈/故意静态的理由）？
 - [ ] 用户确认 B/C 动效方案时，**有没有真正的组件级动作**？仅路由转场、一个 Dialog Fade 或全局 Button Hover 不算完成组件级设计。
@@ -81,7 +81,7 @@
 
 参考 `references/component-motion-choreography-gate.md`、`assets/component-motion-patterns.json`、`assets/component-motion-lab.html` 与 `scripts/validate_component_motion.py`。
 
-## v6.14 · Motion Choice & Interaction Experience Gate
+## Motion Choice & Interaction Experience Gate
 
 - [ ] 新站/重大改版曾提出**可观察、可选择**的动效体验；确认来源是 `confirmed/delegated/inherited`，否则标 `unresolved`，未答复不得自行把全站永远做成无动画。
 - [ ] 有 2–3 档基于真实交互的区别：例如按钮按压、Tabs 指示/内容、Dialog/Drawer 进退场、状态/数据变化与品牌主视觉；不把“只做 Hover”冒充交互设计完成。
@@ -92,7 +92,7 @@
 
 详细规范：`references/motion-consent-experience-gate.md`，交互样例：`assets/motion-choice-layout-lab.html`，静态契约：`scripts/validate_motion_decision.py`。
 
-## v6.13 · Surface & Control Geometry 独立验收
+## Surface & Control Geometry 独立验收
 
 - [ ] 页面外层 mega-card / 内层工具栏 / 行卡层级是否均有独立语义？如果只是为了把所有内容框起来，是否评估过 open collection 或 single panel？
 - [ ] 是否记录“为什么选这种容器、为什么不选另一个合理形态”；同一组件库中的 Card 不等于页面必需的外框。
@@ -104,7 +104,7 @@
 
 详见 `references/surface-architecture-gate.md`、`references/control-geometry-gate.md` 与 `assets/surface-control-layout-lab.html`。
 
-## v6.12 · 所有 Web 页面通用的感知层级与组件质量门禁
+## 所有 Web 页面通用的感知层级与组件质量门禁
 
 - [ ] 当前视口的用户任务、P0/P1/P2/P3 信息分级明确；P0/P1 由决策价值定义，**不是见数字就放大**；用户第一眼与下一操作真实可辨。
 - [ ] 在灰阶/去装饰后，首先读到的是重要对象/状态/正文/价格/作品，而不是非必要大标题或空面板；允许不同页面有不同的主角。
@@ -156,7 +156,7 @@
 - [ ] 同类功能页通过 `UiPageHeader` 或现有等价组件保持一致；真实面包屑、技术术语及必要提醒得以保留。
 - [ ] 对照 `references/page-header-antipatterns.md` 与 `assets/page-header-antipattern-gallery.html`，记录修复前后截图和明确理由。
 
-## v6.2 · 复杂视觉技术专项检查
+## 复杂视觉技术专项检查
 
 - [ ] 技术是按明确的视觉需求选型，已说明相对 CSS/SVG/已有库的增益，而非为效果堆库。
 - [ ] 同一 DOM 元素/属性没有被 CSS、GSAP、Motion、Anime.js 重复控制。
@@ -175,7 +175,7 @@
 - [ ] Topbar、Card、Data Table、Tabs、Search、Split Pane 按 `workspace-component-refinement.md` 核对共享 Token、交互与空/异常状态。
 - [ ] 提交组件样例与真实浅/深主题截图；`sidebar-refinement-gallery.html` 只是正反概念，不能冒充真实业务页面 QA。
 
-## v6.4 · 页面级截图质量门槛：结构要先过关
+## 页面级截图质量门槛：结构要先过关
 
 - [ ] 用户首要任务是否在首屏可识别？最大区域承载的是主体内容而非没有意义的 3D 装饰、营销 Hero 或彩色巨卡？业务类型适用性要明确。
 - [ ] 主要图表/表格有真实数据、加载、错误或空状态；无来源的 Demo 不能被渲染成真实增长结论。
@@ -186,10 +186,10 @@
 
 具体问题归因与重新构图路径：`references/visual-critique-loop.md`；不要凭 CSS 或随机审美分数断言优秀。
 
-## v6.5 · 文案语义与排版可读性验收
+## 文案语义与排版可读性验收
 
 - [ ] 所有小标题、英文副标、章节数字、口号与说明文字能否回答“删除会损失什么信息”？纯重复装饰已删除，真正有语义的面包屑、品牌和数据来源保留。
-- [ ] 当前界面是否堆叠“仓库活动与协作”“看见项目如何演进”“01 / 总览”“先看活动”但没有更丰富的实际含义？
+- [ ] 是否重复堆叠抽象口号、伪章节编号和用途已由主标题表达的副标题，而没有独立信息价值？
 - [ ] 是否将 ECharts tooltip、React/Vue 框架术语或开发注释直接呈现给业务用户？技术教程除外。
 - [ ] H1 → 区块标题 → KPI 数值/标签 → 图表轴/图例 → 采样说明的字级有真实角色与连续阅读顺序，而非随机超大/超小？
 - [ ] 深色下图表刻度、UTC、n 值和数据来源是否无需费力就能阅读？这些是业务证据而非纯装饰。
@@ -199,7 +199,7 @@
 
 `python3 scripts/audit_readability.py <src> --format json` 仅返回人工复核候选，不是自动判断或修复。
 
-## v6.6 · SideBar 全局配色与用户确认（Gate A / D）
+## SideBar 全局配色与用户确认（Gate A / D）
 
 - [ ] 用户明确说颜色名/HEX 时是否被尊重？若已经选过，是否**没有**重复问颜色或擅自换色？
 - [ ] 颜色未定且任务涉及重新配色时是否展示 **2–3 套 Sidebar + Main + Topbar + Card + Chart** 的整体搭配，而不是三张只看侧栏的纯色卡？
@@ -211,7 +211,7 @@
 
 测试命令：`scripts/validate_sidebar_color_decision.py --repository` 只做静态色值和选择记录检验，不对配色美感自动评分。配色方向详见 `references/sidebar-color-discovery.md`。
 
-## v6.7 · 导航架构与响应式可用性（Gate A / D）
+## 导航架构与响应式可用性（Gate A / D）
 
 - [ ] 一级导航数目/层级/切换频率及全局、当前项目、页面 Tabs、上下文操作已经分开说明？为何选 Top/Side/Rail/Bottom/组合，而不是“后台自动 Sidebar”？
 - [ ] 顶部+侧边时是否**真的不同作用域**；同一视口是否重复同一套一级入口？底部操作按钮是否错误冒充导航？
@@ -224,7 +224,7 @@
 
 规则 `references/navigation-architecture.md`；静态检查 `python3 scripts/validate_navigation_architecture.py --repository`。
 
-## v6.8 · 逐页 Content Curation / Density / Whitespace 验收
+## 逐页 Content Curation / Density / Whitespace 验收
 
 - [ ] 总览是不是把“当前任务 + 三步教程 + 功能入口三卡 + 重复链接”全部展现？能否下沉/删除无增量整块内容，而非只调 padding？
 - [ ] 每个页面首要任务明确，主操作不和多个同等级 CTA 竞争？
@@ -235,9 +235,9 @@
 - [ ] Macro 组间间距、meso 组内关系、micro 控件间距是否表达真实层级，不靠 min-height 撑空白或一律缩小字体？
 - [ ] 真实桌面与移动/窄屏、文字 200% 放大和不同用户状态是否截图检查，未运行是否标 NOT RUN？
 
-详细要求见 `references/page-density-and-content-priority.md`、`references/whitespace-and-surface-composition.md`、`references/repovantage-overview-density-case.md`；静态工具只能检查决策记录，不能自动评定高级感。
+详细要求见 `references/page-density-and-content-priority.md`、`references/whitespace-and-surface-composition.md`、`references/overview-density-case.md`；静态工具只能检查决策记录，不能自动评定高级感。
 
-## v6.9 · Grid / Alignment / Scroll-End（视觉与运行时双验收）
+## Grid / Alignment / Scroll-End（视觉与运行时双验收）
 
 - [ ] 页面标题、筛选、主内容、同级 ChartPanel 是否使用可追踪的统一内容边界与列 gutter？
 - [ ] 同一排模块顶部是否对齐？若上一排左右高度不同，第二排是否仍在共同的行起点开始（而非两列分别堆叠成瀑布流）？
@@ -250,9 +250,9 @@
 - [ ] 审查报告将截图中“卡片靠近底边”的**疑似风险**与真实 DOM 的裁切/不可滚动**已确认问题**分开记录？
 - [ ] 实测含首屏截图 + 最大滚动位置截图（含底边）。仅运行 `validate_layout_integrity.py` 不可声明浏览器 PASS。
 
-详细设计 `references/grid-alignment-and-viewport-safety.md`，实例 `references/repovantage-release-alignment-case.md`，可选实测 `node scripts/audit_rendered_layout.mjs --url http://127.0.0.1:5173`（Playwright 需可用）。
+详细设计 `references/grid-alignment-and-viewport-safety.md`，实例 `references/grid-alignment-case.md`，可选实测 `node scripts/audit_rendered_layout.mjs --url http://127.0.0.1:5173`（Playwright 需可用）。
 
-## v6.10 · Chart Interior 与多对象比较页专门 QA
+## Chart Interior 与多对象比较页专门 QA
 
 - [ ] **外框对齐还要看图内**：Plot Area 的起点、X 轴/图例基线、边距、日期 label 是否协调，不因面板等高而误认为图内已对齐？
 - [ ] 柱图/散点图上的数字、均值标注与点、边界有没有真实重叠或被裁切？同一数据点是否重复两处文字？
@@ -263,9 +263,9 @@
 - [ ] 手机端是否可发现至少二项对比或清楚的对象切换，内容不靠超小字挤成三列？
 - [ ] 真实浏览器有比较前后选择切换、图例/曲线、放大文字、横向/纵向滚动的截图；Canvas 内标签未实际检查时标 NOT AUDITED 而非 PASS。
 
-参考 `references/comparison-page-design.md`、`references/chart-interior-alignment.md`、`references/repovantage-comparison-case.md`。可用 `python3 scripts/validate_comparison_contract.py --repository`，但静态契约测试不等于真实曲线渲染检查。
+参考 `references/comparison-page-design.md`、`references/chart-interior-alignment.md`、`references/comparison-ux-case.md`。可用 `python3 scripts/validate_comparison_contract.py --repository`，但静态契约测试不等于真实曲线渲染检查。
 
-## v6.11 · Task Center / Run Monitor 专项 QA
+## Task Center / Run Monitor 专项 QA
 
 - [ ] 是否识别为自动作业监控，而非把人工 Kanban、比较页或指标仪表盘模板直接复用？
 - [ ] 状态概览数字是否有实际用途（筛选、定位）？是否长期占用大面积侧栏却没有独立筛选价值？
@@ -278,4 +278,4 @@
 - [ ] 窄屏行/卡仍可读、按钮键盘可达、最后一条任务能正常滚动到底，长仓库名/错误原因不会横向溢出？
 - [ ] 对真实任务页还需后端数据集成/权限/E2E，独立 Mock 示例的 Chromium 测试不能当真实服务验收。
 
-参见 `references/task-center-run-monitor-design.md`、`references/repovantage-task-center-case.md`、`scripts/validate_task_center.py`。
+参见 `references/task-center-run-monitor-design.md`、`references/run-monitor-case.md`、`scripts/validate_task_center.py`。

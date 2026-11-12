@@ -2,7 +2,7 @@
 
 ## 核心问题不是“不许蓝紫色”，而是不要让 Agent 自动掉入蓝紫 SaaS 惯性
 
-在用户提供的 RepoVantage 截图里，大幅浅蓝紫 Hero + 蓝色立方体 + 深蓝洞察卡 + 蓝色侧栏强调看起来类似多个无关模板，图表/指标与品牌之间的色彩没有说明对应关系。单一的中性色体系也可能很无聊，因此目标是**有理由的设计**，不是强制黑白。
+合成反例：同一屏混用了高饱和头图、侧栏强调与亮色 KPI，却没有解释每种颜色的业务或品牌职责。问题是配色缺少系统依据，并不意味着必须改成黑白。
 
 ## 从项目内容推导颜色，先回答五件事
 
@@ -50,7 +50,7 @@ Agent 必须先填写 **palette rationale**，并判断已确定的品牌色；�
 用户已确认的品牌色或参考视觉优先（`confirmed`）；Agent 被授权自主选择时标记 `delegated` 并说明理由；保留项目原有风格标记 `inherited`。待核实不得标注用户确认。对单独的状态点、图表序列颜色，还需关联真实业务含义。
 
 对照已有 `references/theme-design.md` 与 `references/sidebar-navigation-design.md`，它们解决实现层 Tokens；本文件重点解决 **为什么使用这一套色彩氛围**。
-## v6.6 · 推荐权与决定权分离
+## 推荐权与决定权分离
 
 用户指定任何颜色时该选择优先于 Agent 的偏好；若用户觉得深蓝导航不协调但没决定颜色，先读取 [Sidebar Color Discovery](sidebar-color-discovery.md) 和 [官方设计参考](sidebar-color-reference-cases.md)，分析当前整个页面后提出 2–3 个差异清晰的组合，附对照、理由与权衡。**推荐 ≠ 确认**：未选定保持 `pending/unresolved`，不能直接选首推的石墨、苔绿或蓝紫去改正式 Tokens。只有用户明确委托（`delegated`）时 Agent 才能代选。
 

@@ -16,6 +16,7 @@ jobs:
       - name: Validate original skill
         run: |
           python3 scripts/validate_web_skill.py
+          python3 scripts/validate_skill_hygiene.py
           python3 scripts/validate_design_system.py
           python3 scripts/validate_motion_catalog.py
       - name: Validate design intelligence
@@ -37,11 +38,11 @@ jobs:
           node --check tests/settings_form_browser_smoke.mjs
           python3 scripts/validate_sidebar_color_decision.py --repository
           python3 scripts/validate_navigation_architecture.py --repository
-          python3 scripts/validate_page_content_plan.py examples/page-content-plan-repovantage.json --repository
-          python3 scripts/validate_layout_integrity.py examples/layout-integrity-repovantage.json --repository
+          python3 scripts/validate_page_content_plan.py examples/page-content-plan-demo.json --repository
+          python3 scripts/validate_layout_integrity.py examples/layout-integrity-demo.json --repository
           node --check scripts/audit_rendered_layout.mjs
-          python3 scripts/validate_comparison_contract.py examples/comparison-contract-repovantage.json --repository
-          python3 scripts/validate_task_center.py examples/task-center-repovantage.json --repository
+          python3 scripts/validate_comparison_contract.py examples/comparison-contract-demo.json --repository
+          python3 scripts/validate_task_center.py examples/task-center-demo.json --repository
           node --check scripts/audit_comparison_ui.mjs
           node --check tests/surface_control_browser_smoke.mjs
           node --check tests/motion_choice_browser_smoke.mjs

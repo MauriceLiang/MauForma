@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "project": "RepoVantage",
+  "project": "Synthetic Demo",
   "source": "User-provided 2026-11-03 overview screenshot; illustrative plan only, no codebase read",
   "pages": [
     {
@@ -201,7 +201,7 @@
       "review": {
         "browser_status": "NOT RUN",
         "evidence": [],
-        "notes": "原则性分析详情示例；非 RepoVantage 运行截图"
+        "notes": "原则性分析详情示例；非任何真实运行截图"
       }
     }
   ]

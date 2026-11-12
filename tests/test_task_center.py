@@ -12,7 +12,7 @@ from validate_task_center import summary_counts,validate_task_model,validate_cat
 class TaskCenterTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.sample=json.loads((ROOT/"examples/task-center-repovantage.json").read_text("utf-8"))
+        cls.sample=json.loads((ROOT/"examples/task-center-demo.json").read_text("utf-8"))
         cls.catalog=json.loads((ROOT/"assets/task-center-reference-cases.json").read_text("utf-8"))
 
     def rejects(self,doc,substring):

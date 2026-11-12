@@ -14,7 +14,7 @@ class PageContentPlanTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.catalog = json.loads((ROOT / "assets/page-density-profiles.json").read_text("utf-8"))
-        cls.example = json.loads((ROOT / "examples/page-content-plan-repovantage.json").read_text("utf-8"))
+        cls.example = json.loads((ROOT / "examples/page-content-plan-demo.json").read_text("utf-8"))
 
     def errors_include(self, doc, fragment):
         errors = validate_plan(doc, self.catalog)

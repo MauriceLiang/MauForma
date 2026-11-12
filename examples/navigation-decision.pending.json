@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "project": "RepoVantage navigation architecture demonstration",
+  "project": "Synthetic Demo navigation architecture demonstration",
   "primary_destinations": [
     {
       "id": "overview",
@@ -101,6 +101,6 @@
   "review": {
     "browser_status": "NOT RUN",
     "breakpoints": [],
-    "notes": "Illustrative plan, not approved by user. No actual RepoVantage responsive code was changed."
+    "notes": "Illustrative plan, not approved by user. No actual Synthetic Demo responsive code was changed."
   }
 }

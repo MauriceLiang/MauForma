@@ -65,7 +65,7 @@
 
 全页桌面/手机截图按 `overview` 与 `analysis` **分别判定**，不能用工作台统一密度门槛把首页做得同样密集，也不能把分析页压成只有一个大标题和空白。
 
-执行 `python3 scripts/validate_page_content_plan.py examples/page-content-plan-repovantage.json --repository` 可检查必要字段、信息分层、用户状态、披露入口与页面密度分配；**通过不等于视觉美感、实际业务功能或 WCAG 验收。**
+执行 `python3 scripts/validate_page_content_plan.py examples/page-content-plan-demo.json --repository` 可检查必要字段、信息分层、用户状态、披露入口与页面密度分配；**通过不等于视觉美感、实际业务功能或 WCAG 验收。**
 
 ### 外部设计依据（方法论，不是固定色板与比例）
 
@@ -75,14 +75,14 @@
 - [GitLab Pajamas · Progressive Disclosure](https://design.gitlab.com/patterns/progressive-disclosure/)：把次要信息转入可发现的二级交互，而不是一次性塞进首屏。
 - [Atlassian · Compact density](https://community.atlassian.com/forums/discussion/3189883/new-feature-compact-mode-and-max-width-to-support-information-dense-documentation)：实际产品允许页级紧凑密度设置，不要求全站使用一套密度。
 
-## v6.9 · 密度与对齐、底部安全的关系
+## 密度与对齐、底部安全的关系
 
 高密度数据页不等于两列数据卡片允许无意义独立错列。先做 v6.8 内容删减，再依据 `references/grid-alignment-and-viewport-safety.md` 的共享行/列契约组合相关模块。对于超过当前浏览器高度的真实记录，应允许自然滚动，而非为保持“单屏高级感”截断图表、压缩 Release 或隐藏坐标轴。首屏外的内容不是溢出缺陷；滑不到最后一条记录才需要修复。
 
-## v6.10 · Compare 属于独立的页面任务
+## Compare 属于独立的页面任务
 
-比较页通常先让用户知道“比谁、比什么、数据是否可比、差异在哪里”。不应因 Operate 角色就把每张可生成的图表都铺上去。对于 RepoVantage，列表中已选对象可用紧凑可编辑条显示；主要差异与一个共同时序图应比长期的大筛选侧栏/空心口径卡更重要。指标表按对象列和属性行组织；数据不足时不得编造赢家。读 `references/comparison-page-design.md`。
+比较页通常先让用户知道“比谁、比什么、数据是否可比、差异在哪里”。不应因 Operate 角色就把每张可生成的图表都铺上去。对于典型的多对象分析页面，列表中已选对象可用紧凑可编辑条显示；主要差异与一个共同时序图应比长期的大筛选侧栏/空心口径卡更重要。指标表按对象列和属性行组织；数据不足时不得编造赢家。读 `references/comparison-page-design.md`。
 
-## v6.11 · 任务监控页不等于普通数据概览
+## 任务监控页不等于普通数据概览
 
 后台任务列表的核心目的不是“展示一共多少条任务”，而是让用户快速知道正在执行什么、哪些失败/排队、如何恢复与查看日志。状态统计可以成为顶部紧凑筛选入口，但**不默认要左边一张占半屏高度的大卡片**。任务列表用可扫描的列组织 ID、对象、状态、进度/阶段、更新时间与操作，详情/日志按需打开。不要在每一行重复“进度百分比未知”：进度 null 时展示真实阶段，无可确认分母就不算百分比。人工待办/多阶段作业各有特定 UI。参见 `references/task-center-run-monitor-design.md`。
