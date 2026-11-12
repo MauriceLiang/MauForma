@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "project": "RepoVantage",
+  "project": "Synthetic Demo",
   "source": "Synthetic task records inspired by user 2026-11-04 task center screenshot; not backend data",
   "view": {
     "page_type": "run_monitor",
@@ -173,6 +173,6 @@
   "review": {
     "browser_status": "NOT RUN",
     "evidence": [],
-    "notes": "Synthetic local example; real RepoVantage authorization, logging and retry behavior untested."
+    "notes": "Synthetic local example; a real application authorization, logging and retry behavior untested."
   }
 }
