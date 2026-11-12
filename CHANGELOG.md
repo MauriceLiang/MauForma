@@ -50,7 +50,7 @@
 - 新增 `assets/icon-curation-patterns.json`、`scripts/validate_icon_curation.py` 和 Python 反例回归：四类 Web 任务中明确语义与候选来源，拒绝重复图形、无验证来源、虚构图标、只图标按钮缺少可访问名称。
 - 新增含真实官方 Lucide SVG 的交互对照 `assets/icon-art-direction-lab.html`、上游完整许可证 `assets/icon-art-direction-lucide-license.txt`、可对显式标记 DOM 使用的 `scripts/audit_icon_consistency.mjs` 和 Chromium 3 宽度×2 图标尺寸 smoke：发现缺失/错位/描边不一/混搭并验证恢复。
 - 将主 SKILL、Sidebar、Component-First、Component Craft、Frontend Gates、AI Agent 提示词、Visual QA、工作台组件规范、README、CI 串通；旧版间距/动画/布局规则不变。
-- **限制**：静态契约中候选在当前上游核实，并不代表未来安装版本永远包含；独立示例 Browser PASS 不等于真实 RepoVantage 已修改或所有图标“客观美观”。
+- **限制**：静态契约中候选在当前上游核实，并不代表未来安装版本永远包含；独立示例 Browser PASS 不等于真实 合成工作台 已修改或所有图标“客观美观”。
 
 ---
 
@@ -61,7 +61,7 @@
 - 新增 `references/semantic-spacing-rhythm-gate.md`：空间关系 `inside / peer / section / connected / anchored / editorial`，项目级 `inline / inside / peer / section / page` tokens。强调父级布局 gap 与组件内 padding 分离，允许有理由的零间距共边和编辑式非对称，不做全站强制像素表。
 - 新增四类网页的通用设计意图 `assets/spacing-rhythm-patterns.json`、静态校验 `scripts/validate_spacing_rhythm.py` 与单元回归测试；不把某一个研究分析页面当通用视觉模板。
 - 新增可切换“合理间距/错误贴合”的原创浏览器示例 `assets/spacing-rhythm-lab.html`、关系几何契约 `assets/spacing-rhythm-lab-contract.json`、可在被标记真实 DOM 使用的 `scripts/audit_spacing_rhythm.mjs` 和 Chromium 反例回归 `tests/spacing_rhythm_browser_smoke.mjs`（宽屏、320/390 窄窗、100/200% 字体；能检出无意贴合，不误报有意连接）。
-- 接入主 Skill Gate A/B/D、间距/表面/对齐/组件/Agent/视觉 QA、README 与 CI，保留用户已确认的设计风格、密度与动效选择。静态契约和独立实验的浏览器通过不等于真实 RepoVantage 页面已经修复。
+- 接入主 Skill Gate A/B/D、间距/表面/对齐/组件/Agent/视觉 QA、README 与 CI，保留用户已确认的设计风格、密度与动效选择。静态契约和独立实验的浏览器通过不等于真实 合成工作台 页面已经修复。
 
 ---
 
@@ -91,18 +91,18 @@
 
 ## v6.13 — 2026-11-04 · Universal surface selection and atomic control geometry
 
-- 新截图暴露“整个筛选/工具栏/连续列表被巨型圆角卡包裹”与中文「查看详情」「重试」被操作列挤为逐字竖排；由此修复**全网站通用的两种设计失败机制**，不再为单个 RepoVantage 页面增补固定配色/尺寸。
+- 新截图暴露“整个筛选/工具栏/连续列表被巨型圆角卡包裹”与中文「查看详情」「重试」被操作列挤为逐字竖排；由此修复**全网站通用的两种设计失败机制**，不再为单个 合成工作台 页面增补固定配色/尺寸。
 - 新增 `references/surface-architecture-gate.md`：open collection / bounded panel / entity cards / editorial flow / split workspace / hero stage 按语义选型，记录拒绝替代方案的原因；允许真实有用的卡片而非强制扁平化。
 - 新增 `references/control-geometry-gate.md`：短操作文本原子性、按钮/列宽预算、Flex/Grid shrink 问题、整个控件换行或行重排/菜单回退、CJK/英文/200% 与小屏几何检查。单用 nowrap 而产生屏外溢出不算修复。
 - 新增通用设计案例 `assets/surface-control-patterns.json`、静态校验脚本及 Python 反例单测；新增三种表面模式交互实验页和 Chromium 3 宽度×2 字体比例×3 模式 smoke，验证按钮短标签没有折字、溢出、行操作被裁切。
-- 接入 Skill 主流程、Component Craft、Component First、Visual QA、Surface/Whitespace、Run Monitor 指南及 CI；保留所有已有能力。此变更未改动真实 RepoVantage 产品工程；browser smoke 只能证明独立样例的几何质量。
+- 接入 Skill 主流程、Component Craft、Component First、Visual QA、Surface/Whitespace、Run Monitor 指南及 CI；保留所有已有能力。此变更未改动真实 合成工作台 产品工程；browser smoke 只能证明独立样例的几何质量。
 
 ---
 
 
 ## v6.12 — 2026-11-04 · Cross-domain perceptual hierarchy and component craft
 
-- 将字号与组件设计的不足从 RepoVantage 单页问题抽象为**所有 Web 页面的通用设计门禁**，适用 Operate / Persuade / Read / Experience；不强制某种 UI 风格、默认尺寸或项目专属命名。
+- 将字号与组件设计的不足从 合成工作台 单页问题抽象为**所有 Web 页面的通用设计门禁**，适用 Operate / Persuade / Read / Experience；不强制某种 UI 风格、默认尺寸或项目专属命名。
 - 新增 `references/perceptual-hierarchy-gate.md`：按真实用户任务建立 P0–P3 信息优先级、灰阶扫读顺序、重要文本不被全局小字号弱化、并防止机械放大所有数字。
 - 新增 `references/component-craft-gate.md`：组件职责、内容层级、尺寸理由、视觉状态、交互与边界的六问；覆盖按钮、Tabs、表格/列表、状态、输入、卡片、对话框及导航，强调组合质量而非默认皮肤。
 - 增加四种产品模式的可机读示例 `assets/visual-priority-patterns.json`、静态契约校验 `scripts/validate_visual_priority.py` 与单测；接入 Skill Gate A/B/D、现有 Typography/Component-First/Visual QA 与 GitHub Actions。
@@ -113,46 +113,46 @@
 
 ## v6.11 — 2026-11-04 · Task center and run monitor UX, verified lifecycle/progress actions
 
-- 用户 RepoVantage「任务中心」截图显示长期大统计侧卡占空间、任务记录行过宽但信息集中左侧、重复“进度百分比未知”文案；判断为任务运行监控信息架构问题，而非再次调卡片 Padding/配色。
+- 用户 合成工作台「任务中心」截图显示长期大统计侧卡占空间、任务记录行过宽但信息集中左侧、重复“进度百分比未知”文案；判断为任务运行监控信息架构问题，而非再次调卡片 Padding/配色。
 - 研究 GitHub Actions workflow runs、GitLab Pipelines/Jobs、Trigger.dev Runs/Inspector、Inngest、Vercel Deployments、Linear List/Filters，区分**机器运行监控**与**人工待办**，保留每个产品的适用边界。
-- 新增 `references/task-center-run-monitor-design.md`、`references/repovantage-task-center-case.md`、`assets/task-center-reference-cases.json`。
-- 新增 Run lifecycle/Progress/Retry model `assets/task-center-run.schema.json`、`examples/task-center-repovantage.json`、`scripts/validate_task_center.py`，防止未知进度误报零、状态筛选计数错误、重试权限与状态冲突、伪造通过的浏览器证据。
+- 新增 `references/task-center-run-monitor-design.md`、`references/run-monitor-case.md`、`assets/task-center-reference-cases.json`。
+- 新增 Run lifecycle/Progress/Retry model `assets/task-center-run.schema.json`、`examples/task-center-demo.json`、`scripts/validate_task_center.py`，防止未知进度误报零、状态筛选计数错误、重试权限与状态冲突、伪造通过的浏览器证据。
 - 新增 `assets/task-center-layout-lab.html` 可交互的独立原创 Mock 示意：顶部状态筛选、任务列表、搜索/排序、真实数量进度与按需详情；只在适合的示例任务出现重试且明确提示**不会执行真实服务端请求**。
-- 增加 Python 回归测试和 `tests/task_center_browser_smoke.mjs` 的 Chromium 桌面/手机交互与滚动测试，纳入 GitHub Actions。旧版风格/导航/对齐/数据比较能力保留，本次未修改真实 RepoVantage 业务代码。
+- 增加 Python 回归测试和 `tests/task_center_browser_smoke.mjs` 的 Chromium 桌面/手机交互与滚动测试，纳入 GitHub Actions。旧版风格/导航/对齐/数据比较能力保留，本次未修改真实 合成工作台 业务代码。
 
 ---
 
 ## v6.10 — 2026-11-04 · Comparison-page UX, chart plot alignment and selection/data integrity
 
-- 针对 RepoVantage 新截图中外框已对齐但图内 Plot Area 与文字重叠、项目比较流程堆积卡片且缺乏差异分析，新增 v6.10 Comparison UX & Chart Integrity Gate。
+- 针对 合成工作台 新截图中外框已对齐但图内 Plot Area 与文字重叠、项目比较流程堆积卡片且缺乏差异分析，新增 v6.10 Comparison UX & Chart Integrity Gate。
 - 研究 NN/g、RTINGS、Apple Compare、npmcharts、EcosystemPulse、Baymard 和 GitHub Compare 等成熟案例，保留各自适合的设计模式与不能生搬的领域限制。
-- 新增 `references/comparison-page-design.md`、`references/chart-interior-alignment.md`、`references/repovantage-comparison-case.md`、`assets/comparison-reference-cases.json`。
+- 新增 `references/comparison-page-design.md`、`references/chart-interior-alignment.md`、`references/comparison-ux-case.md`、`assets/comparison-reference-cases.json`。
 - 新增 `assets/comparison-layout-lab.html`：原创响应式比较页，模拟仓库选择同步趋势图图例、series 和指标矩阵；声明示例数据非真实 GitHub 采集。
-- 新增 `assets/comparison-contract.schema.json`、`examples/comparison-contract-repovantage.json` 与 `scripts/validate_comparison_contract.py`，静态检查 entity IDs、series/legend/table、时间窗、单位、样本覆盖与 null vs zero。
+- 新增 `assets/comparison-contract.schema.json`、`examples/comparison-contract-demo.json` 与 `scripts/validate_comparison_contract.py`，静态检查 entity IDs、series/legend/table、时间窗、单位、样本覆盖与 null vs zero。
 - 新增 `scripts/audit_comparison_ui.mjs` 可选浏览器几何检查，审计支持标注的 Plot Area、标签交叠、系列身份、横向溢出与底部可达性；Canvas 内标签无结构接口时标 NOT AUDITED。
-- 更新 Skill、README、视觉 QA、浏览器/工程规范、反例和 GitHub CI，保留 v6.9 行列对齐/底部安全能力。此更新不直接修改 RepoVantage 业务网站。
+- 更新 Skill、README、视觉 QA、浏览器/工程规范、反例和 GitHub CI，保留 v6.9 行列对齐/底部安全能力。此更新不直接修改 合成工作台 业务网站。
 
 ---
 
 ## v6.9 — 2026-11-04 · Grid alignment, intentional asymmetry and bottom-safe scrolling
 
-- 基于 RepoVantage「版本发布」页面三张截图，识别两个独立问题：左右列独立堆叠导致第二排上边缘错位；卡片靠近视口底部需要验证实际能否滚动到最后一条记录。**截图不能直接证明真实裁切，不能把首屏外的内容都称为 Bug。**
+- 基于 合成工作台「版本发布」页面三张截图，识别两个独立问题：左右列独立堆叠导致第二排上边缘错位；卡片靠近视口底部需要验证实际能否滚动到最后一条记录。**截图不能直接证明真实裁切，不能把首屏外的内容都称为 Bug。**
 - 新增 `references/grid-alignment-and-viewport-safety.md`：共享网格列线与行起点、ChartPanel 统一分组、不对称合理例外、自然页面滚动与 App Shell 内部滚动、真实 fixed 工具栏和 safe-area 末端占位。
-- 新增截图专属 `references/repovantage-release-alignment-case.md`、原创可交互 `assets/grid-and-viewport-lab.html`（独立两列 vs 共享 Grid vs 主图整行，模拟矮窗口和底栏）及 `assets/layout-integrity-patterns.json`。
-- 新增 `assets/layout-integrity.schema.json`、`examples/layout-integrity-repovantage.json`、`scripts/validate_layout_integrity.py` 和自动单测，检查是否明确行对齐、移动阅读顺序、滚动末端策略和浏览器证据。
+- 新增截图专属 `references/grid-alignment-case.md`、原创可交互 `assets/grid-and-viewport-lab.html`（独立两列 vs 共享 Grid vs 主图整行，模拟矮窗口和底栏）及 `assets/layout-integrity-patterns.json`。
+- 新增 `assets/layout-integrity.schema.json`、`examples/layout-integrity-demo.json`、`scripts/validate_layout_integrity.py` 和自动单测，检查是否明确行对齐、移动阅读顺序、滚动末端策略和浏览器证据。
 - 新增可选真实浏览器几何审查 `scripts/audit_rendered_layout.mjs`，输出首屏/末端截图、横向溢出、annotated grid 上边缘错列与固定底栏遮挡线索；没有 Playwright 时明确 NOT RUN，不静默安装。
-- 更新 MauForma 主 Skill、README、视觉 QA、构图/工程原则与 GitHub CI；保留既有内容密度/导航/配色/字体规则。未直接修改 RepoVantage 业务工程或宣称其底部裁切已经修复。
+- 更新 MauForma 主 Skill、README、视觉 QA、构图/工程原则与 GitHub CI；保留既有内容密度/导航/配色/字体规则。未直接修改 合成工作台 业务工程或宣称其底部裁切已经修复。
 
 ---
 
 ## v6.8 — 2026-11-03 · Page-level density, content curation and intentional whitespace
 
-- 根据 RepoVantage 最新总览截图，发现操作面板 + 三步教程 + 分析功能三卡 + 重复入口同时出现导致内容拥挤；不是配色、圆角或卡片 padding 的单点问题。
+- 根据 合成工作台 最新总览截图，发现操作面板 + 三步教程 + 分析功能三卡 + 重复入口同时出现导致内容拥挤；不是配色、圆角或卡片 padding 的单点问题。
 - 新增 `references/page-density-and-content-priority.md`：页面主任务和访问状态优先，逐块分 primary/supporting/conditional/deferred/removed，次级内容必须可发现、关键数据不能为留白删除。
 - 新增 `references/whitespace-and-surface-composition.md`：macro/meso/micro 组间与组内关系、卡片必要性、反套娃、拒绝固定留白比例。
-- 新增四档页面级密度 `assets/page-density-profiles.json`，以及 `assets/page-content-plan.schema.json`、`examples/page-content-plan-repovantage.json` 与截图复盘。
+- 新增四档页面级密度 `assets/page-density-profiles.json`，以及 `assets/page-content-plan.schema.json`、`examples/page-content-plan-demo.json` 与截图复盘。
 - 新增 `assets/page-density-lab.html` 对比过载总览、精选总览/初访与较密的分析详情；静态脚本 `scripts/validate_page_content_plan.py` 和回归测试用于检查结构和保留来源，不代表视觉审美证明。
-- 同步 Skill v6.8、README、设计/QA/Agent 规则及 CI；旧版主题、配色与导航能力保留。未修改 RepoVantage 真实业务源码。
+- 同步 Skill v6.8、README、设计/QA/Agent 规则及 CI；旧版主题、配色与导航能力保留。未修改 合成工作台 真实业务源码。
 
 ---
 
@@ -160,33 +160,33 @@
 
 - 将“使用侧边还是顶部/底部导航”提升为独立的 Navigation Architecture Gate：先分析真实一级目的地、任务切换频率、层级、屏幕宽度及全局/局部导航分工，后选择组件与颜色。
 - 官方参考 Carbon UI Shell、Android/Material 响应式导航、Apple HIG、Microsoft NavigationView、Atlassian 导航系统与 W3C WAI；明确它们是可迁移的决策原则，不是 Web 必须照抄的模板。
-- 新增 `references/navigation-architecture.md`、`assets/navigation-pattern-catalog.json`（9 种模式）、`assets/navigation-decision.schema.json`、待确认 RepoVantage 示例、`assets/navigation-layout-lab.html` 交互式桌面/手机预览。
+- 新增 `references/navigation-architecture.md`、`assets/navigation-pattern-catalog.json`（9 种模式）、`assets/navigation-decision.schema.json`、待确认 合成工作台 示例、`assets/navigation-layout-lab.html` 交互式桌面/手机预览。
 - 解释“Side + Bottom”的两种不同用法：不同断点自适应导航 vs 同屏主导航+底部上下文操作；不同职责不能复制同一套一级路由。
 - 新增 `scripts/validate_navigation_architecture.py` 和回归测试，检测重复/丢失目的地、底部导航过载、用户选择来源、断点状态保留与虚构浏览器验收。
 - 更新主 Skill v6.7 的阅读路由、设计与组件 Gate、README、项目 MASTER/页面级规则、交互/可访问性 QA 和 CI；保留原有用户选色门槛。
-- 此版本只更新 MauForma Skill；未直接修改用户的 RepoVantage 工程或声称真实浏览器功能通过。
+- 此版本只更新 MauForma Skill；未直接修改用户的 合成工作台 工程或声称真实浏览器功能通过。
 
 ---
 
 ## v6.6 — 2026-11-03 · User-approved sidebar color & whole-page harmony
 
-- 根据用户新版 RepoVantage 侧边栏截图，将“自选深蓝侧栏”改为 **用户确认后的色彩决策**：Agent 只负责研究、推荐、解释与全页协调，不偷偷覆盖用户指定的颜色/HEX。
+- 根据用户新版 合成工作台 侧边栏截图，将“自选深蓝侧栏”改为 **用户确认后的色彩决策**：Agent 只负责研究、推荐、解释与全页协调，不偷偷覆盖用户指定的颜色/HEX。
 - 官方设计来源研究覆盖 Linear、IBM Carbon、GitHub Primer、shadcn/ui、Atlassian；保留来源、适用场景及限制，不把原创示例色值伪称品牌官方色。
 - 新增 `references/sidebar-color-discovery.md`、`references/sidebar-color-reference-cases.md`、`assets/sidebar-color-directions.json`、`assets/sidebar-color-preview.html`；预览可切换整页搭配并输入自定义 HEX。
 - 新增 `assets/sidebar-color-decision.schema.json`、待确认示例、选择对话和 `scripts/validate_sidebar_color_decision.py`，避免 Agent 推荐被当作用户批准，同时检查用户固定颜色不被擅自覆盖。
 - 强化项目 MASTER/Sidebar/Topbar/Main/Chart 的跨区域配色关系，保留状态语义与键盘焦点；静态检查不能证明实际页面美观。
 - 新增相关测试与 CI，原有主题、配色案例、动效配方和组件体系保留。
-- 未修改 RepoVantage 业务代码，也没有替用户擅自选定新的最终颜色。
+- 未修改 合成工作台 业务代码，也没有替用户擅自选定新的最终颜色。
 
 ---
 
 ## v6.5 — 2026-11-03 · Semantic copy and readable typography
 
-- 根据新版 RepoVantage 截图识别无信息增量的英文副标、重复小标题、伪章节编号、开发者术语泄漏，以及大小字号差异不合理、图表和样本信息过小的阅读问题。
+- 根据新版 合成工作台 截图识别无信息增量的英文副标、重复小标题、伪章节编号、开发者术语泄漏，以及大小字号差异不合理、图表和样本信息过小的阅读问题。
 - 新增 `references/semantic-copy-hygiene.md` 的 Copy Necessity Gate，区分无用装饰与有意义的面包屑、品牌副标、数据来源和真实流程编号。
 - 新增 `references/typography-hierarchy.md` 与 `assets/typography-role-guidelines.json`，按工作台与品牌展示页面分别定义可调整的字号角色建议，不把设计建议冒充 WCAG 强制字号。
 - 增加源码静态审查 `scripts/audit_readability.py`、测试与 `assets/typography-reading-lab.html` 概念正反例；静态扫描仅提示人工复核，不自动删文字。
-- 将文字必要性/字号层级检查融入 Skill 阅读路由、设计门槛和 QA；不修改用户实际 RepoVantage 代码，不声明实际浏览器验证已完成。
+- 将文字必要性/字号层级检查融入 Skill 阅读路由、设计门槛和 QA；不修改用户实际 合成工作台 代码，不声明实际浏览器验证已完成。
 
 ---
 
@@ -197,13 +197,13 @@
 - 新增针对蓝紫默认 SaaS 配色的语义溯源、颜色角色和审美适用性规则；不武断禁止蓝紫或实验性品牌视觉。
 - 新增三种仓库分析页面的构图案例、JSON Schema、可执行结构校验和可切换布局的概念实验室。
 - 引入去装饰测试、首屏任务证据、缺数据时空/加载/错误状态和截图结构性返工门槛。
-- 新增 12 项构图与决策来源回归测试；本版本没有修改用户 RepoVantage 源码或在其实际网站执行浏览器验收。
+- 新增 12 项构图与决策来源回归测试；本版本没有修改用户 合成工作台 源码或在其实际网站执行浏览器验收。
 
 ---
 
 ## v6.3 — 2026-11-03 · Sidebar polish and high-frequency UI patterns
 
-- 根据用户提供的 RepoVantage 侧边栏截图整理真实反例：过度强调、暗色颜色关系不统一、最近打开与导航样式混用、状态点语义不明。
+- 根据用户提供的 合成工作台 侧边栏截图整理真实反例：过度强调、暗色颜色关系不统一、最近打开与导航样式混用、状态点语义不明。
 - 新增 `references/sidebar-navigation-design.md` 和 `references/workspace-component-refinement.md`，覆盖 Sidebar、Topbar、Card、Data Table、Tabs、Search、Split Pane 七类高频组件及合理例外。
 - 新增浅/深色 `assets/sidebar-palette-examples.json`，保留独立 hover、selected、focus-visible 与业务状态角色。
 - 新增可交互 `assets/sidebar-refinement-gallery.html` 正反示例，以及颜色对比度校验脚本与单元测试。
