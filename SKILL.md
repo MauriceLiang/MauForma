@@ -118,6 +118,16 @@ python3 scripts/validate_skill_hygiene.py
 python3 -m unittest discover -s tests -v
 ```
 
+### 按需专项资料与检查器
+
+下面是**检索索引，不是所有任务的必执行命令**；只有问题涉及对应领域，才打开资料或运行脚本：
+
+- **设计研究/决策**：`references/art-direction-critique.md`、`references/project-design-hierarchy.md`、`references/external-design-case-library.md`、`references/visual-tech-selection-12.md`、`scripts/search_design_cases.py`。
+- **导航/配色/容器**：`references/sidebar-color-reference-cases.md`、`references/workspace-component-refinement.md`、`references/whitespace-and-surface-composition.md`、`references/clean-enterprise-design.md`、`assets/navigation-pattern-catalog.json`。
+- **布局与内容**：`scripts/validate_navigation_architecture.py`、`scripts/validate_sidebar_color_decision.py`、`scripts/validate_layout_integrity.py`、`scripts/audit_rendered_layout.mjs`、`scripts/validate_page_content_plan.py`、`scripts/validate_spacing_rhythm.py`。
+- **组件与视觉**：`scripts/validate_surface_control.py`、`scripts/validate_visual_priority.py`、`scripts/validate_icon_curation.py`、`scripts/audit_icon_consistency.mjs`、`scripts/validate_design_reference.py`、`scripts/validate_component_motion.py`。
+- **内容与交互状态**：`scripts/validate_comparison_contract.py`、`scripts/audit_comparison_ui.mjs`、`scripts/validate_task_center.py`、`assets/task-center-layout-lab.html`、`scripts/validate_motion_decision.py`、`scripts/validate_proactive_audit.py`。
+
 ## 6. 交付格式
 
 简洁说明：**任务范围与继承约束 → 实际发现的问题/设计依据 → 选定的页面结构与组件/Tokens → 已完成修改 → 真实测试结果及未测项**。大型设计可给出备选与理由；小修复只需要受影响的内容。报告项目变更时使用该项目自己的文档，**不要将其过程与名字追加到 MauForma 通用规范**。
