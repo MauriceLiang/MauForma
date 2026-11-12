@@ -2,7 +2,7 @@
 
 > 适用：异步任务、采集任务、CI/CD、批处理、导入导出、Agent Runs、部署或后台作业监控。若任务是“人员分配/里程碑/Kanban”，可参考 Linear，但**不应直接把人工任务管理的看板模式照搬到自动执行作业**。
 >
-> 证据：用户于 2026-11-04 提交 RepoVantage 任务中心截图。截图显示左侧“任务状态”一张纵向统计卡，占去显著宽度，右侧“任务记录”用很宽的长列表但每条信息集中在左半部分；“进度百分比未知，当前显示阶段状态”逐行重复。截图不能证明 API 未工作或按钮不可点击，必须实际运行时验证。
+> 说明：以下以完全虚构的运行监控页面为反例，不能将该场景当成任何真实项目的缺陷证据。
 
 ## 成熟产品研究（借鉴任务模式，**不是照搬品牌视觉**）
 
@@ -60,7 +60,7 @@ Run Monitor 的典型问题：哪一项失败/卡住？还在运行吗？进展�
 
 新版截图的白色大圆角外框同时包住筛选、标题、表头与记录。它**可能**构成有意义的统一数据范围，也可能只是“后台页面必须有一张大卡”的模板惯性；先用 `references/surface-architecture-gate.md` 比较平面工具条+表格与单层 panel，依据独立任务/状态作用域选型，不把 flat table 宣称唯一正确。
 
-右侧“查看详情”“重试”出现可见的逐字上下排，这是需要阻断的可读性缺陷。截图不能独自证明究竟是 `table-layout:fixed`、Grid 列宽、Flex shrink 还是按钮 CSS；实际实现应按 `references/control-geometry-gate.md` 检查**操作列尺寸+按钮固有宽度+整组重排策略**，禁止仅修圆角/缩字号。状态变化导致多一个重试操作时仍应整词可读、完整可达。该规则适用于所有表格、工具栏和短操作，不绑定 RepoVantage。
+右侧“查看详情”“重试”出现可见的逐字上下排，这是需要阻断的可读性缺陷。截图不能独自证明究竟是 `table-layout:fixed`、Grid 列宽、Flex shrink 还是按钮 CSS；实际实现应按 `references/control-geometry-gate.md` 检查**操作列尺寸+按钮固有宽度+整组重排策略**，禁止仅修圆角/缩字号。状态变化导致多一个重试操作时仍应整词可读、完整可达。该规则适用于所有表格、工具栏和短操作，不绑定 合成示例。
 
 ## Gate T4 · 布局与视觉纪律
 
@@ -83,10 +83,10 @@ Run Monitor 的典型问题：哪一项失败/卡住？还在运行吗？进展�
 ## 资产与检验
 
 - 设计参考：`assets/task-center-reference-cases.json`
-- 截图复盘：`references/repovantage-task-center-case.md`
-- 数据/状态契约：`assets/task-center-run.schema.json`、`examples/task-center-repovantage.json`
+- 截图复盘：`references/run-monitor-case.md`
+- 数据/状态契约：`assets/task-center-run.schema.json`、`examples/task-center-demo.json`
 - 可交互示例：`assets/task-center-layout-lab.html`（状态切换、搜索、行详情、模拟重试说明）
-- 结构与业务约束校验：`python3 scripts/validate_task_center.py examples/task-center-repovantage.json --repository`
-- 独立示例的 Chromium 测试：`tests/task_center_browser_smoke.mjs`；真实 RepoVantage 仍需在自身代码中验证。
+- 结构与业务约束校验：`python3 scripts/validate_task_center.py examples/task-center-demo.json --repository`
+- 独立示例的 Chromium 测试：`tests/task_center_browser_smoke.mjs`；真实产品仍需在各自代码与浏览器中验证。
 
 **继承**：v6.8 内容取舍、v6.9 Grid/底部安全、v6.10 比较数据契约不失效；Task Center 应用新 `Run Monitor` 规则，不能把它错误理解为「对象 A 和 B 的比较页面」。
