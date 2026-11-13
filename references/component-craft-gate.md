@@ -14,6 +14,10 @@
 
 当用户已确认/委托有交互动效时，组件设计不仅要对比静态尺寸和字重，还要检查 **Hover/Press/Selected/Expand/Insert/Success** 等真实状态的变化机制。查 `references/component-motion-choreography-gate.md`：按钮与 Tab 不该都仅淡入，选中指示器可沿位置移动、Disclosure 可按空间展开、状态开关可 Morph，列表应保持位置连续性；但高频表格、无状态卡片不因“要动画”而全员动起来。必须尊重 `none` 与 reduced-motion，保持 focus/结果清晰。组件 Gallery 应含静态和实际交互演示，不能凭 CSS 存在自称已验收。
 
+## 基础控件先复用、再精修
+
+有交互控件的开发任务必须先完成 `references/component-library-first-gate.md` 的组件来源选择。尤其是 Select、Combobox、DropdownMenu、Checkbox、Radio、Switch、Button、Tabs 和 Dialog：优先用已有主库或兼容原语，**不要为第一版外观随手写交互实现**。组件美感的工作重点应是：统一真实库组件的尺寸、圆角、背景、边框、字重、图标光学比例和 selected/hover/focus/disabled 状态。组件卡片只有静态默认态不能证明第一版已达标。
+
 ## 1. 组件设计前的六问（Gate B）
 
 对页面的每个高频组件与复合模式至少回答：
