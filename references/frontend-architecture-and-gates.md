@@ -80,6 +80,14 @@ Gate D：真实 Chromium 在桌面、390/320px、200% 文字放大和错误状�
 - Gate B：读取 `references/component-craft-gate.md`，确定共享组件职责/文本层级/形态依据/交互与状态。预览组件本身以及它们组成的真实内容区域，不用统一 pill/描边冒充质量。
 - Gate D：整页灰阶三秒扫描、真实正常/异常内容、长文与 200% 放大、宽窄窗口的截图验证。静态优先级计划可由 `scripts/validate_visual_priority.py` 核验**覆盖性**，不能宣称视觉优劣已自动判定。小范围修复按现有页面/组件承诺执行，不强制重复全项目探索。
 
+## Component Library First — Gate A 到 B 之间的强制前置条件
+
+Gate A：盘点现有 UI 库与实际使用；新项目未选库且页面需要 Select、DropdownMenu、Button、Checkbox、Radio、Switch、Dialog 等控件时，Agent **自行评估并选择**符合技术栈和视觉要求的成熟组件方案（`references/component-library-first-gate.md`）。不因为用户未点名库就手写一整套按钮和伪下拉。
+
+Gate B：先完成组件安装/引用、应用级主题映射和必要控件 Showcase，确认选择框展开/选中、Dropdown 动作菜单、按钮主次/危险、disabled/focus、表单状态等在目标框架里工作。共享 Ui* 为封装，不重写原语；局部修复只影响本轮范围，不强制换旧库。
+
+Gate D：实际业务页复查操作菜单、选择框、单/多选、按钮状态、键盘/焦点、浮层位置与主题一致性。发现未说明原因的手写“div 下拉”“假的选中”、跨页按钮样式不一致，视为首版质量未达标；合成 demo 只能提供设计线索。
+
 ## Phase 0：项目现状盘点
 
 - 从 `package.json` / 锁文件 / `vite.config.*` / `next.config.*` / `nuxt.config.*` / `angular.json` 等判断现有架构。
