@@ -53,8 +53,10 @@ async function run() {
           });
           assert.equal(moved.passed,true,'External marker must follow selected item: '+JSON.stringify(moved.issues));
 
-          await items.first().focus();
-          const focused = await items.first().evaluate(el=>({
+          // Genuine keyboard navigation is required to trigger :focus-visible.
+          // Programmatic .focus() immediately after a pointer click is not equivalent.
+          await page.keyboard.press('Shift+Tab');
+          const focused = await items.nth(1).evaluate(el=>({
             active:document.activeElement===el,
             outlineStyle:getComputedStyle(el).outlineStyle,
             outlineWidth:parseFloat(getComputedStyle(el).outlineWidth)
