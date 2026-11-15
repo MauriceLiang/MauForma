@@ -42,6 +42,12 @@ MauForma 帮助 Agent 在设计和开发网页时先理解真实用户任务，�
 
 设计要有明确原因：删除无意义说明，但保留真正的数据来源；压缩冗余卡片，但不把独立模块拼在一起；允许个性的颜色与动画，但不能牺牲可读性和实际功能。
 
+## 组件库优先：第一版就要有完整的交互控件
+
+MauForma 在页面开发前会检查项目现有的组件库；如果没有合适的方案，Agent 应**主动为当前前端框架选择并实际采用一套成熟组件库或可访问原语**，优先解决 Select、Combobox、DropdownMenu、Button、Checkbox、Radio、Switch、Dialog 等容易造成视觉和交互返工的控件。
+
+组件优先不等于从零造按钮和下拉菜单。选定组件方案后先统一 Theme/Tokens、完成必要控件的状态检查，再批量编写业务页面。已有主库优先继承，静态页面和合理的原生系统控件不强装大组件库。完整规则见 [Component Library First](references/component-library-first-gate.md)。
+
 ## 快速开始
 
 将本仓库安装在所使用 Agent 所支持的 Skill 目录中，并在设计或前端开发任务里明确调用 `mauforma`（目录位置依据 Agent 客户端而定）。无需在普通 Web 项目里安装仓库全部技术依赖。

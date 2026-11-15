@@ -279,3 +279,13 @@
 - [ ] 对真实任务页还需后端数据集成/权限/E2E，独立 Mock 示例的 Chromium 测试不能当真实服务验收。
 
 参见 `references/task-center-run-monitor-design.md`、`references/run-monitor-case.md`、`scripts/validate_task_center.py`。
+
+## 基础交互控件首版质量检查
+
+- [ ] 已盘点既有主 UI 库；新项目实际选择并使用了适合框架的成熟组件库/可访问原语，而不是只在设计报告中推荐。
+- [ ] 真实业务页里的 Select、Combobox、DropdownMenu、Checkbox、Radio、Switch、Tabs、Button、Dialog 均有明确来源或经批准的原生例外；未用手写假下拉规避组件库。
+- [ ] default/open/selected/hover/focus/disabled/loading/error（适用时）及键盘路径可实际操作；浮层与页面没有裁切、层级和遮挡问题。
+- [ ] 主题映射统一同屏高度、内边距、字体、圆角、选中/焦点与状态色；长中文和窄窗口仍完整可用。
+- [ ] 可说明哪些在目标路由实际验证，哪些仅静态或合成 demo 通过；发现问题先修组件再批量复制。
+
+检查依据：`references/component-library-first-gate.md`。

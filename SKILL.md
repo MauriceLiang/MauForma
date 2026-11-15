@@ -34,6 +34,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 | 数据图表、多对象比较、运行记录 | `references/chart-interior-alignment.md`、`references/comparison-page-design.md`、`references/task-center-run-monitor-design.md`（仅在对应场景阅读） |
 | 动效决策、组件级动态反馈 | `references/motion-consent-experience-gate.md`、`references/component-motion-choreography-gate.md`、`references/animation-engine-selection.md` |
 | 参考设计、受限素材、外部灵感 | `references/design-reference-learning-gate.md`、`references/design-dna-protocol.md` |
+| **新建/重构含交互控件的页面，先选并用组件库** | **`references/component-library-first-gate.md`**、`references/enterprise-ui-library-guide.md`、`references/component-first.md` |
 | 组件工程、技术栈、跨框架迁移 | `references/component-first.md`、`references/framework-support-matrix.md`、匹配的 `references/framework-*.md` |
 | 浏览器、无障碍、性能与交付复核 | `references/visual-qa.md`、`references/browser-qa-protocol.md`、`references/ui-review-rubric.md` |
 
@@ -56,15 +57,22 @@ description: Web-first, framework-aware frontend design and implementation skill
 4. **导航按任务决定**：比较全局/局部目的地数量、切换频率、层级深度、桌面与窄屏行为，再选 Top、Side、Bottom、混合。不要重复摆三套相同菜单；固定操作栏不能遮挡滚动末端。
 5. **不同页面允许不同密度**：引导/展示可以舒展，数据/编辑/工作台可以高密度；但同级模块要有稳定的内部和外部空间节奏，不靠堆卡片制造“高级感”。
 
+### C0. Component Library First — 在写业务页面之前选定并使用组件库
+
+**这是有交互控件页面的首版开发门禁，不是可选建议。** 先读 `references/component-library-first-gate.md`：盘点锁文件和现有 UI 库；已有成熟组件优先继承，缺少时由 Agent **主动为当前框架和视觉风格选择一套主组件方案并真正集成**。用户没有点名库不等于授权从零手写控件。把 Select、Combobox、DropdownMenu、Button、Checkbox、Radio、Switch、Tabs、Dialog 等需要的控件映射到已选库/可访问 headless 原语，先统一主题并试用关键状态，然后再批量开发页面。
+
+**阻断首版低质量实现**：不得用随手拼的 `div + click` 伪 Select/菜单，不得反复手写按钮和选中逻辑，不得“计划采用库但代码未用”。少量静态页面、已确认的原生体验与特殊交互可例外，必须有功能、体积或平台理由。复用成熟组件不免除同屏视觉、焦点、键盘、选中态、悬浮层、长文本和真实业务页面的验收。
+
 ### C. 建立设计系统与共享组件
 
 1. 继承已有设计源；新项目建立单一 Tokens 源：颜色角色、字体层级、间距、圆角、边框/阴影、布局断点、图标角色、动效和状态。页面特例要有理由，不要每页独立硬编码同类值。
 2. 先确定 `PageTitle / SectionTitle / Body / KPI / Axis / Legend / Metadata` 等**文字角色**，按信息优先级设计字号、字重、行高、字宽与对比。巨大标题不能压过核心任务；图表刻度、表头、单位和样本数不能因“精致”变得难读。排版应同时检查中文、英文、数字混排、长文本和 200% 文本缩放。
 3. 根据内容关系选择开放布局、边界面板、单层 Card、表格、列表、分屏或媒体墙。只有信息/交互分组真正独立时才用容器；拒绝无意义外壳与嵌套卡片。**Section 的外部 gap 与 Card 的内部 padding 是两件事**。
 4. 空间关系区分 `inside / peer / section / connected`：组内紧密、同级稳定、跨章节更明显、确实连续的 Tab/Panel 可以贴合。纵向 `row-gap` 和横向 `column-gap` 都要检查；不能因新主题把不同业务模块贴在一起，也不能把原本连接的控件强行拆开。
-5. 共享 Button、Field、Dialog、Navigation、Tabs、Table/List、Feedback、Status、PageHeader、Chart 等组件及状态。实现前校验**实际业务动作**、禁用/加载/错误/空状态、键盘操作和组件行为契约。短操作文字不得逐字纵排、裁切或溢出；空间不足时让操作组换行、移位或使用明确的折叠菜单。
-6. 图标先检查语义，再检查同屏整组的线条、细节、负空间、视觉重量与字体对齐；不只凭名称导入一个“差不多”的图标。没有清晰符号时可用文字。成熟图标库可按现有技术栈选用，但不能无理由混用多个体系。
-7. 配色由用户或品牌决策驱动。可以提出有整体页面依据的候选，但不得默认强加蓝紫渐变、灰白后台或任何单一审美。查看侧栏与主区域、图表、状态、hover/focus 在深浅主题中的整体关系；不以“去 AI 味”为借口禁止合理的强色、插画、emoji 或艺术表达。
+5. **基础交互控件默认使用已选库及其适配层**：先确认 Select、DropdownMenu、Button、Checkbox、Tabs 等实际来源并完成可运行 Showcase；
+6. 共享 Button、Field、Dialog、Navigation、Tabs、Table/List、Feedback、Status、PageHeader、Chart 等组件及状态。实现前校验**实际业务动作**、禁用/加载/错误/空状态、键盘操作和组件行为契约。短操作文字不得逐字纵排、裁切或溢出；空间不足时让操作组换行、移位或使用明确的折叠菜单。
+7. 图标先检查语义，再检查同屏整组的线条、细节、负空间、视觉重量与字体对齐；不只凭名称导入一个“差不多”的图标。没有清晰符号时可用文字。成熟图标库可按现有技术栈选用，但不能无理由混用多个体系。
+8. 配色由用户或品牌决策驱动。可以提出有整体页面依据的候选，但不得默认强加蓝紫渐变、灰白后台或任何单一审美。查看侧栏与主区域、图表、状态、hover/focus 在深浅主题中的整体关系；不以“去 AI 味”为借口禁止合理的强色、插画、emoji 或艺术表达。
 
 ### D. 按真实页面类型实施交互
 
@@ -78,10 +86,11 @@ description: Web-first, framework-aware frontend design and implementation skill
 ### E. 真正检查实际渲染结果
 
 1. 在同一路由、同数据状态、同窗口与字号下做修改前后比较；检查首屏、中段、末端、滚动终点，以及选中、hover、focus、loading、empty、error、success 等适用状态。
-2. 视觉检查至少覆盖：主视觉是否对应主任务、内容是否冗余、字号层级、图表内部标签、图标统一、组件边界、左右/上下间距、共享网格、短按钮与长文本、底部可达性、深浅色。
-3. 交互与工程检查至少覆盖：实际点击与状态更新、键盘焦点、语义标签、颜色对比、必要的移动/窄窗口适配、200% 文字缩放、减少动画、加载与错误、性能和构建/测试。响应式范围以用户项目要求为准，**不要强迫仅桌面使用的产品改成手机产品**；仍应避免目标视口出现无意截断。
-4. 工具是辅助：静态审计只能产生风险线索；截图只能支持可见观察；浏览器脚本也不能替代审美判断与业务端到端测试。未打开真实页面就不能宣称“已修复视觉问题”；未调用真实后端就不能宣称“已验证保存”。
-5. 报告必须使用有证据的状态：`VERIFIED`（在真实产品实测）、`STATIC CHECK`（仅源码/契约）、`DEMO ONLY`（仅合成样例）、`NOT TESTED`（未运行）、`BLOCKED`（条件受限）。视觉问题仍存在时，注明未解决及原因。
+2. **关键控件首版门禁**：在实际页面打开 Select/Combobox/DropdownMenu，操作 Button、选中项、Checkbox/Radio/Switch、Tabs 和弹窗，检查使用的是已选成熟组件库或有依据的原生实现；在打开、选中、禁用、加载、键盘、长中文、深浅主题中确认统一且可用。
+3. 视觉检查至少覆盖：主视觉是否对应主任务、内容是否冗余、字号层级、图表内部标签、图标统一、组件边界、左右/上下间距、共享网格、短按钮与长文本、底部可达性、深浅色。
+4. 交互与工程检查至少覆盖：实际点击与状态更新、键盘焦点、语义标签、颜色对比、必要的移动/窄窗口适配、200% 文字缩放、减少动画、加载与错误、性能和构建/测试。响应式范围以用户项目要求为准，**不要强迫仅桌面使用的产品改成手机产品**；仍应避免目标视口出现无意截断。
+5. 工具是辅助：静态审计只能产生风险线索；截图只能支持可见观察；浏览器脚本也不能替代审美判断与业务端到端测试。未打开真实页面就不能宣称“已修复视觉问题”；未调用真实后端就不能宣称“已验证保存”。
+6. 报告必须使用有证据的状态：`VERIFIED`（在真实产品实测）、`STATIC CHECK`（仅源码/契约）、`DEMO ONLY`（仅合成样例）、`NOT TESTED`（未运行）、`BLOCKED`（条件受限）。视觉问题仍存在时，注明未解决及原因。
 
 ## 4. 防止模板化和反复返工的审核题
 
@@ -99,7 +108,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 ## 5. 资源和使用方式
 
 - 设计研究与风格：`references/design-style-catalog.md`、`references/aesthetic-authorship.md`、`assets/style-knowledge.json`。
-- 组件与框架：`references/enterprise-ui-library-guide.md`、`references/creative-component-libraries.md`、`references/framework-support-matrix.md`。
+- 组件与框架：`references/component-library-first-gate.md`、`references/enterprise-ui-library-guide.md`、`references/creative-component-libraries.md`、`references/framework-support-matrix.md`。
 - 动画配方：`references/animejs-official-capabilities.md`、`references/animejs-motion-recipes.md`、`assets/motion-gallery.html`。
 - 互动原型：`assets/preview.html` 及其他 `assets/*-lab.html`，**只作为独立概念示范**。
 - 审核脚本：`scripts/audit_frontend.py`、`scripts/audit_existing_visual_defects.mjs`、`scripts/audit_panel_spacing.mjs`、`scripts/audit_spacing_rhythm.mjs`、`scripts/browser_qa.mjs`。运行前检查依赖与页面可访问性，不能把工具不可用写成通过。
