@@ -15,11 +15,35 @@ main{max-width:1140px;margin:auto;padding:42px 24px 80px}header{display:flex;jus
 .caption{font-size:12px;color:var(--sub);margin:12px 0 0}h2{font-size:21px;margin:44px 0 8px}.support{background:var(--sb);color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:18px;min-width:0}.support h3{font-size:13px;margin:0 0 15px}.subtle{font-size:11px;color:var(--muted)}.topbar{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line);padding-bottom:12px;font-size:12px}.outline{background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:7px 9px}.card{border:1px solid var(--line);border-radius:7px;background:var(--surface);padding:12px;font-size:12px}.card p{font-size:11px;color:var(--muted);margin:4px 0}.tabs{display:flex;gap:19px;border-bottom:1px solid var(--line)}.tab{border:0;border-bottom:2px solid transparent;background:none;color:var(--muted);padding:8px 0;font-size:12px}.tab[aria-selected=true]{color:var(--ink);border-bottom-color:var(--accent);font-weight:650}.search{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:9px 11px;color:var(--ink);font-size:12px}.table{width:100%;border-collapse:collapse;font-size:11px}.table th{text-align:left;color:var(--muted);font-weight:600}.table td,.table th{border-bottom:1px solid var(--line);padding:9px 5px}.split{height:90px;display:flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}.pane{flex:1;padding:10px;font-size:12px;min-width:0}.pane:first-child{background:var(--surface)}.handle{width:8px;border:0;border-inline:1px solid var(--line);background:var(--sb);cursor:col-resize}.handle:after{content:"";display:block;width:2px;height:18px;background:var(--muted);margin:auto}
 @media(max-width:780px){.grid{grid-template-columns:1fr}main{padding:25px 14px 65px}header{align-items:flex-start;flex-wrap:wrap}.sidebar{min-height:470px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+
+/* SIDEBAR EXTERNAL INDICATOR PATTERNS */
+.indicator-study{margin-top:32px}
+.indicator-study .grid{align-items:stretch}
+.indicator-preview{background:var(--sb);border:1px solid var(--line);border-radius:9px;padding:18px;min-width:0}
+.indicator-preview .study-label{font-size:12px;color:var(--muted);margin:0 0 12px}
+.indicator-preview .study-menu{display:grid;gap:7px}
+.indicator-preview .study-item{display:flex;gap:9px;align-items:center;width:100%;min-height:42px;padding:10px 12px;border:0;border-radius:8px;background:transparent;color:var(--muted);font-size:13px;text-align:left;white-space:nowrap}
+.indicator-preview .study-item:hover{background:var(--hover);color:var(--ink)}
+.indicator-preview .study-item[aria-pressed=true]{background:var(--selected);color:var(--ink);font-weight:650}
+.indicator-preview .study-item:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+/* Negative-only counterexample: the entire button edge becomes a bright stripe. Never reuse. */
+.indicator-preview[data-study=wrong] .study-item[aria-pressed=true]{border-inline-start:5px solid #249aff;border-radius:8px 8px 8px 0;padding-inline-start:7px}
+.indicator-preview[data-study=wrong] .study-item[aria-pressed=false]{border-inline-start:5px solid transparent;padding-inline-start:7px}
+/* Correct optional style: indicator is OUTSIDE the item border box, in its own grid gutter. */
+.indicator-preview[data-study=external] .study-row{
+ display:grid;grid-template-columns:3px minmax(0,1fr);align-items:center;column-gap:9px;
+}
+.indicator-preview[data-study=external] .study-indicator{
+ width:3px;height:18px;border-radius:3px;background:var(--accent);opacity:0;pointer-events:none;
+}
+.indicator-preview[data-study=external] .study-row[data-current=true]>.study-indicator{opacity:1}
+.indicator-preview[data-study=external] .study-item{border-inline-start:0;box-shadow:none;min-width:0}
+.indicator-study .study-explainer{font-size:12px;line-height:1.65;color:var(--sub);margin:12px 0 0}
 </style>
 </head>
 <body>
 <main>
-<header><div><div class="overline">MAUFORMA / PATTERN QUALITY LAB</div><h1>让状态清楚，而不是更响亮。</h1><p class="intro">根据用户提供的侧栏截图重构的概念对照：比较重复高亮与克制选中态。下方提供六类高频工作台组件的基本视觉规范，不代表原项目已被修改。</p></div><button class="theme" type="button" id="theme">切换浅色</button></header>
+<header><div><div class="overline">MAUFORMA / PATTERN QUALITY LAB</div><h1>让状态清楚，而不是更响亮。</h1><p class="intro">虚构侧栏的三种概念对照：过度高亮、克制选中、外置短竖条。下方提供六类高频工作台组件的基本视觉规范，不代表原项目已被修改。</p></div><button class="theme" type="button" id="theme">切换浅色</button></header>
 <div class="grid">
 <section class="module noisy"><div class="label"><strong>01 / 过度强调</strong><small>BEFORE · ANTI-PATTERN</small></div>
 <div class="sidebar"><div class="brand"><div class="logo" aria-hidden="true">R</div><div><strong>示例工作台</strong><small>开源项目分析</small></div></div><div class="group-label">工作区</div>
@@ -32,6 +56,34 @@ main{max-width:1140px;margin:auto;padding:42px 24px 80px}header{display:flex;jus
 <div class="group-label">最近打开</div><div class="recents" data-select-group><button class="recent" aria-pressed="true"><span class="dot"></span>demo-labs/steady-core</button><button class="recent" aria-pressed="false"><span class="dot"></span>vuejs/core</button></div><div class="hint">演示数据 · 仅供交互预览</div><div class="footer">RV · 个人工作区</div></div>
 <p class="caption">一层选中底色配文字/图标权重，最近对象更轻；键盘焦点仍独立可见。</p></section>
 </div>
+<section class="indicator-study" aria-label="导航项外置选中标记对比">
+<h2>选中竖条：错误的彩色边框 vs 正确的外置短条</h2>
+<p class="intro">下方均为虚构导航内容，可点击切换；左侧是整条按钮边框染色的错误做法，右侧为独立 gutter 内的短竖条。无竖条的 Soft inset 仍是默认可选方案。</p>
+<div class="grid">
+<section class="module" data-mf-indicator-case="wrong"><div class="label"><strong>错误：导航项自己的彩色长边</strong><small>DO NOT COPY</small></div>
+<div class="indicator-preview" data-study="wrong">
+<p class="study-label">按钮的左侧 border 变为蓝色，选中区域与彩条直接接触</p>
+<div class="study-menu" data-indicator-group>
+<button class="study-item" type="button" aria-pressed="false">概览</button>
+<button class="study-item" type="button" aria-pressed="true">数据分析</button>
+<button class="study-item" type="button" aria-pressed="false">偏好设置</button>
+</div>
+</div>
+<p class="study-explainer">错误原因：条形与按钮边框重合、贯穿整个条目高度，不是可独立辨识的外部选中指示器。</p>
+</section>
+<section class="module" data-mf-indicator-case="external"><div class="label"><strong>正确：独立外置短竖条</strong><small>OPTIONAL PATTERN</small></div>
+<div class="indicator-preview" data-study="external">
+<p class="study-label">短条位于当前按钮左侧的独立空隙，保留完整按钮圆角</p>
+<div class="study-menu" data-indicator-group>
+<div class="study-row" data-current="false"><span class="study-indicator" data-mf-indicator-rail aria-hidden="true"></span><button class="study-item" data-mf-nav-item type="button" aria-pressed="false">概览</button></div>
+<div class="study-row" data-current="true"><span class="study-indicator" data-mf-indicator-rail aria-hidden="true"></span><button class="study-item" data-mf-nav-item type="button" aria-pressed="true">数据分析</button></div>
+<div class="study-row" data-current="false"><span class="study-indicator" data-mf-indicator-rail aria-hidden="true"></span><button class="study-item" data-mf-nav-item type="button" aria-pressed="false">偏好设置</button></div>
+</div>
+</div>
+<p class="study-explainer">正确原因：仅当前条目显示一段短标记，条与按钮保留明确间距，切换后布局不会左右跳动。装饰节点不参与键盘焦点。</p>
+</section>
+</div>
+</section>
 <h2>高频基础组件的精修基线</h2><p class="intro">真正的组件质量来自层级、状态、可用性与一致性，不靠叠加特效。</p>
 <div class="grid">
 <section class="support"><h3>Topbar / 顶部导航</h3><div class="topbar"><span>工作区 / <strong>仓库分析</strong></span><button type="button" class="outline" id="topAction">新建分析</button></div><p class="subtle" id="topMsg" aria-live="polite">让上下文与操作对齐，不套一层无意义玻璃顶栏。</p></section>
@@ -45,6 +97,18 @@ main{max-width:1140px;margin:auto;padding:42px 24px 80px}header{display:flex;jus
 </main>
 <script>
 document.querySelectorAll('[data-select-group]').forEach(group=>group.addEventListener('click',event=>{const b=event.target.closest('button');if(!b||!group.contains(b))return;group.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));}));
+document.querySelectorAll('[data-indicator-group]').forEach(group=>{
+ group.addEventListener('click',event=>{
+  const target=event.target.closest('button.study-item');
+  if(!target||!group.contains(target))return;
+  group.querySelectorAll('button.study-item').forEach(item=>{
+   const active=item===target;
+   item.setAttribute('aria-pressed',String(active));
+   const row=item.closest('.study-row');
+   if(row)row.dataset.current=String(active);
+  });
+ });
+});
 document.querySelector('#theme').addEventListener('click',e=>{const h=document.documentElement;h.dataset.scheme=h.dataset.scheme==='dark'?'light':'dark';e.currentTarget.textContent=h.dataset.scheme==='dark'?'切换浅色':'切换深色';});
 document.querySelector('#topAction').addEventListener('click',()=>document.querySelector('#topMsg').textContent='示例按钮已触发；未创建真实任务。');
 const tabs=[...document.querySelectorAll('[role=tab]')];function choose(t){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',String(on));x.tabIndex=on?0:-1;});const p=document.querySelector('#panel');p.setAttribute('aria-labelledby',t.id);p.textContent=t.id==='tab0'?'概览：选中态只有一条下划线。':'历史：保持相同的视觉与键盘逻辑。';t.focus();}tabs.forEach((t,i)=>{t.addEventListener('click',()=>choose(t));t.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();choose(tabs[(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length]);}else if(e.key==='Home'||e.key==='End'){e.preventDefault();choose(tabs[e.key==='Home'?0:tabs.length-1]);}});});
