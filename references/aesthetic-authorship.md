@@ -15,6 +15,18 @@
 | Vercel React Best Practices | https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices | 优先消除请求瀑布和包体积问题，再优化渲染微细节 | React/Next 性能治理 | 性能优化破坏既有语义和可用性 |
 | Anthropic Webapp Testing | https://github.com/anthropics/skills/tree/main/skills/webapp-testing | 真实浏览器交互、页面截图与日志核对 | 视觉验收、表单/导航/响应式测试 | 只有静态页面就宣称所有业务功能验证 |
 
+## 额外工作流参考与核验边界
+
+| 来源 | 核对到的重点 | MauForma 的可迁移吸收 | 不能照搬的部分 |
+| --- | --- | --- | --- |
+| Anthropic theme-factory | 为幻灯片/文档/HTML 等产物提供颜色与字体主题，附有预设样例 | 主题 Token 一致性与“先选择、再应用” | 将演示用配色当成所有 Web 产品的唯一设计系统 |
+| pbakaus Impeccable | 字体、色彩、空间、动效、交互、响应式、UX 文案的专题参考 | `references/design-craft-loop.md` 七域有证据的精修 | “不准用某字体/卡片”一刀切禁令 |
+| julianoczkowski designer-skills | 设计简报 → IA → Tokens → 实现 → Review 的可跳过阶段 | 按任务规模选择流程，并将独立评审与执行分离 | 每个小修复都要访谈、写完整项目 Brief |
+| OpenAI figma-implement-design | 设计上下文、截图、资源、已有组件映射与视觉复验 | `references/figma-fidelity-workflow.md` 的高保真专属模式 | 没有源设计或 MCP 权限时虚构“像素级还原” |
+| 视频所称 design-process-pack | 已知描述是前置梳理需求、受众与信息结构 | 作为需求前置方法论的启发，保留用户确定优先原则 | **尚无可确认的唯一上游仓库**，不得声称已审核代码 |
+
+相关公开来源：<https://github.com/anthropics/skills/tree/main/skills/theme-factory>、<https://github.com/pbakaus/impeccable>、<https://github.com/julianoczkowski/designer-skills>、<https://github.com/openai/skills/tree/main/skills/.curated/figma-implement-design>。本 Skill 独立编写工作流和示例，不直接拷贝上游源码及素材。
+
 ## 审美主张如何被保留
 
 - **独立风格，不被均值化**：实验性风格保留非对称、错位、形态夸张、强动效的权利；克制极简保留安静结构的价值。

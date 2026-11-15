@@ -21,6 +21,8 @@ description: Web-first, framework-aware frontend design and implementation skill
 
 | 任务或证据 | 先读取 |
 | --- | --- |
+| 从零设计、要求审美升级/细节精修、只做独立评审 | `references/design-craft-loop.md`、`references/visual-critique-loop.md`（按模式读取） |
+| 有可访问的 Figma 稿且要求按稿还原 | `references/figma-fidelity-workflow.md`、`references/design-system.md`、`references/component-library-first-gate.md` |
 | 新建产品、全面改版、用户没有视觉方向 | `references/design-discovery-interview.md`、`references/product-experience-routing-gate.md`、`references/design-style-catalog.md` |
 | 结构与视觉中心、页面变成通用后台模板 | `references/composition-first-design.md`、`references/perceptual-hierarchy-gate.md`、`references/progressive-visual-refinement-gate.md` |
 | 模糊指令“优化一下”、审视已有页面 | `references/proactive-visual-defect-discovery-gate.md`、`references/visual-critique-loop.md` |
@@ -48,6 +50,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 2. 将任务归为：**新建/重设计、已有页面优化、明确缺陷修复、仅分析**。已有页面优化应先实际查看页面首屏、中段、末端和关键状态，检查真实 DOM/计算样式及可见问题；证据不足不得编造“必然存在的 bug”。
 3. 为页面写出四项最小设计简报：**谁来使用、要完成什么、第一眼应该看到什么、哪些约束必须继承**。同时标明当前页的 Operate/Read/Persuade/Experience 目标。
 4. 仅在真正影响方向的关键决策缺失时，给出 2–3 个**具体且不同**的候选：例如内容优先、操作效率优先、视觉体验优先；说明布局、密度、字体/色彩角色和取舍。能从现有产品确定的条件不再追问。**建议不等于用户确认**；清晰区分 `confirmed / inherited / delegated / proposed / unresolved`。
+5. **按任务决定设计流程**：新页面走 `shape`（明确视觉主张、首屏焦点和舍弃的模板），视觉精修走 `polish`，只做评审走 `review`，Figma 原稿还原走 `fidelity`，局部缺陷走 `fix`。规则见 `references/design-craft-loop.md`；不为小修复执行整套设计仪式。
 
 ### B. 先修 UX 与内容架构，再画 UI
 
@@ -87,12 +90,13 @@ description: Web-first, framework-aware frontend design and implementation skill
 ### E. 真正检查实际渲染结果
 
 1. 在同一路由、同数据状态、同窗口与字号下做修改前后比较；检查首屏、中段、末端、滚动终点，以及选中、hover、focus、loading、empty、error、success 等适用状态。
-2. **关键控件首版门禁**：在实际页面打开 Select/Combobox/DropdownMenu，操作 Button、选中项、Checkbox/Radio/Switch、Tabs 和弹窗，检查使用的是已选成熟组件库或有依据的原生实现；在打开、选中、禁用、加载、键盘、长中文、深浅主题中确认统一且可用。
-3. **侧栏选中态**：检查是否误将选中项 `border-left` 或内部 inset shadow 画成彩色竖条；若选择外置提示条，验证只在当前路由项**外侧**出现、与导航按钮有实际间隔、切换后同步且与键盘焦点分离。
-4. 视觉检查至少覆盖：主视觉是否对应主任务、内容是否冗余、字号层级、图表内部标签、图标统一、组件边界、左右/上下间距、共享网格、短按钮与长文本、底部可达性、深浅色。
-5. 交互与工程检查至少覆盖：实际点击与状态更新、键盘焦点、语义标签、颜色对比、必要的移动/窄窗口适配、200% 文字缩放、减少动画、加载与错误、性能和构建/测试。响应式范围以用户项目要求为准，**不要强迫仅桌面使用的产品改成手机产品**；仍应避免目标视口出现无意截断。
-6. 工具是辅助：静态审计只能产生风险线索；截图只能支持可见观察；浏览器脚本也不能替代审美判断与业务端到端测试。未打开真实页面就不能宣称“已修复视觉问题”；未调用真实后端就不能宣称“已验证保存”。
-7. 报告必须使用有证据的状态：`VERIFIED`（在真实产品实测）、`STATIC CHECK`（仅源码/契约）、`DEMO ONLY`（仅合成样例）、`NOT TESTED`（未运行）、`BLOCKED`（条件受限）。视觉问题仍存在时，注明未解决及原因。
+2. **独立 Critique**：设计完成后分开检查 UX/IA 与视觉工艺（排版、色彩、空间、动效、交互状态、适配、UX 文案）。记录可观察证据、根因假设、P0–P3 优先级、修复与复验；不得让主观打分或合成 Gallery 代替真实页面验收，详见 `references/design-craft-loop.md`。
+3. **关键控件首版门禁**：在实际页面打开 Select/Combobox/DropdownMenu，操作 Button、选中项、Checkbox/Radio/Switch、Tabs 和弹窗，检查使用的是已选成熟组件库或有依据的原生实现；在打开、选中、禁用、加载、键盘、长中文、深浅主题中确认统一且可用。
+4. **侧栏选中态**：检查是否误将选中项 `border-left` 或内部 inset shadow 画成彩色竖条；若选择外置提示条，验证只在当前路由项**外侧**出现、与导航按钮有实际间隔、切换后同步且与键盘焦点分离。
+5. 视觉检查至少覆盖：主视觉是否对应主任务、内容是否冗余、字号层级、图表内部标签、图标统一、组件边界、左右/上下间距、共享网格、短按钮与长文本、底部可达性、深浅色。
+6. 交互与工程检查至少覆盖：实际点击与状态更新、键盘焦点、语义标签、颜色对比、必要的移动/窄窗口适配、200% 文字缩放、减少动画、加载与错误、性能和构建/测试。响应式范围以用户项目要求为准，**不要强迫仅桌面使用的产品改成手机产品**；仍应避免目标视口出现无意截断。
+7. 工具是辅助：静态审计只能产生风险线索；截图只能支持可见观察；浏览器脚本也不能替代审美判断与业务端到端测试。未打开真实页面就不能宣称“已修复视觉问题”；未调用真实后端就不能宣称“已验证保存”。
+8. 报告必须使用有证据的状态：`VERIFIED`（在真实产品实测）、`STATIC CHECK`（仅源码/契约）、`DEMO ONLY`（仅合成样例）、`NOT TESTED`（未运行）、`BLOCKED`（条件受限）。视觉问题仍存在时，注明未解决及原因。
 
 ## 4. 防止模板化和反复返工的审核题
 
