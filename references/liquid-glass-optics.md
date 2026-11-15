@@ -65,7 +65,7 @@ output(x, y) = source(
 
 上面的 highlight 是方向性**近似**，没有计算真实 Fresnel 反射；`border` 仅用于表现边界，不是光学证明。只向现有成熟组件库的 **surface / overlay / theme slot** 增加效果，不手写取代 Select、Dialog、Popover、Keyboard 等交互原语。
 
-### B. 实验性 Web 光学折射：Canvas 位移图 + SVG + CSS
+### B. 实验性 Web 光学折射：Canvas 位移图 + SVG Filter + CSS
 
 1. 获得待显示形状尺寸和圆角。使用 rounded-rectangle signed-distance function 或边缘法线近似，在画布逐像素生成偏移（中心接近 0，边缘更强）；R 编码 X、G 编码 Y、B 可保持中性、A=255。
 2. 输出位移贴图的 Canvas PNG / Blob URL；将其用 SVG `feImage`（或等价 SVG 图像输入）作为 `in2`，`feDisplacementMap in="SourceGraphic" in2="map" xChannelSelector="R" yChannelSelector="G"`。调整 `scale` 得到不同强度。
@@ -134,3 +134,5 @@ output(x, y) = source(
 5. 四层是否能**单独开关**复验？避免把 blur、高光、背景扭曲混成一个不可调 CSS 黑盒。
 
 附带的原创教学演示 `assets/liquid-glass-layer-lab.html` 允许逐层观察半透明、折射开关、高光、阴影和模糊；演示不代表任何真实产品或任何浏览器都支持 SVG backdrop 折射。所有视觉效果应保持可撤销、按场景使用。
+
+**学习素材溯源**：四层模型与基础实现顺序依据用户提供的液态玻璃教学视频文字提取，独立整理为通用 Web 设计知识；SVG 通道公式、CSS 规范及浏览器限制另以 MDN、WebKit 与兼容性记录核对。此文不包含项目特定截图或业务内容。
