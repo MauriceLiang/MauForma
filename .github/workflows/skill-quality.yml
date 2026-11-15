@@ -22,6 +22,7 @@ jobs:
       - name: Validate design intelligence
         run: |
           python3 scripts/validate_intelligence.py
+          python3 scripts/validate_liquid_glass.py --repository
           python3 scripts/validate_ui_patterns.py
           python3 scripts/validate_component_library_first.py --repository
           python3 scripts/validate_composition_brief.py examples/composition/repo-analysis.json --repository
