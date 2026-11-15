@@ -61,10 +61,10 @@ main{max-width:1140px;margin:auto;padding:42px 24px 80px}header{display:flex;jus
 <p class="intro">下方均为虚构导航内容，可点击切换；左侧是整条按钮边框染色的错误做法，右侧为独立 gutter 内的短竖条。无竖条的 Soft inset 仍是默认可选方案。</p>
 <div class="grid">
 <section class="module" data-mf-indicator-case="wrong"><div class="label"><strong>错误：导航项自己的彩色长边</strong><small>DO NOT COPY</small></div>
-<div class="indicator-preview" data-study="wrong">
+<div class="indicator-preview" data-study="wrong" data-mf-selection-indicator="external">
 <p class="study-label">按钮的左侧 border 变为蓝色，选中区域与彩条直接接触</p>
 <div class="study-menu" data-indicator-group>
-<button class="study-item" type="button" aria-pressed="false">概览</button>
+<button class="study-item" data-mf-nav-item type="button" aria-pressed="false">概览</button>
 <button class="study-item" type="button" aria-pressed="true">数据分析</button>
 <button class="study-item" type="button" aria-pressed="false">偏好设置</button>
 </div>
@@ -72,7 +72,7 @@ main{max-width:1140px;margin:auto;padding:42px 24px 80px}header{display:flex;jus
 <p class="study-explainer">错误原因：条形与按钮边框重合、贯穿整个条目高度，不是可独立辨识的外部选中指示器。</p>
 </section>
 <section class="module" data-mf-indicator-case="external"><div class="label"><strong>正确：独立外置短竖条</strong><small>OPTIONAL PATTERN</small></div>
-<div class="indicator-preview" data-study="external">
+<div class="indicator-preview" data-study="external" data-mf-selection-indicator="external">
 <p class="study-label">短条位于当前按钮左侧的独立空隙，保留完整按钮圆角</p>
 <div class="study-menu" data-indicator-group>
 <div class="study-row" data-current="false"><span class="study-indicator" data-mf-indicator-rail aria-hidden="true"></span><button class="study-item" data-mf-nav-item type="button" aria-pressed="false">概览</button></div>
