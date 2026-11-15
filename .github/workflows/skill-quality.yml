@@ -17,6 +17,7 @@ jobs:
         run: |
           python3 scripts/validate_web_skill.py
           python3 scripts/validate_skill_hygiene.py
+          python3 scripts/validate_design_craft.py --repository
           python3 scripts/validate_design_system.py
           python3 scripts/validate_motion_catalog.py
       - name: Validate design intelligence

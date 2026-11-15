@@ -32,6 +32,10 @@ MauForma 帮助 Agent 在设计和开发网页时先理解真实用户任务，�
 
 支持 Vue/Nuxt、React/Next、Svelte/SvelteKit、Angular、Solid、Astro、原生 Web，以及 Electron/Tauri 的 Web 界面。原生移动端和原生桌面 UI 不属于直接的组件实现范围。
 
+## 按任务选择设计深度
+
+根据需求选择 `shape`（新建/重设计）、`polish`（视觉精修）、`review`（独立审美评审）、`fidelity`（Figma 稿高保真实现）、`fix`（局部缺陷修复），无需同时安装或运行多套外部设计 Skills。详见 [Design Craft Loop](references/design-craft-loop.md) 与 [Figma Fidelity Mode](references/figma-fidelity-workflow.md)。
+
 ## 工作方式
 
 1. **了解约束**：判断产品类型、当前页面任务、目标受众、已有设计和工程。对明确的局部修复不重复问卷，也不改动无关部分。

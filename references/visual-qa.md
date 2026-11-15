@@ -302,3 +302,11 @@
 - [ ] 实验室状态标 `DEMO ONLY`，真实页面和浏览器经实测才标 `VERIFIED`。
 
 详见 `references/liquid-glass-optics.md` 与 `assets/liquid-glass-layer-lab.html`。
+
+## 审美与高保真任务路由（按需）
+
+- 新建/重大改版：按 `references/design-craft-loop.md` 确定任务、视觉主张、重点元素、拒绝的模板方案，并继承用户和现有设计系统的真实约束；不自动要求特效或夸张字体。
+- 精修/独立评审：区别 UX 结构问题和视觉细节问题；在实际页面中记录 `symptom → evidence → root cause hypothesis → affected task → fix → validation`，按 P0/P1/P2/P3 处理，保留已做对的设计。
+- 七个检查域：Typography、Color & Contrast、Spatial Design、Motion、Interaction States、Responsive、UX Writing；按需要检查，不能把全部域都视为必须修改。
+- Figma 还原：按 `references/figma-fidelity-workflow.md` 获取节点/截图/变量/素材证据，将 Figma 组件映射至现有主组件库，真实截图同视口比对。只有截图时不得声称获取了节点和精确 Tokens；无 MCP 连接时不虚构读取成功。
+- 视觉通过、静态检查通过、源稿还原度与真实业务交互验证应分别报告，不能用一次主观高分代替全部验收。
