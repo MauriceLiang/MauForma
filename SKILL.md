@@ -33,6 +33,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 | 图标含义或同屏风格不协调 | `references/icon-art-direction-gate.md` |
 | 数据图表、多对象比较、运行记录 | `references/chart-interior-alignment.md`、`references/comparison-page-design.md`、`references/task-center-run-monitor-design.md`（仅在对应场景阅读） |
 | 动效决策、组件级动态反馈 | `references/motion-consent-experience-gate.md`、`references/component-motion-choreography-gate.md`、`references/animation-engine-selection.md` |
+| 用户明确要求液态玻璃、折射或透镜质感 | `references/liquid-glass-optics.md`、`references/visual-tech-selection-12.md`（仅按需） |
 | 参考设计、受限素材、外部灵感 | `references/design-reference-learning-gate.md`、`references/design-dna-protocol.md` |
 | **新建/重构含交互控件的页面，先选并用组件库** | **`references/component-library-first-gate.md`**、`references/enterprise-ui-library-guide.md`、`references/component-first.md` |
 | 组件工程、技术栈、跨框架迁移 | `references/component-first.md`、`references/framework-support-matrix.md`、匹配的 `references/framework-*.md` |
@@ -80,6 +81,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 - **操作/数据型**：优先操作可达、状态可辨、筛选与反馈真实。图表需核对绘图区、轴、刻度、单位、图例和表格数据；缺失值不是 0。多对象比较必须让所选对象、图例、系列、矩阵列与共同时间窗对应。运行记录须区分真实进度、未知进度、状态和有权限的操作。
 - **阅读/教育/内容型**：优先内容层级、阅读顺序、节奏、检索与回到任务；无需为每段内容套 Card。学习行为、过程反馈与材料呈现应由真实任务驱动。
 - **品牌/消费/创意型**：允许大胆排版、摄影、非对称、插画与有意图的动画；不必套“工作台紧凑标题”规范，但主要内容与关键行动仍要可辨、可访问。
+- **可选视觉材质**：仅在已确认视觉方向确实需要时，按 `references/liquid-glass-optics.md` 使用透明、折射、高光、阴影四层与可选模糊；SVG backdrop 折射是浏览器依赖的实验性增强，不把普通 blur 当折射或默认给所有 Card 添加玻璃。
 - **设置与表单**：独立保存的设置项可采用「左说明、右控件」；整体提交的字段簇通常采用「上标签、下输入」。混合页面按区域判断，不按“设置”标题一刀切。危险操作独立、保存失败可恢复。
 - **动效**：用户已确认强度优先；新站或重大视觉重构且尚无动效方向时，提供清晰选择或由用户授权决定。动画应针对 Tab、展开、选择、反馈、排序等真实状态变化，支持中断、卸载清理和 `prefers-reduced-motion`。不因为库存在就添加粒子背景或多个动画引擎。
 - **工程**：Vue 使用相应 SFC/组合式 API，React 使用组件与 Hooks，其他框架按各自约定实现。优先复用现有组件库与依赖；引入任何新库前确认兼容版本、许可、包体与运行成本，不照搬另一框架的组件源码。

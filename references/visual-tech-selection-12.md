@@ -70,6 +70,18 @@ GSAP、anime.js、Three.js、Apache ECharts 和 CSS/SVG 基础已在 MauForma �
 
 脚本只检索候选技术、表达适用理由，不替用户安装依赖或认定性能达标。目录原始数据：`assets/visual-tech-catalog.json`。已有动画生态的引擎优先级详见 `references/animation-engine-selection.md`。
 
+## 可选材质：Liquid Glass 四层光学近似
+
+当用户明确希望 Web 端实现透镜般的玻璃质感时，先阅读 `references/liquid-glass-optics.md`：它把效果分为透明（transmission）、背景折射（refraction）、方向性高光（specular/Fresnel-like）和阴影（elevation），另有可选 `blur`。**此能力不算第 13 种独立 JS 动画库**，可在已有 CSS/SVG/WebGL 工具链内实现。
+
+- **普通磨砂**：`backdrop-filter: blur(...)` 不代表折射。可用 CSS 透明/渐变/阴影完成一致的静态 fallback。
+- **Web 折射实验**：Canvas 生成 R/G 位移贴图，SVG `feDisplacementMap` 按通道偏移背景，尝试接入 CSS `backdrop-filter:url(#filter)`；Safari/Firefox 支持不能由普通 `backdrop-filter` 和 SVG 滤镜各自的支持情况推断，必须真实截图复验。
+- **更高保真**：WebGL shader 需要可采样的背景纹理，必要时加入色散与动态高光。不是把任意 DOM 直接交给 shader 就能获得背景纹理。
+- **适用范围**：浮动工具条、播放器、搜索胶囊、有限面积的材质主视觉。普通业务表单、数据表格、长篇阅读默认不主动使用。
+- **工程前提**：组件库交互所有权不变；`prefers-reduced-motion`、暗/亮背景可读性、SSR/client lifecycle、性能实测和无折射 fallback 不可省略。
+
+原创四层互动实验见 `assets/liquid-glass-layer-lab.html`，只说明分层/参数与增强尝试，不能当作所有浏览器完成折射的证明。
+
 ## 官方资料
 
 - GSAP：https://gsap.com/docs/v3/
