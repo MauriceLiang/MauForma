@@ -20,14 +20,14 @@
 ## 示意实现（结构与主题均可调整）
 
 ```html
-<nav aria-label="主导航">
+<nav aria-label="主导航" data-mf-selection-indicator="external">
   <div class="sidebar-row" data-current="true">
-    <span class="sidebar-indicator" aria-hidden="true"></span>
-    <a class="sidebar-item" href="/overview" aria-current="page">概览</a>
+    <span class="sidebar-indicator" data-mf-indicator-rail aria-hidden="true"></span>
+    <a class="sidebar-item" data-mf-nav-item href="/overview" aria-current="page">概览</a>
   </div>
   <div class="sidebar-row" data-current="false">
-    <span class="sidebar-indicator" aria-hidden="true"></span>
-    <a class="sidebar-item" href="/activity">活动</a>
+    <span class="sidebar-indicator" data-mf-indicator-rail aria-hidden="true"></span>
+    <a class="sidebar-item" data-mf-nav-item href="/activity">活动</a>
   </div>
 </nav>
 ```
@@ -65,4 +65,16 @@
 - 整体视觉不叠加无意义的强底色、彩条、发光和图标强调。若没有明显收益，改用默认无竖条方案。
 - 静态检查或概念 Gallery 测试通过不能代表真实页面已验收；未打开目标页面标 `NOT TESTED`。
 
-通用概念对比见 `assets/sidebar-refinement-gallery.html`。配色仍以 `references/sidebar-color-discovery.md` 与用户已确认的 Tokens 为准。
+### 实际页面可选的几何审查
+
+当项目实现了外置短竖条，给侧栏根元素增加 `data-mf-selection-indicator="external"`，给导航链接增加 `data-mf-nav-item`，给与导航项并列的装饰节点增加 `data-mf-indicator-rail`。无竖条方案可标为 `data-mf-selection-indicator="none"`。这些属性仅用于可选择的检查；框架中真实路由仍负责控制 selected。
+
+运行目标开发服务器后可执行：
+
+```bash
+node scripts/audit_sidebar_indicator.mjs http://localhost:5173
+```
+
+脚本只对**明确标注的导航容器**检查几何、是否贴边、短条是否过高、是否存在内嵌边框、是否错误显示多个选中指示条。未标注或未实际打开页面会返回未通过；它不自动确认导航架构、审美或可访问性，仍需人工复核。
+
+通用概念对比见 `assets/sidebar-refinement-gallery.html`，自动回归测试见 `tests/sidebar_indicator_browser_smoke.mjs`。配色仍以 `references/sidebar-color-discovery.md` 与用户已确认的 Tokens 为准。

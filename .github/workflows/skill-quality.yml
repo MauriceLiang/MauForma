@@ -54,6 +54,8 @@ jobs:
           node --check tests/panel_spacing_browser_smoke.mjs
           node --check tests/spacing_rhythm_browser_smoke.mjs
           node --check scripts/audit_icon_consistency.mjs
+          node --check scripts/audit_sidebar_indicator.mjs
+          node --check tests/sidebar_indicator_browser_smoke.mjs
           node --check tests/icon_art_direction_browser_smoke.mjs
           node --check tests/design_reference_browser_smoke.mjs
           python3 -m unittest discover -s tests -v
@@ -89,6 +91,8 @@ jobs:
         run: node tests/existing_visual_defect_browser_smoke.mjs
       - name: Validate settings/form layout in Chromium
         run: node tests/settings_form_browser_smoke.mjs
+      - name: Validate external sidebar selection rail geometry and bad edge-border rejection
+        run: node tests/sidebar_indicator_browser_smoke.mjs
       - name: Validate curated icon geometry, labels and consistency in Chromium
         run: node tests/icon_art_direction_browser_smoke.mjs
       - name: Validate synthetic reference-learning demo in Chromium
@@ -108,5 +112,6 @@ jobs:
             spacing-rhythm-browser-artifacts/
             panel-spacing-browser-artifacts/
             icon-art-direction-browser-artifacts/
+            sidebar-indicator-browser-artifacts/
             reference-learning-browser-artifacts/
           if-no-files-found: ignore
