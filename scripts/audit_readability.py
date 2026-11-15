@@ -24,6 +24,14 @@ PATTERNS = [
     ("developer-notes-visible", re.compile(r"(?:ECharts\s*(?:tooltip|brush|zoom)|保留原生.{0,35}(?:tooltip|缩放与点选)|(?:React|Vue)\s*组件(?:库)?)", re.I),
      "Check whether an implementation detail has leaked into user-facing copy."),
 ]
+# Advisory-only detection: plain markup directly preceding an H1. The gate is
+# semantic and must be reviewed in the real PageHeader; dynamic components
+# and legitimate navigation cannot be fully recognized by static regex.
+PRETITLE_BEFORE_H1 = re.compile(
+    r"<(?P<tag>span|small|p|div)\b(?P<attrs>[^>]*)>(?P<label>[^<\r\n]{3,110})</(?P=tag)>\s*<h1\b",
+    re.I,
+)
+EXEMPT_PRETITLE_ATTRS = re.compile(r"breadcrumb|aria-current|role=[\"\']navigation|brand-tagline|official-tagline", re.I)
 FONT_DECLARATION = re.compile(r"\bfont-size\s*:\s*(\d+(?:\.\d+)?)\s*(px|rem)\b", re.I)
 FONT_TAILWIND = re.compile(r"\btext-\[\s*(\d+(?:\.\d+)?)px\s*\]")
 FONT_INLINE = re.compile(r"\bfontSize\s*:\s*(\d+(?:\.\d+)?)\b")
@@ -32,6 +40,21 @@ RECOMMEND_REVIEW_BELOW_PX = 12
 
 def analyze(text: str, path: str = "<input>") -> list[dict]:
     findings: list[dict] = []
+    # Source-level candidates only: the reviewer must verify whether the
+    # preceding line is decorative, a real breadcrumb, or a necessary state.
+    for match in PRETITLE_BEFORE_H1.finditer(text):
+        if EXEMPT_PRETITLE_ATTRS.search(match.group("attrs")):
+            continue
+        label = match.group("label").strip()
+        if not label or not re.search(r"[\w\u4e00-\u9fff]", label):
+            continue
+        line_num = text.count("\n", 0, match.start()) + 1
+        findings.append({
+            "file": path, "line": line_num, "rule": "page-header-pretitle-before-h1",
+            "level": "review",
+            "reason": "Functional pages must not auto-render an explanatory eyebrow or microheading before H1; check genuine breadcrumbs and status semantics.",
+            "excerpt": label[:190],
+        })
     for line_num, line in enumerate(text.splitlines(), 1):
         snippet = line.strip()[:190]
         for name, pattern, reason in PATTERNS:
