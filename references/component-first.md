@@ -30,11 +30,17 @@
 
 **不是必须从零造轮子**：如果已有 shadcn/ui、Reka UI、Radix、Ant Design、原生 SwiftUI Control，先评估并主题化其现有实现。只有当功能或视觉不足且确有需求时，再封装或新增。
 
+## 基础控件首先来自成熟组件，不等于 Agent 自己写所有 Ui*
+
+每个含复杂交互控件的页面在开发前先执行 `references/component-library-first-gate.md`：盘点现有库与依赖；必要时自主选择与项目兼容的一套主方案，并**立即用它搭建** Select、DropdownMenu、Button、Checkbox、Radio、Switch、Dialog 等实际需要的基础控件。组件展示必须使用真实第三方组件或成熟 headless 原语，避免自己用 `div + click` 重写弹层、焦点、ARIA、键盘操作和选择逻辑。
+
+`UiButton`、`UiSelect`、`UiDialog` 是业务 API、主题和语义适配层，**不是重造交互原语的许可证**。独特视觉由设计 Token 和组件覆盖完成；不能仅靠不同页面各自的 CSS 把第一版凑出来。特殊原生或自研实现必须解释为什么现有组件不合适，并在真实路由上验证。
+
 ## 开发门禁（强制）
 
-1. **盘点**：列出页面所需 UI pattern，标记 `reuse / wrap / implement / defer`，识别已有组件、现有状态管理和交互依赖。
+1. **盘点并确定主库**：列出页面所需 UI pattern，识别框架与已装 UI 组件库，标记 `reuse / wrap / implement / native-exception / defer`。若没有成熟方案，先自主选定并接入，而不是直接手写。
 2. **冻结 token**：确定字体级差、颜色语义、密度模式、圆角层级、阴影和 motion；建立真实共享 token 文件。
-3. **最小组件集**：先完成本轮真正用到的 Button、Input/Field、Panel、Status、导航、弹窗等。创建稳定的 props/events/slots API，避免暴露直接 `style` 作为唯一变体入口。
+3. **最小组件集**：先用已选主库/原语完成本轮真正用到的 Button、Select、DropdownMenu、Input/Field、Checkbox、Dialog、Panel、Status 等。创建稳定的 props/events/slots API，避免暴露直接 `style` 作为唯一变体入口。
 4. **组件展示 / QA**：有可运行的组件 gallery / story，列出至少 normal、hover、focus、disabled、error、loading 等适用状态，使用长中文、英文、数字、空值测试排版。
 5. **页面组合**：只使用共享组件构造业务区域。布局层可自定义 grid/flex，但不在 `.settings button` 或某页 `<style scoped>` 中重复定义按钮颜色/圆角/阴影。
 6. **回归修正**：组件视觉问题修一次，所有引用处随之改变；新需求先考虑新增 semantic variant，而不是在某页 `!important` 覆盖。

@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "fixture_type": "synthetic",
+  "project_type": "data-entry-web-app",
+  "framework": "vue3",
+  "interactive_controls_needed": true,
+  "ui_library": {
+    "decision": "new_selection",
+    "primary": "element-plus",
+    "framework_compatible": true,
+    "reason": "A full styled component suite covers the planned form and selection flows without implementing new accessibility primitives.",
+    "theme_strategy": "Share application-level semantic CSS tokens with the selected component provider.",
+    "alternatives_considered": ["naive-ui", "shadcn-vue + reka-ui"]
+  },
+  "controls": [
+    {
+      "kind": "Select",
+      "source": "primary_library",
+      "component": "ElSelect",
+      "states_to_test": ["default", "open", "selected", "focus", "disabled"]
+    },
+    {
+      "kind": "DropdownMenu",
+      "source": "primary_library",
+      "component": "ElDropdown",
+      "states_to_test": ["default", "open", "focus", "disabled"]
+    },
+    {
+      "kind": "Button",
+      "source": "primary_library",
+      "component": "ElButton",
+      "states_to_test": ["default", "hover", "focus", "disabled", "loading"]
+    },
+    {
+      "kind": "Checkbox",
+      "source": "primary_library",
+      "component": "ElCheckbox",
+      "states_to_test": ["default", "selected", "focus", "disabled"]
+    },
+    {
+      "kind": "Dialog",
+      "source": "primary_library",
+      "component": "ElDialog",
+      "states_to_test": ["default", "open", "focus"]
+    }
+  ],
+  "first_pass": {
+    "phase": "planned",
+    "integration_imports": [],
+    "theme_applied": false,
+    "showcase_status": "NOT RUN",
+    "real_page_status": "NOT RUN",
+    "evidence": []
+  },
+  "notes": "This synthetic plan shows decision coverage, not a claim that any actual application has installed or used the library."
+}

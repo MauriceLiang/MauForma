@@ -12,6 +12,8 @@
 | Astro | Astro 原生组件 + React/Vue/Svelte/Solid Islands | SVG / 各 Island 框架 Lucide | CSS、Web Animations、Anime.js | 尽量不引入全局状态 | Astro 数据获取/各 Island | ECharts 按需客户端水合 |
 | HTML/CSS/JS | 原生语义元素、Web Components，适量 headless 实现 | `lucide` / SVG | CSS、Web Animations、Anime.js | 原生模块状态 | Fetch + 局部缓存 | ECharts / Canvas/SVG |
 
+> **实现优先级**：需要 Select/Dropdown/Button/Checkbox 等基础交互时，必须从**当前框架已有组件库**出发；没有库时由 Agent 主动选择并实际采用有样式组件库或成熟 headless 原语。适配矩阵不是“所有项目都手写”的许可。详见 `references/component-library-first-gate.md`。
+
 ## 决策的判定条件
 
 1. **旧项目：先延续已安装框架和组件库**。没有明确需求不要 Vue 转 React 或 React 转 Vue。

@@ -1,6 +1,6 @@
-# 企业级与后台基础组件库扩展：Ant Design / Ant Design Vue 等
+# 成熟 Web 组件库选型与主题集成
 
-> 核对日期：2026-11-02。**候选库不是强制依赖**。默认继承项目现有框架和现有基础 UI 库。创意动画组件（React Bits、Vue Bits、Inspira UI）不能替代可访问、可复用的业务基础组件。
+> **原则**：当页面需要交互控件时，复用成熟库/可访问原语是默认实施路径；**库的品牌和数量不是强制指定**。优先继承现有主库；新项目由 Agent 自主选择并真正使用。先读 [Component Library First](component-library-first-gate.md)。以下候选列表不是安装清单。
 
 ## 1. 框架与生态地图
 
@@ -18,6 +18,15 @@
 | **shadcn/ui** | React | 项目内复制组件 + headless 原语 | 高自由度自建视觉系统、维护源码、可组合组件 | 维护责任在项目；不是完整即装即用的业务框架 | https://ui.shadcn.com/ |
 | **shadcn-vue + Reka UI** | Vue 3 | 项目内组件 + 无样式可访问原语 | 高度统一自有设计语言 | 需自行建立业务复合组件，如 DataTable 与 Form | https://www.shadcn-vue.com/ · https://reka-ui.com/ |
 | **Angular Material / NG-ZORRO / PrimeNG** | Angular | Angular 原生组件套件 | 企业后台、复杂表单与数据工具 | 不要拿 React/Vue 组件源码套用；遵循 Angular 生态 | https://material.angular.dev/ · https://ng.ant.design/ · https://primeng.org/ |
+
+## 先根据首版交互复杂度选择，而不只是为后台选库
+
+- **开箱即用、视觉规范完整**：按实际框架优先评估 Element Plus / Ant Design / Ant Design Vue / Naive UI / Mantine / MUI / Prime 等有样式主库，能够直接提供 Select、Dropdown、Checkbox、Radio、Button、Switch、Dialog 等完整控件和状态。
+- **独特品牌视觉、组件源码可控**：可选 shadcn/ui + Base UI 或 Radix、shadcn-vue + Reka UI。它们允许定制外观但需要项目维护组件代码；不得因为外观灵活，就退回手写 Select 的键盘/焦点逻辑。
+- **既有技术栈**：如果主库已安装并真实使用，优先用它解决问题；审美不够时先修改主题 Token、全局 Provider 和公共组件，而不是再引入第二套有样式 UI。
+- **只需少量原生操作**：可用原生 button/input/select，但必须是有意选择并实际验收，不是为了跳过组件方案。
+- **组件职责区别**：Select 是选择固定数据值；Combobox 是可输入搜索选择；DropdownMenu 是打开动作菜单；不应因为外观都有箭头就互相代用。
+- **第一版实施证据**：说明选定的库、真实导入/组件实例、主题接入点，演示所需控件的 default/open/selected/disabled/focus/error/loading 状态；只写推荐方案不算完成。
 
 ## 2. Ant Design React：具体包含什么？
 
