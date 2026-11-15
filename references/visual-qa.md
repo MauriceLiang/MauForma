@@ -291,6 +291,18 @@
 
 检查依据：`references/component-library-first-gate.md`。
 
+## Liquid Glass 可选材质 QA
+
+- [ ] 用户/品牌方向确实要求透镜/液态玻璃材质，未把所有导航、卡片和表格默认变成玻璃。
+- [ ] 透明、折射、高光、阴影可分层检查，模糊是可选项；普通 blur 没有被写成已经实现折射。
+- [ ] Canvas 位移贴图、SVG `feDisplacementMap` 和 `backdrop-filter:url(#...)` 的真实背景形变在目标浏览器中有开关对比截图；只检查 CSS 语法不算确认兼容。
+- [ ] Safari/WebKit、Firefox 或其他未实测平台明确回退到可读材质；黑底、透明文字与失效控件不可出现。
+- [ ] 高光方向真实有层次，阴影没有过度叠加；复杂背景下文字对比、键盘焦点、disabled/loading、弹层和点击区域依旧可靠。
+- [ ] 高负载下测试像素面积/刷新频率，低动态/低性能环境使用静态增强；Observer、贴图与 shader 资源在卸载时清理。
+- [ ] 实验室状态标 `DEMO ONLY`，真实页面和浏览器经实测才标 `VERIFIED`。
+
+详见 `references/liquid-glass-optics.md` 与 `assets/liquid-glass-layer-lab.html`。
+
 ## 审美与高保真任务路由（按需）
 
 - 新建/重大改版：按 `references/design-craft-loop.md` 确定任务、视觉主张、重点元素、拒绝的模板方案，并继承用户和现有设计系统的真实约束；不自动要求特效或夸张字体。

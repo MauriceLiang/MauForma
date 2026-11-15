@@ -23,6 +23,7 @@ jobs:
       - name: Validate design intelligence
         run: |
           python3 scripts/validate_intelligence.py
+          python3 scripts/validate_liquid_glass.py --repository
           python3 scripts/validate_ui_patterns.py
           python3 scripts/validate_component_library_first.py --repository
           python3 scripts/validate_composition_brief.py examples/composition/repo-analysis.json --repository
@@ -60,6 +61,7 @@ jobs:
           node --check tests/sidebar_indicator_browser_smoke.mjs
           node --check tests/icon_art_direction_browser_smoke.mjs
           node --check tests/design_reference_browser_smoke.mjs
+          node --check tests/liquid_glass_browser_smoke.mjs
           python3 -m unittest discover -s tests -v
       - name: Syntax check browser QA script
         run: node --check scripts/browser_qa.mjs
@@ -97,6 +99,8 @@ jobs:
         run: node tests/sidebar_indicator_browser_smoke.mjs
       - name: Validate curated icon geometry, labels and consistency in Chromium
         run: node tests/icon_art_direction_browser_smoke.mjs
+      - name: Validate optional liquid glass lab controls and fallback in Chromium
+        run: node tests/liquid_glass_browser_smoke.mjs
       - name: Validate synthetic reference-learning demo in Chromium
         run: node tests/design_reference_browser_smoke.mjs
       - name: Validate task-center interactions, status actions and scroll-end
@@ -116,4 +120,5 @@ jobs:
             icon-art-direction-browser-artifacts/
             sidebar-indicator-browser-artifacts/
             reference-learning-browser-artifacts/
+            liquid-glass-browser-artifacts/
           if-no-files-found: ignore

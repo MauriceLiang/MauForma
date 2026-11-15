@@ -360,9 +360,15 @@
         "液态",
         "svg filter",
         "blur",
-        "displacement"
+        "displacement",
+        "液态玻璃",
+        "液态玻璃折射",
+        "liquid glass",
+        "glass refraction",
+        "feDisplacementMap",
+        "Fresnel"
       ],
-      "goal": "浏览器原生 SVG 滤镜图形处理（并非 npm 动画库）",
+      "goal": "浏览器原生 SVG 滤镜图形处理；液态玻璃折射属于实验性背景组合，不等同于 blur",
       "best_for": [
         "局部波纹",
         "纹理扭曲",
@@ -372,15 +378,16 @@
       "avoid": [
         "大面积高频滤镜",
         "低端设备无回退",
-        "把滤镜当作时间线引擎"
+        "把滤镜当作时间线引擎",
+        "假定 CSS backdrop-filter:url(#svg) 在 Safari 与 Firefox 与 Chromium 同样生效"
       ],
       "combines_with": [
         "gsap",
         "animejs"
       ],
       "lightweight_alternative": "CSS filter / 基础静态效果",
-      "frameworks": "直接内联 SVG filter 或定义引用；根据 CSS/JS 动态驱动参数",
-      "perf": "大面积复杂滤镜应测试 GPU 负载、浏览器差异",
+      "frameworks": "直接内联 SVG filter 或定义引用；根据 CSS/JS 动态驱动参数；液态玻璃需另读 references/liquid-glass-optics.md，具体 backdrop 组合必须逐浏览器实测",
+      "perf": "大面积复杂滤镜应测试 GPU 负载、浏览器差异；玻璃折射需要分层材质 fallback 与 resize/资源生命周期管理",
       "api": "https://developer.mozilla.org/en-US/docs/Web/SVG/Guides/SVG_filters",
       "coverage": "new"
     },
@@ -624,7 +631,11 @@
         "液态",
         "图像",
         "滤镜",
-        "distort"
+        "distort",
+        "液态玻璃",
+        "液态玻璃折射",
+        "透镜",
+        "liquid glass"
       ],
       "recommended": [
         "svg-filter"
@@ -632,8 +643,8 @@
       "optional": [
         "curtainsjs"
       ],
-      "why": "简单变形先 SVG/CSS，必须用 shader 时再考虑 Curtains.js",
-      "avoid": "大面积连续 GPU 滤镜必须测性能和做静态降级"
+      "why": "简单变形先 SVG/CSS，必须用 shader 时再考虑 Curtains.js；液态玻璃四层光学近似独立参考 references/liquid-glass-optics.md",
+      "avoid": "大面积连续 GPU 滤镜必须测性能和做静态降级；不得把只支持 blur 误认为折射兼容"
     }
   ]
 }

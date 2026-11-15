@@ -52,6 +52,10 @@ MauForma 在页面开发前会检查项目现有的组件库；如果没有合�
 
 组件优先不等于从零造按钮和下拉菜单。选定组件方案后先统一 Theme/Tokens、完成必要控件的状态检查，再批量编写业务页面。已有主库优先继承，静态页面和合理的原生系统控件不强装大组件库。完整规则见 [Component Library First](references/component-library-first-gate.md)。
 
+## 可选视觉技术：Liquid Glass
+
+MauForma 可以按需分析和设计液态玻璃的**透明、折射、高光、阴影**四层光学近似，模糊作为可选额外效果，而不是全站默认皮肤。Web 端 SVG 背景折射具有浏览器兼容限制，重要按钮与文字必须保持 DOM 语义与静态降级。详见 [液态玻璃光学规范](references/liquid-glass-optics.md) 与 [独立交互教学实验](assets/liquid-glass-layer-lab.html)。
+
 ## 快速开始
 
 将本仓库安装在所使用 Agent 所支持的 Skill 目录中，并在设计或前端开发任务里明确调用 `mauforma`（目录位置依据 Agent 客户端而定）。无需在普通 Web 项目里安装仓库全部技术依赖。

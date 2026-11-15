@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Liquid Glass · 四层材质教学实验</title>
+<style>
+:root {font-family:system-ui,-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color-scheme:light;--bg:#f5f7fb;--text:#1b2330;--muted:#5b6678;--border:#d7dfe9;--accent:#174fa0;--focus:#164992;--lens-tint:.18;--hl:.7;--shadow:.25;--blur:2px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text)}
+button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+main{width:min(1120px,100%);padding:42px 25px 72px;margin:auto}
+h1{font-size:clamp(26px,3.4vw,40px);letter-spacing:-.04em;margin:.4rem 0}.eyebrow{font-size:11px;letter-spacing:.11em;font-weight:700;color:var(--accent)}
+.intro,.note{font-size:13px;line-height:1.7;color:var(--muted);max-width:760px}
+.demo-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(265px,.75fr);gap:22px;margin-top:28px}
+.stage{position:relative;min-width:0;min-height:400px;border:1px solid #d0d8e5;border-radius:18px;overflow:hidden;display:grid;place-items:center;isolation:isolate;background:linear-gradient(145deg,#c3d9ef,#f4f4f7 58%,#e8d0ad)}
+.backdrop{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.backdrop::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 31px,#425f89 32px 34px,transparent 35px 61px);opacity:.38;transform:rotate(-16deg) scale(1.4)}
+.backdrop::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 46px,#a65d66 47px 49px,transparent 50px 92px);opacity:.34;transform:rotate(8deg)}
+.backdrop-word{position:absolute;z-index:0;left:4%;top:12%;font-size:clamp(33px,6vw,70px);letter-spacing:-.055em;font-weight:800;color:#334f75;opacity:.45;white-space:nowrap}
+.backdrop-word.second{left:16%;top:auto;bottom:10%;color:#a4445d;font-size:clamp(29px,5vw,56px)}
+.glass{--glass-radius:29px;position:relative;isolation:isolate;z-index:1;width:min(77%,365px);min-width:220px;padding:0;border-radius:var(--glass-radius);box-shadow:0 18px 42px rgb(21 39 69 / var(--shadow));background:rgb(255 255 255 / .05);overflow:hidden;min-height:187px}
+.layer{position:absolute;inset:0;border-radius:inherit;pointer-events:none}
+.layer.transmission{background:rgb(255 255 255 / var(--lens-tint))}
+.layer.refraction{background:transparent;backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));opacity:1}
+.layer.highlight{opacity:var(--hl);box-shadow:inset 1px 2px 2px rgb(255 255 255 / .9), inset -2px -3px 4px rgb(34 56 89 / .22);border:1px solid rgb(255 255 255 / .75);background:linear-gradient(140deg,rgb(255 255 255 / .42),transparent 37%,rgb(13 42 75 / .12) 91%)}
+.glass-content{position:relative;z-index:2;padding:24px;color:#15263b;text-shadow:0 1px 0 rgb(255 255 255 / .5)}
+.glass-content strong{display:block;font-size:19px;letter-spacing:-.03em}
+.glass-content p{font-size:12px;max-width:250px;line-height:1.65;margin:8px 0 14px}
+.fake-control{display:inline-flex;align-items:center;background:#173f73;color:#fff;min-height:38px;border-radius:10px;padding:0 14px;box-shadow:0 2px 8px rgb(0 0 0 / .16);font-size:12px;font-weight:650}
+.panel{border:1px solid var(--border);background:#fff;border-radius:13px;padding:19px}
+.panel h2{font-size:16px;margin:0 0 6px}.control{padding:13px 0;border-bottom:1px solid #edf0f5}.control:last-child{border:0}
+.control label{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px;font-weight:550}
+.control output{font-variant-numeric:tabular-nums;font-size:12px;color:var(--muted)}
+.control input[type=range]{display:block;width:100%;margin:13px 0 2px;accent-color:var(--accent)}
+.toggle{display:flex;gap:10px;align-items:start;margin:12px 0;font-size:12px;color:var(--text)}.toggle input{accent-color:var(--accent);margin:3px 0}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.pill{display:inline-flex;border:1px solid var(--border);border-radius:8px;padding:7px 10px;background:#fff;color:#3f5169;font-size:11px}
+.status{margin-top:18px;border-top:1px solid var(--border);padding-top:12px;font-size:12px;color:var(--muted);line-height:1.65}
+.status strong{color:var(--text)}
+.demo-disclaimer{max-width:900px;font-size:12px;line-height:1.7;color:var(--muted);margin-top:22px}
+svg.defs{position:absolute;width:0;height:0;pointer-events:none}
+@media(max-width:780px){main{padding:28px 15px 60px}.demo-grid{grid-template-columns:1fr}.stage{min-height:330px}.glass{width:min(82%,365px)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<svg class="defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="lg-demo-refract" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <feImage id="lg-displacement-image" result="map" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" />
+      <feDisplacementMap id="lg-displacement" in="SourceGraphic" in2="map" scale="18" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+</svg>
+<main>
+  <div class="eyebrow">OPTIONAL MATERIAL TECHNIQUE · SYNTHETIC DEMO</div>
+  <h1>液态玻璃：四层光学近似实验</h1>
+  <p class="intro">可独立调节透明、折射、高光与阴影，背景模糊是额外选项。此演示是原创教学样例，不是任何系统的真实实现，也不声称所有浏览器都支持 SVG 背景折射。</p>
+  <div class="demo-grid">
+    <div>
+      <section class="stage" aria-label="液态玻璃预览">
+        <div class="backdrop" aria-hidden="true"><span class="backdrop-word">MATERIAL</span><span class="backdrop-word second">OPTICS</span></div>
+        <div class="glass" id="glass" data-refraction-attempt="fallback">
+          <div class="layer transmission" id="transmission" aria-hidden="true"></div>
+          <div class="layer refraction" id="refraction" aria-hidden="true"></div>
+          <div class="layer highlight" id="highlight" aria-hidden="true"></div>
+          <div class="glass-content"><strong>层次、光与边界</strong><p>观察玻璃后方线条，再对比折射开关；在不兼容的浏览器中仍能保持文字和表面可读。</p><span class="fake-control">非交互示意标签</span></div>
+        </div>
+      </section>
+      <div class="legend"><span class="pill">透明基底</span><span class="pill">实验性折射</span><span class="pill">方向性高光</span><span class="pill">柔和悬浮阴影</span><span class="pill">可选 blur</span></div>
+      <p class="demo-disclaimer">演示中的蓝色标签仅为视觉示意，不是业务按钮。SVG 的 <code>feDisplacementMap</code> 与 CSS 的 <code>backdrop-filter:url(...)</code> 组合可能被浏览器忽略；折射开关只表示“尝试启用”，绝不表示已经检测到真实像素变形。</p>
+    </div>
+    <aside class="panel" aria-label="材质参数">
+      <h2>材质控制</h2>
+      <p class="note">先观察单层，再进行组合；未要求该风格的真实网站不应默认使用。</p>
+      <div class="control"><label for="opacity">1. 透明底色 <output id="opacity-label" for="opacity">18%</output></label><input type="range" id="opacity" min="0" max="55" step="1" value="18"></div>
+      <div class="control"><label for="strength">2. 折射强度 <output id="strength-label" for="strength">18</output></label><input type="range" id="strength" min="0" max="55" step="1" value="18"></div>
+      <label class="toggle"><input id="refract-toggle" type="checkbox"><span>尝试启用 SVG 背景折射（实验性，浏览器可能无效）</span></label>
+      <div class="control"><label for="specular">3. 高光亮度 <output id="specular-label" for="specular">70%</output></label><input type="range" id="specular" min="0" max="100" step="1" value="70"></div>
+      <div class="control"><label for="elevation">4. 阴影强度 <output id="elevation-label" for="elevation">25%</output></label><input type="range" id="elevation" min="0" max="55" step="1" value="25"></div>
+      <div class="control"><label for="blur">可选背景模糊 <output id="blur-label" for="blur">2px</output></label><input type="range" id="blur" min="0" max="16" step="1" value="2"></div>
+      <div class="status"><strong>折射状态：</strong><span id="refraction-status" aria-live="polite">未启用。当前显示通用材质降级层。</span></div>
+    </aside>
+  </div>
+</main>
+<script>
+(() => {
+ const get=id=>document.getElementById(id);
+ const glass=get('glass'),refract=get('refraction'),filter=get('lg-displacement'),image=get('lg-displacement-image');
+ const sliderIds=['opacity','strength','specular','elevation','blur'];
+ function makeMap(width=280,height=150) {
+   const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;
+   const ctx=canvas.getContext('2d',{willReadFrequently:false});
+   if(!ctx)return null;
+   const pixels=ctx.createImageData(width,height),data=pixels.data,edge=21;
+   for(let y=0;y<height;y++)for(let x=0;x<width;x++){
+     const signedX=(x-width/2)/(width/2),signedY=(y-height/2)/(height/2);
+     const distance=Math.min(x,y,width-1-x,height-1-y);
+     const falloff=Math.exp(-Math.max(0,distance)/edge);
+     const mag=Math.min(1,falloff)*.78;
+     const pos=(y*width+x)*4;
+     data[pos]=Math.max(0,Math.min(255,Math.round(128+signedX*mag*105)));
+     data[pos+1]=Math.max(0,Math.min(255,Math.round(128+signedY*mag*105)));
+     data[pos+2]=128;data[pos+3]=255;
+   }
+   ctx.putImageData(pixels,0,0);
+   return canvas.toDataURL('image/png');
+ }
+ const uri=makeMap();
+ if(uri)image.setAttribute('href',uri);
+ function update(){
+   const opacity=+get('opacity').value,strength=+get('strength').value;
+   const specular=+get('specular').value,shadow=+get('elevation').value,blur=+get('blur').value;
+   glass.style.setProperty('--lens-tint',(opacity/100).toFixed(2));
+   glass.style.setProperty('--hl',(specular/100).toFixed(2));
+   glass.style.setProperty('--shadow',(shadow/100).toFixed(2));
+   glass.style.setProperty('--blur',blur+'px');
+   filter.setAttribute('scale',String(strength));
+   get('opacity-label').textContent=opacity+'%';
+   get('strength-label').textContent=String(strength);
+   get('specular-label').textContent=specular+'%';
+   get('elevation-label').textContent=shadow+'%';
+   get('blur-label').textContent=blur+'px';
+   const wanted=get('refract-toggle').checked;
+   const cssCandidate=CSS.supports('backdrop-filter','url("#lg-demo-refract")');
+   // CSS.supports says only the declaration may parse, not that the SVG backdrop sampling works.
+   const useSvg=wanted&&cssCandidate&&!!uri;
+   const backdropValue=useSvg?'url("#lg-demo-refract") blur('+blur+'px)':'blur('+blur+'px)';
+   refract.style.backdropFilter=backdropValue;
+   refract.style.webkitBackdropFilter=backdropValue;
+   get('refraction-status').textContent=!wanted
+     ?'未启用。当前显示通用材质降级层。'
+     :useSvg
+       ?'已尝试设置 SVG 背景滤镜；是否真正折射需要比较像素截图，未自动验证。'
+       :'当前环境不满足候选语法或 Canvas 条件，保持可读的基础材质。';
+   glass.dataset.refractionAttempt=useSvg?'attempted':'fallback';
+ }
+ sliderIds.forEach(id=>get(id).addEventListener('input',update));
+ get('refract-toggle').addEventListener('change',update);
+ update();
+})();
+</script>
+</body></html>
