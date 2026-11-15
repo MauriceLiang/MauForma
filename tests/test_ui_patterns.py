@@ -55,6 +55,24 @@ class SidebarPaletteTests(unittest.TestCase):
                       "ArrowRight", "prefers-reduced-motion"):
             self.assertIn(token, s)
 
+    def test_independent_external_rail_documented(self):
+        guide = (ROOT / "references/sidebar-selection-indicator-gate.md").read_text("utf-8")
+        for token in ("border-left", "border-inline-start", "box-shadow: inset",
+                      "aria-current", "aria-hidden", "外侧", "短"):
+            self.assertIn(token, guide)
+
+    def test_gallery_has_good_and_bad_visual_examples(self):
+        gallery = (ROOT / "assets/sidebar-refinement-gallery.html").read_text("utf-8")
+        for token in ('data-mf-indicator-case="wrong"',
+                      'data-mf-indicator-case="external"',
+                      'data-mf-selection-indicator="external"',
+                      'data-mf-indicator-rail',
+                      'data-mf-nav-item',
+                      'data-current="true"'):
+            self.assertIn(token, gallery)
+        self.assertIn("grid-template-columns:3px minmax(0,1fr)", gallery)
+        self.assertIn("column-gap:9px", gallery)
+
     def test_primary_selection_does_not_need_extra_rail(self):
         s = (ROOT / "assets/sidebar-refinement-gallery.html").read_text("utf-8")
         self.assertIn(".noisy .item[aria-pressed=true]", s)
