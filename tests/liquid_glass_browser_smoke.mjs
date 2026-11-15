@@ -8,6 +8,9 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const here=path.dirname(fileURLToPath(import.meta.url));
 const url=pathToFileURL(path.resolve(here,'../assets/liquid-glass-layer-lab.html')).href;
 const output=path.resolve('liquid-glass-browser-artifacts');
+async function setRange(page,id,value){
+  await page.locator('#'+id).evaluate((el,v)=>{el.value=v;el.dispatchEvent(new Event('input',{bubbles:true}));},value);
+}
 
 async function run(){
   const browser=await chromium.launch({headless:true});
@@ -29,15 +32,15 @@ async function run(){
           'Canvas should generate an independent local displacement map');
 
         // Transparent, highlight, shadow and optional blur are independently configurable.
-        await page.locator('#opacity').fill('32');
+        await setRange(page,'opacity','32');
         assert.equal((await page.locator('#glass').evaluate(el=>el.style.getPropertyValue('--lens-tint'))),'0.32');
-        await page.locator('#specular').fill('44');
+        await setRange(page,'specular','44');
         assert.equal(await page.locator('#glass').evaluate(el=>el.style.getPropertyValue('--hl')),'0.44');
-        await page.locator('#elevation').fill('12');
+        await setRange(page,'elevation','12');
         assert.equal(await page.locator('#glass').evaluate(el=>el.style.getPropertyValue('--shadow')),'0.12');
-        await page.locator('#blur').fill('5');
+        await setRange(page,'blur','5');
         assert.equal(await page.locator('#blur-label').innerText(),'5px');
-        await page.locator('#strength').fill('26');
+        await setRange(page,'strength','26');
         assert.equal(await page.locator('#lg-displacement').getAttribute('scale'),'26');
 
         // SVG backdrop support is only a candidate; the lab must never claim proven refraction.
