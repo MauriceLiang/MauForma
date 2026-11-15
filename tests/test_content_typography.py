@@ -59,6 +59,28 @@ class ReadabilityRulesTests(unittest.TestCase):
     def test_actual_breadcrumb_does_not_trigger(self):
         self.assertEqual(self.rules("<nav>仓库 / steady-core</nav>"), set())
 
+    def test_explanatory_english_eyebrow_before_h1_is_reviewed(self):
+        html = '<span class="eyebrow">ACTIVITY VIEW · PROJECT CONTEXT</span>\n<h1>活动工作台</h1>'
+        self.assertIn("page-header-pretitle-before-h1", self.rules(html))
+
+    def test_chinese_explanatory_microheading_before_h1_is_reviewed(self):
+        html = '<small class="kicker">技术评估视图</small>\n<h1>方案对比</h1>'
+        self.assertIn("page-header-pretitle-before-h1", self.rules(html))
+
+    def test_real_breadcrumb_not_misclassified_as_eyebrow(self):
+        html = '<span class="breadcrumb">设置 / 访问控制</span>\n<h1>访问控制</h1>'
+        self.assertNotIn("page-header-pretitle-before-h1", self.rules(html))
+
+    def test_header_gate_is_explicitly_mandatory(self):
+        skill = (ROOT / "SKILL.md").read_text("utf-8")
+        guide = (ROOT / "references/page-header-antipatterns.md").read_text("utf-8")
+        checklist = (ROOT / "references/visual-qa.md").read_text("utf-8")
+        for word in ("H1 上方", "禁止", "PageHeader"):
+            self.assertIn(word, skill)
+        for word in ("Gate H0", "首版", "overline", "kicker"):
+            self.assertIn(word, guide)
+        self.assertIn("首版硬门禁", checklist)
+
     def test_brand_strapline_is_advisory(self):
         self.assertIn("generic-brand-subtitle", self.rules("<small>ANALYSIS STUDIO</small>"))
 
