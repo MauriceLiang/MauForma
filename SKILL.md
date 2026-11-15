@@ -26,7 +26,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 | 模糊指令“优化一下”、审视已有页面 | `references/proactive-visual-defect-discovery-gate.md`、`references/visual-critique-loop.md` |
 | 内容重复、空泛文字、信息密度不对 | `references/page-density-and-content-priority.md`、`references/semantic-copy-hygiene.md`、`references/typography-hierarchy.md` |
 | 模块贴合、行列错位、底部裁切 | `references/semantic-spacing-rhythm-gate.md`、`references/spacing-regression-protection-gate.md`、`references/grid-alignment-and-viewport-safety.md` |
-| 导航职责、位置、层级和跨屏迁移 | `references/navigation-architecture.md`、`references/sidebar-navigation-design.md` |
+| 导航职责、位置、层级和跨屏迁移 | `references/navigation-architecture.md`、`references/sidebar-navigation-design.md`、`references/sidebar-selection-indicator-gate.md` |
 | 颜色、浅深主题、视觉人格 | `references/palette-art-direction.md`、`references/sidebar-color-discovery.md`、`references/design-system.md` |
 | Card 套娃、控件断行、组件精修 | `references/surface-architecture-gate.md`、`references/control-geometry-gate.md`、`references/component-craft-gate.md` |
 | 设置页、注册、结账、连续表单 | `references/settings-form-layout-gate.md` |
@@ -62,7 +62,8 @@ description: Web-first, framework-aware frontend design and implementation skill
 2. 先确定 `PageTitle / SectionTitle / Body / KPI / Axis / Legend / Metadata` 等**文字角色**，按信息优先级设计字号、字重、行高、字宽与对比。巨大标题不能压过核心任务；图表刻度、表头、单位和样本数不能因“精致”变得难读。排版应同时检查中文、英文、数字混排、长文本和 200% 文本缩放。
 3. 根据内容关系选择开放布局、边界面板、单层 Card、表格、列表、分屏或媒体墙。只有信息/交互分组真正独立时才用容器；拒绝无意义外壳与嵌套卡片。**Section 的外部 gap 与 Card 的内部 padding 是两件事**。
 4. 空间关系区分 `inside / peer / section / connected`：组内紧密、同级稳定、跨章节更明显、确实连续的 Tab/Panel 可以贴合。纵向 `row-gap` 和横向 `column-gap` 都要检查；不能因新主题把不同业务模块贴在一起，也不能把原本连接的控件强行拆开。
-5. 共享 Button、Field、Dialog、Navigation、Tabs、Table/List、Feedback、Status、PageHeader、Chart 等组件及状态。实现前校验**实际业务动作**、禁用/加载/错误/空状态、键盘操作和组件行为契约。短操作文字不得逐字纵排、裁切或溢出；空间不足时让操作组换行、移位或使用明确的折叠菜单。
+5. **侧栏选中提示条布局**：侧栏默认选柔和背景/文字/图标强调；若采用竖向彩条，必须在**当前选中导航项外侧**单独放置，与按钮边界有可见间距。禁止将导航项本身的彩色 `border-left`、`border-inline-start` 或 `inset box-shadow` 当作外置提示条，见 `references/sidebar-selection-indicator-gate.md`。
+6. 共享 Button、Field、Dialog、Navigation、Tabs、Table/List、Feedback、Status、PageHeader、Chart 等组件及状态。实现前校验**实际业务动作**、禁用/加载/错误/空状态、键盘操作和组件行为契约。短操作文字不得逐字纵排、裁切或溢出；空间不足时让操作组换行、移位或使用明确的折叠菜单。
 6. 图标先检查语义，再检查同屏整组的线条、细节、负空间、视觉重量与字体对齐；不只凭名称导入一个“差不多”的图标。没有清晰符号时可用文字。成熟图标库可按现有技术栈选用，但不能无理由混用多个体系。
 7. 配色由用户或品牌决策驱动。可以提出有整体页面依据的候选，但不得默认强加蓝紫渐变、灰白后台或任何单一审美。查看侧栏与主区域、图表、状态、hover/focus 在深浅主题中的整体关系；不以“去 AI 味”为借口禁止合理的强色、插画、emoji 或艺术表达。
 
@@ -78,10 +79,11 @@ description: Web-first, framework-aware frontend design and implementation skill
 ### E. 真正检查实际渲染结果
 
 1. 在同一路由、同数据状态、同窗口与字号下做修改前后比较；检查首屏、中段、末端、滚动终点，以及选中、hover、focus、loading、empty、error、success 等适用状态。
-2. 视觉检查至少覆盖：主视觉是否对应主任务、内容是否冗余、字号层级、图表内部标签、图标统一、组件边界、左右/上下间距、共享网格、短按钮与长文本、底部可达性、深浅色。
-3. 交互与工程检查至少覆盖：实际点击与状态更新、键盘焦点、语义标签、颜色对比、必要的移动/窄窗口适配、200% 文字缩放、减少动画、加载与错误、性能和构建/测试。响应式范围以用户项目要求为准，**不要强迫仅桌面使用的产品改成手机产品**；仍应避免目标视口出现无意截断。
-4. 工具是辅助：静态审计只能产生风险线索；截图只能支持可见观察；浏览器脚本也不能替代审美判断与业务端到端测试。未打开真实页面就不能宣称“已修复视觉问题”；未调用真实后端就不能宣称“已验证保存”。
-5. 报告必须使用有证据的状态：`VERIFIED`（在真实产品实测）、`STATIC CHECK`（仅源码/契约）、`DEMO ONLY`（仅合成样例）、`NOT TESTED`（未运行）、`BLOCKED`（条件受限）。视觉问题仍存在时，注明未解决及原因。
+2. **侧栏选中态**：检查有无将选中项 `border-left`/内部 inset shadow 误画成彩色条；若有提示条，验证只出现在当前导航项**外侧**、有可见间距、切换后同步且与焦点状态分离。
+3. 视觉检查至少覆盖：主视觉是否对应主任务、内容是否冗余、字号层级、图表内部标签、图标统一、组件边界、左右/上下间距、共享网格、短按钮与长文本、底部可达性、深浅色。
+4. 交互与工程检查至少覆盖：实际点击与状态更新、键盘焦点、语义标签、颜色对比、必要的移动/窄窗口适配、200% 文字缩放、减少动画、加载与错误、性能和构建/测试。响应式范围以用户项目要求为准，**不要强迫仅桌面使用的产品改成手机产品**；仍应避免目标视口出现无意截断。
+5. 工具是辅助：静态审计只能产生风险线索；截图只能支持可见观察；浏览器脚本也不能替代审美判断与业务端到端测试。未打开真实页面就不能宣称“已修复视觉问题”；未调用真实后端就不能宣称“已验证保存”。
+6. 报告必须使用有证据的状态：`VERIFIED`（在真实产品实测）、`STATIC CHECK`（仅源码/契约）、`DEMO ONLY`（仅合成样例）、`NOT TESTED`（未运行）、`BLOCKED`（条件受限）。视觉问题仍存在时，注明未解决及原因。
 
 ## 4. 防止模板化和反复返工的审核题
 
