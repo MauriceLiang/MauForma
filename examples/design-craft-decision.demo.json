@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "fixture_type": "synthetic",
+  "mode": "polish",
+  "scope": "A fictional settings page with inconsistent spacing and controls",
+  "user_task": "Understand preferences and save a valid selection without losing context",
+  "design_decision": {
+    "visual_direction": "Calm, task-focused and high-legibility",
+    "source": "delegated",
+    "why": "Controls and section labels need clear relationships before decoration",
+    "rejected_alternative": "Large decorative hero and duplicated explanatory cards would obscure settings",
+    "primary_focus": "Current setting and its actionable control",
+    "signature_element": "No special signature element: operational clarity is the priority"
+  },
+  "existing_system": {
+    "component_source": "Existing primary UI component library",
+    "token_source": "Existing project semantic variables",
+    "framework_change": false
+  },
+  "review": {
+    "evidence_level": "DEMO ONLY",
+    "overall_status": "DEMO ONLY",
+    "source": "Synthetic teaching scenario, not a real product screenshot",
+    "issues": [
+      {
+        "id": "spacing-01",
+        "severity": "P2",
+        "evidence_level": "INFERRED",
+        "symptom": "Sibling settings sections appear merged",
+        "evidence": "Hypothetical negative scenario",
+        "root_cause_hypothesis": "Section-level gap collapsed into item padding",
+        "affected_task": "Scanning setting groups",
+        "recommended_fix": "Restore layout-owned section gap and keep per-row padding",
+        "validation": "Open the actual page at target viewport and check rendered gap in both directions"
+      }
+    ],
+    "verified_routes": [],
+    "screenshots": []
+  },
+  "notes": "All decisions and issues are synthetic. A passing validator does not prove aesthetic quality or a real UI fix."
+}
