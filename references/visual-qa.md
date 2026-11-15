@@ -169,7 +169,8 @@
 ## Gate E — 基础组件视觉精修（v6.3）
 
 - [ ] 桌面深色 Sidebar 的背景 / surface / hover / selected / 主次文字 / icon / focus / border 组成可解释的色彩层级，真实文字与焦点对比在其实际背景上可辨认。
-- [ ] 活动导航的高亮底、左侧亮条、图标与发光没有重复表达同一状态；若保留条形指示，应解释其独立的结构、时间线或章节语义。
+- [ ] 活动导航默认可无竖条；如果有短竖条，是否**只在当前选中导航项外侧**显示、与导航项边框/背景之间有真实空隙？禁止把 NavItem 自身的 `border-left`、`border-inline-start`、内部 inset shadow 染色冒充外置提示条，未选中项也不得残留彩条。
+- [ ] 侧栏被选中项仍保留完整圆角、内部 padding、独立 hover/focus-visible；切换实际路由后外置竖条跟随唯一当前项，窄屏/折叠态不裁切。详见 `references/sidebar-selection-indicator-gate.md`。
 - [ ] `aria-current`、hover、focus-visible 分别传达不同状态；即使去掉亮条也不会失去键盘焦点。
 - [ ] 主导航与最近访问对象、帮助提示和账号区域存在清晰职责与视觉层级；业务警告点具备文字或标签。
 - [ ] Topbar、Card、Data Table、Tabs、Search、Split Pane 按 `workspace-component-refinement.md` 核对共享 Token、交互与空/异常状态。

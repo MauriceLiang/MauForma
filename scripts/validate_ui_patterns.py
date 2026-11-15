@@ -13,6 +13,9 @@ ROOT = Path(__file__).resolve().parents[1]
 PALETTE = ROOT / "assets/sidebar-palette-examples.json"
 DOCS = (
     "references/sidebar-navigation-design.md",
+    "references/sidebar-selection-indicator-gate.md",
+    "scripts/audit_sidebar_indicator.mjs",
+    "tests/sidebar_indicator_browser_smoke.mjs",
     "references/workspace-component-refinement.md",
     "assets/sidebar-refinement-gallery.html",
     "tests/test_ui_patterns.py",
@@ -78,7 +81,7 @@ def validate(data: dict | None = None) -> list[str]:
                 issues.append(f"{mode}: {exc}")
     if (ROOT / "references/sidebar-navigation-design.md").is_file():
         text = (ROOT / "references/sidebar-navigation-design.md").read_text(encoding="utf-8")
-        for term in ("aria-current", "focus-visible", "例外", "最近打开", "selected"):
+        for term in ("aria-current", "focus-visible", "例外", "最近打开", "selected", "sidebar-selection-indicator-gate.md"):
             if term not in text:
                 issues.append("Sidebar guide lacks semantic rule: " + term)
     if (ROOT / "assets/sidebar-refinement-gallery.html").is_file():
@@ -87,6 +90,16 @@ def validate(data: dict | None = None) -> list[str]:
                      "prefers-reduced-motion", "data-select-group", "role=\"separator\""):
             if term not in gallery:
                 issues.append("Gallery missing behavior/accessibility reference: " + term)
+        for term in (
+            'data-mf-indicator-case="wrong"',
+            'data-mf-indicator-case="external"',
+            'data-mf-indicator-rail',
+            'data-mf-nav-item',
+            'data-mf-selection-indicator="external"',
+            'data-current="true"',
+        ):
+            if term not in gallery:
+                issues.append("Sidebar gallery lacks external rail contrast fixture: " + term)
         if re.search(r"<script[^>]+\bsrc=", gallery, re.IGNORECASE):
             issues.append("Gallery should work without third-party script dependencies")
     if (ROOT / "SKILL.md").is_file():
