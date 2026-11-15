@@ -123,8 +123,9 @@ svg.defs{position:absolute;width:0;height:0;pointer-events:none}
    const cssCandidate=CSS.supports('backdrop-filter','url("#lg-demo-refract")');
    // CSS.supports says only the declaration may parse, not that the SVG backdrop sampling works.
    const useSvg=wanted&&cssCandidate&&!!uri;
-   refract.style.backdropFilter=useSvg?'url("#lg-demo-refract") blur('+blur+'px)':'blur('+blur+'px)';
-   refract.style.webkitBackdropFilter='blur('+blur+'px)';
+   const backdropValue=useSvg?'url("#lg-demo-refract") blur('+blur+'px)':'blur('+blur+'px)';
+   refract.style.backdropFilter=backdropValue;
+   refract.style.webkitBackdropFilter=backdropValue;
    get('refraction-status').textContent=!wanted
      ?'未启用。当前显示通用材质降级层。'
      :useSvg
