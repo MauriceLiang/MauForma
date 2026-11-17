@@ -137,6 +137,7 @@ python3 scripts/audit_frontend.py ./src --format json
 # Skill 自身静态质量检查；浏览器 QA 另需实际运行环境
 python3 scripts/validate_web_skill.py
 python3 scripts/validate_skill_hygiene.py
+python3 scripts/validate_page_header_copy.py
 python3 -m unittest discover -s tests -v
 ```
 
