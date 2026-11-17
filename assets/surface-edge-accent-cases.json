@@ -1,0 +1,215 @@
+{
+  "description": "Synthetic review cases only. Code/theme/DOM must be inspected in real products before claiming visual verification.",
+  "cases": [
+    {
+      "id": "new-card-left-border",
+      "lifecycle": "new",
+      "surface": "card",
+      "pattern": "flush_border",
+      "meaningful": false,
+      "gap_px": 0,
+      "expected": "reject",
+      "reason": "彩色单侧粗边框与圆角相接"
+    },
+    {
+      "id": "legacy-panel-left-border",
+      "lifecycle": "existing",
+      "surface": "panel",
+      "pattern": "flush_border",
+      "meaningful": false,
+      "gap_px": 0,
+      "expected": "reject",
+      "reason": "旧组件彩边仍须清理"
+    },
+    {
+      "id": "new-card-pseudo-before",
+      "lifecycle": "new",
+      "surface": "card",
+      "pattern": "flush_pseudo",
+      "meaningful": false,
+      "gap_px": 0,
+      "expected": "reject",
+      "reason": "贴边 before 不因换实现而豁免"
+    },
+    {
+      "id": "legacy-card-pseudo-after",
+      "lifecycle": "existing",
+      "surface": "card",
+      "pattern": "flush_pseudo",
+      "meaningful": false,
+      "gap_px": 0,
+      "expected": "reject",
+      "reason": "贴边 after 为旧视觉缺陷"
+    },
+    {
+      "id": "new-section-gradient",
+      "lifecycle": "new",
+      "surface": "section",
+      "pattern": "flush_gradient",
+      "meaningful": false,
+      "gap_px": 0,
+      "expected": "reject",
+      "reason": "渐变侧边色仍贴边"
+    },
+    {
+      "id": "legacy-card-inset-shadow",
+      "lifecycle": "existing",
+      "surface": "card",
+      "pattern": "flush_inset_shadow",
+      "meaningful": false,
+      "gap_px": 0,
+      "expected": "reject",
+      "reason": "内阴影模拟粗侧边条"
+    },
+    {
+      "id": "new-card-mask",
+      "lifecycle": "new",
+      "surface": "card",
+      "pattern": "flush_mask",
+      "meaningful": false,
+      "gap_px": 0,
+      "expected": "reject",
+      "reason": "蒙版贴边彩条同样禁止"
+    },
+    {
+      "id": "legacy-panel-external-node-overlap",
+      "lifecycle": "existing",
+      "surface": "panel",
+      "pattern": "overlapping_rail",
+      "meaningful": true,
+      "gap_px": 0,
+      "expected": "reject",
+      "reason": "虽然外侧有节点但视觉触碰边框"
+    },
+    {
+      "id": "new-card-external-no-gap",
+      "lifecycle": "new",
+      "surface": "card",
+      "pattern": "external_rail",
+      "meaningful": true,
+      "gap_px": 0,
+      "expected": "reject",
+      "reason": "外置标记必须留明显间隙"
+    },
+    {
+      "id": "legacy-card-too-small-gap",
+      "lifecycle": "existing",
+      "surface": "card",
+      "pattern": "external_rail",
+      "meaningful": true,
+      "gap_px": 2,
+      "expected": "reject",
+      "reason": "间隙过小并不明显"
+    },
+    {
+      "id": "legacy-card-redundant-rail",
+      "lifecycle": "existing",
+      "surface": "card",
+      "pattern": "external_rail",
+      "meaningful": false,
+      "gap_px": 8,
+      "expected": "reject",
+      "reason": "只是装饰，没有语义就直接删去"
+    },
+    {
+      "id": "new-panel-neutral",
+      "lifecycle": "new",
+      "surface": "panel",
+      "pattern": "none",
+      "meaningful": false,
+      "gap_px": null,
+      "expected": "accept",
+      "reason": "默认不添加任何卡片装饰彩条"
+    },
+    {
+      "id": "legacy-card-neutral",
+      "lifecycle": "existing",
+      "surface": "card",
+      "pattern": "none",
+      "meaningful": false,
+      "gap_px": null,
+      "expected": "accept",
+      "reason": "旧卡片移除贴边条后通过"
+    },
+    {
+      "id": "new-card-external-gap",
+      "lifecycle": "new",
+      "surface": "card",
+      "pattern": "external_rail",
+      "meaningful": true,
+      "gap_px": 8,
+      "expected": "accept",
+      "reason": "短轨道是独立外置节点且有明确用途"
+    },
+    {
+      "id": "legacy-section-external-gap",
+      "lifecycle": "existing",
+      "surface": "section",
+      "pattern": "external_rail",
+      "meaningful": true,
+      "gap_px": 6,
+      "expected": "accept",
+      "reason": "旧样式改造为独立轨道并保留正向间隙"
+    },
+    {
+      "id": "new-card-focus-outline",
+      "lifecycle": "new",
+      "surface": "card",
+      "pattern": "focus_outline",
+      "meaningful": true,
+      "gap_px": null,
+      "expected": "accept",
+      "reason": "键盘可访问性的完整焦点轮廓"
+    },
+    {
+      "id": "legacy-card-focus-outline",
+      "lifecycle": "existing",
+      "surface": "card",
+      "pattern": "focus_outline",
+      "meaningful": true,
+      "gap_px": null,
+      "expected": "accept",
+      "reason": "修复装饰彩边不应删除原本的焦点轮廓"
+    },
+    {
+      "id": "semantic-timeline-track",
+      "lifecycle": "new",
+      "surface": "timeline",
+      "pattern": "data_track",
+      "meaningful": true,
+      "gap_px": null,
+      "expected": "accept",
+      "reason": "独立时间线轨道具有真实顺序语义"
+    },
+    {
+      "id": "semantic-chart-bar",
+      "lifecycle": "existing",
+      "surface": "chart",
+      "pattern": "data_track",
+      "meaningful": true,
+      "gap_px": null,
+      "expected": "accept",
+      "reason": "图表数据柱不是卡片装饰彩边"
+    },
+    {
+      "id": "new-panel-status-flush",
+      "lifecycle": "new",
+      "surface": "panel",
+      "pattern": "flush_border",
+      "meaningful": true,
+      "gap_px": 0,
+      "expected": "reject",
+      "reason": "状态也不能为贴边卡片彩条辩护，应改为文字/Badge或外置标记"
+    },
+    {
+      "id": "legacy-card-clip-rail",
+      "lifecycle": "existing",
+      "surface": "card",
+      "pattern": "flush_mask",
+      "meaningful": false,
+      "gap_px": 0,
+      "expected": "reject",
+      "reason": "裁切让条带贴着圆角，仍是不合规外观"
+    }
+  ]
+}
