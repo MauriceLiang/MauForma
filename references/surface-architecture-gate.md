@@ -8,7 +8,7 @@
 
 ## v6.16 · Surface 决策与 Gap 决策不能混为一谈
 
-先决定需不需要面板，再依据 `references/semantic-spacing-rhythm-gate.md` 决定主容器与相邻模块的 **inside / peer / section / connected** 空间关系。独立图表允许分别用 Card，但不能因为同处一个父框就让它们上下紧贴；两个本来相连的 Tabs/Panel 则可以共边，不必强行插入 16px。不要以 padding 代替外部 gap，也不要因为视觉拥挤就无差别删除所有 Card。
+先决定需不需要面板，再依据 `references/semantic-spacing-rhythm-gate.md` 决定主容器与相邻模块的 **inside / peer / section / connected** 空间关系。新建与已有页面的 Card/Panel 须执行 `references/surface-edge-accent-gate.md` Gate S0：**默认无装饰彩条，禁止与边框或圆角贴合的彩色粗侧边条**，确需强调则使用有可见间隙的独立外置短标记。独立图表允许分别用 Card，但不能因为同处一个父框就让它们上下紧贴；两个本来相连的 Tabs/Panel 则可以共边，不必强行插入 16px。不要以 padding 代替外部 gap，也不要因为视觉拥挤就无差别删除所有 Card。
 
 ## 1. Gate A：Surface Decision Tree（先选形态，后画框）
 
@@ -29,7 +29,7 @@
 - **区分**：移除外框后能否仍由标题、列、行分隔、背景、间距辨别关系？若能，优先降低或移除表面层。
 - **层次**：是否出现 Page background → mega card → toolbar card → list card → row card 等同语义包裹？重叠的外观层级应合并。
 - **密度**：容器内可读内容是否与其占地相称？超宽空白、每行额外 padding、空信息小标题不产生专业感。
-- **视觉方向**：边框/圆角/阴影是否来自项目 tokens 与真实 Art Direction，而不是“通用 SaaS UI”？
+- **视觉方向**：边框/圆角/阴影是否来自项目 tokens 与真实 Art Direction，而不是“通用 SaaS UI”？是否用 border、伪元素、渐变、inset 阴影制造与容器外框粘连的彩色粗竖条？
 - **响应式**：较窄窗口或 200% 放大时，分组可否自然重排，滚动、最后一项、焦点完整可达？
 
 做两版灰阶 wireframe 对比：**A：开放式分区/直接表格**，**B：单层有界面板**；若媒介主导则比较 **C：实体卡片/画廊**。比较的是**任务完成效率、内容对齐及容器语义**，而不是谁“看起来更高级”。不要求产出所有三个版本，明确有依据选择即可。
@@ -59,6 +59,6 @@ IBM Carbon Data Table：标题、工具栏、表头、行与分页组成表格�
 
 Gate B：确定 Table/List/Panel/Card 的共享所有权与 Tokens，区分“页面主要布局”与“真正组件容器”。对表格检查 column sizing、操作布局、状态/行高、交互边界；再读 `references/control-geometry-gate.md` 处理不可拆分的操作标签。
 
-Gate D：真实页面在宽屏、矮屏、窄屏、文字 200% 与异常数据（长文字、空、失败）下对照整体截图；检查视觉焦点、行列节奏和最下方可达性。允许创意或品牌性超大面板，只要有明确内容理由。**静态决策计划 PASS 不代表视觉美学 PASS**。
+Gate D：真实页面在宽屏、矮屏、窄屏、文字 200% 与异常数据（长文字、空、失败）下对照整体截图；检查视觉焦点、行列节奏、遗留/新增卡片彩条是否贴边和最下方可达性。允许创意或品牌性超大面板，只要有明确内容理由。**静态决策计划 PASS 不代表视觉美学 PASS**。
 
 参考：`references/whitespace-and-surface-composition.md`、`references/component-craft-gate.md`、`references/perceptual-hierarchy-gate.md`。

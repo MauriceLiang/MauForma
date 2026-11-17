@@ -2,6 +2,10 @@
 
 ## Unreleased — Cross-product page-header copy audit
 
+- 统一 Surface Edge Accent Gate S0：所有新建与已有页面的 Card/Panel/Section 默认**无装饰性彩条**；禁止与边框、圆角贴合的粗彩色侧边条（border、伪元素、渐变、内阴影、重叠定位均涵盖）。有明确用途时才允许外置短标记，且必须留可见间隙。
+- 接入主 SKILL、Surface、Proactive Audit、Visual Critique、Component Craft、README 与通用合成测试，不删除真实焦点、图表、时间线或有效状态语义。
+
+
 - 将标题前导文案审查扩展到现有页面优化、重构与评审，不再只针对功能页首版新增；学习、内容、科学可视化、创意与品牌页同样检查历史遗留的装饰性眉题。
 - Gate H-Base 依信息角色决定 `keep / merge / move / delete`；任务型页面仍执行严格 H0，真实品牌、已确认标语、面包屑、章节与必要状态保留。混合“品牌 · 功能解释”拆分处理。
 - 将旧元素清理纳入主动缺陷发现与前后真实页面验收；补充完全合成的跨产品回归场景和静态契约检查（不代表 Agent 对真实产品的语义判断已自动化）。
