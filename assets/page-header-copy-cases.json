@@ -1,0 +1,159 @@
+{
+  "description": "Entirely synthetic manual-review cases; not a semantic classifier or proof of live-page visual QA.",
+  "cases": [
+    {
+      "id": "legacy-workspace-explanation",
+      "product_type": "operate",
+      "lifecycle": "existing",
+      "role": "decorative_explanation",
+      "pretitle": "TEAM INSIGHTS",
+      "main_title": "统计工作台",
+      "approved": false,
+      "expected_action": "delete",
+      "reason": "仅是对工作台用途的装饰性解释"
+    },
+    {
+      "id": "new-workspace-eyebrow",
+      "product_type": "operate",
+      "lifecycle": "new",
+      "role": "decorative_explanation",
+      "pretitle": "MANAGEMENT CENTER",
+      "main_title": "成员管理",
+      "approved": false,
+      "expected_action": "delete",
+      "reason": "新生成的解释性 H1 前导"
+    },
+    {
+      "id": "legacy-learning-subtitle",
+      "product_type": "learning",
+      "lifecycle": "existing",
+      "role": "decorative_explanation",
+      "pretitle": "LEARNING HUB · 在线学习",
+      "main_title": "开始学习",
+      "approved": false,
+      "expected_action": "delete",
+      "reason": "旧版学习页已有的泛功能说明不带来增量信息"
+    },
+    {
+      "id": "legacy-science-visualization",
+      "product_type": "scientific_visualization",
+      "lifecycle": "existing",
+      "role": "decorative_explanation",
+      "pretitle": "VISUAL LAB · 知识探索",
+      "main_title": "观察细胞",
+      "approved": false,
+      "expected_action": "delete",
+      "reason": "旧版可视化页的标签只解释页面类型"
+    },
+    {
+      "id": "legacy-creative-explanation",
+      "product_type": "creative",
+      "lifecycle": "existing",
+      "role": "decorative_explanation",
+      "pretitle": "CREATIVE EXPERIENCE",
+      "main_title": "形状游乐场",
+      "approved": false,
+      "expected_action": "delete",
+      "reason": "创意页面仍需审查没有叙事用途的填充"
+    },
+    {
+      "id": "marketing-approved-tagline",
+      "product_type": "marketing",
+      "lifecycle": "existing",
+      "role": "approved_brand_story",
+      "pretitle": "MAKE TOMORROW TANGIBLE",
+      "main_title": "未来体验展",
+      "approved": true,
+      "expected_action": "keep",
+      "reason": "已确认的活动主张参与品牌叙事"
+    },
+    {
+      "id": "marketing-unsupported-kicker",
+      "product_type": "marketing",
+      "lifecycle": "existing",
+      "role": "decorative_explanation",
+      "pretitle": "GREAT INNOVATION",
+      "main_title": "探索设计",
+      "approved": false,
+      "expected_action": "delete",
+      "reason": "不能仅因为是营销页就无条件豁免无用口号"
+    },
+    {
+      "id": "legacy-mixed-brand-description",
+      "product_type": "scientific_visualization",
+      "lifecycle": "existing",
+      "role": "mixed_brand_description",
+      "pretitle": "NOVA · 数据可视化",
+      "main_title": "可视化工作区",
+      "approved": true,
+      "expected_action": "split",
+      "reason": "保留真实产品名并移往品牌位置，删除泛功能解释"
+    },
+    {
+      "id": "product-name-in-header",
+      "product_type": "content",
+      "lifecycle": "existing",
+      "role": "product_identity",
+      "pretitle": "MONO",
+      "main_title": "精选文章",
+      "approved": true,
+      "expected_action": "keep",
+      "reason": "真实产品名称有独立身份价值"
+    },
+    {
+      "id": "chapter-numbering",
+      "product_type": "learning",
+      "lifecycle": "existing",
+      "role": "actual_chapter",
+      "pretitle": "第 03 章 / 循环系统",
+      "main_title": "血液循环",
+      "approved": false,
+      "expected_action": "keep",
+      "reason": "具有真实学习章节顺序"
+    },
+    {
+      "id": "legitimate-breadcrumb",
+      "product_type": "operate",
+      "lifecycle": "existing",
+      "role": "breadcrumb",
+      "pretitle": "设置 / 团队",
+      "main_title": "权限设置",
+      "approved": false,
+      "expected_action": "keep",
+      "reason": "确有页面层级且提供可用的导航链接"
+    },
+    {
+      "id": "scope-and-period-label",
+      "product_type": "data",
+      "lifecycle": "existing",
+      "role": "data_context",
+      "pretitle": "样本范围：2025–2026",
+      "main_title": "分析趋势",
+      "approved": false,
+      "expected_action": "move",
+      "reason": "信息必要，应移到所约束的数据/筛选器附近"
+    },
+    {
+      "id": "legacy-english-translation",
+      "product_type": "content",
+      "lifecycle": "existing",
+      "role": "decorative_explanation",
+      "pretitle": "KNOWLEDGE BASE",
+      "main_title": "知识库",
+      "approved": false,
+      "expected_action": "delete",
+      "reason": "只是主标题的双语重复"
+    },
+    {
+      "id": "new-narrative-kicker",
+      "product_type": "creative",
+      "lifecycle": "new",
+      "role": "approved_brand_story",
+      "pretitle": "A JOURNEY THROUGH LIGHT",
+      "main_title": "光的形状",
+      "approved": true,
+      "expected_action": "keep",
+      "reason": "明确的展览主题及叙事前导，非功能解释"
+    }
+  ]
+}
