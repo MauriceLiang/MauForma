@@ -52,6 +52,10 @@ MauForma 帮助 Agent 在设计和开发网页时先理解真实用户任务，�
 
 规则适用于学习、科普、阅读、可视化、创意和品牌/营销页面，但**不是一刀切删除所有 Hero 前导**：真实面包屑、正式产品标识、已确认 Tagline、有效内容章节和必要状态应保留或移到对应角色。审核必须在目标页面复验，不能以静态脚本 PASS 代替。详见 [跨产品 Gate H-Base 与功能页 H0](references/page-header-antipatterns.md)。
 
+## 卡片彩色贴边竖条：新旧页面一律禁止
+
+新建页面、既有项目的视觉优化与组件重构，均**不得生成或保留与 Card/Panel/Section 边框贴合、沿圆角延伸的彩色粗竖条**。默认不使用装饰彩边；确有独立信息用途时，可在模块外侧放置短标记，与卡片完整边框保留可见正向间距。键盘焦点轮廓、真实进度和数据图形仍按语义设计。详见 [Surface Edge Accent Gate S0](references/surface-edge-accent-gate.md)。
+
 ## 组件库优先：第一版就要有完整的交互控件
 
 MauForma 在页面开发前会检查项目现有的组件库；如果没有合适的方案，Agent 应**主动为当前前端框架选择并实际采用一套成熟组件库或可访问原语**，优先解决 Select、Combobox、DropdownMenu、Button、Checkbox、Radio、Switch、Dialog 等容易造成视觉和交互返工的控件。
@@ -82,6 +86,7 @@ python3 scripts/audit_frontend.py ./src --format json
 python3 scripts/validate_web_skill.py
 python3 scripts/validate_skill_hygiene.py
 python3 scripts/validate_page_header_copy.py
+python3 scripts/validate_surface_edge_accent.py
 python3 -m unittest discover -s tests -v
 ```
 
@@ -96,7 +101,7 @@ python3 -m unittest discover -s tests -v
 | 设计发现与产品 UX | [设计探索](references/design-discovery-interview.md)、[产品体验路由](references/product-experience-routing-gate.md) |
 | 艺术方向与视觉风格 | [风格档案](references/design-style-catalog.md)、[构图先行](references/composition-first-design.md) |
 | 内容与字体 | [内容密度](references/page-density-and-content-priority.md)、[文案必要性](references/semantic-copy-hygiene.md)、[字体角色](references/typography-hierarchy.md) |
-| 空间、布局与组件 | [语义间距](references/semantic-spacing-rhythm-gate.md)、[网格与视口](references/grid-alignment-and-viewport-safety.md)、[组件工程](references/component-first.md) |
+| 空间、布局与组件 | [语义间距](references/semantic-spacing-rhythm-gate.md)、[网格与视口](references/grid-alignment-and-viewport-safety.md)、[卡片贴边彩条门禁](references/surface-edge-accent-gate.md)、[组件工程](references/component-first.md) |
 | 导航、颜色与图标 | [导航架构](references/navigation-architecture.md)、[侧栏选中指示条](references/sidebar-selection-indicator-gate.md)、[配色](references/palette-art-direction.md)、[图标语义](references/icon-art-direction-gate.md) |
 | 表单、数据与交互 | [设置/表单](references/settings-form-layout-gate.md)、[图表](references/chart-interior-alignment.md)、[动效](references/motion-consent-experience-gate.md) |
 | 技术实现 | [框架支持](references/framework-support-matrix.md)、[业务组件库](references/enterprise-ui-library-guide.md)、[创意组件](references/creative-component-libraries.md) |
