@@ -81,6 +81,7 @@ python3 scripts/audit_frontend.py ./src --format json
 # 验证 Skill 的结构和约束
 python3 scripts/validate_web_skill.py
 python3 scripts/validate_skill_hygiene.py
+python3 scripts/validate_page_header_copy.py
 python3 -m unittest discover -s tests -v
 ```
 
