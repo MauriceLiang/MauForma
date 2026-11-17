@@ -32,6 +32,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 | 模块贴合、行列错位、底部裁切 | `references/semantic-spacing-rhythm-gate.md`、`references/spacing-regression-protection-gate.md`、`references/grid-alignment-and-viewport-safety.md` |
 | 导航职责、位置、层级和跨屏迁移 | `references/navigation-architecture.md`、`references/sidebar-navigation-design.md`、`references/sidebar-selection-indicator-gate.md` |
 | 颜色、浅深主题、视觉人格 | `references/palette-art-direction.md`、`references/sidebar-color-discovery.md`、`references/design-system.md` |
+| **新建和已有 Card/Panel 的贴边彩条审查** | **`references/surface-edge-accent-gate.md` Gate S0**（全场景默认无彩条，外置标记须留空隙） |
 | Card 套娃、控件断行、组件精修 | `references/surface-architecture-gate.md`、`references/control-geometry-gate.md`、`references/component-craft-gate.md` |
 | 设置页、注册、结账、连续表单 | `references/settings-form-layout-gate.md` |
 | 图标含义或同屏风格不协调 | `references/icon-art-direction-gate.md` |
@@ -74,7 +75,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 
 1. 继承已有设计源；新项目建立单一 Tokens 源：颜色角色、字体层级、间距、圆角、边框/阴影、布局断点、图标角色、动效和状态。页面特例要有理由，不要每页独立硬编码同类值。
 2. 先确定 `PageTitle / SectionTitle / Body / KPI / Axis / Legend / Metadata` 等**文字角色**，按信息优先级设计字号、字重、行高、字宽与对比。巨大标题不能压过核心任务；图表刻度、表头、单位和样本数不能因“精致”变得难读。排版应同时检查中文、英文、数字混排、长文本和 200% 文本缩放。
-3. 根据内容关系选择开放布局、边界面板、单层 Card、表格、列表、分屏或媒体墙。只有信息/交互分组真正独立时才用容器；拒绝无意义外壳与嵌套卡片。**Section 的外部 gap 与 Card 的内部 padding 是两件事**。
+3. 根据内容关系选择开放布局、边界面板、单层 Card、表格、列表、分屏或媒体墙。只有信息/交互分组真正独立时才用容器；拒绝无意义外壳与嵌套卡片。**Section 的外部 gap 与 Card 的内部 padding 是两件事**。**新建/优化的 Card、Panel、Section 禁止使用触碰或融入外框圆角的彩色侧边粗条**（包括彩色 border、贴边伪元素、渐变、inset shadow、重叠层）。默认不加彩条，确有用途时仅允许独立外置短标记并保留明显间隙。参见 `references/surface-edge-accent-gate.md` Gate S0。
 4. 空间关系区分 `inside / peer / section / connected`：组内紧密、同级稳定、跨章节更明显、确实连续的 Tab/Panel 可以贴合。纵向 `row-gap` 和横向 `column-gap` 都要检查；不能因新主题把不同业务模块贴在一起，也不能把原本连接的控件强行拆开。
 5. **基础交互控件默认使用已选库及其适配层**：先确认 Select、DropdownMenu、Button、Checkbox、Tabs 等实际来源并完成可运行 Showcase；
 6. **侧栏选中提示条布局**：侧栏默认可使用柔和背景、文字/图标强调而不显示竖条；若采用竖向提示条，必须在**当前选中导航项外侧**单独放置，与按钮边界有可见间距。不得将导航项自身的彩色 `border-left`、`border-inline-start` 或 `inset box-shadow` 当作外置指示条。详见 `references/sidebar-selection-indicator-gate.md`。
@@ -100,10 +101,11 @@ description: Web-first, framework-aware frontend design and implementation skill
 3. **关键控件首版门禁**：在实际页面打开 Select/Combobox/DropdownMenu，操作 Button、选中项、Checkbox/Radio/Switch、Tabs 和弹窗，检查使用的是已选成熟组件库或有依据的原生实现；在打开、选中、禁用、加载、键盘、长中文、深浅主题中确认统一且可用。
 4. **侧栏选中态**：检查是否误将选中项 `border-left` 或内部 inset shadow 画成彩色竖条；若选择外置提示条，验证只在当前路由项**外侧**出现、与导航按钮有实际间隔、切换后同步且与键盘焦点分离。
 5. **页头新旧文案验收门禁**：对本次新建/优化/重构涉及的真实页面，核对修改前后 H1/主视觉标题上方的每一层文案，记录 `keep / merge / move / delete` 与理由。任务页的解释型眉题、伪栏目和无意义装饰编号须实际删除或移到适当用途，不能只换颜色/缩小或因历史存在就算通过；品牌/展示页保留有确认依据的标识、标语和有效叙事。未打开真实页面只能标注 `STATIC CHECK`/`NOT TESTED`，不得声称视觉验收通过。
-6. 视觉检查至少覆盖：主视觉是否对应主任务、内容是否冗余、字号层级、图表内部标签、图标统一、组件边界、左右/上下间距、共享网格、短按钮与长文本、底部可达性、深浅色。
-7. 交互与工程检查至少覆盖：实际点击与状态更新、键盘焦点、语义标签、颜色对比、必要的移动/窄窗口适配、200% 文字缩放、减少动画、加载与错误、性能和构建/测试。响应式范围以用户项目要求为准，**不要强迫仅桌面使用的产品改成手机产品**；仍应避免目标视口出现无意截断。
-8. 工具是辅助：静态审计只能产生风险线索；截图只能支持可见观察；浏览器脚本也不能替代审美判断与业务端到端测试。未打开真实页面就不能宣称“已修复视觉问题”；未调用真实后端就不能宣称“已验证保存”。
-9. 报告必须使用有证据的状态：`VERIFIED`（在真实产品实测）、`STATIC CHECK`（仅源码/契约）、`DEMO ONLY`（仅合成样例）、`NOT TESTED`（未运行）、`BLOCKED`（条件受限）。视觉问题仍存在时，注明未解决及原因。
+6. **卡片彩色贴边条否决项（Gate S0）**：检查新建和现有页面的 Card/Panel/Section，包括旧代码的彩色单侧边框、贴边伪元素、内阴影、渐变及定位覆盖；凡视觉上彩条触碰/融入边框与圆角一律不通过。默认去除，确需使用时独立外置、留可见间隙；在真实页面复验，保护合法的焦点、状态、图表和时间线。
+7. 视觉检查至少覆盖：主视觉是否对应主任务、内容是否冗余、字号层级、图表内部标签、图标统一、组件边界、左右/上下间距、共享网格、短按钮与长文本、底部可达性、深浅色。
+8. 交互与工程检查至少覆盖：实际点击与状态更新、键盘焦点、语义标签、颜色对比、必要的移动/窄窗口适配、200% 文字缩放、减少动画、加载与错误、性能和构建/测试。响应式范围以用户项目要求为准，**不要强迫仅桌面使用的产品改成手机产品**；仍应避免目标视口出现无意截断。
+9. 工具是辅助：静态审计只能产生风险线索；截图只能支持可见观察；浏览器脚本也不能替代审美判断与业务端到端测试。未打开真实页面就不能宣称“已修复视觉问题”；未调用真实后端就不能宣称“已验证保存”。
+10. 报告必须使用有证据的状态：`VERIFIED`（在真实产品实测）、`STATIC CHECK`（仅源码/契约）、`DEMO ONLY`（仅合成样例）、`NOT TESTED`（未运行）、`BLOCKED`（条件受限）。视觉问题仍存在时，注明未解决及原因。
 
 ## 4. 防止模板化和反复返工的审核题
 
@@ -113,6 +115,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 
 - 结构错误但仅换配色或圆角 → 返回 **B：内容与构图**。
 - 独立模块被挤在一起或右列第二排错位 → 返回 **C：空间关系和共享网格**。
+- 卡片与模块出现贴边彩色侧边粗条（新建或遗留） → **首版/优化验收不通过**，返回 **C/E：Surface Edge Accent Gate S0**，移除或改成真正外置且有空隙的独立标记。
 - 任意已有页面在优化后仍保留无信息价值的标题前导文案（或误删真实品牌/导航），以及任务页 H1 上方保留解释性眉题 → **验收不通过**，返回 **B/C：内容角色与 PageHeader**；不以“旧代码没有改动”为豁免。
 - 全部页面一个侧栏布局、一个密度、同一组 KPI → 返回 **A/B：产品与页面目标**。
 - 动效炫目但控件状态、可访问反馈或低动态模式失效 → 返回 **D/E：交互与验证**。
@@ -138,6 +141,7 @@ python3 scripts/audit_frontend.py ./src --format json
 python3 scripts/validate_web_skill.py
 python3 scripts/validate_skill_hygiene.py
 python3 scripts/validate_page_header_copy.py
+python3 scripts/validate_surface_edge_accent.py
 python3 -m unittest discover -s tests -v
 ```
 
