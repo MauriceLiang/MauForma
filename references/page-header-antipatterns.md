@@ -21,6 +21,8 @@
 
 **跨页面类型的合成示例（并非真实项目）**：
 
+这些示例只测试审查决策，结构化回归见 `assets/page-header-copy-cases.json` 与 `scripts/validate_page_header_copy.py`；它们**不**代替对实际页面和品牌规范的判断。
+
 | 页面类型 | 主标题前出现 | 判定 | 理由 |
 | --- | --- | --- | --- |
 | 已有学习页 | `LEARNING SPACE · 在线课程` → `开始学习` | delete | 只解释页面类别，旧内容不免责 |
