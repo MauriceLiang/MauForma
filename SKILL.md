@@ -26,7 +26,8 @@ description: Web-first, framework-aware frontend design and implementation skill
 | 新建产品、全面改版、用户没有视觉方向 | `references/design-discovery-interview.md`、`references/product-experience-routing-gate.md`、`references/design-style-catalog.md` |
 | 结构与视觉中心、页面变成通用后台模板 | `references/composition-first-design.md`、`references/perceptual-hierarchy-gate.md`、`references/progressive-visual-refinement-gate.md` |
 | 模糊指令“优化一下”、审视已有页面 | `references/proactive-visual-defect-discovery-gate.md`、`references/visual-critique-loop.md` |
-| **功能页 H1 上方出现英文眉题、解释小标签** | **`references/page-header-antipatterns.md`**、`references/semantic-copy-hygiene.md`（首版必检） |
+| **新建、优化、重构或审查页面的标题文案（包括历史遗留）** | **`references/page-header-antipatterns.md`、`references/semantic-copy-hygiene.md`**（所有页面必须做页头必要性检查） |
+| **任务型功能页的 H1 上方存在解释性眉题或装饰标签** | **`references/page-header-antipatterns.md` Gate H0**（新旧内容均为否决项） |
 | 内容重复、空泛文字、信息密度不对 | `references/page-density-and-content-priority.md`、`references/semantic-copy-hygiene.md`、`references/typography-hierarchy.md` |
 | 模块贴合、行列错位、底部裁切 | `references/semantic-spacing-rhythm-gate.md`、`references/spacing-regression-protection-gate.md`、`references/grid-alignment-and-viewport-safety.md` |
 | 导航职责、位置、层级和跨屏迁移 | `references/navigation-architecture.md`、`references/sidebar-navigation-design.md`、`references/sidebar-selection-indicator-gate.md` |
@@ -57,7 +58,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 ### B. 先修 UX 与内容架构，再画 UI
 
 1. **内容盘点**：标记 `primary / supporting / conditional / deferred / removable`。每个标题、副标题、编号、说明、徽章都应有信息、导航或状态价值；删除后不损失意义的装饰性文案优先移除。真实面包屑、品牌标语、章节编号、数据单位、来源和样本量必须按用途保留。
-2. **功能页 PageHeader 硬约束**：工作台、管理、数据、设置、表单、列表和详情页，H1 上方**禁止自动生成**解释性英文/中文小标题、眉题（eyebrow/overline/kicker）、装饰性类别标签、宽字距全大写口号和伪章节编号。即使它没有重复 H1，只要只是解释页面用途或营造视觉层级，也必须移除；必要说明放 H1 下方或所属数据/操作旁。真实面包屑必须是独立的导航组件。参考 `references/page-header-antipatterns.md` Gate H0。
+2. **跨产品页头文案门禁（新建 + 已有页面优化）**：无论操作、学习、阅读、数据可视化、创意还是品牌页面，均须检查 H1/主视觉标题前的**现有和新增**小字、eyebrow/overline/kicker、混合语言前缀、装饰编号。按信息/导航/状态/已确认品牌/实际叙事价值决定 `keep / merge / move / delete`；只解释用途、重复主标题或制造层级的旧文案也应清理，不能因为原来就有而保留。任务型页面对解释性眉题执行 Gate H0 **禁止保留**；展示/品牌页可保留有证据的正式标语和叙事前导，不一刀切删 Hero。真实面包屑与必要状态须按语义保留，必要增量说明优先置于主标题下方或对应内容附近。参考 `references/page-header-antipatterns.md` Gate H-Base/H0。
 3. **用户路径**：入口、核心任务、成功/失败反馈、返回与下一步必须成立。学习、消费、内容和创意产品需要体现自己的主要活动，不能把所有产品改名后套入同一组“侧栏 + 四个 KPI + 表格”。
 4. **构图先于装饰**：先用灰阶或低保真布局确定区域顺序、主视觉、内容边界、滚动模型，再选择视觉风格。若结构不成立，不得仅换渐变、字体、卡片圆角就称“重新设计”。
 5. **导航按任务决定**：比较全局/局部目的地数量、切换频率、层级深度、桌面与窄屏行为，再选 Top、Side、Bottom、混合。不要重复摆三套相同菜单；固定操作栏不能遮挡滚动末端。
@@ -77,7 +78,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 4. 空间关系区分 `inside / peer / section / connected`：组内紧密、同级稳定、跨章节更明显、确实连续的 Tab/Panel 可以贴合。纵向 `row-gap` 和横向 `column-gap` 都要检查；不能因新主题把不同业务模块贴在一起，也不能把原本连接的控件强行拆开。
 5. **基础交互控件默认使用已选库及其适配层**：先确认 Select、DropdownMenu、Button、Checkbox、Tabs 等实际来源并完成可运行 Showcase；
 6. **侧栏选中提示条布局**：侧栏默认可使用柔和背景、文字/图标强调而不显示竖条；若采用竖向提示条，必须在**当前选中导航项外侧**单独放置，与按钮边界有可见间距。不得将导航项自身的彩色 `border-left`、`border-inline-start` 或 `inset box-shadow` 当作外置指示条。详见 `references/sidebar-selection-indicator-gate.md`。
-7. **功能页共享 PageHeader 不主动暴露/填充装饰性 `eyebrow/overline/kicker`**；直接展示 PageTitle 和实际操作。
+7. **共享 PageHeader/现有 Hero 的文案审计**：检查组件默认 props、插槽、页面常量和历史实例，不得把旧的装饰性 eyebrow/overline/kicker 当作设计契约原样继承。任务型页面不渲染解释性前导；品牌/展示页仅保留经证实有用的前导与标语，避免误删产品身份。
 8. 共享 Button、Field、Dialog、Navigation、Tabs、Table/List、Feedback、Status、PageHeader、Chart 等组件及状态。实现前校验**实际业务动作**、禁用/加载/错误/空状态、键盘操作和组件行为契约。短操作文字不得逐字纵排、裁切或溢出；空间不足时让操作组换行、移位或使用明确的折叠菜单。
 9. 图标先检查语义，再检查同屏整组的线条、细节、负空间、视觉重量与字体对齐；不只凭名称导入一个“差不多”的图标。没有清晰符号时可用文字。成熟图标库可按现有技术栈选用，但不能无理由混用多个体系。
 10. 配色由用户或品牌决策驱动。可以提出有整体页面依据的候选，但不得默认强加蓝紫渐变、灰白后台或任何单一审美。查看侧栏与主区域、图表、状态、hover/focus 在深浅主题中的整体关系；不以“去 AI 味”为借口禁止合理的强色、插画、emoji 或艺术表达。
@@ -98,7 +99,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 2. **独立 Critique**：设计完成后分开检查 UX/IA 与视觉工艺（排版、色彩、空间、动效、交互状态、适配、UX 文案）。记录可观察证据、根因假设、P0–P3 优先级、修复与复验；不得让主观打分或合成 Gallery 代替真实页面验收，详见 `references/design-craft-loop.md`。
 3. **关键控件首版门禁**：在实际页面打开 Select/Combobox/DropdownMenu，操作 Button、选中项、Checkbox/Radio/Switch、Tabs 和弹窗，检查使用的是已选成熟组件库或有依据的原生实现；在打开、选中、禁用、加载、键盘、长中文、深浅主题中确认统一且可用。
 4. **侧栏选中态**：检查是否误将选中项 `border-left` 或内部 inset shadow 画成彩色竖条；若选择外置提示条，验证只在当前路由项**外侧**出现、与导航按钮有实际间隔、切换后同步且与键盘焦点分离。
-5. **页头首版否决项**：逐页确认 H1 上方无解释型英文眉题、装饰编号或伪栏目；有则删除/移到真实用途位置，不能只改颜色或把字缩小后继续保留。未完成不得声称首版视觉验收通过。
+5. **页头新旧文案验收门禁**：对本次新建/优化/重构涉及的真实页面，核对修改前后 H1/主视觉标题上方的每一层文案，记录 `keep / merge / move / delete` 与理由。任务页的解释型眉题、伪栏目和无意义装饰编号须实际删除或移到适当用途，不能只换颜色/缩小或因历史存在就算通过；品牌/展示页保留有确认依据的标识、标语和有效叙事。未打开真实页面只能标注 `STATIC CHECK`/`NOT TESTED`，不得声称视觉验收通过。
 6. 视觉检查至少覆盖：主视觉是否对应主任务、内容是否冗余、字号层级、图表内部标签、图标统一、组件边界、左右/上下间距、共享网格、短按钮与长文本、底部可达性、深浅色。
 7. 交互与工程检查至少覆盖：实际点击与状态更新、键盘焦点、语义标签、颜色对比、必要的移动/窄窗口适配、200% 文字缩放、减少动画、加载与错误、性能和构建/测试。响应式范围以用户项目要求为准，**不要强迫仅桌面使用的产品改成手机产品**；仍应避免目标视口出现无意截断。
 8. 工具是辅助：静态审计只能产生风险线索；截图只能支持可见观察；浏览器脚本也不能替代审美判断与业务端到端测试。未打开真实页面就不能宣称“已修复视觉问题”；未调用真实后端就不能宣称“已验证保存”。
@@ -112,7 +113,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 
 - 结构错误但仅换配色或圆角 → 返回 **B：内容与构图**。
 - 独立模块被挤在一起或右列第二排错位 → 返回 **C：空间关系和共享网格**。
-- 功能页 H1 上方保留解释性眉题、英文装饰标签或假章节编号 → **首版不予通过**，返回 **B/C：PageHeader 结构**；必要数据说明保留在真实用途位置。
+- 任意已有页面在优化后仍保留无信息价值的标题前导文案（或误删真实品牌/导航），以及任务页 H1 上方保留解释性眉题 → **验收不通过**，返回 **B/C：内容角色与 PageHeader**；不以“旧代码没有改动”为豁免。
 - 全部页面一个侧栏布局、一个密度、同一组 KPI → 返回 **A/B：产品与页面目标**。
 - 动效炫目但控件状态、可访问反馈或低动态模式失效 → 返回 **D/E：交互与验证**。
 - 仅在组件 Gallery 或合成案例通过测试 → 返回 **E：真实页面复验**。
