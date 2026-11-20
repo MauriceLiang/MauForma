@@ -54,6 +54,19 @@ src/
 - 建立 PageHeader、Field、Dialog 以及各状态可观察展示页。
 - 页面仅组合组件。查看 `examples/react-web-components.md`。
 
+## 7. React / Next 性能与组合架构专项门禁（按需）
+
+这些检查用于 React/Next 真实项目，**不**自动应用到 Vue，且每项都须有实际症状或本次修改影响：
+
+- **请求关系先于微优化**：通过 Network/Server log 标识串行依赖的请求瀑布，将独立请求并发化；不能为追求并发改变业务依赖或缓存一致性。
+- **包体与首屏**：检查依赖锁文件、生产构建的 chunk 大小和新库增加的客户端 JS；只对低频、重组件考虑动态导入；首屏关键操作不能因懒加载而失去响应。
+- **状态与渲染**：区分服务端数据、客户端草稿与本地动画状态。不要为所有 primitive 一律 memo；对已证实的重复重渲染、昂贵计算和监听器泄漏再采取优化。
+- **服务端安全**：遵循当前 React/Next 版本的 SSR、RSC、Server Actions 与 hydration 规则；任何认证与授权必须在服务端真实验证，不靠隐藏按钮。
+- **显式组件变体**：当 bool Props 组合导致不可能状态时，优先清晰的 variant API、组合式子组件和明确的状态所有权。React Context 不应变成存储整个后台业务对象的垃圾桶。
+- **动态质量**：记录真实设备下的 long task、CLS、input latency 与动画中断；命令式动画正确取消；不能凭 CSS 中含 `transform` 断言 60fps。
+
+可用 `scripts/mauforma_check.py` 对本次改动先做静态风险收集，再对真实页面复现交互、异步错误、焦点和最小支持视口。具体 API 以锁文件与官方当前文档为准。
+
 官方参考：
 - https://react.dev/learn
 - https://nextjs.org/docs
