@@ -56,13 +56,9 @@
 4. reduced-motion 开关前后测相同业务结果与焦点，非必要运动立即减弱/关闭。不同框架必须在真实目标页面复核而不是只测 standalone demo。
 5. **明确测试边界**：结构/覆盖清单的 JSON 校验不证明美感、CSS 有动画不代表有交互；独立实验页的通过不代表真实项目页面已通过。
 
-## 可核对参考（以当时文档的 API 与许可为准）
+## 相关规范
 
-- IBM Carbon productive / expressive motion: https://www.carbondesignsystem.com/building-blocks/foundations/motion/overview
-- Motion gesture, focus, tap: https://motion.dev/docs/react-animation
-- Motion layout and shared elements: https://motion.dev/docs/layout-animations
-- W3C WCAG Animation from Interactions (AAA): https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions
-- 可选组件选型：`references/creative-component-libraries.md`
+外部设计体系、实现库和可访问性标准的致谢与来源索引集中在 README；选用任何库之前仍须核对官方当前 API、依赖和许可证。
 
 本规则的实际操作须进一步执行 `references/motion-craft-and-continuity.md`（分镜、对象身份、邻居让位、图文与锚点）和 `references/motion-rehearsal-and-evidence.md`（完整过程、反向/中断、采样与复验）。
 
