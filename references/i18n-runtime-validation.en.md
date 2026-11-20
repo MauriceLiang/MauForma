@@ -17,6 +17,7 @@ Use the **same Agent model and version**, same user task, same codebase revision
 For each task, record:
 - total input/output tokens **as measured by the Agent's actual API or host**, not a guessed tokenization ratio
 - wall-clock time and number of tool calls, retries and unnecessary reference reads
+- task completion rate on actual user-facing acceptance checks, not just successfully generated code
 - number and severity of regressions in existing product features
 - actual built page correctness, supported locale quality, keyboard/accessibility checks
 - number of verified UI interaction flows and motion continuity issues (including reduced motion)
