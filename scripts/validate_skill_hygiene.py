@@ -41,9 +41,9 @@ def validate_entrypoint(name: str, content: str) -> list[str]:
             errors.append(f"{name}: entrypoint exceeds 35 KiB; move details to references")
         if not content.startswith("---\nname: mauforma\n"):
             errors.append(f"{name}: missing Agent Skill frontmatter")
-        for key in ("适用范围", "按任务读取", "执行流程", "交付格式"):
+        for key in ("Scope, authority and language", "Efficient on-demand reference routing", "Execution process", "Acceptance and escalation"):
             if key not in content:
-                errors.append(f"{name}: missing essential section ({key})")
+                errors.append(f"{name}: missing English runtime contract section ({key})")
     return errors
 
 

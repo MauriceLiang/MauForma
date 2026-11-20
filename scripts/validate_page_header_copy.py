@@ -87,11 +87,12 @@ def validate_repo() -> list[str]:
     data = json.loads(FIXTURES.read_text(encoding="utf-8"))
     errors.extend(validate_cases(data))
     required_fragments = {
-        "SKILL.md": ("page-header-antipatterns.md", "跨产品页头文案门禁", "现有", "新旧文案验收"),
+        "SKILL.md": ("page-header-antipatterns.md", "Mandatory new-and-existing page-header check", "Gate H-Base / H0", "keep / merge / move / delete"),
         "references/page-header-antipatterns.md": ("Gate H-Base", "Gate H0", "历史", "keep / merge / move / delete"),
         "references/proactive-visual-defect-discovery-gate.md": ("Gate H-Base", "原有及新增"),
         "references/semantic-copy-hygiene.md": ("跨产品页头文案门禁", "历史沿用", "Gate H-Base/H0"),
-        "README.md": ("页头文案审查", "原有及新增"),
+        "README.md": ("page-header-antipatterns.md", "new and existing", "Gate H0"),
+        "README.zh-CN.md": ("页头文案审查", "原有及新增"),
     }
     for path, fragments in required_fragments.items():
         target = ROOT / path

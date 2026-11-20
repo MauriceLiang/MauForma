@@ -75,7 +75,7 @@ class ReadabilityRulesTests(unittest.TestCase):
         skill = (ROOT / "SKILL.md").read_text("utf-8")
         guide = (ROOT / "references/page-header-antipatterns.md").read_text("utf-8")
         checklist = (ROOT / "references/visual-qa.md").read_text("utf-8")
-        for word in ("H1 上方", "禁止", "PageHeader"):
+        for word in ("pre-H1", "do not retain", "PageHeader"):
             self.assertIn(word, skill)
         for word in ("Gate H0", "首版", "overline", "kicker"):
             self.assertIn(word, guide)
