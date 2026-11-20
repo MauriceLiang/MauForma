@@ -25,6 +25,12 @@ node scripts/extract_design_dna.mjs --url https://example.com --out ./artifacts/
 
 保存 `report.json`、`report.md`、`page-01.png` 至本地 artifacts。仅输出真实可见 DOM 的计算样式，不采集网页文字或登录信息，截图可能包含个人信息，**不得自动提交到公开 MauForma 仓库**。检查最终 URL、字体状态和证据数量；只在有实际观察和用户确认后，将设计方向转为项目 Token。若第三方页面设置复杂反爬/身份认证，请说明 `BLOCKED`；不得绕过访问控制。网站内部请求按公开网络规则限制，正式安全审计仍需更严格的网络隔离。
 
+## 特殊边界：外部来源与脚本权限
+
+当候选风格搜索返回空结果、低相关结果或不符合用户领域时，先用用户真实内容/页面目的调整少量检索词，再检查返回条目的适用场景；无可靠结果就明确 `NO_GROUNDED_MATCH`，不得把任意高分样式写为用户确认的 MASTER。参考站点分析必须符合页面访问授权，并保留观测 WHAT / 推断 WHY / 未知信息的区分。外部动态规范仅在实际获准联网、检索成功后才可宣称“最新”。
+
+任何现成的 Agent Hook、命令行辅助工具或新的 Playwright 浏览器安装都应区分**项目级授权**与**全局用户环境修改**，默认不自动安装后者。完整触发、例外、禁止中英对照见 `references/semantic-boundaries.zh-CN.md`。
+
 ## P0-2：Design Drift Doctor
 
 ```bash
@@ -34,7 +40,7 @@ python3 scripts/check_design_drift.py --root ./target-project --write-baseline
 python3 scripts/check_design_drift.py --root ./target-project --strict --format json
 ```
 
-项目内 `design-system/observed-tokens.json` 仅用于后续差异比对。不会更新 `MASTER.md`、用户决定或实际 CSS。对 CSS variables 的新增、删改以及硬编码颜色提供可定位线索；CSS 中的合法主题覆盖和框架内变量应由人审核，不能把静态启发式当作证据确凿的错误。
+项目内 `design-system/observed-tokens.json` 仅用于后续差异比对。**它是源码观测，不是 MASTER 真值**。版本漂移、格式漂移、设计事实漂移须分开处理；后者没有仅凭此脚本自动修复的能力。脚本不会更新 `MASTER.md`、用户决定或实际 CSS。对 CSS variables 的新增、删改以及硬编码颜色提供可定位线索；CSS 中的合法主题覆盖和框架内变量应由人审核，不能把静态启发式当作证据确凿的错误。
 
 ## P0-3：Motion QA 2.0
 
