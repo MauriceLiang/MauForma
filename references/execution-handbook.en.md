@@ -14,7 +14,7 @@ This is the standalone English reference for international Agent users and contr
 | Cinematic marketing | Intentional visual narrative and motion policy | Real-time playback and interruptions | Simulate fake backend success |
 | Operational dashboard | Information priorities, real data and permissions | Correct data, actions, keyboard and error | Apply a marketing hero layout by default |
 
-Treat Operate, Read, Persuade and Experience as page modes, not permanent product types. Select the smallest valid set of references from SKILL.md. Never eagerly load the whole reference library.
+Treat Operate, Read, Persuade and Experience as page modes, not permanent product types. Select the smallest valid set of references from SKILL.md: one primary guide, up to two supporting guides unless evidence justifies more. The table is an index, not a mandate to load every listed file. Never eagerly load the whole reference library.
 
 ## 2. Language and internationalization
 
@@ -53,9 +53,9 @@ Sidebar navigation: use selected background/text/icon where suitable; any select
 
 ## 6. Component library first
 
-Before bulk interactive page development, inspect existing dependencies and select ONE suitable primary component library or accessible primitive stack for the actual framework. Map Button, Field, Select, Combobox, DropdownMenu, Checkbox, Radio, Switch, Dialog, Tabs and Popover to real components and test their critical states.
+Before bulk interactive page development, inspect existing dependencies and select ONE suitable primary component library or accessible primitive stack for the actual framework. Only install an additional library if that change is within the user's delegated implementation scope and dependency policy; otherwise reuse a sound native component or report what is blocked. Map Button, Field, Select, Combobox, DropdownMenu, Checkbox, Radio, Switch, Dialog, Tabs and Popover to real components and test their critical states.
 
-Avoid hand-built click-only div controls. A light static page or genuine native interaction can justify no dependency, but not broken semantics. UI libraries cannot replace testing focus, keyboard, disabled/loading/error, popover positioning, theme, text wrapping and actual business results. React primitives cannot be copied into Vue unchanged.
+Avoid hand-built click-only div controls. A light static page or genuine native interaction can justify no dependency, but not broken semantics. An authorized implementation does not imply approval to change global Agent configuration or install unrelated host tools. UI libraries cannot replace testing focus, keyboard, disabled/loading/error, popover positioning, theme, text wrapping and actual business results. React primitives cannot be copied into Vue unchanged.
 
 Shared components should have a clear state owner, semantic API, documented variants and a common token source. Do not create multiple styling systems or a boolean-prop maze.
 
@@ -97,7 +97,7 @@ Performance claims need actual timing/memory/runtime evidence, never only static
 
 A screenshot cannot prove backend correctness. A sample gallery cannot prove product usability. A static scanner can only identify possible risks, not guarantee aesthetic, performance or accessibility quality.
 
-For every significant finding record route/selector, viewport/locale, expected versus observed, evidence, file:line, severity, fix and retest. On major changes, review UX/IA separately from visual treatment. For significant motion, prefer a fresh-eye reviewer not involved in the implementation.
+For every significant finding record route/selector, viewport/locale, expected versus observed, evidence, file:line, severity, fix and retest. Browser automation must first inspect the rendered DOM and reachable state, not invent a selector from the initial prompt. Separate permission, request, console and server-backend errors. On major changes, review UX/IA separately from visual treatment. For significant motion, prefer a fresh-eye reviewer not involved in the implementation.
 
 ## 10. Efficient execution and consent
 
@@ -105,5 +105,7 @@ For every significant finding record route/selector, viewport/locale, expected v
 2. Preserve existing user decisions and project boundaries. Do not run global hooks, install libraries, scrape unauthorized sites, export project screenshots or rewrite production code without relevant permission.
 3. Prefer existing project scripts and browser tooling. Optional MauForma tools include: audit_frontend.py, mauforma_check.py, check_design_drift.py, motion_rehearsal.mjs, extract_design_dna.mjs, feature_design_flow.py and preview_design_variants.py.
 4. Report final changes, concrete real test results, scope, non-verified states and blockers. The status CAPTURED_FOR_REVIEW never means VERIFIED.
+
+For any English/Chinese ambiguity use the **relevant numbered rule** in `references/semantic-boundaries.en.md` or the matching Chinese `references/semantic-boundaries.zh-CN.md`; their paired source is `assets/semantic-boundary-contract.json`. The 14-source learning audit is `references/upstream-reassessment.en.md`, and is **not** a mandatory runtime read.
 
 For deeper specifics use the task-specific documents already routed in SKILL.md. Historic Chinese full rules remain in SKILL.zh-CN.md for migration parity; do not load both entrypoints by default.
