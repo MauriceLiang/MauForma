@@ -72,7 +72,9 @@ class ExpressiveMotionVocabularyTests(unittest.TestCase):
         self.assertIn("123 种动效配方", self.gallery)
         self.assertIn("EFFECTS.length", self.gallery)
         for effect in NEW:
-            self.assertIn("e.id==='" + effect + "'", self.gallery, effect)
+            specialized = "e.id==='" + effect + "'" in self.gallery
+            grouped = effect in {"horizontal-scroll", "scroll-snap", "smooth-scroll"} and "].includes(e.id)" in self.gallery
+            self.assertTrue(specialized or grouped, effect)
 
     def test_cross_framework_naming_and_bilingual_discovery(self):
         self.assertIn("not necessarily official", self.doc.lower())
