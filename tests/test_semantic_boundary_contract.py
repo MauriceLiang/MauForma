@@ -17,7 +17,7 @@ from validate_semantic_boundaries import validate_repository
 
 
 class SemanticBoundaryContractTests(unittest.TestCase):
-    def test_every_pair_and_14_upstreams_pass(self):
+    def test_every_runtime_pair_and_route_pass(self):
         self.assertEqual(validate_repository(ROOT), [])
 
     def setUp(self):
@@ -57,26 +57,34 @@ class SemanticBoundaryContractTests(unittest.TestCase):
         (self.root / "references" / "design-dna-protocol.md").unlink()
         self.assertTrue(any("missing referenced file" in x or "broken runtime reference" in x for x in validate_repository(self.root)))
 
-    def test_source_coverage_and_default_routing_are_checked(self):
-        file = self.root / "references/upstream-reassessment.en.md"
-        content = file.read_text("utf-8").replace("Vercel Composition Patterns", "Generic composition")
-        file.write_text(content, "utf-8")
-        self.assertTrue(any("missing reviewed upstream Vercel Composition Patterns" in x for x in validate_repository(self.root)))
-        (self.root / "SKILL.md").write_text(
-            (self.root / "SKILL.md").read_text("utf-8").replace("one primary guide", "all the references"),
+    def test_runtime_scope_and_reference_routing_are_checked(self):
+        file = self.root / "SKILL.md"
+        original = file.read_text("utf-8")
+        self.assertIn("one primary guide", original)
+        file.write_text(
+            original.replace("one primary guide", "all the references"),
             encoding="utf-8",
         )
-        self.assertTrue(any("missing high-risk boundary anchor one primary guide" in x for x in validate_repository(self.root)))
+        self.assertTrue(any(
+            "missing high-risk boundary anchor one primary guide" in x
+            for x in validate_repository(self.root)
+        ))
 
-    def test_instruction_budget_is_independent_of_static_parity(self):
-        # An EN/ZH static contract is *not* a model benchmark: compare only
-        # content and explicit clauses, never runtime efficiency/visual quality.
-        p = self.root / "references/i18n-runtime-validation.en.md"
-        doc = p.read_text("utf-8")
-        self.assertIn("same Agent model and version", doc)
-        self.assertIn("same user task", doc)
-        self.assertIn("task completion", doc)
-        self.assertIn("unauthorized actions", doc)
+    def test_runtime_boundary_docs_survive_without_audit_reports(self):
+        for path in (
+            "references/upstream-reassessment.en.md",
+            "references/upstream-reassessment.zh-CN.md",
+            "references/i18n-runtime-validation.en.md",
+            "SKILL.zh-CN.md",
+            "CHANGELOG.md",
+        ):
+            self.assertFalse((self.root / path).exists(), path)
+        english = (self.root / "references/semantic-boundaries.en.md").read_text("utf-8")
+        chinese = (self.root / "references/semantic-boundaries.zh-CN.md").read_text("utf-8")
+        for token in ("B01", "B08", "B15"):
+            self.assertIn(token, english)
+            self.assertIn(token, chinese)
+        self.assertEqual(validate_repository(self.root), [])
 
 
 if __name__ == "__main__":
