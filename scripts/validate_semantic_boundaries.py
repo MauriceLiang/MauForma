@@ -105,7 +105,7 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                         if not (root / link).is_file():
                             problems.append(f"{label}: missing referenced file {link}")
                 continue
-            if not isinstance(value, str) or len(value.strip()) < (4 if field in {"id", "topic"} else 12):
+            if not isinstance(value, str) or len(value.strip()) < (4 if field in {"id", "topic"} else 6 if field.endswith("_zh") else 12):
                 if field == "id" and isinstance(value, str) and value in IDS:
                     continue
                 problems.append(f"{label}: missing substantive field {field}")
