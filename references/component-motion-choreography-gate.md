@@ -64,4 +64,6 @@
 - W3C WCAG Animation from Interactions (AAA): https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions
 - 可选组件选型：`references/creative-component-libraries.md`
 
+本规则的实际操作须进一步执行 `references/motion-craft-and-continuity.md`（分镜、对象身份、邻居让位、图文与锚点）和 `references/motion-rehearsal-and-evidence.md`（完整过程、反向/中断、采样与复验）。
+
 本规则必须与 `references/motion-consent-experience-gate.md`、`references/component-craft-gate.md`、`references/control-geometry-gate.md` 和 `references/animation-integration-lifecycle.md` 一起使用。
