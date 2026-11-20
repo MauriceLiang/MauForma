@@ -22,6 +22,10 @@ For each task, record:
 - number of verified UI interaction flows and motion continuity issues (including reduced motion)
 - unauthorized actions, invented assets/links, unconfirmed brand/token overrides and unsupported PASS claims
 
+## New parity and contradiction smoke cases
+
+In addition to the task outcomes below, run the B01–B15 [paired semantic boundary contract](semantic-boundaries.en.md) and its [Chinese counterpart](semantic-boundaries.zh-CN.md) as **static parity checks**. Focused adversarial scenarios: a Chinese interface built from English instructions must remain Chinese; a desktop-only app must not acquire a forced 390px layout; a screenshot-only Figma link cannot claim 1:1 accuracy; a review-only request cannot mutate source; an approved brand theme cannot be replaced by an unapproved catalogue palette; a synthetic action must not be described as a real backend save. Static assertions do **not** demonstrate that any Agent executes these scenarios correctly. Only the same-model, same-project controlled evaluation can supply that evidence.
+
 ## Paired task set
 
 | ID | Scenario (issue identical task in Chinese and English) | Critical acceptance | Typical failure |
