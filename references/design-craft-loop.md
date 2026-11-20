@@ -79,16 +79,6 @@
 
 **交付必须区分** `VERIFIED / STATIC CHECK / DEMO ONLY / NOT TESTED / BLOCKED`。合成演示、截图审查和真实业务 E2E 是不同层级，不互相替代。
 
-## 来源与迁移边界
+## 通用知识与项目隔离
 
-可借鉴的方法：Anthropic `frontend-design` 的意图明确与设计观点；Impeccable 的七域精修；Taste 系列不同实现的证据化判断；theme-factory 的统一主题原则；designer-skills 的分阶段设计工作流。视频里的 `design-process-pack` 只作为“需求先于绘图”的启发，未核实唯一对应的上游仓库。**没有复制任一第三方 Skill 的说明文字、命令实现或示例资产**。
-
-公开参考：
-- <https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design/skills/frontend-design>
-- <https://github.com/pbakaus/impeccable>
-- <https://github.com/senlindesign/taste-skill>
-- <https://github.com/Leonxlnx/taste-skill>
-- <https://github.com/anthropics/skills/tree/main/skills/theme-factory>
-- <https://github.com/julianoczkowski/designer-skills>
-
-在 MauForma 通用仓库里只存**匿名、合成**的示例。具体网站的私有截图、业务字段、用户项目名与设计决策保存在其自身工作区，不回流到此 Skill。
+仅将可迁移的设计判断、流程和自有实现写入本 Skill；不得将第三方 Skill 的文字、命令或示例素材未经许可复制入仓。公开仓库只使用匿名、合成示例，用户项目的截图、业务字段与设计决策应留在该项目自己的工作区。外部项目来源和谢意集中记录在 README。

@@ -6,7 +6,7 @@
 
 面向现代 Web 产品的设计与前端工程 Agent Skill。
 
-[工作方式](#工作方式) · [适用范围](#适用范围) · [快速开始](#快速开始) · [参考资料](#参考资料) · [质量检查](#质量检查)
+[工作方式](#工作方式) · [适用范围](#适用范围) · [快速开始](#快速开始) · [参考资料](#参考资料) · [质量检查](#质量检查) · [开源致谢](#开源参考与致谢)
 
 </div>
 
@@ -64,7 +64,7 @@ MauForma 在页面开发前会检查项目现有的组件库；如果没有合�
 
 ## 高级动效：Motion Craft & Rehearsal
 
-MauForma 将动效视为可用性、状态连续性和产品质感的一部分，而不是统一的 Hover 特效或页面淡入。借鉴 [Stageshow](https://github.com/benjitaylor/skills/tree/main/stageshow) 的分镜、运动因果、缓动节奏、视觉交接和逐帧自查，转化为适用于**真实 Web 产品**的通用规则：
+MauForma 将动效视为可用性、状态连续性和产品质感的一部分，而不是统一的 Hover 特效或页面淡入。使用分镜、运动因果、缓动节奏、视觉交接和逐帧自查，转化为适用于**真实 Web 产品**的通用规则：
 
 - **先设计状态变化**：触发 → 运动中的关系 → 结果 → 反向/中断 → 低动效；保留按钮、指示器、弹窗、列表等对象的身份和空间锚点。
 - **细腻的时间编排**：操作即时响应，相关对象重叠、错峰、连贯让位；文字、数字、布局变化不突然闪跳或糊字。
@@ -148,5 +148,52 @@ python3 -m unittest discover -s tests -v
 - **文档不堆版本补丁**：行为规则写在稳定主题章节；修改历史只写 `CHANGELOG.md`。
 
 参考图片及其变体不得未经授权存入公共 Skill。引用第三方技术、图标、字体或资源时核查来源、许可证与依赖版本。
+
+## 开源参考与致谢
+
+MauForma 的设计方法离不开开放的设计知识、工具与社区实践。感谢下列作者、维护者和贡献者公开自己的工作，让我们能够学习、比较和重新思考优秀的产品体验。
+
+**特别感谢 Benji Taylor 的 Stageshow。** 它对动效分镜、运动因果、状态连续性、视觉交接、逐帧检查以及独立复审的实践，为 MauForma 的高级动效规范带来了重要启发。MauForma 将这些思想整理为适用于真实 Web 产品和多种前端框架的通用工作流，而不是直接移植 Stageshow 的 React Kit、演示资产或脚本。
+
+### 设计 Skill 与方法论启发
+
+| 项目及作者 | 主要学习方向 |
+| --- | --- |
+| [Stageshow — Benji Taylor](https://github.com/benjitaylor/skills/tree/main/stageshow) | 可信的产品界面演示、运动因果、节奏与动效质量复验 |
+| [Frontend Design — Anthropic](https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design/skills/frontend-design) | 设计意图、视觉方向与反模板化 |
+| [Impeccable — Paul Bakaus](https://github.com/pbakaus/impeccable) | 分维度的视觉精修与设计质量检查 |
+| [Taste Skill — senlindesign](https://github.com/senlindesign/taste-skill) | 设计品味与审美判断的讨论 |
+| [Taste Skill — Leonxlnx](https://github.com/Leonxlnx/taste-skill) | 不同实现中的视觉判断与验证方式 |
+| [Theme Factory — Anthropic](https://github.com/anthropics/skills/tree/main/skills/theme-factory) | 主题与视觉语言的一致性 |
+| [Designer Skills — julianoczkowski](https://github.com/julianoczkowski/designer-skills) | 分阶段设计工作流与审查 |
+
+Stageshow 的具体参考包括 [Motion](https://github.com/benjitaylor/skills/blob/main/stageshow/references/motion.md)、[Choreography](https://github.com/benjitaylor/skills/blob/main/stageshow/references/choreography.md)、[Verify](https://github.com/benjitaylor/skills/blob/main/stageshow/references/verify.md)、[Rehearse](https://github.com/benjitaylor/skills/blob/main/stageshow/references/rehearse.md) 和 [Review](https://github.com/benjitaylor/skills/blob/main/stageshow/references/review.md)。这些出处集中保存在 README，避免在 Agent 高频读取的规则文档里重复附上链接和致谢说明。
+
+### 设计体系、可访问性与浏览器规范
+
+感谢以下团队持续公开设计原则和标准：
+
+- [IBM Carbon Design System](https://carbondesignsystem.com/)（动效、图标、组件）、[Material Design](https://m3.material.io/)（交互与动效）、[W3C WAI / WCAG](https://www.w3.org/WAI/standards-guidelines/wcag/)（可访问性与减少非必要动画）。
+- [MDN Web Docs](https://developer.mozilla.org/)（CSS、Web Animations API、SVG、View Transitions、浏览器兼容性）与 [WebKit](https://webkit.org/) 公开兼容性资料。
+- 动效相关原始资料：[Carbon Motion](https://www.carbondesignsystem.com/building-blocks/foundations/motion/overview)、[WCAG Animation from Interactions](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions)、[W3C C39](https://www.w3.org/WAI/WCAG22/Techniques/css/C39)、[MDN prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)、[Material Motion Timing](https://m1.material.io/motion/duration-easing.html)、[Motion Layout](https://motion.dev/docs/layout-animations) 与 [Motion Gestures](https://motion.dev/docs/react-animation)。
+- [Lucide](https://lucide.dev/)、[Tabler Icons](https://tabler.io/icons)、[Phosphor Icons](https://phosphoricons.com/)（图标设计与资源核对）。
+
+### 动效、组件与可视化生态
+
+以下主要作为**选型、API 或视觉实现参考**，不代表它们是 MauForma 的强制依赖，也不意味着已将其源码整体纳入仓库。
+
+- 动画与交互：[Motion](https://motion.dev/)、[GSAP](https://gsap.com/)、[Anime.js](https://animejs.com/)、[FormKit AutoAnimate](https://auto-animate.formkit.com/)、[Rive](https://rive.app/)、[LottieFiles](https://lottiefiles.com/)。
+- 创意组件：[React Bits](https://reactbits.dev/)、[Vue Bits](https://vue-bits.dev/)、[Inspira UI](https://inspira-ui.com/)、[Magic UI](https://magicui.design/)、[Aceternity UI](https://ui.aceternity.com/)。
+- 基础及企业 UI：[Reka UI](https://reka-ui.com/)、[Radix Primitives](https://www.radix-ui.com/primitives)、[shadcn/ui](https://ui.shadcn.com/)、[shadcn-vue](https://www.shadcn-vue.com/)、[Ant Design](https://ant.design/)、[Ant Design Vue](https://www.antdv.com/)、[Element Plus](https://element-plus.org/)、[Naive UI](https://www.naiveui.com/)、[Arco Design](https://arco.design/)、[PrimeVue](https://primevue.org/)、[PrimeReact](https://primereact.org/)、[MUI](https://mui.com/)、[Mantine](https://mantine.dev/)、[Angular Material](https://material.angular.dev/)、[NG-ZORRO](https://ng.ant.design/)、[PrimeNG](https://primeng.org/)。
+- 可视化与图形：[PixiJS](https://pixijs.com/)、[Three.js](https://threejs.org/)、[Curtains.js](https://www.curtainsjs.com/)、[Apache ECharts](https://echarts.apache.org/)、[Rough.js](https://roughjs.com/)、[Vivus](https://github.com/maxwellito/vivus)、[tsParticles](https://particles.js.org/)、[Matter.js](https://brm.io/matter-js/)。
+
+### 版权与致谢边界
+
+- **学习设计思想不等于复制作品。** 除特别注明的资源外，MauForma 的规则、示例和验证脚本为本项目独立组织的实现；上述项目和作者不因列入参考而对 MauForma 提供背书。
+- 如实际使用、修改或再分发第三方代码、图标、字体、图片或其他素材，必须按对应版本的许可证保留必要的版权与许可声明；README 致谢**不能替代**许可证义务。
+- 仓库使用的 Lucide 示例 SVG 对应许可文本保留于 [Lucide 许可说明](assets/icon-art-direction-lucide-license.txt)。其他框架或组件的许可证须在实际引入时逐项核对。
+- 项目和文档可能更新，涉及 API、兼容性、收费条款或许可证的内容应以各项目当前官方资料为准。
+
+再次感谢开源社区持续分享高质量的设计方法与工程实践。
 
 [查看更新历史](CHANGELOG.md)

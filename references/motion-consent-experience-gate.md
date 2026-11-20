@@ -72,12 +72,8 @@
 - **性能**：测 FPS/长任务/布局抖动（能力可用时），不要宣称未测的数字；只有弱设备或时间预算无法覆盖时，明确列为未验收而非假定通过。
 - **报告**：列出通过和未覆盖的组件、采用的动效与预期价值、预览证据、减少动效策略与问题；禁止从独立 Mock 冒充真实产品 E2E。
 
-### 可核验的官方设计与无障碍资料（来源不代表照抄样式）
+### 验证依据
 
-- IBM Carbon Motion（productive/expressive、组件与整体转场）：https://www.carbondesignsystem.com/building-blocks/foundations/motion/overview
-- W3C WCAG 2.2 Understanding 2.3.3 Animation from Interactions（AAA；交互非必要动画可禁用）：https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions
-- W3C C39 技术：https://www.w3.org/WAI/WCAG22/Techniques/css/C39
-- MDN prefers-reduced-motion：https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
-- Material Design timing/easing principles：https://m1.material.io/motion/duration-easing.html
+遵循可访问性标准和平台减少动态效果偏好；官方标准、浏览器文档及设计体系的来源集中记录在 README。
 
 继续参阅 `references/animation-engine-selection.md`（技术选型）、`references/animation-integration-lifecycle.md`（清理和回退）、`references/design-discovery-interview.md`（用户选择来源）、`references/visual-qa.md`（整体视觉检查）。

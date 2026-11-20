@@ -1,6 +1,6 @@
 # Motion Rehearsal & Evidence · 动效逐帧质量门禁
 
-> 将 Stageshow 的 film → inspect → fix → reshoot 思路用于**真实产品**。本规范不声称静态审计、截图数量或自动指标能够替代人类视觉判断。与 `motion-craft-and-continuity.md`、`browser-qa-protocol.md` 和 `visual-qa.md` 联合使用。
+> 将录制 → 检查 → 修复 → 重新录制的闭环用于**真实产品**。静态审计、截图数量或自动指标不能替代人类视觉判断。与 `motion-craft-and-continuity.md`、`browser-qa-protocol.md` 和 `visual-qa.md` 联合使用。
 
 ## Gate MR0 · 先确定测试对象，区分演示和真实页面
 
@@ -18,6 +18,7 @@
 6. **系统偏好**：在开始时与进行中切换 `prefers-reduced-motion`；业务结果一致，表达方式减少运动；检查可访问名称、聚焦与状态反馈。
 7. **循环/长时间**：仅对自循环营销演示检查至少一次完整循环加下一轮起点、重置因果、页签隐藏/恢复；普通后台控件不应为了测试而引入循环。
 8. **项目运行**：用真实页面、相同版本的 CSS/JS、实际控件选择器录制。若演示页和实际项目 UI 不一致，不允许互相替代验收。
+9. **独立复审**：对高表现力或重要的动态交互，优先让不参与实现的审阅者只根据任务、原有设计约束与真实帧图/录像重新观察，不提供实现者自评结论；每项问题须对应证据帧与操作步骤。无法独立复审须明确标记。
 
 ## Gate MR2 · 异常特征与修复动作
 
@@ -65,7 +66,7 @@ node scripts/motion_rehearsal.mjs \
 
 ## Gate MR4 · 结果分级与交付
 
-- **VERIFIED**：真实目标页面运行，浏览器及视口明确，关键帧和完整播放由实际观察确认；已检查至少一种中断/反向、减少动效与最小支持尺寸。
+- **VERIFIED**：真实目标页面运行，浏览器及视口明确，关键帧和完整播放由实际观察确认；已检查至少一种中断/反向、减少动效与最小支持尺寸。独立复审另行记录，不能从此状态推断已通过独立美学评审。
 - **PARTIAL / INCONCLUSIVE**：帧缺失、采样间隔过大、流程无法稳定重现、目标不可见或部分组合未覆盖；列出确切未覆盖维度，不能说 PASS。
 - **DEMO ONLY**：合成动效实验运行，目标产品尚未复验。
 - **STATIC CHECK**：只检查代码或设计契约，无运行时动态证据。
@@ -81,10 +82,11 @@ node scripts/motion_rehearsal.mjs \
 - Captured: <URL、浏览器、viewport、主题、步骤、文件>
 - Findings → fixes → recapture: <实际证据>
 - Reduced motion / interruption / focus: <结果>
+- Independent review: <审阅者、证据及问题；或 NOT REVIEWED>
 - Status: VERIFIED | PARTIAL | DEMO ONLY | STATIC CHECK | NOT TESTED | BLOCKED
 - Unverified: <未测环境和原因>
 ```
 
 **不能用自动“没有发现异常”代替美学合格，也不能用随机截图证明动画丝滑。** 推荐在真实设备观察帧率/长任务、页面重排、GPU/内存开销；未测的指标不得宣称达标。
 
-来源与边界：该工作流吸收 [Stageshow motion / rehearse / verify](https://github.com/benjitaylor/skills/tree/main/stageshow/references) 的方法论；脚本与报告为 MauForma 原创、通用实现，不移植其专用 React 时钟或仅适用于模拟舞台的规则。
+本工具与报告面向真实产品和多框架；不将产品演示场景的模拟动作当成真实业务验证。开源参考与致谢见 README。
