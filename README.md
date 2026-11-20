@@ -175,6 +175,7 @@ Stageshow 的具体参考包括 [Motion](https://github.com/benjitaylor/skills/b
 
 - [IBM Carbon Design System](https://carbondesignsystem.com/)（动效、图标、组件）、[Material Design](https://m3.material.io/)（交互与动效）、[W3C WAI / WCAG](https://www.w3.org/WAI/standards-guidelines/wcag/)（可访问性与减少非必要动画）。
 - [MDN Web Docs](https://developer.mozilla.org/)（CSS、Web Animations API、SVG、View Transitions、浏览器兼容性）与 [WebKit](https://webkit.org/) 公开兼容性资料。
+- 动效相关原始资料：[Carbon Motion](https://www.carbondesignsystem.com/building-blocks/foundations/motion/overview)、[WCAG Animation from Interactions](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions)、[W3C C39](https://www.w3.org/WAI/WCAG22/Techniques/css/C39)、[MDN prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)、[Material Motion Timing](https://m1.material.io/motion/duration-easing.html)、[Motion Layout](https://motion.dev/docs/layout-animations) 与 [Motion Gestures](https://motion.dev/docs/react-animation)。
 - [Lucide](https://lucide.dev/)、[Tabler Icons](https://tabler.io/icons)、[Phosphor Icons](https://phosphoricons.com/)（图标设计与资源核对）。
 
 ### 动效、组件与可视化生态
