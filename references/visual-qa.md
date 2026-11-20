@@ -70,6 +70,17 @@
 
 规则：`references/semantic-spacing-rhythm-gate.md`；四域样例：`assets/spacing-rhythm-patterns.json`；可交互正反例：`assets/spacing-rhythm-lab.html`；静态角色检查：`scripts/validate_spacing_rhythm.py`。
 
+## Motion Craft & Frame-by-Frame Rehearsal Gate
+
+- [ ] 是否为本次变化中的主要交互记录触发、前态、运动、payoff、反向/中断与 reduced-motion，而不是只列 CSS 属性？
+- [ ] 同一个按钮/选中指示器/列表对象是否保持身份；内容变化时相邻布局是否同步让位、锚点稳定、文字不挤压或重影？
+- [ ] 动效是否有因果与层级：输入反馈及时、相关对象适度重叠和错峰、过渡没有无故停顿或长等待？
+- [ ] 真实页面是否记录首帧、过程帧、收尾及快速反向，且以正常速度观察过；如果采样缺口大是否标 INCONCLUSIVE？
+- [ ] 深浅主题/最低支持视口/长文案/减少动效/聚焦恢复是否按相关场景复验，模拟演示未被冒充真实业务结果？
+- [ ] 捕获脚本只提供动态证据，报告是否明确人工观感未评的部分；修复后有没有重新录制完整操作？
+
+详细规范：`references/motion-craft-and-continuity.md`、`references/motion-rehearsal-and-evidence.md`；可选取证：`scripts/motion_rehearsal.mjs`。
+
 ## Component Motion Choreography Gate
 
 - [ ] 全页有哪些**实际存在且重要**的 Button、Tabs/Filters、Accordion/Drawer、Toggle、List/Table、Chart/Media、状态通知？有无组件 Motion Inventory（动效/即时反馈/故意静态的理由）？
