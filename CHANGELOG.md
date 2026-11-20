@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased — International-first runtime and bilingual documentation
+
+- Replaced the Agent-facing SKILL.md with an English-first task router and explicit design/engineering/verification boundaries, retaining the full Chinese policy as SKILL.zh-CN.md for review and migration parity.
+- Created a complete English README.md plus a complete Chinese README.zh-CN.md, including language switching, framework support, precise project scope, and source/license acknowledgments.
+- Added an English standalone references/execution-handbook.en.md to make the core design quality gates accessible without reading the old Chinese library.
+- Preserved H-Base/H0 title copy review, S0 card-edge accents, inherited user decisions, mature accessible components, intentional motion and honest VERIFIED/STATIC CHECK/DEMO ONLY semantics.
+- Updated static checks to validate English runtime sections and retain Chinese guide parity; no loss of previously required route links.
+- Added measured English-vs-original instruction footprint comparison. Only UTF-8 bytes and codepoints are unconditional; optional token counts require a specified installed tokenizer and cannot prove runtime speed, cost or task quality.
+- The full legacy topic reference library remains mostly Chinese; no misleading claim of all-document translation. Real cross-model / multilingual task quality needs controlled evaluation before drawing performance conclusions.
+
+---
+
+
 ## Unreleased — Executable design workflows & skill-gap remediation
 
 - 补齐 **Design DNA** 授权真实网页计算样式采集：独立 Playwright context、URL 网络边界、无网页正文抓取、证据与推断分离，截图只存本地 artifacts。
