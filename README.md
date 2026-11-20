@@ -21,7 +21,7 @@ MauForma is an Agent Skill for designing, implementing and reviewing real Web pr
 
 It is **not** a UI library, one-size-fits-all dashboard template, animation-engine installer or automated promise of visual quality. The active design authority is the user and their project, not the Skill.
 
-The primary Agent instruction is **[SKILL.md](SKILL.md)** (English-first and concise). A standalone [English execution handbook](references/execution-handbook.en.md) covers key principles; detailed topic references and reusable validators live under [references](references/) and [scripts](scripts/). A full [Chinese version of the public guide](README.zh-CN.md) and the archived [Chinese skill contract](SKILL.zh-CN.md) support local readers and migration parity. Do **not** load both instruction entrypoints in the same Agent task by default.
+The **single Agent entrypoint is [SKILL.md](SKILL.md)** (English-first and task-routed). A [concise English execution handbook](references/execution-handbook.en.md) and task-specific [references](references/) and [scripts](scripts/) provide the details. For documentation in Chinese, use the complete [简体中文 README](README.zh-CN.md); it is not a second runtime instruction file.
 
 ## Capabilities
 
@@ -70,7 +70,7 @@ Liquid Glass is an **optional** experimental visual material, not a default prod
 
 ## Efficient execution and boundaries
 
-The execution entrypoint routes tasks into a small number of relevant reference documents, generally **1–3 groups rather than the whole library**. A [controlled bilingual Agent evaluation protocol](references/i18n-runtime-validation.en.md) defines how to compare actual tokens, task completion, visual quality and locale outcomes without overclaiming performance. Use the shortest effective workflow:
+The execution entrypoint routes tasks into a small number of relevant reference documents, generally **one primary guide plus necessary support, not the whole library**. Token counts and model-task efficiency require real measurements; static docs cannot prove faster execution. Use the shortest effective workflow:
 
 | Mode | Typical work | Verification |
 | --- | --- | --- |
@@ -102,11 +102,11 @@ The agent must not silently install global hooks, change user branding, replace 
 
 The detailed legacy references are primarily Chinese today; the English entrypoint and English handbook provide a fully usable **English core**. Deep-topic translation is staged separately to protect technical meaning and maintain runnable checks. No false claim of full reference-library translation is made.
 
-## Upstream reassessment and bilingual semantic parity
+## Execution boundaries
 
-The 14 referenced upstream design Skills were re-reviewed for transferable ideas, actual implementation coverage, task/host prerequisites and unwanted global rules. Read the [English source-by-source reassessment](references/upstream-reassessment.en.md) or the [Chinese review](references/upstream-reassessment.zh-CN.md) only when maintaining or extending the Skill. Critical interpretation exceptions are paired in [English semantic boundaries](references/semantic-boundaries.en.md) / [中文语义边界](references/semantic-boundaries.zh-CN.md), backed by a [machine-readable contract](assets/semantic-boundary-contract.json) and regression checks.
+For a task-specific ambiguity, consult **only the relevant rule** in [English execution boundaries](references/semantic-boundaries.en.md); the [Chinese counterpart](references/semantic-boundaries.zh-CN.md) documents the same triggers and exceptions. The [structured rules](assets/semantic-boundary-contract.json) support maintenance tests, **not default Agent context**. The README's upstream acknowledgments below provide links and credits; historical source-by-source audits are not bundled as runtime instructions.
 
-These documents are **not required reading for ordinary page changes**. The default Skill stays task-routed; passing bilingual contract checks is static QA, not proof of a model's language understanding. Dependency, browser, Figma and locale authorization must be determined from the actual task.
+User permissions, browser evidence, Figma access and supported locales are determined from the current project. Document checks do not prove that any Agent model will execute a real UI task correctly.
 
 ## Quality assurance
 
@@ -150,4 +150,4 @@ Technology ecosystem references include [Motion](https://motion.dev/), [GSAP](ht
 
 MauForma does not claim any upstream author's endorsement. This README acknowledgment does not replace third-party licenses when actual code, icons, fonts or assets are reused. The retained [Lucide license notice](assets/icon-art-direction-lucide-license.txt) governs the bundled Lucide sample artwork. Consult the original project's license and API documentation before redistributing anything.
 
-[Release history](CHANGELOG.md) · [简体中文文档](README.zh-CN.md)
+[简体中文文档](README.zh-CN.md) · [GitHub Releases](https://github.com/MauriceLiang/MauForma/releases)
