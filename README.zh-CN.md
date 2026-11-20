@@ -153,7 +153,7 @@ python3 -m unittest discover -s tests -v
 | 内容与字体 | [内容密度](references/page-density-and-content-priority.md)、[文案必要性](references/semantic-copy-hygiene.md)、[字体角色](references/typography-hierarchy.md) |
 | 空间、布局与组件 | [语义间距](references/semantic-spacing-rhythm-gate.md)、[网格与视口](references/grid-alignment-and-viewport-safety.md)、[卡片贴边彩条门禁](references/surface-edge-accent-gate.md)、[组件工程](references/component-first.md) |
 | 导航、颜色与图标 | [导航架构](references/navigation-architecture.md)、[侧栏选中指示条](references/sidebar-selection-indicator-gate.md)、[配色](references/palette-art-direction.md)、[图标语义](references/icon-art-direction-gate.md) |
-| 表单、数据与交互 | [设置/表单](references/settings-form-layout-gate.md)、[图表](references/chart-interior-alignment.md)、[动效偏好](references/motion-consent-experience-gate.md)、[动效工艺](references/motion-craft-and-continuity.md) |
+| 表单、数据与交互 | [设置/表单](references/settings-form-layout-gate.md)、[图表](references/chart-interior-alignment.md)、[动效偏好](references/motion-consent-experience-gate.md)、[动效工艺](references/motion-craft-and-continuity.md)、[22 项精选动效与创意组合](references/expressive-motion-vocabulary.md) |
 | 技术实现 | [框架支持](references/framework-support-matrix.md)、[业务组件库](references/enterprise-ui-library-guide.md)、[创意组件](references/creative-component-libraries.md) |
 | 验证与交付 | [视觉 QA](references/visual-qa.md)、[浏览器检查](references/browser-qa-protocol.md)、[逐帧动效验收](references/motion-rehearsal-and-evidence.md) |
 

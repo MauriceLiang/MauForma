@@ -29,7 +29,7 @@
 
 ### 推荐优先级
 
-1. **默认动画**：CSS + 框架转场。所有常规组件一套 motion tokens。
+1. **常规控件动效**：CSS + 框架转场。所有常规组件一套 motion tokens；**创意项目**应进一步提出符合产品特征的独立动效方案，而不是照搬所有控件的通用过渡。
 2. **需要声明式布局/手势**：Vue 用 Motion for Vue，React 用 Motion for React；选单一主体系。
 3. **需要丰富 keyframes/SVG/stagger**：Anime.js v4。
 4. **滚动叙事和复杂多段时间轴**：GSAP；先评估性能与许可证。
@@ -53,7 +53,7 @@
 | 页面/主要区块 | 200–350ms | 12–24px | outCubic/outQuint |
 | 品牌展示型 Hero | 300–650ms（按需） | 控制数量与遮挡 | inOutSine/自定义 |
 
-复杂与独特动效优先检索：`animejs-motion-recipes.md`（114 个原创配方）、`animejs-easing-complete.md`（45 个内置 easing）；两者不等同于“Anime.js 所有现成内置效果”。
+**想要更有创意的网页动效时，不要局限于最基础的 Fade/Slide/Zoom。** 先阅读 [Expressive Motion Vocabulary](expressive-motion-vocabulary.md) 的 22 个精选术语与跨场景组合方法，再按需求选择实际实现。当前 `assets/motion-effects.json` 已扩充至 **123 个配方**，包含旧版 114 个和 9 个新增机制；其中部分优先使用原生 CSS/浏览器能力，**不属于 Anime.js 内置 API**。`animejs-motion-recipes.md` 保留原有 114 项 Anime.js 组合配方说明，`animejs-easing-complete.md` 保留 45 个缓动术语；不能将“配方名称”当成官方 API。
 
 官方资料：
 - https://animejs.com/documentation/

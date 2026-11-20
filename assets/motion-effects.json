@@ -1,10 +1,12 @@
 {
   "meta": {
-    "name": "MauForma · Anime.js v4 可组合动效目录",
-    "generated": "2026-11-02",
+    "name": "MauForma · Web 复合动效目录",
+    "generated": "2026-11-20",
     "version": "4.5.0",
-    "claim": "动画可无限组合，表中全部名称为本 Skill 的原创设计配方，不是 Anime.js 官网预设特效名。",
-    "official": "https://animejs.com/documentation"
+    "claim": "本目录包含原有独立配方和补充的通用动效术语；名称是设计配方或通用概念，不代表 Anime.js 或其他动画库的官方 API。按产品目的主动创作组合，且需对实际页面验收。",
+    "official": "https://animejs.com/documentation",
+    "vocabulary_guide": "references/expressive-motion-vocabulary.md",
+    "recipe_count": 123
   },
   "effects": [
     {
@@ -282,6 +284,20 @@
       "tier": "A",
       "preview": "pulse",
       "classification": "组合动效配方（非官网预设名称）"
+    },
+    {
+      "id": "spring-feedback",
+      "category": "悬停与按压",
+      "name": "按键弹簧反馈",
+      "effect": "按钮或真实可操作键位按下即响应，松开后短促阻尼回弹",
+      "good_for": "机械键盘、切换控件、有触感的 CTA",
+      "avoid": "持续高弹跳、重度业务表格、按下后才出现反馈",
+      "animejs_mapping": "CSS/WAAPI keyframes; existing Motion spring or Anime.js easing if installed",
+      "tier": "B",
+      "preview": "spring",
+      "classification": "MauForma 通用 Web 组合配方（名称不是任何动画引擎内置 API）",
+      "english_name": "Tactile spring",
+      "fallback": "Keep focus/pressed state; no overshooting data labels"
     },
     {
       "id": "success-check",
@@ -764,6 +780,34 @@
       "classification": "组合动效配方（非官网预设名称）"
     },
     {
+      "id": "text-shimmer",
+      "category": "文字与排版",
+      "name": "文字流光",
+      "effect": "短标签表面掠过一次受控高光，结束后停在高对比静态文字",
+      "good_for": "新品标签、限定版本、短品牌提示",
+      "avoid": "所有标题循环闪光、正文对比不足、误把加载骨架当文案",
+      "animejs_mapping": "CSS gradient background-position or masked highlight; short bounded timeline",
+      "tier": "C",
+      "preview": "shimmer",
+      "classification": "MauForma 通用 Web 组合配方（名称不是任何动画引擎内置 API）",
+      "english_name": "Text shimmer",
+      "fallback": "Use only when actual label remains readable; no infinite text glare"
+    },
+    {
+      "id": "text-morph",
+      "category": "文字与排版",
+      "name": "短词文字变形",
+      "effect": "两个短品牌词在相近宽度与基线中平滑交接，焦点及可访问名称保持一致",
+      "good_for": "品牌标语、创作主题转换、短概念关键词",
+      "avoid": "真实指标、长段落、反复拆字造成屏幕阅读器重复播报",
+      "animejs_mapping": "Stable text layer + bounded cross-shape/clip transition; SVG/glyph tween only with source assets",
+      "tier": "C",
+      "preview": "morph",
+      "classification": "MauForma 通用 Web 组合配方（名称不是任何动画引擎内置 API）",
+      "english_name": "Text morphing",
+      "fallback": "Atomic semantic label; not SVG shape morph"
+    },
+    {
       "id": "chart-bars-grow",
       "category": "数据与图表",
       "name": "柱形增长",
@@ -1100,6 +1144,76 @@
       "classification": "组合动效配方（非官网预设名称）"
     },
     {
+      "id": "smooth-scroll",
+      "category": "滚动与叙事",
+      "name": "锚点平滑滚动",
+      "effect": "点击章节链接时平顺抵达真实目标区域，同时正确处理滚动边界和焦点",
+      "good_for": "锚点导航、章节目录、长篇文章",
+      "avoid": "拦截自然滚轮、键盘无法滚动、强制惯性与浏览器历史冲突",
+      "animejs_mapping": "CSS scroll-behavior:smooth; scrollIntoView only for explicit navigation",
+      "tier": "B",
+      "preview": "slide",
+      "classification": "MauForma 通用 Web 组合配方（名称不是任何动画引擎内置 API）",
+      "english_name": "Smooth scroll",
+      "fallback": "Reduced motion auto; do not hijack user input"
+    },
+    {
+      "id": "scroll-zoom",
+      "category": "滚动与叙事",
+      "name": "滚动镜头推拉",
+      "effect": "用户滚动进度驱动产品或图像有界推近再退远，构图中心与文字锚点稳定",
+      "good_for": "机械产品细节、交互艺术、特殊工艺镜头",
+      "avoid": "大幅强缩放眩晕、正文被遮盖、性能差的完整画面滤镜",
+      "animejs_mapping": "CSS scroll-progress timeline / existing Motion scroll or GSAP where available, with fallback",
+      "tier": "C",
+      "preview": "scale",
+      "classification": "MauForma 通用 Web 组合配方（名称不是任何动画引擎内置 API）",
+      "english_name": "Scroll zoom",
+      "fallback": "Bound transform and crop; static key frame on reduced motion"
+    },
+    {
+      "id": "image-sequence",
+      "category": "滚动与叙事",
+      "name": "预渲染图片序列",
+      "effect": "滚动进度选择预渲染帧表现产品旋转或分解，同时提供静态首帧",
+      "good_for": "有授权资源的 3D 产品展示、工艺分解、复杂镜头",
+      "avoid": "没有原始帧却伪造素材、一次加载全部帧导致内存飙升",
+      "animejs_mapping": "Scroll progress to canvas/image frame index; lazy directional preload window; cleanup",
+      "tier": "C",
+      "preview": "progress",
+      "classification": "MauForma 通用 Web 组合配方（名称不是任何动画引擎内置 API）",
+      "english_name": "Image sequence",
+      "fallback": "Poster and low-bandwidth fallback; monitor decoded memory"
+    },
+    {
+      "id": "horizontal-scroll",
+      "category": "滚动与叙事",
+      "name": "横向内容浏览",
+      "effect": "真实可滑动、可键盘访问的横向产品版本或作品卡片列表",
+      "good_for": "多个型号、版本、作品集横向画廊",
+      "avoid": "滚轮被强制映射为横移、焦点陷阱、版本标签与数据不一致",
+      "animejs_mapping": "Native overflow-x:auto + visible navigation controls; no forced pinned scroll",
+      "tier": "B",
+      "preview": "left",
+      "classification": "MauForma 通用 Web 组合配方（名称不是任何动画引擎内置 API）",
+      "english_name": "Horizontal scroll",
+      "fallback": "Distinct from horizontal reveal and scroll-trap theater"
+    },
+    {
+      "id": "scroll-snap",
+      "category": "滚动与叙事",
+      "name": "滚动吸附定位",
+      "effect": "在用户停止横向或分区滚动时自然停靠到明确卡片边界",
+      "good_for": "多个版本的浏览画廊、分屏内容、触摸轮播",
+      "avoid": "强制跳到非意图目标、键盘焦点被裁切、滚动陷阱",
+      "animejs_mapping": "CSS scroll-snap-type/align/padding; native input and fallback list",
+      "tier": "B",
+      "preview": "reorder",
+      "classification": "MauForma 通用 Web 组合配方（名称不是任何动画引擎内置 API）",
+      "english_name": "Scroll snap",
+      "fallback": "Distinct from scroll-snap-feedback indicator animation"
+    },
+    {
       "id": "svg-line-draw",
       "category": "SVG 与图形",
       "name": "SVG 描边绘制",
@@ -1374,6 +1488,20 @@
       "tier": "B",
       "preview": "pulse",
       "classification": "组合动效配方（非官网预设名称）"
+    },
+    {
+      "id": "marquee",
+      "category": "氛围与实验",
+      "name": "评价与品牌跑马灯",
+      "effect": "短品牌标识或真实评价在无跳变的轨道中循环，可暂停与静态展开",
+      "good_for": "品牌合作标识、媒体认可、可核验评价",
+      "avoid": "伪造评价、内容太快不可读、克隆项重复获得键盘焦点",
+      "animejs_mapping": "Pausable CSS keyframes/WAAPI loop with seam; static list for reduced motion",
+      "tier": "C",
+      "preview": "slide",
+      "classification": "MauForma 通用 Web 组合配方（名称不是任何动画引擎内置 API）",
+      "english_name": "Marquee",
+      "fallback": "Pause on hover/focus, avoid duplicated accessible content"
     }
   ]
 }
