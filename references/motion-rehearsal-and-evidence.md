@@ -39,7 +39,7 @@
 
 ## Gate MR3 · 可执行采样方案（框架无关）
 
-推荐 `scripts/motion_rehearsal.mjs`：传入本地运行的 URL、`scenario` JSON 和明确的视口。它用 Playwright 实际操作目标页面，保存交互前、操作后连续采样、稳定状态及运行报告，不自动修改网页，也不悄悄安装浏览器/依赖。
+推荐 `scripts/motion_rehearsal.mjs`：传入本地运行的 URL、`scenario` JSON 和明确的视口。它在**触发操作前**开始页面内 rAF 与 pointer 事件采样，和操作并行采集前/中/后截图；输出几何跳变候选、采样间隔、局部 Contact Sheet，必要时使用 `--video` 录制正常速度播放材料。脚本不修改网页、不自动安装浏览器/依赖，也不判定审美合格。
 
 ```bash
 node scripts/motion_rehearsal.mjs \
@@ -48,7 +48,7 @@ node scripts/motion_rehearsal.mjs \
   --out ./artifacts/motion-review
 ```
 
-示例中的 `data-motion-demo` 选择器仅说明输入格式；**在真实项目使用前必须替换为实际控件选择器**。测试前确保开发服务器与 Playwright 浏览器已安装。报告出现 `INCONCLUSIVE`、`NOT_RUN` 或错误时不能报 `VERIFIED`。
+示例中的 `data-motion-demo` 选择器仅说明输入格式；**在真实项目使用前必须替换为实际控件选择器**。测试前确保开发服务器与 Playwright 浏览器已安装。报告出现 `INCONCLUSIVE`、`NOT_RUN` 或错误时不能报 `VERIFIED`。`CAPTURED_FOR_REVIEW` 表示证据采集完成，**不是动画已通过质量门禁**。`anchor` 与 `anchorTolerancePx` 可声明固定参照；`allowSnap` 只用于明确合法的快速状态切换。
 
 仓库自带 [原创 Motion Continuity Lab](../assets/motion-continuity-lab.html) 与配套 [可运行场景](../assets/motion-continuity-lab.scenario.json)，可供学习脚本的真实点击/展开/状态采样：
 
@@ -62,7 +62,7 @@ node scripts/motion_rehearsal.mjs \
 
 演示页面完全合成且不含后端请求；其演示结果只能标 `DEMO ONLY`。复制场景到业务项目时，必须改成该项目的真实控件 selector、实际路由和目标视口。
 
-推荐文件与步骤（每个场景独立保存）：`scenario.json`、`before.png`、`frame-*.png`、`settled.png`、`report.json`。自动工具只捕捉证据与潜在运行问题；定性判断必须回看图像与真人播放。
+推荐文件与步骤（每个场景独立保存）：`scenario.json`、`before.png`、`frame-*.png`、`settled.png`、`contact-sheet.html`、包含 rAF 时间序列与候选问题的 `report.json`。自动工具只捕捉证据与潜在运行问题；定性判断必须回看图像与真人播放。
 
 ## Gate MR4 · 结果分级与交付
 
