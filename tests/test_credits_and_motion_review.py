@@ -9,7 +9,7 @@ class CreditsAndMotionReviewTests(unittest.TestCase):
     def test_acknowledgements_are_centralized(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         for term in (
-            "## 开源参考与致谢",
+            "## Open source influences and acknowledgments",
             "benjitaylor/skills/tree/main/stageshow",
             "anthropics/skills/tree/main/skills/frontend-design",
             "pbakaus/impeccable",
@@ -26,7 +26,7 @@ class CreditsAndMotionReviewTests(unittest.TestCase):
             "openai/skills/tree/main/skills/.curated/figma-implement-design",
             "React Bits",
             "Vue Bits",
-            "Lucide 许可说明",
+            "Lucide license notice",
         ):
             self.assertIn(term, readme, term)
         self.assertTrue((ROOT / "assets/icon-art-direction-lucide-license.txt").is_file())
@@ -55,7 +55,7 @@ class CreditsAndMotionReviewTests(unittest.TestCase):
 
     def test_entrypoint_points_to_readme_without_overloading(self):
         entry = (ROOT / "SKILL.md").read_text(encoding="utf-8")
-        self.assertIn("外部开源来源与致谢集中在 README", entry)
+        self.assertIn("Source acknowledgements are in", entry)
         self.assertNotIn("github.com/benjitaylor", entry)
 
 
