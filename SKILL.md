@@ -38,6 +38,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 | 图标含义或同屏风格不协调 | `references/icon-art-direction-gate.md` |
 | 数据图表、多对象比较、运行记录 | `references/chart-interior-alignment.md`、`references/comparison-page-design.md`、`references/task-center-run-monitor-design.md`（仅在对应场景阅读） |
 | 动效决策、组件级动态反馈 | `references/motion-consent-experience-gate.md`、`references/component-motion-choreography-gate.md`、`references/animation-engine-selection.md` |
+| **高级动效、状态连续性、操作分镜和逐帧质量** | **`references/motion-craft-and-continuity.md`、`references/motion-rehearsal-and-evidence.md`**（真实产品交互优先，展示模拟另选） |
 | 用户明确要求液态玻璃、折射或透镜质感 | `references/liquid-glass-optics.md`、`references/visual-tech-selection-12.md`（仅按需） |
 | 参考设计、受限素材、外部灵感 | `references/design-reference-learning-gate.md`、`references/design-dna-protocol.md` |
 | **新建/重构含交互控件的页面，先选并用组件库** | **`references/component-library-first-gate.md`**、`references/enterprise-ui-library-guide.md`、`references/component-first.md` |
@@ -91,7 +92,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 - **品牌/消费/创意型**：允许大胆排版、摄影、非对称、插画与有意图的动画；不必套“工作台紧凑标题”规范，但主要内容与关键行动仍要可辨、可访问。
 - **可选视觉材质**：仅在已确认视觉方向确实需要时，按 `references/liquid-glass-optics.md` 使用透明、折射、高光、阴影四层与可选模糊；SVG backdrop 折射是浏览器依赖的实验性增强，不把普通 blur 当折射或默认给所有 Card 添加玻璃。
 - **设置与表单**：独立保存的设置项可采用「左说明、右控件」；整体提交的字段簇通常采用「上标签、下输入」。混合页面按区域判断，不按“设置”标题一刀切。危险操作独立、保存失败可恢复。
-- **动效**：用户已确认强度优先；新站或重大视觉重构且尚无动效方向时，提供清晰选择或由用户授权决定。动画应针对 Tab、展开、选择、反馈、排序等真实状态变化，支持中断、卸载清理和 `prefers-reduced-motion`。不因为库存在就添加粒子背景或多个动画引擎。
+- **动效（Motion Craft Gate）**：精致、连贯的动效是产品体验的核心组成，但不是动画数量竞赛。用户已确认的强度优先；新站或重大改版且尚无方向时，给出可观察的选择或由用户授权决定。对真实高价值组件先写 `trigger → before → during → payoff → interrupt/reverse → reduced` 微分镜；保持对象身份、锚点、邻居让位、文字/数字占位与因果节奏，避免凭空出现/布局瞬移/全站同款 fade。轻量实现优先、可取消可逆、卸载清理和 `prefers-reduced-motion` 必须成立；仅做路由淡入不算动效完成。详见 `references/motion-craft-and-continuity.md`。模拟光标/设备窗口属于可选产品演示，不能冒充真实业务。
 - **工程**：Vue 使用相应 SFC/组合式 API，React 使用组件与 Hooks，其他框架按各自约定实现。优先复用现有组件库与依赖；引入任何新库前确认兼容版本、许可、包体与运行成本，不照搬另一框架的组件源码。
 
 ### E. 真正检查实际渲染结果
@@ -104,8 +105,9 @@ description: Web-first, framework-aware frontend design and implementation skill
 6. **卡片彩色贴边条否决项（Gate S0）**：检查新建和现有页面的 Card/Panel/Section，包括旧代码的彩色单侧边框、贴边伪元素、内阴影、渐变及定位覆盖；凡视觉上彩条触碰/融入边框与圆角一律不通过。默认去除，确需使用时独立外置、留可见间隙；在真实页面复验，保护合法的焦点、状态、图表和时间线。
 7. 视觉检查至少覆盖：主视觉是否对应主任务、内容是否冗余、字号层级、图表内部标签、图标统一、组件边界、左右/上下间距、共享网格、短按钮与长文本、底部可达性、深浅色。
 8. 交互与工程检查至少覆盖：实际点击与状态更新、键盘焦点、语义标签、颜色对比、必要的移动/窄窗口适配、200% 文字缩放、减少动画、加载与错误、性能和构建/测试。响应式范围以用户项目要求为准，**不要强迫仅桌面使用的产品改成手机产品**；仍应避免目标视口出现无意截断。
-9. 工具是辅助：静态审计只能产生风险线索；截图只能支持可见观察；浏览器脚本也不能替代审美判断与业务端到端测试。未打开真实页面就不能宣称“已修复视觉问题”；未调用真实后端就不能宣称“已验证保存”。
-10. 报告必须使用有证据的状态：`VERIFIED`（在真实产品实测）、`STATIC CHECK`（仅源码/契约）、`DEMO ONLY`（仅合成样例）、`NOT TESTED`（未运行）、`BLOCKED`（条件受限）。视觉问题仍存在时，注明未解决及原因。
+9. **Motion Rehearsal 逐帧门禁**：对本次新增/修改的核心动态交互，用真实页面触发操作并观察 before / 过程中连续采样 / settled / 逆向中断 / reduced-motion；检查布局瞬移、文字抖动、锚点漂移、状态跳闪和降级。可使用 `scripts/motion_rehearsal.mjs` 取证，`CAPTURED_FOR_REVIEW` 不是审美 PASS；没有浏览器或采样不足不得声称 VERIFIED。详见 `references/motion-rehearsal-and-evidence.md`。
+10. 工具是辅助：静态审计只能产生风险线索；截图只能支持可见观察；浏览器脚本也不能替代审美判断与业务端到端测试。未打开真实页面就不能宣称“已修复视觉问题”；未调用真实后端就不能宣称“已验证保存”。
+11. 报告必须使用有证据的状态：`VERIFIED`（在真实产品实测）、`STATIC CHECK`（仅源码/契约）、`DEMO ONLY`（仅合成样例）、`NOT TESTED`（未运行）、`BLOCKED`（条件受限）。视觉问题仍存在时，注明未解决及原因。
 
 ## 4. 防止模板化和反复返工的审核题
 
@@ -125,6 +127,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 
 - 设计研究与风格：`references/design-style-catalog.md`、`references/aesthetic-authorship.md`、`assets/style-knowledge.json`。
 - 组件与框架：`references/component-library-first-gate.md`、`references/enterprise-ui-library-guide.md`、`references/creative-component-libraries.md`、`references/framework-support-matrix.md`。
+- 动效工艺与取证：`references/motion-craft-and-continuity.md`、`references/motion-rehearsal-and-evidence.md`、`scripts/motion_rehearsal.mjs`（配合项目 Playwright）；展示型动画分镜与真实交互必须区分。
 - 动画配方：`references/animejs-official-capabilities.md`、`references/animejs-motion-recipes.md`、`assets/motion-gallery.html`。
 - 互动原型：`assets/preview.html` 及其他 `assets/*-lab.html`，**只作为独立概念示范**。
 - 审核脚本：`scripts/audit_frontend.py`、`scripts/audit_existing_visual_defects.mjs`、`scripts/audit_panel_spacing.mjs`、`scripts/audit_spacing_rhythm.mjs`、`scripts/browser_qa.mjs`。运行前检查依赖与页面可访问性，不能把工具不可用写成通过。
