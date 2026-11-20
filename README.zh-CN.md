@@ -4,6 +4,8 @@
 
 **Design with intent. Build with precision.**
 
+[English](README.md) · [简体中文](README.zh-CN.md)
+
 面向现代 Web 产品的设计与前端工程 Agent Skill。
 
 [工作方式](#工作方式) · [适用范围](#适用范围) · [快速开始](#快速开始) · [参考资料](#参考资料) · [质量检查](#质量检查) · [开源致谢](#开源参考与致谢)
@@ -16,7 +18,9 @@
 
 MauForma 帮助 Agent 在设计和开发网页时先理解真实用户任务，再处理信息架构、视觉层级、排版、组件、交互、技术选型与验证。它不是一套固定的后台模板，也不会强迫每个网站使用相同的颜色、字体、侧栏和卡片。
 
-**入口只有 [SKILL.md](SKILL.md)**。它是一份稳定的工作规范；具体知识拆分在 `references/`，合成演示位于 `examples/` 和 `assets/`，检查工具位于 `scripts/`。历史改动单独记录在 [CHANGELOG.md](CHANGELOG.md)，不会逐次堆入 Skill 正文。
+**英文执行入口为 [SKILL.md](SKILL.md)**；对应的中文旧版规范保存在 [SKILL.zh-CN.md](SKILL.zh-CN.md)，英文核心操作说明见 [execution-handbook.en.md](references/execution-handbook.en.md)。**Agent 默认只加载英文入口，不应同时装入两份完整规范。**
+
+**国际化说明**：目前 English Core + 中英文完整 README 已就位；历史专项 references 仍以中文为主，逐步进行技术语义校对式迁移。**语言转换不改变品牌、业务、交互及用户界面本身的语种**。它是一份稳定的工作规范；具体知识拆分在 `references/`，合成演示位于 `examples/` 和 `assets/`，检查工具位于 `scripts/`。历史改动单独记录在 [CHANGELOG.md](CHANGELOG.md)，不会逐次堆入 Skill 正文。
 
 ## 适用范围
 
