@@ -51,7 +51,7 @@ description: Framework-agnostic Web UI/UX design and frontend engineering Skill.
 
 The following are **discovery paths**, not additional required reads. Open a specific tool or guide only for its directly matching issue:
 
-- **Visual direction evidence**: `references/art-direction-critique.md`, `references/project-design-hierarchy.md`, `references/external-design-case-library.md`, `scripts/search_design_cases.py`.
+- **Visual direction evidence**: `references/art-direction-critique.md`, `references/project-design-hierarchy.md`, `references/external-design-case-library.md`, `scripts/search_design_cases.py`, `scripts/validate_visual_priority.py`.
 - **Container, sidebar and palette**: `references/workspace-component-refinement.md`, `references/sidebar-color-reference-cases.md`, `scripts/validate_sidebar_color_decision.py`, `assets/navigation-pattern-catalog.json`, `scripts/validate_navigation_architecture.py`.
 - **Copy, density and whitespace**: `references/whitespace-and-surface-composition.md`, `scripts/audit_readability.py`, `scripts/validate_page_content_plan.py`.
 - **Rendered layouts and viewport**: `scripts/validate_layout_integrity.py`, `scripts/audit_rendered_layout.mjs`.
