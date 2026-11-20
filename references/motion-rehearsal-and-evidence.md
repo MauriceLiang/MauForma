@@ -49,6 +49,18 @@ node scripts/motion_rehearsal.mjs \
 
 示例中的 `data-motion-demo` 选择器仅说明输入格式；**在真实项目使用前必须替换为实际控件选择器**。测试前确保开发服务器与 Playwright 浏览器已安装。报告出现 `INCONCLUSIVE`、`NOT_RUN` 或错误时不能报 `VERIFIED`。
 
+仓库自带 [原创 Motion Continuity Lab](../assets/motion-continuity-lab.html) 与配套 [可运行场景](../assets/motion-continuity-lab.scenario.json)，可供学习脚本的真实点击/展开/状态采样：
+
+```bash
+python3 -m http.server 8000
+node scripts/motion_rehearsal.mjs \
+  --url http://127.0.0.1:8000/assets/motion-continuity-lab.html \
+  --scenario assets/motion-continuity-lab.scenario.json \
+  --out ./artifacts/motion-lab
+```
+
+演示页面完全合成且不含后端请求；其演示结果只能标 `DEMO ONLY`。复制场景到业务项目时，必须改成该项目的真实控件 selector、实际路由和目标视口。
+
 推荐文件与步骤（每个场景独立保存）：`scenario.json`、`before.png`、`frame-*.png`、`settled.png`、`report.json`。自动工具只捕捉证据与潜在运行问题；定性判断必须回看图像与真人播放。
 
 ## Gate MR4 · 结果分级与交付
