@@ -26,6 +26,12 @@ function animateNode(el, frames, options){if(!el||reduce())return; el.getAnimati
  return el.animate(frames,o)
 }
 function stageHTML(e){
+ // New curated effects use distinct concept previews (not an actual commercial animation).
+ if(e.id==='text-shimmer') return '<span class="label-demo" style="font-weight:800;letter-spacing:.08em;color:#23574e;background-image:linear-gradient(110deg,#23574e 20%,#c0e7d5 45%,#23574e 70%);background-size:260% 100%;background-position:100% 50%;background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent">NEW EDITION</span>';
+ if(e.id==='text-morph') return '<span class="label-demo" data-morph="true" style="font-size:22px;min-width:130px;text-align:center;font-weight:700">CREATE</span>';
+ if(e.id==='image-sequence') return '<span class="label-demo" data-sequence="true" style="font-size:20px;font-variant-numeric:tabular-nums">FRAME 01 / 08</span>';
+ if(e.id==='marquee') return '<div class="mini-rail" style="width:100%;overflow:hidden;white-space:nowrap"><div class="marquee-strip" aria-hidden="true" style="width:max-content;display:flex;gap:12px;font-weight:700;color:#287268;will-change:transform"><span>STUDIO</span><span>MAKER</span><span>CRAFT</span><span>STUDIO</span><span>MAKER</span><span>CRAFT</span></div></div><span class="sr-note" style="position:absolute;bottom:6px;font-size:10px;left:12px;color:#637c80">演示循环 · 实际内容需可暂停</span>';
+ if(['horizontal-scroll','scroll-snap','smooth-scroll'].includes(e.id)) return '<div class="mini-rail" tabindex="0" aria-label="合成版本画廊，可横向滚动" style="width:95%;display:flex;gap:8px;overflow:auto;scroll-snap-type:x mandatory;padding:10px 4px"><span class="shape" style="flex:0 0 80px;scroll-snap-align:start">I</span><span class="shape" style="flex:0 0 80px;scroll-snap-align:start">II</span><span class="shape" style="flex:0 0 80px;scroll-snap-align:start">III</span><span class="shape" style="flex:0 0 80px;scroll-snap-align:start">IV</span></div>';
  const sample={"入场与退场":"内容","悬停与按压":"按钮","状态与反馈":"反馈","导航与切换":"导航","浮层与容器":"浮层","文字与排版":"标题","数据与图表":"指标","布局与响应":"卡片","滚动与叙事":"章节","SVG 与图形":"路径","拖拽与物理":"节点","氛围与实验":"图形"}[e.category]||"界面";
  if(['progress','shimmer'].includes(e.preview))return `<div class="track"><div class="fill"></div></div><div class="shape" style="width:52px;height:52px;border-radius:14px">${esc(sample)}</div>`;
  if(['line','orbit'].includes(e.preview))return `<svg class="trace" viewBox="0 0 240 86" preserveAspectRatio="none" aria-hidden="true"><path d="M5 68 C70 7 125 8 235 52"/></svg><div class="shape" style="width:35px;height:35px;border-radius:50%">•</div>`;
@@ -43,6 +49,14 @@ function waapiDemo(el,frames,options){return animateNode(el,frames,options)}
 function play(id){const e=EFFECTS.find(x=>x.id===id); const card=document.getElementById('item-'+id); if(!e||!card||reduce())return;
  const demo=card.querySelector('.demo'),tile=card.querySelector('.shape'),label=card.querySelector('.label-demo'),track=card.querySelector('.fill'),ring=card.querySelector('.ring'),path=card.querySelector('.trace path');
  const k={duration:640}; const f=(v,options=k)=>waapiDemo(tile,v,options);
+ // These previews are deliberately synthetic illustrations, never product E2E.
+ if(e.id==='text-shimmer'&&label){label.getAnimations().forEach(a=>a.cancel());label.animate([{backgroundPosition:'100% 50%'},{backgroundPosition:'0% 50%'}],{duration:950,easing:'ease-in-out',fill:'both'});return;}
+ if(e.id==='text-morph'&&label){const from=label.textContent==='CREATE'?'FORM':'CREATE';label.getAnimations().forEach(a=>a.cancel());label.animate([{opacity:1,filter:'blur(0px)',transform:'translateY(0)'},{opacity:0,filter:'blur(3px)',transform:'translateY(-7px)'},{opacity:0,filter:'blur(3px)',transform:'translateY(7px)'},{opacity:1,filter:'blur(0px)',transform:'translateY(0)'}],{duration:780,easing:'ease-in-out'});const t=String((Number(label.dataset.token)||0)+1);label.dataset.token=t;setTimeout(()=>{if(label.dataset.token===t)label.textContent=from},390);return;}
+ if(e.id==='image-sequence'&&label){const t=String((Number(demo.dataset.frameToken)||0)+1);demo.dataset.frameToken=t;const start=performance.now();const tick=now=>{if(demo.dataset.frameToken!==t||reduce())return;const ratio=Math.min((now-start)/900,1),frame=Math.min(8,Math.floor(ratio*8)+1);label.textContent='FRAME '+String(frame).padStart(2,'0')+' / 08';if(ratio<1)requestAnimationFrame(tick)};requestAnimationFrame(tick);return;}
+ if(e.id==='marquee'){const strip=demo.querySelector('.marquee-strip');if(strip){strip.getAnimations().forEach(a=>a.cancel());strip.animate([{transform:'translateX(0)'},{transform:'translateX(-50%)'}],{duration:2400,easing:'linear',iterations:1});}return;}
+ if(['horizontal-scroll','scroll-snap','smooth-scroll'].includes(e.id)){const rail=demo.querySelector('.mini-rail');if(rail)rail.scrollTo({left:rail.scrollLeft>80?0:145,behavior:e.id==='smooth-scroll'?'smooth':'auto'});return;}
+ if(e.id==='spring-feedback'&&tile){tile.getAnimations().forEach(a=>a.cancel());tile.animate([{transform:'scale(1)'},{transform:'scale(.88)'},{transform:'scale(1.08)'},{transform:'scale(.97)'},{transform:'scale(1)'}],{duration:620,easing:'ease-out'});return;}
+ if(e.id==='scroll-zoom'&&tile){tile.getAnimations().forEach(a=>a.cancel());tile.animate([{transform:'scale(1)'},{transform:'scale(1.34)'},{transform:'scale(1)'}],{duration:1050,easing:'ease-in-out'});return;}
  switch(e.preview){
  case 'fade':f([{opacity:.12},{opacity:1}]);break;
  case 'fadeout':f([{opacity:1},{opacity:.12}]);break;
