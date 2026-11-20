@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MauForma Motion Continuity Lab — Synthetic Demo</title>
+<style>
+:root{color-scheme:light dark;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;--ink:#1c1c1d;--muted:#707174;--line:#dedee1;--surface:#fff;--canvas:#f6f6f7;--soft:#eeeef0;--accent:#29292d;--fast:140ms;--normal:300ms;--easing:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh}main{max-width:960px;margin:0 auto;padding:52px 24px 80px}
+header{margin-bottom:30px}h1{font-size:clamp(26px,3.8vw,36px);line-height:1.2;letter-spacing:-.04em;margin:0 0 10px;font-weight:690}
+p{color:var(--muted);line-height:1.65;margin:0}header p{max-width:710px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.panel{border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:24px;min-width:0}
+.panel h2{font-size:17px;font-weight:680;letter-spacing:-.02em;margin:0 0 8px}.panel>p{font-size:13px;margin:0 0 24px;min-height:38px}
+.full{grid-column:1/-1}.segmented{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:4px;isolation:isolate;background:var(--soft);border-radius:12px}
+.indicator{position:absolute;z-index:-1;left:4px;top:4px;bottom:4px;width:calc((100% - 8px)/2);border:1px solid var(--line);border-radius:9px;background:var(--surface);box-shadow:0 1px 3px #0000000a;transition:transform var(--normal) var(--easing)}
+.segmented[data-active="details"] .indicator{transform:translateX(100%)}button{font:inherit;cursor:pointer;border:0}button:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.segmented button{padding:11px 10px;background:transparent;border-radius:8px;color:var(--muted);font-size:13px;transition:color var(--fast) ease}
+.segmented button[aria-selected="true"]{color:var(--ink);font-weight:650}
+.view{min-height:108px;margin-top:21px;padding:17px;border-radius:11px;border:1px solid var(--line);background:var(--canvas)}
+.view b{display:block;font-size:14px;margin-bottom:7px}.view span{font-size:13px;color:var(--muted);line-height:1.55}
+.actionrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.primary{min-width:142px;padding:12px 18px;background:var(--accent);color:white;border-radius:10px;transition:background var(--fast),transform var(--fast)}
+.primary:hover{background:#444449}.primary:active{transform:scale(.97)}
+.primary:disabled{opacity:.72;cursor:wait}
+.secondary{padding:10px 14px;background:var(--soft);border-radius:9px;color:var(--ink);transition:background var(--fast)}
+.secondary:hover{background:#e1e1e4}
+.result{min-height:22px;font-size:13px;color:var(--muted)}
+.demo-list{margin:20px 0 0;padding:0;list-style:none;display:grid;gap:9px}
+.demo-list li{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 15px;border:1px solid var(--line);border-radius:10px;background:var(--canvas);font-size:13px}
+.demo-list small{font-size:12px;color:var(--muted)}
+.open-button{padding:12px 14px;min-width:165px;background:var(--soft);color:var(--ink);border-radius:9px;text-align:left;display:flex;justify-content:space-between}
+.open-button i{font-style:normal;transition:transform var(--normal) var(--easing)}
+.open-button[aria-expanded="true"] i{transform:rotate(45deg)}
+.reveal{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows var(--normal) var(--easing),opacity 220ms ease}
+.reveal[data-open="true"]{grid-template-rows:1fr;opacity:1}
+.reveal>div{min-height:0;overflow:hidden}
+.reveal p{padding:14px 0 0;font-size:13px;max-width:520px}
+.note{margin-top:24px;font-size:12px;color:var(--muted)}
+@media(max-width:700px){main{padding:32px 15px 55px}.grid{grid-template-columns:1fr}.full{grid-column:auto}.panel{padding:20px}}
+@media(prefers-color-scheme:dark){:root{--ink:#f6f6f7;--muted:#a6a6aa;--line:#3f3f44;--surface:#242427;--canvas:#19191b;--soft:#333338;--accent:#f3f3f5}.primary{color:#19191b}.primary:hover{background:#d4d4d7}.secondary:hover{background:#414147}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>Motion Continuity Lab</h1>
+<p>完全合成的交互实验。观察选中指示器、按钮反馈、列表让位与展开过程，重点不是动画数量，而是元素之间有因果且不会突兀跳位。此页面不连接后端，也不代表真实产品验收。</p>
+</header>
+<div class="grid">
+<section class="panel">
+<h2>选中位置连续性</h2><p>选项切换时，旧位置的背景移动到新位置；文字与内容即时保持可读。</p>
+<div class="segmented" id="tabs" data-active="overview" role="tablist" aria-label="展示内容">
+<div class="indicator" data-motion-demo="indicator" aria-hidden="true"></div>
+<button data-motion-demo="tab-back" id="tab-overview" role="tab" aria-controls="tab-panel" aria-selected="true">概览</button>
+<button data-motion-demo="tab" id="tab-details" role="tab" aria-controls="tab-panel" aria-selected="false">详情</button>
+</div>
+<div class="view" id="tab-panel" role="tabpanel" tabindex="0"><b id="tab-title">本周概览</b><span id="tab-text">主要状态与最近操作放在清晰、稳定的位置。</span></div>
+</section>
+<section class="panel">
+<h2>同一按钮的状态变化</h2><p>操作反馈从点击开始，结果不使用另一颗“替身按钮”，也不假装发起远程请求。</p>
+<div class="actionrow"><button class="primary" data-motion-demo="save" id="save"><span id="save-label">模拟保存</span></button><span class="result" id="save-result" role="status" aria-live="polite">尚未操作</span></div>
+</section>
+<section class="panel full">
+<h2>列表插入与邻居让位</h2><p>新行出现时旧行沿各自的原有位置移动；重复操作不会让整张列表重播入场。</p>
+<div class="actionrow">
+<button class="secondary" data-motion-demo="add-row" id="add-row">新增模拟任务</button>
+<button class="secondary" data-motion-demo="remove-row" id="remove-row">移除末项</button>
+</div>
+<ul class="demo-list" id="rows"><li data-key="1"><span>准备资料</span><small>已完成</small></li><li data-key="2"><span>审查界面</span><small>进行中</small></li></ul>
+</section>
+<section class="panel full">
+<h2>空间披露与可逆交互</h2><p>内容与容器共用一个展开过程。可快速反复点击，不阻止键盘交互。</p>
+<button class="open-button" data-motion-demo="disclosure" id="disclosure" aria-expanded="false" aria-controls="reveal"><span>查看设计说明</span><i aria-hidden="true">+</i></button>
+<div class="reveal" data-motion-demo="panel" id="reveal" data-open="false"><div><p>动效不仅改变透明度。选中项、相邻元素和空间布局也需要一起响应，最终状态必须立即可理解。</p></div></div>
+</section>
+</div>
+<p class="note">演示均使用合成文字和数据；尊重系统减少动态效果。测试工具得到的“已捕获”报告不是审美评分。</p>
+</main>
+<script>
+const reduce=matchMedia("(prefers-reduced-motion: reduce)");
+reduce.addEventListener("change",()=>{if(reduce.matches)document.getAnimations().forEach(a=>a.finish())});
+const tabSet=document.getElementById("tabs");
+const tabButtons=[document.getElementById("tab-overview"),document.getElementById("tab-details")];
+const tabTitle=document.getElementById("tab-title"),tabText=document.getElementById("tab-text");
+tabButtons.forEach((button,index)=>button.addEventListener("click",()=>{
+const active=index?"details":"overview";
+tabSet.dataset.active=active;
+tabButtons.forEach((b,i)=>{b.setAttribute("aria-selected",String(index===i));b.tabIndex=index===i?0:-1});
+tabTitle.textContent=index?"本周详情":"本周概览";
+tabText.textContent=index?"详细变化与操作记录共享同一视图容器。":"主要状态与最近操作放在清晰、稳定的位置。";
+}));
+tabSet.addEventListener("keydown",event=>{
+if(!["ArrowLeft","ArrowRight"].includes(event.key))return;
+event.preventDefault();
+const current=tabButtons.findIndex(x=>x.getAttribute("aria-selected")==="true");
+const next=1-current;tabButtons[next].focus();tabButtons[next].click();
+});
+const save=document.getElementById("save"),saveLabel=document.getElementById("save-label"),result=document.getElementById("save-result");
+let saveTimer;
+save.addEventListener("click",()=>{
+clearTimeout(saveTimer);saveLabel.textContent="处理中…";result.textContent="本地模拟中";
+save.disabled=true;
+saveTimer=setTimeout(()=>{saveLabel.textContent="已保存";save.disabled=false;result.textContent="仅模拟成功，没有网络写入";},400);
+});
+const rows=document.getElementById("rows");let id=3;
+function layoutChange(work){
+const old=new Map([...rows.children].map(el=>[el.dataset.key,el.getBoundingClientRect()]));
+const inserted=work();
+if(reduce.matches)return;
+for(const el of rows.children){
+const prior=old.get(el.dataset.key);const now=el.getBoundingClientRect();
+if(prior){
+const dy=prior.top-now.top;
+if(Math.abs(dy)>.5)el.animate([{transform:"translateY("+dy+"px)"},{transform:"translateY(0)"}],{duration:320,easing:"cubic-bezier(.2,.8,.2,1)"});
+}
+}
+if(inserted)inserted.animate([{opacity:0,transform:"translateY(10px)"},{opacity:1,transform:"translateY(0)"}],{duration:300,easing:"cubic-bezier(.2,.8,.2,1)"});
+}
+document.getElementById("add-row").addEventListener("click",()=>{
+layoutChange(()=>{
+const li=document.createElement("li");li.dataset.key=String(id);
+const label=document.createElement("span");label.textContent="合成任务 "+id;
+const status=document.createElement("small");status.textContent="待开始";
+li.append(label,status);rows.prepend(li);id++;return li;
+});
+});
+document.getElementById("remove-row").addEventListener("click",()=>{
+if(rows.children.length<=1)return;
+layoutChange(()=>{rows.lastElementChild.remove();return null});
+});
+const disclosure=document.getElementById("disclosure"),reveal=document.getElementById("reveal");
+disclosure.addEventListener("click",()=>{
+const open=disclosure.getAttribute("aria-expanded")!=="true";
+disclosure.setAttribute("aria-expanded",String(open));reveal.dataset.open=String(open);
+});
+</script>
+</body></html>

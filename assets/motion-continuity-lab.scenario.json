@@ -1,0 +1,83 @@
+{
+  "$comment": "A runnable SYNTHETIC example only. Serve repo root: python3 -m http.server 8000, then --url http://127.0.0.1:8000/assets/motion-continuity-lab.html. This does NOT verify a real product.",
+  "viewport": {
+    "width": 1000,
+    "height": 850
+  },
+  "steps": [
+    {
+      "id": "tab-details",
+      "action": "click",
+      "selector": "[data-motion-demo='tab']",
+      "track": [
+        "[data-motion-demo='indicator']"
+      ],
+      "captureMs": 400,
+      "intervalMs": 80,
+      "settleMs": 160
+    },
+    {
+      "id": "tab-back",
+      "action": "click",
+      "selector": "[data-motion-demo='tab-back']",
+      "track": [
+        "[data-motion-demo='indicator']"
+      ],
+      "captureMs": 400,
+      "intervalMs": 80,
+      "settleMs": 160
+    },
+    {
+      "id": "list-insert",
+      "action": "click",
+      "selector": "[data-motion-demo='add-row']",
+      "track": [
+        "#rows",
+        "[data-key='1']"
+      ],
+      "captureMs": 420,
+      "intervalMs": 80,
+      "settleMs": 160
+    },
+    {
+      "id": "disclose",
+      "action": "click",
+      "selector": "[data-motion-demo='disclosure']",
+      "track": [
+        "[data-motion-demo='panel']"
+      ],
+      "captureMs": 420,
+      "intervalMs": 80,
+      "settleMs": 160
+    },
+    {
+      "id": "disclose-reverse",
+      "action": "click",
+      "selector": "[data-motion-demo='disclosure']",
+      "track": [
+        "[data-motion-demo='panel']"
+      ],
+      "captureMs": 420,
+      "intervalMs": 80,
+      "settleMs": 160
+    },
+    {
+      "id": "reduced-motion",
+      "action": "reduced-motion",
+      "value": "reduce",
+      "captureMs": 0,
+      "settleMs": 80
+    },
+    {
+      "id": "tab-reduced",
+      "action": "click",
+      "selector": "[data-motion-demo='tab']",
+      "track": [
+        "[data-motion-demo='indicator']"
+      ],
+      "captureMs": 150,
+      "intervalMs": 80,
+      "settleMs": 80
+    }
+  ]
+}

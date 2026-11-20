@@ -6,6 +6,10 @@
 
 用户只说“优化这个页面”时，**先对实际页面做基线无关的缺陷扫描**，不要把运行原有间距基线当作默认通过，也不要只跑 Skill 自带的 Mock。按 `references/proactive-visual-defect-discovery-gate.md` 从实际页面首/中/末、主要状态、宽窄屏检查空间/主次文字/组件/图标配色/交互；可运行 `node scripts/audit_existing_visual_defects.mjs --url <current-page>` 找到 Block/Grid/Flex 或简单包装层中可见面板的既有贴合。再用 v6.19 的 before/after 对比防止引入新问题。工具有覆盖盲点，实际页面未打开不得称为 Browser PASS；含用户隐私的截图和识别信息不得上传公共仓库或 CI artifact。
 
+## Dynamic Motion Rehearsal（适用于有动效的实际页面）
+
+对新建/变更的关键交互，不以“CSS transition 已定义”或“截了一张最终图”作为完成。遵循 `references/motion-craft-and-continuity.md` 的连续性设计与 `references/motion-rehearsal-and-evidence.md` 的质量门禁，记录前/中/后帧，真实速度观察、逆向中断、最小支持视口和 reduced-motion。按需使用 `scripts/motion_rehearsal.mjs` 与实际页面选择器采集屏幕及几何状态；`CAPTURED_FOR_REVIEW` 仅代表收集到证据，仍需人工复看才能得出视觉结论。商业后台无需模拟假鼠标故事，营销演示不能充当业务 E2E。
+
 ## 必选验收矩阵（按实际项目选用）
 
 - 视口：桌面 1440px、常见笔记本 1024px、手机 390px 或产品主要断点；检查横向溢出、主视觉裁切、字断行与布局回流。

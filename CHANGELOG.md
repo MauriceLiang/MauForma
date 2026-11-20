@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased — Motion Craft & Frame-by-Frame Rehearsal
+
+- 参考 Benji Taylor 的 Stageshow 动效分镜、运动因果、过渡连续性与动态录像方法，新增 `references/motion-craft-and-continuity.md`：状态微分镜、对象身份、邻居让位、锚点、文字/数字、节奏、指针/拖拽和展示动画边界。
+- 新增 `references/motion-rehearsal-and-evidence.md` 和独立可选 `scripts/motion_rehearsal.mjs`，通过目标页面 Playwright 交互采样 + 几何快照 + 报告，把捕获证据与审美结论明确区分；附不含真实项目数据的 scenario 输入示例。
+- 新增可直接打开的原创 `assets/motion-continuity-lab.html`、可运行场景 JSON 和 `tests/test_motion_craft_integration.py`：展示与检查 Tab 指示器位移、列表让位、同一按钮状态、披露与减少动态效果。Node 安装时执行脚本语法/帮助验证；不将纯合成示例算作真实站点通过。
+- 接入 SKILL 主路由、动效开发流程、浏览器 QA、组件动效门禁、README 和视觉验收；继承用户已确认的动效强度、全部框架支持和 reduced-motion。无需复制 Stageshow React Kit 或强制添加运行时依赖。
+- 此次变更是 MauForma Skill 和辅助工具升级，**不代表对任何具体 Web 产品已完成动效改造或浏览器验收**。
+
+---
+
 ## Unreleased — Cross-product page-header copy audit
 
 - 统一 Surface Edge Accent Gate S0：所有新建与已有页面的 Card/Panel/Section 默认**无装饰性彩条**；禁止与边框、圆角贴合的粗彩色侧边条（border、伪元素、渐变、内阴影、重叠定位均涵盖）。有明确用途时才允许外置短标记，且必须留可见间隙。

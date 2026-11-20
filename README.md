@@ -62,6 +62,30 @@ MauForma 在页面开发前会检查项目现有的组件库；如果没有合�
 
 组件优先不等于从零造按钮和下拉菜单。选定组件方案后先统一 Theme/Tokens、完成必要控件的状态检查，再批量编写业务页面。已有主库优先继承，静态页面和合理的原生系统控件不强装大组件库。完整规则见 [Component Library First](references/component-library-first-gate.md)。
 
+## 高级动效：Motion Craft & Rehearsal
+
+MauForma 将动效视为可用性、状态连续性和产品质感的一部分，而不是统一的 Hover 特效或页面淡入。借鉴 [Stageshow](https://github.com/benjitaylor/skills/tree/main/stageshow) 的分镜、运动因果、缓动节奏、视觉交接和逐帧自查，转化为适用于**真实 Web 产品**的通用规则：
+
+- **先设计状态变化**：触发 → 运动中的关系 → 结果 → 反向/中断 → 低动效；保留按钮、指示器、弹窗、列表等对象的身份和空间锚点。
+- **细腻的时间编排**：操作即时响应，相关对象重叠、错峰、连贯让位；文字、数字、布局变化不突然闪跳或糊字。
+- **真实页面逐帧验证**：在目标路由录制交互前/中/后、反向与 reduced-motion，逐帧检查跳变、重影、漂移，修复后重录。可选 `scripts/motion_rehearsal.mjs`；脚本只输出证据，不能判定审美通过。
+- **保留框架自由**：Vue、React 等均能应用规则；不强制安装 Stageshow React Kit、动画引擎或录制工具。模拟鼠标/宣传动画只用于明确需要展示叙事的场景，不伪装为功能测试。
+
+规范见 [Motion Craft & Continuity](references/motion-craft-and-continuity.md) 与 [Motion Rehearsal & Evidence](references/motion-rehearsal-and-evidence.md)。
+
+仓库包含一份**原创、无需前端框架依赖的可交互实验页** [Motion Continuity Lab](assets/motion-continuity-lab.html)，演示选中指示器、真实位置变化、按钮状态和空间披露。可直接用浏览器打开；若要用自动取证工具录制，启动静态服务器：
+
+```bash
+python3 -m http.server 8000
+# 另一个终端运行（需要项目中已有 Playwright + Chromium）
+node scripts/motion_rehearsal.mjs \
+  --url http://127.0.0.1:8000/assets/motion-continuity-lab.html \
+  --scenario assets/motion-continuity-lab.scenario.json \
+  --out ./artifacts/motion-lab
+```
+
+该实验的数据和交互完全为合成模拟。真实项目必须使用实际 UI 路由/选择器再次复验。动画强度仍尊重用户确认选择和系统减少动态效果；高频工作界面强调响应速度，展示型网站可在授权范围内采用更丰富的节奏。
+
 ## 可选视觉技术：Liquid Glass
 
 MauForma 可以按需分析和设计液态玻璃的**透明、折射、高光、阴影**四层光学近似，模糊作为可选额外效果，而不是全站默认皮肤。Web 端 SVG 背景折射具有浏览器兼容限制，重要按钮与文字必须保持 DOM 语义与静态降级。详见 [液态玻璃光学规范](references/liquid-glass-optics.md) 与 [独立交互教学实验](assets/liquid-glass-layer-lab.html)。
@@ -81,6 +105,10 @@ python3 scripts/search_visual_tech.py --goal "图表 数据交互"
 
 # 针对目标工程做静态审计
 python3 scripts/audit_frontend.py ./src --format json
+
+# （可选）在有运行中的真实项目与 Playwright 环境时，录制关键动效
+# 先用自己的真实页面选择器替换示例 scenario，再执行：
+# node scripts/motion_rehearsal.mjs --url http://localhost:3000 --scenario ./my-motion-scenario.json
 
 # 验证 Skill 的结构和约束
 python3 scripts/validate_web_skill.py
@@ -103,9 +131,9 @@ python3 -m unittest discover -s tests -v
 | 内容与字体 | [内容密度](references/page-density-and-content-priority.md)、[文案必要性](references/semantic-copy-hygiene.md)、[字体角色](references/typography-hierarchy.md) |
 | 空间、布局与组件 | [语义间距](references/semantic-spacing-rhythm-gate.md)、[网格与视口](references/grid-alignment-and-viewport-safety.md)、[卡片贴边彩条门禁](references/surface-edge-accent-gate.md)、[组件工程](references/component-first.md) |
 | 导航、颜色与图标 | [导航架构](references/navigation-architecture.md)、[侧栏选中指示条](references/sidebar-selection-indicator-gate.md)、[配色](references/palette-art-direction.md)、[图标语义](references/icon-art-direction-gate.md) |
-| 表单、数据与交互 | [设置/表单](references/settings-form-layout-gate.md)、[图表](references/chart-interior-alignment.md)、[动效](references/motion-consent-experience-gate.md) |
+| 表单、数据与交互 | [设置/表单](references/settings-form-layout-gate.md)、[图表](references/chart-interior-alignment.md)、[动效偏好](references/motion-consent-experience-gate.md)、[动效工艺](references/motion-craft-and-continuity.md) |
 | 技术实现 | [框架支持](references/framework-support-matrix.md)、[业务组件库](references/enterprise-ui-library-guide.md)、[创意组件](references/creative-component-libraries.md) |
-| 验证与交付 | [视觉 QA](references/visual-qa.md)、[浏览器检查](references/browser-qa-protocol.md) |
+| 验证与交付 | [视觉 QA](references/visual-qa.md)、[浏览器检查](references/browser-qa-protocol.md)、[逐帧动效验收](references/motion-rehearsal-and-evidence.md) |
 
 更多专项文档由 [SKILL.md](SKILL.md) 的任务路由表指引。
 
