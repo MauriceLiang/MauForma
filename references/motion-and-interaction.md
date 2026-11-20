@@ -7,9 +7,9 @@
 - [motion-governance.md](motion-governance.md) — 什么时候该有动画、速度、风险、性能与 reduced-motion；
 - [animejs-official-capabilities.md](animejs-official-capabilities.md) — Anime.js v4 官方主能力 API；
 - [animejs-easing-complete.md](animejs-easing-complete.md) — 45 个内置缓动名称 + 自定义生成器；
-- [animejs-motion-recipes.md](animejs-motion-recipes.md) — 114 种可组合视觉效果、视觉表现和避雷；
+- [animejs-motion-recipes.md](animejs-motion-recipes.md) — 原有 114 种配方；扩充后的 123 种见 `assets/motion-effects.json`；
 - [animejs-v4-snippets.md](../examples/animejs-v4-snippets.md) — 16 个代码示例；
-- [motion-gallery.html](../assets/motion-gallery.html) — 点击重播、搜索、按类别筛选、缓动列表。
+- [motion-gallery.html](../assets/motion-gallery.html) — 123 种配方可搜索、点击演示并按类别筛选；22 项精选创意语言见 [expressive-motion-vocabulary.md](expressive-motion-vocabulary.md)。
 
 ---
 
@@ -22,9 +22,9 @@
 - [motion-governance.md](motion-governance.md) — 什么时候该有动画、速度、风险、性能与 reduced-motion；
 - [animejs-official-capabilities.md](animejs-official-capabilities.md) — Anime.js v4 官方主能力 API；
 - [animejs-easing-complete.md](animejs-easing-complete.md) — 45 个内置缓动名称 + 自定义生成器；
-- [animejs-motion-recipes.md](animejs-motion-recipes.md) — 114 种可组合视觉效果、视觉表现和避雷；
+- [animejs-motion-recipes.md](animejs-motion-recipes.md) — 原有 114 种配方，扩展目录共 123 种；
 - [animejs-v4-snippets.md](../examples/animejs-v4-snippets.md) — 16 个代码示例；
-- [motion-gallery.html](../assets/motion-gallery.html) — 点击重播、搜索、按类别筛选、缓动列表。
+- [motion-gallery.html](../assets/motion-gallery.html) — 123 种配方展示、搜索、回放；精选创意术语参见 [expressive-motion-vocabulary.md](expressive-motion-vocabulary.md)。
 
 ---
 
