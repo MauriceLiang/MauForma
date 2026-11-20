@@ -18,7 +18,7 @@ Treat Operate, Read, Persuade and Experience as page modes, not permanent produc
 
 ## 2. Language and internationalization
 
-English instructions do not imply an English UI. Preserve the user's preferred language, product locales, approved copy, proper nouns, translation keys and localized messages. Evaluate actual Chinese, English, mixed Latin/CJK, long words, numeric units, bidirectional text when supported, keyboard interaction and 200% text scaling. Do not arbitrarily translate real products.
+**No arbitrary translation.** English instructions do not imply an English UI. Preserve the user's preferred language, product locales, approved copy, proper nouns, translation keys and localized messages. Evaluate actual Chinese, English, mixed Latin/CJK, long words, numeric units, bidirectional text when supported, keyboard interaction and 200% text scaling. Do not arbitrarily translate real products.
 
 Respect source licensing and original API names. Store attribution in README rather than repeating it in execution prompts. Distinguish confirmed, inherited, delegated, proposed and unresolved decisions. A design recommendation is not an approved decision.
 
