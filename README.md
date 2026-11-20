@@ -70,7 +70,7 @@ Liquid Glass is an **optional** experimental visual material, not a default prod
 
 ## Efficient execution and boundaries
 
-The execution entrypoint routes tasks into a small number of relevant reference documents, generally **1–3 groups rather than the whole library**. Use the shortest effective workflow:
+The execution entrypoint routes tasks into a small number of relevant reference documents, generally **1–3 groups rather than the whole library**. A [controlled bilingual Agent evaluation protocol](references/i18n-runtime-validation.en.md) defines how to compare actual tokens, task completion, visual quality and locale outcomes without overclaiming performance. Use the shortest effective workflow:
 
 | Mode | Typical work | Verification |
 | --- | --- | --- |
