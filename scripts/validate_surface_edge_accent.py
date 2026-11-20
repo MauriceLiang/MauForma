@@ -99,13 +99,14 @@ def validate_repo() -> list[str]:
         return ["missing synthetic accent cases"]
     errors = validate_cases(json.loads(CASES_FILE.read_text(encoding="utf-8")))
     expected = {
-        "SKILL.md": ("surface-edge-accent-gate.md", "卡片彩色贴边条否决项", "新建/优化"),
+        "SKILL.md": ("surface-edge-accent-gate.md", "Gate S0", "newly added", "retained"),
         "references/surface-edge-accent-gate.md": ("Gate S0", "默认", "已有", "边框", "外置"),
         "references/surface-architecture-gate.md": ("surface-edge-accent-gate.md", "彩色"),
         "references/proactive-visual-defect-discovery-gate.md": ("surface-edge-accent-gate.md", "原有和新增"),
         "references/component-craft-gate.md": ("surface-edge-accent-gate.md",),
         "references/visual-critique-loop.md": ("surface-edge-accent-gate.md",),
-        "README.md": ("surface-edge-accent-gate.md", "新建页面", "既有"),
+        "README.md": ("surface-edge-accent-gate.md", "new and existing", "colored"),
+        "README.zh-CN.md": ("surface-edge-accent-gate.md", "新建页面", "既有"),
     }
     for name, fragments in expected.items():
         p = ROOT / name
