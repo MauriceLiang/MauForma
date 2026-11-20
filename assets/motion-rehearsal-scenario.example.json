@@ -1,0 +1,62 @@
+{
+  "$comment": "FORMAT ONLY. Replace selectors with real controls on your OWN target page. This is not a self-contained demo.",
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "reducedMotion": "no-preference",
+  "steps": [
+    {
+      "id": "tab-transition",
+      "action": "click",
+      "selector": "[data-motion-demo='tab']",
+      "track": [
+        "[data-motion-demo='tab']",
+        "[data-motion-demo='indicator']"
+      ],
+      "captureMs": 500,
+      "intervalMs": 80,
+      "settleMs": 200
+    },
+    {
+      "id": "reverse-tab",
+      "action": "click",
+      "selector": "[data-motion-demo='tab-back']",
+      "track": [
+        "[data-motion-demo='indicator']"
+      ],
+      "captureMs": 500,
+      "intervalMs": 80,
+      "settleMs": 200
+    },
+    {
+      "id": "keyboard-close",
+      "action": "press",
+      "key": "Escape",
+      "track": [
+        "[data-motion-demo='panel']"
+      ],
+      "captureMs": 300,
+      "intervalMs": 60,
+      "settleMs": 150
+    },
+    {
+      "id": "enable-reduced-motion",
+      "action": "reduced-motion",
+      "value": "reduce",
+      "captureMs": 0,
+      "settleMs": 100
+    },
+    {
+      "id": "tab-reduced-motion",
+      "action": "click",
+      "selector": "[data-motion-demo='tab']",
+      "track": [
+        "[data-motion-demo='indicator']"
+      ],
+      "captureMs": 200,
+      "intervalMs": 60,
+      "settleMs": 100
+    }
+  ]
+}
