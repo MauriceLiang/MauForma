@@ -62,7 +62,7 @@ src/
 - **包体与首屏**：检查依赖锁文件、生产构建的 chunk 大小和新库增加的客户端 JS；只对低频、重组件考虑动态导入；首屏关键操作不能因懒加载而失去响应。
 - **状态与渲染**：区分服务端数据、客户端草稿与本地动画状态。不要为所有 primitive 一律 memo；对已证实的重复重渲染、昂贵计算和监听器泄漏再采取优化。
 - **服务端安全**：遵循当前 React/Next 版本的 SSR、RSC、Server Actions 与 hydration 规则；任何认证与授权必须在服务端真实验证，不靠隐藏按钮。
-- **显式组件变体**：当 bool Props 组合导致不可能状态时，优先清晰的 variant API、组合式子组件和明确的状态所有权。React Context 不应变成存储整个后台业务对象的垃圾桶。
+- **显式组件变体**：当 bool Props 组合导致不可能状态时，优先清晰的 variant API、组合式子组件和明确的状态所有权。React Context 不应变成存储整个后台业务对象的垃圾桶。**React 19 专属 API/模式只能在已核验 React 19 的工程使用**，React 18、普通 SPA 或 Vue 不能无条件照抄。
 - **动态质量**：记录真实设备下的 long task、CLS、input latency 与动画中断；命令式动画正确取消；不能凭 CSS 中含 `transform` 断言 60fps。
 
 可用 `scripts/mauforma_check.py` 对本次改动先做静态风险收集，再对真实页面复现交互、异步错误、焦点和最小支持视口。具体 API 以锁文件与官方当前文档为准。
