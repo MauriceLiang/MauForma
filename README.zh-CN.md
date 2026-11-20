@@ -18,9 +18,9 @@
 
 MauForma 帮助 Agent 在设计和开发网页时先理解真实用户任务，再处理信息架构、视觉层级、排版、组件、交互、技术选型与验证。它不是一套固定的后台模板，也不会强迫每个网站使用相同的颜色、字体、侧栏和卡片。
 
-**英文执行入口为 [SKILL.md](SKILL.md)**；对应的中文旧版规范保存在 [SKILL.zh-CN.md](SKILL.zh-CN.md)，英文核心操作说明见 [execution-handbook.en.md](references/execution-handbook.en.md)。**Agent 默认只加载英文入口，不应同时装入两份完整规范。**
+**Agent 唯一执行入口为 [SKILL.md](SKILL.md)**，英文核心操作说明见 [execution-handbook.en.md](references/execution-handbook.en.md)；本中文 README 用于阅读和使用说明，不是第二份 Agent 执行文件。
 
-**国际化说明**：目前 English Core + 中英文完整 README 已就位；历史专项 references 仍以中文为主，逐步进行技术语义校对式迁移。执行效果需按[中英文同任务评测协议](references/i18n-runtime-validation.en.md)对比，不能用文件体积替代 Token 或质量。**语言转换不改变品牌、业务、交互及用户界面本身的语种**。它是一份稳定的工作规范；具体知识拆分在 `references/`，合成演示位于 `examples/` 和 `assets/`，检查工具位于 `scripts/`。历史改动单独记录在 [CHANGELOG.md](CHANGELOG.md)，不会逐次堆入 Skill 正文。
+**国际化说明**：英文入口与英文执行手册可直接供国际 Agent 使用；专项参考资料按实际任务读取，其中部分仍为中文。**语言转换不改变用户的品牌、业务、交互与产品界面语言**。行为规范位于 `SKILL.md` 和 `references/`，合成演示位于 `examples/`、`assets/`，检查工具位于 `scripts/`。Token 和执行质量不能凭文件体积推断；版本历史通过 Git 提交和 GitHub Releases 查询，不写进执行入口。
 
 ## 适用范围
 
@@ -159,11 +159,11 @@ python3 -m unittest discover -s tests -v
 
 更多专项文档由 [SKILL.md](SKILL.md) 的任务路由表指引。
 
-## 上游项目再复盘与中英语义一致性
+## 执行边界与语言一致性
 
-对 README 所列的 14 个上游设计 Skill 逐项核对值得借鉴的内容、真实吸收状态及不适用边界：[中文复盘](references/upstream-reassessment.zh-CN.md) / [English reassessment](references/upstream-reassessment.en.md)。重要的触发条件、必须行为、合法例外与禁止事项，用 [中文 B01–B15 语义契约](references/semantic-boundaries.zh-CN.md) 和 [英文契约](references/semantic-boundaries.en.md) 成对记录，并通过 [结构化源文件](assets/semantic-boundary-contract.json) 做静态回归。**普通界面开发不必加载这套复盘文档**；只有对规则理解、版本或权限存疑时才按编号查询。
+普通页面开发只需按英文入口选择相关专项规范。涉及授权、文案语言、组件安装、Figma 权限或真实测试的歧义时，才查询 [中文 B01–B15 边界规范](references/semantic-boundaries.zh-CN.md) 或 [英文规范](references/semantic-boundaries.en.md) 的对应条款；配套 [结构化规则](assets/semantic-boundary-contract.json) 仅供质量检测，不需要 Agent 默认读取。开源项目的参考和致谢统一放在 README 下方，不保留过程性的逐项复盘日志。
 
-这些静态检查不能证明 Agent 在所有模型上都完全理解中英文，也不能替代真实项目视觉/业务浏览器验收。
+静态规则检查不能证明所有 Agent 模型均理解中英文，更不能替代实际产品的视觉与业务测试。
 
 ## 质量检查
 
@@ -173,7 +173,7 @@ python3 -m unittest discover -s tests -v
 - **按用途设计**：不把所有网站简化为同一套工作台、极简风或演示模板。
 - **用户决定优先**：尊重明确的颜色、视觉风格、平台范围与动效选择。
 - **工程可验证**：代码能运行、控件真实可用、组件在目标环境复用，不用合成样例冒充真实产品结果。
-- **文档不堆版本补丁**：行为规则写在稳定主题章节；修改历史只写 `CHANGELOG.md`。
+- **避免文档膨胀**：运行时规范只保留可复用的行为规则；版本信息请查看 Git 提交记录或 GitHub Releases。
 
 参考图片及其变体不得未经授权存入公共 Skill。引用第三方技术、图标、字体或资源时核查来源、许可证与依赖版本。
 
@@ -231,4 +231,4 @@ Stageshow 的具体参考包括 [Motion](https://github.com/benjitaylor/skills/b
 
 再次感谢开源社区持续分享高质量的设计方法与工程实践。
 
-[查看更新历史](CHANGELOG.md)
+[查看 GitHub Releases](https://github.com/MauriceLiang/MauForma/releases)

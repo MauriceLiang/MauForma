@@ -1,9 +1,6 @@
 """Internationalization contracts that preserve runtime UX constraints."""
 from __future__ import annotations
 
-import json
-import subprocess
-import sys
 import unittest
 from pathlib import Path
 
@@ -14,7 +11,6 @@ class InternationalExecutionContractTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.en = (ROOT / "SKILL.md").read_text("utf-8")
-        cls.zh = (ROOT / "SKILL.zh-CN.md").read_text("utf-8")
         cls.en_readme = (ROOT / "README.md").read_text("utf-8")
         cls.zh_readme = (ROOT / "README.zh-CN.md").read_text("utf-8")
         cls.handbook = (ROOT / "references/execution-handbook.en.md").read_text("utf-8")
@@ -80,24 +76,21 @@ class InternationalExecutionContractTests(unittest.TestCase):
         for marker in ("这是什么", "工作方式", "快速开始", "开源参考与致谢"):
             self.assertIn(marker, self.zh_readme)
 
-    def test_legacy_policy_is_preserved_without_default_loading(self):
-        self.assertGreater(len(self.zh), 12000)
-        self.assertIn("按任务读取", self.zh)
-        self.assertIn("跨产品页头文案门禁", self.zh)
-        self.assertIn("卡片彩色贴边条否决项", self.zh)
-        self.assertIn("do not load both entrypoints", self.en.casefold())
+    def test_only_one_active_agent_entrypoint_and_full_chinese_readme(self):
+        self.assertFalse((ROOT / "SKILL.zh-CN.md").exists())
+        self.assertIn("single active Agent entrypoint", self.en)
+        self.assertIn("one primary guide", self.en)
+        self.assertIn("中文 README", self.zh_readme)
+        self.assertIn("English", self.en_readme)
 
-    def test_budget_script_does_not_claim_unmeasured_tokens(self):
-        result = subprocess.run(
-            [sys.executable, str(ROOT / "scripts/measure_prompt_budget.py")],
-            cwd=ROOT, text=True, capture_output=True, check=True
-        )
-        budget = json.loads(result.stdout)
-        self.assertIsNone(budget["token_delta_percent"])
-        self.assertIsNone(budget["english"]["estimated_tokens"])
-        self.assertIn("NOT_MEASURED", budget["english"]["tokenizer"])
-        self.assertIn("NOT runtime latency", budget["claim_limit"])
-        self.assertLess(budget["english"]["utf8_bytes"], budget["chinese_baseline"]["utf8_bytes"])
+    def test_runtime_docs_do_not_require_historical_audits(self):
+        for text in (self.en, self.handbook, self.en_readme, self.zh_readme):
+            self.assertNotIn("upstream-reassessment.en.md", text)
+            self.assertNotIn("i18n-runtime-validation.en.md", text)
+            self.assertNotIn("SKILL.zh-CN.md", text)
+            self.assertNotIn("CHANGELOG.md", text)
+        self.assertIn("references/semantic-boundaries.en.md", self.en)
+        self.assertIn("README.zh-CN.md", self.en)
 
 
 if __name__ == "__main__":

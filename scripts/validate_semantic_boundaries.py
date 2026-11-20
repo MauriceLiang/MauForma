@@ -24,18 +24,10 @@ FIELDS = (
     "id", "topic", "trigger_en", "trigger_zh", "require_en", "require_zh",
     "exception_en", "exception_zh", "never_en", "never_zh", "docs"
 )
-UPSTREAM = (
-    "Stageshow", "Anthropic Frontend Design", "Impeccable",
-    "Senlin Taste", "Leon Taste", "Theme Factory", "Designer Skills",
-    "UI/UX Pro Max", "Vercel Web Interface Guidelines",
-    "Vercel Composition Patterns", "Vercel React Best Practices",
-    "Vue Best Practices", "Anthropic Webapp Testing",
-    "OpenAI Figma Implement Design",
-)
 # These gates need to remain discoverable in the default runtime.
 RUNTIME = {
     "SKILL.md": (
-        "references/semantic-boundaries.en.md", "references/upstream-reassessment.en.md",
+        "references/semantic-boundaries.en.md",
         "one primary guide", "loading budget", "delegated implementation scope",
         "actual rendered DOM", "Gate H-Base / H0", "Gate S0",
         "prefers-reduced-motion", "STATIC CHECK", "DEMO ONLY",
@@ -49,10 +41,10 @@ RUNTIME = {
         "references/semantic-boundaries.en.md",
     ),
     "README.md": (
-        "README.zh-CN.md", REVIEW_EN, REVIEW_ZH, EN, ZH, CONTRACT,
+        "README.zh-CN.md", EN, ZH, CONTRACT,
     ),
     "README.zh-CN.md": (
-        "README.md", REVIEW_EN, REVIEW_ZH, EN, ZH, CONTRACT,
+        "README.md", EN, ZH, CONTRACT,
     ),
 }
 # Links in Markdown URLs to upstream sources are not local repository files.
@@ -65,7 +57,7 @@ LOCAL_REF = re.compile(
 def validate_repository(root: Path = ROOT) -> list[str]:
     problems: list[str] = []
     sources: dict[str, str] = {}
-    for path in (CONTRACT, EN, ZH, REVIEW_EN, REVIEW_ZH, *RUNTIME):
+    for path in (CONTRACT, EN, ZH, *RUNTIME):
         candidate = root / path
         if not candidate.is_file():
             problems.append(f"Missing semantic source: {path}")
@@ -124,11 +116,6 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         for marker in required:
             if marker not in body:
                 problems.append(f"{file}: missing high-risk boundary anchor {marker}")
-    for doc in (REVIEW_EN, REVIEW_ZH):
-        body = sources.get(doc, "")
-        for name in UPSTREAM:
-            if name not in body:
-                problems.append(f"{doc}: missing reviewed upstream {name}")
     # Do not count github.com references embedded in README as missing local
     # files; the only audited path graph below is the Agent execution entrypoint.
     active = sources.get("SKILL.md", "")
@@ -153,7 +140,7 @@ def main() -> int:
     if issues:
         print(f"Semantic boundary contract FAILED ({len(issues)} static issues)")
         return 1
-    print(f"Semantic boundary contract PASS: {len(IDS)} EN/ZH paired rules, 14 upstream references, local route integrity")
+    print(f"Semantic boundary contract PASS: {len(IDS)} EN/ZH paired rules and runtime reference integrity")
     print("Scope: STATIC CHECK ONLY — this does not prove multilingual model understanding or live UI quality")
     return 0
 

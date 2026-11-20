@@ -26,7 +26,7 @@ INCIDENT_LOG = re.compile(
 def validate_entrypoint(name: str, content: str) -> list[str]:
     errors: list[str] = []
     if VERSION_HEADING.search(content):
-        errors.append(f"{name}: versioned headings belong in CHANGELOG.md")
+        errors.append(f"{name}: versioned headings and release logs do not belong in the Agent entrypoint")
     if INCIDENT_LOG.search(content):
         errors.append(f"{name}: incident/screenshot narration belongs outside reusable rules")
     if FORBIDDEN_PATH.search(content):

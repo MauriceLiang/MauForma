@@ -106,6 +106,6 @@ For every significant finding record route/selector, viewport/locale, expected v
 3. Prefer existing project scripts and browser tooling. Optional MauForma tools include: audit_frontend.py, mauforma_check.py, check_design_drift.py, motion_rehearsal.mjs, extract_design_dna.mjs, feature_design_flow.py and preview_design_variants.py.
 4. Report final changes, concrete real test results, scope, non-verified states and blockers. The status CAPTURED_FOR_REVIEW never means VERIFIED.
 
-For any English/Chinese ambiguity use the **relevant numbered rule** in `references/semantic-boundaries.en.md` or the matching Chinese `references/semantic-boundaries.zh-CN.md`; their paired source is `assets/semantic-boundary-contract.json`. The 14-source learning audit is `references/upstream-reassessment.en.md`, and is **not** a mandatory runtime read.
+For a genuine scope, permission, locale or verification ambiguity, read **only the relevant numbered rule** in `references/semantic-boundaries.en.md`. A separate Chinese version and `assets/semantic-boundary-contract.json` support maintenance of translation parity; neither is needed for an ordinary task.
 
-For deeper specifics use the task-specific documents already routed in SKILL.md. Historic Chinese full rules remain in SKILL.zh-CN.md for migration parity; do not load both entrypoints by default.
+For deeper specifics use the task-specific documents already routed in SKILL.md. The public Chinese `README.zh-CN.md` is an introduction, not a second Agent runtime contract.
