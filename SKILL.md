@@ -58,6 +58,13 @@ The following are **discovery paths**, not additional required reads. Open a spe
 - **Comparison and data charts**: `scripts/validate_comparison_contract.py`, `scripts/audit_comparison_ui.mjs`.
 - **Run-monitor and task-center states**: `scripts/validate_task_center.py`, `assets/task-center-layout-lab.html` (synthetic demo only).
 
+- **Art direction and original style data**: `references/aesthetic-authorship.md`, `assets/style-knowledge.json`, `references/clean-enterprise-design.md`.
+- **Creative libraries and demos (not default dependencies)**: `references/creative-component-libraries.md`, `references/animejs-official-capabilities.md`, `assets/motion-gallery.html`, `assets/preview.html`.
+- **Focused spacing and surface review**: `scripts/audit_panel_spacing.mjs`, `scripts/audit_spacing_rhythm.mjs`, `scripts/validate_spacing_rhythm.py`, `scripts/validate_surface_control.py`.
+- **Copy and edge-accent regression**: `scripts/validate_page_header_copy.py`, `scripts/validate_surface_edge_accent.py`.
+- **Icon and visual-reference review**: `scripts/validate_icon_curation.py`, `scripts/audit_icon_consistency.mjs`, `scripts/validate_design_reference.py`.
+- **Motion and proactive UI gates**: `scripts/validate_component_motion.py`, `scripts/validate_motion_decision.py`, `scripts/validate_proactive_audit.py`.
+
 ## 3. Execution process
 
 ### A. Inspect and scope
