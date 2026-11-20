@@ -20,7 +20,7 @@ MauForma 帮助 Agent 在设计和开发网页时先理解真实用户任务，�
 
 **英文执行入口为 [SKILL.md](SKILL.md)**；对应的中文旧版规范保存在 [SKILL.zh-CN.md](SKILL.zh-CN.md)，英文核心操作说明见 [execution-handbook.en.md](references/execution-handbook.en.md)。**Agent 默认只加载英文入口，不应同时装入两份完整规范。**
 
-**国际化说明**：目前 English Core + 中英文完整 README 已就位；历史专项 references 仍以中文为主，逐步进行技术语义校对式迁移。**语言转换不改变品牌、业务、交互及用户界面本身的语种**。它是一份稳定的工作规范；具体知识拆分在 `references/`，合成演示位于 `examples/` 和 `assets/`，检查工具位于 `scripts/`。历史改动单独记录在 [CHANGELOG.md](CHANGELOG.md)，不会逐次堆入 Skill 正文。
+**国际化说明**：目前 English Core + 中英文完整 README 已就位；历史专项 references 仍以中文为主，逐步进行技术语义校对式迁移。执行效果需按[中英文同任务评测协议](references/i18n-runtime-validation.en.md)对比，不能用文件体积替代 Token 或质量。**语言转换不改变品牌、业务、交互及用户界面本身的语种**。它是一份稳定的工作规范；具体知识拆分在 `references/`，合成演示位于 `examples/` 和 `assets/`，检查工具位于 `scripts/`。历史改动单独记录在 [CHANGELOG.md](CHANGELOG.md)，不会逐次堆入 Skill 正文。
 
 ## 适用范围
 
