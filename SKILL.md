@@ -40,7 +40,7 @@ description: Framework-agnostic Web UI/UX design and frontend engineering Skill.
 | Charts, comparisons, run-monitor data states | `references/chart-interior-alignment.md`, `references/comparison-page-design.md`, `references/task-center-run-monitor-design.md` |
 | Motion policy, continuity and click-time frame evidence | `references/motion-consent-experience-gate.md`, `references/component-motion-choreography-gate.md`, `references/motion-craft-and-continuity.md`, `references/motion-rehearsal-and-evidence.md` |
 | Animation engine selection | `references/animation-engine-selection.md`, `references/animejs-motion-recipes.md` |
-| **Optional** liquid glass, optics and refraction | `references/liquid-glass-optics.md`, `references/visual-tech-selection-12.md` — **only on request** |
+| **Optional** liquid glass, optics and refraction | `references/liquid-glass-optics.md`, `references/visual-tech-selection-12.md` — only when **explicitly requested or inherited from a confirmed design brief**, never from a generic aesthetic default |
 | Authorized reference site / Design DNA | `references/design-reference-learning-gate.md`, `references/design-dna-protocol.md` |
 | Figma fidelity with accessible source | `references/figma-fidelity-workflow.md`, `references/component-library-first-gate.md` |
 | Interactive forms and controls: component library **first** | `references/component-library-first-gate.md`, `references/enterprise-ui-library-guide.md`, `references/component-first.md` |
