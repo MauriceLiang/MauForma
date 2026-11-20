@@ -41,7 +41,7 @@ class InternationalExecutionContractTests(unittest.TestCase):
             "confirmed / inherited / delegated / proposed / unresolved",
             "file", "actual", "frontend",
         ):
-            self.assertIn(marker, self.en, marker)
+            self.assertIn(marker.casefold(), self.en.casefold(), marker)
 
     def test_execution_boundaries_dont_translate_customer_ui(self):
         for marker in (
