@@ -1,0 +1,50 @@
+{
+  "title": "可比较的产品界面方向",
+  "product": "Northstar Studio",
+  "heading": "Overview",
+  "description": "同一内容在不同视觉方向下比较。预览使用虚构数据，不包含真实业务流程。",
+  "options": [
+    {
+      "id": "calm",
+      "name": "安静精确",
+      "reason": "高频操作优先可读与克制",
+      "tokens": {
+        "background": "#f7f7f7",
+        "surface": "#ffffff",
+        "foreground": "#202020",
+        "accent": "#333333",
+        "border": "#dddddd"
+      },
+      "radius": 6,
+      "font": "system-ui"
+    },
+    {
+      "id": "warm",
+      "name": "温暖柔和",
+      "reason": "内容型产品更强调亲和、层次和阅读舒适",
+      "tokens": {
+        "background": "#f8f3ec",
+        "surface": "#ffffff",
+        "foreground": "#29231c",
+        "accent": "#85603a",
+        "border": "#e4d7c8"
+      },
+      "radius": 12,
+      "font": "serif"
+    },
+    {
+      "id": "contrast",
+      "name": "高对比沉浸",
+      "reason": "品牌/创意展示可强化视觉焦点，需额外验证长时间使用舒适度",
+      "tokens": {
+        "background": "#181818",
+        "surface": "#252525",
+        "foreground": "#f4f4f4",
+        "accent": "#695fc6",
+        "border": "#4c4c4c"
+      },
+      "radius": 4,
+      "font": "sans-serif"
+    }
+  ]
+}
