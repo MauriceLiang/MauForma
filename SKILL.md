@@ -44,6 +44,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 | **新建/重构含交互控件的页面，先选并用组件库** | **`references/component-library-first-gate.md`**、`references/enterprise-ui-library-guide.md`、`references/component-first.md` |
 | 组件工程、技术栈、跨框架迁移 | `references/component-first.md`、`references/framework-support-matrix.md`、匹配的 `references/framework-*.md` |
 | 浏览器、无障碍、性能与交付复核 | `references/visual-qa.md`、`references/browser-qa-protocol.md`、`references/ui-review-rubric.md` |
+| **需采集真实网页样式、对比 Design Tokens 漂移、差量质量检查、功能级设计续接或设计候选预览** | **`references/skill-gap-workflows.md`**（只读取当前任务的工具说明，不启动其他工具） |
 
 其他参考文件、组件画廊与脚本均为**按需工具**。示例通过不代表真实页面通过。不得把某一场景的专项规范自动提升为所有网站的默认布局。
 
@@ -131,6 +132,7 @@ description: Web-first, framework-aware frontend design and implementation skill
 - 动画配方：`references/animejs-official-capabilities.md`、`references/animejs-motion-recipes.md`、`assets/motion-gallery.html`。
 - 互动原型：`assets/preview.html` 及其他 `assets/*-lab.html`，**只作为独立概念示范**。
 - 审核脚本：`scripts/audit_frontend.py`、`scripts/audit_existing_visual_defects.mjs`、`scripts/audit_panel_spacing.mjs`、`scripts/audit_spacing_rhythm.mjs`、`scripts/browser_qa.mjs`。运行前检查依赖与页面可访问性，不能把工具不可用写成通过。
+- **按需设计交付工具**：`scripts/extract_design_dna.mjs`、`scripts/check_design_drift.py`、`scripts/mauforma_check.py`、`scripts/feature_design_flow.py`、`scripts/preview_design_variants.py`、`scripts/plan_ui_hardening.py`；先查看 `references/skill-gap-workflows.md` 的输入、权限及证据限制。
 
 ```bash
 # 根据网站内容查找风格资料和适用技术
