@@ -30,7 +30,7 @@ The **single Agent entrypoint is [SKILL.md](SKILL.md)** (English-first and task-
 | User experience | Audience, user journeys, information architecture, content hierarchy |
 | Visual direction | Typography, palettes, spacing, art direction and composition |
 | Component engineering | Existing component systems, reusable primitives, interaction states |
-| Motion design | Purposeful state transitions, choreography, continuity, interruption and reduced motion |
+| Motion design | 123 searchable Web motion recipes, 22 curated effect terms, original signature-effect composition, continuity and real-world reduced-motion behavior |
 | Quality assurance | Real-page visual review, accessibility, keyboard behavior, responsive boundaries |
 | Evidence workflows | Design DNA, token drift, scoped code review, motion frame evidence and resumable feature tasks |
 
@@ -95,7 +95,7 @@ The agent must not silently install global hooks, change user branding, replace 
 | Visual hierarchy and composition | [Composition-first](references/composition-first-design.md), [visual QA](references/visual-qa.md) |
 | Components and system design | [Component Library First](references/component-library-first-gate.md), [shared design system](references/design-system.md) |
 | Forms and navigation | [Settings/form layout](references/settings-form-layout-gate.md), [navigation architecture](references/navigation-architecture.md) |
-| Motion and continuity | [Motion Craft](references/motion-craft-and-continuity.md), [Rehearsal](references/motion-rehearsal-and-evidence.md) |
+| Motion and continuity | [Curated motion vocabulary & creative combinations](references/expressive-motion-vocabulary.md), [Motion Craft](references/motion-craft-and-continuity.md), [Rehearsal](references/motion-rehearsal-and-evidence.md) |
 | Browser and accessibility | [Browser QA](references/browser-qa-protocol.md), [Visual QA](references/visual-qa.md) |
 | Figma fidelity | [Figma workflow](references/figma-fidelity-workflow.md) |
 | Scripted evidence | [Executable workflows](references/skill-gap-workflows.md), [English handbook](references/execution-handbook.en.md) |
