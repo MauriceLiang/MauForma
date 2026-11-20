@@ -86,4 +86,4 @@
 7. 减少动效时重要内容消失或结果不同；动效包装成假的成功/进度。
 8. 只测静态截图或 Demo，不做目标页面真实操作前/中/后的动态复验。
 
-完成设计后继续执行 [Motion Rehearsal](motion-rehearsal-and-evidence.md)。本规范为通用原创归纳，灵感来源：Stageshow `references/motion.md`、`references/verify.md`、`references/rehearse.md`（上游仓库 MIT；实际引用资产时另查第三方许可）。
+完成设计后继续执行 [Motion Rehearsal](motion-rehearsal-and-evidence.md)。本规范为通用原创归纳，灵感来源：Stageshow 上游的 [Motion](https://github.com/benjitaylor/skills/blob/main/stageshow/references/motion.md)、[Verify](https://github.com/benjitaylor/skills/blob/main/stageshow/references/verify.md)、[Rehearse](https://github.com/benjitaylor/skills/blob/main/stageshow/references/rehearse.md)（上游仓库 MIT；实际引用资产时另查第三方许可）。
