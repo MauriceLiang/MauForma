@@ -1,6 +1,6 @@
 # Browser QA：视觉方案与真实操作的联合验收
 
-借鉴 Anthropic Webapp Testing 的真实浏览器思路，本文件不把静态检查等同于浏览器运行。使用本项目已有 Playwright/浏览器测试设施；没有时先说明限制，不静默安装新浏览器或远程驱动。
+本文件使用真实浏览器证据，而不是把静态检查等同于浏览器运行；相关开源方法论来源集中见 README。使用本项目已有 Playwright/浏览器测试设施；没有时先说明限制，不静默安装新浏览器或远程驱动。
 
 ## v6.20 · 模糊优化的主动浏览器诊断
 
@@ -8,7 +8,7 @@
 
 ## Dynamic Motion Rehearsal（适用于有动效的实际页面）
 
-对新建/变更的关键交互，不以“CSS transition 已定义”或“截了一张最终图”作为完成。遵循 `references/motion-craft-and-continuity.md` 的连续性设计与 `references/motion-rehearsal-and-evidence.md` 的质量门禁，记录前/中/后帧，真实速度观察、逆向中断、最小支持视口和 reduced-motion。按需使用 `scripts/motion_rehearsal.mjs` 与实际页面选择器采集屏幕及几何状态；`CAPTURED_FOR_REVIEW` 仅代表收集到证据，仍需人工复看才能得出视觉结论。商业后台无需模拟假鼠标故事，营销演示不能充当业务 E2E。
+对新建/变更的关键交互，不以“CSS transition 已定义”或“截了一张最终图”作为完成。遵循 `references/motion-craft-and-continuity.md` 的连续性设计与 `references/motion-rehearsal-and-evidence.md` 的质量门禁，记录前/中/后帧，真实速度观察、逆向中断、最小支持视口和 reduced-motion。按需使用 `scripts/motion_rehearsal.mjs` **在操作前启动 rAF 及 pointer 事件取样**，再以实际页面选择器采集屏幕、几何和可疑位置跳变；`CAPTURED_FOR_REVIEW` 仅代表收集到证据，仍需人工复看才能得出视觉结论。商业后台无需模拟假鼠标故事，营销演示不能充当业务 E2E。
 
 ## 必选验收矩阵（按实际项目选用）
 
@@ -32,7 +32,7 @@ P0：表单不可用、按钮不可到达、数据不真实、内容被遮挡；
 ## 可用工具
 
 - 项目自带 Playwright 或相关浏览器工具优先；不自带时按授权安装，禁止修改业务运行环境后宣称“无变化”。
-- 静态扫描：`python3 scripts/audit_frontend.py path/to/src` 只提供启发式风险线索；开发者须人工复核。
+- 静态扫描：`python3 scripts/audit_frontend.py path/to/src` 只提供启发式风险线索；`python3 scripts/mauforma_check.py --root path/to/project --changed src/App.vue --format json` 提供差量结构化报告与有限期限的豁免。浏览器验证独立记录 `NOT_TESTED`，开发者须人工复核。
 - 可执行基线：`python3 -m unittest discover -s tests` 与现有 `scripts/validate_*.py`。
 
 ## 反面
