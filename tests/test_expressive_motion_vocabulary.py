@@ -1,6 +1,8 @@
 """Static checks for creative motion vocabulary and catalog/gallery parity."""
 import json
 import re
+import shutil
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -75,6 +77,15 @@ class ExpressiveMotionVocabularyTests(unittest.TestCase):
             specialized = "e.id==='" + effect + "'" in self.gallery
             grouped = effect in {"horizontal-scroll", "scroll-snap", "smooth-scroll"} and "].includes(e.id)" in self.gallery
             self.assertTrue(specialized or grouped, effect)
+
+    def test_embedded_browser_gallery_script_is_syntactically_valid(self):
+        node = shutil.which("node")
+        if not node:
+            self.skipTest("Node is not installed in this local test environment")
+        script = self.gallery.split("<script>", 1)[1].split("</script>", 1)[0]
+        result = subprocess.run([node, "--check"], input=script, text=True,
+                                capture_output=True, check=False)
+        self.assertEqual(result.returncode, 0, result.stderr[-1600:])
 
     def test_cross_framework_naming_and_bilingual_discovery(self):
         self.assertIn("not necessarily official", self.doc.lower())
