@@ -19,7 +19,7 @@ description: Framework-agnostic Web UI/UX design and frontend engineering Skill.
 
 ## 2. Efficient on-demand reference routing
 
-**Read this entrypoint first. **Do not load both entrypoints by default**: SKILL.zh-CN.md is a preserved translation baseline, not a second active instruction file.** For each task choose **one relevant row**, then load **at most 1–3** appropriate references. Load more only when an identified failure or user instruction warrants it. Use the concise, English `references/execution-handbook.en.md` for cross-cutting gates; detailed legacy topic guides remain available under their original paths. Never load the entire reference folder, all animations, or all scripts as a default. A clean synthetic example is not a product QA pass.
+**Read this entrypoint first.** **Do not load both entrypoints by default**: SKILL.zh-CN.md is a preserved translation baseline, not a second active instruction file. For each task choose **one relevant row**, then load **at most 1–3** appropriate references. Load more only when an identified failure or user instruction warrants it. Use the concise, English `references/execution-handbook.en.md` for cross-cutting gates; detailed legacy topic guides remain available under their original paths. Never load the entire reference folder, all animations, or all scripts as a default. A clean synthetic example is not a product QA pass.
 
 | Trigger / task | Load only when relevant |
 | --- | --- |
