@@ -8,7 +8,7 @@
 
 ## Dynamic Motion Rehearsal（适用于有动效的实际页面）
 
-对新建/变更的关键交互，不以“CSS transition 已定义”或“截了一张最终图”作为完成。遵循 `references/motion-rehearsal-and-evidence.md` 记录前/中/后帧，真实速度观察、逆向中断、最小支持视口和 reduced-motion。按需使用 `scripts/motion_rehearsal.mjs` 与实际页面选择器采集屏幕及几何状态；`CAPTURED_FOR_REVIEW` 仅代表收集到证据，仍需人工复看才能得出视觉结论。商业后台无需模拟假鼠标故事，营销演示不能充当业务 E2E。
+对新建/变更的关键交互，不以“CSS transition 已定义”或“截了一张最终图”作为完成。遵循 `references/motion-craft-and-continuity.md` 的连续性设计与 `references/motion-rehearsal-and-evidence.md` 的质量门禁，记录前/中/后帧，真实速度观察、逆向中断、最小支持视口和 reduced-motion。按需使用 `scripts/motion_rehearsal.mjs` 与实际页面选择器采集屏幕及几何状态；`CAPTURED_FOR_REVIEW` 仅代表收集到证据，仍需人工复看才能得出视觉结论。商业后台无需模拟假鼠标故事，营销演示不能充当业务 E2E。
 
 ## 必选验收矩阵（按实际项目选用）
 
