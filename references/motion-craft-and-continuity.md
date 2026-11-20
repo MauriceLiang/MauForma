@@ -9,6 +9,10 @@
 - 核心交互应该精致，但可以克制；高频操作比低频展示更要求快速、可反向、可中断。某个页面用动画少，不代表设计不高级；应解释哪些动作有连续性、哪些即时切换更好。
 - 静态画面必须先成立：若排版层级、密度、留白和目标控件错误，动画不会补救。不要用持续漂浮、放射光、彩边或跟随鼠标的装饰遮盖基本问题。
 
+### Creative motion is a design opportunity, not a global ban
+
+当用户委托设计高品质、创意、品牌或沉浸式产品时，Agent 应**主动探索产品特有的标志性动效**，不应等用户准确说出术语，也不应只交付淡入/滑入。可从 [Expressive Motion Vocabulary](expressive-motion-vocabulary.md) 选择多种不同机制组合：例如硬件特写使用 scroll zoom + mask reveal，作品集使用 character reveal + text morph，版本浏览使用 horizontal scroll + scroll snap。先确保真实内容、视觉主体与整体节奏成立；允许有创意的复杂编排，但必须有实际价值，不将某一教程的参数写成全局固定值。
+
 ## Gate MC1 · 从状态图到分镜，而不是先写 CSS
 
 为高价值真实交互做最小 storyboard，不必为每次 hover 写长文：
