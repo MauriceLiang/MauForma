@@ -41,7 +41,7 @@ class LiquidGlassGuideTests(unittest.TestCase):
     def test_core_is_task_routed_not_default_theme(self):
         skill = (ROOT / "SKILL.md").read_text("utf-8")
         self.assertIn("liquid glass", skill.casefold())
-        self.assertIn("only on request", skill.casefold())
+        self.assertIn("explicitly requested or inherited from a confirmed design brief", skill.casefold())
         self.assertIn("references/liquid-glass-optics.md", skill)
 
 

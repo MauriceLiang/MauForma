@@ -159,6 +159,12 @@ python3 -m unittest discover -s tests -v
 
 更多专项文档由 [SKILL.md](SKILL.md) 的任务路由表指引。
 
+## 上游项目再复盘与中英语义一致性
+
+对 README 所列的 14 个上游设计 Skill 逐项核对值得借鉴的内容、真实吸收状态及不适用边界：[中文复盘](references/upstream-reassessment.zh-CN.md) / [English reassessment](references/upstream-reassessment.en.md)。重要的触发条件、必须行为、合法例外与禁止事项，用 [中文 B01–B15 语义契约](references/semantic-boundaries.zh-CN.md) 和 [英文契约](references/semantic-boundaries.en.md) 成对记录，并通过 [结构化源文件](assets/semantic-boundary-contract.json) 做静态回归。**普通界面开发不必加载这套复盘文档**；只有对规则理解、版本或权限存疑时才按编号查询。
+
+这些静态检查不能证明 Agent 在所有模型上都完全理解中英文，也不能替代真实项目视觉/业务浏览器验收。
+
 ## 质量检查
 
 主要约束：

@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased — Upstream Skill reassessment and bilingual boundary hardening
+
+- Re-reviewed 14 credited external design Skills and selected supporting practices, identifying further transferable details plus clearly rejected framework-, host-, and marketing-specific defaults.
+- Added English and Chinese source-by-source reassessment notes; source and license links remain centralized in the READMEs.
+- Added 15 numbered EN/ZH contracts for trigger, required behavior, exception and prohibition, backed by one machine-readable source and static regression validator.
+- Resolved conflicting interpretations of the 1-primary/2-secondary reference budget, UI library install permission, Figma desktop selection versus remote link, optional visual effects, actual supported viewport, scoped VERIFIED status, and English instruction versus product locale.
+- Strengthened browser reconnaissance before selectors, console/network observations, error/undo/locale checks, code-derived versus schema versus product-truth drift and documented source lookup failure behavior.
+- Expanded English handbook and Chinese topic guides, with matching localization links and negative test scenarios. Synthetic tests and multilingual clause checks do not prove real-model comprehension or visual E2E success.
+
+---
+
 ## Unreleased — International-first runtime and bilingual documentation
 
 - Replaced the Agent-facing SKILL.md with an English-first task router and explicit design/engineering/verification boundaries, retaining the full Chinese policy as SKILL.zh-CN.md for review and migration parity.

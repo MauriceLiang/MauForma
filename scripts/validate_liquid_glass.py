@@ -42,7 +42,7 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         if "references/liquid-glass-optics.md" not in contents[route]:
             issues.append(f"{route}: optional optics guide is not discoverable")
     skill = contents["SKILL.md"]
-    if "only on request" not in skill.casefold() or "optional" not in skill.casefold():
+    if "explicitly requested or inherited from a confirmed design brief" not in skill.casefold() or "optional" not in skill.casefold():
         issues.append("Core skill must not turn liquid glass into a mandatory global skin")
     guide = contents["references/liquid-glass-optics.md"]
     for item in LAYER_MARKERS + TECH_MARKERS:

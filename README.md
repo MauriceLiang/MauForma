@@ -102,6 +102,12 @@ The agent must not silently install global hooks, change user branding, replace 
 
 The detailed legacy references are primarily Chinese today; the English entrypoint and English handbook provide a fully usable **English core**. Deep-topic translation is staged separately to protect technical meaning and maintain runnable checks. No false claim of full reference-library translation is made.
 
+## Upstream reassessment and bilingual semantic parity
+
+The 14 referenced upstream design Skills were re-reviewed for transferable ideas, actual implementation coverage, task/host prerequisites and unwanted global rules. Read the [English source-by-source reassessment](references/upstream-reassessment.en.md) or the [Chinese review](references/upstream-reassessment.zh-CN.md) only when maintaining or extending the Skill. Critical interpretation exceptions are paired in [English semantic boundaries](references/semantic-boundaries.en.md) / [中文语义边界](references/semantic-boundaries.zh-CN.md), backed by a [machine-readable contract](assets/semantic-boundary-contract.json) and regression checks.
+
+These documents are **not required reading for ordinary page changes**. The default Skill stays task-routed; passing bilingual contract checks is static QA, not proof of a model's language understanding. Dependency, browser, Figma and locale authorization must be determined from the actual task.
+
 ## Quality assurance
 
 Checks cover Skill structure, routing, token and UI design contracts, component strategy, visual anti-patterns and browser smoke tests on **synthetic fixtures**. They cannot validate an arbitrary external application without its source, runtime and explicit permissions.

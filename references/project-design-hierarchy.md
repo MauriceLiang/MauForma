@@ -73,6 +73,14 @@ python3 scripts/init_design_system.py --project-root . --name "Example" --style 
 
 可在用户项目中保留 `design-system/pages/task-run-contract.json`（结构见 `assets/task-center-run.schema.json`），将 run ID、状态聚合、进度计算单位/分母稳定性、重试权限、详情路径、更新节奏与 E2E 证据与页面设计联动。MASTER 保留共享色彩状态 Token、列表排版和容器对齐；但用户是否要统计侧栏/紧凑列表/详情抽屉应按任务使用方式决定，不在全站强制。不得把示例 Mock 记录复制成生产真实任务。
 
+## 设计漂移的三类来源（B12）
+
+- **Tool/version drift（工具版本漂移）**：Agent Skill 或脚本版本变更，可能需要核对命令和 schema；不会自动意味着产品配色错误。
+- **Schema drift（设计文件格式漂移）**：MASTER/decisions 的字段或路径约定变化，可在明确授权后迁移，不把格式更改当成用户重新同意品牌色。
+- **Truth drift（设计事实漂移）**：文档叙述与实际源码/页面效果不一致，必须核对当前用户意图、审批来源、目标页面与视觉证据，**不能仅凭静态快照判定哪一边才正确**。
+
+`observed-tokens.json` 是代码观测，不是全站已确认的权威 Tokens。工具不得为生成全绿报告而改写 MASTER、品牌决策或已接受的页面例外。英文边界见 `references/semantic-boundaries.en.md` B12。
+
 ## 运行时 Design Drift 检查与功能级续接
 
 - 已有项目在修改 Tokens 前先读现有真实源码与已确认的 MASTER/decisions。使用 `scripts/check_design_drift.py` 制作**观测基线**（需 `--write-baseline` 明确开启），之后检查 CSS 自定义变量增删改、局部硬编码颜色候选。基线与用户批准的 Token **不是一回事**，不据此自动改写 MASTER。
