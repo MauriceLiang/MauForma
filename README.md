@@ -71,7 +71,20 @@ MauForma 将动效视为可用性、状态连续性和产品质感的一部分�
 - **真实页面逐帧验证**：在目标路由录制交互前/中/后、反向与 reduced-motion，逐帧检查跳变、重影、漂移，修复后重录。可选 `scripts/motion_rehearsal.mjs`；脚本只输出证据，不能判定审美通过。
 - **保留框架自由**：Vue、React 等均能应用规则；不强制安装 Stageshow React Kit、动画引擎或录制工具。模拟鼠标/宣传动画只用于明确需要展示叙事的场景，不伪装为功能测试。
 
-规范见 [Motion Craft & Continuity](references/motion-craft-and-continuity.md) 与 [Motion Rehearsal & Evidence](references/motion-rehearsal-and-evidence.md)。动画强度仍尊重用户确认选择和系统减少动态效果；高频工作界面强调响应速度，展示型网站可在授权范围内采用更丰富的节奏。
+规范见 [Motion Craft & Continuity](references/motion-craft-and-continuity.md) 与 [Motion Rehearsal & Evidence](references/motion-rehearsal-and-evidence.md)。
+
+仓库包含一份**原创、无需前端框架依赖的可交互实验页** [Motion Continuity Lab](assets/motion-continuity-lab.html)，演示选中指示器、真实位置变化、按钮状态和空间披露。可直接用浏览器打开；若要用自动取证工具录制，启动静态服务器：
+
+```bash
+python3 -m http.server 8000
+# 另一个终端运行（需要项目中已有 Playwright + Chromium）
+node scripts/motion_rehearsal.mjs \
+  --url http://127.0.0.1:8000/assets/motion-continuity-lab.html \
+  --scenario assets/motion-continuity-lab.scenario.json \
+  --out ./artifacts/motion-lab
+```
+
+该实验的数据和交互完全为合成模拟。真实项目必须使用实际 UI 路由/选择器再次复验。动画强度仍尊重用户确认选择和系统减少动态效果；高频工作界面强调响应速度，展示型网站可在授权范围内采用更丰富的节奏。
 
 ## 可选视觉技术：Liquid Glass
 
