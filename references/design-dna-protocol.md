@@ -1,6 +1,6 @@
 # Design DNA：参考网站的 WHAT / WHY / EVIDENCE
 
-借鉴 Senlin Taste 的方法——不仅写“用了什么色”，还解释选择背后的权衡。MauForma 独立实现审查流程，不宣称能读取无法访问或未检验的远端网页。
+不仅写“用了什么色”，还解释选择背后的权衡。MauForma 独立实现审查流程，不宣称能读取无法访问或未检验的远端网页。开源致谢集中在 README。
 
 ## 输入与证据等级
 
@@ -28,3 +28,7 @@
 ## 适用判定
 
 设计 DNA 是候选风格的补充证据；用户确认优先于“很像某参考网站”的推断。将采集结论映射到 MauForma 的八种风格档案，并按当前网站内容/用户目标给出匹配理由。
+
+## 可执行采集（按需）
+
+可在授权的真实页面运行 `node scripts/extract_design_dna.mjs --url https://example.com --out ./artifacts/design-dna`，将实际计算样式与截图保留为独立证据。它不会直接推断作者 WHY，也不会把真实引用自动写入 MASTER；静态分析/无授权页面必须明确标记未验证。操作与网络安全说明见 `references/skill-gap-workflows.md`。

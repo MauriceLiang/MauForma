@@ -1,6 +1,6 @@
 # 项目设计系统：MASTER 与页面覆盖
 
-借鉴 UI/UX Pro Max 的 Master + Page Overrides 思想；MauForma 的文件格式和实施规则为独立设计，不复制外部生成器。
+本项目采用全局 MASTER 与页面 Override 的分层模式，文件格式和实施规则为独立设计；外部方法论参考与谢意见 README。
 
 ## 建议项目输出目录（在用户项目内创建）
 
@@ -72,3 +72,9 @@ python3 scripts/init_design_system.py --project-root . --name "Example" --style 
 ## v6.11 · Run Monitor 页面级状态契约
 
 可在用户项目中保留 `design-system/pages/task-run-contract.json`（结构见 `assets/task-center-run.schema.json`），将 run ID、状态聚合、进度计算单位/分母稳定性、重试权限、详情路径、更新节奏与 E2E 证据与页面设计联动。MASTER 保留共享色彩状态 Token、列表排版和容器对齐；但用户是否要统计侧栏/紧凑列表/详情抽屉应按任务使用方式决定，不在全站强制。不得把示例 Mock 记录复制成生产真实任务。
+
+## 运行时 Design Drift 检查与功能级续接
+
+- 已有项目在修改 Tokens 前先读现有真实源码与已确认的 MASTER/decisions。使用 `scripts/check_design_drift.py` 制作**观测基线**（需 `--write-baseline` 明确开启），之后检查 CSS 自定义变量增删改、局部硬编码颜色候选。基线与用户批准的 Token **不是一回事**，不据此自动改写 MASTER。
+- 较大的功能开发将阶段性文档存于项目 `design-system/features/<slug>/`，使用 `scripts/feature_design_flow.py` 创建（默认仅预览）与查询进度、逐项登记证据；只引用 MASTER，不在每个功能下复制品牌与色彩配置。
+- 恢复会话时先读取 feature state 与已有完成证据；没有真实验收不能把任务标记 `VERIFIED`。详情见 `references/skill-gap-workflows.md`。

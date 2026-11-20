@@ -59,6 +59,17 @@ Nuxt 项目遵循 Nuxt 的 `pages/`、`components/`、`composables/`、`server/`
 - 对齐 `examples/vue3-web-components.md` 的示范；真实项目根据已有库更改实现。
 - 业务页面应当组合共享组件和真实逻辑；仅为单个页面临时复制按钮 style 属于反例。
 
+## 7. Vue 3 / Nuxt 响应式、组件边界与性能专项门禁（按需）
+
+- **单一真值源**：局部可推导值优先使用 `computed`，不要通过多个 `watch` 互相抄写状态；副作用由有明确职责的 watcher/事件处理负责。
+- **数据流与组件 API**：Props 向下、Events 向上；仅为真实双向契约使用 `v-model`，避免在子组件偷偷修改父级状态。复杂组件可用明确的复合模式，不为拆分而拆分。
+- **Composables 生命周期**：DOM observer、计时器、全局事件、网络订阅、动效实例应在所属组件/组合函数内正确停止；SSR 时不在服务端创建浏览器对象。
+- **性能证据**：检查大量行 DOM、深层响应式对象的成本、重复请求、watcher 触发频率、切换主题时是否造成整页重建。必要时优化响应式边界，而不是默认添加昂贵的缓存层。
+- **表单与展示**：触发后显示实际等待/失败/重试状态，确保中文长标签、键盘操作、200% 字级与 reduced motion 仍然可用。
+- **目标环境优先**：仅桌面产品按最低桌面视口验收；移动端/RTL 等额外平台按真实需求开启，而不是在普通 Vue 项目默认加负担。
+
+测试先使用项目已有组件测试与浏览器工具；`scripts/mauforma_check.py` 提供低成本候选风险，不是 Vue 类型检查或运行时 E2E 的替代。
+
 官方参考：
 - https://vuejs.org/guide/introduction.html
 - https://nuxt.com/docs

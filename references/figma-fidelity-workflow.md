@@ -45,6 +45,6 @@
 
 这里的 `VERIFIED` 仅表示列出的**具体环境/页面与测试项目**确实复核，不代表所有设备/视觉与业务百分百一致。
 
-参考上游方法（独立改写，不复制源 Skill）：<https://github.com/openai/skills/blob/main/skills/.curated/figma-implement-design/SKILL.md>；Figma 原生 MCP 工作流说明：<https://help.figma.com/hc/en-us/articles/39166810751895-Figma-skills-for-MCP>。
+开源 Skill 的出处与谢意集中在根目录 README；Figma 原生 MCP 操作仍须以当前官方文档与实际工具权限为准。
 
 **适用时读取**：`references/design-reference-learning-gate.md`、`references/design-system.md`、`references/component-library-first-gate.md`、`references/browser-qa-protocol.md`。

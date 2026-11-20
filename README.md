@@ -86,6 +86,24 @@ node scripts/motion_rehearsal.mjs \
 
 该实验的数据和交互完全为合成模拟。真实项目必须使用实际 UI 路由/选择器再次复验。动画强度仍尊重用户确认选择和系统减少动态效果；高频工作界面强调响应速度，展示型网站可在授权范围内采用更丰富的节奏。
 
+## 可执行的设计能力增强
+
+本项目新增按任务启用的可执行工具，**不强制安装新的动画库或设计套件**。相比单纯新增更多审美规则，重点让 Agent 在真实项目中获得可追溯的证据、检测设计漂移、准确恢复未完成的设计任务。
+
+| 能力 | 工具 | 工作范围 |
+| --- | --- | --- |
+| Design DNA 提取 | `scripts/extract_design_dna.mjs` | 授权网页的计算样式、截图；**不推断作者真实设计意图** |
+| Token 漂移检查 | `scripts/check_design_drift.py` | 仅扫描/比对已有源码；不覆盖项目 MASTER |
+| 增量设计审计 | `scripts/mauforma_check.py` | 文件/行号/规则/严重度 + 限定范围的豁免 |
+| Motion QA 2.0 | `scripts/motion_rehearsal.mjs` | 操作前 rAF 取样、异常候选、Contact Sheet、可选录像 |
+| 视觉方案对比 | `scripts/preview_design_variants.py` | 安全的本地独立预览；选择后仍需在实际项目落地 |
+| 设计任务续接 | `scripts/feature_design_flow.py` | 功能 Brief/IA/任务/Review 记录，不重造全局设计系统 |
+| UI Hardening | `scripts/plan_ui_hardening.py` | 按实际支持的平台生成错误/长文/交互测试意图 |
+
+所有工具均为**可选**，不自动运行外部网站抓取、不安装 hooks、不修改用户全局 Agent 配置。自动取证、合成页面和性能启发式只提供候选证据，必须针对目标项目实测才可标记为已验证。
+
+使用命令、依赖、权限与限制见 [可执行设计工作流](references/skill-gap-workflows.md)。新增脚本的合成测试不能替代真实项目的浏览器验收。
+
 ## 可选视觉技术：Liquid Glass
 
 MauForma 可以按需分析和设计液态玻璃的**透明、折射、高光、阴影**四层光学近似，模糊作为可选额外效果，而不是全站默认皮肤。Web 端 SVG 背景折射具有浏览器兼容限制，重要按钮与文字必须保持 DOM 语义与静态降级。详见 [液态玻璃光学规范](references/liquid-glass-optics.md) 与 [独立交互教学实验](assets/liquid-glass-layer-lab.html)。
@@ -160,12 +178,19 @@ MauForma 的设计方法离不开开放的设计知识、工具与社区实践�
 | 项目及作者 | 主要学习方向 |
 | --- | --- |
 | [Stageshow — Benji Taylor](https://github.com/benjitaylor/skills/tree/main/stageshow) | 可信的产品界面演示、运动因果、节奏与动效质量复验 |
-| [Frontend Design — Anthropic](https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design/skills/frontend-design) | 设计意图、视觉方向与反模板化 |
+| [Frontend Design — Anthropic](https://github.com/anthropics/skills/tree/main/skills/frontend-design) | 设计意图、视觉方向与反模板化 |
 | [Impeccable — Paul Bakaus](https://github.com/pbakaus/impeccable) | 分维度的视觉精修与设计质量检查 |
 | [Taste Skill — senlindesign](https://github.com/senlindesign/taste-skill) | 设计品味与审美判断的讨论 |
 | [Taste Skill — Leonxlnx](https://github.com/Leonxlnx/taste-skill) | 不同实现中的视觉判断与验证方式 |
 | [Theme Factory — Anthropic](https://github.com/anthropics/skills/tree/main/skills/theme-factory) | 主题与视觉语言的一致性 |
 | [Designer Skills — julianoczkowski](https://github.com/julianoczkowski/designer-skills) | 分阶段设计工作流与审查 |
+| [UI/UX Pro Max — nextlevelbuilder](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | 本地风格知识检索、MASTER/页面覆盖与选型证据 |
+| [Web Design Guidelines — Vercel](https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines) | 可定位的前端代码问题与可访问性核对 |
+| [Composition Patterns — Vercel](https://github.com/vercel-labs/agent-skills/tree/main/skills/composition-patterns) | 组合式组件结构、显式变体和状态所有权 |
+| [React Best Practices — Vercel](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices) | React/Next 请求链、渲染和包体性能 |
+| [Vue Best Practices — vuejs-ai](https://github.com/vuejs-ai/skills/tree/main/skills/vue-best-practices) | Vue 响应式数据流、组合式 API 和组件生命周期 |
+| [Webapp Testing — Anthropic](https://github.com/anthropics/skills/tree/main/skills/webapp-testing) | 真实浏览器、日志与应用服务协同测试 |
+| [Figma Implement Design — OpenAI](https://github.com/openai/skills/tree/main/skills/.curated/figma-implement-design) | 设计节点还原、原型资源和实际页面视觉一致性 |
 
 Stageshow 的具体参考包括 [Motion](https://github.com/benjitaylor/skills/blob/main/stageshow/references/motion.md)、[Choreography](https://github.com/benjitaylor/skills/blob/main/stageshow/references/choreography.md)、[Verify](https://github.com/benjitaylor/skills/blob/main/stageshow/references/verify.md)、[Rehearse](https://github.com/benjitaylor/skills/blob/main/stageshow/references/rehearse.md) 和 [Review](https://github.com/benjitaylor/skills/blob/main/stageshow/references/review.md)。这些出处集中保存在 README，避免在 Agent 高频读取的规则文档里重复附上链接和致谢说明。
 

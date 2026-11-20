@@ -62,6 +62,14 @@ jobs:
           node --check tests/icon_art_direction_browser_smoke.mjs
           node --check tests/design_reference_browser_smoke.mjs
           node --check tests/liquid_glass_browser_smoke.mjs
+          node --check scripts/extract_design_dna.mjs
+          node --check scripts/motion_rehearsal.mjs
+          node --check tests/skill_gap_browser_smoke.mjs
+          python3 scripts/check_design_drift.py --help
+          python3 scripts/mauforma_check.py --help
+          python3 scripts/feature_design_flow.py --help
+          python3 scripts/preview_design_variants.py --help
+          python3 scripts/plan_ui_hardening.py --help
           python3 -m unittest discover -s tests -v
       - name: Syntax check browser QA script
         run: node --check scripts/browser_qa.mjs
@@ -79,6 +87,8 @@ jobs:
         run: |
           npm install --no-save --no-package-lock --ignore-scripts playwright@1.58.2
           npx playwright install chromium
+      - name: Validate Design DNA capture and click-time rAF motion evidence
+        run: node tests/skill_gap_browser_smoke.mjs
       - name: Validate comparison interactions and scroll-end in Chromium
         run: node tests/comparison_browser_smoke.mjs
       - name: Validate generic surface modes and atomic control geometry

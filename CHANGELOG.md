@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased — Executable design workflows & skill-gap remediation
+
+- 补齐 **Design DNA** 授权真实网页计算样式采集：独立 Playwright context、URL 网络边界、无网页正文抓取、证据与推断分离，截图只存本地 artifacts。
+- 新增 **Design Drift Doctor**：项目 CSS 变量观测基线与差异报告；不会改写用户批准的设计系统、配色或业务源码。
+- 将 Motion Rehearsal 升级为 **click 前 rAF + pointer 事件采样**、可疑跳位/锚点漂移/截图缺口候选、Contact Sheet 与可选视频；候选必须人工复验，合成示例不构成生产验收。
+- 新增增量 UI 检测 CLI、文件/行号/风险报告和有理由/到期时间的局部豁免；没有安装全局 Agent hook 或依赖。
+- 新增可恢复功能级 Brief/IA/Tasks/Review 记录、基于同一虚构内容的安全三方案预览、用户显式选择存档、按项目范围生成的 UI 极端状态验收清单。
+- React/Next、Vue/Nuxt 增补按需性能、状态所有权和生命周期门禁；主 SKILL 仅增加最短路由，不将所有上游规则载入常驻上下文。
+- 集中 14 个参考 Skill 出处及作者致谢于 README，收敛专项规范中的重复出处，保留真正需要的官方 API/第三方许可。
+- Python 单元测试和隔离的 Chromium 合成用例覆盖差量扫描、设计系统漂移、工作流恢复、方案选择、网页 DOM 采样及点击中的 rAF 捕获；**不宣称已在真实用户项目完成视觉验收**。
+
+---
+
+
 ## Unreleased — Motion Craft & Frame-by-Frame Rehearsal
 
 - 从外部开源动效实践中吸收分镜、运动因果、过渡连续性与动态录像方法（完整出处与致谢见 README），新增 `references/motion-craft-and-continuity.md`：状态微分镜、对象身份、邻居让位、锚点、文字/数字、节奏、指针/拖拽和展示动画边界。
