@@ -23,9 +23,12 @@ class RuntimeEnglishContractTests(unittest.TestCase):
     def test_translated_subset_has_clean_english_runtime_prose(self):
         self.assertEqual(module.inspect(self.manifest), [])
 
-    def test_completed_translation_requires_independent_semantic_review(self):
-        self.assertEqual(self.manifest["status"], "complete_pending_review")
-        self.assertTrue(all(x["translated_status"] == "translated_pending_independent_review"
+    def test_second_pass_review_has_explicit_bounded_evidence(self):
+        self.assertEqual(self.manifest["status"], "reviewed_and_approved")
+        self.assertEqual(self.manifest["review_record"], "assets/i18n-phase2-semantic-review.md")
+        self.assertTrue((ROOT / self.manifest["review_record"]).is_file())
+        self.assertEqual(len(self.manifest["entries"]), 83)
+        self.assertTrue(all(x["translated_status"] == "reviewed_second_pass"
                             for x in self.manifest["entries"]))
 
     def test_missing_critical_boundary_is_rejected(self):
