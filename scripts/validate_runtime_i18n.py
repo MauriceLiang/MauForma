@@ -17,10 +17,21 @@ def inspect(contract: dict, root: Path = ROOT) -> list[str]:
     errors: list[str] = []
     if contract.get("schema_version") != "1.0":
         errors.append("Unsupported i18n phase-2 contract")
-    if contract.get("status") not in {"partial_migration", "complete_pending_review", "fully_verified"}:
+    if contract.get("status") not in {"partial_migration", "complete_pending_review", "reviewed_and_approved", "fully_verified"}:
         errors.append("Explicit migration status is required")
     if contract.get("status") == "fully_verified":
         errors.append("Static contracts cannot assert independent semantic parity verification")
+    if contract.get("status") == "reviewed_and_approved":
+        review_path = contract.get("review_record")
+        if review_path != "assets/i18n-phase2-semantic-review.md":
+            errors.append("Approved review must reference the bounded second-pass evidence record")
+        elif not (root / review_path).is_file():
+            errors.append("Second-pass semantic review evidence record is missing")
+        else:
+            review = (root / review_path).read_text("utf-8")
+            for marker in ("83/83 exact matches", "114/114", "PASS", "not a claim"):
+                if marker.casefold() not in review.casefold():
+                    errors.append(f"Review evidence is missing scope qualification: {marker}")
     skill = root / "SKILL.md"
     if not skill.is_file() or HAN.search(skill.read_text("utf-8")):
         errors.append("SKILL.md must remain English-only")
@@ -37,6 +48,9 @@ def inspect(contract: dict, root: Path = ROOT) -> list[str]:
         if contract.get("status") == "complete_pending_review":
             if inventory_status != "complete_pending_independent_review":
                 errors.append("Completed translation inventory must remain pending independent semantic review")
+        elif contract.get("status") == "reviewed_and_approved":
+            if inventory_status != "complete_reviewed":
+                errors.append("Reviewed translation requires a reviewed inventory")
         elif inventory_status != "partial":
             errors.append("Partial translation must have an explicit partial inventory")
         if not isinstance(records, list):
@@ -45,11 +59,15 @@ def inspect(contract: dict, root: Path = ROOT) -> list[str]:
         paths = [r.get("path") for r in records if isinstance(r, dict)]
         if len(paths) != len(set(paths)):
             errors.append("Duplicate files in full migration inventory")
+        expected_entry_status = (
+            "reviewed_second_pass" if contract.get("status") == "reviewed_and_approved"
+            else "translated_pending_independent_review"
+        )
         for entry in entries:
             found = next((r for r in records if isinstance(r, dict) and r.get("path") == entry.get("path")), None)
             if found is None:
                 errors.append(f"{entry.get('path')}: missing from full reference inventory")
-            elif (found.get("status") != "translated_pending_independent_review"
+            elif (found.get("status") != expected_entry_status
                   or found.get("source_blob_sha") != entry.get("source_blob_sha")):
                 errors.append(f"{entry.get('path')}: inventory and source blob mismatch")
         pending = [r for r in records if isinstance(r, dict) and r.get("status") == "pending_language_and_semantic_audit"]
@@ -70,8 +88,12 @@ def inspect(contract: dict, root: Path = ROOT) -> list[str]:
         sha = entry.get("source_blob_sha", "")
         if not isinstance(sha, str) or not BLOB_SHA.fullmatch(sha):
             errors.append(f"{rel}: original source Git blob SHA is missing")
-        if entry.get("translated_status") != "translated_pending_independent_review":
-            errors.append(f"{rel}: static validation must not claim independently approved translation")
+        expected_translation_status = (
+            "reviewed_second_pass" if contract.get("status") == "reviewed_and_approved"
+            else "translated_pending_independent_review"
+        )
+        if entry.get("translated_status") != expected_translation_status:
+            errors.append(f"{rel}: source review and translation statuses disagree")
         path = root / rel
         if not path.is_file():
             errors.append(f"{rel}: translated document missing")
@@ -117,12 +139,12 @@ def main() -> int:
     data = json.loads(CONTRACT.read_text("utf-8"))
     issues = inspect(data)
     if args.json:
-        print(json.dumps({"passed": not issues, "translated_files": len(data["entries"]), "migration_status": data["status"], "independent_semantic_qa": "NOT VERIFIED", "issues": issues}, ensure_ascii=False, indent=2))
+        print(json.dumps({"passed": not issues, "translated_files": len(data["entries"]), "migration_status": data["status"], "independent_semantic_qa": ("REVIEWED WITH BOUNDED EVIDENCE" if data["status"] == "reviewed_and_approved" else "NOT REVIEWED"), "issues": issues}, ensure_ascii=False, indent=2))
     else:
         for issue in issues:
             print("ERROR:", issue)
         print("Phase-2 English runtime subset:", "PASS" if not issues else "FAIL")
-        print("Independent semantic review: NOT VERIFIED; migration:", data["status"])
+        print("Second-pass semantic review:", "RECORDED" if data["status"] == "reviewed_and_approved" else "NOT RECORDED", "; migration:", data["status"])
     return int(bool(issues))
 
 
