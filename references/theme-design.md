@@ -1,55 +1,55 @@
-> v4 范围提示：本 Skill 以 Web 前端为直接适用对象。旧版本个别原生 SwiftUI/AppKit 条目仅供设计语义迁移参考，不用于要求安装或生成原生 UI 源码。
+> v4 scope notice: MauForma directly targets **Web frontends**. A few historical SwiftUI/AppKit items transfer only design semantics; they do not instruct the Agent to install or generate native UI code.
 
-# 主题设计指南：允许创造，不允许失控
+# Theme Design — Creative Freedom With Coherent Roles
 
-## 1. 什么需要统一，什么可以自由发挥？
+## 1. What stays consistent, and what can vary?
 
-**固定的是语义关系，不是蓝紫粉颜色。** 用户喜欢的是原网站对中性色、清晰字级、留白、圆角层级、柔和阴影、动画节奏的准确组合，而不是其主标题的某个 HEX。
+**Semantic relationships are fixed; blue/purple/pink choices are not.** The useful part of a polished reference is its coordination of neutral colors, readable type, whitespace, radius hierarchy, quiet shadows and motion—not one HEX on a heading.
 
-- **可以自由提出候选**：品牌色、强调色、渐变有无和方向、冷暖倾向、页面底色的微色调、主题暗色外观、插图/图标风格；最终采用用户已确认、明确委托或可继承的方案，不将 AI 推荐视为批准。
-- **必须统一**：色彩角色、对比关系、组件状态、层级边界、间距/圆角 scale、按钮语义、键盘焦点、状态色含义；同一产品所有页面复用一套 tokens。
-- **禁止**：某页用粉色主按钮、下页用绿色主按钮、弹窗又用蓝色主按钮，只因为“更好看”。多主题切换需通过集中主题机制生效。
+- **Candidates may vary:** Brand/accent colors, whether and where gradients exist, cool/warm tone, subtle page background hues, dark theme, illustration/icon direction. Actually adopt only a **confirmed, explicitly delegated or soundly inherited** choice; an Agent recommendation is not approval.
+- **Must remain consistent:** Semantic color roles, contrast, component states, hierarchy, spacing/radius scales, Button semantics, keyboard focus and status-color meaning. One product shares a token system across its pages.
+- **Prohibited:** Arbitrary pink primary Button on one route, green on another, blue in a dialog solely because each looked attractive. Multi-theme support must use a centralized mechanism.
 
-## 2. 主题选择流程
+## 2. Theme decision workflow
 
-1. 明确产品类型（例如管理台、SSH 工具、内容产品）、情绪关键词（冷静/温暖/活泼/沉稳）、使用强度（每日长时间工作 vs 偶尔展示）。
-2. 确定 **低饱和中性色底**。浅色一般保持背景、主表面、次表面三个相近但可分辨的层级；暗色则单独选值，不是把白色简单反相。
-3. **先确认用户已有主色选择**。颜色未知时，比较 2–3 套完整页面配色请用户决定，不能自定深蓝或某种默认色。随后再将已选主强调色映射到必要角色，1–2 种近邻色/互补色可供提案而非默认强制装饰。语义状态成功/警告/错误与主色解耦。
-4. 设定 `accent`, `on-accent`, `focus`, `text`, `text-soft`, `text-muted`, `control-border`, `surface`, `surface-soft`, `page-bg`, `success/warning/danger` 等语义角色。
-5. 在每种实际背景上检查文本和有意义的控件描边的对比度；预览 hover、pressed、focus、disabled、loading，必要时调整亮度/饱和度。
-6. 暗色模式需单独检查：强调色通常需提高明度，阴影不能承担全部分层，不能直接沿用浅色按钮的白字规则。
-7. 截图对照：文字阅读路径是否清晰？画面是否被主题色盖过内容？是否有必要使用渐变？
+1. Establish product type (admin, SSH tool, content product), emotional direction (calm/warm/playful/serious) and usage frequency (long daily sessions vs occasional showcase).
+2. Build a **low-saturation neutral base**. In light mode, page background, main surface and soft surface are nearby but distinguishable. Dark-mode values need their own deliberate selection—not a simple inversion of white.
+3. **Respect any user-selected primary color first.** If color remains undecided, present 2–3 coherent full-page palette candidates for choice rather than silently imposing dark blue or any default. Map the selected accent to meaningful UI roles. Neighboring/complementary colors may be proposed, **not** distributed as mandatory ornament. Success/warning/error are independent from brand accent.
+4. Define roles such as `accent`, `on-accent`, `focus`, `text`, `text-soft`, `text-muted`, `control-border`, `surface`, `surface-soft`, `page-bg`, `success/warning/danger`.
+5. Test readable text and meaningful control edges **on each real background**. Preview hover, pressed, focus, disabled and loading; adjust luminance/saturation as needed.
+6. Inspect dark mode separately. Accents often require adjusted luminance; shadows cannot be the only separator; light-theme white-on-accent assumptions may fail.
+7. Compare screenshots: Is the reading path clear? Does theme color overpower content? Does this design need a gradient at all?
 
-## 3. 六套可修改主题起点
+## 3. Six editable starting palettes
 
-| 主题 ID | 方向 | 主色（浅色） | 适用倾向 |
+| Theme ID | Direction | Light accent | May fit |
 | --- | --- | --- | --- |
-| `ocean` | 澄净蓝 | `#175CD3` | 准确、可靠、系统工具 |
-| `forest` | 雾松绿 | `#147D64` | 温和、稳定、创作工具 |
-| `copper` | 暖陶棕 | `#A14B20` | 编辑感、内容、品牌展示 |
-| `violet` | 暮影紫 | `#6941C6` | 创意工作台、个性表达 |
-| `slate` | 石墨灰 | `#344054` | 高密度开发工具、克制 |
-| `rose` | 深玫红 | `#B42349` | 活力但不过度甜腻的视觉 |
+| `ocean` | Clear blue | `#175CD3` | Reliable system/developer tools |
+| `forest` | Misty pine green | `#147D64` | Calm creator tools |
+| `copper` | Warm terracotta | `#A14B20` | Editorial content and brand work |
+| `violet` | Twilight violet | `#6941C6` | Expressive workspaces |
+| `slate` | Graphite gray | `#344054` | Dense developer tools and restraint |
+| `rose` | Deep rose | `#B42349` | Energetic without excessive sweetness |
 
-这些只是“结构正确的示例”，**不是限定只能用六套**。自主创造第七套主题时，必须把配色沉淀到 `theme-presets.json` 或项目的全局主题配置，不能手写散落在页面 CSS 中。
+These are **structurally valid examples, not the only six allowed themes**. If creating a seventh, save it in `theme-presets.json` or the actual project's shared theme configuration, not scattered page CSS.
 
-## 4. 主色与渐变
+## 4. Accent and gradients
 
-好：`--spui-accent` 负责按钮、可操作链接、焦点和选中；装饰性 `gradient` 只在大标题、图表特定语义或 onboarding 的局部使用，不牺牲对比度和可读性。营销页可以完全不使用渐变。渐变用色应从同一调色逻辑产生，不应随机跨越三种不相干高饱和色。
+**Good:** `--spui-accent` governs important Buttons, usable links, focus and selection. A decorative gradient can be limited to a Hero, data-specific chart usage or onboarding moment when contrast remains sufficient. Marketing pages may use **no gradients at all**. Gradient colors should share a coherent palette logic rather than jumping among three unrelated saturated hues.
 
-差：按钮蓝、标签粉、导航绿、弹窗紫、图表橙红乱搭；白字直接覆盖在亮粉→浅黄渐变上；正文也使用渐变文本；背景大面积高饱和色造成视觉疲劳。
+**Bad:** Blue buttons, pink badges, green navigation, purple dialog and random orange-red charts; white body text on a pale pink→yellow gradient; gradient body text; or wall-to-wall saturated backgrounds that tire readers.
 
-## 5. 对比度要求（WCAG 2.2 AA 基线）
+## 5. Contrast — WCAG 2.2 AA baseline
 
-- 普通文字对实际背景：**至少 4.5:1**；大号字：至少 3:1（满足大号文字判定条件时）。
-- 有意义的 UI 边界/图标/状态视觉：通常至少 **3:1**；纯装饰性边框不一定适用，但不应成为可访问性唯一线索。
-- 不能把 disabled 变成不可辨认的“消失”状态；要确保禁用与正在加载有清晰区别。
-- 焦点指示器必须明显可见且不会被 overflow 或阴影裁切；有色环需检查其所处背景的对比度。
-- 本仓库的 `scripts/validate_design_system.py` 仅校验**主题调色板的数值组合**，不验证真实 DOM、局部叠层、透明度、字号、动效，也不替代完整的 WCAG 审计。
+- Ordinary text against its **actual** background: **at least 4.5:1**. Qualifying large text: **3:1**.
+- Meaningful UI boundaries/icons/status visuals: typically **at least 3:1** under applicable standards. Purely decorative borders may be exempt but cannot be the only accessibility cue.
+- Disabled must not become an indistinguishable “disappeared” state; distinguish disabled from pending.
+- Focus indicators need to be clearly visible and not clipped by overflow/shadows. Contrast-test colored rings on their real backgrounds.
+- `scripts/validate_design_system.py` only checks **numeric relationships in the palette**; it does not test actual DOM, overlays, opacity, font size, animation or complete WCAG conformance.
 
-参考标准：https://www.w3.org/TR/WCAG22/
+Standard: https://www.w3.org/TR/WCAG22/
 
-## 6. CSS 使用方式
+## 6. CSS integration
 
 ```html
 <link rel="stylesheet" href="themes.css">
@@ -60,20 +60,20 @@
 </div>
 ```
 
-切换主题只修改根容器 `data-theme`，切换明暗只修改 `data-scheme`；组件引用语义变量如 `var(--spui-accent)`，**不引用“绿色主题专用”颜色常量**。
+Switch theme via root `data-theme`; switch light/dark via `data-scheme`. Components use semantic references like `var(--spui-accent)`, **not** hard-coded “green theme” constants.
 
-## 7. 与现有主题系统集成
+## 7. Integrate with inherited theme architecture
 
-如果项目已用 Tailwind CSS variables、CSS Modules、UnoCSS、Reka UI 封装主题或 SwiftUI Color assets：把此规范中的角色映射到**现有**系统即可。强制要求只有“单一来源 + 组件复用 + 可验证”，不是 CSS 文件名。
+If the app already uses Tailwind CSS variables, CSS Modules, UnoCSS, themed Reka wrappers or SwiftUI Color assets, map the **semantic roles** to its existing system. The invariant is **one source of truth + component reuse + verifiability**, not specific stylesheet filenames.
 
-## 8. Sidebar 的语义色阶与配色质量（v6.3）
+## 8. Sidebar semantic color scale and color quality (v6.3)
 
-暗色导航不等于“深蓝背景 + 三种明度不一致的蓝色 + 橙点”。先确定容器中性色阶：导航背景 → 弱表面 → Hover → Selected，再映射主/次文字、图标、焦点、边界与强调色。中性色/蓝灰色可共存，但必须呈现可解释的角色层次。状态色（警告、失败、未读）与品牌强调保持分离，橙点只能表示真实状态且有文案或标签。
+Dark navigation should not become “navy background + three inconsistent blues + orange dots.” Choose a coherent neutral hierarchy: **navigation canvas → soft surface → hover → selected**, then map primary/secondary labels, icons, focus, edges and accents. Neutral and blue-gray may coexist when they have clear roles. Warning/failure/unread status colors remain distinct from brand accent. Orange dots represent **real states only**, with visible labels/text as appropriate.
 
-参阅 `assets/sidebar-palette-examples.json` 的浅/深两组**非强制示例**和 `scripts/validate_ui_patterns.py` 的已列颜色对比检验。该脚本没有检查透明叠层、实际截图、图片覆盖、真实焦点形状或主观配色质感；最终必须在浏览器中核验。侧边竖条只有编码当前章节层级、时间线等独立信息时才宜使用，不能一律判定其错误或正确。详见 [侧栏设计规范](sidebar-navigation-design.md)。
+See two **non-mandatory** light/dark examples at `assets/sidebar-palette-examples.json` and color-contrast checks in `scripts/validate_ui_patterns.py`. This does not verify translucent overlays, screenshot pixels, image intersections, actual focus shapes or artistic color quality. Test in the real browser. A sidebar selection rail is appropriate only when it communicates a genuine chapter/timeline/hierarchy role or separately justified information, **not universally right or wrong**. See [Sidebar Navigation](sidebar-navigation-design.md).
 
-## 9. v6.6 · Sidebar + Main 配色是一个用户决策
+## 9. v6.6 — Sidebar + Main is one coordinated user color decision
 
-在新建/重大改版中，先读取 `references/sidebar-color-discovery.md`，观察用户已经选定的颜色、品牌与**主内容实际背景**；推荐整页搭配时同时展示侧栏、Topbar、Main、Panel、Chart。侧栏可以明显更深或更浅，但必须有层级理由；`--sidebar-primary` 不应在未获用户授权时偷偷替换全站品牌色。用户明确指定 HEX 必须原样保留，若有文字对比问题优先改变邻近文字与表面并征求必要决定。
+For new projects or major redesigns, first inspect `references/sidebar-color-discovery.md`, existing user color decisions, brand and the **actual main-content background**. Preview Sidebar, Topbar, Main, Panel and Chart **together**. The sidebar may be materially darker or lighter with a justified hierarchy, but `--sidebar-primary` must not silently replace a global brand accent without authorization. Keep a user-specified HEX exactly; when contrast fails, first adjust surrounding text/surfaces and discuss necessary design decisions.
 
-旧版 `assets/sidebar-palette-examples.json` 只用于状态对比和回归校验，**不是 Agent 默认把侧栏做成蓝灰色的理由**。在 `assets/sidebar-color-directions.json` 里可查看 5 组原创整页样例，但实际向用户推荐通常仅 2–3 套。正式选择与来源参照 `assets/sidebar-color-decision.schema.json`；`pending` 不能视为已批准。
+Old `assets/sidebar-palette-examples.json` shows state relationships; it is **not permission for Agent-default blue-gray sidebars**. `assets/sidebar-color-directions.json` includes five original full-page directions, but usually present 2–3 relevant options. Actual approval/provenance follows `assets/sidebar-color-decision.schema.json`; `pending` is **not** approved.

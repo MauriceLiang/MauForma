@@ -80,7 +80,7 @@
       "path": "references/clean-enterprise-design.md",
       "source_blob_sha": "61813fa8538a88a1d8b467a1dc6a269f1823d850",
       "source_bytes": 5689,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/comparison-page-design.md",
@@ -134,7 +134,7 @@
       "path": "references/control-geometry-gate.md",
       "source_blob_sha": "417b3c4b7580b5b25a1e96ceccb214e530b1fc75",
       "source_bytes": 5826,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/creative-component-libraries.md",
@@ -272,7 +272,7 @@
       "path": "references/motion-and-interaction.md",
       "source_blob_sha": "18f91b1211c64b526730f7b2c9e5b8f0d7ab52bd",
       "source_bytes": 4144,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/motion-consent-experience-gate.md",
@@ -290,7 +290,7 @@
       "path": "references/motion-governance.md",
       "source_blob_sha": "1c80b595b86a231da3a46d4dbcef11e971ea7cf4",
       "source_bytes": 3970,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/motion-rehearsal-and-evidence.md",
@@ -326,7 +326,7 @@
       "path": "references/palette-art-direction.md",
       "source_blob_sha": "7b2a3152bde86c6f988a83653c795cbf9cd73969",
       "source_bytes": 5247,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/perceptual-hierarchy-gate.md",
@@ -470,7 +470,7 @@
       "path": "references/theme-design.md",
       "source_blob_sha": "a900781acce768df8bab0ae1461226c68b78b170",
       "source_bytes": 7304,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/title-prefix-role-gate.md",

@@ -728,6 +728,143 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/motion-and-interaction.md",
+      "source_blob_sha": "18f91b1211c64b526730f7b2c9e5b8f0d7ab52bd",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "v3.0",
+        "123",
+        "114",
+        "prefers-reduced-motion",
+        "opacity:0"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "所有核心内容默认可见",
+          "target_en": "Core content is visible by default"
+        },
+        {
+          "source_zh": "不引入新动画库",
+          "target_en": "no new animation library"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/motion-governance.md",
+      "source_blob_sha": "1c80b595b86a231da3a46d4dbcef11e971ea7cf4",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "100–180ms",
+        "500–1200ms",
+        "prefers-reduced-motion",
+        "never accumulate",
+        "Truthful numbers"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不能经过无关字符扰动",
+          "target_en": "must not pass through arbitrary character scrambling"
+        },
+        {
+          "source_zh": "不允许无限叠加",
+          "target_en": "Never accumulate animations"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/theme-design.md",
+      "source_blob_sha": "a900781acce768df8bab0ae1461226c68b78b170",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Six editable starting palettes",
+        "4.5:1",
+        "3:1",
+        "pending",
+        "user-specified HEX"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是限定只能用六套",
+          "target_en": "not the only six allowed themes"
+        },
+        {
+          "source_zh": "用户明确指定 HEX 必须原样保留",
+          "target_en": "Keep a user-specified HEX exactly"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/palette-art-direction.md",
+      "source_blob_sha": "7b2a3152bde86c6f988a83653c795cbf9cd73969",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "palette rationale",
+        "confirmed",
+        "delegated",
+        "pending/unresolved",
+        "Recommended"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "推荐不等于确认",
+          "target_en": "Recommended ≠ confirmed"
+        },
+        {
+          "source_zh": "不能擅自替换用户固定值",
+          "target_en": "rather than silently changing a fixed value"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/clean-enterprise-design.md",
+      "source_blob_sha": "61813fa8538a88a1d8b467a1dc6a269f1823d850",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "optional style profile",
+        "16–24px",
+        "Original fictional scenario",
+        "not a requirement"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是 MauForma 默认 UI 模板",
+          "target_en": "not MauForma's default UI template"
+        },
+        {
+          "source_zh": "对比度优先于“浅”",
+          "target_en": "Contrast outranks pale appearance"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/control-geometry-gate.md",
+      "source_blob_sha": "417b3c4b7580b5b25a1e96ceccb214e530b1fc75",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Atomic short label",
+        "200%",
+        "NOT AUDITED",
+        "whole-Button wrapping",
+        "white-space: nowrap"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不能对全站所有文字全局 nowrap",
+          "target_en": "not every string on the site"
+        },
+        {
+          "source_zh": "布局有责任为控件留出尺寸",
+          "target_en": "Parent layouts own adequate control space"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
