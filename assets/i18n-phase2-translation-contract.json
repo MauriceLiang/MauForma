@@ -289,7 +289,7 @@
       "translated_status": "translated_pending_independent_review",
       "required_english_fragments": [
         "eight profiles",
-        "not official classifications",
+        "**not** official classifications",
         "calm-minimal",
         "functional",
         "reading-first"
