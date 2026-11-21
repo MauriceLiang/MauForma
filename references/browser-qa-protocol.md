@@ -6,6 +6,10 @@
 
 用户只说“优化这个页面”时，**先对实际页面做基线无关的缺陷扫描**，不要把运行原有间距基线当作默认通过，也不要只跑 Skill 自带的 Mock。按 `references/proactive-visual-defect-discovery-gate.md` 从实际页面首/中/末、主要状态、宽窄屏检查空间/主次文字/组件/图标配色/交互；可运行 `node scripts/audit_existing_visual_defects.mjs --url <current-page>` 找到 Block/Grid/Flex 或简单包装层中可见面板的既有贴合。再用 v6.19 的 before/after 对比防止引入新问题。工具有覆盖盲点，实际页面未打开不得称为 Browser PASS；含用户隐私的截图和识别信息不得上传公共仓库或 CI artifact。
 
+## 通用标题前导识别（跨颜色、字体、字号和所有标题层级）
+
+在页面新建、视觉优化与设计评审的授权范围内，依据 `references/title-prefix-role-gate.md` 查阅实际标题组。可执行 `node scripts/audit_title_prefixes.mjs --url http://localhost:3000 --selector main` 生成 `CANDIDATES_FOR_REVIEW`，覆盖常见 H1–H6 和 `role=heading` 前导结构，不能用其 `NO_CANDIDATES_OBSERVED` 声称页面没有眉题。候选必须由 Agent 核对真实角色与是否应作为独立标题前导；真实面包屑、状态、步骤和品牌不能误删。对伪元素、Canvas、图片文字、非语义视觉标题仍需渲染审查。**颜色、字号、字体不是候选定义**，已有页面和新内容均需检查，UI 修复后在真实页面复看。
+
 ## 浏览器先观察再操作（B14）
 
 先启动或复用用户授权的目标项目服务，记录服务启动/关闭范围；访问实际路由后先读取**当前渲染 DOM、可访问名称、可见控件与状态**，然后才确定 Playwright 选择器，禁止根据页面猜测 selector 或虚构运行中的按钮。记录 Console、页面异常与相关网络请求错误；不能用 `networkidle` 单一条件判断 SPA/流式请求已完成，应结合有语义的可见状态与实际加载条件。完成验证后正确清理本次启动的服务与测试资源，不能终止用户原本运行的服务。
