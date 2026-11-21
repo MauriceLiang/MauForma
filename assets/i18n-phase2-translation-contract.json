@@ -1125,6 +1125,161 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/semantic-boundaries.en.md",
+      "source_blob_sha": "429a07ed99df9b571252e6c61e3f04667070470c",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "B12",
+        "B13",
+        "B14",
+        "B15"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "英文规范指令与中文产品语言必须分开",
+          "target_en": "Never translate an existing UI to English solely because MauForma's entrypoint is English"
+        },
+        {
+          "source_zh": "例外不能覆盖禁止",
+          "target_en": "An exception must not erase a prohibition"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/skill-gap-workflows.md",
+      "source_blob_sha": "f6159cf32d290efbfb43bf285081dbf80319336d",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "NO_GROUNDED_MATCH",
+        "NOT_BASELINED",
+        "CAPTURED_FOR_REVIEW",
+        "PREVIEW_ONLY",
+        "PLAN_ONLY",
+        "NOT_TESTED"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "样本与截图时钟不同",
+          "target_en": "Screenshot and sample clocks differ"
+        },
+        {
+          "source_zh": "脚本不更新 MASTER",
+          "target_en": "It never updates"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/external-design-case-library.md",
+      "source_blob_sha": "8ad1438f0f147b7d041e4dacd9135c8af53a73ac",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "88 style profiles",
+        "192 product/industry",
+        "84 community analyses",
+        "2026-11-02",
+        "Inspired"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是官方品牌 Design System",
+          "target_en": "not an official brand Design System"
+        },
+        {
+          "source_zh": "MIT 不包含品牌资产授权",
+          "target_en": "does not grant rights"
+        }
+      ],
+      "allowed_cjk_fragments": [
+        "甜品 咖啡 门店"
+      ]
+    },
+    {
+      "path": "references/sidebar-selection-indicator-gate.md",
+      "source_blob_sha": "1f13c124d8f497b932f769a5930b558e1305301d",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Default: no rail",
+        "aria-current",
+        "2–4px",
+        "12–22px",
+        "6–10px",
+        "NOT TESTED"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "默认：无竖条",
+          "target_en": "Default: no rail"
+        },
+        {
+          "source_zh": "不可把左边框当外侧指示条",
+          "target_en": "Forbidden: recolor nav item's own left border"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/product-experience-routing-gate.md",
+      "source_blob_sha": "96c5823dc58690c78d152f21a8cf0e3482c828b2",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "PX0",
+        "PX1",
+        "PX2",
+        "PX3",
+        "PX4",
+        "Settings / Form / Hybrid"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "登录和侧栏不足以证明后台",
+          "target_en": "Login or a sidebar does not make the whole product an admin system"
+        },
+        {
+          "source_zh": "建议不冒充确认",
+          "target_en": "A recommendation is not confirmation"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/comparison-page-design.md",
+      "source_blob_sha": "d524d504160f858774115e850d9218b52a13273d",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate C0",
+        "Gate C1",
+        "Gate C2",
+        "Gate C3",
+        "Gate C4",
+        "null",
+        "NOT AUDITED"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "缺失值不等于0",
+          "target_en": "null displays dash/No data"
+        },
+        {
+          "source_zh": "外框对齐只是第一层",
+          "target_en": "Outer Cards aligning is just the first layer"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
