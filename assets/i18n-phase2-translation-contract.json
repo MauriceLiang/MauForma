@@ -1503,6 +1503,82 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/composition-first-design.md",
+      "source_blob_sha": "d504dbee1b4ebd8ef739f89636434a345f08bcc3",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate C0",
+        "Gate C1",
+        "Gate C2",
+        "Gate C3",
+        "Gate C4",
+        "grayscale",
+        "first-screen"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "先做构图再调颜色",
+          "target_en": "Composition First"
+        },
+        {
+          "source_zh": "不应强制所有页面同样信息密度",
+          "target_en": "Do not impose the same sidebar+KPI template"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/design-craft-loop.md",
+      "source_blob_sha": "ab2b6e2ffe6d4d253462504a0c0cf49c5a521266",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Loop 0",
+        "Loop 1",
+        "Loop 2",
+        "Loop 3",
+        "Loop 4",
+        "Loop 5",
+        "Loop 6",
+        "NOT REVIEWED"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "真正的产品页面",
+          "target_en": "actual affected route"
+        },
+        {
+          "source_zh": "不是一遍 CSS 美化",
+          "target_en": "Not a One-Pass CSS Beautification"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/design-discovery-interview.md",
+      "source_blob_sha": "e44159fefd2749ee3f1c47ad1f4948ea6de3d800",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate DD0",
+        "Gate DD1",
+        "Gate DD2",
+        "Gate DD3",
+        "Gate DD4",
+        "Gate DD5",
+        "confirmed / inherited / delegated / proposed / unresolved"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "已经确定的不要重复问",
+          "target_en": "Do not ask again for an answer already supplied"
+        },
+        {
+          "source_zh": "建议不是用户批准",
+          "target_en": "recommendation remains"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }

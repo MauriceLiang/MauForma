@@ -1,88 +1,80 @@
-# Composition First · 从业务内容到页面构图，而不是从模板到装饰
+# Composition First — Solve Layout, Content and Information Priority Before Decoration
 
-## 为什么新增这个门槛
+This gate governs new Web products, major visual redesigns, and pages whose information hierarchy is structurally wrong. **Do not apply a full composition exercise to a narrowly scoped functional bug or overwrite an approved design without authorization.**
 
-合成反例：一张分析页让大面积装饰性 Hero、抽象插画和多个 KPI 抢占首屏，而用户真正需要查看的分析图和操作被挤到下方。即使局部组件优雅，页面仍可能没有将视觉面积分配给主任务。
+## Why composition comes first
 
-因此，MauForma 在“视觉风格 / 配色 / 组件实现”之前，强制建立 **内容证据 → 信息优先级 → 构图候选 → 取舍 → 选定结构** 的决策链。不能只把同一个 SaaS 模板改成黑白、暖灰或蓝紫就称为三个方案。
+A familiar AI-generated result is a centered heading with decorative category text, four equivalent statistic Cards, two unrelated chart Cards and a large empty Hero or footer. Recoloring, adding blur/glow or changing radius produces variations of **the same layout failure**. Composition addresses **what occupies the viewport, its size and order, how regions relate, and why**.
 
-## Gate A0 · 内容证据清单（新建页面/大改布局必须执行）
+The framework or component library does not determine composition. A page can use Vue/React, Ant Design or headless primitives while still choosing its own information priority. Do not impose the same sidebar+KPI template across Work, Read, Persuade and Experience.
 
-仅收集会影响首屏层级的真实信息：
+## Gate C0 — Establish the actual first-screen subject
 
-| 属性 | 必须回答的问题 |
+Before CSS, record a short composition brief:
+
+| Question | Required answer |
 | --- | --- |
-| 任务 | 访客进入此**具体页面**的首要任务是什么？是了解产品，还是查看趋势/筛选/决策？ |
-| 内容 | 当前真实内容：功能、标题、图表、表格、指标、影像、说明分别是什么？ |
-| 数据可信度 | 每个值是 **known**（有依据）、**demo**（明确标注演示）还是 **unverified**（不能冒充实测）？ |
-| 主视觉 | 哪种内容**本身**最值得占据面积：图片、作品、真实数据趋势、任务队列、文章？ |
-| 约束 | 已有组件/品牌、素材质量、目标屏幕、键盘、响应式与性能边界是什么？ |
+| Audience and page mode | Who is this for, and is the job to Operate, Read, Persuade or Experience? |
+| First-screen subject | Which real product, article, data result, task or artwork deserves attention? |
+| Primary action | What should the user do next? Where does it appear? |
+| Authentic content | Which data, images, text and constraints exist? Which are unknown or missing? |
+| Page structure | Which regions need to be side-by-side, grouped, sequential or revealed later? |
+| Inherited constraints | Approved brand, navigation, density, target viewport, actual component stack |
+| Evidence | What comes from real code/content, screenshots, approved decisions or unverified assumptions? |
 
-**不以“产品属于 SaaS”为首要构图理由。** 例如仓库分析详情页以 Operate/Read 为主；仓库分析产品宣传首页则可以是 Persuade，允许营销 Hero 和插画。
+Do not invent hero images, KPI numbers, positive findings, sample sizes or user testimonials solely to fill a concept. A missing authentic asset can justify a different composition or an explicit placeholder **labeled as such**, not a fake success claim.
 
-## Gate A1 · 先画黑白信息线框，不先挑配色
+## Gate C1 — Region map before visual skin
 
-从内容清单设计信息区域，按视觉优先级安排：
+1. Make a **grayscale wireframe** of major regions. For each, specify real purpose, approximate relative visual area, alignment, reading order and primary/secondary action.
+2. Classify content `primary / supporting / conditional / deferred / removable` using `references/page-density-and-content-priority.md`. Remove redundant explanatory categories and decorative wrappers before allocating space.
+3. Identify **one principal focal region** unless multiple coequal tasks have a real reason. A massive ornamental H1 can be less important than the object, filter, error or product photo; do not assume semantic HTML `h1` must be the biggest shape.
+4. Choose a layout grammar suited to content: open editorial flow, full-bleed media, split stage, task-first workspace, aligned data grid, comparison matrix, object gallery, deliberate asymmetry or another justified form.
+5. Organize **actual relationships**: Inside, Peer, Section, Connected, Anchored or editorial variants from Semantic Spacing Rhythm. Do not treat a Card around every block as design.
+6. Check first, middle and end of the page. A strong Hero with broken scroll, clipped final content or unrelated lower sections is not a successful page.
 
-1. 确定最重要的阅读/操作路径（例如：仓库 → 关键变化 → 趋势证据 → 详细 Issue/PR）。
-2. 先把版式变为**无颜色、无插画、无投影**的结构草图（文字线框或实际灰阶 HTML）。
-3. 为每个可见区域标注真实内容 ID、主/辅层级、首屏可见性、预期占比/密度与空加载状态。
-4. 解释画面节奏：哪里需要密度，哪里该让数据呼吸，为什么使用侧栏、卡片或分栏。
-5. 只有信息结构有效，才选择色彩、字体、细节与动效。
+## Gate C2 — Truly different design directions when needed
 
-**去装饰测试**：去掉渐变、光环、立体图、阴影、彩色统计 icon 后，首屏的主要问题还能快速被理解和解决吗？不行就退回构图，不要加一层渐变补救。
+For an unresolved new product or authorized **major** redesign, offer **2–3 materially different** directions. A different color/gradient/font on the same Card grid is **not** a different direction.
 
-## Gate A2 · 比较真正不同的构图，而不是相同布局换皮
+For each candidate, explain:
 
-针对新建页面或重大视觉重设计，**优先比较 2–3 种有本质差异的构图**，并记录在 `design-system/composition-brief.json`：
+- **Dominant region and geometry:** Is it media-led, typographic, task-first or data-first? How much space is used for navigation, actual content, utility and intentional rest?
+- **Reading/action order:** What does the user see in the first three seconds and do next?
+- **Real assets/content:** Which input makes this design credible? What remains when media/JavaScript/data is missing?
+- **Navigation and responsive transformation:** What becomes a column, drawer, scroll region or lower-priority entry at the actual supported breakpoints?
+- **Visual treatment only after structure:** Type role, surface hierarchy, brand accents and approved motion.
+- **Tradeoffs:** Accessibility, complexity, performance, maintenance, density and what each alternative deliberately rejects.
 
-- **Trend-first**：核心趋势占主舞台；四个必要指标成紧凑信息行，洞察附着在趋势或下方。
-- **Investigation-first**：以 Issue/PR 待分析变化与调查列表为主；曲线作为次级背景证据。
-- **Summary-first**：关键变化和分段摘要最先被看到；图表与列表组成下方的展开路径。
+Approved existing designs need no fake multi-choice exercise; a precise local fix can preserve the established composition. An Agent suggestion is `proposed`, not `confirmed`.
 
-每一套至少说明：用户第一眼看什么、主要视觉区域的位置和比例、首屏能见什么、交互起点、图文/数据关系、代价、移动端顺序，以及**为何适合当前内容**。
+## Gate C3 — Distinguish product modes by task, not template
 
-**候选必须改变实际信息结构**。换颜色、圆角、阴影、图标或 Hero 文案但保持相同区域排序、相同主体与区域比例，不能算不同设计方案。若用户已有明确版式或只修复局部，不强制三案；可直接分析并保留既有选择。
+- **Operate:** Current object, filters, actionable records and error/retry may deserve the first viewport. Dense is allowed, illegible is not. Do not erect a marketing Hero over a data table.
+- **Read:** Readable prose, chapter/navigation and visual examples determine rhythm. White space helps comprehension; Cards are not required per paragraph.
+- **Persuade:** Real product photography/media, claim, trust, price/spec restrictions and CTA form an intentional story. A bold Hero is legitimate when it supports truth and conversion.
+- **Experience:** Art/media and user-controlled exploration may lead. Keep accessible controls and an exit; expressive asymmetry and signature motion may be appropriate with approval.
 
-用户明确说“你自由发挥”，应标注 `delegated` 并**自行比较候选后做决定**，不因为“需要用户选择”而无限停顿；如用户明确要选，展示差异、解释推荐，再由用户决定。
+One product can mix modes across routes with shared tokens. Do not carry Operate's panel density into a creative portfolio or impose cinematic scroll on every admin dialog.
 
-## Gate A3 · 结构与数据真实性
+## Gate C4 — Composition quality review, then detailed craft
 
-仓库、运营、管理等 Operate 页特别检查：
+Run a **content/grayscale substitution test**: Temporarily remove gradients, shadows and saturated accent. Is the task subject still clear? If all copy could be replaced with unrelated SaaS terms without affecting layout, reconsider whether architecture is generic.
 
-- 页面标题、身份、仓库选择与刷新操作在紧凑上下文中，不自动使用 300px 高品牌 Hero。
-- 一个大图表区域若没有真实数据，必须有**明确加载/失败/无数据状态**；不允许直接空着大块白板然后声称已完成。
-- 核心洞察必须与其数据或证据来源相邻或可关联，不能一张亮蓝宣传卡在右边替代分析。
-- 首屏空间优先给可行动的内容；对大型内容区给“为何这么大”的理由，不能靠插画填满。
-- 真实数据、Mock 和文字推断明确分离。Demo 不冒充实测；如 92% 覆盖率没有来源，则不能作为真实事实。
-- 仪表盘卡片不应自动都是一样大小：优先级来自用户要回答的问题，允许少卡片、无卡片或一行小指标。
+Before coding or bulk component duplication, reject:
+- A decorative label + oversized heading that pushes true interaction away;
+- Giant empty panel wrappers, Card-inside-Card scaffolding and repeated navigation links;
+- Multiple equally dominant regions with no actual priority;
+- Tiny key chart labels or data beside oversized decorative copy;
+- Random two-column geometry with no shared grid/tracks or deliberately justified asymmetry;
+- Missing content, unsupported Mock data, hidden important states or non-scrollable final items.
 
-## Gate A4 · 构图再决定配色与视觉身份
+Then pass to component ownership, semantic Tokens, typography and motion. A visually attractive screenshot does not prove backend save, accessibility or interaction behavior. Verify actual routes/states at consistent viewport and data.
 
-详见 `references/palette-art-direction.md`。不把“专业 SaaS → 蓝紫色渐变”作为默认映射。应先给出品牌语义、色彩角色和**为什么这组颜色适合内容**的解释。
+## Acceptance record
 
-可以使用蓝紫色：若有品牌继承、技术语境、官方识别、用户明确选择或视觉策略支持；但**不能因为组件库默认 theme、参考网站用了紫色或 LLM 常见模板，就把它称为设计理由**。
+Use a concise record: `page | user task | source/evidence | first-screen focus | primary action | content disposition | chosen structure | rejected alternative | actual browser verification`.
 
-允许优秀的鲜艳/实验性审美保留；本规则不是把所有设计变成灰色，也不是禁用所有 Hero。表现方式由 **Persuade / Operate / Read / Experience** 及其内容决定。
+A synthetic wireframe, variant preview or screenshot-only inference is **not** `VERIFIED`. For real modifications, compare before/after on the actual app, including relevant responsive/dark/light, focus and scroll-end states.
 
-## 结构化交付
-
-- `assets/composition-brief.schema.json`：计划数据形状（意图与证据，而非设计质量证明）。
-- `examples/composition/repo-analysis.json`：**三种真实不同构图**的仓库分析示例，模拟数据均标为 demo。
-- `scripts/validate_composition_brief.py`：零依赖校验，包括内容引用、方案差异、决策来源与部分结构异常；**不能代替有经验设计师的截图审查**。
-- `assets/composition-layout-lab.html`：三种页面结构的静态可视化概念，无真实 API，不得当成实际项目 UI 测试通过的证据。
-
-推荐工作流：先用 `python3 scripts/validate_composition_brief.py examples/composition/repo-analysis.json` 了解规范，然后在用户项目创建自己的 brief，不得直接把示例数据当成业务事实。
-
-## 阻断与返工
-
-若某个 Operate 页面首屏装饰性的 Hero/插画明显大于核心数据、主要图表是空白却没有可见状态、或几乎整个页面都靠色彩表演而结构不成立，**Gate A 不通过**。先调整区域与权重，之后再开始主题与组件代码。
-
-更详细的浏览器自评与返工链路见 `references/visual-critique-loop.md`。
-## 构图前先回答“这个内容应该出现在这一页吗”
-
-先依照 `references/page-density-and-content-priority.md` 将整个路由的内容分为 primary/supporting/conditional/deferred/removed，删减或下沉重复教程、功能目录和竞争 CTA，再开始灰阶构图。不应把所有功能介绍放进首页，然后用更精致的 Card 或网格“优化”它们。总览偏舒展、分析与管理可以密集，但重要图表/来源/状态始终可读。留白的结构依据见 `references/whitespace-and-surface-composition.md`。
-
-## 构图必须能追踪 Grid 行线与底部终点
-
-从页面内容清单进入灰阶线框后，要画出共同容器边界、列分割线与**同一级别面板的共同起始行**。分析页不采用「左列上下独立堆叠 + 右列上下独立堆叠」作为默认，尤其不能因上排两个卡片高度不同导致下一排起点不一致。可用 3:2、8:4 或主图跨全宽，但不同宽度应服务真实数据重要性；Masonry 留给适合的摄影/编辑语境。设计时同步指定主滚动容器、末端 padding 和可能的固定工具栏，确保内容**可滚动到最后，而不是必须首屏塞下**。完整 Gate 见 `references/grid-alignment-and-viewport-safety.md`。
+Related: `references/product-experience-routing-gate.md`, `references/perceptual-hierarchy-gate.md`, `references/page-density-and-content-priority.md`, `references/visual-critique-loop.md`, `references/design-system.md`.

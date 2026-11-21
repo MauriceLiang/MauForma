@@ -128,7 +128,7 @@
       "path": "references/composition-first-design.md",
       "source_blob_sha": "d504dbee1b4ebd8ef739f89636434a345f08bcc3",
       "source_bytes": 7884,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/control-geometry-gate.md",
@@ -146,13 +146,13 @@
       "path": "references/design-craft-loop.md",
       "source_blob_sha": "ab2b6e2ffe6d4d253462504a0c0cf49c5a521266",
       "source_bytes": 9583,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/design-discovery-interview.md",
       "source_blob_sha": "e44159fefd2749ee3f1c47ad1f4948ea6de3d800",
       "source_bytes": 16659,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/design-dna-protocol.md",
