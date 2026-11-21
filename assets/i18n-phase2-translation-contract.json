@@ -426,7 +426,7 @@
         },
         {
           "source_zh": "推荐不等于确认",
-          "target_en": "recommendation is not confirmation"
+          "target_en": "A recommendation is **not** confirmation"
         }
       ],
       "allowed_cjk_fragments": []
