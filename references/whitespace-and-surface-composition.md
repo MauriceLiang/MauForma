@@ -14,7 +14,7 @@ Use real browser screenshots to assess visual weight/optical whitespace. `script
 
 - Forcing huge top/bottom margins onto every page “for premium feel,” pushing the main action below the first screen.
 - A page title and a line of description, followed by a huge wrapper containing three explanatory feature Cards, plus another Card duplicating navigation.
-- A border around every tiny heading, metric and action, assuming consistent Card styling equals quality.
+- Putting a **1px border** around every small heading, KPI and action and calling it a coherent Card system confuses repeated decoration with actual hierarchy.
 - Shrinking body text to 12px and help to 10px to fit more. Remove low-value material instead of shrinking real task text.
 - Treating whitespace as a rigid `min-height:400px` filler or empty first screen without usable primary content.
 - Editing only Card padding while preserving redundant content and claiming density was optimized.
