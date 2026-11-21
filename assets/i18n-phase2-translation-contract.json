@@ -1422,9 +1422,9 @@
         "60fps",
         "v6.15",
         "v6.14",
-        "Tier A",
-        "Tier B",
-        "Tier C",
+        "A / everyday",
+        "B / requires",
+        "C / brand",
         "100–180 ms",
         "300–650 ms",
         "AutoAnimate",
@@ -1446,7 +1446,7 @@
         },
         {
           "source_zh": "用户选择“无额外动画”仍必须保留即时、清楚的交互状态反馈",
-          "target_en": "no additional visual motion"
+          "target_en": "no added visual motion"
         },
         {
           "source_zh": "参数建议（设计默认值，非官方标准）",
@@ -1485,7 +1485,7 @@
         },
         {
           "source_zh": "截图不等于像素级忠实",
-          "target_en": "does not prove Figma file access"
+          "target_en": "Figma file access"
         },
         {
           "source_zh": "用户只说参考这种感觉，不等于按像素复刻",
@@ -1540,7 +1540,7 @@
         },
         {
           "source_zh": "设计参考并不意味着使用同一组件库",
-          "target_en": "do not require the same component library"
+          "target_en": "same component library"
         }
       ],
       "allowed_cjk_fragments": []
@@ -1573,7 +1573,7 @@
       "semantic_pair_examples": [
         {
           "source_zh": "推荐不是确认",
-          "target_en": "not confirmed"
+          "target_en": "not approved"
         },
         {
           "source_zh": "静态扫描基线不等于批准",
