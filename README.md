@@ -100,7 +100,7 @@ The agent must not silently install global hooks, change user branding, replace 
 | Figma fidelity | [Figma workflow](references/figma-fidelity-workflow.md) |
 | Scripted evidence | [Executable workflows](references/skill-gap-workflows.md), [English handbook](references/execution-handbook.en.md) |
 
-The detailed legacy references are primarily Chinese today; the English entrypoint and English handbook provide a fully usable **English core**. Deep-topic translation is staged separately to protect technical meaning and maintain runnable checks. No false claim of full reference-library translation is made.
+The Phase-2 reference migration is complete with a **bounded second-pass semantic review**: **83** formerly Chinese reference guides were translated into English, while **4** guides were already English. The Chinese [`semantic-boundaries.zh-CN.md`](references/semantic-boundaries.zh-CN.md) is intentionally retained for bilingual rule comparison and semantic regression. The [translation contract](assets/i18n-phase2-translation-contract.json) preserves original Chinese-to-English test pairs, and the [review record](assets/i18n-phase2-semantic-review.md) documents the evidence and its limits. Neither static checks nor this review prove perfect translation equivalence or real-world Agent performance; consult the bilingual rules when intent or exceptions are ambiguous.
 
 ## Execution boundaries
 
