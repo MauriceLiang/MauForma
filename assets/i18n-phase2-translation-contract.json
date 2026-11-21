@@ -2281,6 +2281,47 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/frontend-architecture-and-gates.md",
+      "source_blob_sha": "142c51671bedec7a02d75d5321658dc56f106f9c",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Defect-first default",
+        "Gate 0",
+        "Gate A",
+        "Gate B",
+        "Gate D",
+        "## Phase 0",
+        "## Phase A",
+        "## Phase B",
+        "## Phase C",
+        "## Phase D",
+        "360/390/768/1024/1440",
+        "minmax(0,1fr)",
+        "null is not 0",
+        "run_monitor/human_tasks/mixed",
+        "NOT RUN"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "存在未修复历史问题不能因 before 无变化而通过",
+          "target_en": "preserve-baseline is **not an approval**"
+        },
+        {
+          "source_zh": "只运行演示不能当成真实业务视觉验收",
+          "target_en": "not business-page visual acceptance"
+        },
+        {
+          "source_zh": "未知进度不等于零",
+          "target_en": "unknown is not zero"
+        },
+        {
+          "source_zh": "只检静态数据不得声称验证真实服务端",
+          "target_en": "synthetic Mock"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
