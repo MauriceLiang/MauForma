@@ -28,7 +28,7 @@ description: Framework-agnostic Web UI/UX design and frontend engineering Skill.
 | Missing direction or unknown product content | `references/design-discovery-interview.md`, `references/product-experience-routing-gate.md`, `references/design-style-catalog.md` |
 | Composition, hierarchy, generic dashboard syndrome | `references/composition-first-design.md`, `references/perceptual-hierarchy-gate.md`, `references/progressive-visual-refinement-gate.md` |
 | Existing UI polish / unspecified visual issue | `references/proactive-visual-defect-discovery-gate.md`, `references/visual-critique-loop.md` |
-| Existing **and new** page titles, eyebrow/overline/kicker copy | `references/page-header-antipatterns.md` (**Gate H-Base / H0**), `references/semantic-copy-hygiene.md` |
+| Existing **and new** page titles, eyebrow/overline/kicker copy | `references/title-prefix-role-gate.md` (**all title levels and content types**), `references/page-header-antipatterns.md` (**H-Base / H0**); `references/semantic-copy-hygiene.md` only if needed |
 | Content density and typography | `references/page-density-and-content-priority.md`, `references/typography-hierarchy.md`, `references/semantic-copy-hygiene.md` |
 | Spacing, row/column alignment, last-item scroll reachability | `references/semantic-spacing-rhythm-gate.md`, `references/spacing-regression-protection-gate.md`, `references/grid-alignment-and-viewport-safety.md` |
 | Navigation, sidebar state, responsive information architecture | `references/navigation-architecture.md`, `references/sidebar-navigation-design.md`, `references/sidebar-selection-indicator-gate.md` |
@@ -79,7 +79,7 @@ The following are **discovery paths**, not additional required reads. Open a spe
 ### B. Fix content, IA and layout before decoration
 
 1. Audit content by `primary / supporting / conditional / deferred / removable`. A label, badge, section heading or eyebrow needs a **real** information, navigation, status, brand or narrative purpose. Do not delete authentic breadcrumbs, content sources, units, approved taglines or meaningful chapter indicators.
-2. **Mandatory new-and-existing page-header check, Gate H-Base / H0**: inspect **every existing and newly introduced** pre-H1 eyebrow/overline/kicker/decorative prefix on affected pages. Decide `keep / merge / move / delete` with reason. On task-oriented pages, **do not retain redundant explanatory pre-H1 copy**; on brand/creative pages, preserve genuine, intentional hero narratives. A prior implementation is not an exemption. Check shared `PageHeader` default props and page-level callers.
+2. **Mandatory style-agnostic title-prefix check (all title levels) and Gate H-Base / H0**: inspect **every existing and newly introduced** subordinate text layer before/above a title in page headers, sections, cards, dialogs and nested components; a title prefix is identified by grouping and structural relationship, **not** by its color, font, size, language, CSS class or exact element name. For H1 specifically, inspect every pre-H1 eyebrow/overline/kicker/decorative prefix. Decide `keep / merge / move / split / delete` for both information value **and** whether a separate title-before-title line is justified. On task-oriented pages, **do not retain decorative explanatory prefixes above any title level**, including card/section titles; meaningful steps, chapters, breadcrumbs, identity and states remain in their correct semantic UI roles. On task-oriented pages, **do not retain redundant explanatory pre-H1 copy**; on brand/creative pages, preserve genuine, intentional hero narratives. A prior implementation is not an exemption. Check shared `PageHeader` default props and page-level callers.
 3. Match navigation depth, reading order, screen focal point and layout to real tasks. Avoid generic “sidebar + KPI cards + table” when it does not suit the product. A content-first layout must be structurally sound before polishing colors and radius.
 4. Use page-appropriate density. Preserve peer alignment, section separation, row gaps, column gaps, stable grids and scroll-to-end access. An internal card padding is not a replacement for inter-section spacing.
 
@@ -105,7 +105,7 @@ The following are **discovery paths**, not additional required reads. Open a spe
 ### E. Verify affected **real** pages and report evidence
 
 1. Inspect the actual rendered DOM **before** inventing a selector or writing a browser action; record relevant console/network errors. Compare before/after at the same route, viewport and data state. Inspect beginning, middle, bottom, scroll end, focus, hover, selected, loading, empty, error and success where applicable; test supported locales and smallest **required** viewport (do not force phone support onto desktop-only products).
-2. Test actual Select/Dropdown/Dialog/inputs; keyboard Tab/Enter/Escape, focus visibility/return, long text, 200% zoom, semantics, contrast, reduced motion, errors and real API effects. Verify content and header H0, surface S0, sidebar rail, grid alignment, chart internals and bottom reachability on new **and existing** affected screens.
+2. For UI design/polish, review title-prefix candidates **across H1–H6 and visually equivalent heading regions** on new and pre-existing content. The optional `scripts/audit_title_prefixes.mjs` emits review candidates, not decisions; confirm roles, fix unjustified prefix presentation and inspect actual rendered results. Test actual Select/Dropdown/Dialog/inputs; keyboard Tab/Enter/Escape, focus visibility/return, long text, 200% zoom, semantics, contrast, reduced motion, errors and real API effects. Verify content and header H0, surface S0, sidebar rail, grid alignment, chart internals and bottom reachability on new **and existing** affected screens.
 3. For high-value motion: capture before/action/during/settled, reverse/interruption and reduced-motion; review actual 1× playback. Record jump, flicker, anchor drift and resampling gaps. Re-capture after fixes. A sample gallery or synthetic browser fixture verifies only itself.
 4. Distinguish **`VERIFIED`** (real product and actual applicable checks), **`STATIC CHECK`** (code/rules only), **`DEMO ONLY`** (synthetic fixture), **`NOT TESTED`** and **`BLOCKED`**. Do not report real backend saves as tested using an in-memory fake, or claim runtime performance from a static script. Escalate actual unfixed findings.
 5. Perform an independent critique of UX/IA, typography, spacing, visual identity, iconography, interaction states, motion, accessibility and content. For major design changes prefer a reviewer who did not implement the motion. Record `evidence → root-cause hypothesis → P0–P3 → fix → recapture`.
@@ -116,7 +116,7 @@ Stop and revisit the correct phase when any of these occurs:
 
 - Wrong content or layout dressed up only with shadows/gradients → **B**.
 - Missing component ownership, pseudo-controls, inconsistent state feedback → **C/D**.
-- Attached colored Card edge strip, misplaced sidebar rail or redundant old pre-H1 copy → **B/C/E**.
+- Attached colored Card edge strip, misplaced sidebar rail or unjustified old/new title-prefix styling at any heading level → **B/C/E**.
 - Animation breaks current task state, focus, reduced-motion or continuity → **D/E**.
 - Only a synthetic example or static scanner was tested → **E, real product remains unverified**.
 
@@ -128,7 +128,7 @@ Use only tools needed for the current task; do not automatically run crawling, s
 
 - Direction lookup: `scripts/search_design_knowledge.py`, `scripts/search_visual_tech.py`.
 - Static review: `scripts/audit_frontend.py`, `scripts/mauforma_check.py`, `scripts/check_design_drift.py`.
-- Rendered review: `scripts/browser_qa.mjs`, `scripts/audit_existing_visual_defects.mjs`, `scripts/motion_rehearsal.mjs`.
+- Rendered review: `scripts/browser_qa.mjs`, `scripts/audit_existing_visual_defects.mjs`, `scripts/audit_title_prefixes.mjs` (review candidates only), `scripts/motion_rehearsal.mjs`.
 - Design DNA and feature planning: `scripts/extract_design_dna.mjs`, `scripts/feature_design_flow.py`, `scripts/preview_design_variants.py`, `scripts/plan_ui_hardening.py`.
 - Implementation examples are **synthetic demonstrations**, not user project data.
 - Skill repository checks: `python3 scripts/validate_web_skill.py`, `python3 scripts/validate_skill_hygiene.py`, `python3 -m unittest discover -s tests -v`.

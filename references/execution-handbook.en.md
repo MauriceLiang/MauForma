@@ -41,6 +41,8 @@ Inspect every existing and newly introduced microheading, eyebrow, overline, kic
 
 Gate H0: on task-oriented pages, redundant explanatory pre-H1 microheadings must be removed or moved to semantic content. Existing code is not an exemption. Brand/marketing hero storytelling is allowed when it genuinely helps visitors. Always inspect PageHeader defaults and actual page instances, not just the rule text. Never remove legitimate sources, units, breadcrumbs or meaning in pursuit of minimalism.
 
+**Title-prefix recognition is style-agnostic and applies to every heading level, not only the H1.** Identify a subordinate pre-title line by its relationship to the heading in the rendered title group, regardless of color, font, size, weight, language, element/tag or component name. Separate information value from placement: real status, source, chapter, step, brand and navigation may deserve preservation, but not necessarily as a decorative overline. Review existing card/section/dialog preambles as well as new page ones; record KEEP / MERGE / MOVE / SPLIT / DELETE with reasons. Optional `scripts/audit_title_prefixes.mjs` only finds DOM candidates; the Agent must make the semantic decision and verify the real rendered UI. See `references/title-prefix-role-gate.md`.
+
 ## 5. Spacing, surfaces and composition
 
 Separate peer spacing from section spacing and card padding from inter-card gaps. Check vertical rhythm AND column alignment, especially for nested charts and toolbars. Use Grid/Flex according to content relationships; aligned cards do not prove aligned chart plot areas.
