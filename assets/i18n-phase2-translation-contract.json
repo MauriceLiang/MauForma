@@ -865,6 +865,100 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/surface-edge-accent-gate.md",
+      "source_blob_sha": "ac15e458edcfbff8f25163fe20e22adacb359572",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate S0",
+        "4–10 CSS px",
+        "New builds",
+        "FOUND → UNFIXED",
+        "No accent rail"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "已有项目的旧代码不是例外",
+          "target_en": "Legacy code is not exempt"
+        },
+        {
+          "source_zh": "默认：不添加任何装饰性侧边彩条",
+          "target_en": "Default: add no decorative edge rail"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/surface-architecture-gate.md",
+      "source_blob_sha": "3041d77ef06c1c6823a7bf68923e20813d479b74",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Surface Decision Tree",
+        "open collection",
+        "bounded panel",
+        "no universal numeric cutoffs",
+        "Gate B / D"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是要求所有后台放弃卡片",
+          "target_en": "does not forbid Cards in admin products"
+        },
+        {
+          "source_zh": "静态决策计划 PASS 不代表视觉美学 PASS",
+          "target_en": "A passing static design plan does not prove visual quality"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/semantic-spacing-rhythm-gate.md",
+      "source_blob_sha": "2cbb2a2110490a344cd68069d50e5a630e152d76",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate SR0",
+        "Gate SR1",
+        "Gate SR2",
+        "Gate SR3",
+        "Gate SR4",
+        "connected"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "允许 0 gap",
+          "target_en": "Zero gap/shared edge permitted"
+        },
+        {
+          "source_zh": "不要强行给错误空态指定大固定高度",
+          "target_en": "Do not force empty/error states into giant fixed heights"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/spacing-regression-protection-gate.md",
+      "source_blob_sha": "f443e9d37e56ad534d8611fe00d6e54e875c31d3",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate SG0",
+        "Gate SG1",
+        "Gate SG2",
+        "Gate SG3",
+        "Gate SG4",
+        "NO_COMPARABLE_PAIRS"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "只保护正确的间距",
+          "target_en": "Protect only good inherited gaps"
+        },
+        {
+          "source_zh": "不能以“没有标记”为借口跳过风险评估",
+          "target_en": "missing annotations are not permission to skip risk review"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }

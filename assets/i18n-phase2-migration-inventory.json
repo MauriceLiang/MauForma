@@ -398,7 +398,7 @@
       "path": "references/semantic-spacing-rhythm-gate.md",
       "source_blob_sha": "2cbb2a2110490a344cd68069d50e5a630e152d76",
       "source_bytes": 10282,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/settings-form-layout-gate.md",
@@ -440,7 +440,7 @@
       "path": "references/spacing-regression-protection-gate.md",
       "source_blob_sha": "f443e9d37e56ad534d8611fe00d6e54e875c31d3",
       "source_bytes": 8395,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/stack-guide-11-items.md",
@@ -452,13 +452,13 @@
       "path": "references/surface-architecture-gate.md",
       "source_blob_sha": "3041d77ef06c1c6823a7bf68923e20813d479b74",
       "source_bytes": 7587,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/surface-edge-accent-gate.md",
       "source_blob_sha": "ac15e458edcfbff8f25163fe20e22adacb359572",
       "source_bytes": 7144,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/task-center-run-monitor-design.md",

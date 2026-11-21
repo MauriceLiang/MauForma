@@ -1,38 +1,38 @@
-# Spacing Regression Protection Gate · 独立模块间距不可被无意抹除（v6.19）
+# Spacing Regression Protection Gate — Never Erase Independent Section Gaps Unintentionally (v6.19)
 
-跨框架、跨网站类型适用。与 `references/semantic-spacing-rhythm-gate.md` 配合：v6.16 规定如何设计空间关系，但过去默认 Agent 会给实际 DOM 加空间标记和执行契约，遗漏时仍能把大区块的 `row-gap` 清零并误称页面“更紧凑”。这版把**现有布局的间距保留与回归检查**提升为更新/优化时的硬门禁。
+Applies across Web frameworks and product modes. Complements `references/semantic-spacing-rhythm-gate.md`: v6.16 defines spatial relationships, but formerly assumed Agents would annotate actual DOM and run explicit contracts. Without annotations a refactor could zero large `row-gap` values yet claim improved compactness. **Preservation and regression inspection of existing good spacing is a hard gate for UI updates/polish.**
 
-## v6.20 · 只保护正确的间距，不能保护“已经错误的现状”
+## v6.20 — Protect only good inherited gaps, never an already broken baseline
 
-v6.19 的 before/after 保护会阻止**新增**退化，但不能代替**首次主动诊断**。已有页面若本来两个独立大卡就贴在一起，before 不能被解读为“用户认可的间距”。模糊优化请求必须先执行 `references/proactive-visual-defect-discovery-gate.md`，用 `scripts/audit_existing_visual_defects.mjs` 对当前真实页面做无需基线的发现；报告现有贴合风险，辨别是真正独立 Section/Peer 还是有意连体的 Tab/Panel。需要修复的问题不能靠“保留原貌”来跳过。
+Before/after protects against **new degradation**, not a replacement for initial diagnosis. If two separate large Cards touched **before** editing, the baseline is not proof the user approved that contact. Vague polish must first execute `references/proactive-visual-defect-discovery-gate.md`, using baseline-free `scripts/audit_existing_visual_defects.mjs` on the **actual running page**. Distinguish independent Section/peer surfaces from intentionally connected Tab/Panel structures. Defects requiring repair may not be ignored “to preserve the original.”
 
-之后才使用本文件的 before/after 检查保留**已经合理的**空间关系。自动扫描不能替代完整截图/业务语义判断，未覆盖的部分必须明确说明。
+Only then compare before/after to protect **already correct** spatial relations. Automated discovery does not replace full screenshots or business semantics. Report unobserved scope.
 
-## Gate SG0 · Preserve by default：设计优化不能擅自消灭既有留白
+## Gate SG0 — Preserve by default
 
-- 用户要求“优化”“更精致”“清爽”“让首屏装下更多内容”“简约/低密度”等，并不意味着授权把**原本独立的模块**拼接、把 `row-gap` 归零、删掉父 `gap`、或用负 `margin` 收缩视觉分隔。
-- 必须在改布局前识别“可保留的组间节奏”（尤其是指标条 → 主图、主图 → 次级统计、并排卡片 → 下一行、分析卡 → 资料摘要、表格 → 独立帮助区）。确定这些区域是否是 `section / peer / inside / connected / anchored`。
-- **独立模块的间距是受保护的设计状态**：除非用户要求改变、同一模块职责确实合并（并有结构理由）、或新的布局在用户确认的密度方向下确有更好的视觉层级，否则不得主动大幅收紧，更不能把它们变成零间距；如需改变，说明前后值、影响和依据，而不是将其当“代码简化”。
-- 为减小高度，应优先审查重复解释、无效表面、过长图表占位、无价值功能模块、行内密度或可滚动布局；**不能通过删除所有外部 gap 逃避内容/密度设计**。
-- 不把某一个具体项目的空隙、像素和模块命名写入全局默认；紧凑风格也需要足够清楚的组间关系。紧邻的连续表头与表体、Tab 与 Panel、分段控件及连续时间轴是合理的零间距例外。
+- “Improve,” “polish,” “clean,” “put more content above the fold,” “minimal,” or “low density” does **not** authorize joining previously independent regions, setting `row-gap:0`, deleting parent `gap` or using negative margins to collapse separation.
+- Before editing, identify group-level rhythm worth preserving (e.g. metric strip → main plot, main plot → supplementary stats, chart row → next row, analysis Card → supporting summary, table → separate Help section). Classify `section/peer/inside/connected/anchored`.
+- **Gaps between independent modules are protected design state:** Unless the user requests a change, the modules genuinely merge responsibilities with a structural reason, or a new layout produces a better hierarchy within the user-approved density direction, **do not markedly compress them**, especially not to zero. If modifying, report old/new values, impact and rationale—not “code simplification.”
+- Reduce page height by first removing repeated explanations, useless surface shells, oversized chart placeholders, low-value modules, excessive row internal padding or by making content scroll. **Never erase every outside gap to avoid a content-density decision.**
+- Do not place one project's gap values or module names into global defaults. Even compact UI needs clear inter-region boundaries. **Valid zero-gap exceptions:** contiguous table header/body, Tabs with their panel, segmented controls and continuous timelines.
 
-## Gate SG1 · Layout regression checkpoint（优化前和优化后）
+## Gate SG1 — Before/after layout regression checkpoint
 
-1. 在同一应用真实路由、同一数据状态、同一 viewport / 字体比例下，**先拍并观察整页前态**，从真实 DOM 读取主要独立模块的可视间隔。若源项目已有官方 spacing tokens / approval 记录，先继承。不要把新建示例页的正常表现冒充旧页面的基线。
-2. 为所有高价值独立模块建立明确的 `section/peer` 关系；若已能写出精确契约继续执行 `scripts/audit_spacing_rhythm.mjs`。若 Agent 未预先添加 `data-mf-space-id`，先执行新增 `scripts/audit_panel_spacing.mjs` 自动扫描实际页面里的主要 bordered/card-like surfaces，**不能以“没有标记”为借口跳过风险评估**。
-3. 按相同视口/字体比例保存 `before.json`，完成修改后生成 `after.json`，启用 `--baseline before.json` 对比。失去大量间距（即使新 gap 非零）、出现独立 surface 共边或压叠，视作回归，进入修复循环。
-4. 自动扫描是**启发式风险扫描**，不能准确理解所有自定义视觉边界：对透明、开放式、Canvas、position:absolute、CSS transform、跨组件 Portal 等需要补充显式语义关系、全页截图和人类审查。自动扫描找不到 panel pairs / 基线不可比时必须**报告未覆盖**，不能宣称“空间质量通过”。
-5. 显式的 `connected` 可用 0 gap，但应说明结构语义与为何共边。例如演示或目标页面中有 `data-mf-connected-reason="Tabs and the immediately associated panel are one continuous control"`；不可给所有父节点都填写“connected”来掩盖零间距。该属性只用于**明确确实为单一结构的容器**，需人工审查。
-6. 除几何审查外，仍需完整界面截图（含首屏/中间/滚动末尾）与交互时状态；扫描脚本并不能证明视觉审美、设计意图或完整覆盖。
+1. On the same **real application route**, data and viewport/text scale, first capture and **inspect the full existing page**, and measure visible boundaries between meaningful independent regions. Inherit official project tokens and approved decisions. A new synthetic gallery page cannot stand in for the old page baseline.
+2. Define `section/peer` relationships for important independent regions. If precise contracts exist, run `scripts/audit_spacing_rhythm.mjs`. Without prior `data-mf-space-id` annotations, use `scripts/audit_panel_spacing.mjs` on actual obvious bordered/surface-like Grid/Flex regions; **missing annotations are not permission to skip risk review**.
+3. Save `before.json` at the same viewport/font scale. Edit, produce `after.json`, compare with `--baseline before.json`. Severe gap loss—even if the new gap remains positive—unintended touching and overlapping independent surfaces are regressions requiring repair.
+4. This is **heuristic**, and cannot understand every boundary. Transparent/open areas, Canvas, absolute placement, transforms and portals need explicit semantic notes, full-page screenshots and human inspection. With no comparable pairs or insufficient scan coverage, **report uncovered regions**, not a passing spacing score.
+5. An intentional `connected` group may use zero gap, but document the reason and shared structure. For example `data-mf-connected-reason="Tabs and the immediately associated panel are one continuous control"`. Do not mark every parent “connected” to hide accidental touching. It belongs only on an actually unified structure and requires human review.
+6. Complete-screen screenshots (first/middle/last) and interaction states remain necessary. A geometry scanner does not prove artistic merit, design intent or exhaustive coverage.
 
-## Gate SG2 · 典型错误与正确的结构修复
+## Gate SG2 — Common defect and structural correction
 
 ```css
-/* 错误：压缩高度时把完整区块的间距一起清除 */
+/* Wrong: erase Section spacing to fit more content vertically */
 .analysis-stack { display: grid; row-gap: 0; }
 .analysis-stack .chart-grid { column-gap: var(--peer-space); row-gap: 0; }
 
-/* 正确方向：维护独立模块关系，由父布局决定真正的 gap */
+/* Correct direction: parent expresses independent relationships */
 .analysis-stack {
   display: grid;
   row-gap: var(--section-space);
@@ -46,46 +46,47 @@ v6.19 的 before/after 保护会阻止**新增**退化，但不能代替**首次
 @media (max-width: 48rem) {
   .analysis-stack .chart-grid { grid-template-columns: minmax(0, 1fr); }
 }
-/* 连续 Tab + 面板可保留零间距：它们不是两个独立分析模块 */
+/* Tab and Panel legitimately connected may remain at zero gap */
 ```
 
-CSS 只是关系示例，不代表给所有产品施加固定值。不要用强制 `margin-bottom:16px` 普遍覆盖组件 CSS、`!important`、隐藏溢出或大 `padding` 伪装实际独立间距。
+CSS illustrates relationships, **not universal values**. Do not add `margin-bottom:16px` to every component or use `!important`, clipped overflow or giant padding to fake correct gaps.
 
-## Gate SG3 · 低开销 Browser 检查用法
+## Gate SG3 — Low-cost browser audit commands
 
-在已有项目（装有 Playwright）：
+For an existing project with Playwright:
 
 ```bash
-# 本页例子使用开发服务器 URL，必须由实现者换成当前真实产品页面
+# Replace the demo URL with the actual target page
 node scripts/audit_panel_spacing.mjs --url http://localhost:5173/example --out before.json
-# 完成 CSS/布局优化、保持同样页面/视口/数据后再执行
+# After changes, same page, state and viewport
 node scripts/audit_panel_spacing.mjs --url http://localhost:5173/example --baseline before.json --out after.json
-# 有明确模块关系的页面继续运行更严格的 token/关系契约审查
+# When explicit relationships exist
 node scripts/audit_spacing_rhythm.mjs --url http://localhost:5173/example --contract spacing-contract.json
 ```
 
-- `UNJUSTIFIED_PANEL_CONTACT`：自动发现大尺寸、可见、独立候选 panel 共边。
-- `SPACING_REGRESSION`：相比之前的同一 DOM 关系，大幅压缩了原有 gap，不会因新 gap > 0 自动通过。
-- `ASYMMETRIC_GRID_SPACING`：同行有 gutter 但行距塌陷的提示，需要结合实际是否存在多行判断。
-- `INSUFFICIENT_COVERAGE` / `NO_COMPARABLE_PAIRS`：不能证明通过，需要补充明确的语义契约或人工验证。
-- `VERY_TIGHT_PANEL_GAP`：提示人工判断，不强行把所有紧凑设计判成错误。
-- `data-mf-connected-reason` 例外不是默认跳过检查的许可证；有意连体必须记录用途和结构原因。
+- `UNJUSTIFIED_PANEL_CONTACT`: Large visible candidate independent panels touching.
+- `SPACING_REGRESSION`: Material gap loss relative to prior DOM relationship, even when new gap is above zero.
+- `ASYMMETRIC_GRID_SPACING`: A row has gutter while multi-row spacing collapses; confirm actual grid has multiple rows.
+- `INSUFFICIENT_COVERAGE` / `NO_COMPARABLE_PAIRS`: Not a pass; add explicit semantics or manual inspection.
+- `VERY_TIGHT_PANEL_GAP`: Manual review candidate, not automatic condemnation of all tight UI.
+- `data-mf-connected-reason` is **not a global exemption**; intentional shared edge needs structural justification.
 
-注意：自动脚本只识别有限的**同一 Grid/Flex 父级下，具有明显边框/表面特征的区域**，不会凭空推断所有语义，也不会保存截图。为真实项目提供风险筛查，不是自动审美评分。
+The script only recognizes **a limited set of conspicuously framed surfaces under common Grid/Flex parents**. It neither infers all semantics nor saves screenshots. This is a risk hint, not an aesthetic score.
 
-## Gate SG4 · 强制交付声明
+## Gate SG4 — Required delivery statement
 
-当用户要求实际页面优化，Agent 交付时必须报告：
-- 调整了哪些**独立模块之间的间距关系**，哪些保留不变，哪些有明确授权被压缩；
-- 是否对**真实页面**而非 standalone 演示运行浏览器测试，覆盖哪些宽度和字号；是否执行 before/after 对比；
-- 是否仍有未覆盖模块、可能的误报或可访问性问题；
-- 不能用“调整了 padding”“组件通过”等描述冒充组间间距通过。
+For a real UI improvement, report:
 
-## 与其他 Gate 协作
+- Which **independent-module spacing relationships** changed, remained unchanged or were intentionally compressed with authorization.
+- Whether testing covered a **real page**, not a standalone demo; include viewports, text scaling and whether before/after comparison was run.
+- Uncovered regions, possible false positives and accessibility concerns.
+- “Adjusted padding” or “the component passes” does **not** establish inter-section spacing passed.
 
-- `references/semantic-spacing-rhythm-gate.md`：决定空间关系与间距角色。
-- `references/grid-alignment-and-viewport-safety.md`：Grid 行列、断点、滚动到底安全。
-- `references/whitespace-and-surface-composition.md`：留白/视觉权重与 Surface 决定。
-- `references/control-geometry-gate.md`：不能因恢复间距导致按钮挤压。
-- `references/design-reference-learning-gate.md`：用户提供的参考图像与可识别信息不得进入公开仓库或 CI fixture。
-- `tests/panel_spacing_browser_smoke.mjs`：原创合成布局的正/反例，不使用任何用户截图或业务记录。
+## Coordination with other gates
+
+- `references/semantic-spacing-rhythm-gate.md`: Roles and spacing choices.
+- `references/grid-alignment-and-viewport-safety.md`: Grid axes, breakpoints, scroll reachability.
+- `references/whitespace-and-surface-composition.md`: Whitespace, optical weight and surface decisions.
+- `references/control-geometry-gate.md`: Restored gaps must not crush actions.
+- `references/design-reference-learning-gate.md`: Never commit user reference screenshots/identifiable content into public repo or CI.
+- `tests/panel_spacing_browser_smoke.mjs`: Original synthetic success/failure cases; never user data.
