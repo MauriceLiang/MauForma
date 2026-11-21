@@ -61,8 +61,6 @@ Avoid hand-built click-only div controls. A light static page or genuine native 
 
 Shared components should have a clear state owner, semantic API, documented variants and a common token source. Do not create multiple styling systems or a boolean-prop maze.
 
-**Mixed-control consistency is mandatory when polishing an existing interactive UI:** inspect real imports and native/custom/library controls; choose the primary implementation from the project's actual page mode, approved visual language, framework, interaction coverage, accessibility, performance and migration constraints. Favor a coherent existing library or primitive stack over adding another styled system. Check both closed and expanded Select/Combobox/Menu surfaces; OS-owned native select popups may not be fully themeable with CSS. Keep deliberate native controls when appropriate and documented. `scripts/audit_control_consistency.mjs` gives candidates, not vendor attribution or real-page verification. See `references/component-consistency-and-selection-gate.md`.
-
 ## 7. Motion quality and continuity
 
 For meaningful interactions, specify:

@@ -55,8 +55,6 @@ jobs:
           node --check scripts/audit_panel_spacing.mjs
           node --check scripts/audit_existing_visual_defects.mjs
           node --check scripts/audit_title_prefixes.mjs
-          node --check scripts/audit_control_consistency.mjs
-          node --check tests/control_consistency_browser_smoke.mjs
           node --check tests/title_prefix_browser_smoke.mjs
           node --check tests/existing_visual_defect_browser_smoke.mjs
           node --check tests/panel_spacing_browser_smoke.mjs
@@ -108,8 +106,6 @@ jobs:
         run: node tests/panel_spacing_browser_smoke.mjs
       - name: Validate detection of pre-existing visible defects in Chromium
         run: node tests/existing_visual_defect_browser_smoke.mjs
-      - name: Validate mixed native/library select candidate coverage in Chromium
-        run: node tests/control_consistency_browser_smoke.mjs
       - name: Validate style-agnostic title-prefix candidates at all heading levels
         run: node tests/title_prefix_browser_smoke.mjs
       - name: Validate settings/form layout in Chromium
