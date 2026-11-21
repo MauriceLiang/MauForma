@@ -1419,7 +1419,21 @@
         "prefers-reduced-motion",
         "createTimeline",
         "createScope",
-        "60fps"
+        "60fps",
+        "v6.15",
+        "v6.14",
+        "Tier A",
+        "Tier B",
+        "Tier C",
+        "100–180 ms",
+        "300–650 ms",
+        "AutoAnimate",
+        "Lottie",
+        "Rive",
+        "View Transitions API",
+        "123 recipes",
+        "45 easing terms",
+        "not an additional dependency"
       ],
       "semantic_pair_examples": [
         {
@@ -1429,6 +1443,18 @@
         {
           "source_zh": "必须按版本核对 API",
           "target_en": "installed major version"
+        },
+        {
+          "source_zh": "用户选择“无额外动画”仍必须保留即时、清楚的交互状态反馈",
+          "target_en": "no additional visual motion"
+        },
+        {
+          "source_zh": "参数建议（设计默认值，非官方标准）",
+          "target_en": "design defaults, not official standards"
+        },
+        {
+          "source_zh": "不应被当成额外依赖",
+          "target_en": "not an additional dependency"
         }
       ],
       "allowed_cjk_fragments": []
@@ -1444,7 +1470,13 @@
         "Gate F3",
         "Gate F4",
         "SOURCE INSPECTED",
-        "STATIC CHECK"
+        "STATIC CHECK",
+        "input confidence",
+        "Desktop selection is not remote node access",
+        "source-figma / inherited-project / inferred-from-screenshot / unknown",
+        "device pixel ratio",
+        "seven implementation stages",
+        "intentional differences"
       ],
       "semantic_pair_examples": [
         {
@@ -1454,6 +1486,18 @@
         {
           "source_zh": "截图不等于像素级忠实",
           "target_en": "does not prove Figma file access"
+        },
+        {
+          "source_zh": "用户只说参考这种感觉，不等于按像素复刻",
+          "target_en": "only “use this feeling/style as inspiration”"
+        },
+        {
+          "source_zh": "当前选中节点与远端 file/node 是两种不同的输入能力",
+          "target_en": "Desktop selection is not remote node access"
+        },
+        {
+          "source_zh": "不能虚构 Figma MCP 读取结果",
+          "target_en": "Never invent a tool name"
         }
       ],
       "allowed_cjk_fragments": []
@@ -1467,7 +1511,15 @@
         "Gate RL1",
         "Gate RL2",
         "Gate RL3",
-        "NOT TESTED"
+        "NOT TESTED",
+        "Reference Insights Matrix",
+        "Do not publish any user's original reference image",
+        "even anonymized versions remain prohibited",
+        "Never disclose user identity",
+        "No proactive reverse sourcing",
+        "RL4 — Pre-publication checklist",
+        "EXAMPLE VERIFIED ONLY",
+        "user explicitly said"
       ],
       "semantic_pair_examples": [
         {
@@ -1477,6 +1529,18 @@
         {
           "source_zh": "视觉截图不能证明代码和交互",
           "target_en": "A screenshot is evidence for a visual discussion"
+        },
+        {
+          "source_zh": "用户本轮明确要求不入仓时，即使脱敏也禁止上传",
+          "target_en": "even anonymized versions remain prohibited"
+        },
+        {
+          "source_zh": "不主动通过 OCR、截图下载、Drive 或外部链接找可识别原始版本",
+          "target_en": "No proactive reverse sourcing"
+        },
+        {
+          "source_zh": "设计参考并不意味着使用同一组件库",
+          "target_en": "do not require the same component library"
         }
       ],
       "allowed_cjk_fragments": []
@@ -1490,7 +1554,21 @@
         "confirmed / inherited / delegated / proposed / unresolved",
         "Tool drift",
         "Schema drift",
-        "Design truth drift"
+        "Design truth drift",
+        "v6.4",
+        "v6.6",
+        "v6.7",
+        "v6.8",
+        "v6.9",
+        "v6.10",
+        "v6.11",
+        "--force --apply",
+        "status=pending",
+        "#RRGGBB",
+        "comparison-contract.json",
+        "task-run-contract.json",
+        "observed-tokens.json",
+        "Truth drift"
       ],
       "semantic_pair_examples": [
         {
@@ -1500,6 +1578,18 @@
         {
           "source_zh": "静态扫描基线不等于批准",
           "target_en": "not MASTER truth"
+        },
+        {
+          "source_zh": "已有的 MASTER 默认拒绝覆盖，需明确授权和 --force --apply",
+          "target_en": "--force --apply"
+        },
+        {
+          "source_zh": "推荐色不能提前入库",
+          "target_en": "status=pending"
+        },
+        {
+          "source_zh": "工具不得为全绿报告改写 MASTER",
+          "target_en": "Never rewrite MASTER"
         }
       ],
       "allowed_cjk_fragments": []
