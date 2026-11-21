@@ -33,8 +33,12 @@ def inspect(contract: dict, root: Path = ROOT) -> list[str]:
     else:
         inv = json.loads(inventory_file.read_text("utf-8"))
         records = inv.get("files", [])
-        if inv.get("migration_status") != "partial":
-            errors.append("Do not claim full migration while references remain pending")
+        inventory_status = inv.get("migration_status")
+        if contract.get("status") == "complete_pending_review":
+            if inventory_status != "complete_pending_independent_review":
+                errors.append("Completed translation inventory must remain pending independent semantic review")
+        elif inventory_status != "partial":
+            errors.append("Partial translation must have an explicit partial inventory")
         if not isinstance(records, list):
             errors.append("Reference inventory must list all files")
             records = []
@@ -51,6 +55,8 @@ def inspect(contract: dict, root: Path = ROOT) -> list[str]:
         pending = [r for r in records if isinstance(r, dict) and r.get("status") == "pending_language_and_semantic_audit"]
         if not pending and contract.get("status") == "partial_migration":
             errors.append("No pending inventory documents: verify completion status explicitly")
+        if contract.get("status") == "complete_pending_review" and pending:
+            errors.append("Completed translation status cannot conceal pending language migrations")
     seen: set[str] = set()
     for entry in entries:
         if not isinstance(entry, dict):
