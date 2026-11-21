@@ -1,62 +1,61 @@
-# Semantic Copy Hygiene — 文案必要性与信息角色
+# Semantic Copy Hygiene — Necessity and Information Roles
 
-本规范处理可见文案是否**真正增加信息**，适用于所有 Web 页面，而非某个产品的截图复盘。操作型和阅读型页面通常更强调任务与数据；品牌、营销、创意页面可以保留有明确叙事价值的辅助文字。
+This gate asks whether visible copy adds **real information** on every kind of Web page; it is not a recap of one project's screenshots. Operate and Read contexts commonly prioritize task and data clarity. Brand, marketing and creative contexts can preserve supporting language with a genuine narrative function.
 
-## 合成反例与合理处理
+## Synthetic counterexamples and appropriate handling
 
-| 合成界面中的内容 | 问题 | 处理 |
+| Fictional UI copy | Issue | Appropriate action |
 | --- | --- | --- |
-| Logo 下的 `INSIGHT AREA` | 没有正式子品牌含义，仅为装饰 | 删除；真实品牌副标例外 |
-| “内容分析 · 交互原型” | 把开发阶段标签暴露为页面美术 | 若真的使用样例，改为明确的“演示数据”状态 |
-| “看见变化的力量”大 H1 | 操作页无法识别当前任务 | 换成实际对象与任务；营销首页可保留正式主张 |
-| “01 / 概览” + 相同含义的当前导航 | 装饰编号与真实导航重复 | 只保留必要标题；真实章节编号例外 |
-| “图表保留原生 tooltip” | 开发实现信息，不面向用户 | 移到技术文档，或写成“悬停查看数据” |
-| 每张卡片重复“演示数据” | 状态重要但重复造成噪声 | 页面级显著提示，重要数据就地保留必要标注 |
+| \`INSIGHT AREA\` below a logo | No confirmed sub-brand; pure decoration | Remove; genuine official brand sub-labels are an exception |
+| \`Content analytics · interactive prototype\` | Development-phase information leaked into product ornament | If samples really are being used, show a truthful “Demo data” state instead |
+| \`See the power of change\` as a giant H1 | An operational user cannot identify the task | Name the actual object/task; a marketing home may retain a confirmed brand promise |
+| \`01 / Overview\` plus a navigation item with the same meaning | Decorative index duplicates actual navigation | Keep the useful title; a real chapter index remains valid |
+| \`Chart retains native tooltip\` | Developer implementation detail, not useful product-facing copy | Move to technical documentation or say “Hover to inspect data” only if genuinely supported |
+| Every card repeats \`Demo data\` | Important state becomes noisy when needlessly repeated | Give a clear page-level indicator; keep local warnings where data interpretation requires them |
 
-以上文本均为**新编的通用示例**，不来自任何用户项目或截图。
+The examples are original, generic test scenarios, not actual user product material.
 
-## 跨产品页头文案门禁：已存在内容也要处理
+## Universal title-copy gate — inherited content is not exempt
 
-**所有页面**在新建、优化、重构或评审时，都应检查 H1/主视觉标题上方的旧有与新增 eyebrow/overline/kicker、中文眉题、双语前缀、宽字距标签与装饰编号；按 `keep / merge / move / delete` 明确其导航、身份、状态、真实章节、增量信息或已确认品牌叙事价值。历史沿用、仅换颜色或字号，不是免审理由。
+When creating, polishing, refactoring or reviewing **any page type**, inspect both inherited and newly introduced pre-H1/hero eyebrow, overline, kicker, Chinese/English/mixed-language prefix, wide-tracking label and ornamental number. Resolve each by \`keep / merge / move / delete\` according to authentic navigation, identity, status, real chapter structure, incremental information or approved brand narrative. “It was there before,” a color change, or a font-size tweak does not excuse a redundant prefix.
 
-任务型功能页默认直接呈现主标题，**不得新增或保留**解释性眉题；学习/科普/阅读/营销/品牌/创意页面也必须删除无用途的解释性填充，但合法的活动标语、章节顺序和有叙事依据的 kicker 不因位置在上方而一律删除。混合“品牌名 · 功能说明”应分拆判定，品牌身份可保留并移往品牌区，泛功能说明若冗余则删除。时间范围、来源、权限和数据状态移到对应筛选器、图表或操作区域；必要增量简介放在恰当位置。参见 `references/page-header-antipatterns.md` Gate H-Base/H0。
+Operational pages must not generate or retain explanatory decorative title prefixes. Learning, scientific, reading, marketing, brand and creative pages must also remove *functionless* prefixes, but actual event slogans, chapter numbers and evidenced narrative kickers are not automatically invalid. Split a line combining a genuine brand and generic functional description: preserve the identity in the brand area; remove the redundant text. Put dates, scope, sources, permission and data states near the relevant filters/charts/actions. Put necessary incremental help below the title or next to the corresponding task. See \`references/page-header-antipatterns.md\`, H-Base/H0.
 
-## 标题前导与真实小节标题：先识别关系，再判断信息
+## Title prefix versus real section heading: classify the relationship first
 
-`references/title-prefix-role-gate.md` 适用于所有页面及 H1–H6、Card/Section/Dialog 等标题组。**标题前的一行文字是不是眉题，由它与后续标题的结构关系决定，不由蓝色、黑色、大小、粗细、宽字距、语言、CSS 名称或 HTML 标签决定。**
+\`references/title-prefix-role-gate.md\` covers all pages and title groups (H1–H6, Card/Section/Dialog, etc.). Whether a line is a title preamble depends on its **structural relationship** to the next title—not on blue versus black, size, weight, letter spacing, language, CSS class or element tag.
 
-判定分三步：① 识别同一标题组中的独立前导文字，包含历史遗留和组件默认内容；② 判断它是纯装饰、真实导航、章节步骤、状态、来源、品牌、真正独立的章节标题，还是正文说明；③ 另外判断其信息**即使值得保留**，是否适合继续呈现为标题上方的小字，必要时移动到面包屑、步骤条、图例、状态或标题下方。不得把“有信息价值”直接等同于“可继续使用装饰前导样式”。审查必须包含真实渲染，并覆盖已存在内容。
+Make three separate decisions: (1) find independent preceding text within each title group, including old components and defaults; (2) classify as decoration, real navigation, chapter/step, state, source, brand, independent heading or explanatory copy; (3) even if the text is valuable, decide **independently** whether it belongs in a separate pre-title line. Prefer breadcrumb, stepper, legend, status, below-title description or other appropriate role where applicable. “Meaningful copy” does not automatically justify an ornamental pretitle. Inspect actual rendering and old content.
 
-**静态扫描和浏览器 DOM 工具都只能提供候选，不能替 Agent 完成语义判断；有意义的真实章节标题不可被批量删掉。**
+Static and DOM scans supply **candidates only**. Agents must decide semantics. Never bulk-delete legitimate chapter headings based on appearance.
 
-## 四道必要性判断
+## Four tests of necessity
 
-1. **信息增量**：删除会损失导航、身份、状态、数据范围、来源、限制或品牌含义吗？仅用于“看起来高级”的文字应删除。
-2. **职责重复**：是否只是重述同屏的 H1、导航、面包屑、Tab 或卡片标题？真正可导航的面包屑与页面标题同名可以成立。
-3. **面向对象**：是用户需要的信息，还是开发者备注、组件实现方式、Mock 内部术语？
-4. **页面目标**：阅读页可以有章节，营销页可以有标语，操作页通常更需要当前对象、任务与操作入口。
+1. **Added value:** Would deleting the text lose navigation, identity, status, data scope, source, constraint or brand meaning? Delete words that exist solely to look “premium.”
+2. **Duplicated role:** Does it repeat an H1, navigation, breadcrumb, Tab or Card heading? Actual breadcrumb terminal items may validly match a page heading.
+3. **Audience:** Is it user-facing information, or a developer note, internal component implementation or Mock terminology?
+4. **Page intent:** Reading pages may use chapters, marketing pages may use narrative slogans; operating pages usually need objects, tasks and actions.
 
-实施结果采用 `keep / merge / move / delete`，需要时简单记录理由；不要求为每个字符串提交形式化表格。
+Use \`keep / merge / move / delete\` with a short explanation where useful; do not require a formal table for every string.
 
-## 角色化标题
+## Semantic heading roles
 
-- **产品与页面身份**：展示真实产品名和已确认的品牌副标；不得自动附加无意义英文口号。
-- **主标题**：说清当前任务、内容或品牌表达，不必机械放大，也不可小到失去主次；功能页不自动加 H1 前导解释层。
-- **区块标题**：提供与相邻内容不同的语义，图表标题要对应真实数据。
-- **辅助文案**：解释单位、样本量、时区、数据覆盖、误差、加载/权限状态等重要信息。
-- **编号与面包屑**：只用于真实顺序或导航，不为每一段落生成假的序号。
-- **双语与专业名词**：只有产品语言策略、专有名称或明确用户利益时才重复或保留英文。
+- **Product/page identity:** Show real product names and confirmed sub-brand phrases; do not generate generic English slogans.
+- **Main heading:** State the actual task, content or brand meaning. Do not arbitrarily inflate or minimize its font size; operational pages do not auto-generate pre-H1 explanatory layers.
+- **Section heading:** Introduce information distinct from adjacent content. Chart headings must name actual data.
+- **Supporting copy:** Clarify units, sample sizes, time zones, coverage, uncertainty, loading/permission states and other real constraints.
+- **Index and breadcrumb:** Only for genuine order or navigation, never invented numbers per paragraph.
+- **Bilingual/technical terms:** Retain translated or English duplicates only when the product language strategy, proper noun or a demonstrable user benefit requires them.
 
-## 容器级内容审查
+## Container-level content audit
 
-逐句有意义不代表整块必须放在当前页面。先按 `references/page-density-and-content-priority.md` 做 `primary/supporting/conditional/deferred/removable` 分类；首次教程在任务熟悉后不应常驻总览，重复功能目录不应挤占核心流程。删除内容时保留可发现入口，关键数据限制不能因“留白”被抹掉。
+Each sentence may be meaningful yet the entire container may be out of place. First classify sections as \`primary/supporting/conditional/deferred/removable\` under \`references/page-density-and-content-priority.md\`. A first-use tutorial need not permanently occupy a familiar task overview; a repeated feature index must not displace core workflows. Maintain a discoverable route to relocated content. **Never discard important data limitations simply to increase whitespace.**
 
-## 验证
+## Verification
 
-- **数据来源**、真实状态和**功能性**说明属于必要信息，不得因去装饰而删除。
+- Real data sources, actual states and functional guidance are useful information, not decoration to remove.
+- Read actual page copy before deciding. Include historical and added content and a before/after comparison; never batch-delete from a keyword search.
+- \`scripts/audit_readability.py <src> --format json\` gives review hints, not an objective verdict about decorative titles.
+- Recheck rendered heading hierarchy, mixed-language content, chart sources and help copy. If not executed, report \`NOT TESTED\`.
 
-- 先阅读真实页面内容，再判断文案；检查**历史遗留**与本次新增，做 before/after 对照；不要用单词关键词脚本自动删除。
-- `scripts/audit_readability.py <src> --format json` 仅产生人工复核线索，不自动证明某标题装饰性。
-- 在目标浏览器中复查各标题层级、混合语言、图表来源和辅助说明；未运行应标 `NOT TESTED`。
-
-相关阅读：`references/typography-hierarchy.md`、`references/page-header-antipatterns.md`、`references/visual-critique-loop.md`。
+Related: \`references/typography-hierarchy.md\`, \`references/page-header-antipatterns.md\`, \`references/visual-critique-loop.md\`.
