@@ -32,7 +32,7 @@
       "path": "references/animation-engine-selection.md",
       "source_blob_sha": "6a044caa593ad26dc62c154fcfc71d9493708277",
       "source_bytes": 7342,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/animation-integration-lifecycle.md",
@@ -164,7 +164,7 @@
       "path": "references/design-reference-learning-gate.md",
       "source_blob_sha": "d01c3acb45b0f91872af0049c52616a0d82a407b",
       "source_bytes": 7928,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/design-style-catalog.md",
@@ -206,7 +206,7 @@
       "path": "references/figma-fidelity-workflow.md",
       "source_blob_sha": "a9de5271d035de95530f92e70f55e85cd4e96696",
       "source_bytes": 5936,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/framework-other-web.md",
@@ -356,7 +356,7 @@
       "path": "references/project-design-hierarchy.md",
       "source_blob_sha": "43af8915968fc1aef77922facebf8e5c8df11510",
       "source_bytes": 9344,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/quality-antipatterns-by-page-type.md",

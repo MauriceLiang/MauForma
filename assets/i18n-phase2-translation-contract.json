@@ -1408,6 +1408,101 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/animation-engine-selection.md",
+      "source_blob_sha": "6a044caa593ad26dc62c154fcfc71d9493708277",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Anime.js v4",
+        "SSR",
+        "prefers-reduced-motion",
+        "createTimeline",
+        "createScope",
+        "60fps"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不得把 Anime.js 当成强制默认",
+          "target_en": "not a mandatory default"
+        },
+        {
+          "source_zh": "必须按版本核对 API",
+          "target_en": "installed major version"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/figma-fidelity-workflow.md",
+      "source_blob_sha": "a9de5271d035de95530f92e70f55e85cd4e96696",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate F0",
+        "Gate F1",
+        "Gate F2",
+        "Gate F3",
+        "Gate F4",
+        "SOURCE INSPECTED",
+        "STATIC CHECK"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "无法访问 Figma 不得虚构",
+          "target_en": "Do not fabricate inaccessible Figma metadata"
+        },
+        {
+          "source_zh": "截图不等于像素级忠实",
+          "target_en": "does not prove Figma file access"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/design-reference-learning-gate.md",
+      "source_blob_sha": "d01c3acb45b0f91872af0049c52616a0d82a407b",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate RL0",
+        "Gate RL1",
+        "Gate RL2",
+        "Gate RL3",
+        "NOT TESTED"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "用户截图不能自动当公开样例",
+          "target_en": "Do not commit screenshots"
+        },
+        {
+          "source_zh": "视觉截图不能证明代码和交互",
+          "target_en": "A screenshot is evidence for a visual discussion"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/project-design-hierarchy.md",
+      "source_blob_sha": "43af8915968fc1aef77922facebf8e5c8df11510",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "MASTER.md",
+        "confirmed / inherited / delegated / proposed / unresolved",
+        "Tool drift",
+        "Schema drift",
+        "Design truth drift"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "推荐不是确认",
+          "target_en": "not confirmed"
+        },
+        {
+          "source_zh": "静态扫描基线不等于批准",
+          "target_en": "not MASTER truth"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
