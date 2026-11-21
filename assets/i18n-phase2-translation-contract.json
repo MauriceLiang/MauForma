@@ -282,6 +282,123 @@
       "allowed_cjk_fragments": [
         "用户管理"
       ]
+    },
+    {
+      "path": "references/design-style-catalog.md",
+      "source_blob_sha": "3869f05b80313f82faef4afcc0111105dff4dbef",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "eight profiles",
+        "not official classifications",
+        "calm-minimal",
+        "functional",
+        "reading-first"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "八种档案",
+          "target_en": "eight profiles"
+        },
+        {
+          "source_zh": "用户明确选择",
+          "target_en": "Users may deliberately choose"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/animation-integration-lifecycle.md",
+      "source_blob_sha": "2a7ecf4b441e89309d8c896fce0a8b9a4e2616ec",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "DOM ownership",
+        "React StrictMode",
+        "prefers-reduced-motion",
+        "ten consecutive mount/unmount",
+        "WebGL failure"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "停止/回收",
+          "target_en": "Stop and release"
+        },
+        {
+          "source_zh": "服务端",
+          "target_en": "SSR"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/perceptual-hierarchy-gate.md",
+      "source_blob_sha": "fa0dbf03f6b354f0a769134b15ab24ab652616ba",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "P0 — Decision focal point",
+        "P1 — Required to complete the task",
+        "P2 — Supports comprehension",
+        "P3 — Low-frequency context",
+        "NOT VISUALLY VERIFIED"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "信息优先级不是数字检测器",
+          "target_en": "Priority is not a numeric-value detector"
+        },
+        {
+          "source_zh": "3 秒快扫",
+          "target_en": "three-second scan test"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/typography-hierarchy.md",
+      "source_blob_sha": "03f9eb30b513e5bba9bf2e0b6a33814bf8d93664",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "4.5:1",
+        "3:1",
+        "200%",
+        "Text Spacing 1.4.12",
+        "not a mandatory accessibility font-size minimum"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是无障碍强制字号",
+          "target_en": "not a mandatory accessibility font-size minimum"
+        },
+        {
+          "source_zh": "不能因静态 Token 宣称符合 WCAG",
+          "target_en": "Do not claim WCAG conformance"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/page-density-and-content-priority.md",
+      "source_blob_sha": "73eb0f2d57470dc9efed32fdcde45b3cd061b20a",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate P0",
+        "Gate P1",
+        "Gate P2",
+        "Gate P3",
+        "Gate P4",
+        "Gate P5",
+        "without a verified denominator"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "隐藏不是删除功能",
+          "target_en": "Hidden content is not deleted functionality"
+        },
+        {
+          "source_zh": "未确认分母",
+          "target_en": "without a verified denominator"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
