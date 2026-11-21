@@ -9,21 +9,21 @@ This is a **task-specific interpretation aid**, not a second entrypoint. Start w
 - **Forbidden**: Never infer that a Skill style override outranks the user's approved choices.
 - **Deep references**: `SKILL.md`, `references/project-design-hierarchy.md`
 
-## B02 — Language versus product locale
+## B02 — Language vs product locale
 - **Trigger**: An Agent reads English instructions or works on a localized UI
 - **Required**: Keep replies and product copy in the user's or existing product locale; verify actual text, CJK wrapping and numbers.
 - **Exception**: Translate product copy only if the user requests localization or the product requirements require that locale.
 - **Forbidden**: Never translate an existing UI to English solely because MauForma's entrypoint is English.
 - **Deep references**: `SKILL.md`, `references/execution-handbook.en.md`
 
-## B03 — Reference loading, on demand
+## B03 — Reference loading
 - **Trigger**: Any task using references
 - **Required**: Load one primary relevant guide; add secondary guides only for specific identified needs. A reference table lists choices, not mandatory steps.
 - **Exception**: Complex implementation or a verified blocker can justify more than three guides when each addition is relevant.
 - **Forbidden**: Never load the entire Skill reference library or every validator by default.
 - **Deep references**: `SKILL.md`, `references/semantic-boundaries.en.md`
 
-## B04 — Components and installation permissions
+## B04 — Component dependency
 - **Trigger**: An interactive page needs controls
 - **Required**: Inspect and reuse the installed accessible library first; map required controls to real components and test states.
 - **Exception**: If none exists, a new compatible dependency may be installed only within the user's delegated implementation and dependency policy; otherwise use sound native controls or report the blocker.
@@ -58,28 +58,28 @@ This is a **task-specific interpretation aid**, not a second entrypoint. Start w
 - **Forbidden**: Never fabricate Figma tool access, unprovided asset details or unconditional pixel-perfect parity.
 - **Deep references**: `references/figma-fidelity-workflow.md`, `references/execution-handbook.en.md`
 
-## B09 — Viewport scope
+## B09 — Scope of viewport
 - **Trigger**: Responsive or viewport QA
 - **Required**: Test the supported product breakpoints, declared minimum viewport, content reachability and relevant text zoom.
 - **Exception**: Only test a 390px mobile layout when mobile support is in scope; desktop-only products still need their smallest supported desktop view.
 - **Forbidden**: Never add mobile support or force a mobile-first redesign without a product requirement.
 - **Deep references**: `references/browser-qa-protocol.md`, `references/product-experience-routing-gate.md`
 
-## B10 — Evidence claims
+## B10 — Evidence claim
 - **Trigger**: Claiming any test, visual or business result
 - **Required**: Specify actual route, state, viewport, data and evidence; use VERIFIED only for the tested scope.
 - **Exception**: Static code analysis is STATIC CHECK; synthetic fixtures are DEMO ONLY; missing conditions are NOT TESTED or BLOCKED.
 - **Forbidden**: Never infer backend persistence from screenshots or smooth animation from a heuristic trace.
 - **Deep references**: `references/browser-qa-protocol.md`, `references/motion-rehearsal-and-evidence.md`
 
-## B11 — Review versus implementation
+## B11 — Review vs implement
 - **Trigger**: Review-only, bug-fix, redesign or general polish request
 - **Required**: Review-only means findings without edits; a scoped fix requires actual regression checks; major redesign includes design direction and broader QA.
 - **Exception**: Independent formal design critique is valuable for substantial visual change but not mandatory for a one-line bug fix.
 - **Forbidden**: Never turn a review request into source edits or a tiny fix into an unrequested interview.
 - **Deep references**: `references/design-craft-loop.md`, `SKILL.md`
 
-## B12 — Design drift terminology
+## B12 — Design drift meaning
 - **Trigger**: An observed token, schema or design-document drift is reported
 - **Required**: Distinguish tool version drift, schema drift and product truth drift; code-derived token snapshots are observations, not approved design decisions.
 - **Exception**: Mechanical migration may be suggested for schema changes with explicit approval; truth drift requires checking real product intent and rendered evidence.
@@ -93,7 +93,7 @@ This is a **task-specific interpretation aid**, not a second entrypoint. Start w
 - **Forbidden**: Never infer source-site designer intent, invent design data or copy protected assets.
 - **Deep references**: `references/design-dna-protocol.md`, `references/design-reference-learning-gate.md`
 
-## B14 — Browser reconnaissance before action
+## B14 — Browser reconnaissance
 - **Trigger**: Opening a running application for browser tests
 - **Required**: Inspect live DOM and current page state before choosing selectors; capture browser console and relevant network errors, then interact and retest.
 - **Exception**: When the browser, app server or permissions are unavailable, report NOT TESTED/BLOCKED without manufacturing selectors or expected results.
