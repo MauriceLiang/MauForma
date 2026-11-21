@@ -1149,12 +1149,12 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "英文规范指令与中文产品语言必须分开",
-          "target_en": "Never translate an existing UI to English solely because MauForma's entrypoint is English"
+          "source_zh": "指令语言与产品语言",
+          "target_en": "Language versus product locale"
         },
         {
-          "source_zh": "例外不能覆盖禁止",
-          "target_en": "An exception must not erase a prohibition"
+          "source_zh": "按需读取",
+          "target_en": "Reference loading, on demand"
         }
       ],
       "allowed_cjk_fragments": []
@@ -1173,11 +1173,7 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "样本与截图时钟不同",
-          "target_en": "Screenshot and sample clocks differ"
-        },
-        {
-          "source_zh": "脚本不更新 MASTER",
+          "source_zh": "脚本不会更新 `MASTER.md`",
           "target_en": "It never updates"
         }
       ],
@@ -1196,12 +1192,12 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "不是官方品牌 Design System",
+          "source_zh": "不是品牌官方发布的 Design System",
           "target_en": "not an official brand Design System"
         },
         {
-          "source_zh": "MIT 不包含品牌资产授权",
-          "target_en": "does not grant rights"
+          "source_zh": "上游两仓库都以 MIT 发布各自文档/代码，但不代表",
+          "target_en": "does **not** grant rights"
         }
       ],
       "allowed_cjk_fragments": [
@@ -1222,11 +1218,7 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "默认：无竖条",
-          "target_en": "Default: no rail"
-        },
-        {
-          "source_zh": "不可把左边框当外侧指示条",
+          "source_zh": "禁止：把导航项的左边框涂成品牌色，冒充独立指示条",
           "target_en": "Forbidden: recolor nav item's own left border"
         }
       ],
@@ -1246,11 +1238,11 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "登录和侧栏不足以证明后台",
+          "source_zh": "不能因为它有登录或用了侧栏就断言整个产品是后台。",
           "target_en": "Login or a sidebar does not make the whole product an admin system"
         },
         {
-          "source_zh": "建议不冒充确认",
+          "source_zh": "建议不冒充用户已确认",
           "target_en": "A recommendation is not confirmation"
         }
       ],
@@ -1271,12 +1263,8 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "缺失值不等于0",
-          "target_en": "null displays dash/No data"
-        },
-        {
-          "source_zh": "外框对齐只是第一层",
-          "target_en": "Outer Cards aligning is just the first layer"
+          "source_zh": "值为 `null` 时展示“— / 无数据”，绝对不能变成 `0`。",
+          "target_en": "never 0"
         }
       ],
       "allowed_cjk_fragments": []
