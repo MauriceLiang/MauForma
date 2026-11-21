@@ -1818,6 +1818,43 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/component-motion-choreography-gate.md",
+      "source_blob_sha": "6cf32e2b59d99a3ec4b9063a9a1305b9522a8c09",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate CM0",
+        "Gate CM1",
+        "Gate CM2",
+        "Gate CM3",
+        "Gate CM4",
+        "motion / immediate-feedback / intentionally-static",
+        "not every component needs every mechanism",
+        "reduced-motion",
+        "200% text scaling",
+        "a route transition does",
+        "not proof"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "动效质量不是动画数量",
+          "target_en": "Motion quality is not the number of animations"
+        },
+        {
+          "source_zh": "用户选择 none 时允许全部为即时反馈",
+          "target_en": "none choice allows immediate static feedback"
+        },
+        {
+          "source_zh": "不能拿路由转场算组件覆盖",
+          "target_en": "A route transition does"
+        },
+        {
+          "source_zh": "仅合成示例通过不代表真实项目",
+          "target_en": "does not certify the user's real product"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
