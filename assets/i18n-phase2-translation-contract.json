@@ -2123,6 +2123,44 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/quality-antipatterns-by-page-type.md",
+      "source_blob_sha": "387ccffd94ab8eb7caa6d0737d41210961e80700",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "| 1 |",
+        "| 29 |",
+        "| 30 |",
+        "| 35 |",
+        "v6.8",
+        "v6.9",
+        "v6.10",
+        "v6.11",
+        "static mock",
+        "progress=null",
+        "Masonry",
+        "ARIA"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "错误不来自某种颜色/组件绝对不好看",
+          "target_en": "An anti-pattern is not inherently a particular color"
+        },
+        {
+          "source_zh": "边框颜色不能单独推断 AI 生成",
+          "target_en": "cannot prove a page was AI-generated"
+        },
+        {
+          "source_zh": "缺失数据不得按零补齐",
+          "target_en": "never silently impute zeros"
+        },
+        {
+          "source_zh": "未知进度不得显示 0% 和 ETA",
+          "target_en": "Fabricates certainty"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
