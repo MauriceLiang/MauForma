@@ -2,7 +2,7 @@
 
 **Not limited to admin products:** Showcase sites may use richer motion, while editors, workspaces and desktop tools prioritize simple, fast and interruptible behavior.
 
-Read selectively when relevant:
+Read these references first when the task involves animation and interaction (select only the guides applicable to the actual work):
 
 - [motion-governance.md](motion-governance.md) — when to animate, timing, risk, performance and reduced motion.
 - [animejs-official-capabilities.md](animejs-official-capabilities.md) — major official Anime.js v4 APIs.
