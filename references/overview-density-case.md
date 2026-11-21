@@ -1,16 +1,19 @@
-# 总览页内容密度：合成反例与验证方法
+# Overview Content Density — Synthetic Failure and Verification
 
-**性质**：虚构场景的可复用设计案例；不包含任何用户截图或真实项目资料。
+**Nature:** Reusable fictional design example, containing **no actual user screenshot or project information**.
 
-## 反例
-一个总览页同时出现首次访问教程、重复功能入口、多组 KPI、说明性大卡和多处同义主按钮。模块都使用漂亮容器，但用户无法快速判断下一步应该去哪里。
+## Counterexample
 
-## 可迁移原则
-1. 盘点每块内容的任务价值，区分首次引导、持久核心内容、按条件显示、移入帮助与可删除项。
-2. 总览优先呈现当前状态和主操作；过程性说明在必要时出现，不永久抢占首屏。
-3. 独立功能模块之间留出可感知间距；删除空泛大容器不等于把多个模块贴合。
-4. 不同页面密度可不同：欢迎/引导需要明确焦点，分析/编辑页则强调信息效率。
-5. 不以增加 padding、换配色、扩大标题替代真实内容删减。
+One overview page displays a permanent first-visit tutorial, duplicated feature entry points, multiple KPI groups, large explanatory Cards and several synonymous primary Buttons. Every block may have attractive styling, but the user cannot quickly determine the next meaningful action.
 
-## 验证
-检查不同用户状态下的首屏与后续滚动内容；主要行动唯一性与信息增量可被解释。结构样例见 `examples/page-content-plan-demo.json`，它不是任何真实产品的实现结果。
+## Transferable rules
+
+1. Inventory each block's task value. Separate first-visit guidance, persistent core content, conditionally visible information, content deferred to Help and removable material.
+2. Put current status and the primary action first. Temporary guidance must not permanently occupy the first viewport.
+3. Preserve visible spacing between independent functional sections. Removing a useless enclosing Card does **not** justify making unrelated modules touch.
+4. Density can differ across pages: Welcome/Onboarding needs a clear focal point, whereas Analysis/Editor emphasizes information efficiency.
+5. Neither extra padding, a new color palette nor an oversized heading substitutes for **actual content reduction**.
+
+## Verification
+
+Inspect first viewport and scrolling content for different user states; explain why the main action and each information block adds value. `examples/page-content-plan-demo.json` is structural sample data, **not** real-product implementation evidence.

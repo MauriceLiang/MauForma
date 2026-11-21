@@ -461,6 +461,136 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/comparison-ux-case.md",
+      "source_blob_sha": "4e7ee45819b6922bb71cba731c3974e21f8f24d1",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "fictional",
+        "Unknown",
+        "missing values",
+        "actual selection"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "缺失值按缺失展示",
+          "target_en": "Display missing values as"
+        },
+        {
+          "source_zh": "合成示例测试通过不得写成真实产品通过",
+          "target_en": "Passing a synthetic fixture is"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/grid-alignment-case.md",
+      "source_blob_sha": "4124a7cef3abcde1afe797a8fec15b970f3019e9",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "shared Grid rows/columns",
+        "200%",
+        "fixed bottom",
+        "genuinely unreachable"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "固定底栏应预留滚动末端的安全空间",
+          "target_en": "fixed bottom action bar needs safe space"
+        },
+        {
+          "source_zh": "截图不能单独证明",
+          "target_en": "A screenshot alone"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/overview-density-case.md",
+      "source_blob_sha": "e819742cea8e72a1760c0f43449b58e678e3ff91",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "first-visit",
+        "actual content reduction",
+        "not real-product"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不以增加 padding",
+          "target_en": "Neither extra padding"
+        },
+        {
+          "source_zh": "不同页面密度可不同",
+          "target_en": "Density can differ"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/run-monitor-case.md",
+      "source_blob_sha": "7782c48f9395e684a5688203d06e11e643ce8c89",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Unknown progress is not 0%",
+        "action-column",
+        "API, permission"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "未知进度与 0% 不等价",
+          "target_en": "Unknown progress is not 0%"
+        },
+        {
+          "source_zh": "短操作逐字竖排",
+          "target_en": "vertically"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/react-component-engineering.md",
+      "source_blob_sha": "2c43e0d7069499b305cd36b9936675c2f24c9c1a",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "React 19",
+        "React 18",
+        "RSC",
+        "Untested performance claims"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "React 19 规则不能直接作用于 React 18",
+          "target_en": "React 19 rules cannot"
+        },
+        {
+          "source_zh": "未测性能只能给风险预测",
+          "target_en": "Untested performance claims"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/vue-component-engineering.md",
+      "source_blob_sha": "4dc5a92eb495ac4dba096ea92e1341e80bd2e322",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Options API",
+        "ref/computed",
+        "Nuxt SSR",
+        "measured bottlenecks"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不强制局部重写",
+          "target_en": "instead of requiring a partial unapproved rewrite"
+        },
+        {
+          "source_zh": "不要在顶层访问 document/window",
+          "target_en": "must not access"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }

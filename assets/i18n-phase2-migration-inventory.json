@@ -92,7 +92,7 @@
       "path": "references/comparison-ux-case.md",
       "source_blob_sha": "4e7ee45819b6922bb71cba731c3974e21f8f24d1",
       "source_bytes": 1273,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/component-consistency-and-selection-gate.md",
@@ -254,7 +254,7 @@
       "path": "references/grid-alignment-case.md",
       "source_blob_sha": "4124a7cef3abcde1afe797a8fec15b970f3019e9",
       "source_bytes": 1041,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/icon-art-direction-gate.md",
@@ -308,7 +308,7 @@
       "path": "references/overview-density-case.md",
       "source_blob_sha": "e819742cea8e72a1760c0f43449b58e678e3ff91",
       "source_bytes": 1155,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/page-density-and-content-priority.md",
@@ -368,13 +368,13 @@
       "path": "references/react-component-engineering.md",
       "source_blob_sha": "2c43e0d7069499b305cd36b9936675c2f24c9c1a",
       "source_bytes": 2176,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/run-monitor-case.md",
       "source_blob_sha": "7782c48f9395e684a5688203d06e11e643ce8c89",
       "source_bytes": 1072,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/semantic-boundaries.en.md",
@@ -512,7 +512,7 @@
       "path": "references/vue-component-engineering.md",
       "source_blob_sha": "4dc5a92eb495ac4dba096ea92e1341e80bd2e322",
       "source_bytes": 1781,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/web-scope-and-app-types.md",

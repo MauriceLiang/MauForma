@@ -1,16 +1,19 @@
-# 异步运行监控页：合成反例与验证方法
+# Asynchronous Run Monitor — Synthetic Failure and Verification
 
-**性质**：通用教学反例；没有任何真实后台系统或用户截图资料。
+**Nature:** Generic teaching counterexample, not material from any actual backend or user screenshot.
 
-## 反例
-运行记录页左侧长期显示体积较大的状态统计区，右侧每条记录重复“进度未知”的解释文字；状态筛选不便、错误详情入口不明显、短操作按钮在狭窄列里逐字换行。
+## Counterexample
 
-## 可迁移原则
-- 首先区分异步执行监控与人工任务指派，不能强制用看板承载所有“任务”。
-- 用可交互状态筛选、紧凑记录列表、真实时间与状态来支持定位问题。
-- 未知进度与 0% 不等价；失败、阻塞、完成等状态应决定合法操作和可见反馈。
-- 详情、日志与重试按需展开，不把重复说明塞进每条列表。
-- 操作列保留固有宽度；空间不足时重排整个按钮组，不允许短操作逐字竖排或裁切。
+A run-history page permanently devotes a large left section to status counts; every item on the right repeats a lengthy “progress unknown” explanation. Status filtering is awkward, error details are hidden, and short action labels wrap vertically, one character per line, in a narrow column.
 
-## 验证
-`examples/task-center-demo.json` 是合成状态示例。真实产品还需验证 API、权限、重试结果、状态一致性、键盘焦点与滚动终点。
+## Transferable rules
+
+- Distinguish **asynchronous execution monitoring** from assigning human tasks. A Kanban board is not the right default for every feature called “Tasks.”
+- Support troubleshooting with actionable status filters, compact scannable records, and **actual** timestamps and states.
+- **Unknown progress is not 0%.** Failed, blocked and completed states determine valid actions and visible feedback.
+- Reveal details, logs and retry on demand rather than repeating explanations on every row.
+- Reserve usable action-column width; when space is insufficient, reflow the **whole action group**, never wrap individual short actions vertically or clip them.
+
+## Verification
+
+`examples/task-center-demo.json` is a synthetic state example. A **real product** additionally needs API, permission, retry outcome, state consistency, keyboard focus and final-scroll verification.

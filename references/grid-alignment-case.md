@@ -1,16 +1,19 @@
-# 网格对齐与滚动终点：合成反例与验证方法
+# Grid Alignment and Scroll End — Synthetic Failure and Verification
 
-**性质**：完全虚构的布局教学案例。
+**Nature:** An entirely fictional layout training case.
 
-## 反例
-一个数据页将左右两列分别作为独立纵向 Stack，第一排高度不同造成第二排起点明显错位；页面底部又出现固定操作条，最后一行内容可能被遮挡。
+## Counterexample
 
-## 可迁移原则
-- 对需要同级比较的模块，优先建立共享 Grid 行/列与内容边界。
-- 非对称或跨行布局可以成立，但需要与信息主次及视觉锚点相匹配；创意页面不受“所有卡片等高”限制。
-- 区分“正常需要滚动”和“末端真的不可达”；截图不能单独证明容器设置了错误的 overflow。
-- 固定底栏应预留滚动末端的安全空间，或在没有必要时回到正常文档流。
-- 检查窄高、宽矮、长文字与 200% 字体，不靠隐藏 overflow 掩盖问题。
+A data page builds its left and right columns as two independent vertical Stacks. The differing heights of the first row make the starts of the second row visibly misalign. A fixed action bar at the bottom may obscure the final row of content.
 
-## 验证
-`examples/layout-integrity-demo.json` 是合成布局契约。真实页面必须实测行对齐、末端滚动、内容遮挡和操作可达性。
+## Transferable rules
+
+- For modules requiring peer comparison, prefer **shared Grid rows/columns** and common content edges.
+- Asymmetry and spanning layouts can be valid when supported by information priority and visual anchors. Creative pages do **not** have to make every Card equal height.
+- Distinguish **content that normally requires scrolling** from **a genuinely unreachable final item**. A screenshot alone does not prove incorrect `overflow` configuration.
+- A fixed bottom action bar needs safe space at scroll end; if it serves no purpose, restore natural document flow.
+- Check narrow/tall, wide/short, long copy and 200% text sizing. Do not hide overflow merely to conceal defects.
+
+## Verification
+
+`examples/layout-integrity-demo.json` is a synthetic layout contract. **Real pages** require actual row alignment, bottom-scroll access, occlusion and action-reachability testing.
