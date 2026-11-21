@@ -1893,6 +1893,81 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/ui-review-rubric.md",
+      "source_blob_sha": "6f2838cb1bc91767a93c7eba09748a04731e487b",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "100 Points",
+        "25",
+        "20",
+        "15",
+        "10",
+        "90–100",
+        "85–89",
+        "70–84",
+        "Below 70",
+        "Product Fit precedes",
+        "Immediate blockers",
+        "v6.11",
+        "real API"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "先排除阻断项，再评总分",
+          "target_en": "Check blockers before calculating the total"
+        },
+        {
+          "source_zh": "有任何阻断项无论总分多少均为不通过",
+          "target_en": "Fail regardless of total score"
+        },
+        {
+          "source_zh": "静态脚本的 PASS 不等于真实页面视觉或业务验收",
+          "target_en": "A static scan PASS is not real-page visual"
+        },
+        {
+          "source_zh": "无分母绘制虚假进度",
+          "target_en": "fake progress without a known denominator"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/visual-critique-loop.md",
+      "source_blob_sha": "6bebbebfd12552c11b1f25f0762273e42f44828a",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "NOT AUDITED",
+        "Structure / IA",
+        "Hierarchy",
+        "Palette",
+        "Rhythm",
+        "PASS / FAIL / NOT RUN",
+        "200% zoom",
+        "Grid rows",
+        "Scroll to the actual end",
+        "Run Monitor information hierarchy failure"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不能因为修改前后未变化而视作合格",
+          "target_en": "do not become acceptable merely because the before/after diff is unchanged"
+        },
+        {
+          "source_zh": "只换颜色不能作为结构性问题修复",
+          "target_en": "not** a structural fix"
+        },
+        {
+          "source_zh": "截图不能证明能否滚到底",
+          "target_en": "cannot establish a scroll bug"
+        },
+        {
+          "source_zh": "截图不能证明重试、日志和 API 真实性",
+          "target_en": "Screenshots cannot prove retry"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
