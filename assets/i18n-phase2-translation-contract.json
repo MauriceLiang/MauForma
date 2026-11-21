@@ -1968,6 +1968,40 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/good-vs-bad.md",
+      "source_blob_sha": "a34787f431b9c69eafb88267a43b33d778ad4ee5",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "## 1.",
+        "## 19.",
+        "16/20/24px",
+        "200% text scaling",
+        "marketing Hero",
+        "aria-describedby",
+        "filter:invert(1)",
+        "semantic variables"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是更圆、更亮、更有动效",
+          "target_en": "not simply rounder, brighter or more animated"
+        },
+        {
+          "source_zh": "无截图只能说代码层风险",
+          "target_en": "report source-level risks"
+        },
+        {
+          "source_zh": "真实章节与面包屑不能机械删除",
+          "target_en": "Do **not** ban all microheadings mechanically"
+        },
+        {
+          "source_zh": "建议字号不等于无障碍硬性标准",
+          "target_en": "not mandatory accessibility font-size thresholds"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
