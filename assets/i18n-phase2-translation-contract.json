@@ -1699,6 +1699,45 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/animejs-official-capabilities.md",
+      "source_blob_sha": "82b72076c5e658ad695329dcce76d14ad28a6d42",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Anime.js 4.5.0",
+        "not names of preset CSS animation effects",
+        "createTimer",
+        "createAnimatable",
+        "createDraggable",
+        "createLayout",
+        "createScope",
+        "createMotionPath",
+        "splitText",
+        "scrambleText",
+        "registerAdapter",
+        "capabilities differ",
+        "future Anime.js versions"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是预制 CSS 动画效果名称",
+          "target_en": "not names of preset CSS animation effects"
+        },
+        {
+          "source_zh": "不要套用 v3 anime({targets:...}) 风格",
+          "target_en": "Do not use the v3"
+        },
+        {
+          "source_zh": "严禁劫持原生滚动体验",
+          "target_en": "never hijack normal scrolling"
+        },
+        {
+          "source_zh": "不声称包含今后版本新增的 API",
+          "target_en": "does not claim to cover APIs introduced by future Anime.js versions"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
