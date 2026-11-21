@@ -1814,7 +1814,7 @@
       "semantic_pair_examples": [
         {
           "source_zh": "不是所有网页都变黑白、统一小圆角、全删 emoji",
-          "target_en": "does **not** mandate black-and-white themes"
+          "target_en": "does not mandate black-and-white themes"
         },
         {
           "source_zh": "不能将原有坏状态当成正确 before",
