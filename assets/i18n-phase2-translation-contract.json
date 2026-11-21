@@ -22,7 +22,7 @@
         "Feature Developer",
         "QA",
         "Lead's final review",
-        "never independently redefine"
+        "must not independently redefine"
       ],
       "semantic_pair_examples": [
         {
