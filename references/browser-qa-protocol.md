@@ -10,6 +10,10 @@
 
 在页面新建、视觉优化与设计评审的授权范围内，依据 `references/title-prefix-role-gate.md` 查阅实际标题组。可执行 `node scripts/audit_title_prefixes.mjs --url http://localhost:3000 --selector main` 生成 `CANDIDATES_FOR_REVIEW`，覆盖常见 H1–H6 和 `role=heading` 前导结构，不能用其 `NO_CANDIDATES_OBSERVED` 声称页面没有眉题。候选必须由 Agent 核对真实角色与是否应作为独立标题前导；真实面包屑、状态、步骤和品牌不能误删。对伪元素、Canvas、图片文字、非语义视觉标题仍需渲染审查。**颜色、字号、字体不是候选定义**，已有页面和新内容均需检查，UI 修复后在真实页面复看。
 
+## 组件来源与展开态一致性（新建和既有页面）
+
+依据 `references/component-consistency-and-selection-gate.md`，必须对同一语义用途的真实控件进行来源与视觉语言盘点：实际代码引入、主题/Tokens、原生或 headless 实现、共享适配层，以及**闭合与展开两种状态**。可使用 `node scripts/audit_control_consistency.mjs --url http://localhost:3000 --selector main` 找出原生 Select 与 ARIA 选择控件并存的候选；它不是库归属判定，也看不到所有系统级选项弹层。浏览器/操作系统绘制的 native select 菜单应在目标平台人工核对；未观察其展开态时结论为 NOT TESTED。检查键盘、选中、错误、焦点、深浅色、长文本和边界，不得以外层 input 的 CSS 一致替代弹层质量验证。
+
 ## 浏览器先观察再操作（B14）
 
 先启动或复用用户授权的目标项目服务，记录服务启动/关闭范围；访问实际路由后先读取**当前渲染 DOM、可访问名称、可见控件与状态**，然后才确定 Playwright 选择器，禁止根据页面猜测 selector 或虚构运行中的按钮。记录 Console、页面异常与相关网络请求错误；不能用 `networkidle` 单一条件判断 SPA/流式请求已完成，应结合有语义的可见状态与实际加载条件。完成验证后正确清理本次启动的服务与测试资源，不能终止用户原本运行的服务。
