@@ -81,7 +81,7 @@ def validate(data: dict | None = None) -> list[str]:
                 issues.append(f"{mode}: {exc}")
     if (ROOT / "references/sidebar-navigation-design.md").is_file():
         text = (ROOT / "references/sidebar-navigation-design.md").read_text(encoding="utf-8")
-        for term in ("aria-current", "focus-visible", "例外", "最近打开", "selected", "sidebar-selection-indicator-gate.md"):
+        for term in ("aria-current", "focus-visible", "exception", "Recently opened", "selected", "sidebar-selection-indicator-gate.md"):
             if term not in text:
                 issues.append("Sidebar guide lacks semantic rule: " + term)
     if (ROOT / "assets/sidebar-refinement-gallery.html").is_file():
