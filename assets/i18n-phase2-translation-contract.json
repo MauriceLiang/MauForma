@@ -1,0 +1,287 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Source-to-English semantic parity audit. Original Chinese snippets exist ONLY as non-runtime test anchors; these are not machine-translation proof.",
+  "source_commit": "54a4af62566da1532c2b68d4301b531aee118e81",
+  "status": "partial_migration",
+  "entrypoint_language": "English",
+  "translation_principles": [
+    "Preserve MUST/SHOULD/MAY modality, triggers, exemptions and prohibitions.",
+    "Do not silently omit examples that encode a unique exception or an accessibility/state boundary.",
+    "Keep file paths, code identifiers, framework version conditions and verification status meanings intact.",
+    "Translate runtime prose; keep language-specific product text only when it tests localization.",
+    "No document counts as independently semantically verified merely because static checks pass."
+  ],
+  "entries": [
+    {
+      "path": "references/agent-team-handoff.md",
+      "source_blob_sha": "e7a5f21f35667dff17eb51efc3315a7f61d5ecf3",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Design Lead",
+        "UI Foundation Owner",
+        "Feature Developer",
+        "QA",
+        "Lead's final review",
+        "never independently redefine"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "设计负责人",
+          "target_en": "Design Lead"
+        },
+        {
+          "source_zh": "键盘",
+          "target_en": "keyboard"
+        },
+        {
+          "source_zh": "视觉审查",
+          "target_en": "Visual review"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/animation-engine-extension.md",
+      "source_blob_sha": "ac4cda4d9e6985cfd2cf758988cb14382f3234f0",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "at most",
+        "one principal imperative animation engine",
+        "licens",
+        "reduced motion",
+        "failure/fallback"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "候选",
+          "target_en": "candidate"
+        },
+        {
+          "source_zh": "最多设置一个",
+          "target_en": "at most"
+        },
+        {
+          "source_zh": "授权与商业",
+          "target_en": "commercial restrictions"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/design-dna-protocol.md",
+      "source_blob_sha": "74c3a2f3abe8bb993a68276e1cb52cab4c31e74c",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "observable",
+        "INCONCLUSIVE",
+        "analyst inference",
+        "must not be transplanted",
+        "when authorized"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "证据",
+          "target_en": "evidence"
+        },
+        {
+          "source_zh": "不",
+          "target_en": "do not invent"
+        },
+        {
+          "source_zh": "BLOCKED",
+          "target_en": "BLOCKED"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/chart-interior-alignment.md",
+      "source_blob_sha": "3b22042155e42e15f39800bb10de33153e858b80",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "0 and null have different meanings",
+        "NOT AUDITED",
+        "canvas",
+        "plot areas",
+        "labelLayout"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "0 与 null",
+          "target_en": "0 and null"
+        },
+        {
+          "source_zh": "NOT AUDITED",
+          "target_en": "NOT AUDITED"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/web-scope-and-app-types.md",
+      "source_blob_sha": "5fe008b7091b3a19fd669138aca0aa87b728e2e9",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Web-First",
+        "Electron/Tauri",
+        "SwiftUI/AppKit",
+        "100–220 ms",
+        "not a fixed"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "原生",
+          "target_en": "native"
+        },
+        {
+          "source_zh": "业务",
+          "target_en": "product needs"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/component-library-first-gate.md",
+      "source_blob_sha": "fe931124ea1e6d07691874af052d1d4a5d8cb0bc",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate 0",
+        "Gate A",
+        "Gate B",
+        "Gate C",
+        "Never silently install",
+        "native controls",
+        "not a visual pass"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不等于无授权安装依赖",
+          "target_en": "never grants permission"
+        },
+        {
+          "source_zh": "原生控件例外",
+          "target_en": "Valid native-control exceptions"
+        },
+        {
+          "source_zh": "首版交付验收",
+          "target_en": "first delivery acceptance"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/semantic-copy-hygiene.md",
+      "source_blob_sha": "2d1abca7eab940709bc9a7927f8e2e45be72b078",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Universal title-copy gate",
+        "Historical",
+        "not automatically justify",
+        "data sources",
+        "functional guidance"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "有信息价值不等于",
+          "target_en": "does not automatically justify"
+        },
+        {
+          "source_zh": "真正有语义的面包屑",
+          "target_en": "actual breadcrumb"
+        },
+        {
+          "source_zh": "数据来源",
+          "target_en": "data sources"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/proactive-visual-defect-discovery-gate.md",
+      "source_blob_sha": "3769a2c9c504c57d2f2b707beac5f218b113b5fd",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate D0",
+        "Gate D1",
+        "Gate D2",
+        "Gate D3",
+        "Gate D4",
+        "NOT AUDITED",
+        "actual page"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "真实页面",
+          "target_en": "real page"
+        },
+        {
+          "source_zh": "不能仅运行脚本",
+          "target_en": "Running a script alone"
+        },
+        {
+          "source_zh": "不应上传用户截图",
+          "target_en": "Do not infer source ownership"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/browser-qa-protocol.md",
+      "source_blob_sha": "5bb6c97c4271bb25fc1dc904ed5048a6f9e8fdc2",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "actual target platform",
+        "NOT TESTED",
+        "real page",
+        "CAPTURED_FOR_REVIEW",
+        "networkidle"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不静默安装",
+          "target_en": "Never silently install"
+        },
+        {
+          "source_zh": "原生弹层",
+          "target_en": "native select menus"
+        },
+        {
+          "source_zh": "只有静态 Mock",
+          "target_en": "A static Mock cannot prove"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/page-header-antipatterns.md",
+      "source_blob_sha": "efe27572e9e8aa16f7410156ba5a080a03c19c2a",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate H-Base",
+        "Gate H0",
+        "H01",
+        "H14",
+        "H20",
+        "first-pass",
+        "keep / merge / move / delete"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "已有",
+          "target_en": "inherited"
+        },
+        {
+          "source_zh": "允许例外",
+          "target_en": "exceptions"
+        },
+        {
+          "source_zh": "功能页眉题",
+          "target_en": "Gate H0"
+        }
+      ],
+      "allowed_cjk_fragments": [
+        "用户管理"
+      ]
+    }
+  ]
+}
