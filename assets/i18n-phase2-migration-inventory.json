@@ -242,7 +242,7 @@
       "path": "references/good-vs-bad.md",
       "source_blob_sha": "a34787f431b9c69eafb88267a43b33d778ad4ee5",
       "source_bytes": 10131,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/grid-alignment-and-viewport-safety.md",
