@@ -79,7 +79,7 @@ class ReadabilityRulesTests(unittest.TestCase):
             self.assertIn(word, skill)
         for word in ("Gate H0", "first-pass", "overline", "kicker"):
             self.assertIn(word, guide)
-        self.assertIn("首版硬门禁", checklist)
+        self.assertIn("Hard first-delivery gate", checklist)
 
     def test_brand_strapline_is_advisory(self):
         self.assertIn("generic-brand-subtitle", self.rules("<small>ANALYSIS STUDIO</small>"))
