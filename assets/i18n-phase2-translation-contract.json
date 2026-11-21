@@ -1782,6 +1782,42 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/progressive-visual-refinement-gate.md",
+      "source_blob_sha": "c6371dbdc546008abd443d62962a55b9aa047c83",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "R0 — Baseline & Diagnosis",
+        "R1 — Experience & Composition",
+        "R2 — Layout & Spacing",
+        "R3 — Typography, Palette & Icons",
+        "R4 — Radius, Surfaces & Component Finish",
+        "R5 — Compare & Verify",
+        "Never delete emoji globally",
+        "FIXED & VERIFIED",
+        "SKIPPED IS NOT PASS",
+        "200% text scaling"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是所有网页都变黑白、统一小圆角、全删 emoji",
+          "target_en": "does not mandate black-and-white themes"
+        },
+        {
+          "source_zh": "不能将原有坏状态当成正确 before",
+          "target_en": "do not call a bad inherited state a correct baseline"
+        },
+        {
+          "source_zh": "emoji 是社交内容或明确品牌资产时保留",
+          "target_en": "Retain and harmonize"
+        },
+        {
+          "source_zh": "跳过不等于 PASS",
+          "target_en": "SKIPPED IS NOT PASS"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
