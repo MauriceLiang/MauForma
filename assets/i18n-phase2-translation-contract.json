@@ -468,7 +468,7 @@
       "translated_status": "translated_pending_independent_review",
       "required_english_fragments": [
         "fictional",
-        "Unknown",
+        "missing values",
         "missing values",
         "actual selection"
       ],
@@ -513,7 +513,7 @@
       "required_english_fragments": [
         "first-visit",
         "actual content reduction",
-        "not real-product"
+        "not** real-product"
       ],
       "semantic_pair_examples": [
         {
@@ -599,7 +599,7 @@
       "required_english_fragments": [
         "SvelteKit",
         "SolidStart",
-        "Nuxt",
+        "Astro",
         "Astro",
         "Motion JS",
         "minimum acceptance"
@@ -657,7 +657,7 @@
         },
         {
           "source_zh": "不是 Pinia 的同义替代",
-          "target_en": "not synonymous with Pinia"
+          "target_en": "**not** synonymous with Pinia"
         }
       ],
       "allowed_cjk_fragments": []
@@ -747,7 +747,7 @@
         },
         {
           "source_zh": "多数基础 hover 仅需 CSS，无需引入新动画库",
-          "target_en": "no new animation library"
+          "target_en": "ordinary hover normally needs only CSS"
         }
       ],
       "allowed_cjk_fragments": []
@@ -834,7 +834,7 @@
       "semantic_pair_examples": [
         {
           "source_zh": "不是 MauForma 默认 UI 模板",
-          "target_en": "not MauForma's default UI template"
+          "target_en": "not** MauForma's default UI template"
         },
         {
           "source_zh": "对比度优先于“浅”",
@@ -1044,7 +1044,7 @@
       "semantic_pair_examples": [
         {
           "source_zh": "组件复用不等于相同视觉结构",
-          "target_en": "Reuse does not imply identical appearance"
+          "target_en": "Reuse **does not** imply identical appearance"
         },
         {
           "source_zh": "不是审美禁令",
