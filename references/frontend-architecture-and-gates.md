@@ -153,3 +153,7 @@ On new/major pages, per route inventory primary_task, visit state, content roles
 - **A:** Determine run_monitor/human_tasks/mixed, frequent user action, lifecycle source and progress/permission rules (task-center-run-monitor-design.md). For crawler/Agent runs, first consider actionable status filter + scannable run list + on-demand detail, **not** automatic giant KPIs or a Kanban.
 - **B:** RunRow, StatusFilter, ProgressIndicator, RunDetail and RetryAction derive from the **same run ID and lifecycle state**. Percentage requires a stable denominator with matching units; **unknown is not zero**. Check backend and user permission before showing retry/cancel, including duplicate requests. Do not render fake clickable action without authority.
 - **D:** scripts/validate_task_center.py checks static data/action contracts; tests/task_center_browser_smoke.mjs checks a **synthetic Mock**. Target app still requires real server status, error/log/permission, counts, long lists and last-record scrolling. Keep user's selected filter/context during refresh; avoid involuntary jumping/reordering.
+
+## Original-source cross-reference parity
+
+For icon selection and whole-family QA also read references/icon-art-direction-gate.md when icons are in scope. For peer/section/inside/connected spacing and gap ownership read references/semantic-spacing-rhythm-gate.md; neither guide authorizes unrelated visual changes.
