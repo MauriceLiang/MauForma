@@ -2085,6 +2085,44 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/stack-guide-11-items.md",
+      "source_blob_sha": "e274c5d28553ea1ae87d3be0cd6dec75b4a8f29f",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "11 Categories, 12 Distinct Technologies",
+        "## 01",
+        "## 12",
+        "Radix UI / Base UI",
+        "react-resizable-panels",
+        "dnd-kit",
+        "Zustand",
+        "TanStack Query",
+        "Recharts",
+        "three months",
+        "commercial rights",
+        "not an installation checklist"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "11 行类别含 12 个独立名称，不是强制安装清单",
+          "target_en": "11 Categories, 12 Distinct Technologies"
+        },
+        {
+          "source_zh": "Zustand 不等于远端缓存",
+          "target_en": "not remote request caching"
+        },
+        {
+          "source_zh": "Vue 中不要直接复制 React TSX",
+          "target_en": "do not paste React TSX into Vue"
+        },
+        {
+          "source_zh": "不能无限重试非幂等请求",
+          "target_en": "Do not infinitely retry non-idempotent operations"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
