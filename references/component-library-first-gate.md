@@ -8,13 +8,13 @@
 
 ## Core rule: reuse mature controls instead of recreating interaction primitives
 
-**Choose and actually adopt the control implementation strategy before implementing the first business page.** Component-first does not mean authoring a home-grown \`UiButton/UiSelect\` set and patching CSS independently on every route. Prefer established components already in the project; where missing, proactively select a suitable main strategy. Shared \`Ui*\` wrappers are for stable APIs and themes, not rewrites of Select, Combobox, Menu or Dialog focus and keyboard engines.
+**Choose and actually adopt the control implementation strategy before implementing the first business page.** Component-first does not mean authoring a home-grown `UiButton/UiSelect` set and patching CSS independently on every route. Prefer established components already in the project; where missing, proactively select a suitable main strategy. Shared `Ui*` wrappers are for stable APIs and themes, not rewrites of Select, Combobox, Menu or Dialog focus and keyboard engines.
 
-Do not default to handwritten \`div + click + absolute\` dropdowns merely because the user did not explicitly request a component library. Do not give every page different Select, Button or selected-state implementations. The Agent must act proactively rather than wait for the user to point out a weak first version.
+Do not default to handwritten `div + click + absolute` dropdowns merely because the user did not explicitly request a component library. Do not give every page different Select, Button or selected-state implementations. The Agent must act proactively rather than wait for the user to point out a weak first version.
 
 ## Gate 0 — Inventory and selection, before the first business page
 
-1. **Existing constraints:** Inspect \`package.json\`, lockfile, actual imports, \`components/ui/\`, providers and theme files. Identify framework, main styled library, headless primitives, wrappers, existing design system and the user's approved library/visual direction.
+1. **Existing constraints:** Inspect `package.json`, lockfile, actual imports, `components/ui/`, providers and theme files. Identify framework, main styled library, headless primitives, wrappers, existing design system and the user's approved library/visual direction.
 2. **Required controls for this task:** List only the needed Button, Input, Select, Combobox, MultiSelect, DropdownMenu, Checkbox, Radio, Switch, Tabs, Popover, Dialog, Tooltip, DatePicker, etc. Distinguish data selection, action menus and searchable selection; similar arrows do not imply identical functions.
 3. **Decision order:**
    - Reliable existing components → **reuse**. Retain the main library; fix theme/wrapper/visual problems rather than replace it on taste alone.
@@ -36,7 +36,7 @@ Do not default to handwritten \`div + click + absolute\` dropdowns merely becaus
 
 “Mature” never means permission to add arbitrary dependencies. Compare reusability, components and states, styling flexibility, bundle/runtime weight, framework/SSR compatibility, license and maintainability. A project generally uses **one primary styled interaction language**; a headless base plus custom theme is a coherent stack, not two competing styled libraries.
 
-**Mixed controls in existing products must also pass [Component Consistency & Context-Aware Selection](component-consistency-and-selection-gate.md).** Inventory actual imports, shared wrappers and equivalent native \`<select>\` controls and their expanded surfaces—not only installed packages. Decide the inherited design language before unifying roles and tokens; do not replace the whole library for one control. Consider product type, approved aesthetic, accessibility, interaction complexity, dependencies/SSR/bundle size and migration cost. Native option menus may be OS-rendered; CSS on a closed trigger does not prove the popup matches.
+**Mixed controls in existing products must also pass [Component Consistency & Context-Aware Selection](component-consistency-and-selection-gate.md).** Inventory actual imports, shared wrappers and equivalent native `<select>` controls and their expanded surfaces—not only installed packages. Decide the inherited design language before unifying roles and tokens; do not replace the whole library for one control. Consider product type, approved aesthetic, accessibility, interaction complexity, dependencies/SSR/bundle size and migration cost. Native option menus may be OS-rendered; CSS on a closed trigger does not prove the popup matches.
 
 ## Gate A — Build necessary shared controls before multiplying business pages
 
@@ -53,11 +53,11 @@ Use official library components or mature headless primitives for state, ARIA, k
 
 ### Valid native-control exceptions
 
-\`<button>\`, \`<input>\` and \`<select>\` are not inherently wrong. They may be the best decision for an explicit native-system experience, very simple forms, mobile platform pickers, more reliable native semantics, or strict performance/package-size constraints. But it must be an **intentional product decision**. Verify theme compatibility, focus, error messaging, size, and actual picker appearance/behavior on target devices. Do not use native controls by default just to avoid selecting a library. Do not claim that styling the closed native Select with CSS also produces a fully custom or visually consistent options list.
+`<button>`, `<input>` and `<select>` are not inherently wrong. They may be the best decision for an explicit native-system experience, very simple forms, mobile platform pickers, more reliable native semantics, or strict performance/package-size constraints. But it must be an **intentional product decision**. Verify theme compatibility, focus, error messaging, size, and actual picker appearance/behavior on target devices. Do not use native controls by default just to avoid selecting a library. Do not claim that styling the closed native Select with CSS also produces a fully custom or visually consistent options list.
 
 ### Implementations this gate blocks
 
-- Do not substitute \`div + v-if/onClick + position:absolute\` or \`button + ul\` for a mature Select/Menu, unless real platform constraints justify a full accessible focus/keyboard contract.
+- Do not substitute `div + v-if/onClick + position:absolute` or `button + ul` for a mature Select/Menu, unless real platform constraints justify a full accessible focus/keyboard contract.
 - Do not reimplement Checkbox/Radio/Switch state and semantics from scratch merely because CSS is convenient.
 - Do not vary Button radius, colors, shadows and disabled state on every page. Expose shared variants through the library theme and adapters.
 - Do not install two fully styled suites just for the appearance of one Select; theme the existing suite or choose a compatible primitive.
@@ -67,11 +67,11 @@ Use official library components or mature headless primitives for state, ARIA, k
 ## Gate B — Unified theme and component ownership
 
 1. Set typography, dimensions, semantic colors, radius, borders, states, focus, light/dark modes via app-level ThemeProvider/ConfigProvider, CSS variables or the primary library's theme API. Avoid per-page overrides of internal vendor DOM.
-2. Only create \`UiButton/UiSelect/UiField/UiDialog\` adapters where shared semantics justify them; forward relevant props/events/slots, controlled values and form submission while preserving library accessibility. **An adapter is not permission to copy the primitive's interaction engine.**
+2. Only create `UiButton/UiSelect/UiField/UiDialog` adapters where shared semantics justify them; forward relevant props/events/slots, controlled values and form submission while preserving library accessibility. **An adapter is not permission to copy the primitive's interaction engine.**
 3. Select, Dropdown, Button, Checkbox and Tabs should share coherent heights, typography, horizontal padding, radius systems, icon language and state feedback on a screen. Allow genuine primary/secondary and complexity distinctions; do not make every control an identical pill.
 4. Unique interactions not provided by the suite may use a specialist third-party component or a custom implementation only with a recorded reason why reuse does not work, accessibility/performance/permission handling, and a scoped exception. Do not generate unused controls.
 
-**Existing products also require acceptance:** A new component Showcase does not excuse mixed native/vendor controls already in production views. Compare the same-purpose Select/Menu/Field/Dialog in closed/open, selected, keyboard, focus and theme states on actual routes. If native system overlays cannot be inspected, report \`NOT TESTED\`, not a visual pass based on static tokens.
+**Existing products also require acceptance:** A new component Showcase does not excuse mixed native/vendor controls already in production views. Compare the same-purpose Select/Menu/Field/Dialog in closed/open, selected, keyboard, focus and theme states on actual routes. If native system overlays cannot be inspected, report `NOT TESTED`, not a visual pass based on static tokens.
 
 ## Gate C — First delivery acceptance, before the user reports defects
 
@@ -85,15 +85,15 @@ Before the first internal review of business pages, **open real feature routes**
 | Checkbox/Radio/Switch/Tabs | Clearly differentiated checked/selected, keyboard path, click target, disabled and error |
 | Dialog/DatePicker | Placement, close/focus return, long content, keyboard, unavailable dates/errors, theme and narrow windows |
 
-**Evidence labels:** \`VERIFIED\` requires tests on the actual target route; source/config review is \`STATIC CHECK\`; synthetic gallery-only checks are \`DEMO ONLY\`; unopened pages are \`NOT TESTED\`. Library accessibility claims do not prove integrated application contrast, placement, keyboard behavior or appearance.
+**Evidence labels:** `VERIFIED` requires tests on the actual target route; source/config review is `STATIC CHECK`; synthetic gallery-only checks are `DEMO ONLY`; unopened pages are `NOT TESTED`. Library accessibility claims do not prove integrated application contrast, placement, keyboard behavior or appearance.
 
 **Block first-pass acceptance** while any handwritten fake Select remains, hover and selection cannot be distinguished, Buttons are visually inconsistent across pages, overlays clip, or a core keyboard path is unusable. Fix the primary component and real pages before copying the faulty pattern more widely.
 
 ## Maintenance and sources
 
-- \`references/enterprise-ui-library-guide.md\`: Candidates, component coverage and theme integration.
-- \`references/framework-support-matrix.md\`: Framework support and library strategy.
-- \`references/component-first.md\` and \`references/component-craft-gate.md\`: Component contracts and craft.
+- `references/enterprise-ui-library-guide.md`: Candidates, component coverage and theme integration.
+- `references/framework-support-matrix.md`: Framework support and library strategy.
+- `references/component-first.md` and `references/component-craft-gate.md`: Component contracts and craft.
 - Official Select references: https://reka-ui.com/docs/components/select , https://www.radix-ui.com/primitives/docs/components/select , https://ui.shadcn.com/docs/components/base/select
 - UI/primitive APIs evolve. For example, shadcn/ui may offer different implementations using Base UI and Radix. Verify the active project's dependency versions and corresponding official documentation before integrating; do not guess from stale examples.
 
