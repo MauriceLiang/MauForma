@@ -128,7 +128,7 @@ def validate_repository(root: Path = ROOT) -> list[str]:
     # English runtime reference: preserve the same screenshot/difference evidence
     # contract without requiring Chinese literal strings in the translation.
     for token in ("MCP", "node", "screenshot", "difference", "Token", "component-library-first-gate.md"):
-        if token not in figma:
+        if token.casefold() not in figma.casefold():
             errors.append("Missing Figma fidelity prerequisite: " + token)
     try:
         errors.extend(validate_plan(json.loads(text["examples/design-craft-decision.demo.json"])))
