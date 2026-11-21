@@ -1282,11 +1282,11 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "不是官方复制品",
+          "source_zh": "不是品牌官方样式复刻",
           "target_en": "not official copies"
         },
         {
-          "source_zh": "用户决定最终颜色",
+          "source_zh": "决定权仍在用户",
           "target_en": "the user decides final colors"
         }
       ],
@@ -1309,7 +1309,7 @@
           "target_en": "Agent recommendation is not user confirmation"
         },
         {
-          "source_zh": "用户给定准确 HEX 不得偷偷改",
+          "source_zh": "用户已明确给出 HEX 时，必须保留原值",
           "target_en": "Never covertly change the numeric HEX"
         }
       ],
@@ -1328,7 +1328,7 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "反模板化不等于禁用圆角",
+          "source_zh": "不是“禁用圆角、卡片、彩色或图标”",
           "target_en": "does **not** mean banning corners"
         },
         {
@@ -1351,11 +1351,11 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "不能因为开发的是 SaaS 就自动侧边栏",
+          "source_zh": "不能因为做 SaaS 就自动左侧导航",
           "target_en": "SaaS does not automatically require a sidebar"
         },
         {
-          "source_zh": "工具条不是导航",
+          "source_zh": "底部工具条不等于底部导航",
           "target_en": "Bottom toolstrip is not bottom navigation"
         }
       ],
@@ -1374,11 +1374,11 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "左侧外条不是导航项自己的左边框",
+          "source_zh": "外置标记与导航项边框是不同的形态",
           "target_en": "External indicator and colored nav-item border are different shapes"
         },
         {
-          "source_zh": "选中状态必须与键盘焦点区分",
+          "source_zh": "焦点状态必须独立可见",
           "target_en": "Keyboard focus remains separately visible"
         }
       ],
@@ -1403,7 +1403,7 @@
           "target_en": "progress:null"
         },
         {
-          "source_zh": "操作应整词显示不能逐字竖排",
+          "source_zh": "逐字竖排",
           "target_en": "character by character"
         }
       ],
