@@ -1268,6 +1268,75 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/sidebar-color-reference-cases.md",
+      "source_blob_sha": "30936dc0a62ce02f816cd05252251315b70256ba",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Linear",
+        "Carbon",
+        "Primer",
+        "verified_official_documentation",
+        "mauforma_interpretation"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是官方复制品",
+          "target_en": "not official copies"
+        },
+        {
+          "source_zh": "用户决定最终颜色",
+          "target_en": "the user decides final colors"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/sidebar-color-discovery.md",
+      "source_blob_sha": "33879e197ab9e8620957cc91b719ba8aceeb91f4",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "status=pending",
+        "status=approved",
+        "delegated",
+        "exact user HEX",
+        "200%"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "推荐不等于用户确认",
+          "target_en": "Agent recommendation is not user confirmation"
+        },
+        {
+          "source_zh": "用户给定准确 HEX 不得偷偷改",
+          "target_en": "Never covertly change the numeric HEX"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/workspace-component-refinement.md",
+      "source_blob_sha": "08eabd4a8b86127c3f1bfa14c26a76e43d9afc38",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "v6.17",
+        "v6.13",
+        "Sidebar",
+        "Split Pane",
+        "Keyboard focus"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "反模板化不等于禁用圆角",
+          "target_en": "does **not** mean banning corners"
+        },
+        {
+          "source_zh": "键盘焦点是另一种状态",
+          "target_en": "Keyboard focus is a different state"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }

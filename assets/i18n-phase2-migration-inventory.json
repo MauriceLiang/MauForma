@@ -410,13 +410,13 @@
       "path": "references/sidebar-color-discovery.md",
       "source_blob_sha": "33879e197ab9e8620957cc91b719ba8aceeb91f4",
       "source_bytes": 5553,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/sidebar-color-reference-cases.md",
       "source_blob_sha": "30936dc0a62ce02f816cd05252251315b70256ba",
       "source_bytes": 4279,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/sidebar-navigation-design.md",
@@ -530,7 +530,7 @@
       "path": "references/workspace-component-refinement.md",
       "source_blob_sha": "08eabd4a8b86127c3f1bfa14c26a76e43d9afc38",
       "source_bytes": 5968,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     }
   ]
 }
