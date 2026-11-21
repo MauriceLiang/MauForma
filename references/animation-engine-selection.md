@@ -49,6 +49,75 @@ Verify 100%/200% text, CJK/Latin, responsive supported viewports, long values, k
 
 Avoid broad `will-change`, permanent RAF loops and expensive blur/Canvas across entire pages. Never claim “60fps”, “zero CLS” or memory efficiency without measured evidence.
 
+
+## Source-parity restoration: v6.15 component mechanisms and v6.14 motion authorization
+
+For new projects or major redesigns, respect confirmed motion intensity first; then distinguish indicator travel, spatial reveal, state morph, layout continuity, semantic feedback and media transitions according to the actual component (see component-motion-choreography-gate.md). Start common indicators, toggles and disclosures with CSS/native mechanisms. FLIP/shared-element motion may justify Motion; complex choreography may justify Anime.js or GSAP. **Not every interaction needs a library, and a CSS opacity alone does not establish a refined component.** Do not implement only page-level fades.
+
+Motion-consent-experience-gate.md is the upstream authority: the user may choose (A) no added visual motion, (B) subtle interaction feedback/transitions, or (C) a few expressive effects. Without a confirmed/delegated direction for major changes, present **2–3 concrete choices**; do not quietly decide to add motion or to remove it. Choosing A still requires immediate and clear state feedback; B/C require inventories and verification on actual interactions. **Engine selection is not authority to approve motion on the user's behalf.**
+
+### Original candidate catalog — retain technology categories and exclusions
+
+| Technology | Core capability | Vue | React | Best fit | When not to use |
+| --- | --- | --- | --- | --- | --- |
+| CSS transitions/keyframes | Hover, focus, opacity/transform, micro-interactions | Native | Native | Buttons, overlays, small in-page transitions | Complex sequencing/fine-grained playback |
+| Web Animations API | Element.animate(), pause, cancel, completion | Native | Native | A few controlled imperative effects | Would require building a large custom coordinator |
+| Vue Transition/TransitionGroup | Component enter/leave, list movement | Native | — | Vue state-driven changes | Non-Vue apps |
+| Svelte transitions | Built-in enter/leave/list transitions | — | — | Svelte sites | Non-Svelte apps |
+| Motion | React motion/react, Vue motion-v, Vanilla motion; layouts, springs, gestures, scroll | Official Vue version | Official React version | Component/layout state transitions | Only hover opacity is needed |
+| Anime.js v4 | Property/timeline/stagger/SVG/scroll/draggable/easing/utilities | DOM integration | DOM integration | Controlled multi-step DOM/SVG choreography | Declarative framework transitions suffice |
+| GSAP | Tweens, Timelines, ScrollTrigger, plugins | DOM integration | DOM integration | Complex timelines and scroll storytelling | Generic admin buttons |
+| AutoAnimate | Child insertion/removal/rearrangement | Verify compatible version | Verify compatible version | Natural list reordering | Precise complex choreography |
+| Lottie | Playback of authored vector assets | Web runtime | Web runtime | Success/brand illustrations | Basic inputs and data tables |
+| Rive | State machine, interactive vector animation | Web runtime | React runtime | Character, progress and brand interaction | States/low-end devices cannot be tested |
+| View Transitions API | Browser continuity across views/pages | Browser API | Browser API | Suitable SPA/MPA transitions | Support unverified or transition causes flicker |
+| Canvas / WebGL / Three.js | Advanced graphics, particles, 3D | WebGL canvas | WebGL canvas | 3D/visualization/creative scenes | Ordinary DOM forms |
+
+### Original recommended priority order
+
+1. **Common controls** — CSS plus framework transitions, with shared motion tokens; creative experiences should still have subject-specific motion instead of the same generic transitions everywhere.
+2. **Declarative layout or gestures** — Motion for Vue/React as appropriate; prefer one principal solution.
+3. **Keyframes, SVG and stagger** — Anime.js v4.
+4. **Scroll narratives and complex multiple timelines** — GSAP, with performance and license checks.
+5. **Complex product illustration** — Lottie/Rive, with explicit asset/runtime ownership.
+6. **Experimental content** — Canvas/WebGL, with graceful fallback and frame-rate control.
+
+## Source-parity restoration: three motion quality tiers
+
+- **A / everyday usability:** hover color/shadow, button press, popover/dialog enter/exit, brief state icon, inserted/reordered list rows.
+- **B / requires appropriate context:** layout swap, drag snapping, chart transitions, scroll reveal, grouped stagger, partial text reveal.
+- **C / brand or creative specialty:** 3D tilt, particles, morph, scrambleText, strong spring elasticity and full-screen transitions.
+- **Reject:** effects blocking important actions, forced repeated playback, hidden essential content, fake numeric calculation/success motion, and lack of reduced-motion or performance fallback.
+
+## Source-parity restoration: suggested timing (design defaults, not official standards)
+
+| Effect | Reference duration | Magnitude | Suggested easing |
+| --- | --- | --- | --- |
+| Hover / Press | 100–180 ms | scale 0.98–1.00 / subtle color | ease-out |
+| Tooltip / Dialog | 160–240 ms | 8–16 px + opacity | outCubic / inOutSine |
+| List entrance | 180–300 ms | 8–16 px + opacity | outCubic, limited stagger |
+| Page / major section | 200–350 ms | 12–24 px | outCubic / outQuint |
+| Brand Hero | 300–650 ms if appropriate | Control quantity and occlusion | inOutSine / custom |
+
+**Creative effects are not limited to Fade/Slide/Zoom.** Expressive Motion Vocabulary contains 22 curated terms. assets/motion-effects.json contains **123 recipes** (the earlier 114 plus 9 additional mechanisms), some relying primarily on browser/CSS capabilities and **not** constituting built-in Anime.js APIs. animejs-motion-recipes.md documents 114 prior combinations; animejs-easing-complete.md documents 45 easing terms. Never use a recipe name as though it were an official API method.
+
+Official references retained from the source:
+- https://animejs.com/documentation/
+- https://motion.dev/docs
+- https://gsap.com/docs/v3/
+- https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API
+- https://auto-animate.formkit.com/
+- https://rive.app/docs/
+- https://developers.lottiefiles.com/
+
+## v5 — Visual component collections are not a single low-level engine
+
+React Bits, Vue Bits, Inspira UI, Magic UI and Aceternity UI are **optional component/effect source collections**, not competing universal animation engines. Their components may internally rely on GSAP, Motion, OGL/WebGL and other tools. Inspect the actual component dependencies before adding Anime.js/GSAP/Motion; prevent different engines from simultaneously controlling the same DOM property. See creative-component-libraries.md.
+
+## v6.2 — Specialized technologies beyond general-purpose animation engines
+
+The preceding candidate catalog answers which **animation engine** to select. PixiJS, Three.js, Curtains.js, ECharts, Rough.js, Vivus, SVG Filter, tsParticles and Matter.js do not all compete in one category. For specialized graphics, refer to visual-tech-selection-12.md and assets/visual-tech-catalog.json. GSAP SplitText and Anime.js splitText are distinct APIs; **native SVG Filter is not an additional dependency**. If ordinary micro-interactions can use CSS/framework-native mechanisms, none of these specialist libraries is required.
+
 ## Related resources and sources
 
 - `references/motion-craft-and-continuity.md`
