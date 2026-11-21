@@ -1,0 +1,536 @@
+{
+  "schema_version": "1.0",
+  "baseline_commit": "54a4af62566da1532c2b68d4301b531aee118e81",
+  "description": "Full reference-file coverage ledger. Pending means unreviewed; it does not prove Chinese or English content. No file may count as translation-complete without independent semantic review.",
+  "migration_status": "partial",
+  "files": [
+    {
+      "path": "references/aesthetic-authorship.md",
+      "source_blob_sha": "20f2797f08f371ccf7e0d2d6db9e640cd2e0a923",
+      "source_bytes": 4615,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/agent-team-handoff.md",
+      "source_blob_sha": "e7a5f21f35667dff17eb51efc3315a7f61d5ecf3",
+      "source_bytes": 2749,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/ai-frontend-prompt-policy.md",
+      "source_blob_sha": "c1ee369bdd5a43b7dbd77524c2c6a39a49e25450",
+      "source_bytes": 22297,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/animation-engine-extension.md",
+      "source_blob_sha": "ac4cda4d9e6985cfd2cf758988cb14382f3234f0",
+      "source_bytes": 2108,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/animation-engine-selection.md",
+      "source_blob_sha": "6a044caa593ad26dc62c154fcfc71d9493708277",
+      "source_bytes": 7342,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/animation-integration-lifecycle.md",
+      "source_blob_sha": "2a7ecf4b441e89309d8c896fce0a8b9a4e2616ec",
+      "source_bytes": 4328,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/animejs-easing-complete.md",
+      "source_blob_sha": "4e4de154a0c29a1789c57181878f8eaee4d23d8d",
+      "source_bytes": 3609,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/animejs-motion-recipes.md",
+      "source_blob_sha": "3e24ad74359f42b1b3977b10391c21539fed67a6",
+      "source_bytes": 21682,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/animejs-official-capabilities.md",
+      "source_blob_sha": "82b72076c5e658ad695329dcce76d14ad28a6d42",
+      "source_bytes": 6280,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/art-direction-critique.md",
+      "source_blob_sha": "441dcfa95aa281238ef7b3acf1cdcc20750b6fc6",
+      "source_bytes": 5315,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/browser-qa-protocol.md",
+      "source_blob_sha": "5bb6c97c4271bb25fc1dc904ed5048a6f9e8fdc2",
+      "source_bytes": 9925,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/chart-interior-alignment.md",
+      "source_blob_sha": "3b22042155e42e15f39800bb10de33153e858b80",
+      "source_bytes": 1744,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/clean-enterprise-design.md",
+      "source_blob_sha": "61813fa8538a88a1d8b467a1dc6a269f1823d850",
+      "source_bytes": 5689,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/comparison-page-design.md",
+      "source_blob_sha": "d524d504160f858774115e850d9218b52a13273d",
+      "source_bytes": 10653,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/comparison-ux-case.md",
+      "source_blob_sha": "4e7ee45819b6922bb71cba731c3974e21f8f24d1",
+      "source_bytes": 1273,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/component-consistency-and-selection-gate.md",
+      "source_blob_sha": "e179a75d2328b200bd8432ab41eb3cfbc938bf7b",
+      "source_bytes": 9031,
+      "status": "existing_english_pending_language_audit"
+    },
+    {
+      "path": "references/component-craft-gate.md",
+      "source_blob_sha": "96e8b9328a50a7222114c4441b9189e2d2f9bac1",
+      "source_bytes": 8926,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/component-first.md",
+      "source_blob_sha": "c823e3de14cd36119f21f0907a5ae91938459c3b",
+      "source_bytes": 12419,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/component-library-first-gate.md",
+      "source_blob_sha": "fe931124ea1e6d07691874af052d1d4a5d8cb0bc",
+      "source_bytes": 12273,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/component-motion-choreography-gate.md",
+      "source_blob_sha": "6cf32e2b59d99a3ec4b9063a9a1305b9522a8c09",
+      "source_bytes": 8321,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/composition-first-design.md",
+      "source_blob_sha": "d504dbee1b4ebd8ef739f89636434a345f08bcc3",
+      "source_bytes": 7884,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/control-geometry-gate.md",
+      "source_blob_sha": "417b3c4b7580b5b25a1e96ceccb214e530b1fc75",
+      "source_bytes": 5826,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/creative-component-libraries.md",
+      "source_blob_sha": "c5bccc5a3b8c927ced585bf3f70907703b4c98ae",
+      "source_bytes": 15770,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/design-craft-loop.md",
+      "source_blob_sha": "ab2b6e2ffe6d4d253462504a0c0cf49c5a521266",
+      "source_bytes": 9583,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/design-discovery-interview.md",
+      "source_blob_sha": "e44159fefd2749ee3f1c47ad1f4948ea6de3d800",
+      "source_bytes": 16659,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/design-dna-protocol.md",
+      "source_blob_sha": "74c3a2f3abe8bb993a68276e1cb52cab4c31e74c",
+      "source_bytes": 3178,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/design-reference-learning-gate.md",
+      "source_blob_sha": "d01c3acb45b0f91872af0049c52616a0d82a407b",
+      "source_bytes": 7928,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/design-style-catalog.md",
+      "source_blob_sha": "3869f05b80313f82faef4afcc0111105dff4dbef",
+      "source_bytes": 2696,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/design-system.md",
+      "source_blob_sha": "21d3d767f3e52dc98d1724dd4026d321538d97ea",
+      "source_bytes": 10157,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/enterprise-ui-library-guide.md",
+      "source_blob_sha": "bca90783d19e2cd96868a4413e17a88c1b5f4f55",
+      "source_bytes": 13028,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/execution-handbook.en.md",
+      "source_blob_sha": "aacc02f3461056cd672c3c8adeec10e6c89cfe9a",
+      "source_bytes": 13178,
+      "status": "existing_english_pending_language_audit"
+    },
+    {
+      "path": "references/expressive-motion-vocabulary.md",
+      "source_blob_sha": "2a03b1043240dc5cecc9452061fe45155be6a3d7",
+      "source_bytes": 15105,
+      "status": "existing_english_pending_language_audit"
+    },
+    {
+      "path": "references/external-design-case-library.md",
+      "source_blob_sha": "8ad1438f0f147b7d041e4dacd9135c8af53a73ac",
+      "source_bytes": 3910,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/figma-fidelity-workflow.md",
+      "source_blob_sha": "a9de5271d035de95530f92e70f55e85cd4e96696",
+      "source_bytes": 5936,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/framework-other-web.md",
+      "source_blob_sha": "c86c7c780c738f431c4da1204e91ea304168e3ec",
+      "source_bytes": 3486,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/framework-react-next.md",
+      "source_blob_sha": "156a9d32a907293237edcb74be7825504e059dcc",
+      "source_bytes": 5825,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/framework-support-matrix.md",
+      "source_blob_sha": "936c56f90ed3ed3d1ba849074fba65c266a23e57",
+      "source_bytes": 4816,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/framework-vue-nuxt.md",
+      "source_blob_sha": "7873bfc38a8e2375bde0f22638905aa8cb173ae9",
+      "source_bytes": 6187,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/frontend-architecture-and-gates.md",
+      "source_blob_sha": "142c51671bedec7a02d75d5321658dc56f106f9c",
+      "source_bytes": 21339,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/good-vs-bad.md",
+      "source_blob_sha": "a34787f431b9c69eafb88267a43b33d778ad4ee5",
+      "source_bytes": 10131,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/grid-alignment-and-viewport-safety.md",
+      "source_blob_sha": "1a1e57f4d8044a35a0ca9312ec28938dd3ce125a",
+      "source_bytes": 11274,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/grid-alignment-case.md",
+      "source_blob_sha": "4124a7cef3abcde1afe797a8fec15b970f3019e9",
+      "source_bytes": 1041,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/icon-art-direction-gate.md",
+      "source_blob_sha": "471a88600dfa4de21cbca6ac50cd573c461a25f0",
+      "source_bytes": 10067,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/liquid-glass-optics.md",
+      "source_blob_sha": "5ee5e9eb7fe3793ffe6822fe3139bc86ada984bc",
+      "source_bytes": 11974,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/motion-and-interaction.md",
+      "source_blob_sha": "18f91b1211c64b526730f7b2c9e5b8f0d7ab52bd",
+      "source_bytes": 4144,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/motion-consent-experience-gate.md",
+      "source_blob_sha": "883c72333322bbdd365f59d8e9cbae03b50e6929",
+      "source_bytes": 10166,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/motion-craft-and-continuity.md",
+      "source_blob_sha": "bb44c8655388042f60ec09ffa51711afcb9ba868",
+      "source_bytes": 12198,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/motion-governance.md",
+      "source_blob_sha": "1c80b595b86a231da3a46d4dbcef11e971ea7cf4",
+      "source_bytes": 3970,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/motion-rehearsal-and-evidence.md",
+      "source_blob_sha": "889ade88401fdbef8d778ff685a69c9ae9afbf3a",
+      "source_bytes": 8775,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/navigation-architecture.md",
+      "source_blob_sha": "073e244710bcd1609fbd76f6130da743991e0d2e",
+      "source_bytes": 10198,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/overview-density-case.md",
+      "source_blob_sha": "e819742cea8e72a1760c0f43449b58e678e3ff91",
+      "source_bytes": 1155,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/page-density-and-content-priority.md",
+      "source_blob_sha": "73eb0f2d57470dc9efed32fdcde45b3cd061b20a",
+      "source_bytes": 9996,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/page-header-antipatterns.md",
+      "source_blob_sha": "efe27572e9e8aa16f7410156ba5a080a03c19c2a",
+      "source_bytes": 17935,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/palette-art-direction.md",
+      "source_blob_sha": "7b2a3152bde86c6f988a83653c795cbf9cd73969",
+      "source_bytes": 5247,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/perceptual-hierarchy-gate.md",
+      "source_blob_sha": "fa0dbf03f6b354f0a769134b15ab24ab652616ba",
+      "source_bytes": 6604,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/proactive-visual-defect-discovery-gate.md",
+      "source_blob_sha": "3769a2c9c504c57d2f2b707beac5f218b113b5fd",
+      "source_bytes": 10348,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/product-experience-routing-gate.md",
+      "source_blob_sha": "96c5823dc58690c78d152f21a8cf0e3482c828b2",
+      "source_bytes": 6539,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/progressive-visual-refinement-gate.md",
+      "source_blob_sha": "c6371dbdc546008abd443d62962a55b9aa047c83",
+      "source_bytes": 8009,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/project-design-hierarchy.md",
+      "source_blob_sha": "43af8915968fc1aef77922facebf8e5c8df11510",
+      "source_bytes": 9344,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/quality-antipatterns-by-page-type.md",
+      "source_blob_sha": "387ccffd94ab8eb7caa6d0737d41210961e80700",
+      "source_bytes": 14058,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/react-component-engineering.md",
+      "source_blob_sha": "2c43e0d7069499b305cd36b9936675c2f24c9c1a",
+      "source_bytes": 2176,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/run-monitor-case.md",
+      "source_blob_sha": "7782c48f9395e684a5688203d06e11e643ce8c89",
+      "source_bytes": 1072,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/semantic-boundaries.en.md",
+      "source_blob_sha": "429a07ed99df9b571252e6c61e3f04667070470c",
+      "source_bytes": 9978,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/semantic-boundaries.zh-CN.md",
+      "source_blob_sha": "5e09e10fdb652f6f91e6264f5d3241d4e5bf3ddb",
+      "source_bytes": 9111,
+      "status": "bilingual_qa_exception"
+    },
+    {
+      "path": "references/semantic-copy-hygiene.md",
+      "source_blob_sha": "2d1abca7eab940709bc9a7927f8e2e45be72b078",
+      "source_bytes": 6051,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/semantic-spacing-rhythm-gate.md",
+      "source_blob_sha": "2cbb2a2110490a344cd68069d50e5a630e152d76",
+      "source_bytes": 10282,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/settings-form-layout-gate.md",
+      "source_blob_sha": "fae7059ea6f6df0fe60e19ae0c223991e69de720",
+      "source_bytes": 7315,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/sidebar-color-discovery.md",
+      "source_blob_sha": "33879e197ab9e8620957cc91b719ba8aceeb91f4",
+      "source_bytes": 5553,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/sidebar-color-reference-cases.md",
+      "source_blob_sha": "30936dc0a62ce02f816cd05252251315b70256ba",
+      "source_bytes": 4279,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/sidebar-navigation-design.md",
+      "source_blob_sha": "f42d9c6c9efd856259bfddd62b7f7d2e78b333fa",
+      "source_bytes": 12474,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/sidebar-selection-indicator-gate.md",
+      "source_blob_sha": "1f13c124d8f497b932f769a5930b558e1305301d",
+      "source_bytes": 6244,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/skill-gap-workflows.md",
+      "source_blob_sha": "f6159cf32d290efbfb43bf285081dbf80319336d",
+      "source_bytes": 7461,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/spacing-regression-protection-gate.md",
+      "source_blob_sha": "f443e9d37e56ad534d8611fe00d6e54e875c31d3",
+      "source_bytes": 8395,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/stack-guide-11-items.md",
+      "source_blob_sha": "e274c5d28553ea1ae87d3be0cd6dec75b4a8f29f",
+      "source_bytes": 14048,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/surface-architecture-gate.md",
+      "source_blob_sha": "3041d77ef06c1c6823a7bf68923e20813d479b74",
+      "source_bytes": 7587,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/surface-edge-accent-gate.md",
+      "source_blob_sha": "ac15e458edcfbff8f25163fe20e22adacb359572",
+      "source_bytes": 7144,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/task-center-run-monitor-design.md",
+      "source_blob_sha": "aca03a4c48a098023cc9e68213b7d7489e896ff1",
+      "source_bytes": 11721,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/theme-design.md",
+      "source_blob_sha": "a900781acce768df8bab0ae1461226c68b78b170",
+      "source_bytes": 7304,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/title-prefix-role-gate.md",
+      "source_blob_sha": "95c80e545f4e2d1e1256e5cca9169dd1ffcd26ad",
+      "source_bytes": 8472,
+      "status": "existing_english_pending_language_audit"
+    },
+    {
+      "path": "references/typography-hierarchy.md",
+      "source_blob_sha": "03f9eb30b513e5bba9bf2e0b6a33814bf8d93664",
+      "source_bytes": 7818,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/ui-review-rubric.md",
+      "source_blob_sha": "6f2838cb1bc91767a93c7eba09748a04731e487b",
+      "source_bytes": 10070,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/visual-critique-loop.md",
+      "source_blob_sha": "6bebbebfd12552c11b1f25f0762273e42f44828a",
+      "source_bytes": 10114,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/visual-qa.md",
+      "source_blob_sha": "6057f0365bf46114ec02898300661252536844fa",
+      "source_bytes": 35978,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/visual-tech-selection-12.md",
+      "source_blob_sha": "8dd9131e5db847eab14aa303069e827966e697eb",
+      "source_bytes": 9721,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/vue-component-engineering.md",
+      "source_blob_sha": "4dc5a92eb495ac4dba096ea92e1341e80bd2e322",
+      "source_bytes": 1781,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/web-scope-and-app-types.md",
+      "source_blob_sha": "5fe008b7091b3a19fd669138aca0aa87b728e2e9",
+      "source_bytes": 2965,
+      "status": "translated_pending_independent_review"
+    },
+    {
+      "path": "references/whitespace-and-surface-composition.md",
+      "source_blob_sha": "f35b192e8eb37bef0042e525ca25fda7ae64bc64",
+      "source_bytes": 7841,
+      "status": "pending_language_and_semantic_audit"
+    },
+    {
+      "path": "references/workspace-component-refinement.md",
+      "source_blob_sha": "08eabd4a8b86127c3f1bfa14c26a76e43d9afc38",
+      "source_bytes": 5968,
+      "status": "pending_language_and_semantic_audit"
+    }
+  ]
+}
