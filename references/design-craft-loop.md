@@ -75,3 +75,78 @@ A code review with no running page may still be valuable; clearly say it was sta
 A completed design pass should be able to answer: *What user task improved? What real page/content changed? Why was this composition/component/motion chosen? Which before/after behavior was actually tested? What remains uncertain?* If any important answer is missing, report the gap instead of claiming comprehensive delivery.
 
 Related: `references/design-discovery-interview.md`, `references/composition-first-design.md`, `references/proactive-visual-defect-discovery-gate.md`, `references/visual-critique-loop.md`, `references/browser-qa-protocol.md`.
+
+
+## Source-parity restoration — Original five task modes and minimum deliverables
+
+**Do not run all modes or seven entire workflows for each task.** Choose the work mode by scope, and preserve the original minimum deliverable and what it does **not** require:
+
+| Mode | Trigger | Minimum deliverable | Unnecessary / unauthorized |
+| --- | --- | --- | --- |
+| **shape** | New page or visibly misfocused major redesign | Task/content brief, visual direction, shared Tokens and component plan, first implementation and browser recheck | Repeated discovery when requirements are clear |
+| **polish** | UI seems plastic, hierarchy unclear, controls coarse | Baseline evidence, root-cause findings, severity-ordered repair, same-condition before/after | Unapproved total navigation/brand rewrite |
+| **review** | Independent evaluation only | Evidence-based severity list, strengths, recommendations, untested items | Editing code without request |
+| **fidelity** | User supplies Figma and requests faithful reproduction | Authorized design-node context, reference screenshot, asset/Token mapping, implementation and difference retest | Replacing design or composition to personal taste |
+| **fix** | Localized interaction/visual bug | Smallest relevant change and regression of related states | Whole-product design discovery |
+
+Operate / Read / Persuade / Experience describe a page's primary product goal, **not fixed layouts**. Explicit user preferences, approved brand, real business tasks and inherited component contracts outrank these mode labels. MauForma authored the process independently; it is **not** another installed Skill or a third-party designer's official scoring standard.
+
+## Original Design Direction Gate — Seven required decisions before a major build
+
+For **new pages or major restructuring**, write a concise Design Intent covering:
+
+1. **Subject and audience** — Who uses the page, which task matters, and what real content/photography exists?
+2. **Visual thesis** — One sentence explaining intended experience and how it serves the task. “Premium/minimal/modern” alone is insufficient.
+3. **Primary information and composition** — Which headline/media/data/CTA dominates the first screen; which are supporting? Use grayscale sketches where useful.
+4. **Optional signature element** — One memorable subject-appropriate photographic crop, type choice, spatial treatment, interaction or color relationship. **Not mandatory for operational Tables**.
+5. **Reasoned choice and rejected option** — Explain “A because X, not B because Y”; record confirmed / inherited / delegated / proposed / unresolved authority.
+6. **Existing Tokens/components** — Inherit CSS/Figma variables, Provider and primary UI suite; only new projects establish a minimal new token source. See references/component-library-first-gate.md; **do not hand-write fake Select**.
+7. **Constraints and fallback** — Supported platform, performance, motion choice, font licensing, themes, breakpoints and necessary devices. A desktop-only product **does not require** a new mobile app.
+
+**Design risk is optional, not a license to impose style:** A purposeful unconventional composition need not mean forced vivid color, serif text, asymmetry or page-entering animations. Inter, Cards, gradients and monochrome are **not inherently AI-looking**; their misuse against user tasks is the issue.
+
+References: references/design-discovery-interview.md, references/composition-first-design.md, references/design-style-catalog.md, references/design-dna-protocol.md.
+
+## Original seven craft domains — All diagnostic dimensions, not seven mandatory modifications
+
+| Domain | Inspect | Common concrete flaw | Evidence to verify |
+| --- | --- | --- | --- |
+| **Typography** | PageTitle/body/data/axes/legends, CJK/mixed-language, font license, weights/line-height/optical dimensions | Explanatory pre-H1 eyebrow on operational screen, giant heading hiding task, illegible chart ticks | Actual font rendering, long labels, Chinese/digit mixing, **200% text** |
+| **Color & Contrast** | Semantic brand/neutral/state, neighboring surfaces, light/dark, focus contrast | Random HEX, faded copy, brand accent confused with error/success, bright surfaces fighting | Foreground/background contrast and real whole-page theme |
+| **Spatial Design** | Inside/peer/section gaps, row/column Grid, container necessity, bottom access | Adjacent panels touch, nested Cards, misaligned rows, false min-height whitespace | DOM geometry, **full page and true scroll end** |
+| **Motion** | User-authorized timing/easing/stagger/state continuity, reduced motion | Zero visible feedback, meaningless bounces, motion out of sync, multiple engines claiming same property | Real interaction capture, reduced motion, unmount cleanup |
+| **Interaction States** | Library Select/Combobox/Dropdown/Button/Tabs/Dialog, selected/hover/focus/disabled/loading/error | Hand-made fake menu, divergent Button radius, lost keyboard focus, clipped overlay | references/component-library-first-gate.md plus **target route state tests** |
+| **Responsive** | Required device range, container rules, long copy/reading order | Shrinking font instead of reflow, narrow-height clipping, fixed bottom bar hiding content | Supported viewport matrix and **200% font scaling** |
+| **UX Writing** | Informative headings/actions/status/errors, units, source and exceptions | Decorative English, repeated jargon, Mock implementation text exposed, data source/sample deleted | references/semantic-copy-hygiene.md and real task path |
+
+The seven domains are **coverage for review, not a requirement to change every domain**. Fix inaccessible functionality and real operations first on workbenches; prioritize authentic content and composition for brand experiences. Do not generate each Button/Radius/Focus per page to look “unique.”
+
+## Original independent critique requirements
+
+- Evidence class: **OBSERVED** (actual browser or visible screenshot), **CODE ONLY** (source-level risk), **INFERRED** (hypothesis), **NOT TESTED** (insufficient evidence). Subjective “cheap-looking” is **not automatically measurable**.
+- Severity: **P0** business unusable/severe accessibility; **P1** primary task or structure wrong; **P2** typography/spacing/components damage use; **P3** local optical fine-tuning.
+- Issue entry format: **symptom → evidence → root cause hypothesis → affected task → recommended fix → validation**. Unknown cause remains a hypothesis, not fabricated certainty.
+- Keep separate **UX/IA** task/content/path diagnosis and **Visual Craft** type/color/composition/component inspection. Neither successful clicking nor palette changes can substitute for the other.
+- Preserve already-good solutions and user-approved decisions; repair **P0/P1 before P2/P3** and compare exactly the **same viewport, data state, theme and zoom**, repeating until key defects are gone or limitations disclosed.
+- Team scores from references/ui-review-rubric.md are optional; a high definitive score **cannot be justified without real screenshots and operable evidence**, nor may aesthetics be presented as algorithm-certified.
+
+### Six explicit anti-template critique questions
+
+1. When abstract English overlines and slogans are removed, can users still identify the page's task?
+2. Is the most prominent first-screen region the actual task or authentic brand subject?
+3. Is the defect in **composition/content**, not just colors/radii? Fix upstream causes first.
+4. Are icon families, controls, density and spatial relationships **systemically coherent**, not independent pretty blocks?
+5. Is the memorable detail grounded in content/brand, or copied from trendy gradients, giant Cards or particles?
+6. After testing light/dark, long Chinese copy, real Select/selected states and true scroll end, does the visual decision still work?
+
+## Original mode-specific exit workflow
+
+- **shape:** Brief / Intent → Composition / Tokens → real component library → implementation → critique → targeted revision → real re-verification.
+- **polish:** Actual-product baseline → root-cause priority → structure/content fixes → shared components/Tokens → optical detail → before/after.
+- **review:** Available evidence → separate UX + Craft critique → severity and repair suggestions, **without unsolicited edits**.
+- **fidelity:** Follow references/figma-fidelity-workflow.md; exact pixel comparison requires actual accessible original design. With inaccessible source, **do not invent a Figma look**.
+- **fix:** Strictly bounded change → direct repair → regression of related states; skip irrelevant art-direction tasks.
+
+Every delivery must distinguish **VERIFIED / STATIC CHECK / DEMO ONLY / NOT TESTED / BLOCKED**. Synthetic demonstrations, screenshot critique and real-backend E2E are different evidence classes; none substitutes for another.
+
+**Public-source isolation:** Only original reusable principles and authorized source may be committed to this Skill. Do not copy another Skill's code/commands or protected source material without appropriate rights. Keep real client screenshots, business fields and product-specific design decisions in the actual client/project workspace. External acknowledgements belong in the repository README.
