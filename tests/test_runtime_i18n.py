@@ -58,6 +58,57 @@ class RuntimeEnglishContractTests(unittest.TestCase):
         self.assertTrue(all(entry.get("semantic_pair_examples")
                             for entry in self.manifest["entries"]))
 
+    def test_chinese_origin_semantic_regression_matrix_is_traceable(self):
+        matrix_path = ROOT / "assets/i18n-semantic-regression-matrix.zh-CN.md"
+        matrix = matrix_path.read_text("utf-8")
+        boundaries = json.loads(
+            (ROOT / "assets/semantic-boundary-contract.json").read_text("utf-8")
+        )["rules"]
+        inventory = json.loads(
+            (ROOT / "assets/i18n-phase2-migration-inventory.json").read_text("utf-8")
+        )["files"]
+        converted = [item for item in inventory
+                     if item["status"] == "reviewed_second_pass"]
+
+        self.assertEqual(len(converted), 83)
+        self.assertEqual(len(boundaries), 15)
+        self.assertEqual(matrix.count(" | [中文源]("), 83)
+        self.assertEqual(matrix.count("### B"), 15)
+        baseline = self.manifest["source_commit"]
+        self.assertIn(baseline, matrix)
+
+        for item in converted:
+            self.assertIn(f"/blob/{baseline}/{item['path']}", matrix)
+            self.assertIn(item["source_blob_sha"], matrix)
+            self.assertIn(f"/blob/main/{item['path']}", matrix)
+
+        for rule in boundaries:
+            self.assertIn(f"### {rule['id']} — {rule['topic']}", matrix)
+            for field in ("trigger", "require", "exception", "never"):
+                for locale in ("en", "zh"):
+                    expected = rule[f"{field}_{locale}"].replace("|", "\\|")
+                    self.assertIn(expected, matrix,
+                                  f"{rule['id']} {field}_{locale} missing")
+
+        for readme in ("README.md", "README.zh-CN.md"):
+            self.assertIn(
+                "assets/i18n-semantic-regression-matrix.zh-CN.md",
+                (ROOT / readme).read_text("utf-8")
+            )
+        self.assertIn("not a", matrix.lower())
+        self.assertIn("STATIC CHECK", matrix)
+
+    def test_semantic_regression_preserves_high_risk_original_conditions(self):
+        contract = json.loads(
+            (ROOT / "assets/semantic-boundary-contract.json").read_text("utf-8")
+        )
+        rules = {rule["id"]: rule for rule in contract["rules"]}
+        self.assertIn("review request", rules["B01"]["trigger_en"])
+        self.assertIn("When authorized", rules["B05"]["exception_en"])
+        self.assertIn("authorized source assets", rules["B08"]["require_en"])
+        self.assertIn("confirming design direction", rules["B11"]["require_en"])
+        self.assertIn("With explicit approval", rules["B12"]["exception_en"])
+
     def test_missing_critical_boundary_is_rejected(self):
         changed = copy.deepcopy(self.manifest)
         changed["entries"][0]["required_english_fragments"] += ["UNTRANSLATED CRITICAL BOUNDARY"]
