@@ -8,7 +8,7 @@
       "path": "references/aesthetic-authorship.md",
       "source_blob_sha": "20f2797f08f371ccf7e0d2d6db9e640cd2e0a923",
       "source_bytes": 4615,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/agent-team-handoff.md",
@@ -62,7 +62,7 @@
       "path": "references/art-direction-critique.md",
       "source_blob_sha": "441dcfa95aa281238ef7b3acf1cdcc20750b6fc6",
       "source_bytes": 5315,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/browser-qa-protocol.md",
@@ -212,25 +212,25 @@
       "path": "references/framework-other-web.md",
       "source_blob_sha": "c86c7c780c738f431c4da1204e91ea304168e3ec",
       "source_bytes": 3486,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/framework-react-next.md",
       "source_blob_sha": "156a9d32a907293237edcb74be7825504e059dcc",
       "source_bytes": 5825,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/framework-support-matrix.md",
       "source_blob_sha": "936c56f90ed3ed3d1ba849074fba65c266a23e57",
       "source_bytes": 4816,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/framework-vue-nuxt.md",
       "source_blob_sha": "7873bfc38a8e2375bde0f22638905aa8cb173ae9",
       "source_bytes": 6187,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/frontend-architecture-and-gates.md",

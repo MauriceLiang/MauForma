@@ -1,69 +1,69 @@
-# Art Direction · 设计构图、页面模式与自我批判
+# Art Direction — Composition, Page Modes and Independent Critique
 
-先读取 `references/design-discovery-interview.md`、`assets/style-knowledge.json`。用户不确定风格时先询问用途和展示内容，再推荐 2–3 套**首屏真正不同**的构图，不能直接塞 10 种抽象风格术语。
+Read `references/design-discovery-interview.md` and `assets/style-knowledge.json` when relevant. If the user has not chosen a direction, ask about purpose and available showcase content before suggesting **2–3 genuinely different first-screen compositions**. Do not offer ten vague style adjectives instead.
 
-## 访客成功模式（借鉴 Impeccable，MauForma 独立执行规则）
+## Visitor success modes — inspired by Impeccable, independently specified by MauForma
 
-| 模式 | 访客要完成什么 | 视觉策略 | 不应误用 |
+| Mode | Visitor's task | Visual strategy | Never misuse |
 | --- | --- | --- | --- |
-| Persuade | 决策、预约、购买、下载 | 主体大图/强主张、可信证据、清楚 CTA；首屏允许低密度 | 为了视觉冲击隐藏价格、关键限制和下一步动作 |
-| Operate | 搜索、编辑、提交、审批、调试 | 任务主导、扫描速度、状态和按钮稳定 | 没有内容价值的 Hero、长动画和花哨标题 |
-| Read | 读文章、文档、教程、政策 | 合理行宽、层级、可搜索和目录定位 | 强制逐段动效、刻意打断阅读节奏 |
-| Experience | 观看作品、体验互动内容 | 作品主体优先，控件退后，允许非对称/沉浸式 | 反复覆盖或阻挡真正的作品 |
+| **Persuade** | Decide, reserve, buy or download | Hero media/strong claim, real trust evidence, clear CTA; first screen may be low density | Hiding price, critical restrictions or next action for visual drama |
+| **Operate** | Search, edit, submit, approve or debug | Task-driven density, fast scanning, stable states/actions | Information-free Hero, slow animation and decorative titles |
+| **Read** | Read article, docs, tutorial or policy | Reasonable line length, hierarchy, search and contents navigation | Mandatory per-paragraph animations or interruptions to reading |
+| **Experience** | View a work or engage with interactive content | Subject first, secondary controls, intentional asymmetry/immersion | Repeatedly covering or obstructing the work itself |
 
-一页可有主要模式和次要模式。以页面为单位决定而非网站标签统一决定，建议记录到 `design-system/pages/*.md`。
+One page can have a principal and secondary mode. Decide **per page**, not by assigning one permanent label to the entire product. Record in `design-system/pages/*.md` when useful.
 
-## 设计前五个决策
+## Five design decisions before implementation
 
-1. **主体**：用户打开页面第一眼必须注意到哪一个实体/内容？没有唯一焦点时说明并列关系原因。
-2. **实际素材**：有没有真实商品图、高清视频、功能截图、可用文案、表格字段？素材不够时给替代设计，不制造虚构事实。
-3. **构图**：全幅摄影、左右分栏、错位编辑、项目画廊、数据网格、阅读文章；给出替代与权衡。
-4. **表达强度**：三旋钮 0–10（variance/motion/density），不同页面允许不同区间；注意 reduced-motion。
-5. **组件契约**：设计 Tokens 跨页面一致，组件样式基线与状态一致，变化集中在页面组合层。
+1. **Subject:** What specific entity/content must draw the first glance? Explain genuinely coequal subjects when present.
+2. **Actual assets:** Are there real product photos, quality video, functional screenshots, usable copy and data columns? If missing, propose a workable alternative without manufacturing facts.
+3. **Composition:** Full-bleed photography, split columns, offset editorial layout, project gallery, data grid or reading article. Describe meaningful alternatives and tradeoffs.
+4. **Expression intensity:** Three 0–10 controls (variance/motion/density), with different acceptable ranges per page; respect reduced-motion.
+5. **Component contract:** Shared tokens, baseline styles and states across pages; variation belongs mainly in page composition.
 
-## 设计方案评估卡（每个候选方案）
+## Decision card for each candidate
 
-- 方案 ID、来源风格、访客模式、首页焦点
-- 首屏布局文字草图、产品图片/文案比例
-- 字体、色彩、留白、动效三旋钮和动效目的
-- 对应用户内容的**具体**设计理由；所需素材和依赖
-- 优点 / 牺牲 / 响应式代价 / reduced-motion 版本
-- 用户已确认还是仅推荐（不得混淆）
+- Option ID, source style, visitor mode and homepage focal point.
+- Textual sketch of first-screen geometry and media-to-copy proportion.
+- Type, color, whitespace, the motion/variance/density dials and purpose.
+- **Content-specific** rationale and required media/dependencies.
+- Benefits, sacrifices, responsive cost and reduced-motion alternative.
+- Decision status: **confirmed by user** versus merely **recommended**.
 
-## 开发前 Critique（必须回答而不能空喊）
+## Critique before coding — answer specifically
 
-1. **替换测试**：把本项目内容换成任意 SaaS，版式仍完全成立吗？如果是，是否缺乏内容驱动的独特性？
-2. **视觉焦点**：首屏最重要的内容是否明显大于其余内容？并列是否有意图？
-3. **文字真实性**：标题、小字标签、副标题是否提供信息？不要填充空泛营销语。
-4. **素材检验**：大图是否够清楚、合适裁切、有权使用？占比是否突出产品特征？
-5. **密度验证**：此页面目标是欣赏、决策、阅读、操作？留白和控件数量是否服务该目标？
-6. **代价检验**：移动端、键盘操作、弱网、动画降级是否有实际路径？
+1. **Substitution test:** If this project's content were replaced by any unrelated SaaS, would the layout still make equal sense? If so, is the result insufficiently content-driven?
+2. **Focal point:** Is the important first-screen subject visibly prominent? Are multiple focal points intentional?
+3. **Truthful copy:** Do headings, minor labels and descriptions add distinct information rather than filler slogans?
+4. **Asset quality:** Is the imagery sharp enough, appropriately cropped and licensed? Does its size express real product identity?
+5. **Density:** Is the page for viewing, deciding, reading or operating? Does whitespace and control quantity serve this purpose?
+6. **Cost:** Is there a real route for mobile, keyboard, slow networks and motion fallback?
 
-若自评失败，不是加一层渐变就算“精修”：必须重新构图或删减无价值元素，再进入 Gate B。
+If the critique fails, adding a gradient is not “polish.” Revise composition or remove low-value content **before Gate B**.
 
-## 开发后 Critique
+## Critique after coding
 
-在同一窗口尺寸下，将用户确认的方案与**真实渲染**并排对比，记录以下证据：
+Compare the user-approved direction with **actual browser rendering** at the same viewport. Record:
 
-- 主视觉尺度、首屏 CTA 可见性、页面截断和多余空白；
-- 断点重排、长中文/英文、深浅色、字体加载失败的回退；
-- 组件 hover/focus/disabled/error/loading 与业务真实操作；
-- 降低动画配置和低性能条件下是否可访问主要内容；
-- 三个需要保留的美学决定与三个必须修复的问题。
+- Hero/media scale, first-screen CTA visibility, clipped content and surplus whitespace;
+- Reflow at supported breakpoints, long Chinese/English copy, light/dark mode and font-load failures;
+- Component hover/focus/disabled/error/loading and actual business operations;
+- Access to primary content under reduced motion and low-performance conditions;
+- **Three aesthetic decisions to preserve and three problems to repair**.
 
-静态审查不能冒充截图验证；失败要标注具体页面/代码位置/截图（如有）及处理结果。
+Static review is not screenshot verification. For failures, record exact route/code position, screenshot if available, and resulting fix status.
 
-## 反面案例：不是一切极简都好
+## Counterexamples — minimalism is not always correct
 
-- 反例：将高变化度实验性作品网站强行改成平均三栏卡片，因为“组件统一”。
-- 反例：将 Operate 工作台加入无限视差，因为“想更高级”。
-- 正例：创意作品集可以用偏移摄影和大留白；其筛选列表仍可用清晰网格。
-- 正例：食物品牌主图占大面积，但真实订单页应保持价格和购买操作一眼可见。
+- Bad: Flatten an expressive experimental portfolio into equal three-column Cards merely for “component consistency.”
+- Bad: Add endless parallax to an operations workspace to make it “premium.”
+- Good: A portfolio can use offset photography and large whitespace while keeping its filter list a clear grid.
+- Good: A food brand can use dominant hero media while its real ordering page keeps price and checkout actions immediately visible.
 
-用户明确要求某种强烈视觉时，保留其美学表达，除非损害安全、可访问性、真实数据或用户明确限制。
+A user who explicitly approved strong visual art direction keeps that expression unless it violates safety, accessibility, truthfulness or explicit user constraints.
 
-## v6.4 · 先构图、后风格优化
+## v6.4 — Composition before style polish
 
-本文件的艺术指导不应跳过真正的内容信息组织。对于新站或大改版，在运行本页 Critique 前先执行 [Composition First](composition-first-design.md)，创建灰阶结构与 2–3 种有主区/排序/分组实质差异的候选；不能用同样布局换蓝/紫/绿三种主题冒充选择。若旧截图显示大渐变 Hero、装饰性 3D 立方体压过真正的数据趋势，应先回到区域面积和证据来源；只换色、减少发光或细调圆角不是结构性修复。
+This document's art direction **must not bypass actual content architecture**. For new sites/major redesigns, run [Composition First](composition-first-design.md) before Critique, create grayscale composition and 2–3 candidates that genuinely differ in **dominant region, order or grouping**. Three recolors of one blue/purple/green layout do not count as choices. If an old screenshot shows an oversized gradient Hero or ornamental 3D cube dominating real trends, reconsider region area and evidence; changing color, glow or corners is not a structural fix.
 
-配色理据和角色见 [Palette Art Direction](palette-art-direction.md)，真实浏览器判定见 [Visual Critique Loop](visual-critique-loop.md)。符合用户明确选择的强视觉风格（创意作品集、品牌/发布页）可以保留大片图像和独特配色，不能全站套后台规则。
+See [Palette Art Direction](palette-art-direction.md) for semantic palette choices and [Visual Critique Loop](visual-critique-loop.md) for real-browser checks. Keep intentional large imagery/unique colors on authorized creative/brand/launch pages; never blindly impose operations rules on the whole site.

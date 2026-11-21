@@ -591,6 +591,143 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/framework-other-web.md",
+      "source_blob_sha": "c86c7c780c738f431c4da1204e91ea304168e3ec",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "SvelteKit",
+        "SolidStart",
+        "Nuxt",
+        "Astro",
+        "Motion JS",
+        "minimum acceptance"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "统一的是设计原则与组件契约",
+          "target_en": "Unify design principles and component contracts"
+        },
+        {
+          "source_zh": "不用 React hooks",
+          "target_en": "Do not transplant React Hook"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/framework-support-matrix.md",
+      "source_blob_sha": "936c56f90ed3ed3d1ba849074fba65c266a23e57",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Lucide",
+        "2026-era",
+        "one primary styled library",
+        "SSR/SEO",
+        "Vue 3 / Nuxt"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是“所有项目都手写”的许可",
+          "target_en": "not permission to handwrite every complex control"
+        },
+        {
+          "source_zh": "不代表必须安装",
+          "target_en": "not required installations"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/framework-vue-nuxt.md",
+      "source_blob_sha": "7873bfc38a8e2375bde0f22638905aa8cb173ae9",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Reka UI Splitter",
+        "Pinia",
+        "onMounted",
+        "SSR",
+        "200%"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不要求加载整套所有框架 Skill",
+          "target_en": "do not load all framework Skills"
+        },
+        {
+          "source_zh": "不是 Pinia 的同义替代",
+          "target_en": "not synonymous with Pinia"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/framework-react-next.md",
+      "source_blob_sha": "156a9d32a907293237edcb74be7825504e059dcc",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "React 19-only",
+        "React 18",
+        "RSC",
+        "Base UI",
+        "Server Actions"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "React 19 专属 API",
+          "target_en": "React 19-only APIs"
+        },
+        {
+          "source_zh": "不能靠隐藏按钮",
+          "target_en": "not merely by hiding Buttons"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/aesthetic-authorship.md",
+      "source_blob_sha": "20f2797f08f371ccf7e0d2d6db9e640cd2e0a923",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "0–10 ranges",
+        "No indiscriminate negative rules",
+        "No uniquely confirmed upstream repository",
+        "license"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是错误本身",
+          "target_en": "not defects by themselves"
+        },
+        {
+          "source_zh": "无可确认的唯一上游仓库",
+          "target_en": "No uniquely confirmed upstream repository"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/art-direction-critique.md",
+      "source_blob_sha": "441dcfa95aa281238ef7b3acf1cdcc20750b6fc6",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "2–3 genuinely different",
+        "Three aesthetic decisions",
+        "Not screenshot verification",
+        "Composition First"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不能直接塞 10 种抽象风格术语",
+          "target_en": "Do not offer ten vague style adjectives"
+        },
+        {
+          "source_zh": "独立执行规则",
+          "target_en": "independently specified by MauForma"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
