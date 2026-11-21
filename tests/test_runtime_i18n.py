@@ -23,8 +23,8 @@ class RuntimeEnglishContractTests(unittest.TestCase):
     def test_translated_subset_has_clean_english_runtime_prose(self):
         self.assertEqual(module.inspect(self.manifest), [])
 
-    def test_translation_migration_remains_explicitly_partial(self):
-        self.assertEqual(self.manifest["status"], "partial_migration")
+    def test_completed_translation_requires_independent_semantic_review(self):
+        self.assertEqual(self.manifest["status"], "complete_pending_review")
         self.assertTrue(all(x["translated_status"] == "translated_pending_independent_review"
                             for x in self.manifest["entries"]))
 
