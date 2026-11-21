@@ -2322,6 +2322,58 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/visual-qa.md",
+      "source_blob_sha": "6057f0365bf46114ec02898300661252536844fa",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Settings / Form / Hybrid",
+        "Proactive defect discovery",
+        "panel-spacing regression",
+        "Public Safety Gate",
+        "Icon Art Direction",
+        "Motion Craft",
+        "Component Motion Choreography",
+        "Same-role control consistency",
+        "Operational page headings",
+        "Chart Interior",
+        "Task Center / Run Monitor",
+        "Liquid Glass",
+        "200% text",
+        "WCAG 2.2",
+        "NOT AUDITED",
+        "NOT VISUALLY VERIFIED",
+        "no_data",
+        "prefers-reduced-motion"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "真实浏览器未测不得用 Skill Demo PASS 充当业务验收",
+          "target_en": "A standalone Skill example does not validate the target route"
+        },
+        {
+          "source_zh": "颜色字体字号等不作为小标题识别条件",
+          "target_en": "regardless of color, font, size, weight, language, DOM tag or CSS class"
+        },
+        {
+          "source_zh": "原生 Select 弹层在目标平台无法观察必须标 NOT TESTED",
+          "target_en": "If unobservable, mark **NOT TESTED**"
+        },
+        {
+          "source_zh": "不允许未经授权修改用户 HEX 色值",
+          "target_en": "preserve exact user HEX"
+        },
+        {
+          "source_zh": "数据缺失不能补零",
+          "target_en": "not 0"
+        },
+        {
+          "source_zh": "综合 7 个设计领域按需查，而非全部修改",
+          "target_en": "not every domain must be modified"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
