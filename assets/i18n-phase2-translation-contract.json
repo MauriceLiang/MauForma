@@ -2043,6 +2043,48 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/enterprise-ui-library-guide.md",
+      "source_blob_sha": "bca90783d19e2cd96868a4413e17a88c1b5f4f55",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Ant Design (antd)",
+        "Ant Design Vue",
+        "Element Plus",
+        "Naive UI",
+        "Arco Design",
+        "PrimeVue",
+        "PrimeReact",
+        "MUI Material UI",
+        "Mantine",
+        "shadcn/ui",
+        "shadcn-vue + Reka UI",
+        "Angular Material",
+        "Nuxt must replace",
+        "not an installation checklist",
+        "styled library",
+        "SSR"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "组件库不是强制指定品牌和数量",
+          "target_en": "No specific library vendor or number of packages is mandatory"
+        },
+        {
+          "source_zh": "Vue 不能安装 React 的 antd",
+          "target_en": "Not React antd installed in Vue"
+        },
+        {
+          "source_zh": "已有主库优先保留",
+          "target_en": "Prefer established primary suite"
+        },
+        {
+          "source_zh": "只写推荐方案不算完成",
+          "target_en": "A written recommendation alone is not implementation"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
