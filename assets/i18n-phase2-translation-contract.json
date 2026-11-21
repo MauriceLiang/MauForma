@@ -1855,6 +1855,44 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/motion-rehearsal-and-evidence.md",
+      "source_blob_sha": "889ade88401fdbef8d778ff685a69c9ae9afbf3a",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate MR0",
+        "Gate MR1",
+        "Gate MR2",
+        "Gate MR3",
+        "Gate MR4",
+        "CAPTURED_FOR_REVIEW",
+        "40–80 ms",
+        "30% and 70%",
+        "PARTIAL / INCONCLUSIVE",
+        "NOT REVIEWED",
+        "actual target page",
+        "prefers-reduced-motion"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "录制 → 检查 → 修复 → 重新录制",
+          "target_en": "capture → inspect → fix → recapture"
+        },
+        {
+          "source_zh": "采样周期与截图开销必须记录；无法满足预期频率属于 INCONCLUSIVE",
+          "target_en": "label **INCONCLUSIVE**, not PASS"
+        },
+        {
+          "source_zh": "静态审计、截图数量或自动指标不能替代人类视觉判断",
+          "target_en": "cannot replace human visual judgment"
+        },
+        {
+          "source_zh": "CAPTURED_FOR_REVIEW 不能据此声称审美和流畅度已通过",
+          "target_en": "not a pass for visual quality"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
