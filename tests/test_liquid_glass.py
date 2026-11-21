@@ -22,7 +22,7 @@ class LiquidGlassGuideTests(unittest.TestCase):
         text = (ROOT / "references/liquid-glass-optics.md").read_text("utf-8")
         for word in ("Transmission", "Refraction", "Specular", "Elevation", "Optional background blur"):
             self.assertIn(word, text)
-        self.assertIn("模糊过强", text)
+        self.assertIn("Excess blur", text)
 
     def test_svg_backdrop_not_assumed_cross_browser(self):
         text = (ROOT / "references/liquid-glass-optics.md").read_text("utf-8")
