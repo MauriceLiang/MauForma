@@ -1,224 +1,224 @@
-# 页头文案必要性与功能页标题反面案例
+# Page Header Copy Necessity and Functional-Page Anti-Patterns
 
-> **适用范围**：所有 Web 产品页面的新建、优化、重构与审查；重点覆盖**原有项目中已存在**的标题上方前导文案。任务页沿用严格的 Gate H0，展示/学习/科普/内容/营销/创意页面执行通用 Gate H-Base，不套同一种 Hero 或标题密度。
+> **Scope:** Creating, polishing, refactoring and reviewing *any* Web page, especially legacy explanatory text that predates the current change. Task-oriented pages use strict Gate H0; presentation, learning, scientific, reading, marketing and creative pages use universal Gate H-Base. Do not impose one Hero composition or heading density on every product.
 >
-> 核心目标：删除无信息价值的标题前导，保留真实导航、已确认品牌叙事、合法章节、必要状态与来源。没有可证明的品牌/内容角色时，历史存在本身不是保留理由。**本文件的 H-Base/H0 规则主要针对页面 H1；所有 H1–H6、卡片、模块、弹窗和非标准标题组件的统一判别必须同时执行 `references/title-prefix-role-gate.md`，不能只检 H1。**
+> **Purpose:** Remove title preambles without information value, while preserving real navigation, approved brand narrative, legitimate chapters, necessary states and sources. Historical presence is not proof of a valid information role. H-Base/H0 focuses primarily on H1: **every H1–H6, Card, Section, Dialog and custom heading group must also pass [Title-Prefix Role Gate](title-prefix-role-gate.md).**
 
-## Gate H-Base · 所有页面的既有/新增页头文案审查（必检）
+## Gate H-Base — Mandatory review of existing and new title copy on every page
 
-**触发**：任何新页面设计、现有页面的视觉优化/重构、标题或 Hero 相关修复、页面评审；模糊的“打磨现有项目”必须主动执行。纯功能 Bug 且完全不触及页头时不强制全站清理。先检查实际可见内容，再结合源码（如 PageHeader props、Hero/Intro 组件、i18n 字符串、slot）定位来源；不依赖元素必须恰好叫 `h1` 或使用 `eyebrow` class。
+**Trigger:** Any new page design, visual polish/refactor, heading/Hero-related fix or page review. A vague request to polish an existing product also triggers this audit. A purely functional bug completely unrelated to titles does *not* require site-wide heading cleanup. Examine **actually rendered content first**, then locate its origin in PageHeader props, Hero/Intro components, localization strings or slots; do not depend on a literal `h1` or `eyebrow` class.
 
-**检查对象**：主标题/首屏大标题上方、Logo 下方、标题附近的短标签（英文、中文、双语拼接）、宽字距大写前缀、伪栏目、纯装饰编号和可疑副标题。检查**原来就存在**的与**本次新增**的；不得以“未修改这段 JSX/Vue 模板”“属于原设计”为通过理由。
+**Review candidates:** A short line above or near a main/hero title, below a logo, in English, Chinese or mixed language, widely tracked capital letters, pseudo-category, ornamental index or suspicious subtitle. Include **already present** and **new** instances. “This JSX/Vue component was untouched” and “it was in the original design” are not exemptions.
 
-按以下顺序判定，每项给出 `keep / merge / move / delete`，遇到真实语义不明确时先核实设计/品牌资料，不凭颜色、大小写或位置自动删除：
+For each candidate, decide `keep / merge / move / delete` with a reason, using this order; resolve genuine ambiguity from brand/content records rather than removing text based solely on color, capitalization or placement:
 
-1. **身份与正式品牌**：是否为产品真实名称、Logo、用户明确确认的 Tagline/品牌系列？可以 `keep`，必要时移到独立品牌区域；把品牌名与可删除的泛功能解释拼成一行时应**拆分处理**，不能整行一概保留。
-2. **导航与状态**：是否为可用的真实面包屑、内容层级、课程章节、时间范围、权限或数据状态？应 `keep` 或 `move` 到对应导航、章节或信息区域，不删关键语义。
-3. **内容与叙事**：展示/营销/阅读/创意/科普页确有叙事节奏或内容定位作用的 kicker 可以 `keep`；需要能说明它给目标用户提供了什么，不能借“品牌感/高级感”给普通功能说明自动豁免。
-4. **冗余与视觉填充**：只是重复 H1、英文直译、介绍“本页面用于……”、Mock/开发阶段标签、抽象口号或无真实排序的编号，优先 `delete`；有增量说明但位置错误则 `move` 到标题下方或相关模块，必要时 `merge`。
+1. **Authentic identity and official brand:** Real product name, logo, user-approved tagline or branded series can be kept or moved to a separate identity region. **Split** a mixed “brand name · disposable generic explanation”; never preserve/delete the entire line without separate decisions.
+2. **Navigation and state:** A usable breadcrumb, real content hierarchy, course chapter, time range, permission or data status should be kept or moved to the relevant navigation/section/data area. Do not erase necessary meaning.
+3. **Content and narrative:** Editorial, marketing, learning, creative and scientific kickers may be kept *when they genuinely establish narrative progression or content positioning*. Be able to explain the added user value. A vague claim of “premium visual style” does not excuse generic function labels.
+4. **Duplication/filler:** A repeated H1, literal second-language translation, “this page is for…,” Mock/development label, abstract slogan or invented order number should normally be deleted. Incremental but misplaced information should move below the title or to its owning module; merge if appropriate.
 
-**不可规避**：只调淡颜色、缩小字号、换个词、移到同一视觉层、保留旧代码但做其他视觉改动，都不算修复。对修改范围内的页面进行 **before → decision → after** 复核，至少核对桌面可见首屏与受影响页面状态；无法打开真实页面时必须如实标注 `STATIC CHECK` 或 `NOT TESTED`，不可宣称已通过视觉验收。此门禁是**语义人工/Agent 审查**，静态关键词脚本只能提示候选，不能裁决品牌或批量自动删除。
+**No cosmetic evasion:** Lower opacity, smaller font, rewritten words, moving the pretitle to the same visual layer, or styling unrelated parts of old code do not fix the underlying issue. Run a **before → decision → after** check on affected pages and states, including a real desktop initial viewport when supported. Without browser access, accurately label `STATIC CHECK` or `NOT TESTED`; do not claim visual verification. This is an **Agent/human semantic review**. Keyword scripts produce candidates, never final brand judgments or automatic mass deletion.
 
-**跨页面类型的合成示例（并非真实项目）**：
+### Synthetic examples across product modes — not actual user products
 
-这些示例只测试审查决策，结构化回归见 `assets/page-header-copy-cases.json` 与 `scripts/validate_page_header_copy.py`；它们**不**代替对实际页面和品牌规范的判断。
+These examples only express classification decisions. Structured regression fixtures live at `assets/page-header-copy-cases.json` and `scripts/validate_page_header_copy.py`; neither proves actual brand or page correctness.
 
-| 页面类型 | 主标题前出现 | 判定 | 理由 |
+| Example page | Pre-title → title | Decision | Reason |
 | --- | --- | --- | --- |
-| 已有学习页 | `LEARNING SPACE · 在线课程` → `开始学习` | delete | 只解释页面类别，旧内容不免责 |
-| 已有科学可视化页 | `VISUAL LAB · 知识探索` → `观察细胞` | delete | 只重复产品领域，缺少独立信息 |
-| 数据工作台 | `LIVE INSIGHTS` → `统计概览` | delete（同时执行 H0） | 解释性标签 |
-| 品牌活动首页 | 已确认为活动主张的 `MAKE TOMORROW TANGIBLE` → 活动标题 | keep | 有正式品牌与叙事依据 |
-| 产品页 | `NOVA · 数据可视化` → 页面 H1 | split / move | 保留真实产品名称于品牌区，删除无用泛说明 |
-| 内容阅读 | `第 03 章 / 循环系统` → 章节标题 | keep | 属于真实章节顺序 |
-| 功能页 | `设置 / 团队` → `权限设置` | keep（作为 nav） | 真正可导航的面包屑 |
-| 数据页 | `样本范围：2025–2026` → 图表标题 | move | 信息必要，但应靠近所约束的数据 |
+| Existing learning page | `LEARNING SPACE · Courses` → `Start learning` | delete | Only names the general page category; legacy status grants no exemption |
+| Existing scientific visualizer | `VISUAL LAB · Discovery` → `Observe cells` | delete | Repeats domain with no independent information |
+| Data workspace | `LIVE INSIGHTS` → `Statistics overview` | delete + Gate H0 | Explanatory label |
+| Branded event home | approved `MAKE TOMORROW TANGIBLE` → event name | keep | Documented brand/narrative role |
+| Product page | `NOVA · Data visualization` → page title | split / move | Preserve real NOVA identity in brand area, remove generic explanatory part |
+| Reading content | `Chapter 03 / Circulatory system` → chapter heading | keep | Genuine chapter sequence |
+| Functional page | `Settings / Team` → `Permissions` | keep as nav | Real and usable breadcrumb |
+| Data page | `Sample: 2025–2026` → trend title | move | Useful scope information belongs beside relevant data/filter |
 
-## Gate H0 · 功能页 H1 前的解释性眉题默认禁止（硬约束）
+## Gate H0 — Default hard prohibition of explanatory pre-H1 eyebrows on task pages
 
-**适用**：管理/数据/工作台/设置/搜索/列表/编辑/详情等任务型页面。首版或现有页面优化/重构时不得在主标题上方新增**或保留**解释性小标题、英文 `eyebrow/overline/kicker`、拉大字距的全大写标签、蓝色功能注解或装饰编号。即使该文字没有重复 H1，只要它只是描述页面类型、场景或技术概念、制造层次，也必须移除。
+**Applies to:** admin, data, workbench, settings, search, lists, edit and detail pages. During first-pass implementation and existing-page polish/refactor, **do not add or retain** an explanatory eyebrow/overline/kicker, all-caps wide-tracking label, colorful function annotation or decorative number above H1. Even if it does not repeat H1 verbatim, remove it when its only role is to describe the page type, scenario or technology and manufacture an extra title layer. The specific color or font is irrelevant.
 
-**错误示例（均为合成文本）**：`EXPLORATION MODE · WEEKLY SIGNALS` → `活动工作台`；`TEAM ACTIVITY / INSIGHT VIEW` → `项目概览`；`01 / OVERVIEW` → `概览`。正确版本直接展示清晰的 H1。
+**Synthetic violations:** `EXPLORATION MODE · WEEKLY SIGNALS` → `Activity workspace`; `TEAM ACTIVITY / INSIGHT VIEW` → `Project overview`; `01 / OVERVIEW` → `Overview`. The correct version starts from a clear H1.
 
-**推荐结构**：真实面包屑导航（如有）→ H1 → 必要且增量的简短说明（如有）和页面操作 → 实际内容。数据版本、时间窗、来源、权限状态等必要信息放在所属筛选器、图表或状态提示附近；不能为了在 H1 上方保留一行小字而伪装成状态信息。
+**Recommended order:** actual breadcrumb (if any) → H1 → necessary *incremental* short explanation and nearby actions (if any) → real page content. Put data versions, time windows, sources, permission and status near their owning filters, charts or indicators; do not disguise them as pre-H1 filler.
 
-**例外与边界**：真实 `nav` 面包屑、已批准的正式品牌 Tagline、品牌/营销页有叙事必要的 kicker 与真实状态提示不等于装饰眉题；但不能据此在普通功能页自创英文短语。即使组件库提供 `eyebrow`/`overline` props，任务型 `UiPageHeader` 也默认不填充、不渲染；不得将颜色改浅或将字号缩小后继续保留。
+**Exceptions:** Actual navigable breadcrumbs, approved official taglines, genuinely meaningful brand/marketing kickers and authentic statuses are not decoration. They do not authorize invented English phrases on routine functional pages. Even when a component exposes `eyebrow`/`overline` props, a task-oriented `UiPageHeader` must not fill or render them by default. Decreasing their color intensity or font size is not a fix.
 
-**验收**：在实际浏览器 DOM 与页面视觉中确认每个任务页 H1 前不存在这种解释层（包括历史遗留）。发现即修改并复验，不等待用户指出，也不能以旧代码未触及为理由。源码静态扫描只能提供候选线索，不能自动删掉合法导航和必要状态。
-## 首屏标题合成反例
+**Verification:** Check rendered DOM and visual appearance for *every affected task page*, including inherited pre-H1 explanations. Fix and recheck when found; do not wait for the user to identify it or use unchanged source as a defense. Static hints never automatically delete legitimate navigation or necessary state.
 
-截图中出现：蓝色小字 **「账号与权限」** → 巨型主标题 **「用户管理」** → 大号灰色描述 **「管理用户账号，并直接查看和调整系统模块访问权限。」**，且首屏内容被标题区域占据。
+## Synthetic first-screen counterexample
 
-- **问题**：业务后台的标题被包装成宣传页 Hero；小字和主标题语义重叠；明显功能再用长段描述；内容和操作被推离首屏。
-- **推荐**：主标题「用户管理」+ 可选的简短、提供新增信息的说明；与页面操作「新增用户」同一标题行。搜索、筛选、列表紧随其后。
-- **可以例外**：如果「账号与权限」是确有层级意义的导航，使用 `账号与权限 / 用户管理` 面包屑，而不是强调色装饰标签；如果权限逻辑非常复杂，保留简短说明并将复杂帮助放在操作附近。
+A fictional admin header shows a colorful small category label **“Accounts & Permissions”**, then an oversized **“User Management”** H1 and a large gray description **“Manage user accounts and view or change module access permissions.”** The title area consumes nearly the entire first viewport.
 
-## 反例库：错误 → 原因 → 正确方案
+- **Defect:** A routine operational screen imitates a marketing Hero; the category and H1 overlap semantically, a self-evident function gets a lengthy description, and actual content/actions are pushed below the fold.
+- **Preferred:** A direct “User Management” heading with an optional brief *incremental* description and the “Add User” action nearby; toolbar, filters and list directly below.
+- **Allowed exception:** If “Accounts & Permissions” is a real hierarchy, use an actual `Accounts & Permissions / User Management` breadcrumb instead of a decorative colored label. Complex permission logic may justify brief help at its corresponding operation.
 
-### H01. 假信息层级：标题上方的装饰性小标题
+## Anti-pattern library: bad → reason → correct
 
-- ❌ `账号与权限`（蓝色小字） / `用户管理`（巨型字）。小字没有形成有用的导航路径。
-- ✅ `用户管理` 单一 H1；确有导航层级才使用 `系统设置 / 账号与权限 / 用户管理` 的正常面包屑。
-- 检查：删除小标题后，是否丢失任何定位信息？如果没有，应删除。
+### H01 — False hierarchy: ornamental eyebrow above a heading
 
-### H02. 强行英文翻译/装饰性英文口号
+- **Bad:** “Accounts & Permissions” in small colored text before a huge “User Management”; no usable path.
+- **Good:** One direct “User Management” H1; if a hierarchy actually exists, a breadcrumb such as `Settings / Accounts & Permissions / User Management`.
+- **Test:** Does removing the small line lose any orientation information? If not, remove it.
 
-- ❌ `USER MANAGEMENT` → `用户管理`，或 `SMART WORKSPACE / MANAGE EVERYTHING` → `项目列表`，只是在重复而且占据视觉层级。
-- ✅ 主要语言是中文时，直接写「用户管理」；英语仅用于产品专名、必要技术术语或明确的多语言需求。
-- 检查：英文是否提供额外识别、品牌或专业意义？不能解释就删除。
+### H02 — Forced second-language translation or invented English slogan
 
-### H03. CRUD 功能页滥用营销 Hero
+- **Bad:** `USER MANAGEMENT` above a Chinese “用户管理”; or `SMART WORKSPACE / MANAGE EVERYTHING` above a generic list title. These repeat meaning and waste hierarchy.
+- **Good:** On a Chinese-language product, show the functional heading directly in Chinese. English is warranted for genuine proper nouns, technical terms or an explicit multilingual requirement.
+- **Test:** Does English add distinct identity, branding or professional meaning? Otherwise delete it.
 
-- ❌ `用户管理` 84px、垂直 180px 空白、巨幅渐变标题；滚动后才能看到操作控件。
-- ✅ 高密度桌面/后台标题一般约 24–32px；根据真实框架和窗口适配，不把数值写死；首屏呈现核心操作和至少部分实际内容。
-- 检查：在常用笔记本窗口高度下，操作区是否无需滚动即可到达？
+### H03 — Marketing Hero transplanted into a CRUD screen
 
-### H04. 显而易见的长描述
+- **Bad:** An 84px operational heading, 180px vertical whitespace and giant gradient typography; actions appear only after scrolling.
+- **Good:** Dense desktop/admin headers are often about 24–32px, *adjusted to actual project and viewport rather than fixed*. Show core actions and some actual content without scrolling.
+- **Test:** Are primary actions visible at typical laptop heights?
 
-- ❌ 「欢迎来到用户管理中心。在这里您可以轻松高效地管理用户信息并实现权限的灵活调整。」
-- ✅ 没有新信息则不写；有额外信息可用简句「统一管理成员与模块权限」。复杂规则以说明链接或局部提示呈现。
-- 检查：说明是否解释限制、范围、危险动作或非显然规则？
+### H04 — Self-evident and lengthy descriptions
 
-### H05. 标题、按钮和表格隔得很远
+- **Bad:** “Welcome to the User Management Center. Here you can easily manage users and flexibly adjust permissions.”
+- **Good:** No description when it adds nothing; “Manage members and module permissions” only if genuinely informative. Link complex rules or present help near relevant operations.
+- **Test:** Does the help explain a constraint, scope, dangerous action or otherwise non-obvious rule?
 
-- ❌ 页面标题 → 大空白 → 纯装饰卡片 → 三行宣传文案 → 「新增用户」按钮 → 用户表格。
-- ✅ `UiPageHeader` 在标题附近提供主要操作，下面紧跟搜索/筛选工具栏和列表。
-- 检查：完成核心任务前，需要跳过多少无关内容？
+### H05 — Huge distance from title to actions and table
 
-### H06. 不必要的多级大卡片套娃
+- **Bad:** Heading → empty space → ornamental card → three lines of marketing text → Add User button → actual table.
+- **Good:** Main action near `UiPageHeader`, followed closely by search/filter toolbar and list.
+- **Test:** How much irrelevant content must be skipped before the primary task?
 
-- ❌ 整页白色大卡片，里面嵌一张标题卡，再嵌一张搜索卡，里面还套数据卡，所有圆角 32px、阴影重。
-- ✅ 页面标题通常直接位于内容区；信息需要边界才使用 `UiPanel`；列表优先通过边框和间距分组。
-- 检查：去掉任一外层卡片是否仍能清楚辨认结构？能就应评估删减。
+### H06 — Needless nested giant Cards
 
-### H07. 标题渐变和高饱和强调色泛滥
+- **Bad:** Whole-page white Card containing another header Card, search Card and data Card, each with 32px corners and heavy shadow.
+- **Good:** Title directly in content area; use `UiPanel` when a boundary actually aids comprehension. Lists often need only separators and spacing.
+- **Test:** Can an outer Card disappear without losing meaningful grouping?
 
-- ❌ 设置页每个 H1 都使用粉紫渐变；导航、面包屑、按钮、表格表头全部高亮。
-- ✅ 主题色重点服务于操作与状态，功能页主标题优先正文主色；展示页可适当使用品牌渐变。
-- 检查：主色的注意力是否指向核心操作，而不是纯文字标题？
+### H07 — Excessive gradient and saturated accent on all titles
 
-### H08. 每个页面都复制同一套 Hero 文案模板
+- **Bad:** Pink-purple gradient for every settings H1 while nav, breadcrumb, buttons and table headings all demand high attention.
+- **Good:** Theme accents convey action and state; task-page heading usually uses the main text color. Brand/showcase pages may intentionally use gradients.
+- **Test:** Is accent attention directed to the primary interaction rather than mere words?
 
-- ❌ 「工作台 / 让协作更简单」「成员管理 / 让团队更高效」「日志中心 / 洞察每一刻」，统一装饰小字 + 巨型标题 + 空泛口号。
-- ✅ 页面标题反映真实任务；只有内容必要时添加不同的功能说明；共享组件控制视觉一致，不强制每页相同文案结构。
-- 检查：换掉页面名称后模板是否还能直接套用？如果能，通常说明信息设计过于模板化。
+### H08 — Identical generic Hero copy on every route
 
-### H09. 多个同权重主操作竞争
+- **Bad:** “Workspace / Make collaboration easier,” “Members / Empower teams,” “Logs / Understand every moment,” all using eyebrow + enormous H1 + empty slogan.
+- **Good:** Title states the real task; necessary help varies with each page. Shared components unify look without imposing the same copy arrangement.
+- **Test:** Can the template be reused by changing only the page name? If so, the information design is likely generic.
 
-- ❌ 标题区并列三个填充强调色大按钮：新增、导入、导出，用户无法判断主要动作。
-- ✅ 一处明确主操作（如「新增用户」），其他使用次要或菜单动作；根据使用频率及风险确定权重。
-- 检查：用户能否在 1 秒内看出最关键的下一步？
+### H09 — Several equal-weight primary actions compete
 
-### H10. 为了“高级感”强行拉开标题的字体层级
+- **Bad:** “Add,” “Import” and “Export” are equally filled dominant buttons in the title area.
+- **Good:** One clear primary action, others secondary or inside a menu; weigh frequency and risk.
+- **Test:** Can the user identify the next important action within a second?
 
-- ❌ 大字 84px，旁边说明 24px，列表文字却 12px；造成内容信息密度断裂。
-- ✅ 标题字级依据页面用途和信息密度决定，正文保持舒适可读；在同类型功能页共享一套 type scale。
-- 检查：首屏视觉焦点是否被纯装饰标题占满？
+### H10 — Arbitrarily extreme title typography in pursuit of “premium” feel
 
-### H11. 重复标题包装：一个页面三个相同「用户管理」
+- **Bad:** 84px heading with 24px explanation while real list text falls to 12px.
+- **Good:** Type sizes reflect page intent and information density; body text remains readable; analogous task pages share a coherent type scale.
+- **Test:** Does purely decorative typography consume all first-screen attention?
 
-- ❌ 顶部 Hero「用户管理」+ 面板标题「用户管理」+ 卡片小标题「用户管理」，并且三个标签都没有不同作用。
-- ✅ 页面 H1「用户管理」；表格区域「用户列表」；详情区域「成员信息」等按内容命名。
-- **注意**：面包屑末级和 H1 同名是常见的有效导航模式，不应误判为冗余；侧边栏选中项同名同理。
+### H11 — Repeating the same heading at three nested levels
 
-### H12. 把真正重要的内容藏进解释性副标题
+- **Bad:** Hero “User Management,” Panel “User Management,” Card “User Management,” with no distinct role.
+- **Good:** H1 “User Management,” table section “User list,” detail panel “Member information.”
+- **Exception:** Breadcrumb terminal item and page H1 (or active sidebar item) may validly share names; do not misclassify genuine navigation.
 
-- ❌ 标题「访问控制」，副标题一整段介绍最后才提到「仅管理员可修改权限」。
-- ✅ 标题「访问控制」，权限限制用就近状态提示或说明，例如「仅管理员可编辑」放在操作区。
-- 检查：关键安全限制能否在用户准备操作时看到？
+### H12 — Critical information buried in a long subtitle
 
-### H13. 图标/徽章堆砌成伪信息
+- **Bad:** “Access Control” with a paragraph that mentions “Only admins can edit” only at the end.
+- **Good:** Make the authorization restriction visible next to the relevant action; e.g., “Admins only” in an actionable location.
+- **Test:** Can the user see important restrictions before attempting the action?
 
-- ❌ 标题前火箭、闪电、星光；旁边 `NEW`、`PRO`、`POWERED BY AI` 没有真实状态意义。
-- ✅ 图标只用于识别、导航或状态；无真实产品意义的徽章删去。
-- 检查：图标/徽章是否有功能、状态或可解释的品牌用途？
+### H13 — Icons and badges pretending to add information
 
-### H14. 平台/密度不匹配
+- **Bad:** Rockets/stars/lightning and `NEW`, `PRO`, `POWERED BY AI` labels without a real product status.
+- **Good:** Icons identify objects, navigation or state. Remove badges without genuine meaning.
+- **Test:** Can the icon/badge's function, actual status or deliberate brand purpose be explained?
 
-- ❌ 面向 Mac/Windows 的设置面板复刻网站大幅 Hero，导致菜单和选项被压出窗口。
-- ✅ 小标题与容器匹配平台原生规范；可采用更紧凑的 `UiPageHeader`、分组标题；在小窗口保留真实内容。
-- 检查：窗口缩小时，操作区仍可见、文本完整、焦点顺序合理。
+### H14 — Wrong platform/density assumptions
 
-## 优秀组件：UiPageHeader（建议先于页面实现/复用）
+- **Bad:** A small Mac/Windows settings panel copies a giant Web Hero and pushes options out of its window.
+- **Good:** Match the platform and container's density, using a compact `UiPageHeader` and grouped headings. Keep real actions visible in narrow windows.
+- **Test:** Does the smaller window preserve reachable controls, full text and sensible focus order?
 
-| 输入 | 含义 | 默认策略 |
+## Recommended shared component: UiPageHeader
+
+| Input | Purpose | Default policy |
 | --- | --- | --- |
-| `title` | 明确本页面任务的主标题 | 只输出一个可见 H1（若已由宿主提供主标题则避免重复） |
-| `eyebrow` / `overline` / `kicker` | 装饰性主标题前导 | **任务型 PageHeader 禁止自动渲染** |
-| `description?` | 可选的**增量**解释 | 没有新增信息就不渲染 |
-| `breadcrumbs?` | 真实导航路径 | 面包屑是导航，不是装饰性 eyebrow |
-| `actions` slot | 主操作/次操作 | 与标题形成清晰分组；优先复用 UiButton |
-| `density` | compact / comfortable | 后台/桌面默认 compact，展示页可另外使用 Hero |
+| `title` | Actual page task heading | One visible H1, unless the host has already supplied it |
+| `eyebrow` / `overline` / `kicker` | Decorative pretitle | **Never auto-render in task-oriented PageHeaders** |
+| `description?` | Optional incremental help | Omit if it contains no new information |
+| `breadcrumbs?` | Real navigation hierarchy | Breadcrumbs are navigation, not eyebrow decoration |
+| `actions` slot | Primary/secondary actions | Position with the title; prefer shared UiButton |
+| `density` | compact / comfortable | Admin/desktop often compact, showcase may use a separate Hero |
 
-**推荐框架（示例）**：
+**Preferred synthetic Vue structure:**
 
 ```vue
-<UiPageHeader title="用户管理" density="compact">
+<UiPageHeader title="User Management" density="compact">
   <template #actions>
-    <UiButton variant="primary" @click="createUser">新增用户</UiButton>
+    <UiButton variant="primary" @click="createUser">Add User</UiButton>
   </template>
 </UiPageHeader>
 <SearchToolbar />
 <UserTable />
 ```
 
-**错误框架（示例）**：
+**Bad synthetic structure:**
 
 ```vue
 <div class="huge-gradient-hero">
   <span class="english-eyebrow">USER MANAGEMENT</span>
-  <h1>用户管理</h1>
-  <p>让每一个账号的管理都变得更轻松高效！</p>
+  <h1>User Management</h1>
+  <p>Make every account easier to manage!</p>
 </div>
-<!-- 要滚动很远才看到用户列表 -->
+<!-- A long scroll is required to reach the actual list. -->
 ```
 
-## Agent 自检（每页先过 H-Base，任务页再过 H0）
+## Agent checklist — Gate H-Base on every page, then H0 on task pages
 
-- [ ] 新页面与已有页面优化都检查了**原有及新增**的标题前文案，而不只是本次 diff？
-- [ ] 已区分正式品牌、真实导航、数据状态和有叙事理由的前导，与纯装饰性功能解释？
-- [ ] 对混合“产品名 · 功能描述”做了拆分判定，避免整行误保留或误删？
-- [ ] 对涉及页面在实际渲染后复核旧问题是否仍存在，无法实测时准确标注状态？
+- [ ] Inspected existing **and** new pre-title copy, not only changed diff lines?
+- [ ] Distinguished official brand, real navigation/data status and useful narrative from decorative function labels?
+- [ ] Split mixed brand/description lines rather than blindly keeping or removing the entire string?
+- [ ] Revisited original findings in real rendered states; labeled static/unavailable cases accurately?
+- [ ] Main H1 directly describes the task, with one primary page heading by default?
+- [ ] **H0 first-pass blocker:** No explanatory eyebrow, generic English label or invented chapter number before an operational H1, even when wording differs from H1?
+- [ ] A smaller line genuinely provides navigation rather than a second headline with different styling?
+- [ ] Help copy adds real information rather than repeating the function?
+- [ ] First viewport includes important actions and some real data or an accurate state?
+- [ ] Title, actions, toolbar and content are ordered closely by task sequence?
+- [ ] Analogous functional pages share `UiPageHeader` (or equivalent) and coherent typography?
+- [ ] Avoided nested panel shells and arbitrary radius/alignment/spacing drift?
+- [ ] Avoided applying marketing Hero rules to administrative screens?
+- [ ] Any retained English words, paragraphs, breadcrumbs or oversized titles have a verified product reason?
 
-- [ ] 主标题是否直接说明本页功能，默认只有一个明确 H1？
-- [ ] **H0 首版否决**：任务型 H1 上方没有解释性眉题、英文小标签、假章节序号；不能因为不是字面重复就保留。
-- [ ] 小字是否真的承载导航语义（不是换颜色写第二个标题）？
-- [ ] 副标题是否提供新的必要信息，而不是重复功能名称？
-- [ ] 首屏能否看到关键操作和部分有效数据或明确状态？
-- [ ] 标题、动作、工具栏、数据是否按任务顺序靠近排列？
-- [ ] 同类型功能页面是否共享 `UiPageHeader`（或现有等价实现）和一致排版？
-- [ ] 是否出现页面卡片套娃、同层组件随意改变圆角、对齐或间距？
-- [ ] 是否错误地把营销/展示页的 Hero 规范应用到后台功能页？
-- [ ] 如保留英文、说明、面包屑或较大标题，是否有可验证的产品理由？
+Multiple H01/H02/H03/H05/H08 symptoms on a task page indicate a **high-priority information architecture defect**, not a trivial aesthetic preference. Never indiscriminately shrink or erase legitimate information; preserve readability, navigation and help.
 
-**优先级**：功能页出现 H01/H02/H03/H05/H08 的多项组合，应作为高优先级信息架构缺陷进行整改，而不只是轻微美学偏好。审查不应盲目把所有文本缩小或删光；必须确保可读性、导航语义和必要帮助不受损。
+Visual comparison: `assets/page-header-antipattern-gallery.html` (standalone offline, responsive, 14 synthetic side-by-side examples).
 
-**可视化对照**：`assets/page-header-antipattern-gallery.html`（独立、离线、响应式，左右对比 14 组）。
+## Additional anti-patterns H15–H20
 
-## 截图驱动的文案与字级补充反例
+### H15 — Generated English subheading under a brand name
+- **Bad:** `Product / INSIGHT AREA` without a confirmed sub-brand or distinct value.
+- **Good:** Keep genuine product name only; official product series and approved taglines may remain.
 
-### H15. 品牌下方自动加入英语小字
-- ❌ `产品名 / INSIGHT AREA`，没有正式子品牌或信息价值。
-- ✅ 只保留产品名；官方产品系列、用户确认的 Tagline 可以保留。
+### H16 — Repeating the same idea at four title levels
+- **Bad:** `Repository activity & collaboration · interactive prototype` → `See how projects evolve` → `01 / Overview` → `Start with activity, then follow evidence`, while the real main chart is called “Development activity.”
+- **Good:** Choose a clear PageTitle, true repository identity and functional SectionTitle; delete redundant meta-explanations. Actual breadcrumb and data source remain valid.
 
-### H16. 标题体系把同一层意思说四遍
-- ❌ `仓库活动与协作 · 交互原型` → `看见项目如何演进` → `01 / 总览` → `先看活动，再沿证据往下读`，而主要图表才叫“开发活动”。
-- ✅ 对仓库分析页，选择清楚的 PageTitle、仓库身份与功能性 SectionTitle；删除无增量的自我解释文字。真正的面包屑和数据来源是有效信息。
+### H17 — Decorative index without genuine order
+- **Bad:** `01 / XX` on every unrelated section for visual rhythm.
+- **Good:** Preserve numbering only where documents, steps or timeline items genuinely follow an order.
 
-### H17. 无实际排序语义的“01 / 总览”
-- ❌ 仅为了设计感给每块贴 `01 / XX`。
-- ✅ 文档章节、流程步骤、时间线条目有真实序列时，编号是有意义的。
+### H18 — Implementation notes leaking into product copy
+- **Bad:** `Main chart retains native ECharts tooltip, zoom and selection`.
+- **Good:** Say “Drag to choose the time range” only if that user action truly exists. Keep implementation notes in PRs, tests or technical docs.
 
-### H18. 技术实现说明泄漏到用户界面
-- ❌ `主图保留原生 ECharts tooltip、缩放与点选`。
-- ✅ 只表达用户需要的操作，例如确实支持时提示“拖动选择时间范围”；工程实现写到 PR、测试和文档。
+### H19 — Huge slogan alongside tiny chart labels
+- **Bad:** An abstract 40–60px operational H1 while chart ticks, sample n and KPI labels shrink to faint 10px.
+- **Good:** Role-based typography and actual importance determine hierarchy. `typography-hierarchy.md` suggests starting ranges, never universal fixed pixels.
 
-### H19. 巨大口号与微型图表文字共存
-- ❌ 功能型工作台以 40–60px 抽象 H1 为最大焦点，却将图表轴、n 值、KPI 标签缩成 10px 并淡化。
-- ✅ 采用角色字级与实际内容重要性决定视觉顺序；见 `typography-hierarchy.md`。字号为建议起点，不以某个固定 px 一刀切。
+### H20 — “Minimal” taken to mean illegible metadata
+- **Bad:** Important source, n, UTC or legend text all rendered at unreadably low contrast.
+- **Good:** Keep data limitations legible; check applicable WCAG contrast and zoom on real screens.
 
-### H20. “克制”等于让来源和小字看不清
-- ❌ 重要来源、样本数、UTC、图例一律变成极低对比的小字。
-- ✅ 保留数据限制的可读性，按 WCAG 相关对比与放大要求在实际屏幕复核。
-
-与 [文案必要性审查](semantic-copy-hygiene.md) 和 [字体层级](typography-hierarchy.md) 联合使用；**静态扫描只做候选提示；所有页面必须执行 H-Base，任务页另执行 H0 硬约束**。
+Use with [semantic copy hygiene](semantic-copy-hygiene.md) and [typography hierarchy](typography-hierarchy.md). **Static detection supplies candidates only; all pages require H-Base, and task pages additionally require strict H0.**
