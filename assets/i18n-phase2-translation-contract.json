@@ -1738,6 +1738,50 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/visual-tech-selection-12.md",
+      "source_blob_sha": "8dd9131e5db847eab14aa303069e827966e697eb",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "twelve technologies",
+        "PixiJS",
+        "Three.js",
+        "Curtains.js",
+        "Apache ECharts",
+        "Rough.js",
+        "Vivus",
+        "tsParticles",
+        "Matter.js",
+        "eight engineering acceptance gates",
+        "backdrop-filter",
+        "not refraction",
+        "graceful degradation",
+        "not measurements or performance benchmarks"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "12 项并非相互竞争的同一种动画框架",
+          "target_en": "not competitors in one single category"
+        },
+        {
+          "source_zh": "条件性增强不意味着推荐一并安装",
+          "target_en": "NOT an invitation to install"
+        },
+        {
+          "source_zh": "Matter.js 仅负责物理计算",
+          "target_en": "Matter.js calculates physics only"
+        },
+        {
+          "source_zh": "普通磨砂不代表折射",
+          "target_en": "is not refraction"
+        },
+        {
+          "source_zh": "性能风险并非项目性能基准测试",
+          "target_en": "not measurements or performance benchmarks"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
