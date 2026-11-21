@@ -586,7 +586,7 @@
           "target_en": "instead of requiring a partial unapproved rewrite"
         },
         {
-          "source_zh": "不要在顶层访问 document/window",
+          "source_zh": "Nuxt SSR 不在顶层访问 document/window",
           "target_en": "must not access"
         }
       ],
@@ -610,7 +610,7 @@
           "target_en": "Unify design principles and component contracts"
         },
         {
-          "source_zh": "不用 React hooks",
+          "source_zh": "不要在 Angular 中调用 React hooks",
           "target_en": "Do not transplant React Hook"
         }
       ],
@@ -679,7 +679,7 @@
           "target_en": "React 19-only APIs"
         },
         {
-          "source_zh": "不能靠隐藏按钮",
+          "source_zh": "任何认证与授权必须在服务端真实验证，不靠隐藏按钮",
           "target_en": "not merely by hiding Buttons"
         }
       ],
@@ -697,7 +697,7 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "不是错误本身",
+          "source_zh": "都不是“错误本身”",
           "target_en": "not defects by themselves"
         },
         {
@@ -746,7 +746,7 @@
           "target_en": "Core content is visible by default"
         },
         {
-          "source_zh": "不引入新动画库",
+          "source_zh": "多数基础 hover 仅需 CSS，无需引入新动画库",
           "target_en": "no new animation library"
         }
       ],
@@ -811,11 +811,11 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "推荐不等于确认",
+          "source_zh": "推荐 ≠ 确认",
           "target_en": "Recommended ≠ confirmed"
         },
         {
-          "source_zh": "不能擅自替换用户固定值",
+          "source_zh": "不擅自替换用户固定值",
           "target_en": "rather than silently changing a fixed value"
         }
       ],
@@ -856,7 +856,7 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "不能对全站所有文字全局 nowrap",
+          "source_zh": "不对全站所有文字全局 `nowrap`",
           "target_en": "not every string on the site"
         },
         {
@@ -977,7 +977,7 @@
           "target_en": "Touching Cards are not always bad"
         },
         {
-          "source_zh": "不能通过删除所有外部 gap",
+          "source_zh": "不能自行移除已形成的独立 Section/Peer 外部间距",
           "target_en": "outside gaps"
         }
       ],
@@ -1002,7 +1002,7 @@
           "target_en": "Asymmetry ≠ misalignment"
         },
         {
-          "source_zh": "正常情况：内容高度超过视口",
+          "source_zh": "内容高度超过视口，用户可以自然地滚动看到完整记录",
           "target_en": "Content taller than the viewport scrolls naturally"
         }
       ],
