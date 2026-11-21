@@ -1,57 +1,58 @@
-# Palette Art Direction · 颜色必须有来源与职责
+# Palette Art Direction — Color Needs a Source and a Role
 
-## 核心问题不是“不许蓝紫色”，而是不要让 Agent 自动掉入蓝紫 SaaS 惯性
+## The problem is not “no blue or purple”; it is unexamined generic SaaS blue-purple choices
 
-合成反例：同一屏混用了高饱和头图、侧栏强调与亮色 KPI，却没有解释每种颜色的业务或品牌职责。问题是配色缺少系统依据，并不意味着必须改成黑白。
+Synthetic counterexample: A page combines highly saturated Hero media, sidebar accents and bright KPI highlights with no explanation for each color's product or brand function. It lacks coherent reasoning; **the solution is not automatically black and white**.
 
-## 从项目内容推导颜色，先回答五件事
+## Derive palette choices from content — answer five questions first
 
-1. **品牌属性**：品牌已有主色/Logo、历史配色、市场认知、用户明确偏好是什么？已有确认优先。
-2. **内容质感**：数据工具重可读与可信度，食物强调真实摄影色彩，艺术站可能更适合有情绪张力的强对比。
-3. **阅读环境**：深浅偏好、长时使用、数据密度、设备/屏幕、近似色对比与色觉可辨认。
-4. **颜色职责**：底色与表面层级，主文字/次文字、主要操作/链接、状态成功/警告/错误、数据序列区分。
-5. **差异化理由**：如果所有产品文案换成 SaaS，配色还一样吗？不一样的具体业务线索是什么？
+1. **Brand:** What confirmed logo/primary colors, history, audience perception and user color preferences exist? Preserve approved choices.
+2. **Content character:** Data tools prioritize legibility/credibility, food may need authentic photographic warmth, and art may warrant charged contrast.
+3. **Reading context:** Light/dark preference, long sessions, density, device/screen, near-color contrast and color-vision distinguishability.
+4. **Functional roles:** Canvas and surface layers, main/support text, primary actions/links, success/warning/error, and distinct data series.
+5. **Differentiation:** Would this palette still look exactly the same if all copy became a generic SaaS product? What actual subject-specific clue warrants it?
 
-Agent 必须先填写 **palette rationale**，并判断已确定的品牌色；随后才提出颜色建议，**最终配色由用户选择**。用户明确给出某颜色或 HEX 时不用再请其选候选，直接沿该选择设计其余辅助色；调用调色工具不是用户授权。
+The Agent must record a **palette rationale** and check whether the brand color is already settled **before** proposing colors. **The final palette belongs to the user's decision.** If the user has given a color or HEX, use it without asking them to choose again; design supporting colors around it. Running a palette-generation tool does not authorize adoption.
 
-## 推荐色彩方向（不是固定品牌 Token）
+## Suggested atmospheres — not compulsory brand tokens
 
-| 氛围 | 适用性与理由 | 可能的不足 |
+| Mood | Fit and reasoning | Potential limitation |
 | --- | --- | --- |
-| Warm graphite / 暖石墨 | 深灰中性色 + 克制铜/苔绿强调，有工具感、可长期观看；开发者/分析类工作台可讨论 | 如果产品本身是鲜艳活泼的品牌，可能太平静 |
-| Paper & ink / 纸墨感 | 米白/深墨、精确字体与低噪声状态色；适合高信息密度、报告与阅读 | 若没有层级，会像普通文档 |
-| Mineral / 矿物自然色 | 自然绿、岩白、煤灰；适合环保、教育、研究与一部分工具 | 盲目套绿色会同样模板化 |
-| Bold editorial / 鲜明编辑式 | 高对比黑白搭配一个大胆识别色；适合品牌、创意作品集、内容站 | 需要图片、字号与构图协调 |
-| Brand inheritance / 品牌继承 | 遵循品牌指定蓝/紫/粉/橙等并完善色彩角色 | 不能仅因主色明确就让所有卡片填充主色 |
+| Warm graphite | Dark neutral with restrained copper/moss accent, tool-like and suitable for extended viewing; developer/analysis workbench candidate | Too subdued for a lively brand |
+| Paper & ink | Ivory/deep ink, precise type and low-noise statuses; reports, reading and dense information | Without hierarchy it looks like a plain document |
+| Mineral | Natural green, stone white and charcoal; environment, education, research and selected tools | Blindly applying green creates another generic template |
+| Bold editorial | High-contrast black/white with one clear identity accent; brand, creative portfolios, content | Needs careful coordination with photography, type and composition |
+| Brand inheritance | Preserve approved blue/purple/pink/orange and complete roles around it | A known accent does not mean every Card should be filled with it |
 
-**不要为了“摆脱蓝紫色”把所有站变成苔绿或棕色**。MauForma 的任务是分析和选择，而不是设定下一个刻板默认色。
+**Do not replace the blue-purple cliché with an equally compulsory moss-green/brown cliché.** MauForma recommends based on evidence, not a new universal default.
 
-## 配色有证据，但不等于必须展示三个主题
+## An evidenced palette does not require showing three themes
 
-先保证一个完整系统（在 MASTER 中保存）：
+Establish **one complete semantic system** in MASTER:
 
-- Neutral scale：page / sidebar / panel / hover / selected，主内容与侧边栏不用各自乱选色。
-- Text：heading / body / muted / link；数据信息不能被压缩到极浅的小字。
-- Action：primary CTA、secondary、focus，强调色只能证明“这里重要”而不是随处撒色。
-- Semantic：success / warning / danger / information，需要区分数据序列与业务状态。
-- Data visualization：类别色有固定含义；图表绿不自动表示好、红不自动表示坏；曲线/柱状要有 legend 或标签。
-- Accessibility：文字一般目标 4.5:1，非文本关键边界与可见焦点按相关规则至少 3:1；真实叠层和透明度必须实测。
+- **Neutral:** page/sidebar/panel/hover/selected, without unrelated colors for main versus sidebar.
+- **Text:** heading/body/muted/link. Meaningful data cannot be relegated to almost-white faint small text.
+- **Action:** primary CTA, secondary and focus. Accent communicates importance, not an invitation to color everything.
+- **Semantic:** success/warning/danger/information, separate from data series colors.
+- **Charts:** Category colors have stable meaning; green does not automatically mean good or red bad. Curves/bars require accessible legends or labels.
+- **Accessibility:** Normal text aims for 4.5:1; important nontext controls/focus for 3:1 as applicable. Test actual overlays/transparency.
 
-## 配色不成立的三个症状
+## Three signals of failed palette logic
 
-- **一屏多重主色**：多个大色块都在争主角，但无法说出何者是 primary、何者是 semantic。
-- **图片/装饰主色压过业务内容**：大面积彩色 3D 装饰在 Operate 页面比核心图表更显眼。
-- **只换皮不换构图**：同一套 Hero + 卡片 + 蓝色洞察，只把蓝换成绿、紫换成橙，结构仍没有解决。
+- **Competing primary colors:** Several big saturated regions demand focus without distinct primary versus semantic roles.
+- **Decorative image/color overwhelms task:** Large colorful 3D decoration is more salient than actual trend charts in Operate.
+- **Recoloring without composition:** Generic Hero + Cards + insight text still dominates after swapping blue→green or purple→orange.
 
-修复顺序：**先构图 → 调整信息面积/字级 → 选择颜色角色 → 调整具体色值 → 浏览器验证**。切勿反过来。
+Repair in this order: **composition → area/type hierarchy → semantic color roles → exact palette values → real-browser validation**. Not the reverse.
 
-## 例外与决策来源
+## Exceptions and decision provenance
 
-用户已确认的品牌色或参考视觉优先（`confirmed`）；Agent 被授权自主选择时标记 `delegated` 并说明理由；保留项目原有风格标记 `inherited`。待核实不得标注用户确认。对单独的状态点、图表序列颜色，还需关联真实业务含义。
+A confirmed user brand color/reference outranks other directions (`confirmed`). Explicit autonomous authority is `delegated` with reasons; an inherited product design is `inherited`. Anything unresolved is **not** user-confirmed. Individual status dots and chart series require genuine meaning too.
 
-对照已有 `references/theme-design.md` 与 `references/sidebar-navigation-design.md`，它们解决实现层 Tokens；本文件重点解决 **为什么使用这一套色彩氛围**。
-## 推荐权与决定权分离
+See `references/theme-design.md` and `references/sidebar-navigation-design.md` for technical token implementation. This file instead answers **why this color atmosphere was selected**.
 
-用户指定任何颜色时该选择优先于 Agent 的偏好；若用户觉得深蓝导航不协调但没决定颜色，先读取 [Sidebar Color Discovery](sidebar-color-discovery.md) 和 [官方设计参考](sidebar-color-reference-cases.md)，分析当前整个页面后提出 2–3 个差异清晰的组合，附对照、理由与权衡。**推荐 ≠ 确认**：未选定保持 `pending/unresolved`，不能直接选首推的石墨、苔绿或蓝紫去改正式 Tokens。只有用户明确委托（`delegated`）时 Agent 才能代选。
+## Separate the right to recommend from the right to decide
 
-一切具体 HEX 用户优先；涉及可读性时修改周边颜色并解释，不擅自替换用户固定值。完整实施检查 Sidebar/Topbar/Main/Card/Chart 的色温、层级、数据语义和状态对比。新示例色板是 MauForma 原创概念而非 Linear、GitHub 等品牌的官方色值。
+Any user-specified color outranks Agent preference. If the user dislikes a dark-blue sidebar but has not selected another, inspect [Sidebar Color Discovery](sidebar-color-discovery.md) and [Design Reference Cases](sidebar-color-reference-cases.md), then present **2–3 distinct whole-page combinations** with comparison, reasons and tradeoffs. **Recommended ≠ confirmed:** leave `pending/unresolved` until selected. Only explicit delegation permits the Agent to choose independently.
+
+Keep user-supplied HEX unchanged; fix surrounding colors and explain any legibility tradeoffs rather than silently changing a fixed value. Real implementation checks Sidebar/Topbar/Main/Card/Chart color temperatures, hierarchy, data meaning and state contrast. New example palettes are original MauForma concepts, **not official Linear/GitHub brand colors**.

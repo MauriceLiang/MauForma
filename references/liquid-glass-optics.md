@@ -1,53 +1,53 @@
-# Liquid Glass Optical Effects — 可选液态玻璃视觉技术
+# Liquid Glass Optical Effects — Optional Web Material Technique
 
-> **定位**：通用 Web 视觉能力，不是 MauForma 的默认审美、UI 组件库或 Apple 原生视觉的等价实现。仅在用户要求液态/玻璃质感、已确认的品牌方向适用，或方案对比后获得授权时采用。以可读性、性能和可降级的业务交互为先。
+> **Scope:** A generic Web visual capability, **not** MauForma's default appearance, a UI component library, or an equivalent implementation of Apple's native rendering. Use only when the user requests glass/liquid effects, the confirmed brand direction requires them, or the user authorizes them after comparing options. Readable, performant, degradable **real interactions come first**.
 
-## 1. 四层光学模型：理解原理，不把 blur 当折射
+## 1. Four optical layers — blur is not refraction
 
-| 层 | 视觉职责 | 典型实现 | 应调参数 | 排查问题 |
+| Layer | Visual responsibility | Possible implementation | Parameters | Failure signs |
 | --- | --- | --- | --- | --- |
-| **透明（transmission）** | 让底下图像/线条透出，形成材质基础 | 半透明背景、单层色调/饱和度 | tint、alpha | 太不透明会像实色卡片；太透明会降低文本对比 |
-| **折射（refraction）** | 通过背景采样坐标偏移，让曲面边缘的直线/文字变弯 | 变形贴图 + SVG `feDisplacementMap` 接入 backdrop（实验路径）；或 WebGL shader | edge falloff、strength/`scale`、法线方向 | 只有 blur、没有像素偏移，就仍然是磨砂而非折射 |
-| **高光（specular / Fresnel-like）** | 亮暗边缘不均匀，暗示曲率和光源 | 方向性径向/线性渐变、mask/overlay；需要时 shader 法线与视角计算 | light direction、intensity、falloff | 一圈等亮白描边像普通边框；不要把 CSS 渐变自称严格菲涅尔模型 |
-| **阴影（elevation）** | 让面板与背景分开，强调悬浮层级 | 柔和 box-shadow / drop-shadow | y-offset、blur、spread、opacity | 多层阴影太强会显脏或降低对比 |
+| **Transmission** | Let imagery and outlines beneath the panel pass through, creating a base material | Translucent color, single tint/saturation layer | tint, alpha | Too opaque looks like a solid Card; too transparent harms foreground contrast |
+| **Refraction** | Offset sampling of the **background image** so straight lines/text bend near curved edges | Displacement map + SVG feDisplacementMap in a backdrop filter (experimental); or WebGL shader | edge falloff, strength/scale, normal direction | Blur without pixel displacement is **frosting, not refraction** |
+| **Specular / Fresnel-like highlight** | Nonuniform highlights imply curvature and directional light | Directional radial/linear gradients, masks/overlays; optionally shader normals/view angle | direction, intensity, falloff | Uniform bright outline is just a border; CSS gradients are **not strict Fresnel physics** |
+| **Elevation** | Separate panel from backdrop and imply floating | Soft box-shadow/drop-shadow | y-offset, blur, spread, opacity | Too many strong shadows muddy surfaces and reduce contrast |
 
-**可选背景模糊**：少量 `backdrop-filter: blur(...)` 能缓和噪声，但不是四层之一，也不是折射。模糊过强会吃掉原本应辨认的边缘弯曲；任何情况下都不把模糊当作已经完成 refraction 的证据。
+**Optional background blur:** A small backdrop-filter:blur(...) can soften visual noise, but blur is **not** one of the four layers and is not refraction. Excess blur conceals the edge bending that a refractive treatment should reveal. Never present blur alone as proof of refraction.
 
-### 为什么背景会弯？
+### Why does the background bend?
 
-理想化近似：平坦中心 `offset≈0`，越接近圆角矩形边缘，模拟“曲面”的方向与坡度越明显，背景取样位置产生 X/Y 偏移。这个解释是**设计和渲染近似**，不是对真实玻璃光线追踪或原生系统渲染管线的完整物理描述。
+An idealized **design/rendering approximation** assigns near-zero offset to the flat center and progressively stronger X/Y sampling offsets near a rounded-rectangle boundary, with direction estimated from surface curvature and normal. This is **not a complete physical ray-tracing model or a description of Apple's proprietary renderer**.
 
-SVG 的 `feDisplacementMap` 可用贴图 `in2` 的两条通道分别控制源图 `in` 的横纵位移。以 `xChannelSelector="R"`、`yChannelSelector="G"` 为例：
+SVG feDisplacementMap uses two channels of the in2 texture to shift horizontal and vertical sampling of source in. With xChannelSelector=R and yChannelSelector=G:
 
-```text
+~~~text
 output(x, y) = source(
   x + scale * (R(x, y) / 255 - 0.5),
   y + scale * (G(x, y) / 255 - 0.5)
 )
-```
+~~~
 
-中性通道值约 127.5（8-bit 常用 128）对应近零偏移；通道偏离中值越远，位移越明显。`scale` 是对贴图信号的幅度乘子：固定贴图下可以调整强度而无需重新计算整个贴图；**形状、尺寸或边缘坡度变化时仍需重新生成贴图**。依据：<https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/feDisplacementMap>。
+A neutral value near 127.5 (commonly 128 in 8-bit encoding) yields approximately zero shift. Deviating from neutral increases offset. **scale multiplies map strength**: with a fixed texture, changing scale changes intensity without generating a new map; however, changing **shape, dimensions or edge slope requires regenerating the map**. Source: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/feDisplacementMap.
 
-## 2. 实现流程（按优先级选择）
+## 2. Implementation paths, in priority order
 
-### A. 低成本近似：跨浏览器视觉材质基线
+### A. Inexpensive translucent fallback — cross-browser baseline
 
-1. 让真实内容处于正常 DOM、可选择/可操作。
-2. 用独立视觉层渲染半透明 tint；可选轻 blur；叠加**方向不同的高光**与柔和外阴影。
-3. 设置真实 `focus-visible`、hover、selected、disabled，避免为装饰牺牲对比度。
-4. **标注为 glass-like / translucent fallback**，不宣称已经有真正背景折射。
+1. Keep real content as normal DOM with real text selection, input and accessibility.
+2. Add a separate tint surface, optional mild blur, **directionally varied highlights**, and a soft external shadow.
+3. Retain genuine focus-visible, hover, selected and disabled states. Do not trade contrast for ornamentation.
+4. Label this **glass-like / translucent fallback**. Do **not** claim that background refraction has been implemented.
 
-典型层级（概念结构，不是跨项目开箱即用组件）：
+Illustrative layering only, **not** a drop-in universal component:
 
-```html
+~~~html
 <div class="glass-surface">
   <div class="glass-tint" aria-hidden="true"></div>
   <div class="glass-highlight" aria-hidden="true"></div>
-  <div class="glass-content">可读的真实控件与文字</div>
+  <div class="glass-content">Readable real controls and text</div>
 </div>
-```
+~~~
 
-```css
+~~~css
 .glass-surface {
   position: relative; isolation: isolate; overflow: hidden; border-radius: var(--glass-radius);
   box-shadow: 0 12px 35px rgb(0 0 0 / .16);
@@ -61,78 +61,78 @@ output(x, y) = source(
   background: linear-gradient(135deg, rgb(255 255 255 / .25), transparent 40%, rgb(0 0 0 / .08));
 }
 .glass-content { position: relative; z-index: 1; }
-```
+~~~
 
-上面的 highlight 是方向性**近似**，没有计算真实 Fresnel 反射；`border` 仅用于表现边界，不是光学证明。只向现有成熟组件库的 **surface / overlay / theme slot** 增加效果，不手写取代 Select、Dialog、Popover、Keyboard 等交互原语。
+The CSS highlight approximates directional lighting; it does **not compute a physical Fresnel reflection**. Its border only delineates an edge, not optical validation. Add decorative glass layers to supported surface/overlay/theme extension points of an existing mature component library. **Do not reimplement Select, Dialog, Popover or keyboard primitives** to gain a glass effect.
 
-### B. 实验性 Web 光学折射：Canvas 位移图 + SVG Filter + CSS
+### B. Experimental Web optical refraction — Canvas map + SVG Filter + CSS
 
-1. 获得待显示形状尺寸和圆角。使用 rounded-rectangle signed-distance function 或边缘法线近似，在画布逐像素生成偏移（中心接近 0，边缘更强）；R 编码 X、G 编码 Y、B 可保持中性、A=255。
-2. 输出位移贴图的 Canvas PNG / Blob URL；将其用 SVG `feImage`（或等价 SVG 图像输入）作为 `in2`，`feDisplacementMap in="SourceGraphic" in2="map" xChannelSelector="R" yChannelSelector="G"`。调整 `scale` 得到不同强度。
-3. 仅在目标浏览器**真实像素结果证明** `backdrop-filter: url(#...)` 能把该滤镜用于背景时启用；不可以把 `CSS.supports("backdrop-filter", "url(#...)")` 等同于实际折射支持。
-4. 重算时机：控件宽高或圆角改变；通过 `ResizeObserver` 节流重建，避免每一帧生成 `ImageData`。切换 scale 不必重建位移图。对象 URL、SVG filter 实例与观察器在卸载时回收；多实例 filter ID 必须唯一。
-5. 背景内容要足够丰富、存在文字/条纹等可观测参照；在纯色背景上无法仅凭肉眼判断折射是否生效。
-6. 圆角/边缘反射/高光和阴影独立开关调试；当折射不可用时，直接回退到 A，不能让控件消失或留下黑色矩形。
+1. Measure the desired shape dimensions and corner radius. Generate a pixel displacement field with a rounded-rectangle signed-distance function or edge-normal approximation: offsets near zero at center, stronger near edges. Encode X in red, Y in green, blue neutral and alpha=255.
+2. Export displacement as a Canvas PNG or Blob URL; feed it to SVG feImage or a compatible SVG image input as **in2**. Use feDisplacementMap with in=SourceGraphic, in2=map, xChannelSelector=R, yChannelSelector=G; adjust scale for intensity.
+3. Enable backdrop-filter:url(#...) **only after observing actual refracted background pixels on the target browser**. CSS.supports("backdrop-filter","url(#...)") alone **does not prove** working optical refraction.
+4. Regenerate on changes to control width, height or radius; throttle via ResizeObserver, not per-frame ImageData creation. Changing scale alone does not require rebuilding the displacement image. Revoke Object URLs, remove SVG filters/observers on teardown, and give every component instance a unique filter ID.
+5. Use test backgrounds with readable stripes/text so displacement can actually be observed. A flat color does not allow visual confirmation.
+6. Debug rounding, edge highlight and shadow as **independently switchable layers**. If refraction is unsupported, fall straight back to A; a control must never disappear or become a black rectangle.
 
-**注意“滤镜作用对象”**：对元素使用 `filter:url(#...)` 改变其**自身绘制结果**，并不等于扭曲它背后的页面；只有 SVG 滤镜真正参与 backdrop 采样，才能呈现透镜背景弯曲。仅 `feDisplacementMap` 本身跨浏览器广泛可用，不能推出这条 CSS 与 SVG 背景组合也可用。
+**Filter input ownership matters:** CSS filter:url(#...) applied to an element changes that element's **own rendered content**, which is not equivalent to distorting the page **behind** it. Only an SVG filter genuinely applied during backdrop sampling produces a refracted background. Wide availability of feDisplacementMap **does not imply** that the combined CSS+SVG backdrop pipeline works across browsers.
 
-### C. 高保真路线：WebGL / GLSL（明确需要时）
+### C. Higher fidelity — WebGL / GLSL when actually needed
 
-需要动态曲率、RGB 色散、跟随指针/触摸的高频变形、不同半径与立体材质，可用 WebGL shader 处理受控场景采样；但：
+WebGL shaders may support dynamic curvature, RGB dispersion, pointer/touch-driven high-frequency distortion, varying radii and volumetric material effects. However:
 
-- shader 不能神奇读取任意 DOM 后方像素。应主动设计“可采样的背景”：独立 Canvas/纹理、预渲染图像或合理的背景捕获方案；权限、跨域内容与更新同步要审查。
-- 原生 RGB 分离偏移会增加采样与性能成本，视频所述轻量 SVG 示例**未实现色散**；不要在没有真实实现的情况下宣称“苹果同款动态液态玻璃”。
-- 按项目 GPU / DPR / 面积和滚动场景测性能，优先少量焦点控件，不让全屏 WebGL 特效成为产品默认背景。
-- 服务端渲染项目只在客户端挂载图形层；组件卸载时销毁 texture、program、canvas/renderer 和订阅。业务操作仍在 DOM 中、可键盘操作。
+- Shaders **cannot automatically read arbitrary pixels behind any DOM**. Design a **sampleable background texture** (separate Canvas/texture, prerendered imagery or authorized background capture). Check permissions, cross-origin media and synchronization with updates.
+- RGB channel-splitting raises sampling/performance cost; the lightweight SVG example **does not implement chromatic dispersion**. Do not claim "the same dynamic liquid glass as Apple" without an actual rendering implementation.
+- Budget GPU/DPR/effected area, including scrolling and low-powered devices. Apply to a few focal surfaces rather than making full-screen WebGL the product's default background.
+- In SSR applications, initialize visual processing only on the client; dispose textures, programs, Canvas/renderer and subscriptions when components unmount. Real business controls remain semantic, keyboard-operable DOM.
 
-## 3. 组件迁移与视觉角色
+## 3. Component contexts and roles
 
-| 形状/使用场景 | 可适用的玻璃层 | 不建议 |
+| Component / context | Appropriate glass treatment | Discouraged |
 | --- | --- | --- |
-| 胶囊搜索栏、工具条 | 小面积玻璃底与边缘高光，可选弱折射 | 把真实输入框重写为 Canvas，导致输入法/焦点丢失 |
-| 圆形滑块旋钮、按钮点 | 限定范围的阴影、高光与透光 | 状态色只靠高光强弱区分 |
-| 播放器操作区、悬浮操作岛 | 局部焦点层与有限阴影、明确景深 | 全屏玻璃遮挡字幕与控制文字 |
-| 通知浮层、活动卡片 | 受控透明与必要 blur；多背景测试对比 | 所有数据卡片默认变玻璃、持续 GPU 合成 |
-| 密集表单、文档阅读、表格 | 通常保持普通实体表面 | 每一行加折射、给正文背后持续扭曲 |
+| Capsule Search / toolbar | Small translucent surface, edge highlight, optional mild refraction | Redrawing a real Input as Canvas and breaking IME/focus |
+| Circular thumb / Button handle | Local shadow, highlight and transmission | Conveying status solely by highlight brightness |
+| Player controls / floating actions | Limited focus material and elevation | Whole-screen glass covering captions or control labels |
+| Notification overlay / promotional Card | Controlled translucency/blur, contrast checks over multiple backgrounds | Turning every data Card into glass and continuous GPU compositing |
+| Dense form / long reading / Tables | Usually retain ordinary solid surfaces | Refracting every row or distorting backgrounds behind body text |
 
-**与 Component Library First 并存**：先选定原有 UI 组件来源（Button/Select/Popover/Dialog），再在库支持的 theme slot 或外围装饰层做玻璃；不要复制库内部 DOM、破坏原生表单和弹层几何。
+**Component Library First still applies:** Choose the existing Button/Select/Popover/Dialog implementation first; add material in approved theme/surface slots or outside decorative layers. Do not duplicate library internals, break native forms or interfere with overlay geometry.
 
-## 4. 浏览器兼容与可靠降级（不可简化）
+## 4. Browser compatibility and graceful degradation — do not simplify
 
-| 能力 | 判断 | 策略 |
+| Capability | Evidence level | Correct strategy |
 | --- | --- | --- |
-| 半透明背景、渐变高光与阴影 | CSS 基础能力 | 基础材质层 |
-| `backdrop-filter: blur(...)` | 现代主流浏览器广泛支持，仍有版本/设备差异 | 可选，不支持时使用可读的半透明/实色背景 |
-| SVG `feDisplacementMap` 用于 SVG 图像自身 | 已广泛支持 | 与 backdrop 兼容**不是一回事** |
-| `backdrop-filter: url(#svgFilter)` 与背景折射链路 | 不可按所有浏览器已支持来承诺；WebKit、Firefox 存在兼容问题 | **实验性增强**，目标浏览器真实取样测试后启用 |
-| WebGL shader | 需可控背景纹理、GPU 和生命周期 | 作为高保真可选路线，失败回退静态材质 |
+| Translucent surface, gradient highlight, shadow | Standard CSS primitives | Basic fallback |
+| backdrop-filter:blur(...) | Broad modern-browser support, **not all versions/devices** | Optional; readable translucent or solid fallback |
+| SVG feDisplacementMap for the image itself | Broadly supported | **Not proof of backdrop use** |
+| backdrop-filter:url(#svgFilter) background-refraction pipeline | **Not universally guaranteed**; WebKit/Firefox compatibility risks | Experimental progressive enhancement **only after actual target-browser pixel tests** |
+| WebGL shader | Controlled sampled background, GPU budget and lifecycle needed | Optional higher-fidelity route with static fallback |
 
-避免在 `@supports` 判定成功后就隐藏 fallback。**实际像素/视觉回归测试**：在对照条纹或字母背景下分别截图关闭折射与开启折射，测是否真的发生位移；分别检查 Chromium、Safari/WebKit、Firefox，或对支持矩阵中未测项明确 `NOT TESTED`。
+Do not hide a fallback merely because @supports claims a property exists. **Actual pixel comparison:** screenshot stripe/text background with refraction off and on and confirm meaningful displacement. Test Chromium, Safari/WebKit and Firefox separately **or explicitly mark untested browsers NOT TESTED**.
 
-官方参考与兼容问题：
-- MDN：<https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/backdrop-filter>
-- MDN：<https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/feDisplacementMap>
-- WebKit：<https://bugs.webkit.org/show_bug.cgi?id=245510>
-- WebKit：<https://bugs.webkit.org/show_bug.cgi?id=297770>
-- 浏览器兼容性讨论：<https://github.com/mdn/browser-compat-data/issues/24110>
+Official support and issues:
+- https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/backdrop-filter
+- https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/feDisplacementMap
+- https://bugs.webkit.org/show_bug.cgi?id=245510
+- https://bugs.webkit.org/show_bug.cgi?id=297770
+- https://github.com/mdn/browser-compat-data/issues/24110
 
-## 5. 无障碍、性能、安全和第一版验收
+## 5. Accessibility, performance, safety and initial acceptance
 
-- **可读性优先**：高光/折射不能让前景标题、输入值、占位文字、图标、报错、焦点环看不清；检查亮/暗主题、高对比模式、对比度及变化背景上的最差情况。需要时用更实的内容背景，不为坚持“全通透”牺牲文字。
-- **减少动效**：`prefers-reduced-motion` 下关闭循环/跟随指针的折射动画，静态材质可保留；禁用过渡也不影响真实状态。
-- **资源预算**：限制效果面积、重绘频率、Canvas 贴图尺寸、DPR、SVG filter 数量；后台/不可见时停止高频刷新。不要默认在每个导航项、表格行、弹窗、卡片上叠复杂滤镜。
-- **触控与键盘**：所有装饰层 `pointer-events:none`，保持语义 DOM、触控目标、弹层堆叠与焦点控制。
-- **跨浏览器状态**：滤镜与资源失败时不能出现黑底/透明不可读；SSR hydration 不闪烁。原有库的 CSS 层次和 overlay portal 要实测。
-- **验收等级**：`DEMO ONLY` 是样例页演示；`STATIC CHECK` 是源码检查；`VERIFIED` 仅指目标路由、目标浏览器实际验证；`NOT TESTED` 不得写成兼容。
+- **Readability first:** Highlights/refraction cannot obscure titles, input values, placeholders, icons, errors or focus. Test light/dark, high contrast, and worst-case moving backgrounds. Use a more opaque content underlay if needed, rather than sacrificing text to achieve "full translucency".
+- **Reduced motion:** Under prefers-reduced-motion, stop looping/pointer-following refraction; static material may remain. Removing transitions must not break business state.
+- **Resource budgets:** Limit surface area, redraw frequency, Canvas texture size, DPR and SVG filter count. Pause when backgrounded/invisible; do not apply expensive filters to every nav item, row, dialog and Card by default.
+- **Pointer/keyboard:** All decorative layers use pointer-events:none. Preserve semantic DOM, touch targets, overlay stacking and focus.
+- **Browser/SSR stability:** Missing filter or image must never yield unreadable transparency/black; no hydration flicker. Actually test inherited library CSS layering and portals.
+- **Evidence:** DEMO ONLY = example; STATIC CHECK = source; VERIFIED = tested specific target routes/browsers; NOT TESTED must **not** be recorded as compatible.
 
-### Gate：何时启用？
+### Gate: Should glass be enabled at all?
 
-1. 用户或已确认视觉方向是否确实需要光学玻璃？否则保持常规表面。
-2. 具体组件的业务职责、尺寸与背景纹理是否适合折射？若纯色背景或密集数据页，跳过复杂实现。
-3. 已有主组件库是否提供 surface 插槽/主题扩展？先用其结构，不造新交互。
-4. 是否有**普通可读材质 fallback**、目标浏览器测试与性能预算？不具备就只做 A。
-5. 四层是否能**单独开关**复验？避免把 blur、高光、背景扭曲混成一个不可调 CSS 黑盒。
+1. Does the user or confirmed brand direction genuinely require optical glass? Otherwise retain ordinary surfaces.
+2. Does the component's role, size and backdrop texture support useful refraction? Skip heavy processing for flat backgrounds and dense data screens.
+3. Does the established library expose surface/theme slots? Use them without recreating interaction behavior.
+4. Is there a **readable ordinary-material fallback**, target browser evidence and a performance budget? If not, implement **only A**.
+5. Can the **four layers toggle independently** for verification? Do not hide blur, highlights and distortion inside an inscrutable CSS blob.
 
-附带的原创教学演示 `assets/liquid-glass-layer-lab.html` 允许逐层观察半透明、折射开关、高光、阴影和模糊；演示不代表任何真实产品或任何浏览器都支持 SVG backdrop 折射。所有视觉效果应保持可撤销、按场景使用。
+The original teaching demo, assets/liquid-glass-layer-lab.html, lets developers independently inspect transparency, refraction toggle, specular highlight, shadow and blur. It is **not proof** of working SVG backdrop refraction on every browser or real product. All effects must be reversible and context-specific.
 
-**学习素材溯源**：四层模型与基础实现顺序依据用户提供的液态玻璃教学视频文字提取，独立整理为通用 Web 设计知识；SVG 通道公式、CSS 规范及浏览器限制另以 MDN、WebKit 与兼容性记录核对。此文不包含项目特定截图或业务内容。
+**Learning provenance:** The four-layer model and basic implementation order derive from text extracted from a user-supplied liquid-glass educational video, generalized into Web design knowledge. SVG channel formulas, CSS and browser limits are checked separately against MDN/WebKit/browser compatibility records. No user-specific screenshot or business data is included.

@@ -1,181 +1,155 @@
-# 前端项目架构与验收门槛
+# Frontend Project Architecture & Acceptance Gates
 
-## Defect-first default for vague optimization tasks
+## Defect-first default for vague optimization
 
-Gate 0：解析任务意图。“优化页面”默认是主动诊断+修复，而非只调 CSS Tokens；单点功能 Bug 不强制全站审美改版；仅评估不改代码。先读 `references/proactive-visual-defect-discovery-gate.md`。
-
-Gate A：先看运行中页面真实缺陷，覆盖空间/字号/组件/图标与色彩/交互响应式。即使原布局本来就没有 Section 间距，也必须发现并判定，无理由独立模块接壤属于待审查风险；不能靠 preserve-baseline 视为正确。无基线可运行 `scripts/audit_existing_visual_defects.mjs`，它只是启发式。
-
-Gate B/C：优先修复影响阅读和任务的高价值问题，保持已有正确结构、品牌/动效和用户确认的设计决定。对 Block Flow、Grid/Flex、嵌套包装层的模块间距都要检查，不把 padding 伪装成外部 gap。
-
-Gate D：重新打开**被修改的真实页面**验证缺陷消失，再以原 v6.19 before/after 保护良好间距，补充人工截图审查与窄屏。只跑 Skill 独立 demo 的 smoke 不是业务页面的视觉验收。
+- **Gate 0:** Interpret scope. "Improve this page" implies proactive inspection and repair, not just CSS token adjustment. A single functional bug does **not** require redesigning every page. Review-only requests do not authorize source edits. Read proactive-visual-defect-discovery-gate.md.
+- **Gate A:** Inspect the **running target page** for spacing, typography, component, icon/palette and interaction/responsive flaws. If independent Sections already touched in the inherited layout, discover and assess that flaw; preserve-baseline is **not an approval**. scripts/audit_existing_visual_defects.mjs may provide baseline-free heuristic signals.
+- **Gate B/C:** Repair high-value user-task and readability defects first while preserving correct structure, brand, motion and confirmed choices. Audit Block, Grid/Flex and nested wrapper gaps; **internal padding does not substitute for between-panel gap**.
+- **Gate D:** Reopen the changed **real page**, confirm the original defect is fixed, then compare before/after to protect sound spacing, supplemented by actual screenshots and narrow supported widths. A Skill-only demo smoke test is **not business-page visual acceptance**.
 
 ## Spacing preservation and real-page verification
 
-Gate 0 / A：对已有布局的改动先保存其独立模块的间距基线，明确 section/peer/connected 的语义，不得因为“简洁”“尽量一屏”就将无关模块共边。见 `references/spacing-regression-protection-gate.md`。
+- **Gate 0/A:** On existing layouts, record meaningful section/peer/connected gaps before edits; simplicity/one-screen goals do **not** authorize accidentally joining independent modules. See spacing-regression-protection-gate.md.
+- **Gate B:** Parent Grid/Stack semantic tokens own independent surface gaps. Compact design does **not automatically authorize removing row-gap**; region boundaries must remain perceptible with a reason.
+- **Gate D:** Compare before/after surface geometry and full screenshots on actual routes. Use scripts/audit_panel_spacing.mjs for unannotated risk scanning; where a precise relation contract exists, use scripts/audit_spacing_rhythm.mjs. If only demo, no coverage or incomparable baseline, state it honestly rather than claiming passed.
 
-Gate B：独立 Surface 的间距由父级 Grid/Stack tokens 维护；紧凑调整不自动拥有删掉 `row-gap` 的授权。需要有理由且仍可感知的模块边界。
+## Design Reference Learning Gate — transfer principles, protect sources
 
-Gate D：在真实目标路由对比 before/after 的模块几何和全页截图。用 `scripts/audit_panel_spacing.mjs` 在没有 `data-mf-space-id` 时执行风险扫描，用 `scripts/audit_spacing_rhythm.mjs` 在有精确关系契约时校验。只测 demo、无检测覆盖、基线不可比应明示，不能假装已通过。
+- **Gate 0:** Respect user's stated ownership and authorization; without permission do not save/upload the reference, its variants or identifiable business details. Read design-reference-learning-gate.md. Source imagery is used for **current-task insight extraction**; public reusable output contains generalized rules and newly invented fictional examples only. No original material in PR/commit/CI screenshot artifacts.
+- **Gate A:** Write observed_trait → task_benefit → applicable_context → transfer_rule → avoid_copying. Test where cross-domain principles do/don't apply. Clean Enterprise (clean-enterprise-design.md) is a **candidate**, not global default; confirmed identity and user choices outrank it.
+- **Gate B:** Recompose genuine new navigation/components/information for the target product. Do not copy source field names, project identity, actual data or identifiable layout. Official icons can be used only under their own rights.
+- **Gate D:** Review every published file and text for unauthorized reference images/identifiers. Test synthetic examples with Chromium keyboard, responsive and interaction checks. scripts/validate_design_reference.py --repository is **static-only**; it cannot replace privacy/aesthetic review or prove the real product was changed.
 
-## Design Reference Learning Gate（抽象迁移，保护来源）
+## Icon Art Direction Gate — semantic fit and whole-set coherence
 
-Gate 0：用户提供视觉参考时，尊重明确的原创归属，未经允许不保存/上传图片、变体、真实项目识别信息。先读 `references/design-reference-learning-gate.md`；源内容只支持**当前任务**洞察提取，公开成果只允许通用规则和独立构建的虚构示例。不得在 PR、截图 artifact、commit 描述中引入原始素材。
+- **Gate A:** Once IA is known, inspect inherited icon package/version and approved design. For important navigation and frequent actions, research at least **two real icon candidates** and choose by task meaning and visual contour; do not mechanically add an icon to every text label or turn a synthetic example into product-specific icon rules.
+- **Gate B:** Use one principal icon language in shared IconBox/NavItem/IconButton/Status components. Gallery demonstrates actual icon size, text alignment, Badges, active/hover/focus and themes, not isolated SVG thumbnails. Brand/custom symbols may be justified exceptions with source/license and visual-role boundaries.
+- **Gate D:** On the real page ensure icons actually render recognizably, avoid mixed styles and mismatched optical weights, compression and baseline drift; ensure icon-only actions have visible text/aria-label. scripts/audit_icon_consistency.mjs can inspect annotated geometry/style risks; **it cannot judge semantic accuracy or human art direction**.
 
-Gate A：提炼 `observed_trait → task_benefit → applicable_context → transfer_rule → avoid_copying`，在跨域场景判断何时有效、何时不适用。Clean Enterprise（`references/clean-enterprise-design.md`）只是可选风格候选，现有品牌和用户选择权更高。
+## Semantic Spacing & Rhythm Gate — all Web page types
 
-Gate B：按实际产品任务建立全新组件/导航/信息组织，不复制参考栏位、项目名称、实际数据或布局的可识别组合。图标可从官方公开资源按许可证合规使用。
+- **Gate A:** Assign inside/peer/section/connected/anchored relationships after IA, and map them to inline/inside/peer/section/page spacing tokens based on user-approved density. Shared Cards do not justify equal gaps; absence of color/motion requests does not remove spacing quality duties.
+- **Gate B:** Parent Grid/Stack/PageSection owns peer and section gaps independently of Card padding. **Design both column-gap and row-gap**; reflow from horizontal to vertical must retain appropriate peer separation. Lists and genuinely connected Tabs+Panel can share edges with reasons; do not fake layout using negative margin.
+- **Gate D:** Inspect full page at wide/narrow and 200% text, unusual data, actual scroll end and fixed bars. Explicit data-mf-space-id plus contract can enable scripts/audit_spacing_rhythm.mjs; unannotated pages **cannot claim measured results**. scripts/validate_spacing_rhythm.py --repository checks synthetic contract consistency, not aesthetic quality.
 
-Gate D：提交前检查公共文件及发布文本无参考图片或可识别内容；对全新示例进行 Chromium 可访问性、交互、尺寸及 responsive QA。静态验证：`scripts/validate_design_reference.py --repository`。静态检查不能代替人工隐私/视觉审查，也不能证明真实客户页面已修改。
+## Component Motion Coverage — real components, real state relationships
 
-## Icon Art Direction Gate（语义优先 + 全组视觉一致）
+- **Gate A:** After the user's motion direction is known, inventory actual high-frequency/high-value component changes and choose motion/immediate-feedback/intentionally-static(reason). **Page-route transition is not component motion coverage.** See component-motion-choreography-gate.md.
+- **Gate B:** When those components exist, create a Component Motion Gallery for Tabs/Segments, Accordion/Drawer, Toggles, Row/List, Success/Error and Media. Avoid applying identical hover scale/fade to every interaction. Select mechanism by spatial anchor, tactile response and meaning. The list does **not** require creating missing controls.
+- **Gate D:** Trigger actual important business interactions in browser and inspect before/during/after, layout position/expanded height, normal/reduced motion, repeated rapid clicks and interruption/reversal. scripts/validate_component_motion.py checks static contracts; standalone Mock motion is not target-product QA.
 
-Gate A：在导航架构和信息结构明确后，检查已有图标包/版本、用户已确认风格。为主要导航/高频动作搜索并核实至少两个真实候选，基于任务语义和视觉轮廓进行选择；不要为每个文字标签机械添加图标，也不把 示例产品 的例子当全站默认字典。参见 `references/icon-art-direction-gate.md`。
+## Motion Choice Gate — user authority before engines
 
-Gate B：共享 `IconBox/NavItem/IconButton/Status` 组件里使用同一个主图标体系；Gallery 展示实际字号、图标/文本/Badge、选中/hover/focus 和主题，不只是单个 SVG。自定义/品牌 glyph 属于合法例外，但要记录来源与许可、视觉边界。
+- **Gate A, new/major motion redesign only:** Inspect inherited motion choices. If undecided, offer **2–3 materially distinct observable experiences** for selection, combination or explicit delegation. Ask once, avoid repeated questioning. Unanswered direction remains unresolved; **neither all-static nor excessive scroll effects are authorized by silence**. See motion-consent-experience-gate.md.
+- **Gate B:** On confirmed selection, establish Motion Tokens and inventory actual on-page interactions covering chosen strength/reduced-motion. Reuse framework/native transitions where adequate; do not force installing an engine. Immediate state feedback remains necessary even with no added animation.
+- **Gate D:** Exercise real Tab, overlays, navigation, notifications and lists under normal/reduced-motion, checking true enter/exit/static fallback, rapid-interruption continuity, immediate content, keyboard and semantic state. scripts/validate_motion_decision.py cannot certify actual animation.
 
-Gate D：图标是否真实加载且可辨识、无多套画风混合、无突然视觉重量变化、无压缩/偏移、图标按钮的文字或 aria-label 可用。显式 DOM 标记可以用 `scripts/audit_icon_consistency.mjs` 检查几何和 style 风险；**脚本无法替代语义辨识或人类审美判断**。
+## Settings/Form layout follows saving semantics
 
-## Semantic Spacing & Rhythm Gate（所有网页类型）
+- **Gate A:** For Settings, registration, checkout, grouped data entry and hybrid configuration, consult settings-form-layout-gate.md. Independently saved settings get setting rows; grouped submissions get vertically associated fields; isolate destructive controls and preserve current IA/library.
+- **Gate B:** group-gap must be perceptibly greater than item-gap. Left descriptions cannot crush controls; Form labels/help/errors belong to a bounded readable field column. Keep meaningful surfaces; removing a decorative wrapper does not remove group spacing.
+- **Gate D:** Test real wide/narrow routes with long localization, 200% zoom, save/submit failure and final scroll access. Synthetic fixtures/Chromium smokes do not verify user-specific product behavior.
 
-Gate A：在已确定的页面信息结构中，把相邻模块标为 `inside/peer/section/connected/anchored` 等空间关系。根据用户已选视觉方向和业务密度映射 `inline/inside/peer/section/page` 空间 Token；不能因为统一卡片组件就平均间距，也不能因为没要求动画/颜色就忽略空间节奏。参考 `references/semantic-spacing-rhythm-gate.md`。
+## Surface & Atomic Control Geometry Gate — all page types
 
-Gate B：让父级 Grid/Stack/PageSection 管理同级和章节 gap，区分 Card 内边距；同一图表行的 column-gap 与行间 row-gap 都要设计，移动端由横转纵保持相应 peer gap。连续列表、Tab+Panel 等合法连体结构可共边，但必须注明原因，不靠负 margin 掩盖错误。
+- **Gate A:** Match real task with an open collection, single panel, media/product Cards, editorial flow or split/immersive stage, describing why selected and what alternatives were rejected (surface-architecture-gate.md). Giant outer Card is not the default enterprise wrapper.
+- **Gate B:** Short Button/Tab/Badge atomic labels are unlike body prose that may wrap. Budget row actions at natural size with responsive fallback (control-geometry-gate.md). white-space:nowrap **requires** sound parent Grid/Flex handling, otherwise it creates horizontal overflow.
+- **Gate D:** On real Chromium supported desktop and when in scope 390/320px, 200% text, error-added actions, verify atomic labels don't split character-by-character; targets, focus and final rows remain accessible. Optional data-mf-atomic-control/data-mf-control-label and Range.getClientRects() provide risk checks. Synthetic examples are not business implementation; scripts/validate_surface_control.py only checks structural plans.
 
-Gate D：在浏览器含横竖/小视口、200% 字体、异常数据、底部滚动、固定栏情况下查看整页节奏。带 `data-mf-space-id` 的项目可提供独立关系契约给 `scripts/audit_spacing_rhythm.mjs` 实测，正常没有标注时不可编造结果。静态 `scripts/validate_spacing_rhythm.py --repository` 只验证例子的设计完整性。
+## All-page prerequisite gates A/B/D
 
-## Component Motion Coverage 与组合体验
+- **A:** Read perceptual-hierarchy-gate.md, identify P0–P3 per user task, reading path, visible content and density. **Rank importance before setting type and components.** Different pages may prioritize a price, prose, artwork or current error; not every number needs huge KPI typography.
+- **B:** Read component-craft-gate.md; define shared component responsibilities, text hierarchy, visual-form rationale, interaction and state. Preview components **and their actual composed content**; uniform pills and outlines do not equal quality.
+- **D:** Inspect grayscale three-second hierarchy, true normal/error content, long text, 200% zoom and wide/narrow screenshots. scripts/validate_visual_priority.py tests priority-plan **coverage**, not visual superiority. Small patches stay scoped and need not repeat whole-project discovery.
 
-Gate A：完成用户动效选择后，从真实页面识别高频/高价值组件及状态变化；为其决定动效/即时反馈/故意静态的理由，**页面级路由转场不能计入组件动效覆盖**。见 `references/component-motion-choreography-gate.md`。
+## Component Library First — mandatory before bulk page phase B
 
-Gate B：为 Tab/Segment、Accordion/Drawer、Toggle、Row/List、Success/Error/Media 等项目真实存在的组件建立组件 Motion Gallery。不要将所有 `hover` 都写成同一个 scale、所有变化都 fade；根据定位、触觉、空间和状态选择合适机制。并非每个项目都必须存在上述组件。
+- **Gate A:** Inventory inherited actual UI library usage. If a new interactive project lacks a primary system for Select, DropdownMenu, Button, Checkbox, Radio, Switch and Dialog, **Agent selects a suitable mature framework-compatible solution** (component-library-first-gate.md). No manual pseudo-Select/Buttons just because user didn't name a vendor.
+- **Gate B:** Actually integrate required components, common theme and real Showcase; verify selection dropdown open/selected, action menus, primary/secondary/danger Buttons, focus/disabled and forms. Shared Ui wrappers **adapt**, not recreate accessible primitives; a narrow repair does not force whole-library migration.
+- **Gate D:** Real-page Select/Dropdown/multi-select/Button keyboard, focus, overlay placement and theme consistency. Unjustified hand-made div dropdown, fake selected state or cross-page Button drift means **first delivery is not acceptable**. Synthetic demo gives design hints, not product verification.
 
-Gate D：在真实浏览器触发至少关键业务交互的前、中、后状态，检查实际位置/展开高度/组件状态/减少动态效果、快速重复和反向。静态脚本 `scripts/validate_component_motion.py` 只是覆盖契约；独立 Mock 预览不能冒充实际产品 QA。
+## Phase 0 — Inspect existing architecture
 
-## Motion Choice Gate：先问，再做动画，最后验证
+- Read package.json, lockfile, vite.config.*, next.config.*, nuxt.config.*, angular.json or matching framework build sources.
+- Inventory routes, permissions, i18n, remote data, forms, tests and styling; search instances of button/input/dialog/table/toast/sidebar.
+- Classify **existing / reusable / defective-needs-repair / genuinely missing**. A screenshot suggesting one vendor does not authorize dependency changes.
 
-Gate A（仅新设计/重大动效改版）：查已选品牌/页面动效；未知时推荐 2–3 档有实际视觉差异的交互选择，由用户决定、融合或明确授权 Agent。对话一轮即可、不要重复询问；未回答标 unresolved，**既不能默认全站静态，也不能默认带大量滚动特效**。详见 `references/motion-consent-experience-gate.md`。
+## Phase A — Design language and semantic Tokens
 
-Gate B：基于用户确认建立 Motion Tokens 和页面内真实交互列表，必须覆盖其所选强度与 reduced-motion；可以使用已有组件库过渡，不强行引入动画包。基础状态反馈即使无额外动效也必须存在。
+Single token source for --color-bg/surface/surface-muted/text/text-muted/accent/on-accent/border/focus/success/warning/danger and --font-*, --space-*, --radius-*, --shadow-*, --motion-*. Replace unrelated per-page literals with semantic roles; light and dark each have correct contrast and hierarchy.
 
-Gate D：真实浏览器切换 Tab/弹层/导航/消息/列表与系统 reduced-motion，观察生效的进退场和静态回退，验证快速点击可中断、内容即刻可见、状态与键盘完整。静态决策校验 `scripts/validate_motion_decision.py` 不证明实际动画表现。
+**Gate A:** Provide at least **two preview screenshots or executable examples** showing component states + main page regions. Without a coherent theme, do not multiply page development.
 
-## 设置与表单按交互语义选择布局
+## Phase B — Build the component system
 
-Gate A：当页面包含设置/注册/结账/连续录入/混合配置时，先读取 `references/settings-form-layout-gate.md`，按单项独立生效或整组提交分别使用设置行或纵向字段簇；危险操作分区，保留原有 IA 与组件。
-Gate B：设置分组以 group-gap > item-gap 建立清晰层级，控件不能被左侧说明挤压；表单输入占满有上限的内容列，label、帮助和错误信息关联；必要容器可保留，去壳不去间距。
-Gate D：在实际页面检测宽/窄屏、长翻译、200% 字体、保存/提交失败与底部可达性。参考独立虚构演示和 Chromium 回归，未验证实际产品时不能标记通过。
+- **Primitives:** Button, Input, Textarea, Checkbox, Select, Dialog, Popover, Tooltip, Tabs, Toast, Loader, Icon.
+- **Composites:** Field+Error, SearchField, DataTable, FilterBar, Pagination, EmptyState, ConfirmDialog, PageHeader, Sidebar, FormActions.
+- **Patterns:** Filterable lists, detail view, create/edit, Settings, wizard, article, branded Hero, product detail.
+- **Contract:** Stable props/variants/size/state/slots(or children)/events, shared Tokens and correct keyboard/focus/ARIA.
+- **States:** normal, hover, pressed, focus-visible, disabled, loading, success, error, empty; business-critical pending/offline/permission denied.
+- **Showcase:** Dimensions, variants, states, long Chinese/English/numeric content and supported dark mode.
 
-## 全类型页面的 Surface / Geometry Gate
+**Gate B:** Business pages must reuse, not recreate Buttons, Dialogs and Fields. A minor scoped change need only apply this contract where relevant.
 
-Gate A：基于真实用户任务评估 open collection、单层 panel、媒体/商品 cards、editorial flow 或分栏/沉浸 stage；说明所选表面及拒绝候选的理由（`references/surface-architecture-gate.md`）。不把巨型外卡当成后台默认。
+## Phase C — Implement real pages
 
-Gate B：明确短按钮/Tab/Badge 的 atomic label 与允许语义换行的正文不同；为表格行操作预留自然尺寸预算与 responsive fallback（`references/control-geometry-gate.md`）。`white-space:nowrap` 必须配合 Grid/Flex 父容器策略，否则可能制造横向越界。
+- Page heading density follows task: compact operations, expressive Hero only where appropriate.
+- Real data semantics; submissions need loading/error/success/duplicate protection; dangerous or permission actions need confirmation.
+- Separate remote server data from local UI state; avoid SSR hydration mismatch; lazy-load chart/editor clients when appropriate.
+- Choose motion purpose first (feedback, hierarchy, state, reflow, direction), then engine. Keep interruption and static fallback.
 
-Gate D：真实 Chromium 在桌面、390/320px、200% 文字放大和错误状态增加操作时检查短词组不被拆字，点击区域/焦点/最后行可达；可使用 `data-mf-atomic-control` / `data-mf-control-label` 与 `Range.getClientRects()` 测试。独立示例测试不等于业务实现。静态 `scripts/validate_surface_control.py` 只核验结构计划。
+## Phase D — Real tests, review and delivery
 
-## 全类型页面前置条件（Gate A / B / D）
+- Appropriate unit/component (Vitest/Testing Library) plus E2E (Playwright/Cypress) test coverage of primary workflows.
+- Real representative viewports, e.g. **360/390/768/1024/1440** according to supported devices, not forced breakpoints; check light/dark, touch/keyboard, zoom, long text and error/loading/empty.
+- Visual QA: headings, semantic colors/boundaries/radii/gaps, icons, action hierarchy, chart labels and table readability.
+- Motion QA: prefers-reduced-motion, unmount cleanup, rapid route changes, lower-spec devices, content visibility with animations disabled.
+- Report changed files, Tokens, component reuse mapping, motion rationale, **actual test evidence and untested cases**.
 
-- Gate A：读取 `references/perceptual-hierarchy-gate.md`，按实际用户任务识别 P0–P3、阅读路径、可见信息与密度，**先判重要性、后定字号与组件形式**。不同页面可有不同 P0（例如价格、正文、作品、当前错误）；不是每个数字都是大 KPI。
-- Gate B：读取 `references/component-craft-gate.md`，确定共享组件职责/文本层级/形态依据/交互与状态。预览组件本身以及它们组成的真实内容区域，不用统一 pill/描边冒充质量。
-- Gate D：整页灰阶三秒扫描、真实正常/异常内容、长文与 200% 放大、宽窄窗口的截图验证。静态优先级计划可由 `scripts/validate_visual_priority.py` 核验**覆盖性**，不能宣称视觉优劣已自动判定。小范围修复按现有页面/组件承诺执行，不强制重复全项目探索。
+## Dependency admission gate — answer for each new package
 
-## Component Library First — Gate A 到 B 之间的强制前置条件
+| Required question | Evaluation |
+| --- | --- |
+| What specific missing behavior requires the dependency? | "Looks cooler" is insufficient |
+| Why are native CSS or current dependencies insufficient? | Do not install GSAP for a simple Button transition |
+| Current framework/SSR/version support? | Vue/React packages differ; inspect correct imports and lifecycles |
+| Accessibility/performance/license/security risk? | No induced flashing or illegibility |
+| Migration/cleanup/replacement plan? | Converge interaction ownership and dependency count |
 
-Gate A：盘点现有 UI 库与实际使用；新项目未选库且页面需要 Select、DropdownMenu、Button、Checkbox、Radio、Switch、Dialog 等控件时，Agent **自行评估并选择**符合技术栈和视觉要求的成熟组件方案（`references/component-library-first-gate.md`）。不因为用户未点名库就手写一整套按钮和伪下拉。
+## Composition-first prerequisite to Gate A
 
-Gate B：先完成组件安装/引用、应用级主题映射和必要控件 Showcase，确认选择框展开/选中、Dropdown 动作菜单、按钮主次/危险、disabled/focus、表单状态等在目标框架里工作。共享 Ui* 为封装，不重写原语；局部修复只影响本轮范围，不强制换旧库。
+For new pages and major redesigns, consult composition-first-design.md first. Inventory authentic content and task, sketch **2–3 actually different grayscale layouts** by information ordering or primary focal position before selecting colors/components. An explicit reference, approved layout or local fix may keep its structure and skip comparisons. An empty chart without truthful data state cannot be considered complete. At D, if screenshot reveals task/focal mismatch, **return to A** rather than repeatedly tuning effects. Palette decisions require source and semantic role (palette-art-direction.md).
 
-Gate D：实际业务页复查操作菜单、选择框、单/多选、按钮状态、键盘/焦点、浮层位置与主题一致性。发现未说明原因的手写“div 下拉”“假的选中”、跨页按钮样式不一致，视为首版质量未达标；合成 demo 只能提供设计线索。
+## Text/typography check between A and B
 
-## Phase 0：项目现状盘点
+After composition, run semantic-copy-hygiene.md deletion/necessity reasoning. Use typography-hierarchy.md to define role Tokens for PageTitle, body, metrics, chart axes/legends and source metadata. PageHeader kicker/description/English prefix remain **optional slots** that default to absent when no information is gained. In Gate D, inspect real browser dark text, Chinese/digits/repo-name mixing, 200% zoom and clipping; static source scanning cannot claim readability verified.
 
-- 从 `package.json` / 锁文件 / `vite.config.*` / `next.config.*` / `nuxt.config.*` / `angular.json` 等判断现有架构。
-- 列出路由、权限、i18n、数据请求、表单、测试与样式工具；对现有组件做实例检索：button/input/dialog/table/toast/sidebar。
-- 报告：已有 / 可复用 / 有缺陷需改造 / 需要新增。不要因为截图里推荐某个库就改变依赖。
+## Color Choice Gate — approval is not an Agent aesthetic default
 
-## Phase A：设计语言与 Design Tokens
+Before recoloring, inventory confirmed colors and current Sidebar/Main system. When undecided, present **2–3 genuinely different whole-workspace palettes** for user selection or explicit delegated choice. Never infer that starting development confirms the Agent's favorite color. For an exact HEX, retain assigned role **exactly** and adjust surrounding contrast with explanation. Functional fixes and approved inherited colors do not require new questioning. See sidebar-color-discovery.md, design-system/sidebar-color-decision.json. Actual screenshots should compare Sidebar/Topbar/Main/Card/Chart together.
 
-单一来源定义：`--color-bg/surface/surface-muted/text/text-muted/accent/on-accent/border/focus/success/warning/danger`，以及 `--font-*`、`--space-*`、`--radius-*`、`--shadow-*`、`--motion-*`。用语义 token 替换页面级硬编码，浅色/深色各有明确对比度和层级。
+## Navigation Architecture Gate — before composition/components
 
-**门槛 A**：提供至少两张“组件状态 + 页面主要区域”的预览或可运行展示；没有主题定义，不进入多个页面开发。
+For major tasks, list top-level destination count, nesting/frequency and devices; separate global/local/object/actions/Tabs. Consider Top only, Side, Top+Side, Rail/Split, Mobile Bottom, Responsive Side→Bottom, Top+Bottom and Side+Bottom action bar (navigation-architecture.md). For undecided IA, present **2–3 meaningful architectural alternatives**, record actual user selection or explicit delegated authority. Existing confirmed navigation or scoped repair may skip. Then set UiNavigation contracts/Tokens. Browser verification must include supported desktop/mobile/narrow, route reachability, keyboard/focus/ARIA, bottom occlusion and task context. scripts/validate_navigation_architecture.py does **not** replace real flow testing.
 
-## Phase B：组件系统先行
+## Gate A0 — Content priority before building Card grids
 
-- 原语组件（UI primitives）：Button、Input、Textarea、Checkbox、Select、Dialog、Popover、Tooltip、Tabs、Toast、Loader、Icon。
-- 复合组件（composites）：Field + Error、SearchField、DataTable、FilterBar、Pagination、EmptyState、ConfirmDialog、PageHeader、Sidebar、FormActions。
-- 页面模板（patterns）：列表筛选页、详情页、创建/编辑页、设置页、向导、内容页、展示型 Hero、商品详情。
-- 组件契约：稳定的 props/variants/size/state/slots(or children)/events；视觉 token 集中处理；键盘/焦点/ARIA 语义明确。
-- 状态覆盖：normal、hover、pressed、focus-visible、disabled、loading、success、error、empty；重要业务还需 pending/offline/permission denied。
-- 组件示例页：至少能查看基础组件的尺寸、变体、状态、长中英文内容，以及暗色主题。
+On new/major pages, per route inventory primary_task, visit state, content roles and conditional/deferred navigation (assets/page-content-plan.schema.json). Overview should **not simultaneously** generate full tutorial, feature directory and Cards for every action. Apply whole-block deletion reasoning, keeping secondary features findable. Analytical detail can be denser and include comparable charts/metrics/filters, but **never hide sources/errors**. Reusable FeatureGrid/Card is not justification to create extra intros everywhere. Gate D tests overview/detail and first/return visits separately.
 
-**门槛 B**：业务页不直接重造基础按钮、弹窗、表单字段；多个页面统一依赖共享组件。对于小修小补任务可局部适用，不要求先重建全项目。
+## Gate A/B/D — Shared Grid rows and scroll-end evidence
 
-## Phase C：真实页面开发
+- **A:** Establish peer content boundaries, shared column/row tracks, purposeful proportional emphasis and mobile reading sequence; avoid accidental independent two-column Masonry on analytical pages.
+- **B:** ChartPanel/List/MainScroll/BottomActionBar share sizing and scroll contracts. Prefer CSS Grid and minmax(0,1fr), min-height:0 where needed, correct overflow-y:auto. Fixed bar reserves space at the actual scroller end; avoid global overflow:hidden clipping. Different Cards need not all have equal heights.
+- **D:** Actually scroll to final record/Button/chart legend, inspect fixed bar, short windows, mobile safe area and 200% text. Only screenshot/declarative scripts means **NOT RUN**. scripts/audit_rendered_layout.mjs can surface initial/final DOM geometry risks; it does **not** replace manual interaction/visual acceptance. See grid-alignment-case.md.
 
-- 页面标题按照产品类型处理：后台优先紧凑、营销首屏可大幅排版。
-- 带真实数据口径；提交按钮有 loading、错误、成功、重复提交保护；删除/权限操作处理确认。
-- 接口数据与本地状态分离；SSR 页面避免 hydration 失配；图表/编辑器只在需要时客户端加载。
-- 动效先选择需要表达的信息：反馈、层级、状态、重排、方向；再选择引擎。交互应可中断且回退可用。
+## Comparison page engineering contract
 
-## Phase D：测试与审查
+- **A:** Before choosing layout define user decision question, compared objects, common definitions and missing-data policy; do not merely tile all repository statistics (comparison-page-design.md).
+- **B:** RepositoryPicker/Legend/Series/MetricMatrix synchronize one object ID and color token. Selection/time/filter/source updates must change every view coherently. Matrix uses object columns and metric rows with units/sample_size/coverage. **null is not 0**. First screen highlights evidence-grounded differences; ban unsupported composite "winner" labels.
+- **D:** Inspect Plot Area, axes, labels, collision, point coverage and legend bindings on actual rendered charts. scripts/validate_comparison_contract.py checks declared data rules; scripts/audit_comparison_ui.mjs checks annotated DOM geometry; Canvas text not visually inspected is **NOT AUDITED**. Test changing object and filters against real data and matrix, not just the initial static view.
 
-- 单元/组件（Vitest/Testing Library，按项目）与 E2E（Playwright/Cypress，按项目）结合；至少覆盖主线业务。
-- 浏览器实际检查：360/390/768/1024/1440 等代表视口（不是固定唯一断点）、深浅模式、触摸、键盘、放大、长文本、错误/加载/空状态。
-- 视觉 QA：标题层级、颜色、边界、圆角、间距、图标、按钮优先级、图表标签、表格可读性。
-- 动效 QA：prefers-reduced-motion、组件卸载清理、路由快速切换、低性能设备、无动画时核心内容可见。
-- 交付：变更清单、设计 Token、组件复用映射、动效选型理由、真实测试证据及未测项。
+## Run Monitor workspace engineering contract
 
-## 依赖准入门槛（每安装一个库回答）
-
-| 问题 | 说明 |
-|---|---|
-| 需要解决什么具体缺口？ | 不能只说更炫酷 |
-| 原生 CSS / 现有库为什么不够？ | 简单按钮过渡不应额外装 GSAP |
-| 是否支持当前框架/SSR/版本？ | Vue 和 React 包不同；确认准确导入与 lifecycle |
-| 是否有可访问性、性能、许可证与安全风险？ | 动效不可制造闪烁和可读性问题 |
-| 是否有替换与清理方案？ | 组件 ownership 与依赖数尽量收敛 |
-
-## Gate A 的构图先行前置条件
-
-新建页面或重大视觉重设计必须先读取 `references/composition-first-design.md`，登记真实内容与主任务，构思 2–3 种**信息排序或主内容位置真正不同**的灰阶构图，然后才讨论主题 Token 与组件。用户明确参考图、已有确认布局或局部修复可沿用原样并跳过候选比较。工作台若图表空白且无数据状态，不应标记实现完成。Gate D 中如果截图暴露主视觉与任务不匹配，重新进入 Gate A 调整信息架构，而不是持续微调特效。推荐颜色须有来源与语义职责，见 `references/palette-art-direction.md`。
-
-## Gate A 后、Gate B 前确认文字与排版
-
-构图确定后先完成 `references/semantic-copy-hygiene.md` 删除测试，并按 `references/typography-hierarchy.md` 为页面标题、正文、指标、图表轴/图例和辅助来源建立可调整的角色化 Typography Tokens。PageHeader 的 kicker/description/英语副标必须是可选插槽，没信息增量时默认不渲染。Gate D 检查目标浏览器的暗色文字、中文/数字/仓库名混排以及 200% 文本放大与裁切；只有源码扫描时不得声称视觉可读性已实测。
-
-## Color Choice Gate 不属于 Agent 的任意审美推断
-
-颜色重设计时先盘点全站已有 Tokens、用户确定的品牌色和侧栏/主内容的实际搭配；无色彩约束时提出 2–3 套完整工作台的推荐，等待用户选定或明确授权 Agent 代选。**不得因为开始开发就假定用户批准 Agent 最喜欢的颜色**。如果用户直接说 HEX，保证最终项目角色色精确一致，遇对比问题调整周边颜色并解释。只修改纯功能/保留已确认品牌主题时不强制重问。详见 `references/sidebar-color-discovery.md` 和项目 `design-system/sidebar-color-decision.json`，在浏览器截图里检查 Sidebar、Topbar、Main、Card 和 Chart 一起搭配。
-
-## 新增 Navigation Architecture Gate（构图前、组件实现前）
-
-在重大设计任务里，先盘点一级目的地、栏目深度与频率，区分 global/local/item/actions/tabs。读 `references/navigation-architecture.md`，评估 Top only、Side、Top+Side、Rail/Split、Mobile Bottom、Responsive Side→Bottom、Top+Bottom、Side+Bottom action bar。对未确认架构，展示 2–3 套有实际层级差异的方案，记录用户选择或显式 delegated；明确继承既有导航或局部修复可跳过。之后才建立 UiNavigation 组件契约与 Tokens。浏览器验收必须包含桌面、手机、窄窗和路由可达性、键盘/focus/ARIA、底部遮挡及任务上下文保持。静态脚本 `scripts/validate_navigation_architecture.py` 不能代替真实流程测试。
-
-## Gate A0：内容优先级先于 Card 网格构建
-
-新建/大改版先逐路由列出 primary_task、访问状态、内容主次与条件/延后入口，参照 `assets/page-content-plan.schema.json`。总览页不要同时生成完整教程、功能目录、每个操作的卡片；优先整块删除测试，并确保次级功能可发现。数据分析页允许较高密度展示可比较的图表、指标与筛选，不能因此缩小关键数据来源或藏掉错误。组件 Gate B 不能因为复用 FeatureGrid/Card 就往所有页面额外加介绍区；Gate D 应按总览、分析、首访、回访分别做截图验收。
-
-## Gate A/B/D：Grid 行契约 + 滚动终点证据
-
-**Gate A**：内容筛选后建立同级卡片的内容边界、共同列/行线、合理主次比例与移动阅读顺序；对分析页独立两列的无意瀑布结构执行回退。
-
-**Gate B**：共享 ChartPanel、List、MainScroll、BottomActionBar 的尺寸/滚动契约，优先 CSS Grid 与 `minmax(0,1fr)`、必要的 `min-height:0`、正确的 `overflow-y:auto`；fixed 工具条在真实滚动区末尾预留空间，避免 `overflow:hidden` 全局裁切。不同高度不必强制 equal-height 卡。
-
-**Gate D**：真实浏览器滚到终点，验证最后记录/按钮/图表图例、fixed bar、矮窗口、手机安全区与 200% 放大。若只有截图/声明式脚本则标 `NOT RUN`。可选 `scripts/audit_rendered_layout.mjs` 为浏览器首屏/末端输出几何风险线索，不能替代人工视觉/交互验收。案例见 `references/grid-alignment-case.md`。
-
-## 比较页面的工程协议
-
-Gate A：选择比较模式前先定义用户的决策问题、对象、共同数据口径和缺失策略，参考 `references/comparison-page-design.md`；不要简单把所有仓库统计图复制并排。
-
-Gate B：RepositoryPicker/Legend/Series/MetricMatrix 共用唯一 ID 与颜色 token；选择、时间窗、过滤、数据来源改变时所有视图同步。表格按对象列/指标行显示，同一指标有单位、sample_size、coverage；缺失值 null 不能自动变成 0。对比首屏强调可信差异，非数据支持的综合赢家禁止。
-
-Gate D：对 Chart Plot 内部坐标、标签碰撞、数据点覆盖和图例绑定做浏览器复核。可用 `scripts/validate_comparison_contract.py` 做声明式数据检查，`scripts/audit_comparison_ui.mjs` 做标注 DOM 的几何风险检查；对 Canvas 内文字未做视觉检查时明确 NOT AUDITED。切换对象和筛选时必须回归数据和表格，不只测试静态页面初始状态。
-
-## Run Monitor 工作台的设计与开发门槛
-
-Gate A：根据 `references/task-center-run-monitor-design.md` 先确定是 `run_monitor/human_tasks/mixed`、最常见操作、状态来源和进度/权限契约。采集任务默认先评估顶部可操作的状态筛选 + 扫描型任务列表 + 按需详情，而不是默认两张大卡片或人工 Kanban。
-
-Gate B：RunRow、StatusFilter、ProgressIndicator、RunDetail、RetryAction 从同一 task/run ID 和 lifecycle state 导出。可计算进度必须有稳定分母和同单位；未知进度不等于 0。需要重试/取消时先确认后端接口、权限及重复请求语义；不能无权限渲染可点击假按钮。
-
-Gate D：`scripts/validate_task_center.py` 检查静态数据/操作契约，`tests/task_center_browser_smoke.mjs` 检查独立 Mock 交互和响应式；目标业务必须验证真实服务端状态、错误/日志与权限、过滤计数、长列表及滚动终点。状态刷新时保留用户选择，不因自动重排强制跳动。
+- **A:** Determine run_monitor/human_tasks/mixed, frequent user action, lifecycle source and progress/permission rules (task-center-run-monitor-design.md). For crawler/Agent runs, first consider actionable status filter + scannable run list + on-demand detail, **not** automatic giant KPIs or a Kanban.
+- **B:** RunRow, StatusFilter, ProgressIndicator, RunDetail and RetryAction derive from the **same run ID and lifecycle state**. Percentage requires a stable denominator with matching units; **unknown is not zero**. Check backend and user permission before showing retry/cancel, including duplicate requests. Do not render fake clickable action without authority.
+- **D:** scripts/validate_task_center.py checks static data/action contracts; tests/task_center_browser_smoke.mjs checks a **synthetic Mock**. Target app still requires real server status, error/log/permission, counts, long lists and last-record scrolling. Keep user's selected filter/context during refresh; avoid involuntary jumping/reordering.

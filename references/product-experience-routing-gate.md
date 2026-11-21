@@ -1,73 +1,73 @@
-# Product Experience Routing Gate · 先识别产品，再组织体验（v6.21）
+# Product Experience Routing Gate — Identify the Product Before Designing the Experience (v6.21)
 
-MauForma 不再只以页面名（Dashboard / Home / Table）或「Persuade / Operate / Read / Experience」推导布局。页面模式仍保留，但在新站、核心页面重设计、模糊的“优化产品体验”请求中，**先判断产品类型、用户任务与信息架构**；不能把所有网站默认设计成后台管理系统。
+MauForma does not infer layout solely from labels (“Dashboard/Home/Table”) or the four `Persuade / Operate / Read / Experience` modes. Keep page modes, but when building a new site, redesigning core pages or responding to vague “optimize product experience” requests, **identify product type, user task and information architecture first**. Do not default every site to an admin dashboard.
 
-## PX0 · 范围、证据和决策优先级
+## PX0 — Scope, evidence and decision precedence
 
-- 新站、全站重设计、核心页面结构问题：执行 PX1 → PX2 → PX3 → PX4 后才选构图、Token、组件。
-- 已确认设计中的局部组件、Bug、间距修复：继承原设计，只提取必要上下文；不擅自重做信息架构。
-- 只要求评审或文档：只提供有依据的分析和建议，**不擅自修改项目**。
-- 决策优先级：用户明确需求和已批准规范 > 可验证研究/运行证据 > 产品业务材料 > Agent 提案。建议不冒充用户已确认。
-- 不得从截图臆断源码、技术栈、品牌归属或用户行为数据。参考图像不得擅自入仓、重构成可识别示例；遵守 [设计参考保护规则](design-reference-learning-gate.md)。
+- New site, whole-site redesign or structurally broken core page: run PX1 → PX2 → PX3 → PX4 before choosing composition, tokens and components.
+- Small component, bug or spacing fix in an approved design: inherit the design and gather only necessary context; do not independently redesign information architecture.
+- Review/document only: provide grounded findings and recommendations, **without editing source**.
+- Decision order: explicit user requirements and approved design > verifiable research/running evidence > actual business materials > Agent proposals. A recommendation is not confirmation.
+- Screenshots cannot establish code, framework, brand ownership or user behavioral data. Do not add reference images to repository or recreate an identifiable example without authorization. See `references/design-reference-learning-gate.md`.
 
-## PX1 · 两轴分类：产品体验类型 × 当前页面任务
+## PX1 — Two axes: product experience category × current page task
 
-| 产品体验类型 | 主要用户目标 | 应当优先出现的内容 | 典型误区 |
+| Product experience | Main user goal | Content that deserves priority | Common failure |
 | --- | --- | --- | --- |
-| Admin / Operations | 查异常、筛选、批量处理、追责 | 实际任务、状态、权限、筛选和上下文 | 巨大装饰性 Hero 遮挡任务 |
-| Consumer Utility | 快速完成个人任务、回到上次状态 | 当前行动、上下文、明确结果 | 照搬企业 KPI 面板 |
-| Learning / Education | 学习、练习、获得反馈、保持进度 | 下一学习任务、阶段、进度与反馈 | 只是把“项目”换成“课程”的后台模板 |
-| Content / Media | 发现、挑选、阅读/观看内容 | 内容、搜索/推荐、来源和上下文 | 只有卡片没有内容发现机制 |
-| Commerce | 比较与购买、追踪订单 | 商品、价格、可用性、交易信任 | 每个 CTA 同等重要 |
-| Creative Tool | 编辑、保存、预览、发布 | 工作对象、工具、保存状态 | 营销卡片挤占画布 |
-| Marketing / Portfolio | 理解价值、作品与行动理由 | 作品/主张、可信证据、CTA | 默认侧栏和统计卡 |
+| Admin / Operations | Diagnose anomalies, filter, batch-act, maintain accountability | Real tasks, status, permissions, filters and context | Huge ornamental Hero obscures tasks |
+| Consumer Utility | Quickly accomplish personal task, resume recent state | Current action/context and clear outcome | Copying enterprise KPI dashboards |
+| Learning / Education | Learn, practice, receive feedback, retain progress | Next learning task, steps, progress and feedback | Admin template with “project” replaced by “course” |
+| Content / Media | Discover, select, read/watch | Content, search/recommendations, source and context | Card-only page with no discovery mechanism |
+| Commerce | Compare/buy and track orders | Products, price, availability and trust | Every CTA competing equally |
+| Creative Tool | Edit, save, preview and publish | Work object, tools and save state | Marketing Cards crowd the canvas |
+| Marketing / Portfolio | Understand value, work and reason to act | Portfolio/claim, credible evidence, CTA | Default sidebar + stats Cards |
 
-同一产品可包含多种类型：学习站的公开目录是 Content，练习页是 Learning，用户个人设置是 Utility，授权管理区才是 Operations。**不能因为它有登录或用了侧栏就断言整个产品是后台。**
+One product may include multiple types: a learning site's public catalog is Content, its exercise is Learning, personal preferences are Utility, and authorized admin is Operations. **Login or a sidebar does not make the whole product an admin system.**
 
-第二轴沿用 Persuade / Operate / Read / Experience 四种页面任务模式。示例：消费者学习首页可以是 Learning × Operate/Experience；管理员告警页是 Admin × Operate。两者可以共用按钮、列表，却不应强制共用首页信息结构。
+The second axis remains page modes `Persuade / Operate / Read / Experience`: a consumer learning home can be Learning × Operate/Experience, while admin alerts are Admin × Operate. They can share Buttons and Lists without having identical home-page IA.
 
-### 页面内子场景补充：Settings / Form / Hybrid（v6.22）
+### Settings / Form / Hybrid subregions (v6.22)
 
-产品类型确定后，还要按**真实提交单位**识别局部页面布局：独立生效的短设置项走左右设置行；多字段整体提交走上标签/下输入的纵向字段簇；混合页面分区域处理。该判断不取代产品类型或 Operate 等页面模式。须记录危险操作、错误信息、响应式和确认的既有设计；详细入口见 [Settings & Form Layout Gate](settings-form-layout-gate.md)。
+After product classification, select layout by **actual save/submit unit**. Independent short settings use left-label/right-control rows; multi-field transaction forms use stacked label-above-Input; hybrids divide by subregion. This does not replace product or page mode. Preserve dangerous-operation separation, error messaging, responsiveness and accepted existing design. See `references/settings-form-layout-gate.md`.
 
-## PX2 · UX-first 信息架构门禁
+## PX2 — UX-first IA gate
 
-任何新页面的核心结构确定前，都要给出简短的 Page Purpose Card：
+Before structuring a new page, prepare a compact **Page Purpose Card**:
 
-| 字段 | 必须回答的问题 |
+| Field | Question that must be answered |
 | --- | --- |
-| Audience / context | 谁在用？首次、回访、创作、管理等状态是什么？ |
-| User job | 用户为什么此刻打开本页？需要完成哪项真实任务？ |
-| Primary / secondary action | 先做什么，随后做什么？两者是否竞争？ |
-| Needed evidence | 需要什么真实内容、数据和状态才可做决定？ |
-| Journey / recovery | 完成、返回、错误、空内容和权限不足时去哪里？ |
-| Success | 哪些行为与反馈说明用户完成任务？哪些假设待验证？ |
+| Audience/context | Who uses it? First visit, return, creation, administration or another state? |
+| User job | Why open this route now, and which *real* task must be completed? |
+| Primary/secondary action | What first, what next? Do actions compete? |
+| Needed evidence | Which genuine content, data and state support the decision? |
+| Journey/recovery | Where after completion, back, error, empty or insufficient permission? |
+| Success | What behavior and feedback prove completion? Which assumptions still need validation? |
 
-对首屏另外记录“前三眼最可能注意的内容”以及与任务的关系。不能用假统计、凭空添加的徽章或任意任务数填补空白；留白和密度根据真实信息决定。
+Also record first-screen **three likely first-glance elements**, and their relation to the task. Do not invent metrics, badges or arbitrary task counts to fill blank space; content determines whitespace/density.
 
-### 通用模板倾向测试（启发式，不是绝对裁决）
+### Generic-template swap test — heuristic, not a verdict
 
-若把“学习/课程/复习”替换成“工单/项目/任务”，界面无需改变信息优先级就完全成立，说明**可能**缺少产品特有的信息与行为。要求进一步检查主任务、路径和反馈，而非为了差异化强塞游戏、插画或花哨卡片。
+If replacing “learn/course/review” with “issue/project/task” leaves all priorities/behavior unchanged, the layout **may** lack product-specific content and actions. Inspect task, path and feedback rather than injecting gamification, illustration or flashy Cards merely for differentiation.
 
-## PX3 · 结构先于皮肤
+## PX3 — Structure before skin
 
-- 新产品或核心页面**结构性失败**：比较至少两套信息架构真正不同的方案，例如“下一任务驱动”和“内容探索驱动”，说明适合的人群、首屏顺序、导航、可用数据、交互成本以及移动端布局。
-- 两套方案必须在主角、任务排序、区域组织中有实质区别。只是黑白换灰蓝、卡片换圆角、图标换品牌不算新方案。
-- 已批准布局的局部修复不需要强制多方案；除非用户授权，不为视觉实验推翻正确的工作流。
-- 先评审 UX 后进入 [构图](composition-first-design.md)、[导航](navigation-architecture.md)、[内容密度](page-density-and-content-priority.md)、Design Tokens 与共享组件。
-- 不默认左侧栏、大 KPI 或四宫格；也不一概禁止这些结构。选择由内容、任务频率、视觉焦点和设备决定。
+- For new products or **structurally failed** core pages, compare **at least two materially distinct IA candidates**, such as next-task-driven vs content-exploration-driven. Explain audience, first-screen order, navigation, available data, interaction cost and mobile layout.
+- Candidates must differ in focal subject, task order or area organization—not just white/blue palettes, radius or icon family.
+- An approved layout with a local flaw does not need forced multi-option exploration. Do not overturn a sound workflow without authorization.
+- Review UX first; then use `references/composition-first-design.md`, `references/navigation-architecture.md`, `references/page-density-and-content-priority.md`, design tokens and shared components.
+- Never automatically require sidebar, large KPI or a four-card grid, but do not universally ban them; decide from content, frequency, focal point and device.
 
-## PX4 · 验收与退出条件
+## PX4 — Acceptance and exit
 
-| 维度 | 通过条件 |
+| Dimension | Pass condition |
 | --- | --- |
-| 首要行动 | 第一眼能找到最重要的用户任务 |
-| 产品特征 | 信息与反馈针对当前真实业务，而非仅换术语 |
-| 导航效率 | 无过度重复的同级入口，用户知道下一步 |
-| 状态完整 | 空、加载、错误、无权限、保存/退出可理解 |
-| 视觉焦点 | 首屏焦点对应业务而非装饰 |
-| 证据 | 截图/源码/浏览器/用户研究的证据级别如实标注 |
+| Primary action | Most important real user task is easy to identify at first glance |
+| Product specificity | Content and feedback reflect real domain, not merely renamed generic labels |
+| Navigation efficiency | No excessive duplicate equivalent entrypoints; next step discernible |
+| State coverage | Empty/loading/error/no-permission/save/exit make sense |
+| Visual focal point | First-screen focal region corresponds to user purpose, not ornament |
+| Evidence | Screenshot/source/browser/research evidence level honestly labeled |
 
-**阻断项**：若核心页面的任务结构失败，不能靠调颜色、统一圆角或删 emoji 宣称 UX 重设计完成。用户否决结构时回到 PX2/PX3，而不是在原布局上再换一套皮肤。
+**Blocker:** If task architecture of a core page fails, recoloring, radius unification or emoji removal does not count as completed UX redesign. If the user rejects the IA, revisit PX2/PX3 rather than reskin the same failed layout.
 
-本规则与 [分阶段视觉精修](progressive-visual-refinement-gate.md) 联动，相关原创反例和判定见 [路由案例](../assets/product-experience-routes.json)。自动规则仅检查知识库自洽，不证明真实网页设计达标。
+Coordinate with `references/progressive-visual-refinement-gate.md`; synthetic routing examples are in `assets/product-experience-routes.json`. Automated checks establish authoring consistency, **not real-world UX quality**.

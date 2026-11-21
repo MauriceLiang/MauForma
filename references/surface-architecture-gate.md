@@ -1,64 +1,65 @@
-# Surface Architecture Gate · 先决定是否需要容器，再决定它的外观
+# Surface Architecture Gate — Decide Whether a Container Is Needed Before Styling It
 
-适用所有 Web 网站及应用（Operate / Persuade / Read / Experience）。**大圆角框、没有区分层级的多层卡片、到处是边框**是常见机械式生成结果，但“去 AI 味”并不等于删除所有 Card。表面结构应由内容实体、任务边界、对比需求、交互/状态独立性与艺术方向决定；不能从页面模板逆推业务。
+Applies to all Web products and modes (Operate/Persuade/Read/Experience). Giant rounded frames, nested cards without hierarchy and borders everywhere are common generated patterns. But eliminating “AI-template feel” **does not mean deleting all Cards**. Surface structure follows real content entities, task boundaries, comparison needs, independent interaction/state and art direction—not a page template projected onto business logic.
 
-## v6.18 · 从优质参考学习分组逻辑，不复制整个页面构图
+## v6.18 — Learn grouping principles from strong references, do not clone whole pages
 
-参考案例能提供容器是否必要、表格是否应平铺、章节如何组织的启示；可提取“紧凑而可读、少层叠、视觉关系明确”等原则，但不得逐页复现可识别布局、原业务数据或品牌。参见 `references/design-reference-learning-gate.md`。使用 `references/clean-enterprise-design.md` 时，要先判断当前产品确实适合此类型的密度和工作流。默认应参考项目自己的任务与信息架构，而不是把样例所有页面改造成同一种工作台。
+References can teach when a container adds value, when tables should be flat and how sections relate. Extract “compact yet legible, few layers, clear relationships”; never reproduce identifiable reference layouts, original business data or branding page by page. See `references/design-reference-learning-gate.md`. If using `references/clean-enterprise-design.md`, verify the target product actually needs that density/workflow. Project-specific tasks and information architecture outrank a sample workbench template.
 
-## v6.16 · Surface 决策与 Gap 决策不能混为一谈
+## v6.16 — Surface decisions are not spacing decisions
 
-先决定需不需要面板，再依据 `references/semantic-spacing-rhythm-gate.md` 决定主容器与相邻模块的 **inside / peer / section / connected** 空间关系。新建与已有页面的 Card/Panel 须执行 `references/surface-edge-accent-gate.md` Gate S0：**默认无装饰彩条，禁止与边框或圆角贴合的彩色粗侧边条**，确需强调则使用有可见间隙的独立外置短标记。独立图表允许分别用 Card，但不能因为同处一个父框就让它们上下紧贴；两个本来相连的 Tabs/Panel 则可以共边，不必强行插入 16px。不要以 padding 代替外部 gap，也不要因为视觉拥挤就无差别删除所有 Card。
+First decide whether the panel exists. Then use `references/semantic-spacing-rhythm-gate.md` to define **inside/peer/section/connected** relationships among container and neighbors. Both inherited and new Card/Panel use `references/surface-edge-accent-gate.md` Gate S0: **no decorative color rail by default, no thick bar flush against rounded borders**; a justified marker must be short, external and visibly separated. Separate chart Cards can still be legitimate, but must not touch vertically merely because they share one parent. Tabs attached to their own Panel may intentionally have a shared edge and **zero gap**; don't blindly add 16px. Card padding cannot substitute for external gap. Do not delete all Cards indiscriminately just because the UI is crowded.
 
-## 1. Gate A：Surface Decision Tree（先选形态，后画框）
+## 1. Gate A — Surface Decision Tree
 
-1. **这些内容是否是同一个可连续扫描或比较的集合？** 若是记录、订单、流水、成员、课程目录、任务等同类条目，优先评估 **open collection / flat table / list**：页头、工具条、表头、行分隔，必要时仅一层轻边界。列表中的每行不是天生一张 Card。
-2. **是否存在独立的交互、状态、数据范围或需要视觉隔离的复杂模块？** 若是，可使用 **bounded panel**，但同一表面内的每个标题/筛选/表格不必再套 Card；只保留能解释分组关系的边界。
-3. **每个条目是否以独立对象为主，包含异质媒体、图像/商品或独立行动？** 若是可使用 **entity cards / gallery**；允许品牌化图片大卡、不同尺寸/不对称。
-4. **是否是长篇阅读或连续叙事？** 优先评估 **open editorial flow**，以行宽、章节节奏、标题、引用组织，不机械用 Card 包每段。
-5. **是否是专业工具多区域协作（编辑器/IDE/复杂配置）？** 可采用 **split panes / grouped work areas**；隔断与信息层级优先于漂浮面板。
-6. **是否是创意体验/营销主视觉？** 可使用 **hero stage / immersive canvas**；大 Surface 可能是设计主角，但不能覆盖必要操作与内容。
+1. **Are these items one continuous scannable/comparable collection?** Records, orders, transactions, members, course listings and tasks often fit an **open collection / flat table / list** with heading, toolbar, column headers and row separators, perhaps one light boundary. Every list row is not automatically a Card.
+2. **Is this an independent interaction, status, data scope or complex block needing separation?** A **bounded panel** can be appropriate, but its heading/filter/table shouldn't each need another Card. Preserve only boundaries that communicate grouping.
+3. **Is each entry an independent object with heterogeneous media, product image or independent action?** Consider **entity Cards/gallery**, including branded large media and deliberate asymmetry.
+4. **Is this long-form reading or narrative?** Prefer **open editorial flow** with measure, chapter rhythm, headings and quotations rather than boxing every paragraph.
+5. **Is this professional multi-area editing (IDE/editor/complex settings)?** Use **split panes/grouped work areas** where stable divisions and ownership matter more than floating cards.
+6. **Is this a creative experience or marketing Hero?** A **Hero stage/immersive canvas** may dominate the page, but essential content/actions must remain reachable.
 
-以上是候选，不是自动选项。记录至少一个**被拒绝的合理替代方案及原因**（例如“拒绝全页大卡：过滤工具栏和表格同属一个连续集合、外框无新增语义”）；小范围修复不要求多方案设计汇报。
+These are **candidates**, not automatic choices. Record at least **one plausible rejected alternative and why** (e.g. “No full-page Card: toolbar and table form one continuous collection, an extra border adds no meaning”). Tiny fixes need no multi-option design presentation.
 
-## 2. 用 Surface Value Test 防止“画框即设计”
+## 2. Surface Value Test — avoid “drawing a box means designing”
 
-对主容器逐个问：
+Ask for each major container:
 
-- **范围**：它包围的是独立任务/对象/状态，还是仅把页面全部内容圈起来？
-- **区分**：移除外框后能否仍由标题、列、行分隔、背景、间距辨别关系？若能，优先降低或移除表面层。
-- **层次**：是否出现 Page background → mega card → toolbar card → list card → row card 等同语义包裹？重叠的外观层级应合并。
-- **密度**：容器内可读内容是否与其占地相称？超宽空白、每行额外 padding、空信息小标题不产生专业感。
-- **视觉方向**：边框/圆角/阴影是否来自项目 tokens 与真实 Art Direction，而不是“通用 SaaS UI”？是否用 border、伪元素、渐变、inset 阴影制造与容器外框粘连的彩色粗竖条？
-- **响应式**：较窄窗口或 200% 放大时，分组可否自然重排，滚动、最后一项、焦点完整可达？
+- **Scope:** Does it hold an independent task/object/state or simply enclose everything on the page?
+- **Distinction:** Could title, columns, separators, background and spacing preserve comprehension without a frame? If so, reduce or remove the surface.
+- **Layers:** Does the UI repeat Page background → mega Card → toolbar Card → list Card → row Card for essentially one logical group? Consolidate redundant shells.
+- **Density:** Is the content worth the space occupied? Huge blank regions, row padding and useless mini headings are not professional polish.
+- **Art direction:** Do borders/radius/shadows follow project tokens and real art direction rather than generic SaaS? Are borders, pseudo-elements, gradients or inset shadows creating thick colored rails attached to the frame?
+- **Responsive:** At narrow viewports/200% text, can relationships reflow without clipping, unreachable focus or loss of final scroll access?
 
-做两版灰阶 wireframe 对比：**A：开放式分区/直接表格**，**B：单层有界面板**；若媒介主导则比较 **C：实体卡片/画廊**。比较的是**任务完成效率、内容对齐及容器语义**，而不是谁“看起来更高级”。不要求产出所有三个版本，明确有依据选择即可。
+Compare grayscale wireframes: **A — open sections/direct table**, **B — one-layer bounded panel** and, when media-led, **C — independent object Cards/gallery**. Compare **task speed, alignment and grouping semantics**, not which style looks “premium.” Producing all three is unnecessary when one decision is adequately grounded.
 
-## 3. Pattern 选择与适用边界
+## 3. Pattern choices and boundaries
 
-| 模式 | 有价值的用途 | 不合理的默认 | 注意 |
+| Pattern | Valuable use | Poor default | Verify |
 | --- | --- | --- | --- |
-| Open collection / flat table | 大量同构对象、状态扫描、过滤排序 | 所有行继续套圆角卡片 | 列标题、行区分、hover/focus、长字段 |
-| Single bounded panel | 真正独立的数据范围、设置分组、分析块 | Page 下再套多层只作装饰的大 Card | 面板标题与子内容同一信息架构 |
-| Entity cards / gallery | 商品、作品、课程、独立对象媒体/入口 | 没有差异的记录也按卡片网格 | 内容类型、图像比例与互动 |
-| Editorial flow | 文章、文档、教学步骤与例子 | 每段文字单独灰底圆角框 | 正文行宽、插图、引用、导航 |
-| Split workspace | 专业编辑器、资源树/详情/预览 | 用多张随机漂浮卡替代稳定工作区 | 真实拖拽/折叠/焦点/尺寸 |
-| Hero / immersive stage | 品牌/体验式视觉叙事 | 把业务表格拉到巨型 Hero 中 | 内容可达、对比度、性能 |
+| Open collection / flat table | Many homogeneous records, status scanning, sort/filter | Rounded Card for every row | Columns, separators, hover/focus and long fields |
+| Single bounded panel | Independent data range, settings group, analysis module | Giant nested Cards beneath the page frame | Panel heading/content share one IA |
+| Entity Cards / gallery | Products, works, courses, separate media/actions | Identical record rows as a Card grid | Types, media ratios and actual interaction |
+| Editorial flow | Articles, docs, learning steps and examples | Each paragraph in a gray rounded box | Line width, media, quotes, navigation |
+| Split workspace | IDE, resource tree/details/preview | Random floating Cards instead of stable workspace | Drag, collapse, focus and dimensions |
+| Hero / immersive stage | Brand/experience storytelling | Business table stuffed into a giant Hero | Reachable content, contrast and performance |
 
-任务监控、用户管理、订单记录、分析事件等 `Operate` 页面可从 flat table 起步；**这不是要求所有后台放弃卡片**，而是要求对容器层级提供可检验的理由。局部功能如展开详情、告警、过滤器可有独立表面，但不能无原因堆砌。
+Operate task monitoring, member management, transactions and analytics often start with a flat collection. **This does not forbid Cards in admin products**; it requires a checkable reason for any independent surface. Details, warnings and filters may have separate panels when useful, not by default.
 
-## 4. 从成熟设计系统提炼的原则与来源
+## 4. Principles and sources from established design systems
 
-IBM Carbon Data Table：标题、工具栏、表头、行与分页组成表格结构；表格在主内容区有足够宽度、不要塞在过小容器，行内动作按需组织。借鉴的是**数据集合与动作组织**，非其品牌配色或源码。
+**IBM Carbon Data Table** organizes title, toolbar, header, rows and pagination as one table structure. Give tables enough main-content width; don't trap them in overly narrow Cards. Design row actions deliberately. Transfer **collection/action organization**, not Carbon's branding or code.
+
 - https://www.carbondesignsystem.com/components/data-table/usage/
 - https://github.com/carbon-design-system/carbon-website/blob/main/src/pages/components/data-table/usage.mdx
 
-对容器数量、圆角大小、边框轻重**没有通用定量阈值**；机器工具只核验设计方案/标记与示例，不可判断“高级”或用户喜欢哪种设计。
+There are **no universal numeric cutoffs** for container count, radius or border weight. Automated tools can validate authored contracts/fixtures, but cannot score “premium aesthetics” or guess user taste.
 
-## 5. Gate B / D 验收
+## 5. Gate B / D acceptance
 
-Gate B：确定 Table/List/Panel/Card 的共享所有权与 Tokens，区分“页面主要布局”与“真正组件容器”。对表格检查 column sizing、操作布局、状态/行高、交互边界；再读 `references/control-geometry-gate.md` 处理不可拆分的操作标签。
+**Gate B:** Establish shared Table/List/Panel/Card ownership and tokens; distinguish page composition from actual component surfaces. For tables, check column sizing, action layout, statuses/row heights and behavior; then use `references/control-geometry-gate.md` for atomic action labels.
 
-Gate D：真实页面在宽屏、矮屏、窄屏、文字 200% 与异常数据（长文字、空、失败）下对照整体截图；检查视觉焦点、行列节奏、遗留/新增卡片彩条是否贴边和最下方可达性。允许创意或品牌性超大面板，只要有明确内容理由。**静态决策计划 PASS 不代表视觉美学 PASS**。
+**Gate D:** Compare full-page **real browser screenshots** across supported wide/short/narrow windows, 200% text and edge data (long labels, empty/error). Confirm focus, rhythm, attached inherited/new accent bars and final scroll access. Large creative or brand panels can remain if actual content justifies them. **A passing static design plan does not prove visual quality.**
 
-参考：`references/whitespace-and-surface-composition.md`、`references/component-craft-gate.md`、`references/perceptual-hierarchy-gate.md`。
+Related: `references/whitespace-and-surface-composition.md`, `references/component-craft-gate.md`, `references/perceptual-hierarchy-gate.md`.

@@ -1,88 +1,128 @@
-# 项目设计系统：MASTER 与页面覆盖
+# Project Design Hierarchy — One Approved System, Context-Specific Overrides
 
-本项目采用全局 MASTER 与页面 Override 的分层模式，文件格式和实施规则为独立设计；外部方法论参考与谢意见 README。
+**Purpose:** Distinguish the user's authoritative design decisions from Agent proposals, observed code, synthetic examples and external references. Multi-page products should have coherent foundations without forcing the same page density or composition everywhere.
 
-## 建议项目输出目录（在用户项目内创建）
+## Authority levels
 
-`design-system/MASTER.md`：品牌特征、用户已确认的风格、语义色/字体/间距/圆角/动效 Tokens、主组件库、共享组件表、可访问性规范、决策来源与版本。
+1. **Explicit user requirement:** Latest specific instruction, requested product behavior, confirmed color, component/navigation direction and constraints.
+2. **Confirmed project design:** Approved `design-system/MASTER.md`, decisions and signed-off page variants.
+3. **Actual working architecture:** Existing framework, component APIs, installed packages, data flow and routes.
+4. **MauForma guidance:** General reusable principles and conditional gates.
+5. **Synthetic samples/external trends:** Inspiration, never binding project truth.
 
-`design-system/decisions.json`：参照 MauForma `assets/design-brief.schema.json` 记录来源（confirmed/delegated/inherited/unresolved）、风格与参数、用户原话、设计理由与待解决事项。
+If a newer explicit instruction contradicts an older generic preference, follow the newer instruction for the affected scope. Do not infer blanket authorization to rewrite unrelated decisions.
 
-`design-system/pages/<route>.md`：只记录相对 MASTER 的**例外**（页面模式、主视觉、密度、构图、动效限额、不同于全站的局部需求）。不得复制全量 MASTER 导致两套冲突配置。
+## Source-of-truth structure — adaptable, not a required directory dump
 
-## 继承与冲突优先级
-
-1. 用户新近明确确认的页面级指令；
-2. 当前页面覆盖文件中的已确认/继承决策；
-3. MASTER 的品牌/设计 Tokens/共享组件契约；
-4. Agent 基于内容给出的未确认推荐。
-
-若页面例外与全局色彩语义、键盘、对比度或组件可访问性冲突，不能静默覆盖；应解释冲突并征求需要的决定。样式覆盖不应允许页面直接重新定义全局 Token（例如随意用第三种 --primary）。
-
-同一产品可以：首页采用 Premium Showcase 的大图低密度；商品页采用可扫描商品网格；会员管理采用 Functional 高密度。全站仍共享品牌字体/语义颜色/组件状态。
-
-## 多 Agent 开发协作
-
-每次开发前，Agent 读取 MASTER + 相关 page override + 现有组件契约。新页面只提议必要覆盖，修改 MASTER 必须说明影响全站哪些组件；不要在业务页面暗中增加第二套主色/按钮。
-
-每次提交需列出：共享 Tokens 变更、组件契约更改、页面例外、测试与设计依据。变更用户确认的选择应获得新的授权。
-
-## 参考样例
-
-`examples/design-system/MASTER.md` 与 `examples/design-system/pages/home.md`、`examples/design-system/pages/dashboard.md`。这些是演示模板，不是要求用户项目使用完全相同的主题色。
-
-## 可执行的初始化命令
-
-```bash
-python3 scripts/init_design_system.py --project-root . --name "Example" --style editorial --page home --mode Persuade
-# 默认 PREVIEW ONLY
-python3 scripts/init_design_system.py --project-root . --name "Example" --style editorial --source confirmed --page home --mode Persuade --apply
+```text
+design-system/
+  MASTER.md                 # Approved shared tokens and component roles
+  decisions/                # Confirmed/delegated records with rationale
+  pages/                    # Page-specific purpose, layout and density overrides
+  features/                 # Resumable task-specific design records when useful
+  observed-tokens.json      # Code-derived observations, NOT user approval
 ```
 
-`--source confirmed` **仅当用户明确选择该风格**时使用；AI 自行决定使用 delegated。已存在的 MASTER/decisions/页面文件默认拒绝覆盖，只有用户明确授权并传入 `--force --apply` 才可改写。脚本不会替你推断业务事实和素材。
+Use the existing project's established folders when available. These paths are illustrative; **do not create empty documentation trees for every small patch**.
 
-## v6.4 · 页面级构图计划的保存方式
+## Decision provenance and language
 
-涉及新建页面/重大改版时，在用户项目中另存 `design-system/composition-brief.json`（结构形状见 `assets/composition-brief.schema.json`），列出内容证据、2–3 个有主区域/排序差异的候选、推荐/选择来源、颜色方向与去装饰审查。具体选定方案由 `design-system/pages/<route>.md` 引用而非重复全文。MASTER 继续负责共享品牌角色和组件 Tokens；结构选择不应自动强制各页面使用相同卡片或同样的 Hero。
+Record `confirmed / inherited / delegated / proposed / unresolved` as separate states. “The Agent recommends” remains `proposed`, not `confirmed`. Silence or a request to write code is not broad permission to redefine branding, install dependencies or add cinematic motion.
 
-运行 `scripts/validate_composition_brief.py <brief-path>` 可检查内容引用、差异与未验证数据的处理，但不证明艺术方向优秀或页面已在浏览器运行。
+Retain the actual product locale. An English Agent instruction file **never means the user's UI must be translated to English**. On bilingual products, check real translated copy and layout rather than setting a global English default.
 
-## v6.6 · 配色选择记录必须进入 MASTER，但推荐色不能提前入库
+## Global MASTER versus page override
 
-新配色尚待用户确认时使用项目的 `design-system/sidebar-color-decision.json`（参照 `assets/sidebar-color-decision.schema.json`）记录候选与 `status=pending`；真实项目 Tokens **保持既有已批准方案**，或继续完成无颜色依赖的任务。选择后将选定方案、自定义颜色原话、来源（confirmed / delegated / inherited）和 Sidebar/Topbar/Main/Card/Chart 的协调理由写入记录，再更新唯一的 MASTER Token 来源。
+MASTER should hold shared colors, type roles, spacing scales, radius, interaction/state semantics, icon and Motion Tokens, component contracts and navigation responsibilities. Each page can choose its task-specific density, content hierarchy, layout, editorial rhythm, media emphasis or allowed motion intensity. A marketing landing can be expressive, while settings/operations remain compact under the same product branding.
 
-如果用户明确指定 `#RRGGBB`，在选色记录 `user_constraints` 中固定目标角色，发布的 `resolved_colors` 必须原样保留；`scripts/validate_sidebar_color_decision.py` 检查不得无授权覆盖。已有已确定配色可直接 `inherited`，只改功能不需要重开主题选择。
+Do not let page-local CSS silently redefine global brand tokens. Conversely, do not erase a justified page exception merely because MASTER is more compact.
 
-## v6.7 · 导航 IA 记录与断点映射
+## Design drift categories
 
-项目可建立 `design-system/navigation-decision.json`，参考 `assets/navigation-decision.schema.json`：记录真实一级目的地 ID、任务/设备/层级、候选架构、用户确认或授权的来源以及 desktop/mobile 的可见+overflow 路由映射。**推荐仍 pending 时不可把候选固化成已确认架构**。MASTER 记录全局导航职责和组件契约，页面 override 只保留有意义的局部 Tab/对象树例外；不在每个路由重复自建一套侧边菜单。跨断点需保存当前页面、过滤条件与对象上下文。可运行 `scripts/validate_navigation_architecture.py <decision-path>` 做静态一致性审查。
+- **Tool drift:** Dependency/formatter/browser version behavior changes.
+- **Schema drift:** Token/decision document structure changes.
+- **Design truth drift:** Source/UI diverges from actually approved choices or real task meaning.
 
-## v6.8 · 页面级内容筛选与密度决策
+`scripts/check_design_drift.py` records code-observed variables and compares versions; a generated observed baseline is **not MASTER truth**. Do not overwrite `MASTER.md` or approved design decisions merely to make a static drift report green. Design truth requires user/brand authority and real rendered evidence.
 
-可在用户项目保存 `design-system/pages/content-plan.json`，形状参考 `assets/page-content-plan.schema.json`；按路由记录 primary_task、用户状态、每块内容是 primary/supporting/conditional/deferred/removed、次级入口、页面级 airy/balanced/productive/compact 和实际验证。MASTER 保留共用主题/字级/间距 Token，不强制所有页面复制同一组卡片或固定留白比例。用户选择来源为 confirmed/delegated/inherited/provisional，不将 Agent 推荐冒充批准。真实关键信息不能仅为了留白被删除。
+## Multi-agent and resumable work
 
-## v6.9 · 每页 Grid/Viewport 结构计划与滚动策略
+Component/design lead owns shared tokens; feature agents compose using them. Changes to foundational components should identify all affected callers and reverify. Feature-level records may be created as needed with `scripts/feature_design_flow.py`, but are not mandatory for every tiny task.
 
-新建数据看板、主要布局重构可在项目保存 `design-system/pages/layout-integrity.json`（参照 `assets/layout-integrity.schema.json`）：记录目的地、任务、grid pattern、行/列及同级对齐组、移动端阅读顺序、主滚动容器、fixed bar 与末端 padding 策略、浏览器截图证据。MASTER 可共享空间、列轨和滚动安全 Token，但**页面不需要采用完全相同的两列比例**。若是 Agent 推断的临时布局记 provisional，不将其冒充用户确认。真实用户指定的品牌/颜色/导航依旧继承。
 
-## v6.10 · 比较页的数据与可视化对齐契约
+## Source-parity: original file structure and page conflict precedence
 
-在项目比较、套餐比较等路由使用 `design-system/pages/comparison-contract.json`（schema 参考 `assets/comparison-contract.schema.json`）管理对象 ID、指标口径、时序 window/buckets、series/legend、表格列、数据覆盖与真实浏览器 QA。比较数据契约应来自实际源数据并标用户确认的视觉策略，不能默认把 Skill 中静态演示数字复制到业务图表。目标项目需要在 E2E 中验证对象选择/时间切换联动，必要时对 DOM 添加 `data-mf-*` 实测钩子，但不要求框架组件全面改名。
+Recommended outputs **inside the user's project**:
 
-## v6.11 · Run Monitor 页面级状态契约
+- design-system/MASTER.md: brand, confirmed style, semantic color/type/spacing/radius/motion tokens, primary UI library, shared components, accessibility rules, provenance, version.
+- design-system/decisions.json (assets/design-brief.schema.json): confirmed/delegated/inherited/unresolved origin, style parameters, actual user wording, reasoning and unresolved questions.
+- design-system/pages/<route>.md: only genuine differences from MASTER (page type, focal point, density, composition, motion allowance and page-specific requirements). **Never copy the whole MASTER** into every page and create conflicting configurations.
 
-可在用户项目中保留 `design-system/pages/task-run-contract.json`（结构见 `assets/task-center-run.schema.json`），将 run ID、状态聚合、进度计算单位/分母稳定性、重试权限、详情路径、更新节奏与 E2E 证据与页面设计联动。MASTER 保留共享色彩状态 Token、列表排版和容器对齐；但用户是否要统计侧栏/紧凑列表/详情抽屉应按任务使用方式决定，不在全站强制。不得把示例 Mock 记录复制成生产真实任务。
+**Conflict order:** (1) latest explicit page-level instruction; (2) confirmed/inherited page override; (3) MASTER branding/tokens/shared component contracts; (4) unapproved Agent recommendation. If a page override conflicts with global color semantics, keyboard access, contrast or component accessibility, **explain and escalate**; never silently replace global tokens with an arbitrary new --primary. The same product can use a spacious expressive home, scannable product grid and compact management tool while sharing branding and component states.
 
-## 设计漂移的三类来源（B12）
+In multi-Agent work, read MASTER, relevant page override and current component contracts before implementation. A global MASTER change must identify every affected component. Each commit reports shared token changes, component-contract changes, page exceptions, tests and design grounds. A new authorization is required to change user-confirmed choices.
 
-- **Tool/version drift（工具版本漂移）**：Agent Skill 或脚本版本变更，可能需要核对命令和 schema；不会自动意味着产品配色错误。
-- **Schema drift（设计文件格式漂移）**：MASTER/decisions 的字段或路径约定变化，可在明确授权后迁移，不把格式更改当成用户重新同意品牌色。
-- **Truth drift（设计事实漂移）**：文档叙述与实际源码/页面效果不一致，必须核对当前用户意图、审批来源、目标页面与视觉证据，**不能仅凭静态快照判定哪一边才正确**。
+## Source-parity: initialization and write safety
 
-`observed-tokens.json` 是代码观测，不是全站已确认的权威 Tokens。工具不得为生成全绿报告而改写 MASTER、品牌决策或已接受的页面例外。英文边界见 `references/semantic-boundaries.en.md` B12。
+Example templates: examples/design-system/MASTER.md; examples/design-system/pages/home.md; examples/design-system/pages/dashboard.md. They are illustrative, not mandatory themes.
 
-## 运行时 Design Drift 检查与功能级续接
+~~~bash
+python3 scripts/init_design_system.py --project-root . --name "Example" --style editorial --page home --mode Persuade
+# PREVIEW ONLY by default
+python3 scripts/init_design_system.py --project-root . --name "Example" --style editorial --source confirmed --page home --mode Persuade --apply
+~~~
 
-- 已有项目在修改 Tokens 前先读现有真实源码与已确认的 MASTER/decisions。使用 `scripts/check_design_drift.py` 制作**观测基线**（需 `--write-baseline` 明确开启），之后检查 CSS 自定义变量增删改、局部硬编码颜色候选。基线与用户批准的 Token **不是一回事**，不据此自动改写 MASTER。
-- 较大的功能开发将阶段性文档存于项目 `design-system/features/<slug>/`，使用 `scripts/feature_design_flow.py` 创建（默认仅预览）与查询进度、逐项登记证据；只引用 MASTER，不在每个功能下复制品牌与色彩配置。
-- 恢复会话时先读取 feature state 与已有完成证据；没有真实验收不能把任务标记 `VERIFIED`。详情见 `references/skill-gap-workflows.md`。
+Use --source confirmed **only when the user explicitly selected that style**; an authorized Agent choice uses delegated. Existing MASTER/decisions/page files refuse overwrite by default; explicit authorization together with --force --apply is required to replace them. A script cannot infer real business facts or design assets.
+
+## v6.4 — Per-page composition plan
+
+For new pages/major redesigns, a project-local design-system/composition-brief.json (assets/composition-brief.schema.json) may record content evidence; **2–3 meaningfully different candidates** for main region/order; the recommendation and selection authority; color direction; and a remove-decoration critique. The selected page override references, rather than duplicates, the brief. MASTER owns brand/component tokens; choosing one composition does not impose identical Cards/Heroes across pages.
+
+scripts/validate_composition_brief.py <brief-path> may check source references, candidate differences and handling of unverified data. It **cannot establish art direction quality or a live-page pass**.
+
+## v6.6 — Color choice must not enter MASTER before authorization
+
+When a new color proposal is unconfirmed, save candidates to design-system/sidebar-color-decision.json (assets/sidebar-color-decision.schema.json) with status=pending. **Keep previously approved product tokens unchanged**, or work only on tasks independent of the unresolved color choice. After approval, record the chosen option, original user wording for custom colors, confirmed/delegated/inherited provenance and coordinated Sidebar/Topbar/Main/Card/Chart color rationale; only then change the **single** MASTER token source.
+
+An exact user-provided #RRGGBB must be fixed for its specified role under user_constraints; resolved_colors **must preserve it exactly**. scripts/validate_sidebar_color_decision.py checks unauthorized replacement. Approved palettes may simply be inherited; a functional bugfix should not automatically reopen a theme choice.
+
+## v6.7 — Navigation IA decision and breakpoint map
+
+The project may use design-system/navigation-decision.json (assets/navigation-decision.schema.json) to record actual destination IDs, task/device/hierarchy, alternative navigation architectures, approval/delegation provenance, and desktop/mobile visible plus overflow route maps. **A pending recommendation may not become an approved IA.** MASTER owns global navigation responsibilities; page overrides only meaningful local Tabs/object-tree exceptions. Do not create a fresh sidebar on each route. Across breakpoint changes retain current route, filters and object selection. Static contract: scripts/validate_navigation_architecture.py <decision-path>.
+
+## v6.8 — Page content curation and density decision
+
+Per-route design-system/pages/content-plan.json (assets/page-content-plan.schema.json) may record primary_task, user states, each group as primary/supporting/conditional/deferred/removed, the secondary navigation path, local density as airy/balanced/productive/compact, and real testing. Shared theme/type/spacing tokens live in MASTER; pages are **not** required to use identical Cards or fixed whitespace ratios. Decision status is confirmed/delegated/inherited/provisional; an Agent suggestion is **not approval**, and actual critical information cannot be removed merely for blank space.
+
+## v6.9 — Grid, viewport and scrolling strategy
+
+For dashboards or major layout redesigns, design-system/pages/layout-integrity.json (assets/layout-integrity.schema.json) may describe route/task, grid pattern, aligned row/column peers, mobile reading order, primary scrolling container, fixed-bar and end-padding strategies, and browser evidence. MASTER may share spacing/grid/scroll-safety tokens but **must not require identical two-column ratios**. Inferred interim designs are provisional, not user-confirmed. Keep explicit brand/color/navigation decisions.
+
+## v6.10 — Comparison data and visualization alignment contract
+
+For product, project or plan comparisons, design-system/pages/comparison-contract.json (assets/comparison-contract.schema.json) records object IDs, metric definitions, time windows/buckets, series/legend, table columns, data coverage and real browser QA. Data must be grounded in the actual source; never populate business charts from synthetic Skill demo numbers. Real E2E verifies object selection and time-window linkage. Targeted data-mf-* browser hooks are allowed where useful, **without renaming an entire application's component architecture**.
+
+## v6.11 — Run Monitor state contract
+
+The project may save design-system/pages/task-run-contract.json (assets/task-center-run.schema.json) recording run IDs, status aggregation, progress units/stable denominator, retry permissions, detail routes, update frequency and E2E evidence. MASTER owns shared status colors, list typography and alignment. Whether to show a statistic sidebar, compact rows or details drawer depends on the actual task and is **not globally mandatory**. Never pass synthetic Mock run records off as genuine production tasks.
+
+## B12 — Distinguish three types of design drift
+
+- **Tool/version drift:** Skill/script/tool version changes may require checking commands and schemas; they do **not** automatically imply a product palette error.
+- **Schema drift:** MASTER/decision field or location changes may be migrated **with authorization**; a structural migration is not renewed permission to change brand colors.
+- **Truth drift:** Documentation and actual source/rendered UI conflict. Resolve via current user intent, provenance, target page and visual evidence; **a static snapshot alone cannot decide which side is correct**.
+
+observed-tokens.json is code observation, **not user-approved canonical Tokens**. Never rewrite MASTER, accepted brand decisions or page exceptions to make a static report green. See references/semantic-boundaries.en.md B12.
+
+## Runtime drift check and resumable features
+
+- Inspect actual source and confirmed MASTER/decisions before modifying tokens. scripts/check_design_drift.py writes an **observational baseline only with explicit --write-baseline**. Then inspect CSS-variable changes and local hardcoded colors. Observed baselines are **not equivalent to approval** and cannot authorize rewriting MASTER.
+- For larger features, use project design-system/features/<slug>/ with scripts/feature_design_flow.py (defaults to preview) to record steps, evidence and progress. Reference MASTER rather than duplicating brand/visual settings.
+- When resuming a session, inspect saved feature state and completion evidence. Without actual acceptance testing, do not mark it VERIFIED. See references/skill-gap-workflows.md.
+
+
+## Quality evidence and escalation
+
+For significant change, record scope, approved/inherited constraints, observed defect, proposed fix, actually modified components and verified route/state/viewport. Static checks and synthetic examples remain separately labeled; a complete green CI on Skill examples is not a substitute for the target product's real user workflows.
+
+**Escalate** real conflicts over a fixed user HEX, approved navigation type, licenses, explicit performance limits or interaction state rather than silently choosing whichever design looks prettier. Genuine unknowns remain `unresolved`, not a fabricated user decision.

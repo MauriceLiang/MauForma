@@ -1,117 +1,117 @@
-# 反例库补充：通用 Web 设计避雷与品类例外
+# Cross-Product Web UI Anti-Pattern Catalog — With Valid Exceptions
 
-## 如何判断反例
+## Decide by purpose, not by banning visual techniques
 
-**错误不来自某种颜色/组件绝对不好看，而来自没有信息价值、没有任务必要性、破坏可用性与一致性。** 错误应包含：所在页面、实际影响、替换方案、验证方法。
+**An anti-pattern is not inherently a particular color, CSS value, component or animation.** It is a pattern without information value or user-task justification, or one that damages usability and coherence. For each observed flaw report its **actual location, impact, replacement and verification**, not an aesthetic slogan.
 
-| # | 反例 | 问题 | 优秀替代 | 例外 |
-|---|---|---|---|---|
-| 1 | 后台主标题前又加“账号与权限”等重复小字 | 重复表达，不增加导航信息 | 紧凑 PageHeader：一个主标题 + 必要说明 | 有意义的面包屑可以保留 |
-| 2 | 中文功能页加无意义英文名称 | “USER MANAGEMENT/用户管理”浪费空间 | 界面语言一致，必要术语有解释 | 多语产品、专有英文品牌名 |
-| 3 | 功能页 80px Hero 标题 | 首屏主要操作被挤走 | 24–32px 常规标题，优先操作区 | 营销官网主 Hero |
-| 4 | 每页“让管理更高效”口号 | 空泛且模板化 | 写清权限范围/筛选规则/当前数据 | 产品首页可有品牌主张 |
-| 5 | 大卡片嵌套五层卡片 | 层级过多，吞噬空间 | 用标题、间距、分割线与背景层级组织 | 复杂可交互面板有明确容器边界 |
-| 6 | 所有按钮都用主色填充 | 操作优先级混乱 | 一个 primary，其他 secondary/ghost/danger | 确有两个同等平行流程时说明原因 |
-| 7 | 所有地方都 32px 圆角 | 密集数据/弹窗视觉比例不协调 | 圆角尺度随嵌套与密度变化 | 创意品牌的强视觉风格 |
-| 8 | 图标无语义、到处 Emoji | 认知负担和风格割裂 | 一套图标系统，只有功能/状态才用 | 面向儿童或娱乐主题合理装饰 |
-| 9 | 多个色彩鲜艳的渐变 | 主要内容失焦 | 以语义色和少量强调色为主 | 艺术/活动页面可有分区渐变 |
-| 10 | 页面只做静态的精美 Mock | 真实操作不能完成 | 加载/错误/空/权限/成功均可用 | 明确标注为静态设计稿 |
-| 11 | 列表每项做飞入 700ms | 滚动与工作效率差 | 普通数据页短暂/无入场动画 | 作品展示可更慢 |
-| 12 | 动画依赖失败造成文字不显示 | 业务内容不可用 | 默认可见，动画渐进增强 | 无 |
-| 13 | 同一元素同时被 Motion 和 Anime.js 控制 | CSS/transform 冲突 | 一个动画属性明确单一所有者 | 分工到不同子元素时可并存 |
-| 14 | 独立引入多套组件库 | Button/Field 外观与状态不一致 | 一个主组件库 + 必要补充库封装 | 渐进迁移阶段需计划收敛 |
-| 15 | 大表格没有筛选/分页/空态 | 难以使用与定位 | 表格工具条、状态和数据反馈 | 极小静态表格可以简化 |
-| 16 | 移动网页直接隐藏核心功能 | 任务无法完成 | 手机重排与操作优先级 | 不支持手机时明确告知，而非假适配 |
-| 17 | React 技术栈直接复制到 Vue | 编译/行为失败 | 按框架映射选择对应包与代码 | 无 |
-| 18 | 没有动效减少模式 | 运动敏感用户无法操作 | reduced-motion / 停止循环动画 | 无 |
-| 19 | 图表无单位/截断轴误导 | 数据解读错误 | 单位、范围、标签、来源清楚 | 需特殊分析时明确标识 |
-| 20 | 以组件美观取代键盘交互 | 鼠标能点但无法 tab/esc | 语义、ARIA、键盘焦点与可访问控件 | 无 |
-| 21 | 过度引入 Magic/Aceternity | 包体大，视觉强占注意力 | 少数真正契合品牌的部件 | 产品视觉实验/作品展示 |
-| 22 | 重写现有已稳定组件 | 维护成本翻倍，风格割裂 | 先 theme/variant 改造已有组件 | 组件确实有无障碍严重缺陷时 |
-| 23 | 导航同时用亮底、左侧高亮竖条、外发光和高亮图标 | 同一个 Selected 被重复强调，模板痕迹明显 | 默认一套主选择信号，保留独立键盘 Focus | 树形层级/章节/时间轴线确实编码额外信息 |
-| 24 | 最近打开与主功能导航复用相同强激活样式 | 无法区分当前路由与历史对象 | 最近对象更轻的选中反馈，明确对象状态 | 当前对象本身即唯一主工作台入口 |
-| 25 | 暗色侧栏背景蓝、选中蓝、亮条青与橙点杂糅 | 颜色争抢注意力；状态点含义不明确 | 统一中性色阶、主动作强调、语义状态分离 | 警告/失败/未读点有实际意义和说明 |
-| 26 | 顶栏、卡片、Tabs 全部叠加阴影、渐变、装饰标签 | 页面视觉权重平均化且拥挤 | 上下文与任务优先，边界与信息层级服务内容 | 品牌创意网站具有明确视觉叙事 |
-| 27 | 后台表格每行都是悬浮卡片或各列都是彩色标签 | 信息比较与扫描效率差 | 对齐表格、只给有含义的状态语义色 | 移动端表格转卡片有合理需求 |
-| 28 | Tabs 选中同时有胶囊底、底边高亮和霓虹边 | 重复视觉信号 | 主选中系统只选择 pill 或 underline；键盘焦点另保留 | 两个信号确实表达不同信息 |
-| 29 | 搜索框伪装快捷键、分栏把手只有装饰 | 功能不可用，阻碍键盘操作 | 搜索有范围/清除/结果反馈，分栏支持键盘与最小尺寸 | 明确标注静态 Mock 并非完成实现 |
-
-## v6.5 · 文案与字体层级的高频反例
-
-| # | 反例 | 问题 | 优秀替代 | 例外 |
+| # | Bad pattern | Why it fails | Better approach | Valid exception |
 | --- | --- | --- | --- | --- |
-| 30 | 品牌下自动添加 `ANALYSIS STUDIO` | 非正式品牌的英文小字是伪层级 | 只留正式产品名或有依据的官方副品牌 | 真正的品牌 Tagline / 双语产品线 |
-| 31 | `仓库活动与协作` + 巨型抽象主标题 | 重复解释页面做什么，却模糊当前任务 | 有明确对象的功能性 PageTitle | 营销内容有品牌叙事需要 |
-| 32 | 每个区块自动贴 `01 / 总览` | 序号既不是流程也不是章节 | 清晰的功能性区块标题 | 文档目录 / 真实步骤编号 |
-| 33 | 业务用户界面里显示 ECharts Tooltip 等术语 | 把开发者实现说明当成设计文案 | 只保留真实用户操作指引 | 技术调试/开发者教程 |
-| 34 | 40–60px 泛化口号 + 极小图表标签/n 值 | 阅读优先级倒置，重要数据难读 | 角色化字体，重要数据标签更清楚 | 品牌首页允许大标题，但数据仍须可读 |
-| 35 | 次级来源、UTC、样本说明统一降到极淡小字 | 含义重要却被视觉隐藏 | 保持文字对比、放大兼容、合适字级 | 纯装饰图像内非必要文字 |
+| 1 | Functional H1 preceded by generic "Accounts & Access" microheading | Duplicates meaning without navigation value | Compact PageHeader, one H1 plus necessary explanation | Real breadcrumb |
+| 2 | Meaningless English label on a Chinese operational page | USER MANAGEMENT above its exact Chinese translation wastes space | Consistent product locale, explain genuine terms | Multilingual app or official English brand |
+| 3 | 80px Hero on an operational screen | Pushes the primary action below the fold | About 24–32px compact title as an illustrative starting range | Marketing site's main Hero |
+| 4 | "Make management efficient" slogan repeated on every route | Generic and noninformative | Actual permission boundaries, filters or data context | Confirmed brand promise on product home |
+| 5 | Five nested Cards | Eats space and obscures hierarchy | Organize via headings, spacing, separators and meaningful surfaces | A real complex interactive nested object |
+| 6 | Every Button filled with primary accent | No visible action priority | One primary, others secondary/ghost/danger | Two genuinely parallel primary flows with explanation |
+| 7 | 32px radius everywhere | Wrong proportions in dense data/forms | Radius scale appropriate to density/containment | Strong approved creative brand direction |
+| 8 | Meaningless icons/emoji everywhere | Cognitive burden and inconsistent vocabulary | One icon family, icons for real action/status | Legitimate playful/children's content |
+| 9 | Several competing saturated gradients | Content loses the focal point | Semantic colors and restrained accents | Art/event experiences with deliberate gradients |
+| 10 | A beautiful but static Mock called complete | Real actions unavailable | Real pending/error/empty/permission/success flows | Explicitly labeled static design mock |
+| 11 | 700ms fly-in animation for every list item | Slow scanning and scrolling | Brief/no entrances for routine data | Slower portfolio entrances may be justified |
+| 12 | Content only appears if animation/CDN succeeds | Accessibility/business failure | Visible content by default, progressively enhanced | None |
+| 13 | Motion and Anime.js animate the same property on one element | Competing CSS/transform ownership | One animation owner per property | Different subelements/properties have independent owners |
+| 14 | Multiple independent styled UI suites | Divergent Buttons/Fields and interaction states | One primary styled system plus scoped additions | Planned and bounded gradual migration |
+| 15 | Huge data table without filter/paging/empty states | Hard to locate and work with data | Real toolbar, paging and state feedback | Tiny static table |
+| 16 | Mobile webpage hides core work | Users cannot complete task | Responsive task-preserving layout | Explicit desktop-only support, not fake mobile compatibility |
+| 17 | React components pasted directly into Vue | Compile/runtime breakage | Framework-specific component and adapter | None |
+| 18 | No reduced-motion path | Motion-sensitive users lose access | prefers-reduced-motion or controllable loop | None |
+| 19 | Charts omit units or use misleading truncated axes | Wrong interpretation | Units, range, labels, source | Specialized analysis with explicit disclosure |
+| 20 | Pretty components replace keyboard behavior | Mouse-only interaction | Semantics, ARIA, keyboard/focus and proven primitives | None |
+| 21 | Excess Magic UI/Aceternity effects | Large bundle and attention theft | A few approved brand-fit effects | Art experiments/portfolio showcase |
+| 22 | Stable existing controls rebuilt merely for looks | Doubles maintenance and diverges behavior | Adapt inherited theme/variants first | Real severe accessibility failure may justify replacement |
+| 23 | One nav selected item has bright fill, attached bar, glow and highlighted icon | Duplicated emphasis, generic template appearance | One clear primary selected signal; separate keyboard focus | Real tree hierarchy/chapter/timeline information |
+| 24 | "Recently opened" objects share the strongest main-route selected style | Current route and historical object become confused | Quieter Recent selection with accurate object context | Current object actually is the sole workspace destination |
+| 25 | Dark blue sidebar plus blue fill, cyan rail and unexplained orange dot | Competing cues and unclear status | Coherent neutrals, primary accent and separate semantic states | Actual warning/failure/unread with explanatory meaning |
+| 26 | Topbar, Cards and Tabs all have shadows, gradients and ornaments | Everything competes for equal attention | Task context/hierarchy owns boundaries and emphasis | Brand creative narratives with approved direction |
+| 27 | Every table row floats as a Card or every cell becomes a colored badge | Harms scan/comparison density | Aligned tabular data, color only for meaningful states | Mobile table-to-card transformation when justified |
+| 28 | Selected Tab combines pill, bottom rail and neon ring | Redundant selection cues | One primary selected mechanism, pill OR underline; separate keyboard focus | Two cues represent genuinely different information |
+| 29 | Fake Search keyboard shortcut and decorative-only split handle | Functions not actually operable | Search scope/clear/results; split keyboard controls and min size | Explicit static mock, never called complete |
 
-重要：静态字体脚本只是复核提示，不能直接认定所有小字或 English Label 都错误。详见 `references/semantic-copy-hygiene.md` 与 `references/typography-hierarchy.md`。
+## v6.5 — Repeated copy and typography issues
 
-## 建议 review 表格格式
+| # | Anti-pattern | Why | Better approach | Exception |
+| --- | --- | --- | --- | --- |
+| 30 | Auto-generate ANALYSIS STUDIO below brand | Unofficial English microcopy invents hierarchy | Actual product identity or confirmed subbrand | Genuine tagline/multilingual product line |
+| 31 | Generic collaboration pretitle plus giant abstract H1 | Repeats category, hides real task | Functional PageTitle grounded in object | Marketing may need narrative |
+| 32 | Add 01 / Overview to every Section | Number is neither a step nor chapter | Direct functional Section title | Real content directory or numbered process |
+| 33 | Display ECharts Tooltip implementation terms to end users | Leaks developer implementation into product UI | Truthful instructions users can act on | Developer/debug tutorial |
+| 34 | 40–60px generic motto plus tiny chart tick/sample n | Critical information becomes unreadable | Role-based typography and legible data labels | Brand Hero may be big but data must remain readable |
+| 35 | Fade sources, UTC and sample limitations into tiny pale text | Hides essential context | Readable contrast, zoom and meaningful metadata role | Truly decorative in-image copy may be removed |
 
-| 位置 | 严重级别 | 不佳做法 | 推荐改法 | 组件归属 | 实验/验收方式 |
-|---|---|---|---|---|---|
-| 用户管理页头 | P2 | 小标题 + 超大 H1 | 共享紧凑 PageHeader | components/composites/PageHeader | 桌面/手机截图，主操作首屏可见 |
-| 所有确认弹窗 | P1 | 各自开发 div modal | 一套可访问 Dialog | components/ui/Dialog | Tab/ESC/focus restore/屏幕阅读器 |
-| 列表行 hover | P3 | 过强阴影+弹跳 | 颜色/边框短暂过渡 | components/ui/Table | hover/触屏/低性能 |
+Static typography scripts provide **review candidates only**, not a verdict that all small text or English labels are wrong. See semantic-copy-hygiene.md and typography-hierarchy.md.
 
-> 详细的后台 PageHeader 反例继续参阅 `page-header-antipatterns.md`、`assets/page-header-antipattern-gallery.html`。
+## Recommended review format
 
-> v6.3：针对 #23–29 的图文对照、色彩逻辑和允许的例外，见 `sidebar-navigation-design.md`、`workspace-component-refinement.md`，以及 `assets/sidebar-refinement-gallery.html`。不要仅凭一条 CSS border-left 推断“AI 生成”或判定组件不合格。
+| Region | Severity | Bad implementation | Replacement | Component owner | Verification |
+| --- | --- | --- | --- | --- | --- |
+| Account page header | P2 | Microheading + enormous H1 | Compact shared PageHeader | components/composites/PageHeader | Desktop/mobile screenshots, primary action in first screen |
+| Confirmation dialogs | P1 | Independent div modal engines | One accessible Dialog | components/ui/Dialog | Tab/Escape/focus return/screen reader |
+| Table-row hover | P3 | Heavy shadow and bounce | Brief border/color change | components/ui/Table | Hover/touch/low-powered device |
 
-## v6.8 · 留白与页面密度反面案例
+Detailed operational PageHeader examples: page-header-antipatterns.md and assets/page-header-antipattern-gallery.html.
 
-| 反例 | 失败原因 | 替代做法 | 适用例外 |
+**v6.3:** For patterns #23–29, see sidebar-navigation-design.md, workspace-component-refinement.md and assets/sidebar-refinement-gallery.html. A CSS border-left alone cannot prove a page was AI-generated or that its navigation is invalid.
+
+## v6.8 — Whitespace and page-density anti-patterns
+
+| Anti-pattern | Why | Corrective approach | Valid exception |
 | --- | --- | --- | --- |
-| 总览有“从仓库开始”、三步教程和三张功能卡 | 全部入口并列，主任务不清楚 | 当前对象 + 一项主操作；教程首访/帮助呈现，功能通过导航访问 | 正式教学门户可能需要公开完整学习路径 |
-| 侧栏有功能入口，首页再铺相同功能卡 | 重复信息无独立价值 | 移除/下沉功能卡；保留重要的真实摘要 | 卡片承载独特数据或当前任务才保留 |
-| 仅把每张卡片的 padding 增大 | 页面信息量没减少，只是更长 | 先筛选主次、删多余容器，再调整空间 | 内容必须共显时可适当加大视口或优化结构 |
-| 数据详情也做成巨型留白版 | 图表、指标不能同屏比较 | Productive/Compact 可更高密度，同时保持标签易读 | 数据还未加载必须展示明确状态 |
-| 通过极小字号/极淡色提高密度 | 信息被视觉隐藏 | 减少重复内容并优化分组，不牺牲来源/图例/样本数 | 纯装饰文字可删 |
-| 卡片外套卡片外再套大面板 | 边框吞噬空间与主次 | Surface Necessity 逐层删除无意义容器 | 真实嵌套对象/交互层级允许必要容器 |
-| 人为固定大 min-height 制造高级留白 | 空白不承载关系，主流程可能被拖远 | Macro/Meso/Micro 按任务关系留白 | 品牌叙事影像有合理大面积主视觉 |
+| Overview shows "Start from repository", three-step tutorial and three feature Cards | All entrances compete, core task unclear | Current object + one primary action; tutorial on first visit/help; features in navigation | A real educational portal may expose its complete learning pathway |
+| Sidebar already has features, home duplicates all as Cards | Redundant content without additional information | Remove/defer duplications; keep genuine high-value summary | Cards contain unique data or direct current task |
+| Increase each Card padding only | Page length grows but information burden remains | Prioritize, remove redundant wrappers, then tune layout | Necessary concurrent content may warrant a larger viewport/restructuring |
+| Detailed analytics becomes giant empty spacious layout | Metrics/charts cannot be compared | Productive/Compact density, with readable labels | Explicit loading/empty state while data pending |
+| Tiny low-contrast type used for density | Hides content | Reduce duplication/group content without sacrificing source, legend and sample size | Pure ornament may be deleted |
+| Card inside Card inside giant Card | Borders consume space and confuse hierarchy | Remove surfaces one by one using necessity test | Real nested objects and interactions justify boundaries |
+| Huge fixed min-height manufactures premium whitespace | Blank area conveys no relationship, delays main task | Task-driven Macro/Meso/Micro spacing | Large visual Hero may be justified by brand story |
 
-见 `references/page-density-and-content-priority.md` 和 `references/whitespace-and-surface-composition.md`，没有机械的卡片数量/空白百分比硬限制。
+See page-density-and-content-priority.md and whitespace-and-surface-composition.md. **No rigid card-count or blank-space percentage limit applies.**
 
-## v6.9 · 对齐和底部安全反例
+## v6.9 — Alignment and scroll-end safety anti-patterns
 
-| 反例 | 问题 | 替代 | 允许例外 |
+| Anti-pattern | Why it fails | Fix | Valid exception |
 | --- | --- | --- | --- |
-| 左右两列各自堆叠图表，第二排顶部错位 | 同级模块没有共同的行结构 | 共享 Grid rows/areas，或将主图跨整行 | 摄影瀑布流、明确叙事构图 |
-| 让每排随机 6:4 / 1:1 / 7:5，没有理由 | 纵向列线不可追踪 | 明确列轨契约，跨行变体需有信息主次理由 | 模块实际职责不同的不同页面区域 |
-| 为了卡片看齐强制超高空白高度 | 虚假空间，内容比例失真 | 内容重组/主图跨行，允许自然不等高 | 图表确实需要规定绘图区高度 |
-| `100vh + overflow:hidden` 让页面没有纵向滚动 | 最后记录、按钮或图表轴不可达 | 自然文档滚动或有明确主 scroll container 的 App Shell | 真正沉浸单屏应用且内容可完整可达 |
-| fixed 底部操作栏覆盖最后一行 | 按钮/信息被挡，滚到最大位置仍不可达 | 在实际 scroller 末尾预留工具栏真实高度和 safe area | 工具栏已在正常布局流中，无需重复占位 |
-| 看到截图内容靠近窗口底边就断定 Bug | 截图没有滚动终点证据 | 记录疑点，滚到底查真实裁切/遮挡 | 实际截图清楚显示内容被硬裁时可直接定位风险 |
-| 通过缩小图表/删数据使所有内容首屏完整 | 数据对比和口径损失 | 保持可读，允许纵向滚动 | 真正专注单屏 KPI 可能要求更少任务内容 |
+| Left/right charts stack independently and second row starts misaligned | Peer modules lack shared row identity | Grid rows/areas or full-row key chart | Photo Masonry or intentional editorial composition |
+| Every row randomly uses 6:4 / 1:1 / 7:5 without reason | Column tracks are not understandable | Explicit grid contract and purposeful spans | Distinct-content zones with different roles |
+| Tall empty Card to align heights | False whitespace distorts content | Recompose, allow natural heights/major chart full row | Plot itself needs a specified height |
+| 100vh with overflow:hidden prevents scroll | Last records/actions/chart axes unreachable | Normal document scroll or explicit app-shell scroll owner | True immersive one-screen app **with every item reachable** |
+| Fixed action footer occludes last row | Final control remains blocked even at maximum scroll | Reserve true footer height plus safe area in the actual scroller | Footer belongs in normal document flow |
+| Screenshot touches viewport bottom, reviewer assumes bug | Screenshot is not scroll-end evidence | Mark candidate and test actual maximum scroll | Actual hard clipping clearly visible supports a provisional risk |
+| Shrink charts/delete data to make everything fit first screen | Destroys comparison and source context | Keep legible and permit vertical scroll | Genuine single-screen KPI product may deliberately reduce scope |
 
-详见 `references/grid-alignment-and-viewport-safety.md`。
+See grid-alignment-and-viewport-safety.md.
 
-## v6.10 · 比较页与图表内部反例
+## v6.10 — Comparison and chart-internal anti-patterns
 
-| 反例 | 问题 | 修正 | 允许例外 |
+| Anti-pattern | Problem | Corrective action | Valid exception |
 | --- | --- | --- | --- |
-| 两张图卡片对齐，但一张绘图轴线低、另一张上下空白过多 | 外框对齐不等于内容对齐 | 按 Plot Region / Axis / Legend 分层检查，必要时改变图型或组合 | 不同语义图型不强制统一绘图区高度 |
-| 两个紧邻散点标签“85天”与均值标注互相遮住 | 数值不可读、观察结论被遮挡 | 标签避让、关键点标注/tooltip、位置调整、重新画图 | 仅纯装饰标签可删 |
-| 选择 3 仓库，图例 3 项，图表只有 1 条可见线却无解释 | 无法判断缺失、隐藏、重叠还是加载错误 | 系列状态随 ID 同步；无数据明确标注，不准补零或伪造 | 数据真重合时可用点型/tooltip区分 |
-| 比较页左栏长期占宽，右边堆长图/说明/表 | 选对象比发现差异占更多面积 | 将已选对象收敛到可修改的横向条，主空间用于可比证据 | 多维高级筛选工具有真实使用需求可用侧栏 |
-| 大块“比较口径”空卡占满半行 | 视觉噪声和无效留白 | 口径作为行内必要说明与可展开详细方法 | 严格审核分析需显示完整披露 |
-| 在不等采样与时间口径下生成“项目 A 更优秀” | 看似有结论但证据不公正 | 对齐时间/单位/覆盖、样本，明确暂不可比 | 经用户批准的评分算法可展示且说明规则 |
+| Two outer chart Cards aligned but one plot axis sits lower and the other has blank padding | Card geometry does not imply plot alignment | Audit Plot Region / Axis / Legend; adjust chart type/composition if needed | Different chart semantics do not require identical plot-height |
+| Adjacent scatter point label and average marker overlap | Data and conclusion unreadable | Label collision avoidance, tooltip, selective annotations, reposition or redesign | Truly decorative labels can be removed |
+| Three repositories selected, three legends but only one series visible without explanation | Missing/hidden/overlapping/loading ambiguity | Synchronize series to IDs, disclose missing data, never silently impute zeros | Real identical series may use differing markers/Tooltip |
+| Comparison selector Sidebar consumes most horizontal space, results are verbose Cards | Selecting objects dominates discovering differences | Selected object strip that stays editable; main area for comparative evidence | Real high-dimensional advanced filters may justify sidebar |
+| Giant empty definitions Card occupies half row | Noise and blankness | Inline needed methodology, expandable detail | Highly regulated analysis may require full disclosure |
+| "Project A wins" when times or sampling differ | Unfair/false inference | Align units/windows/coverage/sample, or say not comparable | Explicit user-approved scoring algorithm with explained rules |
 
-参考 `references/comparison-page-design.md` 与 `references/chart-interior-alignment.md`。
+See comparison-page-design.md and chart-interior-alignment.md.
 
-## v6.11 · 任务中心常见反例
+## v6.11 — Task center anti-patterns
 
-| 反例 | 为什么失败 | 替代方式 | 允许例外 |
+| Anti-pattern | Why it fails | Better approach | Valid exception |
 | --- | --- | --- | --- |
-| 左侧三个任务数字长期占一整列，右侧任务内容大量留空 | 信息价值和面积不成比例，状态不是可用筛选 | 顶部可点击状态项 + 一体化任务表/列表 | 大规模操作监控需频繁组合条件时紧凑筛选侧栏仍合理 |
-| 每行都重复“进度百分比未知，当前显示阶段状态” | 没有新增内容，降低扫描速度 | 在该行直接显示阶段；有分母显示数量/进度 | 重要且针对单个异常的特殊说明可以留 |
-| 所有非完成任务都给重试按钮 | 可能对排队/阻塞任务非法或无意义 | 根据生命周期、权限、后端能力显示动作 | 服务端明确支持的特殊重跑操作需单独说明 |
-| `progress=null` 绘制 0% 进度条/预计剩余时间 | 误导完成程度与执行时间 | 显示真实阶段或不定进度，未知 ETA 不绘制 | 分母真实而稳定时可显示百分比 |
-| 大段执行日志、所有阶段和原始 JSON 长驻列表 | 详情吞掉首要扫描区域 | 行内只放一条必要原因，日志/输入输出进详情 | 专用调试页面可展示详细执行链路 |
-| 列表过滤结果 2 条，标题仍写 7 条且没注明总数 | 用户误解筛选效果/数据范围 | 写“显示 2 / 7 条”，状态统计标明聚合口径 | 服务端分页计数需标全部/当前页 |
-| 用只有 UI 变化的 Mock 重试按钮宣布采集已重试 | 虚假的操作成功反馈 | 明确“仅在示例里模拟”；真实接口必须等待响应与回滚 | 无后端的原型可明确演示预期流程 |
+| Three counters occupy a whole column, task list mostly blank | Area exceeds value; states are not useful filters | Clickable compact status group above integrated tasks | Dense operations monitoring may warrant compact filter sidebar |
+| Every row repeats "percentage unknown; showing stage" | Redundant text slows scanning | Show actual stage; show numeric progress when denominator exists | Unique per-task abnormality may justify extra explanation |
+| Every unfinished task shows Retry | May be illegal/meaningless for queued/blocked work | Gate by lifecycle, permission and backend capability | Explicitly supported special rerun must be explained |
+| progress=null displays 0% and ETA | Fabricates certainty | Honest stage or indeterminate progress; unknown ETA omitted | Percent permitted with stable true denominator |
+| Full logs/phases/raw JSON displayed continuously inside task list | Details destroy scan area | One necessary reason in row; full logs/input/output on demand | Dedicated debug page can show full execution trace |
+| Filter shows 2 tasks but header claims 7 with no scope | Users misunderstand coverage | "Showing 2 of 7", indicate what aggregates count | Server paging may report total/current-page explicitly |
+| Mock retry just changes UI but claims a server job was retried | False result | Label simulation; real API must wait for response and handle rollback | No-backend prototypes may demonstrate intended flow if labeled |
 
-完整规范 `references/task-center-run-monitor-design.md`。
+Full run-monitor guidance: task-center-run-monitor-design.md.

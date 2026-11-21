@@ -63,7 +63,7 @@ class ExpressiveMotionVocabularyTests(unittest.TestCase):
         craft = (ROOT / "references/motion-craft-and-continuity.md").read_text("utf-8")
         self.assertIn("expressive-motion-vocabulary.md", skill)
         self.assertIn("proactively propose", skill)
-        self.assertIn("标志性动效", craft)
+        self.assertIn("signature motion specific to the product", craft)
         self.assertIn("Do not wait for the user", self.doc)
         self.assertIn("reduced motion", self.doc.lower())
 

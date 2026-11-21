@@ -1,23 +1,23 @@
-# Web-first：支持的产品类型及区别
+# Web-First — Supported Product Types and Their Differences
 
-这是浏览器前端 Skill，而不是一套固定后台皮肤。新站及核心页面先经 [产品体验类型 × 页面任务路由](product-experience-routing-gate.md) 判断，再决定视觉模式；现有各品类表是高层导引，不能代替独立的业务任务分析。核心设计原则通用；页面骨架、信息密度、视觉层级与动画节奏按业务而定。
+MauForma is a browser-frontend Skill, not a fixed enterprise-dashboard skin. Route new sites and key pages through [Product Experience Type × Page Task](product-experience-routing-gate.md) before selecting a visual mode. The categories below provide high-level guidance, **not** a substitute for understanding actual business tasks. Design principles are broadly reusable, but page composition, density, hierarchy and motion rhythm depend on product needs.
 
-| 网站品类 | 目标和首要信息 | 合理的标题与布局 | 动效注意 | 常见反例 |
-|---|---|---|---|---|
-| 后台管理与 SaaS（当前重点） | 快速定位、查表、增删改、权限、状态 | 紧凑 PageHeader；筛选在表格上方；高密度区块 | 100–220ms 反馈/弹窗/切换，避免列表飞入 | 英文小标题 + 巨型标题 + 空口号 + 大空白 |
-| 业务工作台 / CRM / ERP | 多任务处理，效率与一致性 | 操作优先级、分屏、保存与批量操作 | 状态流转、布局轻量过渡 | 满屏卡片造成低效导航 |
-| 企业官网 / 产品落地页 | 品牌主张、功能、CTA、可信度 | Hero 可大；有意义的信息分区 | 适度滚动揭示、产品演示 | 夸张动效降低 CTA 可见性 |
-| 作品集 / 展示网站 | 项目审美、作品与个人介绍 | 自由版式、强排版可行 | 作品间切换、渐显、视差 | 所有内容只剩动画而找不到项目 |
-| 电商 / 商品详情 | 搜索、筛选、价格、库存、购买 | 商品图像/价格优先、清楚 CTA | 图库、加入购物车反馈 | 促销层级混乱、按钮竞争 |
-| 阅读 / 媒体 / 文档 | 内容的可读性、检索 | 限制行宽、目录和信息层级 | 减少动效，尊重阅读进度 | 过短行宽、浮动装饰、文字动画 |
-| 数据分析 / 图表工作台 | 解释指标及趋势 | 指标定义/数据口径/图例/筛选联动 | 短暂过渡不篡改数值 | 无来源的跳动假数据 |
-| 可视化编辑器 / IDE / 图形工具 | 编辑效率、文件树、工具栏 | 可调整分栏、键盘操作、密集控制 | 拖拽吸附、面板过渡，禁止布局抖动 | 每个工具都做圆角大卡片 |
-| 教育/互动学习 | 反馈、循序渐进、可理解 | 清晰进度、练习反馈、步骤控制 | 可以轻度游戏化 | 无关动效妨碍学习 |
-| WebApp/PWA/移动网页 | 小屏、触摸、弱网、可恢复 | 触控尺寸、单栏重点、底部操作 | 保持触摸响应与省电 | 用 PC 侧栏硬缩成手机 |
+| Product category | Primary goal/content | Appropriate title and layout | Motion consideration | Common anti-pattern |
+| --- | --- | --- | --- | --- |
+| Admin and SaaS (current detailed focus) | Rapid location, data scanning, CRUD, access control and status | Compact PageHeader, filters above tables, dense content | ~100–220 ms feedback/dialog/tab transitions; avoid rows flying in | English eyebrow + huge heading + empty slogan + excessive whitespace |
+| Operational workspaces / CRM / ERP | Multitasking, efficiency and consistency | Prioritized actions, split view, saving and bulk operations | State transitions and lightweight layout motion | Wall-to-wall cards obstruct navigation |
+| Corporate site / product landing | Brand promise, capabilities, CTA and trust | Hero can be large; meaningful sections | Moderate scroll reveal and product demos | Exaggerated motion hides CTAs |
+| Portfolio / showcase | Work quality, projects and creator introduction | Freer compositions and expressive typography | Project transitions, fades and parallax | Motion crowds out discoverable projects |
+| Commerce / product detail | Search, filter, price, inventory and buying | Product imagery and price first; clear CTA | Gallery and add-to-cart feedback | Conflicting promotion hierarchy and competing buttons |
+| Reading / media / docs | Readability and retrieval | Controlled line width, contents navigation and information hierarchy | Less motion; preserve reading position | Overly narrow columns, floating decoration, animated prose |
+| Data analytics / chart workspace | Explain metrics and trends | Clear definitions, sampling scope, legends and linked filters | Short transitions without altering real numbers | Unsourced animated fake data |
+| Visual editor / IDE / graphics tool | Editing efficiency, file tree and toolbar | Resizable split panes, keyboard actions, dense controls | Snapping and panel motion without layout jitter | Every tool wrapped in a huge rounded Card |
+| Education / interactive learning | Feedback, progression and comprehension | Visible progress, exercise feedback and step control | Light gamification may help | Unrelated motion interrupts learning |
+| Web app / PWA / mobile Web | Small screens, touch, weak network and recovery | Touch targets, focused single-column flows and bottom actions | Responsive, energy-conscious feedback | Squeezing a desktop sidebar onto phones |
 
-## 框架与外壳边界
+## Framework and shell boundaries
 
-- Vue、React、Svelte、Angular 等在浏览器渲染的 Web 界面都支持。
-- Web 前端被打包到 Electron/Tauri 也可以使用本规范；只处理 DOM/CSS/组件层，不代替原生系统 UI 规范。
-- 不主张直接指导 SwiftUI/AppKit/Jetpack Compose 的原生控件代码。需要跨平台品牌规范时，只迁移设计 Tokens 的**语义**。
-- 当前详细反例库以后台为重点，其他页面类型根据这一文件判断哪些规则应放宽。
+- Browser-rendered Web interfaces built with Vue, React, Svelte, Angular and similar technologies are in scope.
+- Web interfaces hosted within Electron/Tauri can follow these rules at the DOM/CSS/component level; they do **not** replace native OS UI standards.
+- Do not treat MauForma as a direct implementation guide for native SwiftUI/AppKit/Jetpack Compose controls. For cross-platform branding, transfer the **semantics** of design tokens only.
+- Existing detailed anti-pattern references concentrate on admin products; use this document to decide which restrictions should be relaxed for other page types.

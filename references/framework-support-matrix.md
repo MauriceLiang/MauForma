@@ -1,32 +1,32 @@
-# 主流前端框架支持矩阵
+# Supported Frontend Framework Matrix
 
-**规则**：列出候选方案，不代表必须安装。先读取当前项目的 `package.json` 与锁文件，现有方案可行就继续用。下表中的适配支持不意味着同一套源代码或 props 可以在不同框架间无改动通用。
+**Rule:** These are **candidate choices**, not required installations. First inspect the target project's `package.json` and lockfile; retain its working solution when feasible. Compatibility in this matrix **does not** imply identical source, props or lifecycle APIs across frameworks.
 
-| 框架 | 首要组件路线 | 图标 | 动画 | 客户端状态 | 服务端状态 | 图表/复杂数据 |
-|---|---|---|---|---|---|---|
-| Vue 3 / Nuxt | Reka UI、shadcn-vue、Element Plus、Naive UI（按已有选择） | `@lucide/vue` / 现有 `lucide-vue-next` | Vue `<Transition>`、Motion for Vue (`motion-v`)、Anime.js、GSAP | Pinia / composables | `@tanstack/vue-query` 或 Nuxt 数据工具 | Apache ECharts + Vue 适配 / `@tanstack/vue-table` |
-| React / Next.js | shadcn/ui + Base UI 或 Radix；Mantine、MUI、AntD 也可 | `lucide-react` | Motion for React (`motion/react`)、Anime.js、GSAP | Zustand / Context | `@tanstack/react-query` 或框架数据 API | Recharts / ECharts / `@tanstack/react-table` |
-| Svelte / SvelteKit | Bits UI、shadcn-svelte | `@lucide/svelte` | Svelte transitions、Anime.js、GSAP、Motion JS | Svelte stores/runes | SvelteKit load / Query 适配 | ECharts / Table 适配（确认版本） |
-| Angular | Angular CDK / Material、PrimeNG | `@lucide/angular` | Angular 动画方案 / CSS / Anime.js / GSAP | Signals / RxJS | HttpClient / TanStack Query 按需 | ECharts / AG Grid |
-| Solid | Kobalte / Ark UI | `lucide-solid` / `@lucide/solid`（依版本） | CSS、Motion JS、Anime.js | Signals / Stores | TanStack Query Solid | ECharts / TanStack Table Solid |
-| Astro | Astro 原生组件 + React/Vue/Svelte/Solid Islands | SVG / 各 Island 框架 Lucide | CSS、Web Animations、Anime.js | 尽量不引入全局状态 | Astro 数据获取/各 Island | ECharts 按需客户端水合 |
-| HTML/CSS/JS | 原生语义元素、Web Components，适量 headless 实现 | `lucide` / SVG | CSS、Web Animations、Anime.js | 原生模块状态 | Fetch + 局部缓存 | ECharts / Canvas/SVG |
+| Framework | Primary component candidates | Icons | Motion | Client state | Server state | Charts / complex data |
+| --- | --- | --- | --- | --- | --- | --- |
+| Vue 3 / Nuxt | Reka UI, shadcn-vue, Element Plus, Naive UI, following existing choice | `@lucide/vue` / inherited `lucide-vue-next` | Vue `<Transition>`, Motion for Vue (`motion-v`), Anime.js, GSAP | Pinia / composables | `@tanstack/vue-query` or Nuxt data tools | Apache ECharts with Vue adapter / `@tanstack/vue-table` |
+| React / Next.js | shadcn/ui + Base UI or Radix; also Mantine, MUI or AntD | `lucide-react` | Motion for React (`motion/react`), Anime.js, GSAP | Zustand / Context | `@tanstack/react-query` or framework data API | Recharts / ECharts / `@tanstack/react-table` |
+| Svelte / SvelteKit | Bits UI, shadcn-svelte | `@lucide/svelte` | Svelte transitions, Anime.js, GSAP, Motion JS | Svelte stores/runes | SvelteKit load / Query adapters | ECharts / Table adapters; verify actual versions |
+| Angular | Angular CDK/Material, PrimeNG | `@lucide/angular` | Framework motion / CSS / Anime.js / GSAP | Signals / RxJS | HttpClient / TanStack Query when useful | ECharts / AG Grid |
+| Solid | Kobalte / Ark UI | `lucide-solid` / `@lucide/solid`, version-dependent | CSS, Motion JS, Anime.js | Signals / Stores | TanStack Query Solid | ECharts / TanStack Table Solid |
+| Astro | Native Astro components + React/Vue/Svelte/Solid Islands | SVG / Lucide for the specific Island framework | CSS, Web Animations, Anime.js | Avoid global client state if unnecessary | Astro data fetching / per-Island tools | ECharts with client hydration when needed |
+| HTML/CSS/JS | Semantic native controls, Web Components, limited headless primitives | `lucide` / SVG | CSS, Web Animations, Anime.js | Native module state | Fetch + local caching | ECharts / Canvas/SVG |
 
-> **实现优先级**：需要 Select/Dropdown/Button/Checkbox 等基础交互时，必须从**当前框架已有组件库**出发；没有库时由 Agent 主动选择并实际采用有样式组件库或成熟 headless 原语。适配矩阵不是“所有项目都手写”的许可。详见 `references/component-library-first-gate.md`。
+> **Implementation priority:** When actual Select, Dropdown, Button, Checkbox and other basic interactive controls are required, start from the **library already used by the current framework/project**. If none is available, proactively select **and actually use** a suitable styled library or accessible mature headless primitives. The matrix is **not permission to handwrite every complex control**. See `references/component-library-first-gate.md`.
 
-## 决策的判定条件
+## Decision conditions
 
-1. **旧项目：先延续已安装框架和组件库**。没有明确需求不要 Vue 转 React 或 React 转 Vue。
-2. **无障碍复杂控件**（Select、Dialog、Combobox、Menu）优先选择相应框架下经过验证的 headless primitives 或成熟 UI 套件。
-3. **设计高自由度**：选可复制可维护的组件层（shadcn/ui、shadcn-vue）或无样式原语 + 自有样式。
-4. **大型数据密集型**：可能选择成熟管理型组件套件、虚拟化表格与成熟图表，不迷信特效库。
-5. **SSR/SEO**：检查 Next/Nuxt/SvelteKit/Astro 的服务端边界与 hydration，不要在模块顶层直接访问 `window`/`document`。
-6. **轻量营销站**：可能只需 HTML/CSS、Astro + 少量 Islands，不强装 React/Vue 大型状态库。
-7. **共享组件契约、颜色 token、交互原则可以跨框架统一**；具体源码、生命周期处理、props/emits 需适配本框架。
+1. **Existing products: continue with installed frameworks and libraries first.** Do not switch Vue→React or React→Vue without an explicit need.
+2. **Complex accessible controls:** For Select, Dialog, Combobox and Menu, prefer mature framework-compatible primitives or suites with verified keyboard/focus behavior.
+3. **High visual customization:** Use maintainable project-owned component layers such as shadcn/ui/shadcn-vue or unstyled primitives with the project's own skin.
+4. **Large data-dense products:** Mature enterprise component suites, virtualized tables and chart engines can be appropriate; do not blindly favor creative effect packages.
+5. **SSR/SEO:** Check Next/Nuxt/SvelteKit/Astro server boundaries and hydration; never access `window`/`document` directly at module top level.
+6. **Lightweight marketing sites:** HTML/CSS or Astro plus a few Islands may suffice. Do not force heavy React/Vue state libraries.
+7. **Cross-framework reuse:** Design tokens, visual semantics and interaction contracts can transfer; exact source, lifecycle, props and emits must be implemented for the active framework.
 
-> 2026 年 Lucide 官网提供新版 `@lucide/vue`，一些旧项目还使用 `lucide-vue-next`。迁移需检查具体版本，不应同时安装并在组件中混用。dnd-kit 的新版有 Vue 等适配层，不能仅靠旧版文章断言“只能 React”。
+> According to the referenced 2026-era Lucide guidance, `@lucide/vue` exists while older projects may use `lucide-vue-next`. Verify the **actual installed version** before migration; do not mix the two packages. Newer dnd-kit versions have adapters including Vue, so an old React-only article cannot prove Vue support is impossible.
 
-官方来源：
+Official sources:
 - https://lucide.dev/packages
 - https://lucide.dev/guide/version-1
 - https://github.com/clauderic/dnd-kit
@@ -35,13 +35,12 @@
 - https://shadcn-vue.com/docs/introduction
 - https://ui.shadcn.com/docs
 
+## v5 — Additional creative and enterprise component layers
 
-## v5 创意组件层与企业组件层补充
-
-| 场景 | React / Next | Vue / Nuxt | 选择原则 |
+| Context | React / Next | Vue / Nuxt | Selection rule |
 | --- | --- | --- | --- |
-| 创意官网动态标题、背景、3D 展示 | React Bits；Magic UI；Aceternity UI | Vue Bits（React Bits 官方 Vue 移植）；Inspira UI | 只挑选单个适配组件，核对依赖/许可/SSR，不当作基础 UI 库 |
-| 企业后台复杂表格与表单 | Ant Design、MUI、Mantine、PrimeReact；已有 shadcn/ui 可继续用 | Ant Design Vue、Element Plus、Naive UI、Arco Vue、PrimeVue；已有 Reka/shadcn-vue 可继续用 | **选择一套主库**，复杂专业控件额外审查 |
-| 共用基础视觉 | CSS/Tailwind Design Tokens + Ui 封装 | CSS/Tailwind Design Tokens + Ui 封装 | 风格复用，源代码不跨框架硬移植 |
+| Creative brand site: animated titles, backgrounds, 3D showcases | React Bits, Magic UI, Aceternity UI | Vue Bits (official Vue adaptation of React Bits), Inspira UI | Select only needed compatible pieces; check dependencies/license/SSR. **Not a substitute for foundational UI controls** |
+| Enterprise admin with complex tables and forms | Ant Design, MUI, Mantine, PrimeReact; retain existing shadcn/ui when sound | Ant Design Vue, Element Plus, Naive UI, Arco Vue, PrimeVue; retain Reka/shadcn-vue when sound | **One primary styled library**, with additional review of specialist controls |
+| Shared visual foundations | CSS/Tailwind design tokens + Ui adapters | CSS/Tailwind design tokens + Ui adapters | Share visual language, not foreign framework code |
 
-完整说明见 `references/creative-component-libraries.md`、`references/enterprise-ui-library-guide.md`、`examples/creative-library-recipes-react-vue.md`。
+See `references/creative-component-libraries.md`, `references/enterprise-ui-library-guide.md` and `examples/creative-library-recipes-react-vue.md`.

@@ -1,194 +1,186 @@
-# Anime.js 可组合视觉动效配方全集（v3.0 收录）
+# Anime.js Composable Motion Recipes — 114 Existing Patterns (v3 Catalog)
 
-此表由 MauForma 按官方能力**独立整理**，不是 Anime.js 官方对“内置特效”的命名。Anime.js 没有一个有限的、可穷尽的动画样式清单，属性、曲线和时间轴可组合出无限效果。**本文件保留原有 114 种可选配方**，完整的 [Web 动效总目录](../assets/motion-effects.json) 已补充至 **123 种**；其中新增的文字流光、文字变形、图片序列、横向滚动、滚动吸附等机制不一定以 Anime.js 实现。**高品质创意组合**请按需阅读 [Expressive Motion Vocabulary](expressive-motion-vocabulary.md)，不要把全部特效误当必做项。
+These **114 named design recipes were independently curated by MauForma from official API capabilities**, not official "built-in effects" supplied by Anime.js. No finite complete catalog of every possible Anime.js motion exists: properties, curves and timelines can compose infinitely many behaviors. The searchable extended catalog in assets/motion-effects.json has **123 recipes**: the original 114 retained here plus 9 newer mechanisms, including text shimmer/morph, image sequence, horizontal scrolling and scroll snap, **which need not use Anime.js**. Consult expressive-motion-vocabulary.md for purposeful expressive composition, not a required effect checklist.
 
-**A** = 高频业务可用（仍按需）；**B** = 条件适用；**C** = 展示/创意为主、默认不选。每项都明确视觉表现、适用情景、避雷以及对应的官方功能。
+**Tier A**: suitable for frequent working interactions when needed. **Tier B**: conditional. **Tier C**: primarily showcase/creative, not the default. Every entry states its real appearance, meaningful contexts, risks and an official API-based mapping. The recipe IDs are MauForma names, **not Anime.js API methods**.
 
-**执行要求**：先选动效的交互意图，再匹配配方；无理由不添加动画；一次界面最多一个显著动画焦点；保证可中断、可撤销、首屏正常显示、尊重减少动态效果偏好。
+**Implementation contract:** Start with the user's interaction intent and approved motion preference; never add motion without purpose. Normally allow **at most one prominent motion focal point in a screen**, and preserve interruption, reversal, visible first frame and prefers-reduced-motion. Do not infer that every listed recipe should be implemented.
 
-## 入场与退场（12 种）
+## Entrance and Exit (12)
 
-| ID / 名称 | 实际视觉表现 | 推荐场景 | 避雷 | Anime.js API 映射 | 级别 |
-|---|---|---|---|---|---|
-| `fade-in` / 透明淡入 | 元素从透明变清晰，无位移 | 轻量内容出现、异步结果 | 主体内容依赖脚本才可见 | `animate opacity [0,1]` | A |
-| `fade-out` / 透明淡出 | 元素逐渐消失 | 关闭提示、次级元素撤出 | 隐藏重要错误后无法追回 | `animate opacity [1,0]` | A |
-| `rise-in` / 下方轻浮入 | 内容轻微上移并淡入 | 卡片分组、欢迎页 | 频繁刷新的表格行 | `animate y [12,0] + opacity` | A |
-| `drop-in` / 上方轻落入 | 内容从上方少量下移就位 | 顶部浮层、工具条 | 过大位移遮挡信息 | `animate y [-10,0] + opacity` | A |
-| `slide-left` / 左侧滑入 | 元素由左侧平移进入 | 抽屉、小导航 | 整页切换不符合导航方向 | `animate x [-20,0]` | B |
-| `slide-right` / 右侧滑入 | 元素由右侧平移进入 | 侧边面板、向前导航 | RTL/返回方向不匹配 | `animate x [20,0]` | B |
-| `zoom-in` / 轻缩放出现 | 从略小尺寸放大到原位 | 空状态插画、轻提示 | 表格行或长正文 | `animate scale [.97,1]` | B |
-| `zoom-out` / 轻缩小消退 | 缩小且逐渐透明 | 小浮层关闭 | 主内容布局位移 | `animate scale [1,.97]+opacity` | B |
-| `blur-reveal` / 模糊清晰 | 轻微模糊迅速变清晰 | 品牌展示、欢迎页 | 文本阅读密集、低端设备 | `animate filter blur + opacity` | C |
-| `clip-reveal` / 裁切揭示 | 内容从可见范围逐步露出 | 图片封面、图表进入 | 重要信息被裁切或阅读受阻 | `animate clipPath` | C |
-| `mask-wipe` / 遮罩擦除 | 遮罩从一侧扫过以展示元素 | 展厅、视觉叙事 | 后台数据行加载 | `animate CSS mask/clipPath` | C |
-| `sequential-cards` / 卡片错峰入场 | 多卡片依次淡入上浮 | 首次仪表盘加载、作品列表 | 100+ 行表格每次进入 | `animate + stagger delay` | B |
+| ID / name | Actual appearance | Suitable context | Avoid | Anime.js mapping | Tier |
+| --- | --- | --- | --- | --- | --- |
+| `fade-in` / Fade in | Element becomes visible through opacity with no spatial movement | Light content and async results | Never hide primary content until JavaScript initializes | `animate opacity [0,1]` | A |
+| `fade-out` / Fade out | Element gradually becomes transparent | Dismiss notices or secondary details | Do not make important errors irretrievable | `animate opacity [1,0]` | A |
+| `rise-in` / Gentle rise | Content enters with a small upward motion and fade | Welcome and limited Card groups | Not every refresh of Table rows | `animate y [12,0] + opacity` | A |
+| `drop-in` / Soft drop | Element settles downward slightly from above | Top overlay and toolbar | Avoid large motion covering content | `animate y [-10,0] + opacity` | A |
+| `slide-left` / Slide from left | Element translates from left into place | Drawer and local navigation | Avoid direction that conflicts with actual navigation | `animate x [-20,0]` | B |
+| `slide-right` / Slide from right | Element translates from right into place | Side panel and forward navigation | Account for RTL and Back direction | `animate x [20,0]` | B |
+| `zoom-in` / Subtle zoom in | Element scales from slightly smaller to full size | Empty-state illustration and quiet notices | Not dense table rows or long body copy | `animate scale [.97,1]` | B |
+| `zoom-out` / Subtle zoom out | Small element scales down and fades | Dismissing a small overlay | Avoid shifting primary content geometry | `animate scale [1,.97]+opacity` | B |
+| `blur-reveal` / Focus reveal | Mildly blurred content quickly sharpens | Brand showcase or welcome | Avoid reading-dense text and low-powered devices | `animate filter blur + opacity` | C |
+| `clip-reveal` / Clipped reveal | Visible crop expands to reveal content | Image cover and chart introduction | Do not clip essential information | `animate clipPath` | C |
+| `mask-wipe` / Mask wipe | Mask sweeps across content to uncover it | Exhibition and storytelling | Not routine admin data rows | `animate CSS mask/clipPath` | C |
+| `sequential-cards` / Staggered Cards | Card siblings fade and rise in sequence | Initial dashboard or portfolio load | Not 100+ table entries on every visit | `animate + stagger delay` | B |
+## Hover and Press (11)
 
-## 悬停与按压（11 种）
+| ID / name | Actual appearance | Suitable context | Avoid | Anime.js mapping | Tier |
+| --- | --- | --- | --- | --- | --- |
+| `hover-lift` / Gentle hover lift | Card moves upward by about 2–4px | Interactive showcase Card | Do not imply a static Card is clickable | `animate y -3` | A |
+| `hover-shadow` / Hover shadow | Card shadow becomes subtly stronger | Clickable content Card | Avoid decorating every region | `animate boxShadow` | A |
+| `hover-scale` / Hover scale | Control enlarges slightly | Product media and icon button | Not text in every data row | `animate scale 1.02` | B |
+| `hover-tint` / Hover color shift | Background or text color interpolates | Button or navigation item | Preserve text contrast | `animate backgroundColor/color` | A |
+| `press-down` / Press feedback | Button contracts slightly when pressed | Primary action and touch control | Do not omit focus and disabled states | `animate scale [.98,1]` | A |
+| `magnetic` / Magnetic following | Button lightly tracks the pointer | Portfolio CTA or marketing moment | Provide touch fallback and avoid accidental activation | `createAnimatable x/y` | C |
+| `pointer-tilt` / Pointer tilt | Card tilts gently with mouse position | Creative media display | Avoid business forms and dizziness | `createAnimatable rotateX/rotateY` | C |
+| `icon-nudge` / Directional icon nudge | Arrow moves a few pixels on hover | Next/forward navigation | Do not animate directionless icon as directional | `animate x 4` | A |
+| `icon-rotate` / Icon rotation | Operation icon rotates meaningfully | Refresh and expand | Avoid arbitrary endless spinning | `animate rotate` | B |
+| `underline-grow` / Underline growth | Link underline extends along text | Inline link | Preserve line height without layout jump | `animate width/scaleX` | B |
+| `focus-ring` / Focus-ring emphasis | Visible keyboard focus ring appears and persists | Accessible form controls | Mouse hover is not a substitute for keyboard focus | `animate shadow/opacity` | A |
+## State and Feedback (12)
 
-| ID / 名称 | 实际视觉表现 | 推荐场景 | 避雷 | Anime.js API 映射 | 级别 |
-|---|---|---|---|---|---|
-| `hover-lift` / 悬停轻抬 | 卡片上移 2–4px | 可点击的展示卡片 | 不可点击的卡片 | `animate y -3` | A |
-| `hover-shadow` / 悬停阴影增强 | 阴影柔和变强 | 可点击卡片 | 每处装饰造成噪音 | `animate boxShadow` | A |
-| `hover-scale` / 悬停微放大 | 控件轻微变大 | 展示封面、图标按钮 | 工具表格中的所有文本 | `animate scale 1.02` | B |
-| `hover-tint` / 悬停色调切换 | 背景色或文字色渐变 | 按钮、导航项 | 降低文本对比度 | `animate backgroundColor/color` | A |
-| `press-down` / 按压反馈 | 按钮按下轻缩小 | 主按钮、触摸目标 | 没有焦点/禁用状态 | `animate scale [.98,1]` | A |
-| `magnetic` / 磁吸跟随 | 按钮轻度追随光标 | 作品集 CTA、营销场景 | 无触摸替代或易误点击 | `createAnimatable x/y` | C |
-| `pointer-tilt` / 指针倾斜 | 卡片随鼠标轻微旋转 | 视觉作品展示 | 业务表单、易眩晕场景 | `createAnimatable rotateX/rotateY` | C |
-| `icon-nudge` / 图标轻推 | 箭头在 hover 时右移几像素 | 跳转链接、下一步 | 无方向性的图标 | `animate x 4` | A |
-| `icon-rotate` / 图标旋转 | 操作图标旋转一定角度 | 刷新、展开 | 无语义的无限转动 | `animate rotate` | B |
-| `underline-grow` / 底线延伸 | 链接底线从左到右扩展 | 文本链接 | 影响行高造成跳动 | `animate width/scaleX` | B |
-| `focus-ring` / 焦点强调 | 聚焦环淡入并保持 | 键盘可用输入控件 | 只给鼠标 hover 不给键盘 | `animate shadow/opacity` | A |
+| ID / name | Actual appearance | Suitable context | Avoid | Anime.js mapping | Tier |
+| --- | --- | --- | --- | --- | --- |
+| `success-check` / Success check | Completion glyph enters with short scale feedback | Actual save/submit succeeded | Never show success on failed operation | `animate scale/opacity` | A |
+| `error-shake` / Brief error shake | Field shakes left/right once or twice | Actual error with explanatory text | No perpetual shake or nausea | `animate keyframes x` | B |
+| `warning-pulse` / One warning pulse | Status mark or border pulses once | Risk attention in moderation | Avoid continuous flashing red | `animate scale/opacity` | B |
+| `toast-enter` / Toast entrance | Toast fades/translates from nearby edge | Action feedback | Must not cover action or lack dismiss/exit | `animate opacity+y` | A |
+| `toast-dismiss` / Toast dismissal | Toast exits and fades promptly | Timed status dismissal | Important error must remain readable long enough | `animate opacity+y` | A |
+| `skeleton-shimmer` / Loading skeleton shimmer | Low-contrast light band moves slowly | Unknown-content loading | No fast flashes or fabricated actual progress | `animate backgroundPosition` | B |
+| `progress-fill` / Progress fill | Bar advances with true measured fraction | Upload/download/build | Never invent completion percentage | `animate width/scaleX` | A |
+| `spinner` / Loading spinner | Small indicator loops in rotation | Short uncertain wait | Avoid permanently spinning whole page | `animate rotate loop` | A |
+| `heartbeat` / Status heartbeat | One brief scale pulse returns to baseline | Minor alert or synchronization complete | No ongoing distraction | `animate scale keyframes` | B |
+| `switch-thumb` / Switch thumb travel | Thumb moves with actual toggle state | Switch and segmented control | Color cannot be only state indicator | `animate x` | A |
+| `counter-change` / True counter interpolation | Number updates to its real final value | Usage/statistical counter | Do not alter underlying numeric meaning | `animate JS Object property` | B |
+| `badge-bump` / Badge count bump | Badge briefly enlarges when unread count changes | Notifications and message counts | Avoid repeated disruptive blinking | `animate scale keyframes` | B |
+## Navigation and Switching (10)
 
-## 状态与反馈（12 种）
+| ID / name | Actual appearance | Suitable context | Avoid | Anime.js mapping | Tier |
+| --- | --- | --- | --- | --- | --- |
+| `tab-indicator` / Tab indicator travel | Underline moves to selected Tab | Tabs | Keyboard focus must remain visible | `animate x/width` | A |
+| `nav-highlight` / Navigation highlight | Selected background moves to current destination | Sidebar navigation | Do not cause nav layout movement | `animate x/y/opacity` | A |
+| `breadcrumb-transition` / Breadcrumb transition | New breadcrumb level fades in subtly | Deep hierarchical tools | Do not turn path into giant banner | `animate opacity` | B |
+| `accordion-open` / Accordion opening | Disclosure content expands smoothly in height | Help or configuration group | Navigation/actions must not be hidden behind delayed motion | `createLayout or height + opacity` | A |
+| `accordion-close` / Accordion closing | Disclosure compresses smoothly | Collapsible Settings groups | Do not block saving/exit | `createLayout or height + opacity` | A |
+| `menu-pop` / Anchored menu appearance | Menu gently scales and fades from trigger | Value select or action menu | Avoid extreme bounce or inaccessible keyboard | `animate scale+opacity` | A |
+| `page-crossfade` / Page crossfade | Old content fades away while new content appears | Portfolio page transitions | Preserve form focus and scroll state | `createTimeline + opacity` | B |
+| `stepper-advance` / Stepper progression | True current step emphasis moves with progress | Multi-step form | Never mark incomplete step complete | `timeline + color/width` | A |
+| `shared-element` / Shared-element continuity | Same object visually travels from list to detail | Gallery and media detail | May be overly complex for dense operational tasks | `createLayout / shared element logic` | C |
+| `sidebar-expand` / Sidebar expansion | Width and neighboring layout adapt smoothly | Collapsible navigation rail | Ensure icons/text remain legible during resizing | `createLayout update` | B |
+## Overlay and Container (8)
 
-| ID / 名称 | 实际视觉表现 | 推荐场景 | 避雷 | Anime.js API 映射 | 级别 |
-|---|---|---|---|---|---|
-| `success-check` / 成功勾选 | 成功图标轻弹出 | 保存完成、提交成功 | 错误提交却显示成功 | `animate scale/opacity` | A |
-| `error-shake` / 错误短摇 | 控件左右轻摇 1–2 次 | 明确错误且附文字说明 | 持续摇晃或引发眩晕 | `animate keyframes x` | B |
-| `warning-pulse` / 警告短脉冲 | 状态点或边框单次强调 | 有限度的风险提醒 | 长期红色闪烁 | `animate scale/opacity` | B |
-| `toast-enter` / 通知滑入 | Toast 从边缘淡入就位 | 操作反馈 | 盖住关键操作且无退出 | `animate opacity+y` | A |
-| `toast-dismiss` / 通知离场 | Toast 快速渐隐移出 | 定时关闭通知 | 错误消息自动过快消失 | `animate opacity+y` | A |
-| `skeleton-shimmer` / 骨架扫光 | 低对比亮带缓慢移动 | 等待不确定内容 | 高速强闪烁、替代实际进度 | `animate backgroundPosition` | B |
-| `progress-fill` / 进度推进 | 进度条随真实数值伸长 | 上传、下载、构建 | 伪造进度百分比 | `animate width/scaleX` | A |
-| `spinner` / 加载旋转 | 小型指示器循环旋转 | 未知时长的小范围等待 | 整页永远转圈 | `animate rotate loop` | A |
-| `heartbeat` / 状态轻跳 | 元素短暂放大回归 | 轻提醒、同步完成 | 持续吸引注意力 | `animate scale keyframes` | B |
-| `switch-thumb` / 开关滑块 | 滑块随开关状态左右移动 | Toggle/Segmented | 色彩是唯一状态标识 | `animate x` | A |
-| `counter-change` / 数字平滑变化 | 数字逐帧更新到真实值 | 计数器、用量、统计指标 | 改变实际数值语义 | `animate JS Object property` | B |
-| `badge-bump` / 徽标轻弹 | 未读数更新时短促放大 | 消息数、通知数 | 不断闪烁干扰任务 | `animate scale keyframes` | B |
+| ID / name | Actual appearance | Suitable context | Avoid | Anime.js mapping | Tier |
+| --- | --- | --- | --- | --- | --- |
+| `dialog-enter` / Dialog entrance | Backdrop fades as Dialog settles through subtle scale | Confirm/edit Dialog | Ensure initial focus works | `createTimeline opacity+scale` | A |
+| `dialog-exit` / Dialog exit | Dialog and backdrop fade away promptly | Closing Dialog | Must not delay actual save | `createTimeline opacity+scale` | A |
+| `drawer-enter` / Drawer entrance | Side panel slides from edge | Details or editing Sidebar | Avoid clipped/blocked close button on narrow view | `animate translateX` | A |
+| `popover-enter` / Popover entrance | Small shift plus opacity | Filter or contextual help | Must not require hover-only interaction | `animate opacity+y` | A |
+| `tooltip-enter` / Tooltip fade | Brief helper appears with opacity | Explaining an icon | Not a substitute for a real label/critical information | `animate opacity` | A |
+| `context-menu` / Context menu entrance | Menu appears with tiny scale from action point | File manager and developer tool | Preserve platform context-menu expectations | `animate scale+opacity` | A |
+| `bottom-sheet` / Bottom-sheet entrance | Sheet slides up from viewport bottom | Mobile filters/actions | Do not force mobile Sheet on desktop | `animate y [100%,0]` | B |
+| `modal-backdrop` / Backdrop fade | Overlay dimmer gradually increases | Dialog and Drawer | Avoid excessive dimming or flashing | `animate opacity` | A |
+## Text and Typography (10)
 
-## 导航与切换（10 种）
+| ID / name | Actual appearance | Suitable context | Avoid | Anime.js mapping | Tier |
+| --- | --- | --- | --- | --- | --- |
+| `line-reveal` / Line reveal | Text lines rise in sequence | Brand or editorial storytelling | Not lengthy operational instruction | `splitText lines + stagger` | C |
+| `word-reveal` / Word reveal | Words arrive one after another | English tagline or brand text | Do not slowly reveal long Chinese prose word by word | `splitText words + stagger` | C |
+| `char-reveal` / Character reveal | Short text reveals character by character | Very short title or slogan | Never tables or long paragraphs | `splitText chars + stagger` | C |
+| `text-scramble` / Text decode | Temporary random glyphs resolve to original | Fictional tech promo heading | Never sensitive data or real numeric values | `scrambleText innerHTML` | C |
+| `typewriter` / Typewriter | Characters append in order | Chat mock or code teaching | Do not slow text users need immediately | `splitText ortext updates+timer` | B |
+| `headline-color` / Headline color transition | Heading changes brand color smoothly | Marketing Hero | Not operational PageTitle | `animate color` | C |
+| `split-words-rise` / Staggered word rise | Words rise with opacity in short phrase | Portfolio introductory text | Avoid replaying operational instructions | `splitText words + animate y` | C |
+| `number-roll` / True numeric roll | Old numeric metric interpolates to actual new value | KPI or quota | Never fabricate data or confuse units | `animate object + onUpdate` | B |
+| `text-highlight` / Text highlight | Selected phrase gradually gets emphasis | Education or keyword match | Preserve sufficient focus contrast | `animate color/backgroundColor` | B |
+| `cursor-blink` / Simulated cursor blink | Cursor periodically changes opacity | Terminal demonstration | Do not overlay fake cursor on real Input | `animate opacity loop` | C |
+## Data and Charts (10)
 
-| ID / 名称 | 实际视觉表现 | 推荐场景 | 避雷 | Anime.js API 映射 | 级别 |
-|---|---|---|---|---|---|
-| `tab-indicator` / 标签指示条移动 | 下划线跟随选中项滑动 | Tabs | 焦点状态丢失 | `animate x/width` | A |
-| `nav-highlight` / 导航高亮过渡 | 背景浅色块移动到当前项 | 侧边栏导航 | 用位移造成导航跳动 | `animate x/y/opacity` | A |
-| `breadcrumb-transition` / 面包屑更新 | 新层级轻度淡入 | 层级较深的工具 | 变成横幅标题占用空间 | `animate opacity` | B |
-| `accordion-open` / 折叠展开 | 详情内容随高度展开 | 帮助内容、配置分组 | 让跳转藏在动画后 | `createLayout 或 height + opacity` | A |
-| `accordion-close` / 折叠收起 | 内容平滑压缩消失 | 设置组收起 | 退出前无法保存 | `createLayout 或 height + opacity` | A |
-| `menu-pop` / 菜单弹出 | 从触发点小幅缩放并淡入 | 下拉菜单、操作菜单 | 弹跳很明显、菜单无法键盘操作 | `animate scale+opacity` | A |
-| `page-crossfade` / 页面交叉淡变 | 旧内容淡出、新内容淡入 | 静态作品页面转场 | 表单焦点/滚动丢失 | `createTimeline + opacity` | B |
-| `stepper-advance` / 步骤推进 | 当前步骤高亮过渡并连接进度 | 多步骤表单 | 未完成步骤被误标完成 | `timeline + color/width` | A |
-| `shared-element` / 共享元素转场 | 同一元素在列表和详情间延续位置 | 图库、图片详情 | 操作密集页面动线复杂 | `createLayout / shared element logic` | C |
-| `sidebar-expand` / 侧栏展开 | 菜单宽度变化，内容平滑重排 | 可折叠侧栏 | 图标和文本在过程中无法读 | `createLayout update` | B |
+| ID / name | Actual appearance | Suitable context | Avoid | Anime.js mapping | Tier |
+| --- | --- | --- | --- | --- | --- |
+| `chart-bars-grow` / Chart bars grow | Bars rise from baseline to actual values | First display of statistics | Not every filter refresh from zero | `animate scaleY` | B |
+| `chart-line-draw` / Chart line draw | Polyline reveals along data path | Initial trend chart | Do not obscure key values after updates | `svg.createDrawable` | B |
+| `donut-progress` / Donut progress | Circular stroke extends with real progress | Measured progress or resource monitor | Do not replace numerical value and unit with decoration | `svg.createDrawable/dashoffset` | B |
+| `chart-point-pop` / Chart point emphasis | Relevant scatter points enter with small scale | Key data points | Do not animate thousands of points individually | `animate scale+stagger` | B |
+| `chart-crossfilter` / Cross-filter continuity | Remaining marks smoothly adjust position | Analytics Dashboard | Do not animate numbers before source data loads | `createLayout / animate values` | B |
+| `chart-hover-focus` / Chart hover emphasis | Current mark brightens while peers recede | Chart hover | Provide keyboard access to corresponding values | `animate opacity` | A |
+| `count-up` / Count-up | Number interpolates to true measured result | Dashboard summary | Never invent growth without source | `animate object value` | B |
+| `metric-delta` / Metric change highlight | Changed value briefly changes color | Monitoring/live updates | Avoid persistent flashing | `animate color` | B |
+| `heatmap-wave` / Heatmap wave | Grid marks enter in spatial stagger | Illustrative heatmap | Not constantly refreshing monitoring grid | `stagger grid/from` | C |
+| `filter-reorder` / Filtered reorder | Items move smoothly to their new list positions | Kanban or Card gallery | Avoid costly full animation of very long virtual list | `createLayout update` | B |
+## Layout and Responsiveness (8)
 
-## 浮层与容器（8 种）
+| ID / name | Actual appearance | Suitable context | Avoid | Anime.js mapping | Tier |
+| --- | --- | --- | --- | --- | --- |
+| `list-grid` / List/Grid toggle | Items travel between list and grid positions | Files/gallery/boards | Not tens of thousands of DOM items at once | `createLayout update` | B |
+| `sort-move` / Sort movement | Rows move to new sorted positions | Small boards/lists | Not massive table animation | `createLayout update` | B |
+| `expand-card` / Card expansion | Card grows into detailed layout | Overview-to-detail interaction | Prevent drastic neighboring jumps | `createLayout update` | B |
+| `collapse-panel` / Panel collapse | Auxiliary pane contracts smoothly | Workspace/settings panel | Avoid repeated expensive relayout | `createLayout update` | B |
+| `responsive-reflow` / Responsive layout motion | Items migrate on viewport change | Gallery or overview | Avoid continuous jitter while resizing | `createScope + createLayout` | C |
+| `drag-sort-settle` / Drag sort settlement | Other items flow into place after drop | Task board and list sort | Do not imply success without actual persistence | `createDraggable + createLayout` | B |
+| `card-flip` / Card flip | Card rotates around Y axis to reveal reverse | Flashcard and creative showcase | Avoid primary admin or finance interaction | `animate rotateY` | C |
+| `masonry-reflow` / Masonry reflow | Uneven items adjust gracefully | Portfolio/images | Avoid replaying full layout on infinite scroll | `createLayout update` | C |
+## Scroll and Storytelling (10)
 
-| ID / 名称 | 实际视觉表现 | 推荐场景 | 避雷 | Anime.js API 映射 | 级别 |
-|---|---|---|---|---|---|
-| `dialog-enter` / 对话框入场 | 遮罩淡入、弹窗微缩放就位 | 确认、编辑对话框 | 弹窗首次无法聚焦 | `createTimeline opacity+scale` | A |
-| `dialog-exit` / 对话框退出 | 弹窗与遮罩快速渐隐 | 关闭对话框 | 动画阻塞表单保存 | `createTimeline opacity+scale` | A |
-| `drawer-enter` / 抽屉滑入 | 面板从侧边进入 | 编辑侧栏、详情预览 | 窄屏超出或遮挡退出按钮 | `animate translateX` | A |
-| `popover-enter` / 气泡浮层出现 | 小位移和透明度变化 | 筛选、辅助信息 | 需要 hover 才能操作 | `animate opacity+y` | A |
-| `tooltip-enter` / 工具提示淡入 | 简短文字透明度变清晰 | 解释图标控件 | 替代可见标签或关键信息 | `animate opacity` | A |
-| `context-menu` / 右键菜单轻现 | 菜单从操作点微缩放出现 | 文件管理器、开发工具 | 平台右键习惯被打破 | `animate scale+opacity` | A |
-| `bottom-sheet` / 底部面板拉起 | 底部面板上滑进入 | 移动端筛选与操作 | 桌面端强行使用底部弹层 | `animate y [100%,0]` | B |
-| `modal-backdrop` / 背景遮罩过渡 | 背景遮罩逐渐加深 | Dialog、Drawer | 遮罩过深或闪烁 | `animate opacity` | A |
+| ID / name | Actual appearance | Suitable context | Avoid | Anime.js mapping | Tier |
+| --- | --- | --- | --- | --- | --- |
+| `scroll-reveal` / Scroll reveal | Content lightly enters on viewport intersection | Introductory text sections | Do not interrupt admin reading every scroll | `onScroll + animate` | B |
+| `scroll-scrub` / Scroll-synchronized timeline | Scroll position controls effect progress | Narrative article/interactive creative | Do not hijack wheel or touch scrolling | `onScroll sync` | C |
+| `scroll-progress` / Reading progress | Scroll position updates a progress bar | Long documents and articles | Do not confuse with actual task progress | `onScroll + JS value` | B |
+| `parallax` / Parallax | Layers travel at different relative speeds | Creative Hero depth | Avoid forms and vestibular triggers | `onScroll + y` | C |
+| `sticky-stage` / Pinned scrollytelling | Sticky object updates content by chapter | Product walkthrough or story | Avoid forced scroll and inaccessible keyboard | `onScroll + timeline + CSS sticky` | C |
+| `scrub-svg` / Scroll-drawn SVG | Path stroke reveal follows scroll progress | Route or historical timeline | Not routine process diagram zoom | `onScroll + createDrawable` | C |
+| `section-color` / Section color transition | Background shifts by current chapter | Portfolio narrative | Maintain readable text contrast at every point | `onScroll + backgroundColor` | C |
+| `horizontal-reveal` / Horizontal content reveal | Items appear laterally along scroll progress | Portfolio strip or milestones | Not reason to force horizontal scroll on routine list | `onScroll + x` | C |
+| `stagger-scroll` / Stagger on intersection | Grid siblings enter sequentially when visible | Gallery | Not massive data grid | `onScroll + stagger` | C |
+| `scroll-snap-feedback` / Scroll-section feedback | Chapter indicator transitions during scroll | Long-page navigation | Do not intercept native scroll to enforce state | `onScroll + tabs indicator` | B |
+## SVG and Graphics (8)
 
-## 文字与排版（10 种）
+| ID / name | Actual appearance | Suitable context | Avoid | Anime.js mapping | Tier |
+| --- | --- | --- | --- | --- | --- |
+| `svg-line-draw` / SVG stroke drawing | Line is traced from start to end | Logo or process illustration | Do not obscure information behind ornament | `createDrawable draw` | B |
+| `svg-line-erase` / SVG line erasing | Previously drawn path disappears gradually | Scene exit or demo | Must not hide critical business paths | `createDrawable draw` | C |
+| `svg-morph` / SVG path morph | Contour transforms into another shape | Brand or status symbol | Do not destroy recognizability of concrete icons | `morphTo path d` | C |
+| `svg-motion-path` / SVG motion path | Object travels an SVG curve | Route/process guide | Must match true mapped position | `createMotionPath` | C |
+| `svg-dash-flow` / Flowing dashed path | Dashes advance along connection line | Network link illustration | Avoid perpetual high-contrast flashing | `animate strokeDashoffset` | C |
+| `svg-gauge` / SVG gauge needle | Needle rotates to true measured angle | Instrument visualization | Meaning and units must remain clear | `animate rotate` | B |
+| `svg-orbit` / Orbit animation | Object follows cyclic path | Brand loading or education | Not meaningless motion on task page | `createMotionPath/rotate` | C |
+| `svg-gradient` / SVG gradient transition | Gradient stops/colors shift slowly | Decorative vector | Do not compromise text contrast | `animate SVG attrs/CSS vars` | C |
+## Drag and Physics (7)
 
-| ID / 名称 | 实际视觉表现 | 推荐场景 | 避雷 | Anime.js API 映射 | 级别 |
-|---|---|---|---|---|---|
-| `line-reveal` / 逐行揭示 | 文本按行逐一上移出现 | 叙事页、品牌首页 | 密集业务说明文档 | `splitText lines + stagger` | C |
-| `word-reveal` / 逐词揭示 | 单词先后出现 | 英文标题、品牌介绍 | 长篇中文逐词变慢 | `splitText words + stagger` | C |
-| `char-reveal` / 逐字揭示 | 每个字符依次显现 | 短标题、标语 | 表格数据和长篇正文 | `splitText chars + stagger` | C |
-| `text-scramble` / 字符乱码解锁 | 随机字符逐步变成原文 | 展示型数字科技标题 | 关键数值、敏感数据、可读性 | `scrambleText innerHTML` | C |
-| `typewriter` / 打字揭示 | 文字按顺序逐字符增加 | 聊天演示、代码教学 | 用户真的需要快速读取全文 | `splitText 或文本更新+timer` | B |
-| `headline-color` / 标题颜色渐变 | 标题从一种主题色过渡另一种 | 活动主视觉 | 后台功能标题 | `animate color` | C |
-| `split-words-rise` / 分词上浮 | 短句各词依次上移并淡入 | 作品介绍、宣传短句 | 操作说明反复播放 | `splitText words + animate y` | C |
-| `number-roll` / 数值滚动 | 数字由旧值渐变到实际新值 | KPI、配额、计量 | 伪造数据、造成单位混淆 | `animate object + onUpdate` | B |
-| `text-highlight` / 重点语句着色 | 文本重点逐步强调 | 教学标注、选中关键词 | 焦点颜色不足 | `animate color/backgroundColor` | B |
-| `cursor-blink` / 输入光标闪烁 | 光标周期性明暗切换 | 终端模拟、演示 | 真实输入框叠加假光标 | `animate opacity loop` | C |
+| ID / name | Actual appearance | Suitable context | Avoid | Anime.js mapping | Tier |
+| --- | --- | --- | --- | --- | --- |
+| `free-drag` / Free drag | Object tracks pointer across canvas | Canvas nodes and board | Must support non-pointer keyboard alternative | `createDraggable` | B |
+| `axis-drag` / Axis-constrained drag | Movement restricted to X or Y | Slider/resizable divider | Preserve native scrolling gestures | `createDraggable x/y` | B |
+| `snap-drag` / Snap drag | Dropped object aligns to grid | Diagram editor | Prevent unannounced unexpected placement | `createDraggable snap` | B |
+| `spring-release` / Spring release | Dragged object eases with damped physical spring | Playful control or canvas | Avoid excessive bounce reducing placement accuracy | `createDraggable releaseEase:spring` | C |
+| `inertial-flick` / Inertial flick | Thrown object continues then decelerates | Explorable surface | Do not cause accidental file-manager operations | `createDraggable velocity/release` | C |
+| `drag-boundary` / Drag boundary recoil | Object yields near edge then settles | Draggable canvas | Do not block main scroll | `createDraggable container` | C |
+| `drag-to-reorder` / Reorder by drag | Dragged item rearranges neighbors | Boards and short lists | Provide undo and keyboard alternative | `createDraggable + createLayout` | B |
+## Ambient and Experimental (8)
 
-## 数据与图表（10 种）
+| ID / name | Actual appearance | Suitable context | Avoid | Anime.js mapping | Tier |
+| --- | --- | --- | --- | --- | --- |
+| `ambient-float` / Ambient floating | Large decoration moves up/down slowly | Showcase home or display | Not persistent admin background | `animate y alternate loop` | C |
+| `ambient-rotate` / Ambient rotation | Abstract shape rotates continuously and slowly | Brand showcase/empty state | Avoid constant attention theft | `animate rotate loop` | C |
+| `orbital-particles` / Orbital particles | Small points travel around paths with staggering | Tech demo | Not enterprise list background | `createMotionPath + stagger` | C |
+| `wave-grid` / Grid wave | Cells change scale in timed wave | Generative data art or product story | Keep away from reading-dense content | `stagger grid + scale` | C |
+| `random-dots` / Random dots | Particles jump then settle unpredictably | Creative experiment | No perpetual randomness or dizziness | `random + stagger` | C |
+| `elastic-logo` / Elastic Logo | Brand emblem scales with spring return | Launch introduction | Not long daily startup delays | `spring scale` | C |
+| `loading-ripple` / Loading ripple | Ring grows and fades | Small pending indicator | Avoid multiple strong perpetual pulses | `animate scale+opacity loop` | B |
+| `glow-breathe` / Soft glow breathing | Glow strength changes gently | Recording/live activity status | Not giant purely decorative red/blue halo | `animate opacity loop` | B |
 
-| ID / 名称 | 实际视觉表现 | 推荐场景 | 避雷 | Anime.js API 映射 | 级别 |
-|---|---|---|---|---|---|
-| `chart-bars-grow` / 柱形增长 | 图表柱条从基线增长到数据值 | 初次展示统计图 | 每次筛选都从零增长 | `animate scaleY` | B |
-| `chart-line-draw` / 折线绘制 | 折线路径沿数据点渐次出现 | 首次展示趋势图 | 更新数据时遮蔽关键数值 | `svg.createDrawable` | B |
-| `donut-progress` / 环形进度 | 圆环描边沿周长增加 | 真实进度、资源监视 | 用装饰环替代数值和单位 | `svg.createDrawable/dashoffset` | B |
-| `chart-point-pop` / 数据点弹出 | 关键散点轻度放大出现 | 数据图高亮 | 数千点逐一动画 | `animate scale+stagger` | B |
-| `chart-crossfilter` / 交叉筛选过渡 | 筛选后保留数据位置平滑调整 | 数据看板、报表 | 数值先动画后加载数据 | `createLayout / animate values` | B |
-| `chart-hover-focus` / 悬停数据强调 | 当前数据提高亮度，其他淡化 | 图表 hover | 无法键盘获取对应数值 | `animate opacity` | A |
-| `count-up` / 数字计数 | 计量从前值过渡到真实值 | 仪表盘摘要 | 无来源地制造增长 | `animate object value` | B |
-| `metric-delta` / 指标变化提示 | 变化值短促着色后恢复 | 实时状态、监控 | 持续闪烁影响注意力 | `animate color` | B |
-| `heatmap-wave` / 热力图波纹 | 格点按位置错峰出现 | 展示型热力图 | 监控数据实时刷屏 | `stagger grid/from` | C |
-| `filter-reorder` / 筛选重排 | 元素平滑移动到新列表位置 | 看板、卡片库 | 虚拟长列表大量计算 | `createLayout update` | B |
+## Applicability and evidence boundaries
 
-## 布局与响应（8 种）
+- **Officially supported primitives:** animate(), createTimeline(), createAnimatable(), createLayout(), createDraggable(), onScroll(), splitText(), scrambleText(), stagger() and SVG utilities. See animejs-official-capabilities.md for exact API and version constraints.
+- **MauForma-authored compositions:** hover-lift, toast-enter, typewriter and similar IDs **are not official method names**; they express patterns composed from documented primitives.
+- Browser performance/support for clip-path, filters, certain custom CSS properties and complex SVG must be checked on **actual target devices**.
+- Before implementing createLayout, path morphing, onScroll or draggable effects, inspect the current official focused documentation. **Mapping descriptions in this table are not copy-ready implementation code.**
+- If the component already has correct native CSS/framework animation, do not install Anime.js merely to match a recipe.
 
-| ID / 名称 | 实际视觉表现 | 推荐场景 | 避雷 | Anime.js API 映射 | 级别 |
-|---|---|---|---|---|---|
-| `list-grid` / 列表网格切换 | 卡片在两种布局间移动 | 文件、图片库、项目看板 | 数万项同时进行 DOM 动画 | `createLayout update` | B |
-| `sort-move` / 排序位置变化 | 条目移动到最新排序位置 | 看板小列表 | 表格大量行复杂动效 | `createLayout update` | B |
-| `expand-card` / 卡片展开 | 卡片扩展为包含更多信息的布局 | 概览转详情 | 布局跳动严重 | `createLayout update` | B |
-| `collapse-panel` / 容器收缩 | 侧边信息区收起 | 工作台、设置面板 | 反复重排导致掉帧 | `createLayout update` | B |
-| `responsive-reflow` / 响应式重排 | 屏幕变化时元素平滑重新定位 | 图集、概览看板 | 视口调整持续抖动 | `createScope + createLayout` | C |
-| `drag-sort-settle` / 拖拽排序归位 | 释放后其余项平顺补位 | 任务看板、清单排序 | 变更未持久化却显示成功 | `createDraggable + createLayout` | B |
-| `card-flip` / 卡片翻面 | 卡片沿 Y 轴旋转显示背面 | 学习卡片、作品展示 | 财务信息、后台主要任务 | `animate rotateY` | C |
-| `masonry-reflow` / 瀑布流归位 | 不同尺寸项目平滑重排 | 图片集、作品页 | 无限滚动中频繁全量动画 | `createLayout update` | C |
+## Technical references
 
-## 滚动与叙事（10 种）
-
-| ID / 名称 | 实际视觉表现 | 推荐场景 | 避雷 | Anime.js API 映射 | 级别 |
-|---|---|---|---|---|---|
-| `scroll-reveal` / 滚动揭示 | 进入视口时轻淡入 | 介绍页段落 | 后台滚动时不断打断阅读 | `onScroll + animate` | B |
-| `scroll-scrub` / 滚动进度同步 | 滚动位置决定动画进度 | 长篇叙事、交互作品 | 用户滚动被劫持 | `onScroll sync` | C |
-| `scroll-progress` / 阅读进度条 | 页面滚动进度映射为条形 | 文章、长文档 | 与任务进度混淆 | `onScroll + JS value` | B |
-| `parallax` / 视差移动 | 不同图层以不同速度移动 | 展示型 Hero、景深视觉 | 表单、容易头晕 | `onScroll + y` | C |
-| `sticky-stage` / 粘性场景 | 固定局部区域逐步切换内容 | 产品演示、故事介绍 | 强制滚动与键盘导航不友好 | `onScroll + timeline + CSS sticky` | C |
-| `scrub-svg` / 随滚动路径描画 | 滚动越深路径显示越多 | 路线、时间线故事 | 后台流程图频繁缩放 | `onScroll + createDrawable` | C |
-| `section-color` / 章节背景变色 | 滚到不同段落更换场景背景 | 作品网站 | 导致文字对比度波动 | `onScroll + backgroundColor` | C |
-| `horizontal-reveal` / 水平揭示 | 横向项目随进度逐个露出 | 作品条带、里程碑 | 普通列表需要水平滚动 | `onScroll + x` | C |
-| `stagger-scroll` / 滚动进入错峰 | 网格元素进入视口时依次出现 | 画廊、作品集 | 大规模数据网格 | `onScroll + stagger` | C |
-| `scroll-snap-feedback` / 滚动区间反馈 | 章节切换时状态条渐变 | 长页章节导航 | 强制拦截原生滚动 | `onScroll + tabs indicator` | B |
-
-## SVG 与图形（8 种）
-
-| ID / 名称 | 实际视觉表现 | 推荐场景 | 避雷 | Anime.js API 映射 | 级别 |
-|---|---|---|---|---|---|
-| `svg-line-draw` / SVG 描边绘制 | 线条由起点逐段描出 | 品牌 Logo、流程示意 | 无语义装饰覆盖信息 | `createDrawable draw` | B |
-| `svg-line-erase` / SVG 路径擦除 | 已经显示的线段逐步消失 | 场景转场、演示动画 | 业务关键线段隐藏 | `createDrawable draw` | C |
-| `svg-morph` / 形状变形 | 图形轮廓平滑过渡成另一轮廓 | 品牌、状态图标 | 具象图标失去可识别性 | `morphTo path d` | C |
-| `svg-motion-path` / 路径运动 | 目标沿预设 SVG 曲线路径移动 | 流程示意、导览动画 | 实际地图位置与路径不匹配 | `createMotionPath` | C |
-| `svg-dash-flow` / 路径虚线流动 | 虚线沿路径持续前进 | 网络流量、连接示意 | 持续高对比闪动 | `animate strokeDashoffset` | C |
-| `svg-gauge` / 仪表盘指针 | 指针沿角度变化到真实指标 | 可视化仪表 | 数值颜色含义不明确 | `animate rotate` | B |
-| `svg-orbit` / 图形绕行 | 图形沿环形/曲线轨迹往复 | 品牌加载、教育动画 | 功能页面无意义运动 | `createMotionPath/rotate` | C |
-| `svg-gradient` / SVG 色彩渐变 | 渐变色值或节点位置缓慢变换 | 展示图形 | 影响文字对比度 | `animate SVG attrs/CSS vars` | C |
-
-## 拖拽与物理（7 种）
-
-| ID / 名称 | 实际视觉表现 | 推荐场景 | 避雷 | Anime.js API 映射 | 级别 |
-|---|---|---|---|---|---|
-| `free-drag` / 自由拖拽 | 元素随指针移动 | 画布节点、看板 | 无法键盘操作 | `createDraggable` | B |
-| `axis-drag` / 轴向拖拽 | 元素只能水平或垂直移动 | 滑块、分隔条 | 影响系统滚动手势 | `createDraggable x/y` | B |
-| `snap-drag` / 网格吸附 | 释放后自动吸附到格点 | 流程图、设计器 | 未经提示的意外位置改变 | `createDraggable snap` | B |
-| `spring-release` / 松手弹性归位 | 释放拖拽后以弹簧阻尼收敛 | 趣味控件、画布 | 高弹跳影响定位精度 | `createDraggable releaseEase:spring` | C |
-| `inertial-flick` / 甩动惯性 | 快速拖动后物体继续移动再减速 | 可探索面板 | 文件管理误操作 | `createDraggable velocity/release` | C |
-| `drag-boundary` / 边界回弹 | 物体到边缘有柔和回弹 | 可拖拽画布 | 阻挡主要滚动 | `createDraggable container` | C |
-| `drag-to-reorder` / 拖放排序 | 拖动物件，其他对象为它腾位 | 看板、轻量清单 | 顺序改动无撤销/无键盘替代 | `createDraggable + createLayout` | B |
-
-## 氛围与实验（8 种）
-
-| ID / 名称 | 实际视觉表现 | 推荐场景 | 避雷 | Anime.js API 映射 | 级别 |
-|---|---|---|---|---|---|
-| `ambient-float` / 背景缓浮 | 大图形缓慢上下移动 | 首页装饰、展示屏 | 管理系统常驻背景 | `animate y alternate loop` | C |
-| `ambient-rotate` / 背景慢旋 | 抽象图形持续缓慢旋转 | 品牌展示、空状态 | 频繁抢注意力 | `animate rotate loop` | C |
-| `orbital-particles` / 粒子环绕 | 多个光点按路径缓动 | 科技演示 | 企业列表页背景 | `createMotionPath + stagger` | C |
-| `wave-grid` / 波浪网格 | 格子按时间形成波浪起伏 | 数据艺术、产品介绍 | 可读性密集区 | `stagger grid + scale` | C |
-| `random-dots` / 随机散点 | 点阵随机弹跳后收敛 | 创意实验 | 持续随机导致眩晕 | `random + stagger` | C |
-| `elastic-logo` / 弹性 Logo | 品牌图形弹性缩放回原位 | 启动动画 | 每天打开工具都长时间播放 | `spring scale` | C |
-| `loading-ripple` / 扩散波纹 | 圆环逐渐放大同时渐隐 | 轻量等待图标 | 多个波纹造成持续刺激 | `animate scale+opacity loop` | B |
-| `glow-breathe` / 柔和呼吸光 | 光晕明暗缓慢变化 | 录音中、活动状态 | 用红蓝大光圈做纯装饰 | `animate opacity loop` | B |
-
-## 适用性与证据边界
-
-- **官方明确支持**：`animate()`、`createTimeline()`、`createAnimatable()`、`createLayout()`、`createDraggable()`、`onScroll()`、`splitText()`、`scrambleText()`、`stagger()`、SVG 工具等。详见 [animejs-official-capabilities.md](animejs-official-capabilities.md)。
-- **配方自行组合**：`hover-lift`、`toast-enter`、`typewriter` 等命名**不是官方 API 名称**；它们是基于官方原语组合出的设计方案。
-- `clip-path`、`filter`、某些 CSS 自定义属性和复杂 SVG 的跨浏览器支持与性能需要实机验证。
-- 对 `createLayout`、SVG 形变、`onScroll`、拖拽等高级效果，先读官方专页再写具体实现；不要将示意配置直接当可复制代码。
-- 组件已有 CSS transition、原生动画或框架动画时，不为使用 Anime.js 而重复安装库。
-
-## 技术入口
-
-- [官方文档](https://animejs.com/documentation)；[内置缓动完整清单](animejs-easing-complete.md)；[官方能力类别](animejs-official-capabilities.md)；[已核对的代码示例](../examples/animejs-v4-snippets.md)。
-- `assets/motion-effects.json` 与本表同源，可供自动化工具检索。
+- Official Anime.js: https://animejs.com/documentation
+- Built-in easing terms: animejs-easing-complete.md
+- Official API categories: animejs-official-capabilities.md
+- Verified examples: ../examples/animejs-v4-snippets.md
+- Machine-searchable extended catalog (same original IDs): ../assets/motion-effects.json

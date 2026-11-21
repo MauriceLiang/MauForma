@@ -1,183 +1,88 @@
-# MauForma · 内容驱动的设计访谈与用户决策（v5.2）
+# Design Discovery Interview — Ask Only for Decisions That Matter
 
-## 目标
+This guide supports new products and substantial redesigns when **product purpose, audience, authentic content or the intended visual direction** is genuinely unresolved. It does not require interviews for every small UI bug, already approved design or content-preserving polish.
 
-**用户可以只知道想做什么网站，不必先知道自己喜欢什么 UI 风格。** Agent 必须先理解用途、内容、用户任务，再推导视觉方向；先推荐少量适合的方向，后提出更具体、更易想象的属性选项，让用户自主选择。
+## Grounding rule: user intent outranks the design questionnaire
 
-优先级：**网站用途与内容 → 注意力和视觉焦点 → 推荐视觉方向 → 用户选定方向 → 分项微调 → Design Tokens 与共享组件 → 页面实施和验收**。
+Before asking a question, inspect what is already established in the conversation and target project: audience, page goal, current content, approved colors, typography, navigation, motion, density, technical stack, timeline and scope. Do not ask again for an answer already supplied. Distinguish `confirmed / inherited / delegated / proposed / unresolved`. A user's request to implement a feature is not automatically permission to redesign unrelated brand decisions.
 
-该规范适用于营销官网、品牌站、电商、作品集、媒体、教育、SaaS/后台、AI 应用、数据分析与编辑器等各种 Web 类型，React、Vue 及其他前端框架共用一套决策原则。
+Ask **one high-leverage question at a time** when one essential decision is missing. For multiple independent unknowns in a large new-product brief, gather them compactly together only when that genuinely reduces friction. Do not overwhelm users with a long design questionnaire or treat exploratory options as approval.
 
-## v6.18 · 设计参考的归属与发布边界
+## Gate DD0 — Minimal product discovery brief
 
-用户提供自己设计的优秀页面供当前设计分析时，按用户所声明的原创归属理解，不凭视觉内容推断来源或对作品贴“企业内部/第三方”的标签。**提供参考不等于授权保存或公开素材**：当用户要求图片不得入仓或不披露识别信息，所有原始图片、裁剪/打码变体、识别性业务数据、品牌、域名等都不能出现在 Skill、公开示例、测试截图或 PR/提交文字中。应使用 `references/design-reference-learning-gate.md` 将审美观察抽象为可迁移设计法则；若需要 demo，另起全新虚构场景。只做分析的请求不应自动改动仓库。
+A meaningful first-pass brief usually needs:
 
-## v6.14 · 动效选择是独立的用户决策，不是 Agent 的默认省略项
+| Field | What to learn | Why it affects the design |
+| --- | --- | --- |
+| Product and audience | What is it and who uses it? First-time/returning/admin/consumer? | Language, density, trust and task priority |
+| Core job and success | What must the visitor understand, decide, read or do? | First-screen focal point and CTA |
+| Authentic material | Images, product data, source text, brand, real workflows and restrictions | Prevents inventing showcase content and fake metrics |
+| Pages/IA | Main routes, navigation depth, object hierarchy and content scope | Structure rather than cosmetic template |
+| Visual direction | Existing brand or selected editorial/technical/playful/immersive style | Composition, color, typography and image strategy |
+| Motion and behavior | Approved/delegated motion intensity, reduced-motion and critical interactions | Avoids unapproved complexity or inert controls |
+| Technical boundaries | Framework, installed library, SSR, platforms, performance, licenses | Feasible components and engineering cost |
+| Acceptance | Actual browser support and how to verify outcomes | No promise of unverified delivery |
 
-旧条目“动效价值：帮助叙事、反馈，还是根本不需要”只能用于**Agent 形成建议**，不能代替用户确认。对新建网站、完整页面重设计和显著的交互动效更新：若未有已确认或明确委托的动效决策，**须主动向用户说明 2–3 套具体交互体验，再问一次选择**。例如“瞬时但有状态反馈 / 细腻的按压、Tabs、弹层过渡 / 少量主视觉与页面转场”；按真实业务解释效果、成本和性能，允许混搭与自由描述。动效是与配色分开的决定，不得因为用户“喜欢简洁”就推断不想要动画；用户说“直接开发”也不自动授权在全部交互上不做动效。
+A short bug fix should read the relevant known fields and proceed; it does **not** need a filled eight-field brief.
 
-**优先继承已知选择**（`confirmed / delegated / inherited`），避免局部 Bug 重问。用户明确把动效决定权交给 Agent 可以 `delegated`；用户明确选 A/无额外动效可 `confirmed`；未回答就是 `unresolved`，不得写成“零动画已确认”。无额外动效仍必须具备立即可见的 selected/focus/loading/error/success 等交互反馈。详细的选择话术、按项目页面调整的效果矩阵与验收规则在 `references/motion-consent-experience-gate.md`。
+## Gate DD1 — Diagnose the actual unknown before proposing style
 
-## 0. 先侦察，不重复询问
+- If user wants a **local correction** (one misaligned Button, cropped popup or wrong label), inspect related code and affected state, patch and test; never demand a new style direction.
+- If an existing product's **brand/direction is confirmed**, inherit it and review the relevant page. Don't offer alternative themes without authorization.
+- If user asks **"make it nicer"** with no further detail, inspect page and its task, identify proven flaws and decide whether clarification about a major design choice is essential. Don't fabricate preferences or ask repetitive questions.
+- If user requests a **new product / major overhaul** with no direction, propose 2–3 materially distinct options from its actual user job and content. Each must differ in layout/focal mechanism, not just color.
+- If user has **explicitly delegated choices**, choose with recorded reasoning; a recommendation remains `delegated`, never mislabel it `confirmed`.
+- User not mentioning animation does not mean user chose no animation, nor is it permission for cinematic effects. Follow the Motion Choice Gate for significant visual motion changes.
 
-先查项目的现有路由、内容、代码、组件、设计 Tokens、素材、品牌约束和已确定的偏好。区分：
+## Gate DD2 — Present design options with real tradeoffs
 
-- **明确风格/已有设计稿**：直接检查实际能否实施，仅针对缺失的关键限制补问。
-- **用户尚不确定风格**：走下面的“用途与内容先行”两阶段流程。
-- **用户只知道几个模糊词（高级、酷炫、简约）**：不要把词直接等同于渐变、玻璃拟态或大圆角；用实际内容解释不同的风格方向。
-- **用户明确委托 Agent 自行决定**：做有依据的推荐并记录委托决策，不反复逼用户做选择。
-- **局部 Bug、无关视觉的小改动**：跳过完整访谈，避免阻塞任务。
+For each candidate, keep a short but concrete comparison:
+- **First-screen subject and order:** What is central, and what appears before/after?
+- **Page grammar:** Editorial flow, product media, dashboard, split editor, guided learning, storefront, canvas or another product-fit composition.
+- **Typography and color relationship:** Brand, semantic color, body legibility and distinct type roles; no mandatory blue/purple theme.
+- **Media and assets:** Available photography/screenshots/diagrams, quality, licensing and fallback when missing.
+- **Interaction and motion:** One purposeful signature where justified, component state feedback, accessibility, interruption, reduced motion and performance cost.
+- **What each option sacrifices:** Density versus expressiveness, build complexity versus flexibility, supported devices and maintenance.
 
-## 1. 用途与内容发现：问普通人能回答的问题
+Do not show three colored versions of the same Card grid. A project's actual purpose may justify one obvious direction; do not manufacture alternatives or seek reconfirmation merely to satisfy a process template.
 
-**先问“做什么、展示什么”，而不是“你喜欢极简、科技风还是编辑风？”** 优先确定：
+## Gate DD3 — Ownership of approval
 
-1. **网站用途和目标受众**：品牌展示、推广获客、售卖商品、内容阅读、管理业务、可视化分析等；主要给谁看或用？
-2. **计划展示的内容和素材**：食物/商品照片、作品视频、功能截图、品牌故事、产品卖点、价格、文章、表格、实时指标等；是否已有质量足够的图片/视频？
-3. **希望访客最先完成的事**：被产品吸引、快速了解服务、联系咨询、购买、查找数据、完成操作等。
+**The user owns the final decisions.** Present an Agent preference as a recommendation with reasons and limitations; only explicit confirmation or delegated authority allows implementation as selected design. Preserve exact user-selected HEX, navigation type, allowed visual style and declared supported devices.
 
-默认通过一轮 **1–2 个简洁的自然语言问题**获取最关键缺口；若用途清楚，仅补问内容。不要让用户一次填完整的品牌策略问卷；若只缺一项则只问一项。用户可用口语回答（“开个咖啡店官网，放饮品照片和地址”）而非专业术语。
+- `confirmed`: User explicitly approved or selected.
+- `inherited`: Established and approved system already exists.
+- `delegated`: User explicitly entrusted this decision to the Agent.
+- `proposed`: Agent candidate, not yet selected.
+- `unresolved`: Evidence missing or a real conflict remains.
 
-如果用户无法描述内容，可用场景引导（“主要放产品照片、介绍服务，还是让用户登录操作？”），再按回复细化，不推断未提供的事实。
+If a user's existing decision conflicts with a technical accessibility issue, explain the conflict and propose compatible changes around the protected choice. Do not silently overwrite it. Only ask a blocking clarifying question where the real implementation cannot proceed sensibly without a decision.
 
-## 2. Agent 先推导，不把分析工作推给用户
+## Gate DD4 — Convert choice into an implementable brief
 
-整理出内部 **内容-目标-展示策略简表**（可简短呈现理由）：
+After an authorized decision, capture a concise **design direction record** in the target project, not this public Skill:
+- Audience/task/first-screen focus and current page mode (`Operate / Read / Persuade / Experience`);
+- Approved/inherited constraints, real assets/data and exclusions;
+- Structural composition, navigation strategy, density and accessibility;
+- Primary UI library/primitive stack and token roles consistent with actual framework;
+- Motion authority and components needing continuity;
+- Supported viewports, responsive transformation and browser/real-action tests;
+- Explicit unresolved assumptions and what needs further evidence.
 
-- 核心主体：实物图片 / 品牌文字 / 功能截图 / 表格操作 / 数据关系 / 长文等
-- 主任务：情绪吸引 / 理解与比较 / 阅读与探索 / 高效操作
-- 首要视觉焦点：主图 / 核心主张 / 首屏 CTA / 关键任务 / 核心指标
-- 适合密度：低、中、高或 **按页面混合**；标注首屏与次级页面区别
-- 可用素材的质量和数量：确定是否能承载大幅摄影或视频，若没有素材不能凭空假设
-- 动效价值：帮助叙事、反馈，还是根本不需要
-- 技术/可访问性约束：移动端、弱网、可读性、低性能与 reduced-motion
+A design direction is not complete when only colors and radius are specified. It must connect actual content, actions, layout and verification.
 
-**推荐必须能从内容和目标推导出理由**，不是固定“美食一定暖色、科技一定蓝色”。优先提出 2–3 套真正不同且适用的设计方向（不要同时列 8–10 个宽泛风格），并标记一套“首推”及其依据。若只有一种明显合理，也可首推一种并补充有意义的对照。
+## Gate DD5 — Acceptance and feedback
 
-每套方向至少用非术语描述：
+Use the approved brief to inspect **real target pages**, not synthetic demo pages alone. Confirm first-glance meaning, primary task, copy and media fidelity, proper component states, keyboard/focus, actual responsive scope, reduced-motion behavior and backend outcomes where applicable. Compare user-approved decision versus render; revise with actual feedback.
 
-| 必讲维度 | 需要说明 |
-| --- | --- |
-| 视觉焦点 | 用户打开后**第一眼看到什么**（食物大图 / 品牌口号 / 搜索框 / 数据表） |
-| 主布局 | 满幅主图、左右分栏、编辑排版、分组列表、数据网格等 |
-| 信息密度 | 首屏大约突出一件事还是提供多个任务入口，滚动与搜索成本 |
-| 配色与文字 | 明亮温暖、冷静中性、深色聚焦等视觉效果；**不强制固定色号** |
-| 动效强度 | 静态克制、轻微互动、叙事动画，为什么有用 |
-| 权衡 | 它擅长什么、要牺牲什么（视觉冲击 vs 扫描效率、动效 vs 性能） |
+If user rejects an option, update decision status rather than arguing that an Agent favorite is objectively better. A screenshot or a color palette alone does not establish user satisfaction, platform compatibility or engineering completeness.
 
-禁止只有“方案 A：高级；方案 B：科技；方案 C：极简”，用户无法从抽象词判断差别。
+## Example questions (adapt, do not quote mechanically)
 
-## 3. 第一轮选择：先选择方向，而不是调 10 个参数
+- For a brand website with genuine missing direction: “Should the first screen highlight a real product photograph, an editorial promise, or an interactive product demonstration? These produce different navigation and media requirements.”
+- For a data tool with no approved emphasis: “Which task should be visible without scrolling: filter and inspect current failures, compare several projects, or open an existing analysis?”
+- For a major motion overhaul with unknown authorization: “Do you want immediate quiet updates, subtle fluid component changes, or richer storytelling effects? I can recommend one for this product, but the choice remains yours.”
 
-向用户给出**2–3 个范围较小的候选方案**，附一句理由和可观察的构图差异。先询问“哪个更接近你的期望？”并接受“融合 A/B”“看示例”“交给你选”。
+These are **not forms to show indiscriminately**. For established projects, read existing choices and proceed. For review-only requests, deliver critique; do not modify the code.
 
-如果用户仍无法想象，给出简短的**首屏结构草图（文字排布）**，有合适工具时可提供对照预览图/原型；不能声称已制作未完成的预览。可引用用户指定的参考网站，但要明确可借鉴的是构图/氛围，不是机械复制。
-
-初选前**不要**强制用户挑主色、12px/16px 圆角或具体动画名称。
-
-## 4. 第二轮选择：沿已选方向提供精细、清楚、有结果的选项
-
-用户选中方向后，只保留该方向适合的 **2–3 档选项**，按影响设计结果的大小逐步确认（每轮至多 1–2 个必要决策）：
-
-- **信息密度（按首屏/不同页面）**：如“主图占首屏约 2/3，仅有标题和一项主操作”“左图右文，首屏介绍 2–3 个卖点”“多卡片/搜索筛选，同屏更多任务”。说清楚首屏能看见什么、需要滚动什么；**不是只写低/中/高**。
-- **视觉焦点/构图**：单个巨幅产品图、左右对照图文、整齐商品网格；或面板关键指标、紧凑表格、任务优先侧栏。
-- **配色氛围**：2–3 组有意义的氛围（如柔和奶油白 + 木色、清爽白 + 果色点缀、深色高对比），可给出颜色样例，但不限定品牌只能用这些颜色。
-- **动效**：静态精致 / 轻微入场与悬停 / 有节制的滚动叙事；说明用户能观察到的效果、加载/移动端代价，避免默认全屏粒子。
-- **排版与留白**：标题大而克制、图像/文案比例、段落宽度；不是空喊“高级感”。
-- **素材与可用性**：高质量图片/视频是否具备、移动端图像裁切和文字可读性，缺失时给出替代方向。
-
-仅确认**会改变设计实现的关键项**，不强制逐项问满。支持明确的“使用推荐方案”“你来决定”和“其他想法”。凡用户选择“你来决定”，来源记为 delegated，不能伪称 confirmed。
-
-## 5. 从选择到实施的门槛
-
-先输出简短的**设计方案确认摘要**：用途与目标、主内容、风格方向、页面级信息密度、焦点、色彩与动画基调、视觉权衡以及待确认内容。
-
-将决策写进项目设计简报（JSON Schema：`assets/design-brief.schema.json`）；`source` 只可为：
-
-- `confirmed`：用户明确选择；
-- `delegated`：用户把决定权交给 Agent；
-- `inherited`：从现有设计体系继承；
-- `unresolved`：仍不明确，不得虚构用户偏好。
-
-不得把助手的“推荐”悄悄记录成“已确认”。
-
-项目流程：侦察与内容发现 → 方案推荐与用户选择 → 视觉层级/页面构图 → 统一 Design Tokens → 共享组件与状态展示 → 业务页面组合 → 动效与真实浏览器验收。
-
-**不同页面不必同密度**：品牌首页可以大图 + 大留白；商品列表需要筛选与价格对比；后台工作台需提升操作效率。视觉一致靠 Token、字体、组件状态与品牌语言，而不是强迫所有页面使用同一套版式。
-
-## 6. 演示案例：用户不知道风格时怎么引导
-
-### 示例 A：蛋糕品牌网站
-
-用户：“我要做一个蛋糕店的网站，但不知道风格。”
-
-Agent 第一轮：“主要想展示蛋糕照片、品牌故事，还是提供在线下单？有没有自己拍摄的产品照片？”
-
-用户：“有很多漂亮的蛋糕照片，想吸引大家到店。”
-
-Agent 基于内容给出 2–3 个可视化方向，而不是再问抽象风格：
-
-- **A｜摄影主导（首推）**：首屏一张几乎铺满的蛋糕照片，配一句短标题和“查看门店”按钮；大片留白、内容少但冲击强。适合高质量照片；不足是新品目录不会全部出现在首屏。
-- **B｜杂志式叙事**：大图与品牌故事交替排布，主标题更像编辑排版；突出手工和故事，需要更多文案素材。
-- **C｜点单导向**：首屏先展示商品分类、热门商品与门店/下单入口，便于选购；视觉冲击低于 A。
-
-用户选 A 后再询问：“首屏更喜欢**一张蛋糕特写铺满画面**，还是**照片占左侧大约 2/3，右侧留品牌文案**？”下一轮如有必要再选色彩或动效。
-
-### 示例 B：业务管理系统
-
-用户：“要一个维修工单管理网页，但说不清视觉风格。”
-
-Agent 问：“主要给谁用？每天最常做的是查看工单状态、派单，还是分析效率？”
-
-用户：“客服每天查工单，主管偶尔看统计。”
-
-Agent 推荐**任务优先工作台**：上方简洁搜索与状态筛选，工单表为核心；主管统计放独立页。给出“紧凑高效 / 舒适易读”两种内容密度选项，说明每屏可见工单数量及字段呈现差异，不向用户推销巨型 Hero。
-
-### 示例 C：科技产品官网
-
-用户：“要给一个 AI 编程工具做宣传官网，内容有终端截图、功能对比、下载入口。”
-
-Agent 提供**产品截图主导**（首屏真实产品截图，克制动画）和**叙事演示主导**（滚动切换关键工作流，开发成本更高）两种方向，说明视觉效果、性能代价和移动端回退，然后再问用户要哪一种。
-
-更多可复制的访谈对话见 `examples/design-discovery-dialogues.md`。
-
-## 7. 反例与约束
-
-- **错**：用户尚未了解选项，就让其从“北欧极简/赛博科技/新拟态/新野兽派”中盲选。
-- **错**：用户说“食物”，不考虑图片素材质量就直接设计全屏美食视频。
-- **错**：每个项目固定三选一大圆角卡片模板。
-- **错**：一次抛出 20 个调色/圆角/动效专业问题。
-- **错**：将后台工作台按品牌官网低密度首屏处理，造成关键操作被折叠。
-- **错**：用户选“你来决定”，却在报告里写“用户确认暖色主题”。
-- **对**：用用户熟悉的业务内容讲解构图及其权衡，再让用户做真实选择。
-
-用户给了足够的内容和目标并明确要求直接执行时，**给出有理由的默认方案并继续工作**，不要用访谈阻塞交付。内容不充分且会直接改变作品形态时，先问最关键的一件事。
-
-## 8. 术语转换速查（用于给非设计师的解释）
-
-| 不应只说 | 更清楚的解释 |
-| --- | --- |
-| 低密度 / 高留白 | 第一屏只突出一张主图和一句标题；其他内容向下滚动查看 |
-| 编辑式视觉 | 像杂志一样排版：大图、不同字号标题与错位图文 |
-| 科技感 | 深浅中性色、精确线条、产品截图/动态演示；不自动等于霓虹和粒子 |
-| 卡片式布局 | 把不同内容分成独立块，方便快速扫描，但过多会显得碎 |
-| 动效较强 | 随滚动出现内容、标题短暂显现、图像切换；要说明是否影响性能 |
-| 混合密度 | 首页留白展示，列表页密集可比较，管理页任务效率优先 |
-
-## v6.4 · 用户选择的是**布局差异**，不是换肤差异
-
-在了解网站用途、展示内容和用户任务后，先做内容优先级与灰阶构图，参见 `references/composition-first-design.md`。给用户 2–3 套首屏实际排列、主区域内容或信息分组不同的方向；仅提供相同 Hero + KPI 卡片 + 图表分别采用蓝紫、暖灰、苔绿不算有意义的设计选择。用户不懂风格时，先说明第一眼看到什么、首屏完成什么任务，再解释色彩气质。用户允许 AI 自主决定时，内部比较并保存 delegated 选择即可；不得反复要求用户选择。
-
-## v6.6 · 用户对侧栏颜色拥有最终选择权
-
-对已有 UI 的侧栏/全站配色修改，不应仅凭“专业 SaaS”默认选深蓝、灰绿等颜色。先读现有品牌色、全站 Main/Topbar 颜色，**如果用户已明确说颜色或 HEX 则直接采用，避免再问**；否则推荐 2–3 套**包含侧栏和主区域的整页搭配**，阐明各自适用项目的理由，再邀请用户选择或自定义。不要单独给 3 个侧栏色块而忽略主内容。
-
-用户仍然可以明确说“颜色你决定”，此时记录 `delegated`，但授权布局自由发挥不自动授权改色；原来用户选择过的品牌色/HEX 不允许被委托式推荐悄悄覆盖。详细规则见 `references/sidebar-color-discovery.md`，决策记录见 `assets/sidebar-color-decision.schema.json`。
-
-## v6.7 · 先确定导航的任务，再选顶部、侧边或底部
-
-在用户新建网站或重大改版时，先问/读**一级栏目、频繁切换的任务、层级、主要屏幕**，参考 `references/navigation-architecture.md` 提出少量真正不同的导航结构（顶部 / 侧边 / Top+Side / 适配手机 Bottom 等）；不要因为“这是 SaaS”直接替用户画永久侧栏。手机更喜欢底部、还是需要完整抽屉，应说明入口数量与隐藏成本。用户明确指定导航方式可直接使用，未知时给 2–3 个能比较桌面/窄屏的候选并让用户选或明确授权。颜色另按 v6.6 规则确认，不因导航位置变化自动改色。不要重复提问已有决定。
-
-## v6.8 · 用户说“想要高级留白”时应主动策划信息
-
-不用追加一份全站统一“密度百分比”问卷。先从现有页面/内容了解用户希望访客完成的任务，Agent 提出**哪些内容保留、哪些只在初次使用时显示、哪些移到详情或帮助**的方案，用直白的用户语言说明影响。用户已经偏好低密度总览时保留，但分析详情、表格和批处理可以更紧凑；数据来源与异常提示不应牺牲。若已有项目与约束齐全，不重复追问；候选密度记录 provisional，不能标成 confirmed。参见 `references/page-density-and-content-priority.md`。
+Related: `references/product-experience-routing-gate.md`, `references/design-style-catalog.md`, `references/art-direction-critique.md`, `references/motion-consent-experience-gate.md`, `references/semantic-boundaries.en.md`.

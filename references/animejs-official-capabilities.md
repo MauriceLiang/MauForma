@@ -1,55 +1,59 @@
-> v4 范围提示：本 Skill 以 Web 前端为直接适用对象。旧版本个别原生 SwiftUI/AppKit 条目仅供设计语义迁移参考，不用于要求安装或生成原生 UI 源码。
+> v4 scope note: MauForma directly targets Web frontends. A few legacy SwiftUI/AppKit references are for transferring design semantics only; they do not authorize installing or generating native UI code.
 
-# Anime.js v4 官方能力全目录（核对日期：2026-11-02）
+# Anime.js v4 Official Capability Catalog (reviewed 2026-11-02)
 
-**重要范围定义**：以下是官网文档的顶层能力、关键入口及其效果，**不是预制 CSS 动画效果名称**。官网将动画定义为属性和时间配置组合；组合结果没有可穷尽的总数。准确区分官方 API 与本 Skill 的 `motion-effects.json` 视觉配方。
+**Scope:** The following are official top-level capabilities, primary API entrypoints and their intended uses, **not names of preset CSS animation effects**. Official animations are compositions of properties and timing. There is no finite total number of all possible combinations. Distinguish official APIs from MauForma visual recipes in assets/motion-effects.json.
 
-采用稳定版 **Anime.js 4.5.0**，不要套用 v3 `anime({targets:...})` 风格。建议 Web/Vue/React 项目 `npm install animejs@4.5.0`，按需 import；非 Web（SwiftUI 等）只转换动效意图，不硬嵌 JS。
+The stable version referenced here is **Anime.js 4.5.0**. Do **not** use the v3 anime({targets:...}) syntax as if it were v4. For Web/Vue/React projects, npm install animejs@4.5.0 and import only what is needed, subject to project authorization. For non-Web contexts (such as SwiftUI), transfer only the motion intention, **not** embedded JavaScript.
 
-| 官网类别 | 关键 API | 可产生的效果/用途 | 官网文档 |
-|---|---|---|---|
-| Timer / 定时器 | `createTimer` | 精确时序、计数、更新回调 | [官方文档](https://animejs.com/documentation/timer) |
-| Animation / 动画 | `animate` | CSS 属性、transform、CSS 变量、DOM/SVG 属性、JS 对象属性的插值 | [官方文档](https://animejs.com/documentation/animation) |
-| Timeline / 时间轴 | `createTimeline` | 串行、并行、标签位置、同步与回调 | [官方文档](https://animejs.com/documentation/timeline) |
-| Animatable / 高频响应 | `createAnimatable` | 鼠标跟随、连续数据输入、快速更新目标值 | [官方文档](https://animejs.com/documentation/animatable) |
-| Draggable / 拖拽 | `createDraggable` | 指针拖拽、轴限制、吸附、速度、回弹 | [官方文档](https://animejs.com/documentation/draggable) |
-| Layout / 自动布局 | `createLayout` | 列表/网格切换、排序、容器尺寸或排列变化 | [官方文档](https://animejs.com/documentation/layout) |
-| Scope / 作用域 | `createScope` | 组件作用域、响应式媒体条件、清理生命周期 | [官方文档](https://animejs.com/documentation/scope) |
-| Events / 滚动事件 | `onScroll` | 滚动触发、阈值控制、滚动同步 | [官方文档](https://animejs.com/documentation/events/onscroll) |
-| SVG / 形状变换 | `morphTo` | 两条路径的形状过渡 | [官方文档](https://animejs.com/documentation/svg/morphto) |
-| SVG / 路径绘制 | `createDrawable` | SVG 描边逐段绘制与擦除 | [官方文档](https://animejs.com/documentation/svg/createdrawable) |
-| SVG / 路径运动 | `createMotionPath` | 沿路径移动及方向跟随 | [官方文档](https://animejs.com/documentation/svg/createmotionpath) |
-| Text / 文本拆分 | `splitText` | 按行、词、字拆分供错峰动画 | [官方文档](https://animejs.com/documentation/text/splittext) |
-| Text / 字符扰动 | `scrambleText` | 字符随机替换并逐字揭示 | [官方文档](https://animejs.com/documentation/text/scrambletext) |
-| Utilities / 错峰 | `stagger` | 依次入场、波浪式分布、网格错峰 | [官方文档](https://animejs.com/documentation/utilities/stagger) |
-| Utilities / 其他 | `utils` | get/set、随机、数学插值、范围约束、清理 | [官方文档](https://animejs.com/documentation/utilities) |
-| Easings / 缓动 | `eases, cubicBezier, linear, steps, irregular, spring` | 非线性时间曲线与弹簧物理 | [官方文档](https://animejs.com/documentation/easings) |
-| WAAPI / 浏览器动画 | `waapi.animate` | 适用于基础视觉变换的轻量浏览器动画路径（能力与 JS 版不完全相同） | [官方文档](https://animejs.com/documentation/web-animation-api) |
-| Engine / 引擎 | `engine` | 全局时间精度、速度与动画引擎设置 | [官方文档](https://animejs.com/documentation/engine) |
-| Adapters / 外部对象 | `registerAdapter` | 动画驱动 Three.js 等非普通属性对象；官方内置 Three.js adapter | [官方文档](https://animejs.com/documentation/adapters) |
+| Official category | Main API | Purpose / possible outcome | Official documentation |
+| --- | --- | --- | --- |
+| Timer | createTimer | Precise timing, counters and update callbacks | https://animejs.com/documentation/timer |
+| Animation | animate | Interpolate CSS properties/transforms, variables, DOM/SVG attributes and JavaScript object properties | https://animejs.com/documentation/animation |
+| Timeline | createTimeline | Sequential and parallel choreography, label positions, synchronization and callbacks | https://animejs.com/documentation/timeline |
+| Animatable | createAnimatable | Pointer following, continuous input and rapid target-value updates | https://animejs.com/documentation/animatable |
+| Draggable | createDraggable | Pointer dragging, axis locks, snapping, velocity and rebound | https://animejs.com/documentation/draggable |
+| Layout | createLayout | List/grid switching and rearrangement, changes in container geometry | https://animejs.com/documentation/layout |
+| Scope | createScope | Component-local scope, reactive media conditions and lifecycle cleanup | https://animejs.com/documentation/scope |
+| Events / scroll | onScroll | Scroll triggers, thresholds and scroll-linked synchronization | https://animejs.com/documentation/events/onscroll |
+| SVG / morph | morphTo | Shape transition between two paths | https://animejs.com/documentation/svg/morphto |
+| SVG / drawing | createDrawable | Incremental drawing/erasing of SVG strokes | https://animejs.com/documentation/svg/createdrawable |
+| SVG / motion path | createMotionPath | Movement along a path and rotation following its direction | https://animejs.com/documentation/svg/createmotionpath |
+| Text / splitting | splitText | Split lines/words/characters for staggered animation | https://animejs.com/documentation/text/splittext |
+| Text / scrambling | scrambleText | Random character substitution resolving into a text reveal | https://animejs.com/documentation/text/scrambletext |
+| Utilities / stagger | stagger | Sequential entrances, wave distributions and grid staggering | https://animejs.com/documentation/utilities/stagger |
+| Utilities / others | utils | Get/set, randomization, mathematical interpolation, clamping and cleanup | https://animejs.com/documentation/utilities |
+| Easings | eases, cubicBezier, linear, steps, irregular, spring | Nonlinear timing curves and spring physics | https://animejs.com/documentation/easings |
+| WAAPI | waapi.animate | Lightweight browser-animation path for basic visual transforms; **capabilities differ from the JavaScript implementation** | https://animejs.com/documentation/web-animation-api |
+| Engine | engine | Global time precision, speed and animation-engine configuration | https://animejs.com/documentation/engine |
+| Adapters | registerAdapter | Animate external object models such as Three.js; an official Three.js adapter exists | https://animejs.com/documentation/adapters |
 
+## Property dimensions (Animation documentation)
 
-## 属性维度（Animation 文档）
+- **CSS properties:** Opacity, colors, dimensions, spacing, background, shadows and other interpolable properties. Favor opacity/transform and avoid broad layout repainting.
+- **Transforms:** x/y/translateX/translateY, scale/scaleX/scaleY, rotate/rotateX/rotateY and skew, as supported by the installed Anime.js version and browser.
+- **CSS custom properties:** Interpolable variables such as --value for visual theme or chart parameters. Verify value-type compatibility.
+- **HTML/SVG attributes:** For example SVG d and stroke-dasharray; SVG utility APIs may be more appropriate.
+- **JavaScript objects:** Interpolate real values in objects such as { value: 0 }; useful for displayed numbers or Canvas data sources. **Never invent business data.**
 
-- **CSS**: opacity、colors、尺寸、间距、背景、阴影及其他可插值属性；优先 opacity/transform，避免大面积布局重绘。
-- **Transforms**: x/y/translateX/translateY、scale/scaleX/scaleY、rotate/rotateX/rotateY、skew 等，以实际浏览器/Anime.js 支持为准。
-- **CSS custom properties**: `--value` 等可被插值的 CSS 变量；用于主题或图表视觉值，需谨慎检查类型兼容。
-- **HTML/SVG attributes**: 如 svg `d`、stroke-dasharray 等，使用 SVG 工具更方便。
-- **JavaScript object**: `{ value: 0 }` 的真实值插值；适合数字显示、Canvas 数据源。不要伪造业务数据。
+## Timing and choreography dimensions
 
-## 时间与编排维度
+- from/to; delay/duration/ease; composition/modifier; keyframes; loop/alternate/loopDelay/autoplay/playbackRate/reverse; onBegin/onUpdate/onComplete and similar callbacks **only where supported by the specific API**.
+- **createTimeline:** .add(), .sync(), .call(), .label(), relative positioning, labels, parallel/sequential arrangements; use for meaningful state-continuity feedback.
+- **stagger:** Offset **timing, values and Timeline positions**, including from/grid/axis/ease distribution options.
+- **onScroll:** Scroll triggers, entry/exit thresholds, progress synchronization; **never hijack normal scrolling**.
+- **createDraggable:** Grid snapping, inertia on release, bounds and axis constraints; release spring configuration must match actual drag state.
+- **createLayout:** Capture the previous/next layout and animate between them; useful for reordered lists/grids, DOM order and CSS Grid changes.
+- **splitText:** Line/word/character splitting. **scrambleText:** Reveal via temporary character replacement. Verify accessible names, long content and dynamic text.
+- **SVG:** morphTo, createDrawable and createMotionPath mean **morphing**, **line drawing** and **path motion** respectively; do not present them as the same effect.
 
-- `from`、`to`；`delay`、`duration`、`ease`；`composition`、`modifier`；`keyframes`；`loop`、`alternate`、`loopDelay`、`autoplay`、`playbackRate`、`reverse`；onBegin/onUpdate/onComplete 等回调（以具体 API 为准）。
-- `createTimeline`: `.add()`、`.sync()`、`.call()`、`.label()`；相对定位、标签、同时执行、依次执行；用于需要有意义的连续反馈。
-- `stagger`: **时间错峰、值错峰、Timeline 位置错峰**；支持 `from`、`grid`、`axis`、`ease` 等分布配置。
-- `onScroll`: 滚动触发、进入/离开阈值、进度同步；严禁劫持原生滚动体验。
-- `createDraggable`: 网格吸附、惯性释放、边界、限定轴；释放回弹参数与实际拖拽状态必须一致。
-- `createLayout`: 记录前后布局并动画过渡；适用于列表/网格、DOM 顺序和 CSS grid 布局切换。
-- `splitText`: 行/词/字；`scrambleText`: 替换字符揭示。无障碍名字、长文字、动态内容应验证。
-- `SVG`: `morphTo`/`createDrawable`/`createMotionPath` 分别对应形变、画线、路径移动，不应将它们当作同一个效果。
+## Capabilities Are Not the Same as Visual Effect Types
 
-## 功能 ≠ 动效类型
+Timer, Scope, Engine, Utils and Adapters are mainly implementation infrastructure. Do not invent visual-effect names or results for them. This document summarizes the official documentation as checked; it does **not** claim to cover APIs introduced by future Anime.js versions. Recheck the actual installed major version after upgrades.
 
-`Timer`、`Scope`、`Engine`、`Utils`、`Adapters` 主要是实现基础设施，不要给它们杜撰“动画视觉特效”。本目录是对官方文档的归纳，不声称包含今后版本新增的 API，版本升级后须复核。
-
-参考：<https://animejs.com/documentation>、<https://animejs.com/documentation/animation>、<https://animejs.com/documentation/easings/built-in-eases>、<https://animejs.com/documentation/layout>、<https://animejs.com/documentation/adapters>
+Official references:
+- https://animejs.com/documentation
+- https://animejs.com/documentation/animation
+- https://animejs.com/documentation/easings/built-in-eases
+- https://animejs.com/documentation/layout
+- https://animejs.com/documentation/adapters

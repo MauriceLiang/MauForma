@@ -1,0 +1,2391 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Source-to-English semantic parity audit. Original Chinese snippets exist ONLY as non-runtime test anchors; these are not machine-translation proof.",
+  "source_commit": "54a4af62566da1532c2b68d4301b531aee118e81",
+  "status": "complete_pending_review",
+  "entrypoint_language": "English",
+  "translation_principles": [
+    "Preserve MUST/SHOULD/MAY modality, triggers, exemptions and prohibitions.",
+    "Do not silently omit examples that encode a unique exception or an accessibility/state boundary.",
+    "Keep file paths, code identifiers, framework version conditions and verification status meanings intact.",
+    "Translate runtime prose; keep language-specific product text only when it tests localization.",
+    "No document counts as independently semantically verified merely because static checks pass."
+  ],
+  "entries": [
+    {
+      "path": "references/agent-team-handoff.md",
+      "source_blob_sha": "e7a5f21f35667dff17eb51efc3315a7f61d5ecf3",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Design Lead",
+        "UI Foundation Owner",
+        "Feature Developer",
+        "QA",
+        "Lead's final review",
+        "must not independently redefine"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "设计负责人",
+          "target_en": "Design Lead"
+        },
+        {
+          "source_zh": "键盘",
+          "target_en": "keyboard"
+        },
+        {
+          "source_zh": "视觉审查",
+          "target_en": "Visual review"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/animation-engine-extension.md",
+      "source_blob_sha": "ac4cda4d9e6985cfd2cf758988cb14382f3234f0",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "at most",
+        "one principal imperative animation engine",
+        "licens",
+        "reduced motion",
+        "failure/fallback"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "候选",
+          "target_en": "candidate"
+        },
+        {
+          "source_zh": "最多设置一个",
+          "target_en": "at most"
+        },
+        {
+          "source_zh": "授权与商业",
+          "target_en": "commercial restrictions"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/design-dna-protocol.md",
+      "source_blob_sha": "74c3a2f3abe8bb993a68276e1cb52cab4c31e74c",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "observable",
+        "INCONCLUSIVE",
+        "analyst inference",
+        "must not be transplanted",
+        "when authorized"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "证据",
+          "target_en": "evidence"
+        },
+        {
+          "source_zh": "不",
+          "target_en": "do not invent"
+        },
+        {
+          "source_zh": "BLOCKED",
+          "target_en": "BLOCKED"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/chart-interior-alignment.md",
+      "source_blob_sha": "3b22042155e42e15f39800bb10de33153e858b80",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "0 and null have different meanings",
+        "NOT AUDITED",
+        "canvas",
+        "plot areas",
+        "labelLayout"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "0 与 null",
+          "target_en": "0 and null"
+        },
+        {
+          "source_zh": "NOT AUDITED",
+          "target_en": "NOT AUDITED"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/web-scope-and-app-types.md",
+      "source_blob_sha": "5fe008b7091b3a19fd669138aca0aa87b728e2e9",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Web-First",
+        "Electron/Tauri",
+        "SwiftUI/AppKit",
+        "100–220 ms",
+        "not a fixed"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "原生",
+          "target_en": "native"
+        },
+        {
+          "source_zh": "业务",
+          "target_en": "product needs"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/component-library-first-gate.md",
+      "source_blob_sha": "fe931124ea1e6d07691874af052d1d4a5d8cb0bc",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate 0",
+        "Gate A",
+        "Gate B",
+        "Gate C",
+        "Never silently install",
+        "native controls",
+        "not a visual pass"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "无授权安装依赖",
+          "target_en": "never grants permission"
+        },
+        {
+          "source_zh": "原生控件例外",
+          "target_en": "Valid native-control exceptions"
+        },
+        {
+          "source_zh": "首版交付验收",
+          "target_en": "first delivery acceptance"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/semantic-copy-hygiene.md",
+      "source_blob_sha": "2d1abca7eab940709bc9a7927f8e2e45be72b078",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Universal title-copy gate",
+        "Historical",
+        "not automatically justify",
+        "data sources",
+        "functional guidance"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不得把“有信息价值”直接等同于“可继续使用装饰前导样式”",
+          "target_en": "does not automatically justify"
+        },
+        {
+          "source_zh": "真正可导航的面包屑与页面标题同名可以成立",
+          "target_en": "actual breadcrumb"
+        },
+        {
+          "source_zh": "数据来源",
+          "target_en": "data sources"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/proactive-visual-defect-discovery-gate.md",
+      "source_blob_sha": "3769a2c9c504c57d2f2b707beac5f218b113b5fd",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate D0",
+        "Gate D1",
+        "Gate D2",
+        "Gate D3",
+        "Gate D4",
+        "NOT AUDITED",
+        "actual page"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "真实页面",
+          "target_en": "real page"
+        },
+        {
+          "source_zh": "不能将“跑了一条脚本”直接称为完成设计",
+          "target_en": "Running a script alone"
+        },
+        {
+          "source_zh": "不推断来源归属",
+          "target_en": "Do not infer source ownership"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/browser-qa-protocol.md",
+      "source_blob_sha": "5bb6c97c4271bb25fc1dc904ed5048a6f9e8fdc2",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "actual target platform",
+        "NOT TESTED",
+        "actual page",
+        "CAPTURED_FOR_REVIEW",
+        "networkidle"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不静默安装",
+          "target_en": "Never silently install"
+        },
+        {
+          "source_zh": "浏览器/操作系统绘制的 native select 菜单",
+          "target_en": "native select menus"
+        },
+        {
+          "source_zh": "只有静态 Mock",
+          "target_en": "A static Mock cannot prove"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/page-header-antipatterns.md",
+      "source_blob_sha": "efe27572e9e8aa16f7410156ba5a080a03c19c2a",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate H-Base",
+        "Gate H0",
+        "H01",
+        "H14",
+        "H20",
+        "first-pass",
+        "keep / merge / move / delete"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "已有",
+          "target_en": "inherited"
+        },
+        {
+          "source_zh": "例外与边界",
+          "target_en": "exceptions"
+        },
+        {
+          "source_zh": "功能页 H1 前的解释性眉题默认禁止",
+          "target_en": "Gate H0"
+        }
+      ],
+      "allowed_cjk_fragments": [
+        "用户管理"
+      ]
+    },
+    {
+      "path": "references/design-style-catalog.md",
+      "source_blob_sha": "3869f05b80313f82faef4afcc0111105dff4dbef",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "eight profiles",
+        "**not** official classifications",
+        "calm-minimal",
+        "functional",
+        "reading-first"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "八种档案",
+          "target_en": "eight profiles"
+        },
+        {
+          "source_zh": "用户明确选择",
+          "target_en": "Users may deliberately choose"
+        }
+      ],
+      "allowed_cjk_fragments": [
+        "蛋糕 店铺 摄影 到店"
+      ]
+    },
+    {
+      "path": "references/animation-integration-lifecycle.md",
+      "source_blob_sha": "2a7ecf4b441e89309d8c896fce0a8b9a4e2616ec",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "DOM ownership",
+        "React StrictMode",
+        "prefers-reduced-motion",
+        "ten consecutive mount/unmount",
+        "WebGL failure"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "停止/回收",
+          "target_en": "Stop and release"
+        },
+        {
+          "source_zh": "服务端",
+          "target_en": "SSR"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/perceptual-hierarchy-gate.md",
+      "source_blob_sha": "fa0dbf03f6b354f0a769134b15ab24ab652616ba",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "P0 — Decision focal point",
+        "P1 — Required to complete the task",
+        "P2 — Supports comprehension",
+        "P3 — Low-frequency context",
+        "NOT VISUALLY VERIFIED"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "信息优先级不是数字检测器",
+          "target_en": "Priority is not a numeric-value detector"
+        },
+        {
+          "source_zh": "3 秒快扫",
+          "target_en": "three-second scan test"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/typography-hierarchy.md",
+      "source_blob_sha": "03f9eb30b513e5bba9bf2e0b6a33814bf8d93664",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "4.5:1",
+        "3:1",
+        "200%",
+        "Text Spacing 1.4.12",
+        "not a mandatory accessibility font-size minimum"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "推荐下限不代表无障碍强制字号",
+          "target_en": "not a mandatory accessibility font-size minimum"
+        },
+        {
+          "source_zh": "不自动宣称只因检查静态 Token 就满足 WCAG",
+          "target_en": "Do not claim WCAG conformance"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/page-density-and-content-priority.md",
+      "source_blob_sha": "73eb0f2d57470dc9efed32fdcde45b3cd061b20a",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate P0",
+        "Gate P1",
+        "Gate P2",
+        "Gate P3",
+        "Gate P4",
+        "Gate P5",
+        "without a verified denominator"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "隐藏不是删除功能",
+          "target_en": "Hidden content is not deleted functionality"
+        },
+        {
+          "source_zh": "无可确认分母就不算百分比",
+          "target_en": "without a verified denominator"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/motion-consent-experience-gate.md",
+      "source_blob_sha": "883c72333322bbdd365f59d8e9cbae03b50e6929",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate M0",
+        "Gate M1",
+        "Gate M2",
+        "Gate M3",
+        "Gate M4",
+        "No extra motion is a valid user decision",
+        "prefers-reduced-motion"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不能把“用户没提动画”“希望简洁”",
+          "target_en": "does not mean"
+        },
+        {
+          "source_zh": "用户选择“无额外动效”是合法结果",
+          "target_en": "No extra motion is a valid user decision"
+        },
+        {
+          "source_zh": "推荐不等于确认",
+          "target_en": "A recommendation is **not** confirmation"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/motion-craft-and-continuity.md",
+      "source_blob_sha": "bb44c8655388042f60ec09ffa51711afcb9ba868",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate MC0",
+        "Gate MC1",
+        "Gate MC2",
+        "Gate MC3",
+        "Gate MC4",
+        "Gate MC5",
+        "Gate MC6",
+        "Gate MC7",
+        "NOT REVIEWED"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "在 30% 或 70% 时再次触发或逆向",
+          "target_en": "30% or 70%"
+        },
+        {
+          "source_zh": "取消不必要运动但保留状态",
+          "target_en": "without losing state"
+        },
+        {
+          "source_zh": "若没有独立复审条件，诚实标为",
+          "target_en": "NOT REVIEWED"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/comparison-ux-case.md",
+      "source_blob_sha": "4e7ee45819b6922bb71cba731c3974e21f8f24d1",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "fictional",
+        "missing values",
+        "missing values",
+        "actual selection"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "缺失值按缺失展示",
+          "target_en": "Display missing values as"
+        },
+        {
+          "source_zh": "合成示例测试通过不得写成真实产品通过",
+          "target_en": "Passing a synthetic fixture is"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/grid-alignment-case.md",
+      "source_blob_sha": "4124a7cef3abcde1afe797a8fec15b970f3019e9",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "shared Grid rows/columns",
+        "200%",
+        "fixed bottom",
+        "genuinely unreachable"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "固定底栏应预留滚动末端的安全空间",
+          "target_en": "fixed bottom action bar needs safe space"
+        },
+        {
+          "source_zh": "截图不能单独证明",
+          "target_en": "A screenshot alone"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/overview-density-case.md",
+      "source_blob_sha": "e819742cea8e72a1760c0f43449b58e678e3ff91",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "first-visit",
+        "actual content reduction",
+        "not** real-product"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不以增加 padding",
+          "target_en": "Neither extra padding"
+        },
+        {
+          "source_zh": "不同页面密度可不同",
+          "target_en": "Density can differ"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/run-monitor-case.md",
+      "source_blob_sha": "7782c48f9395e684a5688203d06e11e643ce8c89",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Unknown progress is not 0%",
+        "action-column",
+        "API, permission"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "未知进度与 0% 不等价",
+          "target_en": "Unknown progress is not 0%"
+        },
+        {
+          "source_zh": "短操作逐字竖排",
+          "target_en": "vertically"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/react-component-engineering.md",
+      "source_blob_sha": "2c43e0d7069499b305cd36b9936675c2f24c9c1a",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "React 19",
+        "React 18",
+        "RSC",
+        "Untested performance claims"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "React 19 规则不能直接作用于 React 18",
+          "target_en": "React 19 rules cannot"
+        },
+        {
+          "source_zh": "未测性能只能给风险预测",
+          "target_en": "Untested performance claims"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/vue-component-engineering.md",
+      "source_blob_sha": "4dc5a92eb495ac4dba096ea92e1341e80bd2e322",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Options API",
+        "ref/computed",
+        "Nuxt SSR",
+        "measured bottlenecks"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不强制局部重写",
+          "target_en": "instead of requiring a partial unapproved rewrite"
+        },
+        {
+          "source_zh": "Nuxt SSR 不在顶层访问 document/window",
+          "target_en": "must not access"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/framework-other-web.md",
+      "source_blob_sha": "c86c7c780c738f431c4da1204e91ea304168e3ec",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "SvelteKit",
+        "SolidStart",
+        "Astro",
+        "Astro",
+        "Motion JS",
+        "minimum acceptance"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "统一的是设计原则与组件契约",
+          "target_en": "Unify design principles and component contracts"
+        },
+        {
+          "source_zh": "不要在 Angular 中调用 React hooks",
+          "target_en": "Do not transplant React Hook"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/framework-support-matrix.md",
+      "source_blob_sha": "936c56f90ed3ed3d1ba849074fba65c266a23e57",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Lucide",
+        "2026-era",
+        "one primary styled library",
+        "SSR/SEO",
+        "Vue 3 / Nuxt"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是“所有项目都手写”的许可",
+          "target_en": "not permission to handwrite every complex control"
+        },
+        {
+          "source_zh": "不代表必须安装",
+          "target_en": "not required installations"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/framework-vue-nuxt.md",
+      "source_blob_sha": "7873bfc38a8e2375bde0f22638905aa8cb173ae9",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Reka UI Splitter",
+        "Pinia",
+        "onMounted",
+        "SSR",
+        "200%"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不要求加载整套所有框架 Skill",
+          "target_en": "do not load all framework Skills"
+        },
+        {
+          "source_zh": "不是 Pinia 的同义替代",
+          "target_en": "**not** synonymous with Pinia"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/framework-react-next.md",
+      "source_blob_sha": "156a9d32a907293237edcb74be7825504e059dcc",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "React 19-only",
+        "React 18",
+        "RSC",
+        "Base UI",
+        "Server Actions"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "React 19 专属 API",
+          "target_en": "React 19-only APIs"
+        },
+        {
+          "source_zh": "任何认证与授权必须在服务端真实验证，不靠隐藏按钮",
+          "target_en": "not merely by hiding Buttons"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/aesthetic-authorship.md",
+      "source_blob_sha": "20f2797f08f371ccf7e0d2d6db9e640cd2e0a923",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "0–10 ranges",
+        "No indiscriminate negative rules",
+        "No uniquely confirmed upstream repository",
+        "license"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "都不是“错误本身”",
+          "target_en": "not defects by themselves"
+        },
+        {
+          "source_zh": "无可确认的唯一上游仓库",
+          "target_en": "No uniquely confirmed upstream repository"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/art-direction-critique.md",
+      "source_blob_sha": "441dcfa95aa281238ef7b3acf1cdcc20750b6fc6",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "2–3 genuinely different",
+        "Three aesthetic decisions",
+        "Not screenshot verification",
+        "Composition First"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不能直接塞 10 种抽象风格术语",
+          "target_en": "Do not offer ten vague style adjectives"
+        },
+        {
+          "source_zh": "独立执行规则",
+          "target_en": "independently specified by MauForma"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/motion-and-interaction.md",
+      "source_blob_sha": "18f91b1211c64b526730f7b2c9e5b8f0d7ab52bd",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "v3.0",
+        "123",
+        "114",
+        "prefers-reduced-motion",
+        "opacity:0"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "所有核心内容默认可见",
+          "target_en": "Core content is visible by default"
+        },
+        {
+          "source_zh": "多数基础 hover 仅需 CSS，无需引入新动画库",
+          "target_en": "ordinary hover normally needs only CSS"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/motion-governance.md",
+      "source_blob_sha": "1c80b595b86a231da3a46d4dbcef11e971ea7cf4",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "100–180ms",
+        "500–1200ms",
+        "prefers-reduced-motion",
+        "never accumulate",
+        "Truthful numbers"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不能经过无关字符扰动",
+          "target_en": "must not pass through arbitrary character scrambling"
+        },
+        {
+          "source_zh": "不允许无限叠加",
+          "target_en": "Never accumulate animations"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/theme-design.md",
+      "source_blob_sha": "a900781acce768df8bab0ae1461226c68b78b170",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Six editable starting palettes",
+        "4.5:1",
+        "3:1",
+        "pending",
+        "user-specified HEX"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是限定只能用六套",
+          "target_en": "not the only six allowed themes"
+        },
+        {
+          "source_zh": "用户明确指定 HEX 必须原样保留",
+          "target_en": "Keep a user-specified HEX exactly"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/palette-art-direction.md",
+      "source_blob_sha": "7b2a3152bde86c6f988a83653c795cbf9cd73969",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "palette rationale",
+        "confirmed",
+        "delegated",
+        "pending/unresolved",
+        "Recommended"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "推荐 ≠ 确认",
+          "target_en": "Recommended ≠ confirmed"
+        },
+        {
+          "source_zh": "不擅自替换用户固定值",
+          "target_en": "rather than silently changing a fixed value"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/clean-enterprise-design.md",
+      "source_blob_sha": "61813fa8538a88a1d8b467a1dc6a269f1823d850",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "optional style profile",
+        "16–24px",
+        "Original fictional scenario",
+        "not a requirement"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是 MauForma 默认 UI 模板",
+          "target_en": "not** MauForma's default UI template"
+        },
+        {
+          "source_zh": "对比度优先于“浅”",
+          "target_en": "Contrast outranks pale appearance"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/control-geometry-gate.md",
+      "source_blob_sha": "417b3c4b7580b5b25a1e96ceccb214e530b1fc75",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Atomic short label",
+        "200%",
+        "NOT AUDITED",
+        "whole-Button wrapping",
+        "white-space: nowrap"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不对全站所有文字全局 `nowrap`",
+          "target_en": "not every string on the site"
+        },
+        {
+          "source_zh": "布局有责任为控件留出尺寸",
+          "target_en": "Parent layouts own adequate control space"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/surface-edge-accent-gate.md",
+      "source_blob_sha": "ac15e458edcfbff8f25163fe20e22adacb359572",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate S0",
+        "4–10 CSS px",
+        "New builds",
+        "FOUND → UNFIXED",
+        "No accent rail"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "已有项目的旧代码不是例外",
+          "target_en": "Legacy code is not exempt"
+        },
+        {
+          "source_zh": "默认：不添加任何装饰性侧边彩条",
+          "target_en": "Default: add no decorative edge rail"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/surface-architecture-gate.md",
+      "source_blob_sha": "3041d77ef06c1c6823a7bf68923e20813d479b74",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Surface Decision Tree",
+        "open collection",
+        "bounded panel",
+        "no universal numeric cutoffs",
+        "Gate B / D"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是要求所有后台放弃卡片",
+          "target_en": "does not forbid Cards in admin products"
+        },
+        {
+          "source_zh": "静态决策计划 PASS 不代表视觉美学 PASS",
+          "target_en": "A passing static design plan does not prove visual quality"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/semantic-spacing-rhythm-gate.md",
+      "source_blob_sha": "2cbb2a2110490a344cd68069d50e5a630e152d76",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate SR0",
+        "Gate SR1",
+        "Gate SR2",
+        "Gate SR3",
+        "Gate SR4",
+        "connected"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "允许 0 gap",
+          "target_en": "Zero gap/shared edge permitted"
+        },
+        {
+          "source_zh": "不要强行给错误空态指定大固定高度",
+          "target_en": "Do not force empty/error states into giant fixed heights"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/spacing-regression-protection-gate.md",
+      "source_blob_sha": "f443e9d37e56ad534d8611fe00d6e54e875c31d3",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate SG0",
+        "Gate SG1",
+        "Gate SG2",
+        "Gate SG3",
+        "Gate SG4",
+        "NO_COMPARABLE_PAIRS"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "只保护正确的间距",
+          "target_en": "Protect only good inherited gaps"
+        },
+        {
+          "source_zh": "不能以“没有标记”为借口跳过风险评估",
+          "target_en": "missing annotations are not permission to skip risk review"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/whitespace-and-surface-composition.md",
+      "source_blob_sha": "f35b192e8eb37bef0042e525ca25fda7ae64bc64",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Macro",
+        "Meso",
+        "Micro",
+        "Surface Necessity",
+        "NOT RUN"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "卡片与卡片几乎贴合不总是坏事",
+          "target_en": "Touching Cards are not always bad"
+        },
+        {
+          "source_zh": "不能自行移除已形成的独立 Section/Peer 外部间距",
+          "target_en": "outside gaps"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/grid-alignment-and-viewport-safety.md",
+      "source_blob_sha": "1a1e57f4d8044a35a0ca9312ec28938dd3ce125a",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate G1",
+        "Gate G2",
+        "Gate V1",
+        "Gate V2",
+        "Gate V3",
+        "200%",
+        "scroll"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不对称（asymmetry）≠ 不对齐",
+          "target_en": "Asymmetry ≠ misalignment"
+        },
+        {
+          "source_zh": "内容高度超过视口，用户可以自然地滚动看到完整记录",
+          "target_en": "Content taller than the viewport scrolls naturally"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/component-first.md",
+      "source_blob_sha": "c823e3de14cd36119f21f0907a5ae91938459c3b",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Mandatory implementation gates",
+        "UiPageHeader",
+        "Component-First",
+        "Gate B"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是必须从零造轮子",
+          "target_en": "Do not remake mature primitives by default"
+        },
+        {
+          "source_zh": "稳定分层及单一组件所有权",
+          "target_en": "Stable layering and one owner"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/component-craft-gate.md",
+      "source_blob_sha": "96e8b9328a50a7222114c4441b9189e2d2f9bac1",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate B",
+        "NOT VISUALLY VERIFIED",
+        "surface-edge-accent-gate.md",
+        "reduced-motion",
+        "six questions"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "组件复用**不等于相同视觉结构**",
+          "target_en": "Reuse **does not** imply identical appearance"
+        },
+        {
+          "source_zh": "不是审美禁令",
+          "target_en": "not a ban on legitimate creativity"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/settings-form-layout-gate.md",
+      "source_blob_sha": "fae7059ea6f6df0fe60e19ae0c223991e69de720",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "SF0",
+        "SF1",
+        "SF2",
+        "SF3",
+        "SF4",
+        "SF5",
+        "NOT TESTED"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不能因为页面标题出现“设置”就机械推断全部控件应左右排",
+          "target_en": "does not imply every field must use a horizontal row layout"
+        },
+        {
+          "source_zh": "不能把 Mock 的动画反馈当真实保存成功",
+          "target_en": "Mock animation is not evidence"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/design-system.md",
+      "source_blob_sha": "21d3d767f3e52dc98d1724dd4026d321538d97ea",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "v2.0",
+        "Design Token",
+        "32px",
+        "44px",
+        "200%",
+        "User-specified HEX"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是 WCAG 强制字号",
+          "target_en": "not WCAG minimum font sizes"
+        },
+        {
+          "source_zh": "页面密度由真实任务决定",
+          "target_en": "per-page density from task"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/icon-art-direction-gate.md",
+      "source_blob_sha": "471a88600dfa4de21cbca6ac50cd573c461a25f0",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate I0",
+        "Gate I1",
+        "Gate I2",
+        "Gate I3",
+        "Gate I4",
+        "6–12 actual icons"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "无可见文案的按钮必须有完整可访问名称",
+          "target_en": "Icon-only Buttons require an accessible name"
+        },
+        {
+          "source_zh": "不强制所有产品使用 Lucide",
+          "target_en": "never mandates Lucide"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/semantic-boundaries.en.md",
+      "source_blob_sha": "429a07ed99df9b571252e6c61e3f04667070470c",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "B12",
+        "B13",
+        "B14",
+        "B15"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "指令语言与产品语言",
+          "target_en": "Language vs product locale"
+        },
+        {
+          "source_zh": "按需读取",
+          "target_en": "Reference loading"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/skill-gap-workflows.md",
+      "source_blob_sha": "f6159cf32d290efbfb43bf285081dbf80319336d",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "NO_GROUNDED_MATCH",
+        "NOT_BASELINED",
+        "CAPTURED_FOR_REVIEW",
+        "PREVIEW_ONLY",
+        "PLAN_ONLY",
+        "NOT_TESTED"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "脚本不会更新 `MASTER.md`",
+          "target_en": "It never updates"
+        },
+        {
+          "source_zh": "观察到的 Token 基线不是经用户批准的 MASTER 设计真值",
+          "target_en": "It reflects source observations, not MASTER truth"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/external-design-case-library.md",
+      "source_blob_sha": "8ad1438f0f147b7d041e4dacd9135c8af53a73ac",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "88 style profiles",
+        "192 product/industry",
+        "84 community analyses",
+        "2026-11-02",
+        "Inspired"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是品牌官方发布的 Design System",
+          "target_en": "not an official brand Design System"
+        },
+        {
+          "source_zh": "上游两仓库都以 MIT 发布各自文档/代码，但不代表",
+          "target_en": "does **not** grant rights"
+        }
+      ],
+      "allowed_cjk_fragments": [
+        "甜品 咖啡 门店"
+      ]
+    },
+    {
+      "path": "references/sidebar-selection-indicator-gate.md",
+      "source_blob_sha": "1f13c124d8f497b932f769a5930b558e1305301d",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Default: no rail",
+        "aria-current",
+        "2–4px",
+        "12–22px",
+        "6–10px",
+        "NOT TESTED"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "禁止：把导航项的左边框涂成品牌色，冒充独立指示条",
+          "target_en": "Forbidden: recolor nav item's own left border"
+        },
+        {
+          "source_zh": "未打开真实页面不能将 Gallery 或静态检查视为通过",
+          "target_en": "does **not** verify real page"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/product-experience-routing-gate.md",
+      "source_blob_sha": "96c5823dc58690c78d152f21a8cf0e3482c828b2",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "PX0",
+        "PX1",
+        "PX2",
+        "PX3",
+        "PX4",
+        "Settings / Form / Hybrid"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不能因为它有登录或用了侧栏就断言整个产品是后台。",
+          "target_en": "Login or a sidebar does not make the whole product an admin system"
+        },
+        {
+          "source_zh": "建议不冒充用户已确认",
+          "target_en": "A recommendation is not confirmation"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/comparison-page-design.md",
+      "source_blob_sha": "d524d504160f858774115e850d9218b52a13273d",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate C0",
+        "Gate C1",
+        "Gate C2",
+        "Gate C3",
+        "Gate C4",
+        "null",
+        "NOT AUDITED"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "值为 `null` 时展示“— / 无数据”，绝对不能变成 `0`。",
+          "target_en": "never 0"
+        },
+        {
+          "source_zh": "截图不能证明来源数据和隐藏曲线是否完整",
+          "target_en": "Screenshots do not prove source-data correctness"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/sidebar-color-reference-cases.md",
+      "source_blob_sha": "30936dc0a62ce02f816cd05252251315b70256ba",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Linear",
+        "Carbon",
+        "Primer",
+        "verified_official_documentation",
+        "mauforma_interpretation"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是品牌官方样式复刻",
+          "target_en": "not official copies"
+        },
+        {
+          "source_zh": "决定权仍在用户",
+          "target_en": "the user decides final colors"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/sidebar-color-discovery.md",
+      "source_blob_sha": "33879e197ab9e8620957cc91b719ba8aceeb91f4",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "status=pending",
+        "status=approved",
+        "delegated",
+        "exact user HEX",
+        "200%"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "推荐不等于用户确认",
+          "target_en": "Agent recommendation is not user confirmation"
+        },
+        {
+          "source_zh": "用户已明确给出 HEX 时，必须保留原值",
+          "target_en": "Never covertly change the numeric HEX"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/workspace-component-refinement.md",
+      "source_blob_sha": "08eabd4a8b86127c3f1bfa14c26a76e43d9afc38",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "v6.17",
+        "v6.13",
+        "Sidebar",
+        "Split Pane",
+        "Keyboard focus"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是“禁用圆角、卡片、彩色或图标”",
+          "target_en": "does **not** mean banning corners"
+        },
+        {
+          "source_zh": "键盘焦点是另一种状态",
+          "target_en": "Keyboard focus is a different state"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/navigation-architecture.md",
+      "source_blob_sha": "073e244710bcd1609fbd76f6130da743991e0d2e",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Top only",
+        "Bottom navigation",
+        "3–5",
+        "aria-current",
+        "pending/unresolved"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不能因为做 SaaS 就自动左侧导航",
+          "target_en": "SaaS does not automatically require a sidebar"
+        },
+        {
+          "source_zh": "底部工具条不等于底部导航",
+          "target_en": "Bottom toolstrip is not bottom navigation"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/sidebar-navigation-design.md",
+      "source_blob_sha": "f42d9c6c9efd856259bfddd62b7f7d2e78b333fa",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Soft inset",
+        "External active indicator",
+        "aria-current",
+        "Focus-visible",
+        "200%"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "外置标记与导航项边框是不同的形态",
+          "target_en": "External indicator and colored nav-item border are different shapes"
+        },
+        {
+          "source_zh": "焦点状态必须独立可见",
+          "target_en": "Keyboard focus remains separately visible"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/task-center-run-monitor-design.md",
+      "source_blob_sha": "aca03a4c48a098023cc9e68213b7d7489e896ff1",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate T0",
+        "Gate T1",
+        "Gate T2",
+        "Gate T3",
+        "Gate T4",
+        "Gate T5",
+        "17.6%"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "未知进度不是 0%",
+          "target_en": "progress:null"
+        },
+        {
+          "source_zh": "逐字竖排",
+          "target_en": "character by character"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/animation-engine-selection.md",
+      "source_blob_sha": "6a044caa593ad26dc62c154fcfc71d9493708277",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Anime.js v4",
+        "SSR",
+        "prefers-reduced-motion",
+        "createTimeline",
+        "createScope",
+        "60fps",
+        "v6.15",
+        "v6.14",
+        "A / everyday",
+        "B / requires",
+        "C / brand",
+        "100–180 ms",
+        "300–650 ms",
+        "AutoAnimate",
+        "Lottie",
+        "Rive",
+        "View Transitions API",
+        "123 recipes",
+        "45 easing terms",
+        "not an additional dependency"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不得把 Anime.js 当成强制默认",
+          "target_en": "not a mandatory default"
+        },
+        {
+          "source_zh": "必须按版本核对 API",
+          "target_en": "installed major version"
+        },
+        {
+          "source_zh": "用户选择“无额外动画”仍必须保留即时、清楚的交互状态反馈",
+          "target_en": "no added visual motion"
+        },
+        {
+          "source_zh": "参数建议（设计默认值，非官方标准）",
+          "target_en": "design defaults, not official standards"
+        },
+        {
+          "source_zh": "不应被当成额外依赖",
+          "target_en": "not an additional dependency"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/figma-fidelity-workflow.md",
+      "source_blob_sha": "a9de5271d035de95530f92e70f55e85cd4e96696",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate F0",
+        "Gate F1",
+        "Gate F2",
+        "Gate F3",
+        "Gate F4",
+        "SOURCE INSPECTED",
+        "STATIC CHECK",
+        "input confidence",
+        "Desktop selection is not remote node access",
+        "source-figma / inherited-project / inferred-from-screenshot / unknown",
+        "device pixel ratio",
+        "seven implementation stages",
+        "intentional differences"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "无法访问 Figma 不得虚构",
+          "target_en": "Do not fabricate inaccessible Figma metadata"
+        },
+        {
+          "source_zh": "截图不等于像素级忠实",
+          "target_en": "Figma file access"
+        },
+        {
+          "source_zh": "用户只说参考这种感觉，不等于按像素复刻",
+          "target_en": "only “use this feeling/style as inspiration”"
+        },
+        {
+          "source_zh": "当前选中节点与远端 file/node 是两种不同的输入能力",
+          "target_en": "Desktop selection is not remote node access"
+        },
+        {
+          "source_zh": "不能虚构 Figma MCP 读取结果",
+          "target_en": "Never invent a tool name"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/design-reference-learning-gate.md",
+      "source_blob_sha": "d01c3acb45b0f91872af0049c52616a0d82a407b",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate RL0",
+        "Gate RL1",
+        "Gate RL2",
+        "Gate RL3",
+        "NOT TESTED",
+        "Reference Insights Matrix",
+        "Do not publish any user's original reference image",
+        "even anonymized versions remain prohibited",
+        "Never disclose user identity",
+        "No proactive reverse sourcing",
+        "RL4 — Pre-publication checklist",
+        "EXAMPLE VERIFIED ONLY",
+        "user explicitly said"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "用户截图不能自动当公开样例",
+          "target_en": "Do not commit screenshots"
+        },
+        {
+          "source_zh": "视觉截图不能证明代码和交互",
+          "target_en": "A screenshot is evidence for a visual discussion"
+        },
+        {
+          "source_zh": "用户本轮明确要求不入仓时，即使脱敏也禁止上传",
+          "target_en": "even anonymized versions remain prohibited"
+        },
+        {
+          "source_zh": "不主动通过 OCR、截图下载、Drive 或外部链接找可识别原始版本",
+          "target_en": "No proactive reverse sourcing"
+        },
+        {
+          "source_zh": "设计参考并不意味着使用同一组件库",
+          "target_en": "same component library"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/project-design-hierarchy.md",
+      "source_blob_sha": "43af8915968fc1aef77922facebf8e5c8df11510",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "MASTER.md",
+        "confirmed / inherited / delegated / proposed / unresolved",
+        "Tool drift",
+        "Schema drift",
+        "Design truth drift",
+        "v6.4",
+        "v6.6",
+        "v6.7",
+        "v6.8",
+        "v6.9",
+        "v6.10",
+        "v6.11",
+        "--force --apply",
+        "status=pending",
+        "#RRGGBB",
+        "comparison-contract.json",
+        "task-run-contract.json",
+        "observed-tokens.json",
+        "Truth drift"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "推荐不是确认",
+          "target_en": "remains `proposed`, not `confirmed`"
+        },
+        {
+          "source_zh": "静态扫描基线不等于批准",
+          "target_en": "not MASTER truth"
+        },
+        {
+          "source_zh": "已有的 MASTER 默认拒绝覆盖，需明确授权和 --force --apply",
+          "target_en": "--force --apply"
+        },
+        {
+          "source_zh": "推荐色不能提前入库",
+          "target_en": "status=pending"
+        },
+        {
+          "source_zh": "工具不得为全绿报告改写 MASTER",
+          "target_en": "Never rewrite MASTER"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/composition-first-design.md",
+      "source_blob_sha": "d504dbee1b4ebd8ef739f89636434a345f08bcc3",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate C0",
+        "Gate C1",
+        "Gate C2",
+        "Gate C3",
+        "Gate C4",
+        "grayscale",
+        "first-screen"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "先做构图再调颜色",
+          "target_en": "Composition First"
+        },
+        {
+          "source_zh": "不应强制所有页面同样信息密度",
+          "target_en": "Do not impose the same sidebar+KPI template"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/design-craft-loop.md",
+      "source_blob_sha": "ab2b6e2ffe6d4d253462504a0c0cf49c5a521266",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Loop 0",
+        "Loop 1",
+        "Loop 2",
+        "Loop 3",
+        "Loop 4",
+        "Loop 5",
+        "Loop 6",
+        "NOT REVIEWED"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "真正的产品页面",
+          "target_en": "actual affected route"
+        },
+        {
+          "source_zh": "不是一遍 CSS 美化",
+          "target_en": "Not a One-Pass CSS Beautification"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/design-discovery-interview.md",
+      "source_blob_sha": "e44159fefd2749ee3f1c47ad1f4948ea6de3d800",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate DD0",
+        "Gate DD1",
+        "Gate DD2",
+        "Gate DD3",
+        "Gate DD4",
+        "Gate DD5",
+        "confirmed / inherited / delegated / proposed / unresolved"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "已经确定的不要重复问",
+          "target_en": "Do not ask again for an answer already supplied"
+        },
+        {
+          "source_zh": "建议不是用户批准",
+          "target_en": "recommendation remains"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/animejs-easing-complete.md",
+      "source_blob_sha": "4e4de154a0c29a1789c57181878f8eaee4d23d8d",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "45 built-in easing names",
+        "Four timing directions",
+        "Six official extended easing functions",
+        "cubicBezier",
+        "steps(count",
+        "irregular",
+        "spring({mass",
+        "prefers-reduced-motion"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "完整的官方名称表（不含无限可调的参数组合）",
+          "target_en": "excluding unbounded parameterized combinations"
+        },
+        {
+          "source_zh": "不适合需要连贯的界面迁移",
+          "target_en": "Unsuitable for an interface transition that must be continuous"
+        },
+        {
+          "source_zh": "避免在模态框、密集表格、重复操作中反复弹跳",
+          "target_en": "avoid repeated bouncing in dialogs"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/animejs-official-capabilities.md",
+      "source_blob_sha": "82b72076c5e658ad695329dcce76d14ad28a6d42",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Anime.js 4.5.0",
+        "not names of preset CSS animation effects",
+        "createTimer",
+        "createAnimatable",
+        "createDraggable",
+        "createLayout",
+        "createScope",
+        "createMotionPath",
+        "splitText",
+        "scrambleText",
+        "registerAdapter",
+        "capabilities differ",
+        "future Anime.js versions"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是预制 CSS 动画效果名称",
+          "target_en": "not names of preset CSS animation effects"
+        },
+        {
+          "source_zh": "不要套用 v3 anime({targets:...}) 风格",
+          "target_en": "not** use the v3 anime({targets:...}) syntax"
+        },
+        {
+          "source_zh": "严禁劫持原生滚动体验",
+          "target_en": "never hijack normal scrolling"
+        },
+        {
+          "source_zh": "不声称包含今后版本新增的 API",
+          "target_en": "not** claim to cover APIs introduced by future Anime.js versions"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/visual-tech-selection-12.md",
+      "source_blob_sha": "8dd9131e5db847eab14aa303069e827966e697eb",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "twelve technologies",
+        "PixiJS",
+        "Three.js",
+        "Curtains.js",
+        "Apache ECharts",
+        "Rough.js",
+        "Vivus",
+        "tsParticles",
+        "Matter.js",
+        "eight engineering acceptance gates",
+        "backdrop-filter",
+        "not refraction",
+        "graceful degradation",
+        "not measurements or performance benchmarks"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "12 项并非相互竞争的同一种动画框架",
+          "target_en": "not competitors in one single category"
+        },
+        {
+          "source_zh": "条件性增强不意味着推荐一并安装",
+          "target_en": "NOT an invitation to install"
+        },
+        {
+          "source_zh": "Matter.js 仅负责物理计算",
+          "target_en": "Matter.js calculates physics only"
+        },
+        {
+          "source_zh": "普通磨砂不代表折射",
+          "target_en": "not refraction"
+        },
+        {
+          "source_zh": "性能风险并非项目性能基准测试",
+          "target_en": "not measurements or performance benchmarks"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/progressive-visual-refinement-gate.md",
+      "source_blob_sha": "c6371dbdc546008abd443d62962a55b9aa047c83",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "R0 — Baseline & Diagnosis",
+        "R1 — Experience & Composition",
+        "R2 — Layout & Spacing",
+        "R3 — Typography, Palette & Icons",
+        "R4 — Radius, Surfaces & Component Finish",
+        "R5 — Compare & Verify",
+        "Never delete emoji globally",
+        "FIXED & VERIFIED",
+        "SKIPPED IS NOT PASS",
+        "200% text scaling"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是所有网页都变黑白、统一小圆角、全删 emoji",
+          "target_en": "**does not** mandate black-and-white themes"
+        },
+        {
+          "source_zh": "不能将原有坏状态当成正确 before",
+          "target_en": "do not call a bad inherited state a correct baseline"
+        },
+        {
+          "source_zh": "emoji 是社交内容或明确品牌资产时保留",
+          "target_en": "Retain and harmonize"
+        },
+        {
+          "source_zh": "跳过不等于 PASS",
+          "target_en": "SKIPPED IS NOT PASS"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/component-motion-choreography-gate.md",
+      "source_blob_sha": "6cf32e2b59d99a3ec4b9063a9a1305b9522a8c09",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate CM0",
+        "Gate CM1",
+        "Gate CM2",
+        "Gate CM3",
+        "Gate CM4",
+        "motion / immediate-feedback / intentionally-static",
+        "not every component needs every mechanism",
+        "reduced-motion",
+        "200% text scaling",
+        "a route transition does",
+        "not proof"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "动效质量不是动画数量",
+          "target_en": "Motion quality is not the number of animations"
+        },
+        {
+          "source_zh": "用户选择 none 时允许全部为即时反馈",
+          "target_en": "none** choice allows immediate static feedback"
+        },
+        {
+          "source_zh": "不能拿路由转场算组件覆盖",
+          "target_en": "A route transition does"
+        },
+        {
+          "source_zh": "仅合成示例通过不代表真实项目",
+          "target_en": "not just a standalone synthetic demo"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/motion-rehearsal-and-evidence.md",
+      "source_blob_sha": "889ade88401fdbef8d778ff685a69c9ae9afbf3a",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate MR0",
+        "Gate MR1",
+        "Gate MR2",
+        "Gate MR3",
+        "Gate MR4",
+        "CAPTURED_FOR_REVIEW",
+        "40–80 ms",
+        "30% and 70%",
+        "PARTIAL / INCONCLUSIVE",
+        "NOT REVIEWED",
+        "actual target page",
+        "prefers-reduced-motion"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "录制 → 检查 → 修复 → 重新录制",
+          "target_en": "capture → inspect → fix → recapture"
+        },
+        {
+          "source_zh": "采样周期与截图开销必须记录；无法满足预期频率属于 INCONCLUSIVE",
+          "target_en": "label **INCONCLUSIVE**, not PASS"
+        },
+        {
+          "source_zh": "静态审计、截图数量或自动指标不能替代人类视觉判断",
+          "target_en": "cannot replace human visual judgment"
+        },
+        {
+          "source_zh": "CAPTURED_FOR_REVIEW 不能据此声称审美和流畅度已通过",
+          "target_en": "not a pass for visual quality"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/ui-review-rubric.md",
+      "source_blob_sha": "6f2838cb1bc91767a93c7eba09748a04731e487b",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "100 Points",
+        "25",
+        "20",
+        "15",
+        "10",
+        "90–100",
+        "85–89",
+        "70–84",
+        "Below 70",
+        "Product Fit precedes",
+        "Immediate blockers",
+        "v6.11",
+        "real API"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "先排除阻断项，再评总分",
+          "target_en": "Check blockers before calculating the total"
+        },
+        {
+          "source_zh": "有任何阻断项无论总分多少均为不通过",
+          "target_en": "Fail regardless of total score"
+        },
+        {
+          "source_zh": "静态脚本的 PASS 不等于真实页面视觉或业务验收",
+          "target_en": "A static scan PASS is not real-page visual"
+        },
+        {
+          "source_zh": "无分母绘制虚假进度",
+          "target_en": "fake progress without a known denominator"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/visual-critique-loop.md",
+      "source_blob_sha": "6bebbebfd12552c11b1f25f0762273e42f44828a",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "NOT AUDITED",
+        "Structure / IA",
+        "Hierarchy",
+        "Palette",
+        "Rhythm",
+        "PASS / FAIL / NOT RUN",
+        "200% zoom",
+        "Grid rows",
+        "Scroll to the actual end",
+        "Run Monitor information hierarchy failure"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不能因为修改前后未变化而视作合格",
+          "target_en": "do not become acceptable merely because the before/after diff is unchanged"
+        },
+        {
+          "source_zh": "只换颜色不能作为结构性问题修复",
+          "target_en": "not** a structural fix"
+        },
+        {
+          "source_zh": "截图不能证明能否滚到底",
+          "target_en": "cannot establish a scroll bug"
+        },
+        {
+          "source_zh": "截图不能证明重试、日志和 API 真实性",
+          "target_en": "Screenshots cannot prove retry"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/good-vs-bad.md",
+      "source_blob_sha": "a34787f431b9c69eafb88267a43b33d778ad4ee5",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "## 1.",
+        "## 19.",
+        "16/20/24px",
+        "200% text scaling",
+        "marketing Hero",
+        "aria-describedby",
+        "filter:invert(1)",
+        "semantic variables"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是更圆、更亮、更有动效",
+          "target_en": "not simply rounder, brighter or more animated"
+        },
+        {
+          "source_zh": "无截图只能说代码层风险",
+          "target_en": "report source-level risks"
+        },
+        {
+          "source_zh": "真实章节与面包屑不能机械删除",
+          "target_en": "Do **not** ban all microheadings mechanically"
+        },
+        {
+          "source_zh": "建议字号不等于无障碍硬性标准",
+          "target_en": "not mandatory accessibility font-size thresholds"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/liquid-glass-optics.md",
+      "source_blob_sha": "5ee5e9eb7fe3793ffe6822fe3139bc86ada984bc",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Transmission",
+        "Refraction",
+        "Specular",
+        "Elevation",
+        "scale multiplies map strength",
+        "only after observing actual refracted background pixels",
+        "not universally guaranteed",
+        "unique filter ID",
+        "pointer-events:none",
+        "NOT TESTED",
+        "four layers toggle independently"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "blur 不是四层之一，也不是折射",
+          "target_en": "blur is **not** one of the four layers"
+        },
+        {
+          "source_zh": "CSS.supports 返回真不证明真正背景折射",
+          "target_en": "does not prove** working optical refraction"
+        },
+        {
+          "source_zh": "改变形状尺寸边缘坡度仍需重新生成贴图",
+          "target_en": "requires regenerating the map"
+        },
+        {
+          "source_zh": "shader 不能读取任意 DOM 后方像素",
+          "target_en": "cannot automatically read arbitrary pixels"
+        },
+        {
+          "source_zh": "浏览器未测必须标记 NOT TESTED",
+          "target_en": "NOT TESTED"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/enterprise-ui-library-guide.md",
+      "source_blob_sha": "bca90783d19e2cd96868a4413e17a88c1b5f4f55",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Ant Design (antd)",
+        "Ant Design Vue",
+        "Element Plus",
+        "Naive UI",
+        "Arco Design",
+        "PrimeVue",
+        "PrimeReact",
+        "MUI Material UI",
+        "Mantine",
+        "shadcn/ui",
+        "shadcn-vue + Reka UI",
+        "Angular Material",
+        "Nuxt must replace",
+        "not an installation checklist",
+        "styled library",
+        "SSR"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "组件库不是强制指定品牌和数量",
+          "target_en": "No specific library vendor or number of packages is mandatory"
+        },
+        {
+          "source_zh": "Vue 不能安装 React 的 antd",
+          "target_en": "Not React antd installed in Vue"
+        },
+        {
+          "source_zh": "已有主库优先保留",
+          "target_en": "Prefer established primary suite"
+        },
+        {
+          "source_zh": "只写推荐方案不算完成",
+          "target_en": "A written recommendation alone is not implementation"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/stack-guide-11-items.md",
+      "source_blob_sha": "e274c5d28553ea1ae87d3be0cd6dec75b4a8f29f",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "11 Categories, 12 Distinct Technologies",
+        "## 01",
+        "## 12",
+        "Radix UI / Base UI",
+        "react-resizable-panels",
+        "dnd-kit",
+        "Zustand",
+        "TanStack Query",
+        "Recharts",
+        "three months",
+        "commercial rights",
+        "not an installation checklist"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "11 行类别含 12 个独立名称，不是强制安装清单",
+          "target_en": "11 Categories, 12 Distinct Technologies"
+        },
+        {
+          "source_zh": "Zustand 不等于远端缓存",
+          "target_en": "not remote request caching"
+        },
+        {
+          "source_zh": "Vue 中不要直接复制 React TSX",
+          "target_en": "do not paste React TSX into Vue"
+        },
+        {
+          "source_zh": "不能无限重试非幂等请求",
+          "target_en": "Do not infinitely retry non-idempotent operations"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/quality-antipatterns-by-page-type.md",
+      "source_blob_sha": "387ccffd94ab8eb7caa6d0737d41210961e80700",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "| 1 |",
+        "| 29 |",
+        "| 30 |",
+        "| 35 |",
+        "v6.8",
+        "v6.9",
+        "v6.10",
+        "v6.11",
+        "static mock",
+        "progress=null",
+        "Masonry",
+        "ARIA"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "错误不来自某种颜色/组件绝对不好看",
+          "target_en": "An anti-pattern is not inherently a particular color"
+        },
+        {
+          "source_zh": "边框颜色不能单独推断 AI 生成",
+          "target_en": "cannot prove a page was AI-generated"
+        },
+        {
+          "source_zh": "缺失数据不得按零补齐",
+          "target_en": "never silently impute zeros"
+        },
+        {
+          "source_zh": "未知进度不得显示 0% 和 ETA",
+          "target_en": "Fabricates certainty"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/creative-component-libraries.md",
+      "source_blob_sha": "c5bccc5a3b8c927ced585bf3f70907703b4c98ae",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "React Bits Pro",
+        "Vue Bits",
+        "Inspira UI",
+        "Magic UI",
+        "Aceternity UI",
+        "Split Text",
+        "Blur Text",
+        "Aurora",
+        "Liquid Chrome",
+        "Gooey Nav",
+        "### Vue Bits",
+        "selection scorecard",
+        "total ≥8",
+        "Immediate veto",
+        "prefers-reduced-motion"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "Pro 资源收费，不得当作免费复制",
+          "target_en": "Paid: do not copy Pro assets as though they were free"
+        },
+        {
+          "source_zh": "不是组件 API 一比一对应",
+          "target_en": "Not a one-to-one API mapping"
+        },
+        {
+          "source_zh": "至少 8 分才考虑引入，但一票否决条件更优先",
+          "target_en": "A numerical 8 does not override these blockers"
+        },
+        {
+          "source_zh": "创意库不得代替基础组件库",
+          "target_en": "Never replace with a creative effect component"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/animejs-motion-recipes.md",
+      "source_blob_sha": "3e24ad74359f42b1b3977b10391c21539fed67a6",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "114 Existing Patterns",
+        "123 recipes",
+        "Tier A",
+        "Tier B",
+        "Tier C",
+        "`fade-in`",
+        "`spring-release`",
+        "`svg-motion-path`",
+        "`glow-breathe`",
+        "not official method names",
+        "at most one prominent motion focal point"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "114 种配方不是 Anime.js 官方命名",
+          "target_en": "not official \"built-in effects\""
+        },
+        {
+          "source_zh": "新增机制不一定用 Anime.js",
+          "target_en": "need not use Anime.js"
+        },
+        {
+          "source_zh": "高级 API 映射不是可复制代码",
+          "target_en": "not copy-ready implementation code"
+        },
+        {
+          "source_zh": "避免一个屏幕多个显著动画焦点",
+          "target_en": "at most one prominent motion focal point"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/ai-frontend-prompt-policy.md",
+      "source_blob_sha": "c1ee369bdd5a43b7dbd77524c2c6a39a49e25450",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "## Core engineering identity",
+        "## Required collaboration behaviors",
+        "## v5",
+        "R0–R5",
+        "2–3",
+        "120–260ms",
+        "reduced-motion",
+        "permission to recolor brand",
+        "exact HEX",
+        "Scroll actual browser",
+        "None",
+        "design-system/navigation-decision.json"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "用户不清楚风格时必须主动给 2–3 套不同构图方案",
+          "target_en": "2–3 materially different product-specific directions"
+        },
+        {
+          "source_zh": "继续开发不代表授权修改动效或品牌色",
+          "target_en": "Continue development"
+        },
+        {
+          "source_zh": "固定 HEX 一字不改",
+          "target_en": "character-for-character"
+        },
+        {
+          "source_zh": "截图靠近底部不是裁切证明",
+          "target_en": "not proof of clipping or repaired scroll"
+        },
+        {
+          "source_zh": "Agent 不得以静态 Mock 声称功能完整",
+          "target_en": "Do not ship a static Mock as finished"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/frontend-architecture-and-gates.md",
+      "source_blob_sha": "142c51671bedec7a02d75d5321658dc56f106f9c",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Defect-first default",
+        "Gate 0",
+        "Gate A",
+        "Gate B",
+        "Gate D",
+        "## Phase 0",
+        "## Phase A",
+        "## Phase B",
+        "## Phase C",
+        "## Phase D",
+        "360/390/768/1024/1440",
+        "minmax(0,1fr)",
+        "null is not 0",
+        "run_monitor/human_tasks/mixed",
+        "NOT RUN"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "存在未修复历史问题不能因 before 无变化而通过",
+          "target_en": "preserve-baseline is **not an approval**"
+        },
+        {
+          "source_zh": "只运行演示不能当成真实业务视觉验收",
+          "target_en": "not business-page visual acceptance"
+        },
+        {
+          "source_zh": "未知进度不等于零",
+          "target_en": "unknown is not zero"
+        },
+        {
+          "source_zh": "只检静态数据不得声称验证真实服务端",
+          "target_en": "synthetic Mock"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/visual-qa.md",
+      "source_blob_sha": "6057f0365bf46114ec02898300661252536844fa",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Settings / Form / Hybrid",
+        "Proactive defect discovery",
+        "panel-spacing regression",
+        "Public Safety Gate",
+        "Icon Art Direction",
+        "Motion Craft",
+        "Component Motion Choreography",
+        "Same-role control consistency",
+        "Operational page headings",
+        "Chart Interior",
+        "Task Center / Run Monitor",
+        "Liquid Glass",
+        "200% text",
+        "WCAG 2.2",
+        "NOT AUDITED",
+        "NOT VISUALLY VERIFIED",
+        "no_data",
+        "prefers-reduced-motion"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "真实浏览器未测不得用 Skill Demo PASS 充当业务验收",
+          "target_en": "A standalone Skill example does not validate the target route"
+        },
+        {
+          "source_zh": "颜色字体字号等不作为小标题识别条件",
+          "target_en": "regardless of color, font, size, weight, language, DOM tag or CSS class"
+        },
+        {
+          "source_zh": "原生 Select 弹层在目标平台无法观察必须标 NOT TESTED",
+          "target_en": "If unobservable, mark **NOT TESTED**"
+        },
+        {
+          "source_zh": "不允许未经授权修改用户 HEX 色值",
+          "target_en": "preserve exact user HEX"
+        },
+        {
+          "source_zh": "数据缺失不能补零",
+          "target_en": "not 0"
+        },
+        {
+          "source_zh": "综合 7 个设计领域按需查，而非全部修改",
+          "target_en": "not every domain must be modified"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    }
+  ]
+}

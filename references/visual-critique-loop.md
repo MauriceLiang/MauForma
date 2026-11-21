@@ -1,97 +1,85 @@
-# Screenshot Critique Loop · 从截图回到构图，不只是补细节
+# Screenshot Critique Loop — Recompose the Page, Not Just the Details
 
-## 模糊优化先判断“现状哪里出了错”
+## Diagnose existing defects when asked for general polish
 
-Agent 接到“打磨设计/优化这个页面”后，必须先做主动缺陷发现而不只是重刷皮肤：对实际页面按空间/层级/组件/图标与配色/交互响应式逐类找有证据的问题；尤其注意从页面初始状态就存在的独立区块贴合，不能因为修改前后未变化而视作合格。可用 `scripts/audit_existing_visual_defects.mjs` 给普通 Block/Grid/Flex 的边框卡片做无标记风险扫描，再检查主要问题已修复、保留原本良好间距。详见 `references/proactive-visual-defect-discovery-gate.md`。工具扫描失败或无法打开真实页面，应报告 NOT AUDITED，不能以 Mock 通过代替。
+When users ask to refine/improve an interface, **proactively discover evidence-based defects** across spacing, hierarchy, components, icons/colors, interaction and responsive design. Inherited unrelated surfaces that already touch **do not become acceptable merely because the before/after diff is unchanged**. Optionally use scripts/audit_existing_visual_defects.mjs for unannotated Block/Grid/Flex panels. Recheck that problems were fixed while preserving already-correct spacing (proactive-visual-defect-discovery-gate.md). When browser/scanner access is absent, report **NOT AUDITED**; a passing Mock is not evidence.
 
+Use the full loop for new sites, major redesigns and repeated "looks templated" feedback. One narrowly scoped focus color or Button defect does **not** force a complete redesign.
 
-此流程适用于新网站、重大改版或用户反馈“仍然有模板感 / 配色不协调 / 没有设计美感”时。若只需修复单个焦点色或按钮大小，可局部完成，不必强制全面重设计。
+## Card/Panel edge-accent veto for new and inherited content
 
-## Card/Panel 贴边彩条否决项（新建与已有页面）
+Inspect Card/Panel/Section rounded frames. **A thick colored ornamental bar touching, overlaying or merging into a rounded border fails**, including pseudo-elements, unilateral borders, gradients and inset shadows. Default to no bar. A meaningful short external marker may be separated visibly from an intact panel border. Existing components are not exempt. Verify after repair. Do not misclassify real focus, timeline and chart data (surface-edge-accent-gate.md Gate S0).
 
-无论从零设计还是优化旧页面，均检查 Card/Panel/Section 的外框与圆角。**彩色粗竖条触碰、覆盖或融入容器边框即不通过**，即使改为伪元素、单侧 border、渐变或内阴影。默认无彩条；有确切语义时可独立外置短标记并与完整外框留间隔。既有组件不免责，修复后复验。参见 `references/surface-edge-accent-gate.md` Gate S0；不误伤真正的焦点、时间线和图表数据。
+## Evidence first
 
-## 证据先行
+Where available, capture actual running target pages at desktop and narrow **supported** viewports. Inspect actual MASTER.md, page overrides, composition-brief.json, component states and confirmed user direction. Without browser access, analyze supplied images/code, explicitly labeling interactions, breakpoints and data states **untested**. Static screenshots cannot prove functionality.
 
-尽可能采集真实可运行页面在**桌面 + 窄屏**的截图，读取当前页面的 `MASTER.md`、`pages/<route>.md`、`composition-brief.json`、组件状态与用户确认的风格。没有浏览器/网站时可检查用户现有截图，但必须标注哪些交互、断点与数据状态未验证；不能凭静态图声称功能测试通过。
-
-先辨别布局问题与细节问题：
-
-| 分类 | 现象 | 正确动作 |
+| Defect class | Observed symptom | Correct action |
 | --- | --- | --- |
-| Structure / 信息架构 | 主要任务找不到、图表占很大空间却没有意义、真正内容藏在首屏以下 | **重排布局**，不是调主题色 |
-| Hierarchy / 视觉层级 | Hero/插画比业务数据重要、标题过度夸张、关键操作不突出 | 改变尺寸、字级、位置或删除不必要区域 |
-| Palette / 配色逻辑 | 多个彩色面板互相争抢，颜色没有明确职责 | 先建立角色、减少同级竞争，再调整色值 |
-| Rhythm / 空间节奏 | 页面上半区拥挤，下半区空白，卡片套娃、平铺四大同权重 KPI | 重审网格、内容分组、卡片数量和留白 |
-| Detail / 组件细节 | 按钮大小、焦点、圆角、图标样式不一 | 调整共享 Tokens/组件与状态 |
-| Function / 数据状态 | 图表空白却无 loading/empty，点击没有反馈，Demo 当真数据 | 修复真实状态/数据管道，再评价视觉 |
+| Structure / IA | Main job missing, large irrelevant chart, vital content buried far down | **Recompose information**, not recolor |
+| Hierarchy | Hero/illustration outranks business data; huge headings; faint CTA | Reallocate space/type/position or remove unnecessary regions |
+| Palette | Several bright panels compete without distinct roles | Define semantic roles, reduce competition, then tune colors |
+| Rhythm | Crowded top and empty bottom, nested Cards or four identical oversized KPIs | Reconsider Grid, grouping, container count and whitespace |
+| Detail / components | Buttons, focus, radii and icons differ | Repair shared tokens/components and interactive states |
+| Function / data state | Empty chart without loading/error/empty state, dead action, fake demo data | Fix real data/behavior before scoring visual craft |
 
-## 三段式批判
+## Three-part critique
 
-### 1. 视觉灰阶测试（结构主导）
+### 1. Grayscale structural test
 
-在可用情况下截取页面灰阶版或临时移除 decorative layers、背景渐变和阴影（不要改掉有业务语义的数据颜色）。**观察信息结构在无装饰时是否仍然成立**：
+If possible inspect the page in grayscale or temporarily strip **decorative** gradients/shadows, without removing genuinely meaningful chart/status colors. Evaluate whether information remains recognizable: Can a user identify the object, important change and next step within three seconds? Is blank space tied to real data or state? Does the dominant visual area reflect the user's real task? Does whitespace separate meaningful sections or just imitate "premium" design?
 
-- 打开页面三秒内，能否看见当前正在分析哪个对象，什么变化重要，下一步在哪？
-- 是否有大面积空白容器却没有可解释的数据/状态？
-- 用户第一眼看向哪里？那个区域与用户主要任务一致吗？
-- 面板之间的留白是帮助分组还是纯粹制造“高级感”？
+### 2. Color responsibility test
 
-### 2. 配色责任测试
+Classify strong colors as brand/action, data series, state/warning, content media or decoration. Reconsider decoration that outweighs primary data; verify primary/secondary text, focus and status contrast. Backgrounds should support key content, not compete with it.
 
-列出每种强色：品牌操作 / 数据序列 / 状态警告 / 内容图片 / 纯装饰。凡是纯装饰色若压过关键数据则重新考量。检验主/次文字、状态及焦点对比；检查背景色与主图是否衬托而非互抢。
+### 3. Recompose and validate
 
-### 3. 重新构图再验证
+For structural problems, propose **at least one meaningfully different region arrangement or primary focal subject**. Apply composition-first-design.md, reuse shared components, and capture actual page results. Replacing a gradient Hero's blue-purple palette with monochrome while keeping the broken structure is **not** a structural fix.
 
-遇到结构性问题，至少提出一种**不同区域排列/主体选择**的改版候选。按照 `composition-first-design.md` 调整布局，复用共享组件，再截图。不能接受“把 Hero 从蓝紫改成黑白、其他不动”作为结构性问题修复。
+## Mandatory review record
 
-## 审查报告必须包含
+Include route/real task, screenshot source and viewport; confirmed/delegated design direction; first-look attention relative to task; area priorities and blank/loading/data states; **evidence and severity** across structure, hierarchy, palette, rhythm, function, detail; good inherited design to preserve and redundant decoration to remove; whether edits changed layout or only tokens/components; actual before/after images and responsive/state verification as **PASS / FAIL / NOT RUN**. Do not claim visual browser review with no actual screenshots.
 
-- 页面/目标任务/当前版截图来源及实际视口；
-- 用户确认的风格（或 delegated 选择）；
-- 第一眼注意力焦点与业务是否匹配；
-- 实际区域优先级、空白/加载/数据状态；
-- 结构/层级/配色/节奏/功能/细节六类问题，列证据与严重程度；
-- 保留的设计优点（不要机械贬低用户原有风格），应删除的多余装饰；
-- 修改的是**布局**还是仅 Token/组件；
-- 新旧截图与断点验证；`PASS / FAIL / NOT RUN`，不允许缺截图宣称已做真实视觉审查。
+## Rework conditions despite an otherwise good score
 
-## 不通过条件（需返工，不受评分掩盖）
+- An Operate page's decorative Hero/3D imagery outranks real tasks/data **without a legitimate business reason**.
+- A large primary data region lacks an explicit empty/loading/error explanation.
+- A dominant saturated decoration interferes with the primary task.
+- A reported structural problem receives only palette/border changes but is claimed redesigned.
 
-- **Operate** 页的装饰性 Hero/3D 画面压过核心操作或数据，且没有业务理由；
-- 大型主要数据区无数据也没有空/加载/错误反馈；
-- 页面最大彩色面积给的是装饰而非内容，且干扰主要任务；
-- 对用户指出的结构问题，只换颜色/边框却声称“已经重新设计”。
+Decide from task and real evidence, **not** the presence of a linear-gradient property or particular HEX.
 
-这些均需结合当前页面实际任务和截图确认；不是单凭 `background: linear-gradient` 或某个 HEX 就判定不合格。
-## 文字层级的截图返工
+## Typography rework driven by screenshots
 
-合成工作台 新图中的主要阅读障碍，是“品牌英文副标 + 页面上方的功能重复小标题 + 巨大的抽象标题 + 01 / 总览 + 又一个口号式区块标题”重复表达同一事，而 KPI 标签、图表刻度和样本限制比它们更难看清。按顺序处理：**删/合并无信息增量的文字 → 重排 PageTitle/Section/Metric/Chart 字级 → 调整颜色对比与行高 → 用真实截图验证 200% 放大**。不要仅微调图标、圆角或背景来“修复排版”。
+A synthetic example may combine brand suffix, duplicated page-category eyebrow, huge abstract H1, ornamental "01 / Overview" and another slogan heading, while KPI labels, chart ticks and sample limitations are nearly unreadable. Fix in this order: **delete/merge information-free words → assign PageTitle/Section/Metric/Chart roles → correct contrast and line height → verify 200% zoom in real screenshots**. Tweaking icons/radii/background is not typography repair.
 
-例外：具有独立语义的面包屑、正式品牌副标、阅读章节与数据来源必须保留。不能单凭 CSS 里出现 10px 就认定整屏审美失败；需结合实际字体、Canvas 图表、浏览器缩放与任务上下文。详见 `references/semantic-copy-hygiene.md`、`references/typography-hierarchy.md`。
+**Exceptions:** Real breadcrumbs, approved brand subtitles, reading chapters and data sources must survive. A 10px CSS declaration alone does not condemn a screen; inspect actual typography, Canvas chart, zoom and task context. See semantic-copy-hygiene.md and typography-hierarchy.md.
 
-## 跨区域配色诊断与用户最终选择
+## Diagnose palette as a connected page system
 
-对于“现在侧边栏颜色不好，与主区不搭”这类反馈，不要再独立调 sidebar HEX 后宣称修复。先对**Sidebar/Topbar/Main/Card/Chart** 建立颜色关系快照，区分冷暖、明度和品牌强调色的来源；阅读 `references/sidebar-color-reference-cases.md` 的真实设计机制，再将适合该项目的 2–3 套**整页**方案交给用户选择。
+If sidebar and main area conflict, **do not adjust one sidebar HEX alone and claim success**. Inventory color across **Sidebar/Topbar/Main/Card/Chart**, examining temperature, lightness and source of accents; read sidebar-color-reference-cases.md for transferable mechanisms. Compare **2–3 distinct whole-page schemes** for user selection.
 
-如果用户已说要黑/白/紫/绿/任意 HEX，先用指定颜色构造可读的整页 Token，严格保留用户固定值，不以审美偏好自动换回蓝；实际对比不达标时调整辅助色或解释必要改动。未确认的新推荐保留 pending，不能覆盖已确认主题。截图要包含侧栏与内容的实际交界，确认后再实现并复验窄屏和数据图表。
+Preserve explicitly specified black/white/purple/green or **exact user HEX**. Build readable semantic tokens around them; do not revert to blue because of aesthetics. Adjust supporting colors or explain genuine contrast conflicts. Unconfirmed new suggestions remain **pending** and cannot overwrite approved themes. Compare screenshots including real sidebar/main boundaries; after approval, verify narrow layout and charts.
 
-## 导航结构也属于视觉构图
+## Navigation is part of composition
 
-若截图中导航占据过多空间、顶部/侧栏/底部重复入口或手机主内容被一整套侧栏挤压，不应只去调颜色和圆角。先重新判断 IA（global/local/tabs/actions）、实际目的地数及桌面/手机使用习惯，参考 `references/navigation-architecture.md` 比较更合适的结构。对于“侧边+底部”必须判断是否跨设备变形，还是在一屏中将主导航与操作条分工；这两种不可混淆。真实网站截图要覆盖桌面与手机以及抽屉开闭、滚动、fixed 遮挡状态。
+When navigation consumes space, duplicates entry points top/side/bottom or compresses mobile content, first revisit IA (global/local/tabs/actions), real destination count and device patterns, not just radius. A sidebar + bottom bar may be **responsive transformation across device sizes**, or **separate navigation/actions on the same screen**; distinguish them. Evidence should include relevant desktop/mobile layout, Drawer open/close, scrolling and fixed occlusion.
 
-## 页面拥挤的根因排查（必须先删信息再调留白）
+## Content overload precedes whitespace tuning
 
-新增分类：**Content overload**（教程/功能目录/全部 CTA 堆在总览）、**Surface overload**（每段文字都包卡片，卡片套卡片）、**Density mismatch**（总览过密，图表详情反而只有空白/大标题）、**False whitespace**（人为 min-height 撑空区域而未减少内容）。先复核主任务与访问状态 → 下沉/移除不必要模块 → 确保必要内容可达 → 再做 macro/meso/micro 留白和字级调优。对总览与分析详情分开评价；重要数据状态和来源不能删除。见 `references/page-density-and-content-priority.md`。
+Distinguish **Content overload** (tutorial, feature directory and CTAs all on overview), **Surface overload** (every paragraph has its own Card), **Density mismatch** (overview crowded while analysis detail is mostly Hero), **False whitespace** (min-height creates empty space without removing unnecessary content). Verify task and first/return visit state → defer/remove unnecessary material → ensure needed content remains reachable → then adjust macro/meso/micro spacing and type. Review overview and detail separately; preserve real statuses and sources (page-density-and-content-priority.md).
 
-## 对齐与页面底部是独立的视觉风险
+## Independent alignment and scroll-end passes
 
-收到数据页截图后，在处理颜色/小标题/圆角之前做 **Alignment Pass**：标出主内容左右边界、卡片列线、每排顶部。对于「左列排完立刻接下一块、右列独立排完接下一块」的布局，判断是否无意形成 Masonry；数据分析默认改为共享 Grid 行，必要时主图跨整行。随后做 **Scroll-End Pass**：截图只看到最下面的卡片贴近窗口，不足以断言 Bug，必须实际滚动到底检查最后记录、按钮、图表轴/说明和 fixed bar 遮挡。出现不可达底部或横向撑破应返工，不能用 `overflow:hidden` 将问题藏掉。参考 `references/grid-alignment-and-viewport-safety.md`。
+On analytical pages, before tuning color/eyebrows/radii mark main content bounds, Card column lines and row tops. When separate left/right column stacks unintentionally produce **Masonry**, use shared Grid rows as a starting point for comparison and allow full-width key charts where justified.
 
-## 双重图表审查 + 比较任务复盘
+A screenshot stopping at the window bottom cannot establish a scroll bug. **Scroll to the actual end** to inspect final record, action, chart axis/footnote and fixed bar. Hidden final content or horizontal overflow requires repair; hiding overflow is not a fix. See grid-alignment-and-viewport-safety.md.
 
-对并排图表不仅看外边框与 Grid 行线，还要看 **Plot Area**、X 轴基线、图表数据标签间距与重叠；相同容器高度也可能掩盖两张图的绘图区/单位/刻度不协调。比较页截图同时检查对象身份、图例、实际画出的 series、表格列和首屏真正有助于发现差异的内容。不要用持续占位的筛选侧栏与大块“数据口径”说明卡伪装完整比较体系。见 `references/comparison-page-design.md` 与 `references/chart-interior-alignment.md`。
+## Chart interiors and comparison roles
 
-## Task Center 截图诊断：功能上墙 ≠ 任务效率
+For peer charts inspect **Plot Area**, X-axis baseline and data-label spacing/collisions—not only outer Card/Grid alignment. Equal container height can hide mismatched units, ticks and plot regions. On comparisons verify selected entities, legends, plotted series, table columns and useful first-screen differences. A permanent filter Sidebar plus large metric-definition Card does not automatically create a usable comparison (comparison-page-design.md; chart-interior-alignment.md).
 
-若截图出现状态数字独立大卡却不能用于筛选、宽列表每行大段重复阶段说明、真正需要处理的任务混在已完成记录中，诊断为 `Run Monitor information hierarchy failure`，应重构为可操作状态筛选、扫描型记录、按需详情。复核进度真实性和适用操作，而不只是改变 Card 高度。视觉截图不证明重试/日志/API 真实性，最终要浏览器/E2E 检查。专用案例 `references/run-monitor-case.md`。
+## Task Center: having all features is not task efficiency
+
+If non-actionable status counters become giant Cards, wide task rows repeat descriptions, or actionable errors/retries are buried among completed jobs, classify as **Run Monitor information hierarchy failure**. Recompose into actionable status filters, scannable records and on-demand detail. Verify true progress and legitimate actions; shrinking Card heights alone is insufficient. Screenshots cannot prove retry, logs or API outcomes: the target needs real browser/E2E checks (run-monitor-case.md).

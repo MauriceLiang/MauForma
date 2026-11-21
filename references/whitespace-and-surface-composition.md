@@ -1,82 +1,86 @@
-# Whitespace & Surface Restraint · 让留白表达关系，而不是留着空
+# Whitespace & Surface Restraint — Space Should Express Relationships, Not Emptiness
 
-## v6.19 · Preserve by default
+## v6.19 — Preserve by default
 
-当用户仅要求优化现有界面的美观/密度，不能自行移除已形成的独立 Section/Peer 外部间距。父级 Grid/Stack 的 gap 与 Card padding 是两件事；相比把下一排区块拼到上一排，优先调整无意义的文案、重复面板和信息结构。以 `references/spacing-regression-protection-gate.md` 为保护门禁，真实浏览器的 before/after 与 `scripts/audit_panel_spacing.mjs` 是必要证据，而不只是代码看着紧凑。
+When a user asks only to polish the aesthetics/density of an existing UI, **do not independently erase outside gaps between already separate Sections/peers**. Parent Grid/Stack gaps and Card padding are different responsibilities. Before attaching the next row to the previous one, reduce meaningless copy, duplicate panels and flawed information structure. `references/spacing-regression-protection-gate.md` is the protection gate; real-browser before/after and `scripts/audit_panel_spacing.mjs` supply evidence—not a subjective observation that code looks compact.
 
-## v6.16 · Spacing Relationship Map 和节奏验收（通用）
+## v6.16 — Universal Spatial Relationship Map and rhythm acceptance
 
-早期 macro / meso / micro 规则只定性描述“组间大、组内小”，但未强制检查**真实模块之间的间距**。现在先读 `references/semantic-spacing-rhythm-gate.md`，在页面级为 `inside/peer/section/connected/anchored` 的相邻关系分配空间 token，再由父级 Grid/Stack 提供 gap；组件的内边距不能代替组间 gap。检查同排 `column-gap` 与跨行 `row-gap`，以及响应式后变成单列时的节奏。卡片与卡片几乎贴合不总是坏事：Tab/Panel 或表头/表体的共边可有意连接；两个独立图表/数据区因误用 `row-gap:0` 被粘连则需返工。
+Earlier macro/meso/micro guidance described “larger between groups, smaller inside” but did not require checking **real inter-module distance**. First read `references/semantic-spacing-rhythm-gate.md`, assign spacing tokens to `inside/peer/section/connected/anchored` relationships, and let the parent Grid/Stack own gaps. Card padding cannot stand in for section gaps. Inspect same-row `column-gap`, next-row `row-gap` and rhythm when the layout stacks on narrow screens. Touching Cards are not always bad: Tab/Panel and table header/body may intentionally share an edge. Two unrelated charts/data blocks accidentally fused by `row-gap:0` must be repaired.
 
-在真实浏览器截图里判断视觉权重与光学留白，并可用 `scripts/audit_spacing_rhythm.mjs` + 显式 `data-mf-space-id`/项目关系契约测有限的几何；静态间距表不能直接证明页面美感。优先修结构、父 gap 和信息关系，**不要给所有卡片统一叠加 margin**，否则同级/嵌套和移动端会失控。
+Use real browser screenshots to assess visual weight/optical whitespace. `scripts/audit_spacing_rhythm.mjs` with explicit `data-mf-space-id` and project contracts can inspect limited geometry. A static spacing table does not prove beauty. Repair structure, parent gap and information grouping **before** adding `margin` to every Card; blanket margins break nested/peer/mobile arrangements.
 
-## 不要做什么
+## Avoid
 
-- ❌ 为了“高级”强制每个页面都铺超大上下边距，致使主操作滚到首屏以下。
-- ❌ 页标题下面放 1 句说明，再套一整张大容器；容器里面再并排 3 张功能说明卡，底部再来一整张同功能菜单的卡。
-- ❌ 每个小标题、每组指标和每个动作都包一圈 1px border，误以为“卡片系统一致”就是视觉高级。
-- ❌ 将正文 12px、辅助说明 10px 以腾空间；删除无用块而不是缩小真实业务文字。
-- ❌ 将“空白区域”只当用固定 `min-height: 400px` 撑出的占位，或只顾视觉留白却没有真正可操作的主内容。
-- ❌ 只修改 cards 的 padding，保持过度内容总量不变，却宣称已经优化了密度。
+- Forcing huge top/bottom margins onto every page “for premium feel,” pushing the main action below the first screen.
+- A page title and a line of description, followed by a huge wrapper containing three explanatory feature Cards, plus another Card duplicating navigation.
+- A border around every tiny heading, metric and action, assuming consistent Card styling equals quality.
+- Shrinking body text to 12px and help to 10px to fit more. Remove low-value material instead of shrinking real task text.
+- Treating whitespace as a rigid `min-height:400px` filler or empty first screen without usable primary content.
+- Editing only Card padding while preserving redundant content and claiming density was optimized.
 
-## 合理留白怎么形成
+## Meaningful whitespace at three scales
 
-**宏观（macro）**：不同任务区之间分出稳定的大间距；首屏先有一个主要任务区，第二信息组不要和它争对等视觉主角。总览/品牌页可能更宽松；分析/管理页仍保留分组呼吸，但更紧凑。
+**Macro:** Stable separation among distinct tasks; the first viewport should have a clear primary task region, not several equal visual competitors. Welcome/brand pages may be airy; analysis/admin can be denser without losing section relationships.
 
-**中观（meso）**：同一任务下的标题、说明、输入、操作、状态靠近，在相关板块内部形成明确连接。特别注意“标题和所属内容”应当比“两个独立栏目”更近。
+**Meso:** Related heading, explanation, input, action and state sit close within one workflow. A title should be nearer to **its own content** than to an unrelated sibling Section.
 
-**微观（micro）**：图标、文字、徽章、列表行以共享 tokens 保持可读与可点击。用户已确认主题/字号、焦点与对比规则不变。精密表格可更紧凑，但不得靠极低对比或不可点击的小控件“塞进更多”。
+**Micro:** Icons, labels, Badges and rows use shared tokens for readable text and usable targets. Respect approved theme/type, visible focus and contrast. Dense tables may use compact measurements but never near-invisible text or untappable controls.
 
-这些不是强制指定 `8/16/24/32/48` px 的唯一答案；设计系统应有一致比例，具体随字体、页面模式、视口和内容决定。
+These are **not fixed universal 8/16/24/32/48 px requirements**. Ratios should cohere within the real design system, adapting to font, page mode, viewport and content.
 
-## v6.13 · Surface Choice 应先于容器美化
+## v6.13 — Surface choice precedes polishing a box
 
-以前的 Surface Necessity 只问边框有没有必要，但未要求对**整个页面的信息结构**比较候选。因此在设计真实页面或大型改版时先执行 `references/surface-architecture-gate.md`：连续记录可平面布局、一个有独立范围的模块可保留 single panel、商品/作品可用 cards，阅读/沉浸式页面有不同的空间语言。不要求统一删卡片。组件窄宽适配再执行 `references/control-geometry-gate.md`，禁止为了维持外框而把短按钮字竖排。
+Earlier Surface Necessity checked whether a border was useful, but did not compare the **whole page's information organization**. For real pages/major redesigns, run `references/surface-architecture-gate.md`: continuous records may become flat collections, independently scoped modules may use one Panel, products/works may use Cards, while reading/immersive UI needs another spatial grammar. **No mandatory global Card deletion.** Then run `references/control-geometry-gate.md` for narrow controls so labels do not stack character by character to preserve an outer frame.
 
-## 容器/卡片必要性测试（Surface Necessity）
+## Surface Necessity Test
 
-对于每个 panel/card/outline 检查：
-1. 有没有独立的可交互对象、同一组数据、状态反馈或明确视觉分组？
-2. 去掉边框/背景后，是否仍能靠间距与对齐读懂？能的话**优先删掉外层容器**，保留必要内层。
-3. 当前是否有卡片套卡片且两层都只起装饰作用？如果是，合并或以平面行布局替代。
-4. 一排三个功能信息块是否和现有导航重复？如果重复，移除整排或改为一个确有价值的次级入口。
-5. 大容器放在首页是否合理，还是为了占满屏幕？不能因为组件库有 `Card` 就默认包裹所有内容。
+For each Panel/Card/outline ask:
 
-独立可交互对象、多状态面板和分析图表**可以使用卡片**。规则反对没有必要的包裹层，不反对 Card 本身。
+1. Does it define a distinct interactive object, a coherent data group, a genuine state or a useful visual boundary?
+2. Without border/background, would spacing and alignment still convey the relationship? If yes, **prefer removing the outer surface** while keeping necessary inner structure.
+3. Are nested Cards merely two decorative layers? Merge or replace with flat list rows.
+4. Do three feature Cards duplicate existing navigation? Delete the row or replace with one actually useful secondary entry.
+5. Is a giant homepage Card genuinely needed or only filling the viewport? A library having a `Card` component does not justify wrapping everything.
 
-## 可参考的空间结构
+**Independent interactive objects, multi-state modules and analysis charts may validly use Cards.** The rule opposes pointless wrappers, not Cards themselves.
 
-### 总览（低/中密度）
-- 顶部清楚标题：只包含必要上下文，不双重标语。
-- 主要对象/入口：当前仓库 + 一项主操作；辅助动作以文字链接或轻量按钮呈现。
-- 适量状态/最近项目：只有真实且能减少下一步操作成本时出现。
-- 教程/所有分析功能：按访问状态折叠、移动到导航/帮助/详细页面。
-- 在模块间留白，让用户知道自己在何处；无需空白填满整个可视高度。
+## Suitable spatial structures
 
-### 分析详情（中/高密度）
-- 页面对象/时间范围/筛选靠近图表与指标。
-- 重要数值、图表、明细可以放在统一可对比的网格中。
-- 图表标题、轴、单位和限制保持清楚；卡片容器不多重套娃。
-- 数据缺失时明确空/加载/错误状态，不能为追求“好看”制造虚假趋势。
+### Overview — low to medium density
 
-### 品牌展示（可低密度）
-- 有高质量真实影像时，允许大主视觉、留白和实验性排版；商品比较/价格/转化的必要信息仍可读且可找。
-- 不把审查后台的卡片数量当成品牌页硬约束。
+- Clear top title with necessary context, not a second slogan.
+- Main object/entry such as current repository plus a single primary action; secondary actions as links/quiet Buttons.
+- Limited real status/recent work only when it meaningfully shortens the next action.
+- Tutorials/all-feature lists may be conditional, deferred to nav/help or detailed routes.
+- Section whitespace signals where the user is; no need to fill the entire screen vertically.
 
-## 质量检测
+### Analytics detail — medium to high density
 
-- **灰阶去边框测试**：暂时移除阴影/渐变/多余 border，观察信息顺序和主操作是否成立。
-- **内容删除测试**：从页面删除一整块重复说明，主任务会不会更清楚？若是，下沉/移除，而非继续改 CSS。
-- **主次间距对照**：同组内比组间更近；视觉上同权重的区块是否真的同重要？
-- **不同用户状态对照**：新用户、回访、有数据、空状态页面的空间是否各自合理？
-- **真实截图证据**：目标桌面/手机、200% 文字放大、键盘焦点、深浅色（按需求）验证；若没运行请标记 NOT RUN。
+- Object, time window and filters stay near relevant charts and metrics.
+- Important numbers, plots and records can use a comparable shared grid.
+- Chart titles, axes, units and limits stay legible without nested Card shells.
+- Missing data gets explicit empty/loading/error states, never fabricated trends for prettier charts.
 
-参考：`references/page-density-and-content-priority.md`、`references/typography-hierarchy.md`、`references/semantic-copy-hygiene.md`。
+### Brand showcase — may be airy
 
-## v6.9 · 空间层次不代表各列任意错位
+- Authentic quality media can warrant a giant Hero, whitespace and experimental type. Essential comparison, price and conversion details remain readable and discoverable.
+- Admin-review limits on number of Cards do **not** automatically apply to brand sites.
 
-Macro/Meso/Micro 留白需要有**共享网格线与行起点**作为参照。数据页可为主图分配更宽面积，图表/列表卡可以高度不同，但不应把两列当成独立瀑布流，让第二排上下错列。若用行起点对齐带来大块无意义空白，可改为主图跨整行或重新筛选模块，而不是插入透明卡片。底部留白用于保障最后一行可滚动完整看见；不是强迫所有内容恰好占满首屏。见 `references/grid-alignment-and-viewport-safety.md`。
+## Quality checks
 
-## v6.11 · 任务列表中的空白要服务扫描
+- **Grayscale/no-border test:** Temporarily remove shadows/gradients/unnecessary borders. Do task order and primary action still make sense?
+- **Content-removal test:** Would deleting one whole duplicate explanation make the current task clearer? Defer/remove the block instead of merely changing its CSS.
+- **Spacing-hierarchy check:** Inside a group is generally closer than between groups; are equal-weight blocks truly equally important?
+- **User states:** Compare new, returning, populated and empty/error UI. Each may need different whitespace.
+- **Real screenshot evidence:** Check actual supported desktop/mobile, 200% text zoom, keyboard focus and light/dark. If not run, mark `NOT RUN`.
 
-在高频任务监控页，大块留白本身不产生高级感。状态统计的独立大卡如果没有独立分析任务，就把统计并入可点击工具条；任务行应让对象、状态、阶段、时间和操作形成可追踪的列网格，不靠每行三个段落/额外装饰 Icon 填满容器。留白主要用于分隔不同任务与异常分组，不在每一行重复“进度百分比未知”。移动端恢复合理的两行/分层任务卡，不能把桌面五列缩成极小字体。详见 `references/task-center-run-monitor-design.md`。
+Related: `references/page-density-and-content-priority.md`, `references/typography-hierarchy.md`, `references/semantic-copy-hygiene.md`.
+
+## v6.9 — Spacing hierarchy does not excuse arbitrary column misalignment
+
+Macro/meso/micro gaps still need **shared Grid lines and row starts**. A primary plot can be wider and peer Cards can differ in height, but two independent column Stacks can make the second row misalign like a masonry flow. If row alignment produces huge wasted space, use a full-width main plot or rethink the data groups—not invisible filler Cards. End padding allows natural scrolling to the last item, **not** a mandate to make all content fit the first screen. See `references/grid-alignment-and-viewport-safety.md`.
+
+## v6.11 — Whitespace in task lists should support scanning
+
+In high-frequency run monitors, empty area alone is not sophistication. If a huge status counter Card has no separate analytical purpose, turn it into clickable compact filters near the list. Let object, state, stage, time and action form a scannable column grid, not paragraph-heavy rows with decorative icons. Use space to distinguish tasks and exceptional groups, not repeat “progress percent unknown” on every record. On mobile, reflow into reasonable two-line/layered task cards instead of shrinking a desktop five-column table to microscopic text. See `references/task-center-run-monitor-design.md`.

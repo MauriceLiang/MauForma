@@ -1,45 +1,45 @@
-# 高频基础组件精修规范：拒绝模板化，保留适用的风格
+# High-Frequency Workspace Components — Refine Without Imposing Templates
 
-本规范用于 Operate / 桌面工作台和高频业务组件。**反模板化不等于禁用圆角、卡片、颜色或图标；应检查它们是否表达明确的层级和任务。** 对营销/作品集另按 Art Direction 执行，不能把本规范套成全站审美铁律。
+Applies to **Operate / desktop workbenches** and frequently used product controls. Rejecting template-like visuals does **not** mean banning corners, Cards, colors or icons; determine whether they clarify actual hierarchy and tasks. Marketing/portfolio art direction follows separate rules and must not inherit workspace aesthetics as universal law.
 
-| 模式 | 容易显出模板化的做法 | 更适合工作台的视觉方案 | 正当例外 | 必须核查 |
+| Component | Template-like failure | Better workspace strategy | Valid exception | Verify |
 | --- | --- | --- | --- | --- |
-| **Sidebar** | 强选中底 + 侧边高亮竖条 + 图标着色 + 霓虹描边，Recent 也同款 | 一种主选择信号；主导航和历史对象不同语义与层次 | 树形层级指示线、时间轴的轨迹 | selected / hover / focus / 最近对象 / 窄窗 |
-| **Topbar** | 巨大渐变玻璃顶栏、重复项目名称、过多图标按钮 | 清晰的页面上下文、搜索/常用操作、较弱分隔面；操作与内容对齐 | 品牌营销/沉浸式创意页顶栏 | 滚动粘滞、阴影层级、滚动状态、键盘 |
-| **Card** | 所有模块都是有阴影的同尺寸圆角卡片；卡片再套卡片 | 只有真正独立实体用卡片；相关内容用标题/栅格/行距分组 | 产品画廊、作品集可大量使用卡片 | 卡片是否可交互、是否需要容器、嵌套 |
-| **Data table** | 每行一张漂浮卡、每列都用彩色胶囊、强斑马纹 | 对齐/列宽/简洁表头/真实排序过滤/安静的 hover，状态色只表达业务意义 | 复杂可视化表格、移动端卡片转换 | 长数据、空状态、行选中、键盘、列溢出 |
-| **Tabs** | 每个 Tab 同时有胶囊底、下划线、发光和图标强调 | pill **或** underline 主选中系统，hover/focus 分离 | 特殊设计语言有二级信息指示 | 当前 tab、tabpanel 对应关系、键盘 arrow 导航（视原语） |
-| **Search** | 大型渐变搜索框、假装快捷键、所有操作用搜索框替代 | 合理输入尺寸、清晰搜索范围与结果、真实清除/快捷键功能 | 搜索是产品主功能（搜索引擎、资源库） | 空查询、loading、无结果、键盘 Esc、过滤范围 |
-| **Split pane** | 每个面板重阴影、发光拖动条、无边界的自由缩放 | 窄分隔与真实把手/最小尺寸、布局状态稳定持久化 | 专业编辑器需要更强的可拖动指示 | min/max、键盘调宽、折叠、窄窗回退、持久化 |
+| **Sidebar** | Strong selection fill + bright left bar + colored icon + glowing edge; Recent list duplicates same look | One dominant selected cue, distinct semantics for main navigation versus history objects | Real tree connectors, timeline tracks | Selected/hover/focus/recent item/narrow windows |
+| **Topbar** | Huge gradient/glass header, redundant project title, too many icon Buttons | Clear page context, search/common actions, subtle separation aligned with content | Brand/immersive creative topbar | Sticky/scroll states, shadows, keyboard |
+| **Card** | Every region a same-sized shadowed Card, nested Cards | Cards only for independent objects; related information grouped by heading/Grid/gaps | Product gallery and portfolio Cards | Interaction, necessity of surface and nesting |
+| **Data table** | A floating Card for each row, colored pills in every column, heavy zebra stripes | Aligned columns/widths, simple headings, real sort/filter, quiet hover; colors only for business state | Specialist visual tables, mobile Cards | Long data, empty, selection, keyboard, overflow |
+| **Tabs** | Each Tab simultaneously shows pill, underline, glow and icon emphasis | One dominant pill **or** underline, separate hover/focus | Secondary indicator encoding distinct meaning in approved art direction | Selected Tab, tabpanel association, Arrow navigation per primitive |
+| **Search** | Huge gradient box, fake shortcut label, substitutes for all actions | Reasonable input, clear scope/results, real clear/shortcut | Search-first products/search engines | Empty, loading, no result, Escape, scope |
+| **Split Pane** | Every panel casts shadow, bright resize rail, unbounded resizing | Fine splitter and actual handle/min/max, stable persisted layout | Professional editor needs more apparent drag handles | Bounds, keyboard resizing, collapse, narrow fallback, persistence |
 
-## v6.17 · 高频工作台图标要先选对语义、再打磨线条
+## v6.17 — Choose semantic icons before polishing strokes
 
-同一 Sidebar/Topbar/Toolbar 的图标既要表达清楚功能，也要组成稳定的视觉家族。详见 `references/icon-art-direction-gate.md`：核心导航候选要确实存在于已使用的版本，比较相关符号，而不是将所有菜单名与随机 icon name 对应。重点看外轮廓、负空间、细节密度、描边/填充风格、与字/Badge 的尺寸和光学对齐；最终用真实 Browser Gallery 看整组，不能凭 CSS 统一 size/stroke 推断都好看。
+Icons in one Sidebar/Topbar/Toolbar must both express real features and form a coherent family. Follow `references/icon-art-direction-gate.md`: candidates must exist in the **installed version**, compare plausible symbols instead of mapping menu words to arbitrary icon names. Inspect silhouettes, negative space, detail density, line/fill family, and optical relation to text and Badge. Verify the **whole group in a real browser gallery**; identical CSS width/stroke does not prove matching appearance.
 
-## v6.13 · 先做集合与表面选型、再精修表格皮肤
+## v6.13 — Choose collection and surface structure before table skins
 
-对任何连续的运行记录、订单、用户或事件列表，先看 `references/surface-architecture-gate.md`，考虑是否应当**平铺为工具栏 + 轻量表格/行**，而非把筛选器、列表标题、表头及所有行放进同一个圆角大盒。单层 panel 在独立数据范围或交互作用域下仍合理，不能机械删外框；真正独立的卡片对象也可以保留。无论选择哪种模式，行内动作宽度和原子标签必须满足 `references/control-geometry-gate.md`，不能在窄列出现“查/看/详/情”竖排。
+For run histories, orders, users and events, apply `references/surface-architecture-gate.md` first. Consider a **flat toolbar + table/rows** instead of one oversized rounded container enclosing filters, heading, header and every record. A single bounded Panel is still valid for an independent data scope/interaction; do not mechanically delete it. Truly independent item Cards may remain. Whatever the surface, short action labels and column widths must pass `references/control-geometry-gate.md`, not stack “View Details” character by character in a narrow cell.
 
-## 颜色与状态的共同决策法
+## Shared decisions for colors and states
 
-1. 先从产品品牌 Token 定一个**中性色阶**，不是随意选几个相近的蓝灰 HEX。对于暗色工具，要求 `page / sidebar / surface / hover / selected` 的明度顺序可解释，而不是全部自成一个主色。
-2. **主强调色用于动作优先级，不用于给每个组件加装饰**；危险/警告/成功可保留独立语义色。若同时使用橙点与蓝色选中，需要解释两者是否分别代表状态与选择，否则删掉装饰点。
-3. 同一状态一条主视觉通道通常够用；已有底色选中时，额外竖条/外发光/渐变描边必须提供独立价值。**若选用竖条，必须在当前选中 NavItem 的外侧独立显示，不能把 item 自己的左边框涂成彩色，也不能所有导航行都有条。** 详见 `references/sidebar-selection-indicator-gate.md`。**键盘焦点是另一种状态，不受单信号规则约束**。
-4. 独立视觉块有独立任务才使用 Panel；文档正文、扁平列表等通常不需要多层容器套娃。
-5. UI 不能只靠颜色区分状态。选中有语义，状态有文字或提示；重要 UI 的非文本边界和焦点需检查对比。
-6. 用截图验证：把品牌蓝/紫/橙移除后，是否仍清楚谁是主任务？若全部依靠色彩/线条而无层级，说明视觉信息架构不够清楚。
+1. Derive a **neutral tonal scale** from the approved brand tokens, not several arbitrary blue-gray HEX values. In dark tools, the `page/sidebar/surface/hover/selected` luminance order must be explainable.
+2. **Accent signals action priority, not decoration on every component**. Danger/warning/success may use independent semantic colors. If an orange dot accompanies blue selected, explain what status versus selection each means; otherwise remove the dot.
+3. One main visual cue often suffices for one state. A second rail/glow/gradient on an already selected fill requires **independent meaning**. **If a rail is used, render it separately outside the current NavItem**, never as the item's colored border or on every navigation row (see `references/sidebar-selection-indicator-gate.md`). **Keyboard focus is a different state, not limited by the single-selected-cue rule.**
+4. Give a Panel its own surface only when it supports an independent task; flat lists and document prose generally do not need nested containers.
+5. Do not communicate states through color alone. Selection needs semantics, status needs text/hint, and important nontext edges/focus require contrast.
+6. In screenshots, remove brand blue/purple/orange mentally: are primary tasks still apparent? If all hierarchy relies on arbitrary color/rails, the information architecture is weak.
 
-## 把模糊意见变成可执行的 Review
+## Turn vague comments into actionable review
 
-代码审查至少给出：截图区域、当前状态信号、业务语义、冲突原因、可行替代、共享组件及 Token 归属、适用例外、是否已浏览器验证。
+Code reviews should record: visual region, current state signal, business meaning, conflicting reason, viable alternative, shared component/token owner, applicable exception and actual browser verification status.
 
-### QA 阶段核对
+### QA checklist
 
-- 浅/深主题的真实截图中，Nav active、hover、focus 三态是否能区分？
-- 主导航、最近对象、帮助模块是否能在 3 秒内识别出不同职责？
-- 是否出现两处或多处同时强调但语义不明的“选中项”？
-- 颜色有无角色与层级？低饱和不等于低对比；实际文字、图标、聚焦边界是否达到使用标准？
-- Tabs、Search、Data Table、Split Pane 等是否真的可操作，还是只有静态好看？
-- 保留哪些大胆设计是因产品风格而合理？说明原因，不把“AI 风格”误当成一切设计的客观错误。
+- Do active/hover/focus differ in actual light/dark sidebar screenshots?
+- Can users recognize distinct roles of main nav, recent objects and help in three seconds?
+- Are multiple elements simultaneously emphasized as “selected” without explaining their meanings?
+- Do colors have roles and hierarchy? Low saturation is **not** low contrast; are text, icon and focus borders legible?
+- Do Tabs, Search, Data Table and Split Pane **work**, or only look polished?
+- Which bold designs remain justified by this particular product? Explain instead of treating all “AI style” as objectively wrong.
 
-更多侧栏专项规则见 `references/sidebar-navigation-design.md`；对照示例见 `assets/sidebar-refinement-gallery.html`。
+More sidebar rules: `references/sidebar-navigation-design.md`; synthetic comparison: `assets/sidebar-refinement-gallery.html`.

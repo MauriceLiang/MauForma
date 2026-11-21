@@ -1,16 +1,19 @@
-# 多对象比较页：合成反例与验证方法
+# Multi-Object Comparison Page — Synthetic Failure and Verification
 
-**性质**：完全虚构的设计教学场景，不是任何真实项目的截图复盘或缺陷认定。
+**Nature:** An entirely fictional design-training scenario, **not** a review of screenshots or a defect finding from any real product.
 
-## 反例
-用户在对比页选择了三个对象；图例显示三个标签，但主趋势图只呈现一个明显系列。页面永久保留一个很宽的对象选择区，比较口径说明占用大量空间，而差异摘要和共同指标表不醒目。
+## Counterexample
 
-## 可迁移原则
-- 先确认用户要比较的问题与指标，而不是先摆三张图。
-- 让对象选择器、图例、每条实际可用的数据系列和比较矩阵保持一致；不出现“选择了三项，但没有解释为何仅呈现一条曲线”。
-- 时间窗、聚合粒度、单位、样本量和覆盖范围明确；缺失值按缺失展示，不用 0 或虚构值替代。
-- 控制长期可见的低价值说明和过长侧栏，必要时收纳到可发现的详情中。
-- 图内绘图区、轴基线、刻度、标签需要真实渲染检查，Card 外框对齐不代表图表内部对齐。
+A user selects three objects for a comparison. The legend lists three labels, but the main trend chart visibly renders only one series. A very wide object selector remains permanently visible; a methodology explanation consumes substantial area while the difference summary and shared metrics table lack emphasis.
 
-## 验证
-使用 `examples/comparison-contract-demo.json` 测试静态契约；在实际产品中复查用户选择、图例、图表、表格列、缺失值和滚动终点。合成示例测试通过不得写成真实产品通过。
+## Transferable rules
+
+- First determine **the question and measures** users need to compare, rather than arranging three charts first.
+- Keep the object picker, legend, each actually available data series and comparison matrix in sync. Never show “three selected” without explaining why only one curve appears.
+- Clearly identify time window, aggregation granularity, units, sample size and data coverage. Display missing values as **missing**, never as zero or fabricated values.
+- Reduce persistent low-value explanations and oversized sidebars. Move details behind discoverable disclosure when appropriate.
+- Inspect rendered **plot areas, axis baselines, ticks and labels** inside charts. Equal outer Card frames do not prove interior alignment.
+
+## Verification
+
+Use `examples/comparison-contract-demo.json` to check the synthetic static contract. In the **real product**, verify actual selection, legend, series, matrix columns, missing values and final scroll reachability. Passing a synthetic fixture is **not** proof the real application passed.

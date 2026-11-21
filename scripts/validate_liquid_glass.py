@@ -19,7 +19,7 @@ FILES = (
     "tests/liquid_glass_browser_smoke.mjs",
 )
 ROUTES = ("SKILL.md", "README.md", "references/visual-tech-selection-12.md", "references/visual-qa.md")
-LAYER_MARKERS = ("透明", "折射", "高光", "阴影")
+LAYER_MARKERS = ("Transmission", "Refraction", "Specular", "Elevation")
 TECH_MARKERS = (
     "feDisplacementMap", "xChannelSelector", "yChannelSelector", "in2",
     "Canvas", "backdrop-filter", "scale", "WebGL", "prefers-reduced-motion",

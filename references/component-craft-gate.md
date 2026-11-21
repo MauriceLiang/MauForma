@@ -1,66 +1,64 @@
-# Component Craft Gate · 组件不是随意套外观的盒子
+# Component Craft Gate — A Component Is Not a Random Styled Box
 
-这是跨项目、跨框架的**组件设计判断流程**，不是统一的“极简风格配方”。独立设计方向允许编辑式、趣味、克制、奢华或实验性语言；组件必须从内容、使用频率、状态与可访问交互推导，不因默认 pill + 浅灰描边就被判定合格。
+This is a **cross-project, cross-framework component-design decision workflow**, not a mandatory “minimalist recipe.” Independent art directions may be editorial, playful, restrained, luxurious or experimental. Components must follow content, usage frequency, state and accessible interaction—not receive a passing grade just because they use pills and pale borders.
 
-## v6.17 · 图标品质与按钮/导航组合必须共审
+## v6.17 — Review icon quality together with Button/navigation composition
 
-图标是控件组成的一部分，不能在 Button/Sidebar/Menu/Table 已经铺满页面后随便拿默认 icon 填空。执行 `references/icon-art-direction-gate.md`：为真正有价值的 icon 先说明动作/对象语义，比较实际可用图标候选，确定整组线条/填充风格，检查画面中文字比例与视觉重量。特别避免“尺寸相同但形状重量落差大”“主导航一半线描一半实心”“复杂图标压过页面文字”。只图标按钮须有可访问名称；图标是附属，允许文本优先不使用图标。
+An icon is part of the control, not an empty space to fill after every Button/Sidebar/Menu/Table has been implemented. Apply `references/icon-art-direction-gate.md`: explain actual action/object semantics, compare real icon candidates, choose coherent outline/fill style as a group and evaluate optical weight against nearby text. Avoid similarly sized but very different visual weights, half-outline/half-filled navigation and icons overpowering labels. Icon-only Buttons need an accessible name. **Text-only UI is valid where an icon adds nothing.**
 
-## v6.13 · 组件形态要和页面容器/可用宽度一起决定
+## v6.13 — Component geometry depends on surface architecture and parent width
 
-先执行 `references/surface-architecture-gate.md`：连续可扫描的信息常先比较 flat list/table 与 single panel，而不是先做 “巨大圆角卡 + 里面的卡”。再执行 `references/control-geometry-gate.md`：短动作标签是原子文本，控件固有尺寸由父表格列/组件组负责，空间不足时整个操作重排；不可通过逐字折行或剪裁获得整齐外框。这是全站通用规则，不抹杀品牌卡片/作品画廊。
+First run `references/surface-architecture-gate.md`: continuous records often merit a flat list/table versus a giant rounded Card containing smaller Cards. Then `references/control-geometry-gate.md`: short action labels are atomic; parent table columns/action groups must reserve intrinsic space and reflow whole controls when needed, not break text character-by-character or clip Buttons. This is a general rule that does **not** prohibit legitimate media Cards or portfolios.
 
-## v6.15 · 组件的状态美感包含交互中的变化
+## v6.15 — Interaction-state craft is part of component appearance
 
-当用户已确认/委托有交互动效时，组件设计不仅要对比静态尺寸和字重，还要检查 **Hover/Press/Selected/Expand/Insert/Success** 等真实状态的变化机制。查 `references/component-motion-choreography-gate.md`：按钮与 Tab 不该都仅淡入，选中指示器可沿位置移动、Disclosure 可按空间展开、状态开关可 Morph，列表应保持位置连续性；但高频表格、无状态卡片不因“要动画”而全员动起来。必须尊重 `none` 与 reduced-motion，保持 focus/结果清晰。组件 Gallery 应含静态和实际交互演示，不能凭 CSS 存在自称已验收。
+When the user **confirmed or delegated** meaningful interaction motion, judge not just static type/size but real transitions across **Hover/Press/Selected/Expand/Insert/Success**. See `references/component-motion-choreography-gate.md`: Buttons/Tabs need not all fade; indicators can travel, Disclosures expand spatially, states morph and lists preserve spatial continuity. But do **not animate every frequent table row or inert Card** merely to meet a motion requirement. Respect `none` and reduced-motion; preserve visible focus and correct outcome. A Gallery needs real interaction demos, not CSS declarations asserted to be validated.
 
-## 基础控件先复用、再精修
+## Reuse foundational controls before polishing them
 
-有交互控件的开发任务必须先完成 `references/component-library-first-gate.md` 的组件来源选择。尤其是 Select、Combobox、DropdownMenu、Checkbox、Radio、Switch、Button、Tabs 和 Dialog：优先用已有主库或兼容原语，**不要为第一版外观随手写交互实现**。组件美感的工作重点应是：统一真实库组件的尺寸、圆角、背景、边框、字重、图标光学比例和 selected/hover/focus/disabled 状态。组件卡片只有静态默认态不能证明第一版已达标。
+Interactive implementation first follows `references/component-library-first-gate.md` to select the control source. For Select, Combobox, DropdownMenu, Checkbox, Radio, Switch, Button, Tabs and Dialog, start with the existing main library or compatible primitives. **Do not improvise complex behavior for a first-pass visual design.** Refine actual components for consistent dimensions, radius, backgrounds, borders, weight, icon proportions and selected/hover/focus/disabled. A gallery of only static default states does not establish first-pass quality.
 
-## 1. 组件设计前的六问（Gate B）
+## 1. Six questions before high-frequency component design (Gate B)
 
-对页面的每个高频组件与复合模式至少回答：
+1. **Purpose:** Which object/action/status? Is a separate surface needed? Navigation, selection, filtering, status or action?
+2. **Reading:** What is the most important content (Perceptual Hierarchy Gate)? Is primary/secondary meaning visible through size, weight and spacing?
+3. **Usage:** Trigger frequency, risk, keyboard/touch, feedback and confirmation need. Does hit area/action emphasis match?
+4. **Shape:** Which established tokens (dimensions, borders, space, radius, colors, typography)? Why not reuse an existing variant?
+5. **States:** Do default/hover/active/focus-visible/disabled/loading/error/empty/selected produce distinct, noncontradictory feedback?
+6. **Boundaries:** Narrow view, long Chinese/English, 200% zoom, light/dark, empty/errors and real content density. Will text clip or break the parent?
 
-1. **职责**：它表达哪个对象/动作/状态？是否需要一个独立容器？是导航、选择、筛选、状态提示还是操作按钮？
-2. **阅读**：内部最重要的文字/数据是哪一个（参见 Perceptual Hierarchy Gate）？主次是否通过可见字重/尺寸/空间关系区分？
-3. **使用**：触发频率、任务风险、键盘/触屏、交互反馈、是否需要确认？可点区域与动作强弱是否匹配？
-4. **形态**：选择哪种已定义的 project tokens（尺寸、边框、间距、圆角、色彩、字体）？为何不用现有组件现有变体？
-5. **状态**：正常/hover/active/focus-visible/disabled/loading/error/empty/selected 是否都有明确且不互相矛盾的反馈？
-6. **边界**：窄屏、长中英文、200% 文本、暗/亮、空值、异常、真实内容密度下，文本会不会被截断或撑破布局？
+Decide `reuse / wrap / add / do not componentize`. Remove redundant outer Cards, repeated status labels and non-functional decorative Buttons when they have no independent meaning; prettier fills cannot solve missing purpose.
 
-给出“复用/封装/新增/不要组件化”决策。没有独立语义与作用的外层 card、重复状态 label 和无效“装饰性按钮”应删除，不能仅靠润色背景补救。
+## 2. Replace vague “premium” adjectives with checkable decisions
 
-## 2. 不靠主观的“高级感”形容词决策组件
-
-| 组件 | 容易陷入的 AI 模板 | 设计与交互质量门槛 | 合法例外 |
+| Component | Common AI-template failure | Quality bar | Legitimate exception |
 | --- | --- | --- | --- |
-| Button / CTA | 每个按钮都空心 pill、全同强度；每个列表行堆多个强按钮 | 主要动作、次操作与危险操作有**语义和使用频率**决定的权重；清晰标签、点击区、反馈状态、长文处理 | 品牌风格允许圆角和夸张 CTA，但要保持可操作 |
-| Tabs / Segmented / Filter | 一排小胶囊同时承担筛选、导航、统计与警告；数字比标签小到看不清 | 先确认是导航还是筛选；若数字是核心信息则强化，否则作为辅助计数；明确 selected、hover、keyboard 和内容联动 | 极简 underline、彩色分类、卡片切换均可有理使用 |
-| Table / List / Item | 所有行字一样小、行内信息无主次；每行浮卡，状态原因不突出 | 建立对象/主信息 → 进展/结果 → 次级元信息 → 合法操作的扫描顺序；列对齐，长文本、筛选与行状态可用 | 图片商品/作品集可用卡片布局，不强推表格 |
-| Badge / Status | 所有标签都彩色 pill；用颜色表现无法读懂的状态 | 语义颜色 + 可读文案/图标 + 一致尺寸和基线；只在能缩短扫描路径时使用 badge，不把普通文字都胶囊化 | 品牌分类标签可更有个性，不和错误/成功状态混淆 |
-| Input / Search | 大圆角大留白，输入内容反而小；搜索框当装饰 | 清晰标签/范围/占位、焦点、清除/错误与键盘能力，文案尺寸与控件高度相称 | 搜索优先产品允许搜索框成为视觉主角 |
-| Card / Section | 层层边框/阴影/背景，没有分组理由；通屏大卡包表格再套行卡；**与边框贴合的粗彩色侧边条** | 每个表面都能回答“为何单独占一层？”；默认无彩条，确有必要才将独立标记外置并留间隙，执行 `references/surface-edge-accent-gate.md` Gate S0 | 展示页可使用有意图的卡片，但不豁免贴边彩条禁令 |
-| Dialog / Drawer / Popover | 不分任务复杂度全部大号弹窗；按钮浮在边角 | 容器大小服从真实内容和风险；可访问焦点、退出、反馈、滚动与长内容 | 复杂向导可独立页面或宽对话框 |
-| Navigation | 主导航、最近对象与页面 Tabs 同一选中 pill，强调叠层 | 区分路由、对象、选项、状态与键盘焦点；跨端保留入口，位置来自导航架构 | 沉浸式体验可隐式导航，但必须可发现与可访问 |
+| Button / CTA | Every Button is the same outline pill, multiple filled primaries per row | Primary/secondary/destructive weight based on **semantics and frequency**; clear label, hit target, feedback and long-copy handling | Brand may use rounded/exaggerated CTAs while retaining usability |
+| Tabs / Segmented / Filter | Capsules simultaneously represent filtering, navigation, counts and warnings; tiny count labels | Determine nav vs filter first. Emphasize counts only if central. Proper selected, hover, keyboard and content state | Underline, colored taxonomy and Card switches are valid when justified |
+| Table / List / Item | All rows tiny and equal; floating Cards, failure reason buried | Scan object/primary → progress/result → secondary metadata → permitted action; coherent columns and long/filtered/error states | Product/portfolio imagery may use Cards instead of tables |
+| Badge / Status | Every ordinary label a colored pill; colors without readable state | Semantic color plus text/icon, consistent size/baseline, Badge only when it shortens scanning | Characterful brand categories if not confused with error/success |
+| Input / Search | Oversized round shell with tiny typed text; decorative search | Label/scope/placeholder, focus, clear/error/keyboard, type proportional to field size | Search-first sites may emphasize search |
+| Card / Section | Nested borders/shadows/backgrounds, page Card wrapping table and row Cards, **thick colored edge stripe touching Card border** | Every surface explains its independent purpose. Default no rail; justified short marker **outside** with gap ([Gate S0](surface-edge-accent-gate.md)) | Deliberate showcase Cards allowed, **flush color rail still prohibited** |
+| Dialog / Drawer / Popover | Giant dialog regardless of task; Buttons floating in corners | Match content/risk, managed focus, exit, feedback, scroll, long content | Complex wizard may be page or wide Dialog |
+| Navigation | Main nav, recent objects and Tabs share identical active pills | Distinguish route, object, option, status and keyboard focus; preserve discoverability across devices | Immersive nav may be subtle but must remain accessible |
 
-**用设计系统约束一致性，不用组件库默认皮肤代替视觉决策。** 允许 Reka/Radix/AntD/MUI/原生表单控件，但要检查在项目字体、密度、浅深主题下的样貌。组件的细腻感来自正确字重、内部对齐、足够但不过度的 padding、清楚边界和状态，而非全局加圆角或阴影。
+**A design system aligns components; vendor default skins do not replace art direction.** Reka/Radix/AntD/MUI/native may all work when appropriately integrated. Careful typography, optical alignment, sufficient but not excessive padding, clear boundaries and states produce refinement—not globally enlarging every radius or shadow.
 
-## 3. 设计由组件“组合关系”决定
+## 3. Component composition determines page quality
 
-- 单个按钮漂亮、整页仍廉价，常因为 Button + Tabs + Table + Badge 的尺寸节奏冲突。检查基线、控件高度、图标文字距离、表格密度及状态色是否协调。
-- Component gallery 至少显示：基础形态与两个合法变体、主要交互状态、P0/P1 主/次内容对比、长中文/英文、数字+单位、空/错误/加载、窄窗与文字放大。不是每个小功能都做 30 种变体。
-- 对已有组件系统优先修复 token/共享组件，不在业务页面写 N 份“高级按钮”CSS；小修复可局部执行但保证既有样式不被破坏。
-- 组件复用**不等于相同视觉结构**：同为 Button，可以 primary/secondary/quiet；同为 data list，价格/库存/失败原因的优先级随业务改变。
+- An excellent isolated Button can still form a weak page when paired with incoherent Tabs/Table/Badge dimensions, baselines, icon gaps, row density and status tones.
+- Gallery should show base treatment + at least two legitimate variants, important interaction states, P0/P1 copy, long Chinese/English, numbers with units, empty/error/loading, narrow window and zoom. **Not every tiny control needs 30 variants.**
+- Fix existing tokens/shared components first; do not produce N route-local “premium Button” styles. A scoped patch is fine when it preserves established behavior.
+- Reuse **does not** imply identical appearance: Button has primary/quiet/danger; data lists may prioritize price, stock or failure differently by task.
 
-## 4. Anti-AI-look 不是审美禁令
+## 4. “Anti-AI-look” is not a ban on legitimate creativity
 
-不允许仅凭“像 AI”拒绝合法创意。审查应指出**具体失效的可观察证据**：首要数据被 12px 弱灰淹没、错误原因与更新时间同级、同一动作多种强强调、卡片没有内容分组价值、操作文案看不清、交互状态缺失、下沿裁切。
+Never reject a useful artistic choice solely with “it looks AI-made.” State **observable failures**: critical values unreadable at faint 12px, failure reason treated like update timestamp, multiple competing primaries, surfaces without grouping value, illegible action labels, absent states or bottom clipping.
 
-改造优先序：**语义/任务 → 信息层级 → 组件职责 → 类型尺度/空间/表面 → 动效/装饰**。若业务数据/布局错，不能只调颜色和阴影。
+Repair order: **task semantics → information hierarchy → component purpose → type/space/surface → motion/decoration**. If business data or layout is wrong, colors and shadows cannot make it correct.
 
-## 5. 交付与验证
+## 5. Delivery and verification
 
-Gate A：识别业务类型、必要组件与用户已确认视觉方向；Gate B：给至少一个共享组件 gallery 和关键 component contract（职责、状态、token、容错）；Gate D：截图上同时看局部组件和**真实组合页面**。对不同项目可选不同造型，不将示例截图当产品源码。若没有真实浏览器证据，报告“仅规则审查 / NOT VISUALLY VERIFIED”，不能宣称设计质量已达标。
+**Gate A:** Identify actual product type, necessary components and confirmed visual direction. **Gate B:** Provide at least one shared component gallery and contract (purpose, states, tokens, edge cases). **Gate D:** Inspect the component *and its real composed page* in screenshots and interactive states. Different products may choose different shapes; never treat synthetic examples as actual source. Without real browser evidence report **RULE REVIEW ONLY / NOT VISUALLY VERIFIED**, not a finished quality claim.
 
-和 references/component-first.md、references/workspace-component-refinement.md、references/perceptual-hierarchy-gate.md、references/visual-qa.md 一起使用。
+Use with `references/component-first.md`, `references/workspace-component-refinement.md`, `references/perceptual-hierarchy-gate.md`, `references/visual-qa.md`.
