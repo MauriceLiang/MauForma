@@ -2002,6 +2002,47 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/liquid-glass-optics.md",
+      "source_blob_sha": "5ee5e9eb7fe3793ffe6822fe3139bc86ada984bc",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Transmission",
+        "Refraction",
+        "Specular",
+        "Elevation",
+        "scale multiplies map strength",
+        "only after observing actual refracted background pixels",
+        "not universally guaranteed",
+        "unique filter ID",
+        "pointer-events:none",
+        "NOT TESTED",
+        "four layers toggle independently"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "blur 不是四层之一，也不是折射",
+          "target_en": "blur is **not** one of the four layers"
+        },
+        {
+          "source_zh": "CSS.supports 返回真不证明真正背景折射",
+          "target_en": "does not prove** working optical refraction"
+        },
+        {
+          "source_zh": "改变形状尺寸边缘坡度仍需重新生成贴图",
+          "target_en": "requires regenerating the map"
+        },
+        {
+          "source_zh": "shader 不能读取任意 DOM 后方像素",
+          "target_en": "cannot automatically read arbitrary pixels"
+        },
+        {
+          "source_zh": "浏览器未测必须标记 NOT TESTED",
+          "target_en": "NOT TESTED"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
