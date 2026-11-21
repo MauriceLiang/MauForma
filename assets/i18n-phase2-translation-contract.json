@@ -401,6 +401,66 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/motion-consent-experience-gate.md",
+      "source_blob_sha": "883c72333322bbdd365f59d8e9cbae03b50e6929",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate M0",
+        "Gate M1",
+        "Gate M2",
+        "Gate M3",
+        "Gate M4",
+        "No extra motion is a valid user decision",
+        "prefers-reduced-motion"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "用户没有确认不能当成默认无动画",
+          "target_en": "does not mean"
+        },
+        {
+          "source_zh": "无额外动效合法",
+          "target_en": "No extra motion is a valid user decision"
+        },
+        {
+          "source_zh": "推荐不代表确认",
+          "target_en": "recommendation is not confirmation"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/motion-craft-and-continuity.md",
+      "source_blob_sha": "bb44c8655388042f60ec09ffa51711afcb9ba868",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate MC0",
+        "Gate MC1",
+        "Gate MC2",
+        "Gate MC3",
+        "Gate MC4",
+        "Gate MC5",
+        "Gate MC6",
+        "Gate MC7",
+        "NOT REVIEWED"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "30% 或 70% 反向",
+          "target_en": "30% or 70%"
+        },
+        {
+          "source_zh": "降低动效应保留语义",
+          "target_en": "without losing state"
+        },
+        {
+          "source_zh": "未独立复审不得宣称通过",
+          "target_en": "NOT REVIEWED"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
