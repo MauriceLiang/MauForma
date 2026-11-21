@@ -15,7 +15,7 @@ These eight profiles are **MauForma's own synthesis** of strong external design 
 
 ## Search and recommendation
 
-Run `python3 scripts/search_design_knowledge.py --query "cake shop product photography in-store" --mode Persuade --limit 3`. When the user has specified a direction, **their decision wins**. Script suggestions are reasoned proposals, never proof of approval. Profile metadata and influences are documented in `assets/style-knowledge.json` and `references/aesthetic-authorship.md`.
+Run `python3 scripts/search_design_knowledge.py --query "蛋糕 店铺 摄影 到店" --mode Persuade --limit 3`. When the user has specified a direction, **their decision wins**. Script suggestions are reasoned proposals, never proof of approval. Profile metadata and influences are documented in `assets/style-knowledge.json` and `references/aesthetic-authorship.md`.
 
 ## Interpretation principles
 
