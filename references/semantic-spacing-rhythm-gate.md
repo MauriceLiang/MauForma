@@ -96,3 +96,5 @@ Avoid un-gapped flex columns, `row-gap:0` with `column-gap:12px`, brittle `:last
 - Atlassian Spacing: Proximity/grouping/rhythm with optical adjustment — https://atlassian.design/foundations/spacing
 
 Their pixel values belong to **their design systems**, not universal MauForma requirements.
+
+**Source numeric caveat:** First establish spatial relationships, then decide numbers. A zero-gap warning is **not** permission to make every gap 32px. An intentionally connected Tab+Panel or shared table header/body may validly have 0px; the defect is independent modules touching with no semantic reason.
