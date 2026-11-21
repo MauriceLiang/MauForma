@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "purpose": "Source-to-English semantic parity audit. Original Chinese snippets exist ONLY as non-runtime test anchors; these are not machine-translation proof.",
   "source_commit": "54a4af62566da1532c2b68d4301b531aee118e81",
-  "status": "partial_migration",
+  "status": "complete_pending_review",
   "entrypoint_language": "English",
   "translation_principles": [
     "Preserve MUST/SHOULD/MAY modality, triggers, exemptions and prohibitions.",
@@ -1150,11 +1150,11 @@
       "semantic_pair_examples": [
         {
           "source_zh": "指令语言与产品语言",
-          "target_en": "Language versus product locale"
+          "target_en": "Language vs product locale"
         },
         {
           "source_zh": "按需读取",
-          "target_en": "Reference loading, on demand"
+          "target_en": "Reference loading"
         }
       ],
       "allowed_cjk_fragments": []
@@ -1175,6 +1175,10 @@
         {
           "source_zh": "脚本不会更新 `MASTER.md`",
           "target_en": "It never updates"
+        },
+        {
+          "source_zh": "观察到的 Token 基线不是经用户批准的 MASTER 设计真值",
+          "target_en": "It reflects source observations, not MASTER truth"
         }
       ],
       "allowed_cjk_fragments": []
@@ -1220,6 +1224,10 @@
         {
           "source_zh": "禁止：把导航项的左边框涂成品牌色，冒充独立指示条",
           "target_en": "Forbidden: recolor nav item's own left border"
+        },
+        {
+          "source_zh": "未打开真实页面不能将 Gallery 或静态检查视为通过",
+          "target_en": "does **not** verify real page"
         }
       ],
       "allowed_cjk_fragments": []
@@ -1265,6 +1273,10 @@
         {
           "source_zh": "值为 `null` 时展示“— / 无数据”，绝对不能变成 `0`。",
           "target_en": "never 0"
+        },
+        {
+          "source_zh": "截图不能证明来源数据和隐藏曲线是否完整",
+          "target_en": "Screenshots do not prove source-data correctness"
         }
       ],
       "allowed_cjk_fragments": []
@@ -1573,7 +1585,7 @@
       "semantic_pair_examples": [
         {
           "source_zh": "推荐不是确认",
-          "target_en": "not approved"
+          "target_en": "remains `proposed`, not `confirmed`"
         },
         {
           "source_zh": "静态扫描基线不等于批准",
@@ -1726,7 +1738,7 @@
         },
         {
           "source_zh": "不要套用 v3 anime({targets:...}) 风格",
-          "target_en": "Do not use the v3"
+          "target_en": "not** use the v3 anime({targets:...}) syntax"
         },
         {
           "source_zh": "严禁劫持原生滚动体验",
@@ -1734,7 +1746,7 @@
         },
         {
           "source_zh": "不声称包含今后版本新增的 API",
-          "target_en": "does not claim to cover APIs introduced by future Anime.js versions"
+          "target_en": "not** claim to cover APIs introduced by future Anime.js versions"
         }
       ],
       "allowed_cjk_fragments": []
@@ -1774,7 +1786,7 @@
         },
         {
           "source_zh": "普通磨砂不代表折射",
-          "target_en": "is not refraction"
+          "target_en": "not refraction"
         },
         {
           "source_zh": "性能风险并非项目性能基准测试",
@@ -1802,7 +1814,7 @@
       "semantic_pair_examples": [
         {
           "source_zh": "不是所有网页都变黑白、统一小圆角、全删 emoji",
-          "target_en": "does not mandate black-and-white themes"
+          "target_en": "does **not** mandate black-and-white themes"
         },
         {
           "source_zh": "不能将原有坏状态当成正确 before",
@@ -1843,7 +1855,7 @@
         },
         {
           "source_zh": "用户选择 none 时允许全部为即时反馈",
-          "target_en": "none choice allows immediate static feedback"
+          "target_en": "none** choice allows immediate static feedback"
         },
         {
           "source_zh": "不能拿路由转场算组件覆盖",
@@ -1851,7 +1863,7 @@
         },
         {
           "source_zh": "仅合成示例通过不代表真实项目",
-          "target_en": "does not certify the user's real product"
+          "target_en": "not just a standalone synthetic demo"
         }
       ],
       "allowed_cjk_fragments": []
