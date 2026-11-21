@@ -83,3 +83,7 @@ For peer charts inspect **Plot Area**, X-axis baseline and data-label spacing/co
 ## Task Center: having all features is not task efficiency
 
 If non-actionable status counters become giant Cards, wide task rows repeat descriptions, or actionable errors/retries are buried among completed jobs, classify as **Run Monitor information hierarchy failure**. Recompose into actionable status filters, scannable records and on-demand detail. Verify true progress and legitimate actions; shrinking Card heights alone is insufficient. Screenshots cannot prove retry, logs or API outcomes: the target needs real browser/E2E checks (run-monitor-case.md).
+
+## Original-source cross-reference parity
+
+Navigation structure criteria also rely on references/navigation-architecture.md; this reference is about scope and route ownership, not permission to redesign existing navigation.
