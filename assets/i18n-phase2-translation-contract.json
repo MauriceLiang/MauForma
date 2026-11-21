@@ -1029,6 +1029,102 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/component-craft-gate.md",
+      "source_blob_sha": "96e8b9328a50a7222114c4441b9189e2d2f9bac1",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate B",
+        "NOT VISUALLY VERIFIED",
+        "surface-edge-accent-gate.md",
+        "reduced-motion",
+        "six questions"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "组件复用不等于相同视觉结构",
+          "target_en": "Reuse does not imply identical appearance"
+        },
+        {
+          "source_zh": "不是审美禁令",
+          "target_en": "not a ban on legitimate creativity"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/settings-form-layout-gate.md",
+      "source_blob_sha": "fae7059ea6f6df0fe60e19ae0c223991e69de720",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "SF0",
+        "SF1",
+        "SF2",
+        "SF3",
+        "SF4",
+        "SF5",
+        "NOT TESTED"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "设置页不强制左右排",
+          "target_en": "does not imply every field must use a horizontal row layout"
+        },
+        {
+          "source_zh": "Mock 动画不证明保存成功",
+          "target_en": "Mock animation is not evidence"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/design-system.md",
+      "source_blob_sha": "21d3d767f3e52dc98d1724dd4026d321538d97ea",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "v2.0",
+        "Design Token",
+        "32px",
+        "44px",
+        "200%",
+        "User-specified HEX"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是 WCAG 强制字号",
+          "target_en": "not WCAG minimum font sizes"
+        },
+        {
+          "source_zh": "页面密度由真实任务决定",
+          "target_en": "per-page density from task"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/icon-art-direction-gate.md",
+      "source_blob_sha": "471a88600dfa4de21cbca6ac50cd573c461a25f0",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate I0",
+        "Gate I1",
+        "Gate I2",
+        "Gate I3",
+        "Gate I4",
+        "6–12 actual icons"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "只图标按钮须有可访问名称",
+          "target_en": "Icon-only Buttons require an accessible name"
+        },
+        {
+          "source_zh": "不强制所有产品使用 Lucide",
+          "target_en": "never mandates Lucide"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }

@@ -104,7 +104,7 @@
       "path": "references/component-craft-gate.md",
       "source_blob_sha": "96e8b9328a50a7222114c4441b9189e2d2f9bac1",
       "source_bytes": 8926,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/component-first.md",
@@ -176,7 +176,7 @@
       "path": "references/design-system.md",
       "source_blob_sha": "21d3d767f3e52dc98d1724dd4026d321538d97ea",
       "source_bytes": 10157,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/enterprise-ui-library-guide.md",
@@ -260,7 +260,7 @@
       "path": "references/icon-art-direction-gate.md",
       "source_blob_sha": "471a88600dfa4de21cbca6ac50cd573c461a25f0",
       "source_bytes": 10067,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/liquid-glass-optics.md",
@@ -404,7 +404,7 @@
       "path": "references/settings-form-layout-gate.md",
       "source_blob_sha": "fae7059ea6f6df0fe60e19ae0c223991e69de720",
       "source_bytes": 7315,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/sidebar-color-discovery.md",

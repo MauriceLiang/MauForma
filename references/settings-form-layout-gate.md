@@ -1,66 +1,66 @@
-# Settings & Form Layout Gate · 场景化设置页与表单布局（v6.22）
+# Settings & Form Layout Gate — Choose Layout by Save Semantics (v6.22)
 
-> 此门禁附着于 Product Experience Routing 的页面任务层，而非独立替换产品类型或 Persuade / Operate / Read / Experience。设置页可能存在于教育、消费、后台或创作工具中；不能因为页面标题出现“设置”就机械推断全部控件应左右排。
+> This gate belongs to the **page-task layer of Product Experience Routing**, not a separate replacement for product type or Operate/Persuade/Read/Experience. Settings exist in learning, consumer, admin and creative tools. A page named “Settings” **does not imply every field must use a horizontal row layout**.
 
-## SF0 · 识别真实提交与交互单位（必须在 R1/R2 之前）
+## SF0 — Identify save and interaction units before R1/R2
 
-先逐块识别：设置是否**独立生效**、字段是否需要**作为一个事务整体提交**、控件是短选项还是长文本、是否有校验与错误反馈、哪些操作不可逆、窄屏下的实际可用宽度。
+Inspect each region: Does each setting **take effect independently** or do fields **submit as one transaction**? Short option vs long free text? Validation/error states? Irreversible actions? Available control width at narrow viewports?
 
-| 模式 | 识别条件 | 推荐结构 | 反例 |
+| Pattern | How to recognize | Recommended structure | Failure |
 | --- | --- | --- | --- |
-| Settings / independent | 通知开关、主题、语言等单项即可修改，通常无需跨项校验 | 分组标题 + 一行一项；宽屏标题/辅助说明左，紧凑操作控件右 | 所有独立开关装入嵌套巨卡，或左右控件错列 |
-| Form / submit group | 注册、结账、创建、编辑等多字段连续输入并一次提交 | 标签在上 + 输入在下，容器列适宽、字段宽度随内容列 | 名称占左列，输入窄到无法显示文本/错误 |
-| Hybrid | 设置页里含 SMTP 配置、令牌管理、复杂地址、密码修改等子表单 | 独立设置仍为行；多字段提交部分单独采用纵向表单 | 根据“设置”二字强制整个页面左右排 |
-| Compact exceptions | 左右并排后控件或翻译文案会挤压 | 此条改为纵向，或在窄屏折成上下 | 为保留左右排把字段压成极窄，错误提示被裁 |
+| Settings / independent | Notification toggle, theme, language: one item changes without cross-field validation | Section heading + one setting per row; desktop label/help on left and compact control on right | All toggles in nested giant Cards or misaligned controls |
+| Form / submit group | Registration, checkout, creation or editing: several fields entered and committed together | Label above Field, appropriate bounded content column, field width matching content | Label in left column and tiny Input too narrow for value/errors |
+| Hybrid | Settings contain SMTP config, token handling, complex address or password form | Individual rows remain rows; multi-field subforms use **stacked form** | Forcing entire page horizontal because its title says “Settings” |
+| Compact exception | Side-by-side control/translated help would be cramped | Stack that item or reflow on narrow screens | Preserving two columns by crushing field/error text |
 
-先确定每个区域的保存语义。若只是修改一个已批准控件，尊重现有 IA 与设计 Token，按受影响范围修复；不得擅自重排整个页面。
+First establish each region's true persistence semantics. For a narrow fix to an approved control, preserve inherited IA and tokens; do not restructure the full Settings page without authorization.
 
-## SF1 · 独立设置条目的职责
+## SF1 — Independent setting rows
 
-- 一个可识别的设置条目原则上一行：左侧文本容器包含**可见名称**及可选解释；右侧是 Switch、Select、小型按钮、状态或入口。标题、控件及状态须有稳定对齐线。
-- 可独立保存的设置应提供即时或明确的保存反馈：保存中、成功、失败/恢复；需要显式保存时，不伪装自动生效。异步失败不能只让开关视觉上保持新状态。
-- 相同分组聚在一起。组内条目紧密且可扫描，分组标题与上一组之间**显著大于**组内间距；行内文本与所属控件需比相邻组更近。
-- 组内可用轻分割线、空白、文字层级组织。先审查页面最外侧大卡/多层卡片是否提供实际任务边界；若无必要优先开放式分区。**不禁止**用于权限边界、固定设置面板、复杂配置区的单层有界容器。
-- 危险操作（删除账户、清空永久数据、重置所有配置）必须单独分区，视觉语义和文案表明后果，必要时确认并执行权限校验/二次确认；不应夹在通知等普通开关之间。
-- 响应式优先重排：窄屏下左侧说明在上、控制在下或右下，保持可读触达。不得依靠超窄 flex-shrink、隐藏完整标签、溢出裁切来勉强维持双列。
+- One identifiable setting normally occupies one row: left content has **visible label** and optional help; right side has Switch, Select, compact Button, status or navigation entry. Text, control and state share stable alignment.
+- Independently persisted settings need immediate or explicit feedback (pending, success, failure/recovery). If a Save action is required, **do not pretend the value auto-saves**. Async failure cannot merely leave a toggle visually enabled.
+- Group related settings. Items within a group are close/scannable, while group boundaries are **noticeably larger** than row gaps. Each row label/control should feel closer than adjacent groups.
+- Use subtle dividers, space and typography as needed. Audit whether giant outer Cards or nested surfaces add real task boundaries; prefer open sections if not. **Single bounded panels remain valid** for permission boundaries, pinned settings or complex configurations.
+- Destructive actions (delete account, permanently clear data, reset all configuration) require separate grouping, explicit consequences and appropriate confirmation, permission checks or second verification; never mingle with ordinary notification toggles.
+- Reflow on narrow screens: text above, control below/right-below, with legible tap targets. Do not rely on severe flex shrinking, hidden full labels or clipped overflow to keep two columns.
 
-## SF2 · 连续表单的职责
+## SF2 — Multi-field submitted forms
 
-- 默认每个字段**标签在上，输入在下**；帮助文本和字段级错误位于输入附近，优先在下方，不与下一字段的标签混淆。
-- “全宽”指在**合理最大宽度的表单内容列内**填满（按字段需要允许短输入），不是把所有输入拉到 1440px 的整页宽度。长文案、地址和错误信息要有足够空间。
-- 多列仅在字段真正形成可理解的一组（例如同一地址内的城市/邮编）、具有足够空间且视觉/键盘阅读顺序明确时使用；窄屏改为一列。
-- 不用 placeholder 代替可见 label；保持正确的 htmlFor/id 关联，必填/选填说明、禁用原因、焦点样式、键盘顺序和自动填充兼容。
-- 错误应在文本出现后可理解、与对应字段关联（如 aria-describedby）；有整体提交错误时还需提供清晰的汇总/导航。不要通过固定高度把长错误截断。
-- 保存/取消/返回等行为与真实提交边界一致；提交中防重复、成功/失败反馈、恢复路径按产品能力实现。不能把 Mock 的动画反馈当真实保存成功。
+- Default to **label above, Input below** for each field. Help and field errors near the Input, usually beneath, never confused with the next label.
+- “Full width” means the **sensible bounded form content column**, not every field stretching to the entire 1440px page. Short fields may stay short; addresses and longer errors need enough room.
+- Use multiple columns only when fields genuinely form a meaningful set (e.g. city/postal code in one address), there is sufficient space and visual/keyboard reading order remains clear. Stack to one column at narrow widths.
+- Placeholder is **not a substitute for visible label**. Preserve htmlFor/id association, required/optional text, disabled reasons, visible focus, keyboard order and autofill support.
+- Errors need intelligible text and association with their Field (e.g. `aria-describedby`). Whole-form submission failures also need discoverable summary/navigation. Never clip long error text with fixed heights.
+- Save/Cancel/Back actions match the actual transaction boundary. Prevent duplicate submission and implement genuine success/failure/recovery. Mock animation is not evidence a backend save succeeded.
 
-## SF3 · 空间、容器与响应式验收
+## SF3 — Spacing, surface and responsive acceptance
 
-1. 保留来自项目设计系统的 spacing tokens，不强制统一像素。确认 group-gap > item-gap；*不能以删除 outer card 为名清除独立 section 的外部距离*。
-2. 左右设置条目在可容纳时对齐标题基线/控件视觉中心；长描述可换行，不压缩控件的最小可用宽度。开关保留明确的文本关联。
-3. 上下表单：标签、输入、帮助/错误是**同一字段簇**；字段与字段的间距要比相关错误提示之间更大，异常文案应自然撑开布局。
-4. 检查 320/360/768/1440 等实际适用宽度、200% 字体缩放、长翻译文案、错误、禁用、加载、成功、暗色以及滚动末端；没有测试的情况标 NOT TESTED。
-5. 对 Card “去壳”改造必须对照原有真实页面保存关系，验证分组仍明确；独立内容不能互相贴合，danger 不得丢失警示。
-6. 截图与 DOM/规则检查只能定位几何与契约问题，不会自动证明审美和真实业务保存可靠性。观察不到的组件不能判 PASS。
+1. Inherit project spacing tokens, **not universal pixels**. Confirm group-gap > item-gap. Removing a giant Card is **not permission to erase independent section gaps**.
+2. Horizontal setting rows align text baseline and control optical center when space permits; long help wraps instead of crushing controls. Switch has a clear text association.
+3. Stacked forms treat label, Field, help/error as **one Field cluster**. Gaps between Fields should exceed local error/help spacing; error text must naturally expand layout.
+4. Test actually supported widths (e.g. 320/360/768/1440), 200% text, long translations, errors, disabled/loading/success, dark mode and scroll end. If not tested, report `NOT TESTED`.
+5. When removing Card shells, compare real before/after grouping; unrelated content must not touch and destructive warnings remain.
+6. Screenshots, DOM and rule scans show geometry/contract risks—not automatically aesthetic quality or actual save reliability. Unobserved components cannot be marked PASS.
 
-## SF4 · 与现有 MauForma 阶段/门禁接合
+## SF4 — Integration with MauForma phases/gates
 
-- **PX1/PX2**：先判断产品类型，再对当前设置/表单/混合子区域判定独立生效还是整体提交；Page Purpose Card 记录每区主任务与保存模型。
-- **R0**：记录字段实际状态、长文案、响应式和既有正确布局，禁止先删壳后拍脑袋修补。
-- **R1**：形成页面组结构和危险操作分区；若是混合页面须明确哪些子区域为 Row/Stacked。
-- **R2**：依据本规范执行 Row/Stacked 选择、容器必要性、组间/组内留白与控件宽度校验；复用 Semantic Spacing、Surface Architecture 与 Control Geometry 门禁。
-- **R3/R4**：调整标签层级、组件状态、语义危险色与统一控件形态，不覆盖已有品牌语言。
-- **R5**：对比同数据/同错误/同视口的 before/after；测试真实保存、失败与撤销路径。验收状态必须分 FIXED & VERIFIED / UNFIXED / NOT AUDITED。
+- **PX1/PX2:** Determine product type, then each Settings/Form/Hybrid subregion's independent versus grouped submit model; Page Purpose Card records task and save model.
+- **R0:** Capture actual field states, long text, responsiveness and good inherited layout *before* removing any shells.
+- **R1:** Establish grouped sections and separate destructive actions; distinguish Row versus Stacked regions in hybrid pages.
+- **R2:** Apply row/stack decisions, surface necessity, inter/intra-group space and control width; reuse Semantic Spacing, Surface Architecture and Control Geometry gates.
+- **R3/R4:** Refine label hierarchy, component states, semantic danger color and coherent controls without overwriting approved brand.
+- **R5:** Compare same data/error/viewport before/after. Test real save, failure and undo paths. Status must be `FIXED & VERIFIED / UNFIXED / NOT AUDITED`.
 
-## SF5 · 场景清单（与源码检查互补）
+## SF5 — Scenario matrix (complements source scans)
 
-| 必检 | 通过标准 |
+| Must test | Pass criteria |
 | --- | --- |
-| 场景路由 | 独立设置 Row、连续表单 Stacked、混合区域分开；记录例外理由 |
-| 标签 | 可见、不被挤压、正确关联到真实控件 |
-| 控件与错误 | 长输入有宽度，错误可完整呈现且有所属 |
-| 容器语义 | 去掉无用大卡但保留必要分隔、面板和跨组间距 |
-| 危险操作 | 独立分组、明确后果、适当确认与权限保护 |
-| 状态 | 保存中/成功/失败一致，不能只演示 Mock |
-| 响应式 | 窄屏堆叠、可操作、无内容溢出与末尾遮挡 |
+| Routing | Independent setting Row, multi-field Form Stacked, hybrid divided; exceptions justified |
+| Labels | Visible, not crushed, correctly associated with genuine control |
+| Field/error | Long inputs have space, complete errors are shown and owned by proper Field |
+| Surface | Remove needless giant Cards but preserve necessary sections/panels/gaps |
+| Destructive action | Separate, consequences clear, appropriate confirmation and permission protection |
+| State | Pending/success/failure match real persistence, not only Mock |
+| Responsive | Stack at narrow sizes, usable controls, no overflow or hidden final content |
 
-使用独立虚构例子：见 assets/settings-form-layout-cases.json、examples/settings-form-layout-demo.html。运行 python3 scripts/validate_settings_form_layout.py --repository 与 node tests/settings_form_browser_smoke.mjs（安装项目 CI 使用的 Playwright 时）。自动通过不等于真实产品 UI 已验收。
+Synthetic examples: `assets/settings-form-layout-cases.json`, `examples/settings-form-layout-demo.html`. Validators: `python3 scripts/validate_settings_form_layout.py --repository` and `node tests/settings_form_browser_smoke.mjs` (with the project/CI Playwright installed). **Synthetic passes do not certify real product UI.**

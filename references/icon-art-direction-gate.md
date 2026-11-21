@@ -1,89 +1,91 @@
-# Icon Art Direction & Semantic Fit Gate · 图标必须“选得对、看着好、搭得上”（v6.17）
+# Icon Art Direction & Semantic Fit Gate — Choose Icons for Meaning, Shape and Context (v6.17)
 
-适用于所有 Web 站点/应用（Operate / Persuade / Read / Experience），Vue、React、HTML 等均有效。**Icon 不是“根据菜单名从一个库中随机挑一个词”，也不是 CSS 统一 24px 后就有视觉质量。** 先判断是否需要，再决定视觉符号和图标体系，最后确认尺寸/轮廓/色彩/状态、浏览器真实渲染。
+Applies to all Web modes and frameworks. An icon is **not a random library match for a menu word**, nor is it visually refined simply because CSS sets every icon to 24px. First decide whether one is needed, then its symbolism and family, finally actual render size, outline, color and states.
 
-## v6.18 · 从参考学 Icon Art Direction，不提取参考图片资产
+## v6.18 — Learn icon direction, never extract screenshot assets
 
-当用户给出一套喜欢的原创 UI 作为参考时，可观察轮廓、光学重量、线描/实心的角色与文字配比，但**不得把参考图片、裁剪图标或提取后的 path 当成公开示例素材**。独立检索官方图标库核实候选，项目级选择优先，用户喜欢 Element Plus Icons 不意味着每个 Web 项目都必须换成它。公开的图标例子如使用第三方开源 SVG，保留许可且不得在 UI 中套用任何可识别原项目名称/数据。详见 `references/design-reference-learning-gate.md`。
+User-supplied original UI can show outline/fill roles, optical weight, type ratios and stylistic cohesion. **Never upload reference screenshots, cropped icons or extracted SVG paths as public demo assets**. Verify actual candidates from official icon libraries and retain project-specific choices. A user liking Element Plus Icons in one project does **not** make them the default across all Web products. For third-party open-source SVG in public examples, retain licenses and omit identifiable user brand/data. See `references/design-reference-learning-gate.md`.
 
-## Gate I0 · 先确认“为什么要有图标”
+## Gate I0 — Why an icon?
 
-每个重要导航、操作或状态中的 icon 必须有明确目的：
+An important navigation/control/status icon needs an actual job:
 
-- **Findability**：熟悉图形辅助用户快速扫描与定位目标；
-- **Affordance**：帮助表达可执行动作（搜索、下载、过滤等）；
-- **Domain identity**：表达产品或物件类别，具有领域共识；
-- **Brand / illustrative**：大型营销图形/产品插图属于不同图形层级，不当作 16–24px UI icon。
+- **Findability:** Recognizable graphic aids fast scanning and target recognition.
+- **Affordance:** Indicates a real action: search, download, filter.
+- **Domain identity:** Expresses a known class of object or product with domain consensus.
+- **Brand/illustration:** Large marketing graphics/product illustrations are **not** 16–24px UI icons.
 
-如果概念抽象（例如“提升效能”“智慧协作”“模型洞察”），不能凭空创作“脑袋+闪电+连线”凑图标；**优先可辨认的常见符号，无法清晰表达时可只用文字**。用户提供的品牌 Logo、第三方商标与通用 UI 图标独立管理，不用 outline 库图标冒充品牌标识。
+For abstract notions (“increase efficiency,” “smart collaboration,” “model insight”), do not invent a brain+lightning+network collage to fill space. Prefer **recognizable familiar symbols**, or **text alone** if no clear symbol exists. User-provided logos, third-party trademarks and generic UI symbols are different categories; never substitute a random outline icon for a real brand mark.
 
-## Gate I1 · 语义优先，候选是真实可选的资源
+## Gate I1 — Meaning first; candidates must exist
 
-对一级导航、高频按钮、危险操作、核心状态，要在实现前比较 **至少两个真实存在、语义可解释** 的图标候选（有明确成熟既有设计时可继承，不强行更换）。记录：
+For primary nav, high-frequency actions, destructive actions and core states, compare **at least two real, semantically defensible candidates** before implementation, unless a coherent existing approved system should simply be inherited. Record:
 
-`interface label → intended object/action → candidate names + library + verified source → chosen symbol → why easier to recognize → rejected alternative and reason`。
+`interface label → intended object/action → real candidate names/library/verified source → selected symbol → recognition rationale → rejected alternative/reason`.
 
-例如“项目比较”若表达两个对象间横向对照，`arrow-left-right` 可能比复杂 Git 分叉节点更直观；但**如果实际功能是 Git 分支比较，git-compare 反而可能更准确**。同理“研究分析”可以指散点统计、实验室实验或文档研究，图标选择需以真实任务为准，不机械统一用烧瓶。不要从英文词典的第一个图标命名直接推断语义。
+For a generic “compare projects” operation, `arrow-left-right` may be clearer than a complicated Git graph. **If the action actually compares Git branches, `git-compare` may be more accurate.** “Research analysis” might mean scatter statistics, laboratory experiments or document research. Pick from actual task, not the first English dictionary synonym.
 
-检索时确认 icon 名称在**当前使用的包版本**真实存在；示意候选不是安装/导入契约。要防止:
-- 代码导入一个拼错/旧版本别名的图标，运行时渲染空白；
-- 相邻两个不同功能使用相同符号造成导航辨识冲突；
-- 设计/代码使用未审核的 Emoji、Unicode 文字装饰、随机 AI 自绘 SVG 代替成熟图形；
-- 因为“每行都要带 icon”而为说明/普通状态加噪音；宁可无 icon，也别用错 icon；
-- 删除、保存等高风险动作单凭图标暗示而没有明确的文字或 accessible name。
+Confirm each icon name **actually exists in the installed library version**; illustrative candidates are not import contracts. Avoid:
 
-## Gate I2 · 选整套 Icon Family 的视觉语言（先看同屏，再看单个）
+- Typos or removed aliases causing empty runtime icons.
+- Two unrelated adjacent functions sharing one indistinguishable symbol.
+- Unreviewed emoji/Unicode decoration or random generated SVG replacing mature icons.
+- Inventing an icon for every caption/ordinary state merely for symmetry; no icon is better than a misleading one.
+- Destructive/Save actions whose meaning depends on a glyph with no text or accessible name.
 
-**视觉统一的判断对象是一组 6–12 个真实图标，不是一个孤立 icon 的精致截图。**
+## Gate I2 — Choose a coherent *family*, not isolated winners
 
-优先从项目已有**一个主 UI 图标家族**出发：如 Lucide（克制线条）、Tabler Icons（轮廓/专业感）、Phosphor（可选权重/更柔和）、Heroicons、Remix Icon、Carbon Icons 等。逐个对比：
-- 线条 weight、fill/stroke、端点/转角、曲线语言；
-- 图形复杂度、负空间、光学居中、轮廓辨识度；
-- 与产品排版（CJK/拉丁）、色彩与密度的契合；
-- 项目依赖/版本、框架包、Tree Shaking、许可证、可维护性。
+**Review a group of 6–12 actual icons**, not one impressive isolated screenshot.
 
-**主家族原则**：同一个导航/同级控制组不得混用线描、双色、实心 3D、图标字体等不相关风格；品牌 Logo、数据语义符号、插画或产品既有图形属于可以记录的例外。允许同一套具有官方配套的 outline/filled 状态变体，但需验证 selected 的光学重量不会突然变大、变形或“闪跳”。不为追求风格统一硬选一个语义错误的图标：可有受控的替代家族、经过系统化绘制的自定义图标，或干脆去掉图标。
+Prefer **one inherited main UI family**: Lucide (restrained outlines), Tabler (structured outlines), Phosphor (varied weights), Heroicons, Remix, Carbon, etc. Compare as a group:
 
-可比的正式来源：
-- Lucide icon selection & design: https://github.com/lucide-icons/lucide/blob/main/docs/how-to/icon-guide.md 和 https://lucide.dev/icons/
-- Tabler design specification: https://docs.tabler.io/icons/design-guide
+- Stroke weight, fill/outline, caps/corners and curve language.
+- Complexity, negative space, optical centering and recognizable silhouettes.
+- Fit with CJK/Latin typography, palette and density.
+- Dependencies, actual package/version/framework binding, tree shaking, licensing and maintenance.
+
+**Family principle:** Do not mix unrelated outline, duotone, filled 3D, icon-font and emoji styles within one navigation/peer control group. Brand logos, data semantics, illustrations and inherited specialist symbols are **controlled exceptions**. Officially paired outline/filled states may work but must not create huge selected weight/shape changes or flicker. **Never choose a semantically wrong icon simply to keep one family**; justify a specialist family, design a coherent custom glyph or omit the icon.
+
+Official sources for comparison:
+- Lucide: https://github.com/lucide-icons/lucide/blob/main/docs/how-to/icon-guide.md and https://lucide.dev/icons/
+- Tabler: https://docs.tabler.io/icons/design-guide
 - Phosphor: https://phosphoricons.com/
-- IBM Carbon UI Icon Guidelines: https://www.carbondesignsystem.com/building-blocks/foundations/icons/guidelines
+- IBM Carbon: https://www.carbondesignsystem.com/building-blocks/foundations/icons/guidelines
 
-不要从未知随机网站复制 SVG；第三方图标必须核对原始许可证并按规定保留声明。不要为六个静态导航图标引入一整套巨大图标字体（按需 SVG/组件）。
+Never copy SVG from unverified random sites; check original third-party licenses and preserve required notices. Do not install a huge icon font to display six static nav symbols when on-demand SVG/components suffice.
 
-## Gate I3 · 光学精度（icon 与字体是组合设计）
+## Gate I3 — Optical precision: icon and label are one composition
 
-统一 `IconBox` 及语义 tokens（例如 `icon.navigation`、`icon.inline`、`icon.dense-action`、`icon.hero-symbol`）；**尺寸是场景角色，而非全站一个神奇 px**。
+Unify `IconBox` and semantic token roles such as `icon.navigation`, `icon.inline`, `icon.dense-action`, `icon.hero-symbol`. **Size is a contextual role, not one magic global pixel.**
 
-- 统一视觉盒子、stroke/fill 模式、对齐基准，避免同一列表某个图标又粗又密另一个只有一条线；
-- 同一组 icon 与标签比例协调、共同居中（必要时光学微调，不靠负 margin 修错位）；测试 CJK 与英文文本、混合字体、数值 Badge；
-- 16/20/24px 等只是常见评估档位，不是强制统一；在实际渲染目标尺寸下看清图形细节、留白与主体面积；过密图标应换更简洁的候选，而不总是缩小 stroke；
-- `stroke-width:2` 是某些图标库源设计，**不是所有库都必须修改为 2px**。不能粗暴用全局 CSS 把 Phosphor、Lucide 和实心 Logo 拉成同一个描边；
-- 图标/标签、图标/Badge、Active 背景、focus-visible、hover、disabled、深浅色、系统缩放后都应保持视觉稳定；图标不能因 flex-shrink 被压成椭圆或被裁切；
-- 交互动画只使用已获用户同意的动效强度；尽量把过渡施加到可交互容器/状态，不默认让所有图标旋转、弹跳或替换导致辨识中断。
-- 装饰性图标与可见标签同义时可 `aria-hidden=true`；无可见文案的按钮必须有完整可访问名称和可触达点击区（遵循目标平台/组件规范）。不要把 icon 属性自动视为无障碍语义。
+- Coherent visual box, stroke/fill modes and alignment; one list icon must not look dense/bold next to a single thin line.
+- Align icons with labels and Badges, center optically when needed, without negative margins hiding faulty geometry. Test mixed CJK/Latin fonts and numeric Badges.
+- 16/20/24px are **review examples, not compulsory sizes**. At actual rendered sizes, ensure shape detail and negative space remain visible. Replace overly complex icons before just reducing stroke width.
+- `stroke-width:2` is a design choice in some libraries, **not a mandate to rewrite every library as 2px**. Never apply one blanket stroke to Phosphor, Lucide and filled logos.
+- Validate icon/label/Badge, selected background, hover/focus-visible/disabled, theme and text scaling; avoid flex-shrink deforming icons or clipping them.
+- Animate only within user-approved motion intensity; transitions can belong on the interactive container/state. Do not make every icon spin/bounce or change identity on selection by default.
+- Decorative icon duplicated by a visible label may use `aria-hidden="true"`. **Icon-only Buttons require an accessible name and usable hit target**. An `icon` prop does not automatically establish accessibility.
 
-## Gate I4 · Icon Shortlist Showcase & 真实视觉验收（Gate A / B / D）
+## Gate I4 — Icon shortlist, showcase and real visual acceptance (A/B/D)
 
-**Gate A**（设计前）：审已有系统与第三方库 → 定产品图标语言 → 为主要真实功能列出至少两个语义候选并核实包中存在、从整组里选择；用户已确定图标风格/品牌规范时继承，不能无故替换。对于新设计/有显著观感差异的全站 icon 方案，可在风格确认阶段展示 2–3 套整体对照供用户选择，不要逐个按钮发问或仅靠偏好问卷。
+**Gate A, before design:** Inventory existing and official libraries → decide the product's icon grammar → verify at least two real candidates for important functions → select by group. When the user already approved a brand/icon family, inherit it rather than switching arbitrarily. For a major new icon direction, offer **2–3 whole-family comparisons** during style approval, not a question per button or a preference-only survey.
 
-**Gate B**（实现）：创建一个可复用 Icon 组件/注册表，在同一示例页放出真实大小的一级导航、图标按钮、状态/空态和混排图标；比较整体形态。确保引用的名字、包版本、许可、字级、字号与语义映射可信。不要复制每个 SVG 再手工改出不同画风。
+**Gate B, implementation:** Create a reusable Icon wrapper/registry. Show actual-sized primary nav, icon Buttons, statuses, empty states and mixed label/icon groups **together**. Verify names, installed versions, license, type scale and semantic mapping. Do not copy and randomly edit every SVG into slightly different styles.
 
-**Gate D**（浏览器）：实测渲染真实大小（如小 16 / 标准 20 / 仅在必要时 24）、CJK/英文、选中/hover/focus/disabled、深浅色与缩放；**检查空白图标、画布不符、裁切、压缩变形、基线错位、重量悬殊、不同风格混用**。若内容是抽象概念做可用性快速识别测试：遮住标签，能辨识是加分；遮住标签仍不懂，不能在只图标模式依赖它。视觉优劣必须看整组截图/适当的人类评审，不能用数学分数判“好看”。
+**Gate D, browser:** Test actual 16/20/24px where applicable, CJK/English, selected/hover/focus/disabled, light/dark and zoom. Inspect **blank icons, wrong viewBox, clipping, compression, baseline mismatch, optical weight conflicts and unrelated family mixing**. For abstract concepts, run a quick recognition test with labels hidden; recognition is a bonus, but if unintelligible, don't rely on the glyph alone in icon-only mode. **Whole-group screenshots/human visual review determine aesthetics**; no numeric “looks good” score.
 
-- 可机读方案 `assets/icon-curation-patterns.json` 与 `python3 scripts/validate_icon_curation.py --repository` 检查映射、候选存在验证标记与家族原则；
-- 真实 SVG 实验 `assets/icon-art-direction-lab.html`、浏览器回归 `tests/icon_art_direction_browser_smoke.mjs` 验证示例正常渲染/比例/状态/不合理混搭可检测；
-- `scripts/audit_icon_consistency.mjs` 对显式 `data-mf-icon-group` 和 `data-mf-ui-icon` 组件做几何与样式检查：**只能指出尺寸/家族/缺失/拉伸等技术风险**，不会自动替人判断语义/审美。未标记的用户项目不得声称已审计。
+- `assets/icon-curation-patterns.json` and `python3 scripts/validate_icon_curation.py --repository` check mappings, candidate existence markers and family contracts.
+- `assets/icon-art-direction-lab.html` and `tests/icon_art_direction_browser_smoke.mjs` verify synthetic SVG rendering, ratios/states and detect intentionally inconsistent combinations.
+- `scripts/audit_icon_consistency.mjs` inspects marked `data-mf-icon-group`/`data-mf-ui-icon` geometry/styles. **It only reports technical candidates** for missing, stretched, mismatched size/family, not semantic or subjective taste. Unmarked user products were **not** audited.
 
-原有 Gate 关系：`references/perceptual-hierarchy-gate.md`（文本主次）、`references/component-craft-gate.md`（组件表现）、`references/control-geometry-gate.md`（按钮宽度）、`references/visual-qa.md`（整页 QA）以及 `references/motion-consent-experience-gate.md`（动效决定权）。
+Linked gates: `references/perceptual-hierarchy-gate.md`, `references/component-craft-gate.md`, `references/control-geometry-gate.md`, `references/visual-qa.md`, `references/motion-consent-experience-gate.md`.
 
-## 设计缺陷范例（示例只讲风险，不把任何图标宣告“天生丑”）
+## Illustrative design failures — not absolute judgments about any icon
 
-- 同样是 20px 的图标，一项路径密集、一项是简单闭合轮廓：视觉重量与细节反差大，**先换更合适的图标候选**；
-- 导航某一个 icon 突然切换为 filled/emoji，视觉系统断裂；品牌标识不在此限；
-- “项目比较”用 Git 网络拓扑但功能只是两个项目的数据对比，用户误认成版本控制操作；不要凭功能名“项目”就匹配 Git；
-- “研究分析”使用实验烧瓶，但页面实际上全是图表统计。可以更准确地尝试 Chart/Scatter；真正的实验管理反之可用 Flask；
-- 空态/普通文案每个标签都加图标，制造噪音；真正的状态信息也不能只靠图标传递。
+- Two 20px glyphs: one path-dense and one simple silhouette. The optical weight differs, so **try a better semantic candidate first**.
+- A single nav icon unexpectedly becomes filled/emoji while peers remain outlines; brand logos are an exception.
+- A generic two-project metrics comparison uses Git topology so users assume version-control behavior; use accurate comparison semantics.
+- “Research analysis” shows a flask even though the page is all statistical charts; consider Chart/Scatter. A real laboratory management screen may actually warrant Flask.
+- Icons added beside every ordinary empty-state/caption for decoration. Real status should not rely on icon alone either.
 
-**本 Skill 提供决策流程、实例与技术检查，绝不强制所有产品使用 Lucide、全部 20px、全部 Outline，或只允许一种艺术风格。**
+**This Skill supplies a decision process and test guidance. It never mandates Lucide, 20px, outline-only icons, or a single global art style.**
