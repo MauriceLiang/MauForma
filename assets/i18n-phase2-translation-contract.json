@@ -155,7 +155,7 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "不等于无授权安装依赖",
+          "source_zh": "无授权安装依赖",
           "target_en": "never grants permission"
         },
         {
@@ -182,11 +182,11 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "有信息价值不等于",
+          "source_zh": "不得把“有信息价值”直接等同于“可继续使用装饰前导样式”",
           "target_en": "does not automatically justify"
         },
         {
-          "source_zh": "真正有语义的面包屑",
+          "source_zh": "真正可导航的面包屑与页面标题同名可以成立",
           "target_en": "actual breadcrumb"
         },
         {
@@ -215,11 +215,11 @@
           "target_en": "real page"
         },
         {
-          "source_zh": "不能仅运行脚本",
+          "source_zh": "不能将“跑了一条脚本”直接称为完成设计",
           "target_en": "Running a script alone"
         },
         {
-          "source_zh": "不应上传用户截图",
+          "source_zh": "不推断来源归属",
           "target_en": "Do not infer source ownership"
         }
       ],
@@ -242,7 +242,7 @@
           "target_en": "Never silently install"
         },
         {
-          "source_zh": "原生弹层",
+          "source_zh": "浏览器/操作系统绘制的 native select 菜单",
           "target_en": "native select menus"
         },
         {
@@ -271,11 +271,11 @@
           "target_en": "inherited"
         },
         {
-          "source_zh": "允许例外",
+          "source_zh": "例外与边界",
           "target_en": "exceptions"
         },
         {
-          "source_zh": "功能页眉题",
+          "source_zh": "功能页 H1 前的解释性眉题默认禁止",
           "target_en": "Gate H0"
         }
       ],
@@ -367,11 +367,11 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "不是无障碍强制字号",
+          "source_zh": "推荐下限不代表无障碍强制字号",
           "target_en": "not a mandatory accessibility font-size minimum"
         },
         {
-          "source_zh": "不能因静态 Token 宣称符合 WCAG",
+          "source_zh": "不自动宣称只因检查静态 Token 就满足 WCAG",
           "target_en": "Do not claim WCAG conformance"
         }
       ],
@@ -396,7 +396,7 @@
           "target_en": "Hidden content is not deleted functionality"
         },
         {
-          "source_zh": "未确认分母",
+          "source_zh": "无可确认分母就不算百分比",
           "target_en": "without a verified denominator"
         }
       ],
@@ -417,15 +417,15 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "用户没有确认不能当成默认无动画",
+          "source_zh": "不能把“用户没提动画”“希望简洁”",
           "target_en": "does not mean"
         },
         {
-          "source_zh": "无额外动效合法",
+          "source_zh": "用户选择“无额外动效”是合法结果",
           "target_en": "No extra motion is a valid user decision"
         },
         {
-          "source_zh": "推荐不代表确认",
+          "source_zh": "推荐不等于确认",
           "target_en": "recommendation is not confirmation"
         }
       ],
@@ -448,15 +448,15 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "30% 或 70% 反向",
+          "source_zh": "在 30% 或 70% 时再次触发或逆向",
           "target_en": "30% or 70%"
         },
         {
-          "source_zh": "降低动效应保留语义",
+          "source_zh": "取消不必要运动但保留状态",
           "target_en": "without losing state"
         },
         {
-          "source_zh": "未独立复审不得宣称通过",
+          "source_zh": "若没有独立复审条件，诚实标为",
           "target_en": "NOT REVIEWED"
         }
       ],
