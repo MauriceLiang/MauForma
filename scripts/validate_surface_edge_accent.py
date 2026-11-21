@@ -100,8 +100,8 @@ def validate_repo() -> list[str]:
     errors = validate_cases(json.loads(CASES_FILE.read_text(encoding="utf-8")))
     expected = {
         "SKILL.md": ("surface-edge-accent-gate.md", "Gate S0", "newly added", "retained"),
-        "references/surface-edge-accent-gate.md": ("Gate S0", "默认", "已有", "边框", "外置"),
-        "references/surface-architecture-gate.md": ("surface-edge-accent-gate.md", "彩色"),
+        "references/surface-edge-accent-gate.md": ("Gate S0", "Default:", "inherited", "border", "external"),
+        "references/surface-architecture-gate.md": ("surface-edge-accent-gate.md", "decorative color rail"),
         "references/proactive-visual-defect-discovery-gate.md": ("surface-edge-accent-gate.md", "new and existing"),
         "references/component-craft-gate.md": ("surface-edge-accent-gate.md",),
         "references/visual-critique-loop.md": ("surface-edge-accent-gate.md",),
