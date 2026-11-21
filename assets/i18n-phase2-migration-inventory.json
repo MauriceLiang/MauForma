@@ -362,7 +362,7 @@
       "path": "references/quality-antipatterns-by-page-type.md",
       "source_blob_sha": "387ccffd94ab8eb7caa6d0737d41210961e80700",
       "source_bytes": 14058,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/react-component-engineering.md",
