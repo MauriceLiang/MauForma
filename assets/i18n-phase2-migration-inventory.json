@@ -302,7 +302,7 @@
       "path": "references/navigation-architecture.md",
       "source_blob_sha": "073e244710bcd1609fbd76f6130da743991e0d2e",
       "source_bytes": 10198,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/overview-density-case.md",
@@ -422,7 +422,7 @@
       "path": "references/sidebar-navigation-design.md",
       "source_blob_sha": "f42d9c6c9efd856259bfddd62b7f7d2e78b333fa",
       "source_bytes": 12474,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/sidebar-selection-indicator-gate.md",
@@ -464,7 +464,7 @@
       "path": "references/task-center-run-monitor-design.md",
       "source_blob_sha": "aca03a4c48a098023cc9e68213b7d7489e896ff1",
       "source_bytes": 11721,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/theme-design.md",
