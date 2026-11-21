@@ -88,10 +88,10 @@ def validate_repo() -> list[str]:
     errors.extend(validate_cases(data))
     required_fragments = {
         "SKILL.md": ("page-header-antipatterns.md", "title-prefix-role-gate.md", "Mandatory style-agnostic title-prefix check", "Gate H-Base / H0", "keep / merge / move / split / delete"),
-        "references/page-header-antipatterns.md": ("Gate H-Base", "Gate H0", "title-prefix-role-gate.md", "历史", "keep / merge / move / delete"),
+        "references/page-header-antipatterns.md": ("Gate H-Base", "Gate H0", "title-prefix-role-gate.md", "Historical", "keep / merge / move / delete"),
         "references/title-prefix-role-gate.md": ("every visible heading level", "structural relationship", "information role", "presentation role", "not a CSS class", "CANDIDATES_FOR_REVIEW"),
-        "references/proactive-visual-defect-discovery-gate.md": ("Gate H-Base", "原有及新增"),
-        "references/semantic-copy-hygiene.md": ("跨产品页头文案门禁", "历史沿用", "Gate H-Base/H0", "title-prefix-role-gate.md"),
+        "references/proactive-visual-defect-discovery-gate.md": ("Gate H-Base", "inherited and new"),
+        "references/semantic-copy-hygiene.md": ("Universal title-copy gate", "inherited content", "H-Base/H0", "title-prefix-role-gate.md"),
         "README.md": ("page-header-antipatterns.md", "new and existing", "Gate H0"),
         "README.zh-CN.md": ("页头文案审查", "原有及新增"),
     }
