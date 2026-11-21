@@ -127,6 +127,15 @@
 
 流程与示例：`references/perceptual-hierarchy-gate.md`、`references/component-craft-gate.md`、`assets/visual-priority-patterns.json`；静态意图检查：`python3 scripts/validate_visual_priority.py --repository`（不评分“高级感”）。
 
+## 同角色组件一致性验收（原生/第三方/Headless 混用）
+
+- [ ] 既有页面及新增 UI 是否盘点实际使用的原生控件、第三方库、headless 原语、共享封装和多个不同皮肤？同角色不同实现是否有清楚的兼容理由与目标组件方案？
+- [ ] 是否针对产品模式和已确认设计语言确定主组件路线，而不是按个人喜好更换整套库？权限禁止安装时是否保持合理原生实现、解释外观限制？
+- [ ] Select、Combobox、DropdownMenu 的实际 **open** 菜单是否与闭合控件、同屏其它控件协调？浏览器/系统原生 option 菜单是否在目标平台验证，无法看到时标 NOT TESTED？
+- [ ] 主组件库 Provider/Tokens/共享封装是否生效，原有页面也统一覆盖？真实功能、键盘、选中、禁用、错误、长文案和焦点是否仍可用？
+
+规范：`references/component-consistency-and-selection-gate.md`；DOM 结构候选：`scripts/audit_control_consistency.mjs`（不是语义/审美判决）。
+
 ## Gate A — 主题和 tokens（开始业务页面前）
 - [ ] 产品视觉方向有一句解释；未强制照搬原站粉蓝渐变。
 - [ ] `page/surface/surface-soft/text/accent/on-accent/focus/border/status` 等角色齐全。

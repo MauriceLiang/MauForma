@@ -28,6 +28,10 @@
 - **组件职责区别**：Select 是选择固定数据值；Combobox 是可输入搜索选择；DropdownMenu 是打开动作菜单；不应因为外观都有箭头就互相代用。
 - **第一版实施证据**：说明选定的库、真实导入/组件实例、主题接入点，演示所需控件的 default/open/selected/disabled/focus/error/loading 状态；只写推荐方案不算完成。
 
+## 选型前必须完成现状一致性与产品适配
+
+现有项目混合原生 HTML、成熟 UI 库和 headless 原语时，按 [组件一致性与选型门禁](component-consistency-and-selection-gate.md) 检查同角色控件的真实视觉/行为、组件封装与 open-state。对于高密度业务系统与高度定制的品牌界面，可以选择不同组件路线；**候选库只是工具，不是默认风格模板**。先利用已存在且广泛使用的主库/原语和 tokens 统一。新项目根据产品任务、设计语言、组件覆盖、框架/SSR、可访问性、体积/维护成本决定一套主要设计体系；原生控件若确有平台优势可作为合理例外，不为消除 HTML 标签而引库。
+
 ## 2. Ant Design React：具体包含什么？
 
 - **通用**：Button、Typography、Icon（独立包按需）、Space/Flex/Divider；统一按钮状态、文字层级与操作间距。
