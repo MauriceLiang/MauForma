@@ -488,13 +488,13 @@
       "path": "references/ui-review-rubric.md",
       "source_blob_sha": "6f2838cb1bc91767a93c7eba09748a04731e487b",
       "source_bytes": 10070,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/visual-critique-loop.md",
       "source_blob_sha": "6bebbebfd12552c11b1f25f0762273e42f44828a",
       "source_bytes": 10114,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/visual-qa.md",
