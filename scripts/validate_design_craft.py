@@ -125,7 +125,9 @@ def validate_repository(root: Path = ROOT) -> list[str]:
         if word.casefold() not in craft.casefold():
             errors.append("Missing evidence-led critique principle: " + word)
     figma = text["references/figma-fidelity-workflow.md"]
-    for token in ("MCP", "node", "截图", "差异", "Token", "component-library-first-gate.md"):
+    # English runtime reference: preserve the same screenshot/difference evidence
+    # contract without requiring Chinese literal strings in the translation.
+    for token in ("MCP", "node", "screenshot", "difference", "Token", "component-library-first-gate.md"):
         if token not in figma:
             errors.append("Missing Figma fidelity prerequisite: " + token)
     try:
