@@ -19,7 +19,7 @@ MauForma can incorporate new animation technologies over time, but only after re
 
 - A new engine may enter the **candidate** list; it never automatically becomes a global default.
 - Set at most **one principal imperative animation engine per project**. Multiple engines require explicitly separated areas and responsibilities.
-- Update `animation-engine-selection.md`, `animation-integration-lifecycle.md`, `examples/prompt-library-web.md` and the validation checklist together when adopting an engine. If a referenced example path is absent in the current repository, reconcile the reference rather than inventing a file.
+- Update `animation-engine-selection.md`, `animation-integration-lifecycle.md`, `examples/prompt-library-web.md` and the validation checklist together when adopting an engine. 
 - Do not claim the catalog covers all possible effects: APIs are finite, but compositions are not.
 
 ## v6.2 — Classify specialist rendering capabilities before adoption
