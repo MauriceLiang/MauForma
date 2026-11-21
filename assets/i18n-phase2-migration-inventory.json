@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "baseline_commit": "54a4af62566da1532c2b68d4301b531aee118e81",
   "description": "Full reference-file coverage ledger. Pending means unreviewed; it does not prove Chinese or English content. No file may count as translation-complete without independent semantic review.",
-  "migration_status": "partial",
+  "migration_status": "complete_pending_independent_review",
   "files": [
     {
       "path": "references/aesthetic-authorship.md",
