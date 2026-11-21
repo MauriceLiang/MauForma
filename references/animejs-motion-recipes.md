@@ -87,7 +87,7 @@ These **114 named design recipes were independently curated by MauForma from off
 | `word-reveal` / Word reveal | Words arrive one after another | English tagline or brand text | Do not slowly reveal long Chinese prose word by word | `splitText words + stagger` | C |
 | `char-reveal` / Character reveal | Short text reveals character by character | Very short title or slogan | Never tables or long paragraphs | `splitText chars + stagger` | C |
 | `text-scramble` / Text decode | Temporary random glyphs resolve to original | Fictional tech promo heading | Never sensitive data or real numeric values | `scrambleText innerHTML` | C |
-| `typewriter` / Typewriter | Characters append in order | Chat mock or code teaching | Do not slow text users need immediately | `splitText ortext updates+timer` | B |
+| `typewriter` / Typewriter | Characters append in order | Chat mock or code teaching | Do not slow text users need immediately | `splitText` or text updates + `timer` | B |
 | `headline-color` / Headline color transition | Heading changes brand color smoothly | Marketing Hero | Not operational PageTitle | `animate color` | C |
 | `split-words-rise` / Staggered word rise | Words rise with opacity in short phrase | Portfolio introductory text | Avoid replaying operational instructions | `splitText words + animate y` | C |
 | `number-roll` / True numeric roll | Old numeric metric interpolates to actual new value | KPI or quota | Never fabricate data or confuse units | `animate object + onUpdate` | B |
