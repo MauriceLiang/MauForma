@@ -2202,6 +2202,43 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/animejs-motion-recipes.md",
+      "source_blob_sha": "3e24ad74359f42b1b3977b10391c21539fed67a6",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "114 Existing Patterns",
+        "123 recipes",
+        "Tier A",
+        "Tier B",
+        "Tier C",
+        "`fade-in`",
+        "`spring-release`",
+        "`svg-motion-path`",
+        "`glow-breathe`",
+        "not official method names",
+        "at most one prominent motion focal point"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "114 种配方不是 Anime.js 官方命名",
+          "target_en": "not official \"built-in effects\""
+        },
+        {
+          "source_zh": "新增机制不一定用 Anime.js",
+          "target_en": "need not use Anime.js"
+        },
+        {
+          "source_zh": "高级 API 映射不是可复制代码",
+          "target_en": "not copy-ready implementation code"
+        },
+        {
+          "source_zh": "避免一个屏幕多个显著动画焦点",
+          "target_en": "at most one prominent motion focal point"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
