@@ -2239,6 +2239,48 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/ai-frontend-prompt-policy.md",
+      "source_blob_sha": "c1ee369bdd5a43b7dbd77524c2c6a39a49e25450",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "## Core engineering identity",
+        "## Required collaboration behaviors",
+        "## v5",
+        "R0–R5",
+        "2–3",
+        "120–260ms",
+        "reduced-motion",
+        "permission to recolor brand",
+        "exact HEX",
+        "Scroll actual browser",
+        "None",
+        "design-system/navigation-decision.json"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "用户不清楚风格时必须主动给 2–3 套不同构图方案",
+          "target_en": "2–3 materially different product-specific directions"
+        },
+        {
+          "source_zh": "继续开发不代表授权修改动效或品牌色",
+          "target_en": "Continue development"
+        },
+        {
+          "source_zh": "固定 HEX 一字不改",
+          "target_en": "character-for-character"
+        },
+        {
+          "source_zh": "截图靠近底部不是裁切证明",
+          "target_en": "not proof of clipping or repaired scroll"
+        },
+        {
+          "source_zh": "Agent 不得以静态 Mock 声称功能完整",
+          "target_en": "Do not ship a static Mock as finished"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
