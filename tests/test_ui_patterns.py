@@ -58,7 +58,7 @@ class SidebarPaletteTests(unittest.TestCase):
     def test_independent_external_rail_documented(self):
         guide = (ROOT / "references/sidebar-selection-indicator-gate.md").read_text("utf-8")
         for token in ("border-left", "border-inline-start", "box-shadow: inset",
-                      "aria-current", "aria-hidden", "外侧", "短"):
+                      "aria-current", "aria-hidden", "outside", "short"):
             self.assertIn(token, guide)
 
     def test_gallery_has_good_and_bad_visual_examples(self):
