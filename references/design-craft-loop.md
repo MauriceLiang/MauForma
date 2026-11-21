@@ -1,84 +1,152 @@
-# Design Craft Loop — 从设计意图到审美复核的通用闭环
+# Design Craft Loop — Iterative Product Design, Not a One-Pass CSS Beautification
 
-> **定位**：提升首版 UI 的视觉判断与精修质量。仅在新建页面、重大改版、用户要求“高级/不模板化/优化细节”、或正式视觉验收时按需使用；单个 Bug 修复不需要重新完成整个设计流程。
->
-> 本文是 MauForma 独立编写的方法总结，不是安装第三方 Skill、外部设计师的官方评分标准，也不是给所有项目强制套同一种审美。
+Design quality comes from repeated observation, informed decisions, implementation and real evidence. This guidance applies across marketing, tools, learning, editorial, data and creative experiences. It is not an invitation to redesign unrelated features when a user requested a narrow fix.
 
-## 一、按任务选模式，而不是把七个工作流都跑一次
 
-| 模式 | 触发 | 最小交付 | 不需要 |
+**Task modes (not interchangeable):** **shape** = new product or major structural design; **polish** = existing UI refinement with inherited design; **review** = evidence-based critique without unrequested edits; **fidelity** = implementation against an authorized reference; **fix** = scoped bug reproduction and repair. A mode does not authorize altering unrelated product behavior.
+
+**Seven required craft domains for applicable screens:** Typography; **Color & Contrast**; **Spatial Design**; Motion; **Interaction States**; Responsive behavior; **UX Writing**. Evaluate each in relation to the real task and its information hierarchy rather than imposing a universal appearance. Findings follow evidence → observed problem → **root cause** hypothesis → severity **P0/P1/P2/P3** → repair → real retest. A claim of visual **fidelity** requires an authorized source and same-viewport comparison; a synthetic demo alone never suffices.
+
+## Design craft is a process, not a preset aesthetic
+
+A refined UI is not automatically minimalist, symmetrical, low saturation or filled with Cards. Strong editorial asymmetry, immersive product visuals, dense professional controls and quiet workspaces can all be correct when intentional. Begin by finding the **actual subject and user's job**, rather than selecting a favorite background color.
+
+### Seven review dimensions
+
+| Dimension | Inspect | Common false shortcut |
+| --- | --- | --- |
+| Information and task | Correct audience, next action, hierarchy, necessary data and constraints | Adding gradients to wrong content |
+| Composition | Dominant region, reading order, grouping, alignment and whitespace | Repeating the same Hero+Cards template |
+| Typography and copy | Role-based type, contrast, language fit, readable values, genuine information | Decorative eyebrows and tiny business text |
+| Color and surfaces | Actual brand/status roles, accents, optical weight and layering | Uniform saturated badges or nested Cards |
+| Components and interaction | Owner, state, keyboard/focus/error/loading/disabled and form outcomes | A static attractive gallery considered complete |
+| Motion and continuity | Trigger, spatial cause, rest, interruption and reduced motion | Default fade on every route |
+| Responsive/performance/accessibility | Supported widths, zoom, scroll end, content stability, cost, a11y | One desktop screenshot or a synthetic smoke pass |
+
+## Loop 0 — Observe and classify
+
+- Inspect actual page code, main routes, installed stack, approved brand/design system and real content. On an existing UI, capture **before** at the same viewport/state. Distinguish `confirmed / inherited / delegated / proposed / unresolved`.
+- Understand which product mode or modes apply: `Operate / Read / Persuade / Experience`; classify page-specific task priority and user journey before tuning visuals.
+- For general “polish” requests, proactively inspect beginning/middle/end and main interactive states; find **pre-existing** defects as well as recent regressions. A source diff alone misses bad historical copy, spacing, selection and component mixing.
+- A clear narrow functional fix requires scoped reproduction and tests, **not** a brand interview. If source/browser is inaccessible, report observation limits and avoid inventing defects.
+
+## Loop 1 — Frame the problem, not decorative symptoms
+
+Identify the actual primary question/action and what currently blocks it. Sort issues from information architecture/content and key workflow through geometry/typography, component states and decoration.
+
+For a major redesign with missing art direction, propose 2–3 genuinely distinct first-screen directions with content assumptions, benefits and costs. A suggestion becomes an approved direction only after user confirmation or legitimate delegation. Do not silently discard approved navigation, colors, density or interaction decisions.
+
+## Loop 2 — Composition and perceptual hierarchy
+
+1. Inventory real content by `primary/supporting/conditional/deferred/removable`; remove dead/repeated content before polishing it.
+2. Build a grayscale composition with clear P0/P1 focal information. Choose open reading flow, chart grid, task list, product stage, split workspace or other content-driven layout.
+3. Set inside/peer/section/connected spacing relationships **at the parent layout level**. Don't substitute Card padding for peer gap or erase inherited good separation.
+4. Resolve navigation ownership and real scroll-to-end. A visually neat first viewport is not enough when last records or action bars are inaccessible.
+5. Audit titles, section/alert copy and actual data semantics; generic pretitle/slogan does not become useful through a new font.
+
+## Loop 3 — Build the coherent system
+
+- Decide from the **actual framework and installed UI libraries**. Reuse stable library/primitive controls, map shared semantic tokens to Button/Field/Select/Dialog/Navigation/Table roles, and document true exceptions. No fake `div + click` Select.
+- Component craft includes real states: hover, selected, focus-visible, disabled, pending, error, empty and long content in supported locales. Component Gallery is a useful fixture, not evidence the full product worked.
+- Icons express actual objects/actions and form a coherent family; no compulsory Lucide or one hue.
+- Preserve confirmed brand. Semantic state colors cannot be replaced by accent for decoration. Don't add attached colored Card border stripes or redundant sidebar rails.
+
+## Loop 4 — Add meaningful motion within authorization
+
+Motion supports input feedback, spatial continuity, status transitions or narrative—not effect quantity. First inherit or clarify the **actual user motion choice**. Respect `prefers-reduced-motion`; a rich marketing experience may justify cinematic sequences while a dense workbench needs restrained interruptions.
+
+For high-value changes specify `trigger → before → during → payoff → interrupt/reverse → reduced`. Verify actual frames, final state, focus and cancellation. A CSS transition declaration is not proof the motion played smoothly. No unauthorized engine installation or large dependency swap.
+
+## Loop 5 — Run the real page and review independently
+
+- Open the **actual affected route** using the project's supported browser/test tooling; inspect rendered DOM before guessing selectors. Capture same-state before/after screenshots where possible, and check initial/middle/end, scroll end, responsive supported sizes, 200% text, light/dark, keyboard, selected/loading/empty/error and permissions.
+- Verify actual operations (save/submit/retry) via real backend when available, not a simulated button. Record console/network failures.
+- For a major change seek **fresh-eye critique** independent of the implementing agent: first impression, task clarity, typography, spacing, visual identity, motion, accessibility, performance and data truth. Supply evidence rather than the implementer's explanations; reviewers still need to substantiate findings.
+- Rework P0/P1 problems and recapture. Do not declare a defect fixed while it remains in inherited components or related routes.
+
+## Loop 6 — Report truthfully and keep boundaries
+
+Use `evidence → issue → likely cause → priority P0–P3 → fix → actual retest`. Distinguish `VERIFIED` (actual tested product and applicable scope), `STATIC CHECK`, `DEMO ONLY`, `NOT TESTED`, `BLOCKED` and `NOT REVIEWED`.
+
+A code review with no running page may still be valuable; clearly say it was static. A passing synthetic Gallery proves the Gallery, not arbitrary user product quality. Avoid dumping screenshots, private Figma data or identifiable project content into public Skill artifacts.
+
+### Exit test
+
+A completed design pass should be able to answer: *What user task improved? What real page/content changed? Why was this composition/component/motion chosen? Which before/after behavior was actually tested? What remains uncertain?* If any important answer is missing, report the gap instead of claiming comprehensive delivery.
+
+Related: `references/design-discovery-interview.md`, `references/composition-first-design.md`, `references/proactive-visual-defect-discovery-gate.md`, `references/visual-critique-loop.md`, `references/browser-qa-protocol.md`.
+
+
+## Source-parity restoration — Original five task modes and minimum deliverables
+
+**Do not run all modes or seven entire workflows for each task.** Choose the work mode by scope, and preserve the original minimum deliverable and what it does **not** require:
+
+| Mode | Trigger | Minimum deliverable | Unnecessary / unauthorized |
 | --- | --- | --- | --- |
-| **shape** · 新页面/重设计 | 从零设计、现有页面明显失焦 | 任务与内容简报、视觉方向、共享 Token/组件方案、首版及浏览器复验 | 为明确需求反复做访谈 |
-| **polish** · 视觉精修 | 用户觉得“塑料感”、层级混乱、控件粗糙 | 现状证据、问题根因、分优先级修复、前后同条件对照 | 不经授权重排全部导航/品牌 |
-| **review** · 独立评审 | 只要求评审或设计检查 | 有证据的严重性排序、保留优点、建议与未测项 | 未经请求直接改代码 |
-| **fidelity** · 严格实现 | 用户提供 Figma 稿并要求还原 | 设计节点上下文、截图基准、资产与 Token 映射、实现及差异复验 | 自作主张替换风格或重新构图 |
-| **fix** · 明确局部修复 | 单个交互/视觉错误 | 最小影响范围、直接修正、关联状态回归 | 大而全的设计发现 |
+| **shape** | New page or visibly misfocused major redesign | Task/content brief, visual direction, shared Tokens and component plan, first implementation and browser recheck | Repeated discovery when requirements are clear |
+| **polish** | UI seems plastic, hierarchy unclear, controls coarse | Baseline evidence, root-cause findings, severity-ordered repair, same-condition before/after | Unapproved total navigation/brand rewrite |
+| **review** | Independent evaluation only | Evidence-based severity list, strengths, recommendations, untested items | Editing code without request |
+| **fidelity** | User supplies Figma and requests faithful reproduction | Authorized design-node context, reference screenshot, asset/Token mapping, implementation and difference retest | Replacing design or composition to personal taste |
+| **fix** | Localized interaction/visual bug | Smallest relevant change and regression of related states | Whole-product design discovery |
 
-页面可以以 Operate / Read / Persuade / Experience 为主目标，不能把模式标签直接理解成“某种固定布局”。用户的设计意愿、已确认品牌规范、真实业务目标及现有组件契约始终优先。
+Operate / Read / Persuade / Experience describe a page's primary product goal, **not fixed layouts**. Explicit user preferences, approved brand, real business tasks and inherited component contracts outrank these mode labels. MauForma authored the process independently; it is **not** another installed Skill or a third-party designer's official scoring standard.
 
-## 二、Design Direction Gate：代码前说清“为什么这样设计”
+## Original Design Direction Gate — Seven required decisions before a major build
 
-首次创建/重大重构时，用简短的 **Design Intent** 决定：
+For **new pages or major restructuring**, write a concise Design Intent covering:
 
-1. **主题与受众**：用户是谁，页面主要帮助他完成什么？真实的内容/素材是什么？
-2. **视觉主张**：一句话说明整页要给人的感受，以及视觉策略如何服务任务。不要只写“高级、简约、现代”。
-3. **信息焦点与构图**：首屏主视觉、标题/媒体/数据/主要操作谁最大，哪些只是支持信息？必要时做灰阶 wireframe。
-4. **签名元素（可选）**：允许一个能被记住的、与主题一致的视觉手法（特别的摄影比例、排版、交互、色彩关系等），但不要求管理表格硬加炫技。
-5. **设计选择的依据与舍弃方案**：至少说明“选择 A 因为 X，有意不使用 B 因为 Y”；明确 `confirmed / inherited / delegated / proposed / unresolved` 的来源。
-6. **Tokens 与组件接入**：继承已有 CSS variables / Figma variables / UI Provider / 组件主库；新增项目才建立最小单一 Token 源。先按 `references/component-library-first-gate.md` 配置真实控件，不用手写伪 Select 代替完整组件。
-7. **限制与降级**：目标平台、性能、动效偏好、字体许可、主题、布局断点、必要的适配范围。仅桌面产品不强制改成移动产品。
+1. **Subject and audience** — Who uses the page, which task matters, and what real content/photography exists?
+2. **Visual thesis** — One sentence explaining intended experience and how it serves the task. “Premium/minimal/modern” alone is insufficient.
+3. **Primary information and composition** — Which headline/media/data/CTA dominates the first screen; which are supporting? Use grayscale sketches where useful.
+4. **Optional signature element** — One memorable subject-appropriate photographic crop, type choice, spatial treatment, interaction or color relationship. **Not mandatory for operational Tables**.
+5. **Reasoned choice and rejected option** — Explain “A because X, not B because Y”; record confirmed / inherited / delegated / proposed / unresolved authority.
+6. **Existing Tokens/components** — Inherit CSS/Figma variables, Provider and primary UI suite; only new projects establish a minimal new token source. See references/component-library-first-gate.md; **do not hand-write fake Select**.
+7. **Constraints and fallback** — Supported platform, performance, motion choice, font licensing, themes, breakpoints and necessary devices. A desktop-only product **does not require** a new mobile app.
 
-**设计风险**：刻意、有理由地尝试非默认构图，不等于为所有项目强制大胆配色、衬线字体、非对称或页面入场动画。也不能把 Inter、卡片、渐变、黑白等单一样式直接标为“AI 味”。只有不匹配内容与任务、缺乏信息价值或导致实际质量损失时才是问题。
+**Design risk is optional, not a license to impose style:** A purposeful unconventional composition need not mean forced vivid color, serif text, asymmetry or page-entering animations. Inter, Cards, gradients and monochrome are **not inherently AI-looking**; their misuse against user tasks is the issue.
 
-参考：`references/design-discovery-interview.md`、`references/composition-first-design.md`、`references/design-style-catalog.md`、`references/design-dna-protocol.md`。
+References: references/design-discovery-interview.md, references/composition-first-design.md, references/design-style-catalog.md, references/design-dna-protocol.md.
 
-## 三、精修七个域，但只在触发时深入
+## Original seven craft domains — All diagnostic dimensions, not seven mandatory modifications
 
-| 域 | Agent 要看什么 | 易犯的具体问题 | 核验方法 |
+| Domain | Inspect | Common concrete flaw | Evidence to verify |
 | --- | --- | --- | --- |
-| **Typography** 排版 | 页面标题、正文、数据、轴/图例、混合语言与可读宽度，字体来源、字重/行高和光学尺寸 | 功能页 H1 上方解释型眉题（不要求与 H1 字面重复才判错）、过大标题压过主体、刻度小到难读 | 真实字体渲染、中文/数字混排、长文与 200% 文字缩放 |
-| **Color & Contrast** 色彩 | 角色化品牌色/中性色/语义状态色，深浅主题、相邻表面、焦点对比 | 随机 HEX、浅灰文字、强调色与状态色混用、多个强色争抢视觉中心 | 对真实前景背景计算对比、检查跨区配色和实际环境 |
-| **Spatial Design** 空间 | 内外留白、行/列网格、留白节奏、卡片容器必要性、底部可达 | 模块直接拼到一起、Card 套 Card、上下左右未对齐、虚假 min-height 大空洞 | DOM geometry + 整页截图 + 滚动末端 |
-| **Motion** 动效 | 状态反馈时长、缓动、先后关系、用户选择与 reduced motion | 全站零动态反馈、杂乱弹跳、动画与业务状态不同步、多个库争抢同属性 | 实际操作状态录制/浏览器测试、低动态模式、卸载清理 |
-| **Interaction States** 交互 | Select/Combobox/Dropdown/Button/Tabs/Dialog 等真实库组件、selected/hover/focus/disabled/loading/error | 手写假下拉、按钮不同页不同半径、没有键盘/焦点、浮层被裁切 | `references/component-library-first-gate.md` + 真实路由逐态操作 |
-| **Responsive** 适配 | 按目标使用设备调整布局、容器查询、长文本与内容优先顺序 | 只压缩字号、窄高窗口裁切、底部固定栏挡住内容、忽视桌面目标密度 | 用户要求的视口矩阵与 200% 文字放大 |
-| **UX Writing** 文案 | 真实标题、操作动词、状态反馈、空/错误文案、单位、来源与例外 | 装饰性英文、用语重复、Mock 术语外露、删除真实来源/样本量 | `references/semantic-copy-hygiene.md` + 真实任务路径 |
+| **Typography** | PageTitle/body/data/axes/legends, CJK/mixed-language, font license, weights/line-height/optical dimensions | Explanatory pre-H1 eyebrow on operational screen, giant heading hiding task, illegible chart ticks | Actual font rendering, long labels, Chinese/digit mixing, **200% text** |
+| **Color & Contrast** | Semantic brand/neutral/state, neighboring surfaces, light/dark, focus contrast | Random HEX, faded copy, brand accent confused with error/success, bright surfaces fighting | Foreground/background contrast and real whole-page theme |
+| **Spatial Design** | Inside/peer/section gaps, row/column Grid, container necessity, bottom access | Adjacent panels touch, nested Cards, misaligned rows, false min-height whitespace | DOM geometry, **full page and true scroll end** |
+| **Motion** | User-authorized timing/easing/stagger/state continuity, reduced motion | Zero visible feedback, meaningless bounces, motion out of sync, multiple engines claiming same property | Real interaction capture, reduced motion, unmount cleanup |
+| **Interaction States** | Library Select/Combobox/Dropdown/Button/Tabs/Dialog, selected/hover/focus/disabled/loading/error | Hand-made fake menu, divergent Button radius, lost keyboard focus, clipped overlay | references/component-library-first-gate.md plus **target route state tests** |
+| **Responsive** | Required device range, container rules, long copy/reading order | Shrinking font instead of reflow, narrow-height clipping, fixed bottom bar hiding content | Supported viewport matrix and **200% font scaling** |
+| **UX Writing** | Informative headings/actions/status/errors, units, source and exceptions | Decorative English, repeated jargon, Mock implementation text exposed, data source/sample deleted | references/semantic-copy-hygiene.md and real task path |
 
-七域是**检查范围**，不是每次必须修改的七项。对交互型页面，优先修复不可用的组件/真实任务错误；对品牌表达，优先处理内容与构图。设计系统用语义变量集中实现，不因追求“独特性”让每张页面分别定义 Button、Radius、Focus。
+The seven domains are **coverage for review, not a requirement to change every domain**. Fix inaccessible functionality and real operations first on workbenches; prioritize authentic content and composition for brand experiences. Do not generate each Button/Radius/Focus per page to look “unique.”
 
-## 四、独立 Critique Gate：先指出根因，再修
+## Original independent critique requirements
 
-- **证据等级**：`OBSERVED`＝真实浏览器/截图明确可见；`CODE ONLY`＝仅源码风险；`INFERRED`＝设计判断或假设；`NOT TESTED`＝缺少验证。不要把“看起来廉价”当成可自动量化的事实。
-- **问题等级**：`P0` 业务不可用/严重可访问性、`P1` 主任务不清或结构错误、`P2` 视觉层级/组件/间距破坏使用、`P3` 局部光学与微调。
-- **每条问题写成**：`symptom → evidence → root cause hypothesis → affected task → recommended fix → validation`。对未知根因明确标注待验证，禁止声称静态脚本能自动识别所有“审美问题”。
-- **两类检查分开**：`UX/IA` 判断业务目标、内容、信息路径；`Visual Craft` 判断字体、配色、构图、组件状态和细节。UX 失败不能靠换主题冒充解决，视觉不协调不能因为功能能点就宣称优秀。
-- **保留有效设计**：报告已经做对的部分与原用户确认决策；不要为了换新风格把原有良好元素全部推翻。
-- **从严重到次要处理**：先 P0/P1，再 P2/P3。修好后用**相同视口、数据状态、主题与缩放**前后对照；失败继续迭代，直到主要缺陷不再存在或明确受限。
-- **分数不是证据**：可以沿用 `references/ui-review-rubric.md` 做团队内部打分，但没有真实页面截图/可操作证据不得给确定性高分，也不得把主观“美感”伪装成算法认证。
+- Evidence class: **OBSERVED** (actual browser or visible screenshot), **CODE ONLY** (source-level risk), **INFERRED** (hypothesis), **NOT TESTED** (insufficient evidence). Subjective “cheap-looking” is **not automatically measurable**.
+- Severity: **P0** business unusable/severe accessibility; **P1** primary task or structure wrong; **P2** typography/spacing/components damage use; **P3** local optical fine-tuning.
+- Issue entry format: **symptom → evidence → root cause hypothesis → affected task → recommended fix → validation**. Unknown cause remains a hypothesis, not fabricated certainty.
+- Keep separate **UX/IA** task/content/path diagnosis and **Visual Craft** type/color/composition/component inspection. Neither successful clicking nor palette changes can substitute for the other.
+- Preserve already-good solutions and user-approved decisions; repair **P0/P1 before P2/P3** and compare exactly the **same viewport, data state, theme and zoom**, repeating until key defects are gone or limitations disclosed.
+- Team scores from references/ui-review-rubric.md are optional; a high definitive score **cannot be justified without real screenshots and operable evidence**, nor may aesthetics be presented as algorithm-certified.
 
-### “反模板”审查的六个具体问题
+### Six explicit anti-template critique questions
 
-1. 删除标题上的抽象英文和自嗨口号后，还能知道页面做什么吗？
-2. 第一眼最显眼的区域，是否真是用户任务/品牌要表达的主体？
-3. 让页面难看的是**构图/内容**，还是仅有配色/圆角？先解决上游根因。
-4. 图标、控件、信息密度和间距有没有**系统性的**一致性，而不是每块单独漂亮？
-5. 有“独特感”的元素是否有内容或品牌依据，还是照抄流行渐变/大卡片/粒子？
-6. 深浅主题、长中文、真实下拉和选中态、滚动末端实测后，视觉选择是否仍成立？
+1. When abstract English overlines and slogans are removed, can users still identify the page's task?
+2. Is the most prominent first-screen region the actual task or authentic brand subject?
+3. Is the defect in **composition/content**, not just colors/radii? Fix upstream causes first.
+4. Are icon families, controls, density and spatial relationships **systemically coherent**, not independent pretty blocks?
+5. Is the memorable detail grounded in content/brand, or copied from trendy gradients, giant Cards or particles?
+6. After testing light/dark, long Chinese copy, real Select/selected states and true scroll end, does the visual decision still work?
 
-## 五、交付流程与出口标准
+## Original mode-specific exit workflow
 
-`shape`：Brief / Intent → Composition / Tokens → Component Library → 实现 → Critique → 定向修改 → 真实复验。
+- **shape:** Brief / Intent → Composition / Tokens → real component library → implementation → critique → targeted revision → real re-verification.
+- **polish:** Actual-product baseline → root-cause priority → structure/content fixes → shared components/Tokens → optical detail → before/after.
+- **review:** Available evidence → separate UX + Craft critique → severity and repair suggestions, **without unsolicited edits**.
+- **fidelity:** Follow references/figma-fidelity-workflow.md; exact pixel comparison requires actual accessible original design. With inaccessible source, **do not invent a Figma look**.
+- **fix:** Strictly bounded change → direct repair → regression of related states; skip irrelevant art-direction tasks.
 
-`polish`：真实页面 Baseline → 根因排序 → 优先修结构/内容 → 控件与 Tokens → 微细节 → 前后对照。
+Every delivery must distinguish **VERIFIED / STATIC CHECK / DEMO ONLY / NOT TESTED / BLOCKED**. Synthetic demonstrations, screenshot critique and real-backend E2E are different evidence classes; none substitutes for another.
 
-`review`：收集可得证据 → UX / Craft 双通道审查 → 问题分级与修复建议，不擅改代码。
-
-`fidelity`：交给 `references/figma-fidelity-workflow.md`，**有可访问的原设计才谈像素对齐**；没有源时不能“猜一个 Figma 风格”。
-
-`fix`：限制改动范围 → 直接修复 → 回归相关状态，跳过无关艺术方向工作。
-
-**交付必须区分** `VERIFIED / STATIC CHECK / DEMO ONLY / NOT TESTED / BLOCKED`。合成演示、截图审查和真实业务 E2E 是不同层级，不互相替代。
-
-## 通用知识与项目隔离
-
-仅将可迁移的设计判断、流程和自有实现写入本 Skill；不得将第三方 Skill 的文字、命令或示例素材未经许可复制入仓。公开仓库只使用匿名、合成示例，用户项目的截图、业务字段与设计决策应留在该项目自己的工作区。外部项目来源和谢意集中记录在 README。
+**Public-source isolation:** Only original reusable principles and authorized source may be committed to this Skill. Do not copy another Skill's code/commands or protected source material without appropriate rights. Keep real client screenshots, business fields and product-specific design decisions in the actual client/project workspace. External acknowledgements belong in the repository README.

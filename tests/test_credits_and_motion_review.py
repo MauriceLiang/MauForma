@@ -48,7 +48,7 @@ class CreditsAndMotionReviewTests(unittest.TestCase):
     def test_fresh_eye_and_local_track_rules_present(self):
         craft = (ROOT / "references/motion-craft-and-continuity.md").read_text(encoding="utf-8")
         rehearsal = (ROOT / "references/motion-rehearsal-and-evidence.md").read_text(encoding="utf-8")
-        self.assertIn("Fresh-eye Review", craft)
+        self.assertIn("Independent fresh-eye visual review", craft)
         self.assertIn("Stable chrome / local tracks", craft)
         self.assertIn("Independent review:", rehearsal)
         self.assertIn("NOT REVIEWED", rehearsal)

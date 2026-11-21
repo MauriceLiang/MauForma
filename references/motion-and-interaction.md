@@ -1,59 +1,42 @@
-# 动画与交互规范（v3.0 入口）
+# Motion and Interaction Standards — v3.0 Entry Point
 
-**不限于后台系统**：展示型网站可以使用更丰富的动效，编辑器、后台和桌面工具强调简洁、快速与可中断。
+**Not limited to admin products:** Showcase sites may use richer motion, while editors, workspaces and desktop tools prioritize simple, fast and interruptible behavior.
 
-优先阅读：
+Read these references first when the task involves animation and interaction (select only the guides applicable to the actual work):
 
-- [motion-governance.md](motion-governance.md) — 什么时候该有动画、速度、风险、性能与 reduced-motion；
-- [animejs-official-capabilities.md](animejs-official-capabilities.md) — Anime.js v4 官方主能力 API；
-- [animejs-easing-complete.md](animejs-easing-complete.md) — 45 个内置缓动名称 + 自定义生成器；
-- [animejs-motion-recipes.md](animejs-motion-recipes.md) — 原有 114 种配方；扩充后的 123 种见 `assets/motion-effects.json`；
-- [animejs-v4-snippets.md](../examples/animejs-v4-snippets.md) — 16 个代码示例；
-- [motion-gallery.html](../assets/motion-gallery.html) — 123 种配方可搜索、点击演示并按类别筛选；22 项精选创意语言见 [expressive-motion-vocabulary.md](expressive-motion-vocabulary.md)。
+- [motion-governance.md](motion-governance.md) — when to animate, timing, risk, performance and reduced motion.
+- [animejs-official-capabilities.md](animejs-official-capabilities.md) — major official Anime.js v4 APIs.
+- [animejs-easing-complete.md](animejs-easing-complete.md) — 45 built-in easing names and custom generators.
+- [animejs-motion-recipes.md](animejs-motion-recipes.md) — original 114 recipes; expanded catalog of **123** at `assets/motion-effects.json`.
+- [animejs-v4-snippets.md](../examples/animejs-v4-snippets.md) — 16 code examples.
+- [motion-gallery.html](../assets/motion-gallery.html) — searchable/filterable/playable gallery of 123 recipes; see [expressive-motion-vocabulary.md](expressive-motion-vocabulary.md) for 22 curated expressive concepts.
 
----
+The historical entrypoint repeated this identical reading list; repetition does not change any rules.
 
-# 动画与交互规范（v3.0 入口）
+## Historic reference-site observations — inspiration, not mandatory defaults
 
-**不限于后台系统**：展示型网站可以使用更丰富的动效，编辑器、后台和桌面工具强调简洁、快速与可中断。
+- Card entrance: opacity 0→1, translateY 24→0, 120ms stagger between siblings, 700ms duration, Anime.js `outBack`.
+- Button/link hover: opacity 0.86 over 200ms.
+- The source used CDN Anime.js, and components might remain hidden if scripts failed. **Never inherit that defect into production.**
 
-优先阅读：
+## Motion intensity by context
 
-- [motion-governance.md](motion-governance.md) — 什么时候该有动画、速度、风险、性能与 reduced-motion；
-- [animejs-official-capabilities.md](animejs-official-capabilities.md) — Anime.js v4 官方主能力 API；
-- [animejs-easing-complete.md](animejs-easing-complete.md) — 45 个内置缓动名称 + 自定义生成器；
-- [animejs-motion-recipes.md](animejs-motion-recipes.md) — 原有 114 种配方，扩展目录共 123 种；
-- [animejs-v4-snippets.md](../examples/animejs-v4-snippets.md) — 16 个代码示例；
-- [motion-gallery.html](../assets/motion-gallery.html) — 123 种配方展示、搜索、回放；精选创意术语参见 [expressive-motion-vocabulary.md](expressive-motion-vocabulary.md)。
-
----
-
-# 动效与微交互规范
-
-## 原站的事实（灵感，不必原封复制）
-
-- 卡片入场：opacity 0→1、translateY 24→0、相邻错峰 120ms、700ms、Anime.js `outBack`。
-- 按钮 / 链接 hover：opacity .86，200ms。
-- 原站使用 CDN Anime.js，且组件在脚本失败时可能持续隐藏；正式项目不要继承此缺陷。
-
-## 分层动效决策
-
-| 场景 | 建议 | 不推荐 |
+| Context | Suggested | Not recommended |
 | --- | --- | --- |
-| 展示页首次出现 | 8–24px 轻位移 + 淡入，450–700ms，可少量 stagger | 所有卡片从屏幕外飞入 |
-| 普通控件 | 120–240ms、轻微背景/边框/opacity 过渡 | 每个 hover 缩放、旋转、弹跳 |
-| 桌面工具高频操作 | 120–180ms，优先立即反馈 | 终端/树节点/列表滚动上的弹性缓动 |
-| 保存、错误、加载 | 明确文字与状态、异步期间反馈完整 | 只有闪光/转圈，无具体结果 |
-| 导航切换 | 稳定切换或小幅过渡 | 每次导航重播所有入场动画 |
+| Initial showcase entrance | Subtle 8–24px move + fade, 450–700ms with limited stagger | Cards flying in from outside the screen |
+| Ordinary controls | 120–240ms background/border/opacity transition | Scaling, spinning or bouncing every hover |
+| Frequent desktop-tool operations | 120–180ms, immediate feedback first | Elastic easing on terminal/tree/list scroll |
+| Save, error and loading | Clear actual text/state with complete pending feedback | Only a sparkle/spinner without a usable result |
+| Navigation | Stable switch or small transition | Replaying every entrance animation on each route |
 
-## 实施规则
+## Implementation rules
 
-- 动效必须解释“状态变化”或“空间关系”，而非单独追求炫酷。
-- 交互只使用 opacity、transform、color 等合适属性；避免高频布局重排与重型模糊。
-- **所有核心内容默认可见**：不要将 `.card { opacity:0 }` 写成动效依赖的唯一可见路径。
-- `:focus-visible` 使用 `var(--spui-focus)`；不要把原示例的 `#0071e3` 硬编码到各主题。
-- `@media (prefers-reduced-motion: reduce)` 下取消非必要位移/循环效果，保留明确状态反馈。
-- Vue Transition、Motion、Anime.js 等都可按既有项目选择；多数基础 hover 仅需 CSS，无需引入新动画库。
+- Explain **state change** or **spatial relationship**, not spectacle alone.
+- Prefer appropriate compositable properties such as opacity/transform/color; avoid frequent layout recomputation and heavy blur.
+- **Core content is visible by default:** Never rely on `.card { opacity:0 }` and an animation script as the only path to visibility.
+- Use `:focus-visible` with `var(--spui-focus)`; never copy the reference's literal `#0071e3` into every theme.
+- Under `@media (prefers-reduced-motion: reduce)`, remove nonessential movement/loops while preserving clear state feedback.
+- Vue Transition, Motion and Anime.js are options according to the inherited stack; ordinary hover normally needs only CSS.
 
 ```css
 .ui-interactive {
@@ -67,4 +50,4 @@
 }
 ```
 
-检查：按钮连点是否误触发？弹窗能否及时关闭？动画关闭后布局是否稳定？暗色和窄窗里是否出现视觉闪烁？
+**Check:** Can rapid button presses trigger duplicate actions? Can dialogs close promptly? Is layout stable with motion off? Does dark mode or a narrow window flicker?

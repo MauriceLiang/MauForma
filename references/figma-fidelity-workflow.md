@@ -1,50 +1,94 @@
-# Figma Fidelity Mode — 将给定设计稿忠实实现为 Web UI
+# Figma Fidelity Workflow — Implement the Authorized Source, Not an Imagined Design
 
-> 只在用户明确提供 Figma URL、设计节点/当前选中节点，或要求**精确实现已有设计稿**时触发。此模式与“参考某网站做相似气质”的创意迁移互斥；未经请求，不把 Figma 稿重新设计。
+**Applies when:** User asks to implement or recreate an actual Figma frame, component or page. A screenshot alone may support visual approximation but does **not** prove Figma file access, hidden states or pixel-perfect fidelity.
 
-## 一、先判断输入可信度与工具可用性
+## Gate F0 — Identify the source and authority
 
-| 输入和权限 | 可以做什么 | 不能宣称 |
+1. Determine the actual Figma **file URL/file key, page, frame/node ID and intended viewport** from user-provided source or connected design tools. If the user gave an accessible source, inspect its dimensions, layers, properties and actual design tokens. Do not fabricate inaccessible Figma metadata.
+2. Distinguish **approved source**, inferred design information and Agent-proposed changes. User-specified design fidelity overrides generic MauForma style preferences. Do not silently replace brand colors, typefaces, spacing or visual composition with a preferred library.
+3. **Tool-access boundary (B08):** A desktop Figma integration may use current selection only when the supported local connection exists. Remote Figma APIs/tools generally require explicit file and node identification. Do not assert that a screenshot or a browser tab grants Figma MCP access. When unavailable, ask for the necessary Figma URL/node or use clearly labeled screenshot-based approximation.
+4. Confirm the source's assets and licenses. Fonts/icons/images cannot be invented or blindly downloaded; use available authorized assets or document the difference.
+
+## Gate F1 — Extract design context before coding
+
+Inspect: page/frame sizes, Auto Layout hierarchy, component instances/variants, Constraints, spacing, padding, typography, fills/strokes/effects, colors/variables, assets, interactions and relevant responsive variants. Derive **Design DNA**, but separate observed Figma properties from interpretation of why designers chose them.
+
+- Map frames to existing routes and component ownership; avoid rebuilding an already mature component differently.
+- Prefer installed matching components and theme tokens. A visual screenshot is not a mandate to install an unrelated UI library.
+- For unusual layouts/gradients/media, preserve source intention while meeting accessibility; report genuine conflicts rather than redesigning them without authority.
+- If a design relies on unprovided font/asset, explicitly mark unavailable and propose a scoped substitute **only with a clear fidelity limitation**.
+
+## Gate F2 — Implementation within project architecture
+
+1. Inspect framework and installed UI primitives, version/SSR constraints and existing components before editing. Reuse where faithful; add wrappers/variants rather than duplicating primitive behavior.
+2. Implement frame structure, alignment, typography and visual states using semantic, maintainable tokens. Source values can be mapped to project variables; do not replace exact approved values with a generic predefined palette.
+3. Preserve actual functionality and keyboard/focus behavior. A pixel-accurate but non-interactive `div` Select is not faithful to a working product.
+4. Implement required variants/responsive frames, not imaginary ones. Do not add mobile layout without source/user scope; if only desktop Figma is available and mobile is required, state the design gap.
+5. Respect actual front-end data ownership; no fake backend success merely because the static design contains a “Saved” label.
+
+## Gate F3 — Compare at identical conditions
+
+Use the **same source frame and actual browser viewport**, content and state. Compare:
+- Main component bounding rectangles, relative alignment, padding/spacing, typography size/weight/line height and line wrapping;
+- Image/icon assets, cropping, colors/gradients, shadows/borders/radius, overflow and responsive behavior;
+- Interactive variants: default, hover, focus, selected, disabled, error, loading, modal/overlay and nested scrolling when designed.
+
+Record actual screenshots and visible differences. **Pixel-perfect** is not an honest claim if font load, asset content, Figma source, viewport or browser state differs. Use “approximated” or “unverified” where appropriate.
+
+## Gate F4 — Acceptance and limitations
+
+- Test actual page routing, inputs, keyboard Tab/Shift+Tab/Escape, selected state, responsive scope and real API effects.
+- Source-file inspection is **SOURCE INSPECTED**, code-only review is **STATIC CHECK**, synthetic galleries are **DEMO ONLY**, actual matching visual cases can be **VERIFIED** only for the tested states.
+- Do not commit user/private Figma screenshots, brand assets or identifiable design snippets into public MauForma examples or CI artifacts unless specifically authorized.
+- Final report: source file/frame/node and date, target route/viewport, reused components, intentional deviations, measured differences, actually tested states and remaining blockers.
+
+
+## Source-parity requirements: input confidence and connected-tool capabilities
+
+**Trigger only when:** The user supplies an explicit Figma URL, design node/current selection, or asks to **faithfully implement a particular existing design**. This is different from merely learning a site's visual character: do not redesign a specified Figma implementation without authorization.
+
+| Actual input and permission | What the Agent may do | What it must not claim |
 | --- | --- | --- |
-| Figma MCP / 兼容设计上下文工具可读取节点 | 取得节点结构、自动布局、变量、组件、真实文本、资产与截图，用于精确实现 | 不经过目标浏览器对照就说“1:1 已完成” |
-| 仅有用户提供的设计截图 | 测量可见几何关系、文字层级、色彩、构图并尝试**视觉近似** | 截图能提供精确节点尺寸、Auto Layout、组件变体、字体名称或原始 HEX |
-| 只有 URL，但无法访问设计文件 | 说明节点权限/连接受阻，请求可访问素材或允许的截图导出 | 猜测画板内容、伪造 Figma MCP 读取结果 |
-| 用户只说“参考这种感觉” | 阅读 `references/design-reference-learning-gate.md`，提炼规律和不应复制的部分 | 把风格参考误当必须像素克隆 |
+| Accessible Figma MCP or compatible design-context tool | Obtain node hierarchy, Auto Layout, variables, component variants, actual copy, assets and screenshots to guide high-fidelity implementation | Do not claim “1:1 finished” without checking the target browser |
+| Only a user-provided design screenshot | Estimate **visible** geometry, typography, colors and composition for a clearly labeled **visual approximation** | Screenshot proves exact layer sizes, constraints, component variants, font identity or original HEX |
+| Figma URL but no design-file access | Explain connection/permissions and request accessible source or permitted exports | Guess the frame, invent MCP returns or claim to have inspected it |
+| Only “use this feeling/style as inspiration” | Follow design-reference-learning-gate.md and extract appropriate principles/non-copyable details | Treat the reference as a pixel-clone contract |
 
-**工具要求**：优先使用用户明确提供、已连接且有权限的设计源。**Figma Desktop 兼容工具的当前选中节点**与**远端 Figma 服务的 file/node 链接**是两种不同的输入能力；不得把前者当作后者自动支持的功能。应先核对实际连接是否提供 selection、node context、截图与素材读取接口；没有的操作标为不可用或 BLOCKED。不同 Figma MCP 提供的 API 可能不同，绝不虚构工具名称、返回结构或“已读取设计稿”的成功状态。
+**Desktop selection is not remote node access.** A compatible desktop tool's **current selection** and a remote Figma service's **file/node link** are distinct capabilities. Check which actual connected APIs provide selection, node context, screenshots and assets before using them. If unsupported, label the operation unavailable or BLOCKED. Never invent a tool name, response shape or successful read.
 
-## 二、七步还原流程
+## Source-parity requirements: the seven implementation stages
 
-1. **锁定源**：确认 file / node / variant / viewport，用户选择的当前帧与版本；若多个页面，列清单并按路由匹配。
-2. **设计上下文**：有 MCP 时读取节点树、Auto Layout、constraints、typography、Fill、Stroke、Effects、Variables、Variants 与资产 URL；拿到权威截图作为基准。超长上下文可按 frame/child 节点分段读取，不虚构遗漏内容。
-3. **设计 Tokens**：记录值及来源（`source-figma / inherited-project / inferred-from-screenshot / unknown`），将颜色、字体、尺寸、间距、圆角、边框、阴影、断点映射到已有主题。不要为了微小误差复制一堆局部 hardcode；冲突时记录方案和实际差异。
-4. **组件映射**：先查现有成熟组件库与共享 UI 组件，建立 `Figma component → project component` 映射。Select、Dropdown、Dialog、Button 仍按 `references/component-library-first-gate.md` 做真实交互；不因视觉还原而重造下拉的键盘/焦点逻辑。确需特别样式时用主题或受控变体。
-5. **资产与实现**：只下载/引用授权可用的图片、图标、字体；保留真实文本与合法图片，不用占位图替代可用源。按项目既有框架和路由实施。Figma 里生成的示例 JSX/Tailwind 不是必须照搬的生产代码。
-6. **双层验证**：`visual parity` 比较设计截图与真实页面（相同视口、像素比、字体/素材加载状态），先审结构、尺寸、对齐、字体，再核色彩、边缘、阴影；`interaction parity` 单独验证 focus/hover/selected/disabled、键盘、响应式和业务结果。设计未提供的状态，按现有系统与可访问规范补全并标明推导。
-7. **差异账本**：列出 `difference → impact → cause → resolution / intentional deviation → evidence`，最后实际浏览器重拍截图、复验已修项。只有图片像素差异的小数点不代表功能好坏；动态素材/反锯齿等环境差异需区分。
+1. **Lock the source:** File, page, node/frame, variant, intended viewport, current selected version; list multiple routes/frames and match them appropriately.
+2. **Read design context:** From authorized tools obtain actual node tree, Auto Layout, Constraints, Typography, Fill, Stroke, Effects, Variables, Variants and asset URLs, plus an authoritative screenshot. Split overly long payloads by real frame/child nodes rather than inventing omitted content.
+3. **Record token provenance:** Tag each value as **source-figma / inherited-project / inferred-from-screenshot / unknown**. Map colors, fonts, dimensions, spacing, radius, borders, shadows and breakpoints to existing themes. Do not copy dozens of hard-coded overrides for tiny differences; document conflicts and the resulting visual impact.
+4. **Map components:** Make an explicit Figma component → existing project component mapping. Reuse mature UI infrastructure. For Select, Dropdown, Dialog and Button follow component-library-first-gate.md; visual fidelity is not permission to recreate a broken keyboard/focus engine. Use themes or controlled variants for special skins.
+5. **Use authorized assets:** Only use images/icons/fonts available under valid permission; preserve actual text and available legitimate imagery. Figma-generated demo JSX/Tailwind is not automatically suitable production code. Keep the inherited framework and routing.
+6. **Verify both forms of parity:** Compare design screenshot and rendered browser with **matching viewport, device pixel ratio and font/asset loading state**. Inspect structure, bounds, alignment and typography first, then color, borders, shadows and raster details. Separately verify interaction parity (focus/hover/selected/disabled, keyboard, responsiveness and **real business results**). If the design omits states, derive them from the existing system/accessibility guidance and clearly mark them as inferred.
+7. **Keep a difference ledger:** difference → impact → cause → resolution/intentional deviation → evidence. Recapture and recheck affected areas in the actual browser after repairs. Small numeric screenshot differences do not establish functionality, and font antialiasing/moving media may explain environment-specific pixel deviations.
 
-## 三、冲突优先级与权限边界
+## Source-parity requirements: fidelity conflicts and authority
 
-- 用户明确指定“按稿还原”时，设计稿是该范围的**视觉主要基准**，不是 Agent 自行寻找“更漂亮”方案的机会。
-- 对已有设计系统/组件库：优先保持代码稳定、业务语义与可访问交互；若与画稿冲突，**必须说明具体差异和对还原度的影响**，不能悄悄把视觉偏移说成“设计规范优化”。
-- Figma 与 Web 渲染模型不同，百分比布局/字体抗锯齿/浏览器原生控件可能无法完全等价；不把不可能保证的“百分百像素级”当成无条件承诺。
-- 任何 UI 特效如 Liquid Glass 都要以设计稿与用户确认的视觉需要为前提，不能在还原任务里额外增加毛玻璃/大渐变/粒子背景。
-- 原图、商业字体、组件与其它资产不得未经授权发布到公共 Skill 仓库。只保留当前项目实际允许的资源。
+- When the user explicitly requests implementation **according to the provided design**, that design is the **primary visual source within the agreed scope**, not an invitation for the Agent to seek something prettier.
+- Preserve existing business semantics, accessible interactions and stable code. If the Figma design conflicts with an inherited design system/component library, **name the exact mismatch and effect on fidelity** instead of silently claiming a redesign is an optimization.
+- Figma and the Web render differently; percentage layout, font antialiasing and native browser controls may not match exactly. Never promise unconditional 100% pixel equality.
+- Do not add Liquid Glass, frosted glass, large gradients or particles to a fidelity task unless the source design or explicit user approval warrants them.
+- Do not publish private design images, commercial fonts, components or other assets to the public Skill repository without authorization. Retain only resources permitted for this target project.
 
-## 四、验收输出（按项目规模裁剪）
+## Source-parity acceptance report template
 
-```text
-目标：页面/组件/指定节点及设计版本
-证据：Figma 可读节点 / 截图 / 仅可见部分
-设计约束：主视觉、布局、字号、颜色、资源与交互
-组件映射：沿用主库 + 共享组件 + 必要例外
-对照检查：同视口截图、版式、字体、颜色、状态、响应式
-未实现/偏差：具体点位、原因、是否授权
-验证等级：VERIFIED / STATIC CHECK / NOT TESTED / BLOCKED
-```
+~~~text
+Target: page / component / node and design version
+Evidence: readable Figma nodes / screenshot / visible content only
+Design constraints: composition, layout, type, color, assets and interactions
+Component mapping: inherited primary library + shared components + justified exceptions
+Parity checks: same-viewport images, layout, typography, color, states and responsiveness
+Missing / intentional differences: location, reason and authorization
+Verification status: VERIFIED / STATIC CHECK / NOT TESTED / BLOCKED
+~~~
 
-这里的 `VERIFIED` 仅表示列出的**具体环境/页面与测试项目**确实复核，不代表所有设备/视觉与业务百分百一致。**仅有图片时为视觉近似**；当用户要求精确实现但远端节点缺权限时，不能一边宣称 1:1 一边用猜测属性补齐。详细的中英语义见 `references/semantic-boundaries.zh-CN.md` B08。
+**VERIFIED is scoped to the exact environment, pages and checks performed**; it is not blanket parity for every device, visual state or backend workflow. Screenshot-only input supports approximation, **not** a claim of precise file-node fidelity. When an exact implementation is requested but remote nodes are blocked, do not invent missing property values and call the result 1:1. Reference implementation boundaries: semantic-boundaries.zh-CN.md B08 (bilingual maintenance source), semantic-boundaries.en.md B08 (Agent runtime). Actual Figma MCP operations must follow the real connected tool API and current official documentation.
 
-开源 Skill 的出处与谢意集中在根目录 README；Figma 原生 MCP 操作仍须以当前官方文档与实际工具权限为准。
+Only when relevant, load design-reference-learning-gate.md, design-system.md, component-library-first-gate.md and browser-qa-protocol.md. General upstream Skill credits belong in repository README, not task runtime instructions.
 
-**适用时读取**：`references/design-reference-learning-gate.md`、`references/design-system.md`、`references/component-library-first-gate.md`、`references/browser-qa-protocol.md`。
+
+Related: `references/design-dna-protocol.md`, `references/component-library-first-gate.md`, `references/browser-qa-protocol.md`, `references/semantic-boundaries.en.md` (B08).

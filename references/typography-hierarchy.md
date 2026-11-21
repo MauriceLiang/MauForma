@@ -1,79 +1,79 @@
-# Typography Hierarchy · 字级、字重、行距与可读性优先
+# Typography Hierarchy — Type Size, Weight, Leading, and Readability First
 
-> v6.5：用户截图中出现了“巨型而抽象的标题 + 极小章节序号/图表轴标签/注释 + 重要指标信息过轻”的比例失衡。设计修复的目标不是统一改为 14px，而是**让内容的任务优先级决定文字尺度**。
+> v6.5 example: A huge abstract title combined with tiny section indices, chart axes and notes, plus visually weak key metrics, produces the wrong proportions. The answer is not to make everything 14px; **actual task importance determines type scale**.
 
-## v6.12 前置：先做 Perceptual Hierarchy Gate
+## v6.12 prerequisite — Perceptual Hierarchy Gate first
 
-在查下面的字号参考表前，**先读 `references/perceptual-hierarchy-gate.md`**：列出 P0–P3 的实际任务/阅读重要性与第一眼→第二眼→动作路径。当前数字是否关键、标题是不是主角、错误是否阻断、正文是否为主体，必须由用户目标而非“这是数字/表头/灰字”决定。字体大小是结果，不是判定重要性的依据。
+**Read `references/perceptual-hierarchy-gate.md` before using the size table.** Determine the real P0–P3 reading/task priorities and the path **first glance → second glance → action**. Whether a number, heading, error or body paragraph deserves emphasis depends on user intent, not whether it happens to be a number, column label or gray text.
 
-旧的 Operate 与 Persuade 数值仅作项目级起点；Read、Experience 也须按各自阅读与体验需求定标。若重要列表项/正文/价格/异常说明被默认 12–13px 淹没，即使每个单项通过静态 tiny-text 下限检查，**仍然不通过视觉层级 QA**。反过来，全部数字巨大、所有文字整体同幅放大同样不通过。组件间的字重、基线和状态请参照 `references/component-craft-gate.md`。
+The older Operate and Persuade figures below are **project starting points**, not universal rules. Read and Experience modes require their own criteria. If critical list rows, body, price or error copy is buried at 12–13px, it fails hierarchy QA **even if each item passes a static tiny-text lower-bound test**. Conversely, enlarging every number or all text indiscriminately also fails. For weight, baseline and state coordination, see `references/component-craft-gate.md`.
 
-## 先判断用途，后给字号
+## Choose purpose first, size second
 
-设计时先确定 `Operate / Persuade / Read / Experience`，再选择一个**角色驱动的字级体系**。以下是桌面工作台的可选起点（CSS px，非 WCAG 规定或跨设备硬性标准；字体度量、显示缩放、语言与实际视口可能改变适合的取值）：
+Identify `Operate / Persuade / Read / Experience`, then construct a **role-driven type system**. The table is an *optional starting point for desktop workspaces* in CSS pixels—not a WCAG-recommended type scale or a fixed cross-device requirement. Font metrics, zoom, language and viewport may require different values.
 
-| 角色 | 建议区间 | 常用起点 | 推荐字重与行高 | 信息目的 |
+| Role | Suggested range | Common start | Suggested weight / line height | Information purpose |
 | --- | --- | --- | --- | --- |
-| Page title / H1 | **22–30px** | 26px | 600–700 / 1.25–1.35 | 快速确认当前页面，而非成为产品宣传画面 |
-| Section title / H2 | **16–20px** | 18px | 600–650 / 1.35–1.45 | 区分实际业务区块 |
-| Body / 主要说明 | **14–16px** | 15px | 400–500 / 1.55–1.7 | 信息阅读，不让内容退化为脚注 |
-| Navigation / 链接 | **13–16px** | 14px | 500–600 / 1.4–1.6 | 高频扫描入口 |
-| KPI value | **22–32px** | 26px | 600–700 / 1.1–1.3 | 有价值的数据优先于装饰图形 |
-| KPI label / 次级数据 | **12–14px** | 13px | 400–550 / 1.45–1.6 | 描述指标含义，不能模糊不可读 |
-| Chart axes / 图例 | **12–14px** | 13px | 400–500 / 1.4–1.55 | 读懂时间、数值和序列含义，属于真实内容 |
-| Meta / 来源 / 采样 | **12–14px** | 13px | 400–500 / 1.5–1.6 | 次级但仍可读；采样、n 值、UTC 不能隐藏 |
-| Button / 控件文字 | **13–16px** | 14px | 500–600 / 1.35–1.5 | 清楚操作，满足控件尺寸与触控要求 |
+| Page title / H1 | **22–30px** | 26px | 600–700 / 1.25–1.35 | Orient the user, not make an operational page a poster |
+| Section title / H2 | **16–20px** | 18px | 600–650 / 1.35–1.45 | Separate genuine task regions |
+| Body / key explanation | **14–16px** | 15px | 400–500 / 1.55–1.7 | Read important information as prose, not as a footnote |
+| Navigation / link | **13–16px** | 14px | 500–600 / 1.4–1.6 | Frequently scanned routes |
+| KPI value | **22–32px** | 26px | 600–700 / 1.1–1.3 | Meaningful figures ahead of decoration |
+| KPI label / secondary data | **12–14px** | 13px | 400–550 / 1.45–1.6 | Explain metrics legibly |
+| Chart axes / legend | **12–14px** | 13px | 400–500 / 1.4–1.55 | Real time/value/series content |
+| Metadata / source / sample | **12–14px** | 13px | 400–500 / 1.5–1.6 | Secondary but legible; sampling, n and UTC must not disappear |
+| Button / control label | **13–16px** | 14px | 500–600 / 1.35–1.5 | Action clarity and usable control dimensions |
 
-**推荐下限不代表无障碍强制字号**。极小的标签并非绝对不允许，但任何**包含重要业务信息**的文本，应优先采用较大角色、足够对比和可放大布局。不要把 10–11px 当成日常说明和图表轴的默认值。复杂专业表格可提供用户密度设置，同时保留易读模式。
+**A suggested range is not a mandatory accessibility font-size minimum.** Very small labels are not categorically forbidden, but text containing important business information should use an appropriately stronger role, contrast and scalable layout. Do not make 10–11px the default for explanations and chart axes. Dense professional tables can provide a user density setting while retaining a readable mode.
 
-## 字体层级不是“字号越极端越有设计感”
+## Hierarchy is not achieved through extreme type sizes
 
-- 同一任务页优先仅有**一个**清楚的 H1，并通过 2–3 档主要字体层级建立阅读路径。不要将 40–60px 的宣言作为工作台默认标题，再让数据轴退到 10px。
-- **主次比例**：如果大标题比主要信息大几倍，问它是否值得抢首屏；比值不是硬阈值，关键看实际阅读速度与内容价值。KPI 是关键数据时允许比普通正文大；不必每个 KPI 都做巨型。
-- 数据解释**与指标接近**：`3.4 天` 的 `Issue 关闭 P50` 应在其附近且清晰可读，不能用极淡 10px；`n=198` 也是真实数据限制，不能变成装饰脚注。
-- 真实图表的坐标、图例、Tooltip 不要因追求紧凑变得不可读；缩小容器时优先减少刻度数量、调整布局、滚动或折行，而非无限缩小字体。
-- 字重用于任务层级。正文主要使用 400–500，标题与必要强调使用 600–700；别把每一段都 bold，也不要对一切文字统一弱灰。CJK 中文不强制拉大字间距，更不能用 `letter-spacing:.16em` 扩散中文 UI 标签。
-- 实际中文/英文/数字混排需检查字符宽度、千分位、小数与单位。时间范围、仓库名、长 ID 要允许合适的折行、截断和 tooltip/全名查询，而不是以极小字号换取不换行。
-- 行高按用途：数字可较紧凑，正文需要足够呼吸；中文长段尽量避免低行高+低对比叠加。桌面导航/数据轴既需密度也需清楚。
+- Prefer **one clear H1** per task page and **2–3 main text levels** for a usable reading path. Do not default to a 40–60px declaration over a workbench with 10px axes.
+- **Relative salience:** If a giant heading is several times larger than real content, question whether it deserves the viewport. This ratio is *not* a universal threshold. A genuinely important KPI may be larger than body text; every KPI need not be enormous.
+- **Metric labels stay adjacent:** For a metric like “3.4 days” with “Issue close P50,” keep context readable and nearby; `n=198` is a real coverage limitation, not decorative fine print.
+- Do not make real chart coordinates, legends or tooltips illegible to save space. On smaller charts first reduce tick count, adjust layout, enable appropriate scrolling or wrapping—do not shrink type without limit.
+- Weight supports task hierarchy. Body often uses 400–500, headings and necessary emphasis 600–700. Do not bold every paragraph or fade everything to uniform gray. Avoid arbitrary wide letter spacing on Chinese CJK labels, such as `letter-spacing:.16em`.
+- Test mixed Chinese/English/numeral widths, thousands separators, decimals and units. Date ranges, repo names and long IDs need intentional wrapping/truncation with tooltip or full-value access, not microscopic fonts just to prevent wraps.
+- Match line height to role: dense numeric values can be tighter; body copy needs breathing room. Avoid the combination of tight line height and low contrast for long CJK text. Desktop navigation and chart axes need density **and** clarity.
 
-## 页面层级顺序检查
+## Page-level priority scan
 
-截图检查时，按真实任务顺序标出注意力：
+Mark attention in actual task order:
 
-1. 当前对象与页面作用；
-2. 最关键的可行动数据或证据；
-3. 可查看的趋势/明细与对应图表标签；
-4. 辅助来源、方法、限制。
+1. Current object and page purpose;
+2. Most actionable data or evidence;
+3. Available trends/detail and corresponding chart labels;
+4. Supporting source, methodology and constraints.
 
-不能让“看见项目如何演进”压过仓库身份、图表与真实变化；也不要让 `01 / 总览`、`ANALYSIS STUDIO` 等无意义小字形成额外视觉层级。
+A vague “See how projects evolve” slogan should not overpower the true project identity, data and trends. Decorative `01 / Overview` and `ANALYSIS STUDIO` layers should not manufacture a hierarchy of their own.
 
-## WCAG 2.2 相关底线（与设计建议区分）
+## WCAG 2.2 requirements — distinguish standards from suggestions
 
-以下属于 **WCAG 2.2 AA** 的相关检查，而不是官方推荐的固定字号：
+The following are relevant **WCAG 2.2 AA** checks, **not** recommended fixed pixel sizes:
 
-- 普通文字/图中文字的对比度一般至少 **4.5:1**；符合大字定义的文字可使用 **3:1**；但高对比度不自动意味着 10px 小字易读。
-- 除相应例外外，文字放大至 **200%** 不应丢失内容或功能。
-- Text Spacing 1.4.12 要求用户改动文本行距等样式时不丢失内容/功能；**不是强制页面初始 CSS 使用 1.5 行高、0.12em 字距**。对中文应依其实际书写规则和可适用属性评估。
-- 必要图表轴标签、图例、采样说明不应当作“纯装饰”忽略；其文字与实际背景需检查对比。对于 canvas 图表，结合实际绘制、像素比和浏览器缩放验证，不单看 CSS。
-- 不自动宣称只因检查静态 Token 就满足 WCAG；真实视觉、焦点、放大和高对比情境都需验证。
+- Normal text and images of text generally require at least **4.5:1** contrast; text qualifying as large-scale may use **3:1**. Passing contrast alone does not make 10px fine print comfortable.
+- Except for applicable exceptions, text resized to **200%** must not lose content or functionality.
+- **Text Spacing 1.4.12** addresses user overrides of line spacing and related properties without loss of content/functionality. It does **not** require every initial CSS rule to use 1.5 leading or 0.12em letter spacing. Evaluate Chinese text according to applicable writing and layout properties.
+- Important chart axes, legends and sample explanations are not decoration to exclude from readability review; contrast should be tested against their actual rendered backgrounds. For Canvas charts, examine actual drawing, device pixel ratio and browser scaling, not CSS alone.
+- Do not claim WCAG conformance based only on static token checks; verify rendered contrast, focus, zoom and high-contrast contexts.
 
-官方标准：https://www.w3.org/TR/WCAG22/#contrast-minimum 、https://www.w3.org/TR/WCAG22/#resize-text 、https://www.w3.org/TR/WCAG22/#text-spacing 。
+Official: https://www.w3.org/TR/WCAG22/#contrast-minimum , https://www.w3.org/TR/WCAG22/#resize-text , https://www.w3.org/TR/WCAG22/#text-spacing .
 
-## 为什么不能一味改大字体
+## Why “make everything larger” also fails
 
-- `Persuade` 的产品发布/摄影/品牌页可以有 48px–80px 以上的艺术字体，但其说明、价格、CTA 与重要法律限制仍须可读。
-- `Read` 的长文需要舒适行宽和较充足行距，不应套用高密度后台小字。
-- `Operate` 的图表与表格可密集，但内容密集 != 字体全面缩到 11px。先移除无意义文案，为重要内容腾出空间。
-- `Experience` 的作品和媒体可占大面积，工具标签可退后，但必要交互标签不能读不出来。
+- **Persuade:** A launch, photography or branding page may use artistic 48–80px+ type; descriptions, price, CTA and material legal constraints must still be legible.
+- **Read:** Long text requires comfortable measure and leading, not tiny high-density admin text.
+- **Operate:** Dense charts/tables are valid, but dense content does **not** mean every font is 11px. Remove repetitive filler before reducing important text.
+- **Experience:** Media/art can dominate while secondary tool labels retreat, but necessary controls remain readable.
 
-起点规格在 `assets/typography-role-guidelines.json`，它用于 Agent 做选择与检查，不是用户项目强制安装的 CSS 主题，也不能自动证明视觉美感。
+Starting roles live in `assets/typography-role-guidelines.json`. This helps Agents choose and review roles; it is not a theme to force-install into users' projects and does not prove visual quality automatically.
 
-## Gate D · 字级/排版验收
+## Gate D — Typography acceptance
 
-- 至少在目标桌面宽度与手机/窄窗验证 **H1 → H2 → 正文 → 指标 → 图表刻度/图例** 的实际比例和扫读顺序。
-- 检查 `100%` 与 **200% 放大**，过长中文、英文仓库名、数字/单位、用户字体覆盖和暗色模式。字级用 `rem/em` 或等效可缩放策略，不让布局在放大时裁切。
-- 标记重点：`太大`（是否抢任务内容）、`太小`（实际设备读起来吃力）、`重复`（有无新语义）、`低对比`、`放大截断`。
-- 必须查看图表真实渲染，轴标签不能只凭 ECharts / Chart.js 配置宣称已可读。
-- 如果没运行浏览器，只能报告“静态建议”，不能声称字号在真实屏幕验收过。
+- Check real proportions and scan order **H1 → H2 → body → metrics → chart ticks/legend** at the supported desktop width and any supported phone/narrow-window layout.
+- Test **100% and 200%** text zoom, long Chinese, English repo names, numbers/units, user font overrides and dark mode. Use scalable `rem/em` or equivalent techniques so zoom does not clip content.
+- Flag `too large` (overshadows tasks), `too small` (uncomfortable on real device), `duplicate` (no extra meaning), `low contrast` and `zoom clipping`.
+- Inspect **actual chart rendering**. ECharts/Chart.js configuration alone does not prove axes are readable.
+- Without a real-browser run, report **static recommendations** rather than claiming acceptance on an actual screen.
 
-对照 `assets/typography-reading-lab.html`，这是展示用示例页面，不是用户 合成示例 工程代码。文案必要性见 `references/semantic-copy-hygiene.md`。
+`assets/typography-reading-lab.html` is a synthetic demonstration, not the user's product source. For copy necessity, see `references/semantic-copy-hygiene.md`.

@@ -1,135 +1,138 @@
-# 优秀案例 vs 差的案例：设计反模式避雷手册
+# Good vs Bad UI — Cross-Product Design Anti-Pattern Handbook
 
-**评判原则**：优秀 UI 不是“更圆、更亮、更有动效”，而是能在一致的视觉体系中更快传达信息、支持操作、容易维护。以下案例是跨项目的设计建议，不是源站本身已有功能。
+**Judgment:** Great UI is not simply rounder, brighter or more animated. It communicates information and supports actions quickly through a coherent design system that is maintainable. The examples below are transferable recommendations, **not claims about what an upstream example site already implements**.
 
-## 1. 色彩创造：有主题 vs 随机调色
+## 1. Purposeful colors versus random palette choices
 
-- ✅ **优秀**：整站暖灰底 + 铜棕作为主要交互色；成功/错误/警告独立使用语义颜色；不同页面沿用同一个主题映射。主色有产品定位理由。
-- ❌ **差**：主页蓝色保存按钮，设置页紫色保存按钮，确认弹窗绿色保存按钮；标题、侧边栏和卡片各选一套不相关渐变。
-- **修正**：把颜色角色集中到 tokens；允许换主题，但不允许页面局部随意变更主操作语义。
-- **验收**：换 `data-theme` 后所有共享组件完整变色，页面没有遗留硬编码 HEX。
+- **Good:** Warm-neutral site surfaces and copper-brown as the primary action accent; success/error/warning have independent semantic colors. Pages inherit one theme mapping with a product rationale.
+- **Bad:** A blue Save on Home, purple Save in Settings and green Save in the confirmation dialog, while headings/sidebar/Cards each use unrelated gradients.
+- **Fix:** Centralize semantic color roles in Tokens. Themes may change, but not the meaning of a primary action from page to page.
+- **Check:** Changing data-theme updates shared components and leaves no stranded hard-coded HEX.
 
-## 2. 圆角层级：嵌套关系 vs 到处 24/32px
+## 2. Radius hierarchy versus 24/32px everywhere
 
-- ✅ 外层 16px、内部输入 8–10px、工作按钮 8px（桌面）；展示页可 32/18/pill。父子关系自然。
-- ❌ 小提示标签和大型对话框圆角一样大；密集列表每行都用 32px 并加厚阴影。
-- **修正**：圆角用 `--radius-panel/inner/control/button`；同一层级一致，按信息密度选择 profile。
+- **Good:** A desktop may use outer 16px, nested fields 8–10px and working Buttons 8px; a promotional page may justify 32/18/pill. The parent/child relationship is clear.
+- **Bad:** Tiny labels share the same radius as giant dialogs; every dense list row receives 32px and a heavy shadow.
+- **Fix:** Semantic radius-panel/inner/control/button Tokens, coherent within each layer and adapted to actual density.
 
-## 3. 阴影与描边：低调分层 vs 全部漂浮
+## 3. Restrained shadows versus everything floating
 
-- ✅ 卡片靠微弱阴影与页面微色差分离，列表主要依赖间距/细线；重要弹窗才用更强的空间深度。
-- ❌ 每个表格行都加 `0 18px 48px rgba(0,0,0,.25)`；输入控件四周浓重投影；整个界面像很多悬浮贴纸。
-- **修正**：减少层数，去掉常规列表阴影；仅在真正需要区分空间层次时使用 shadow token。
+- **Good:** Subtle surface color/shadow separates Cards; lists primarily use spacing/thin borders. Stronger depth belongs to overlays when warranted.
+- **Bad:** Every Table row has 0 18px 48px rgba(0,0,0,.25), Inputs cast heavy shadows and the UI looks like floating stickers.
+- **Fix:** Reduce surface levels. Remove shadows from normal lists; use shared shadow Tokens only for meaningful depth.
 
-## 4. 文字层级：一眼能扫读 vs 所有内容同等重要
+## 4. Scannable type hierarchy versus equal emphasis everywhere
 
-- ✅ 页面标题 / 区块标题 / 正文 / 辅助文字有固定级差；重要数字醒目，次要说明不争夺注意力。长中文和英文数字都稳定换行。
-- ❌ 所有标题 28px 粗体；小字只有 10px 且低对比；短标题用负字距导致中文拥挤；正文大段高饱和颜色。
-- **修正**：使用 type scale，缩减强调层级，中文正文保持可读行高，检查最小字号和对比度。
+- **Good:** Page title, section title, body and metadata have intentional relative sizes. Key numbers stand out without metadata competing. Long Chinese and mixed English/numeric strings wrap correctly.
+- **Bad:** All headings are 28px bold, auxiliary text is low-contrast 10px, negative tracking crowds short Chinese headings, large paragraphs use saturated colors.
+- **Fix:** Use type scales and fewer strong emphases. Preserve readable CJK line height, minimum practical text size and contrast; do not misrepresent advisory sizes as normative WCAG minima.
 
-## 5. 留白：成组的节奏 vs 机械的大间距
+## 5. Grouping rhythm versus mechanical spacing
 
-- ✅ 相关表单项之间 8–12px、段落之间 16–24px、章节之间 24–40px；组件对齐到相同基线。
-- ❌ 所有区域都 margin:32px，造成“空但不高级”；另外一页又挤到 4px，像两个人设计。
-- **修正**：从 4px/8px scale 建立局部与整体的间距关系，按密度 profile 调整。
+- **Good (illustrative values):** 8–12px among related form elements, 16–24px between paragraphs and 24–40px between sections; controls align to common baselines.
+- **Bad:** Every region has margin:32px and feels empty without design; another page uses 4px and feels authored by a different team.
+- **Fix:** Establish local/global spacing relationships from a 4px/8px scale and adjust by density profile. These numbers are not universal rules.
 
-## 6. 组件复用：同一种行为只有一个组件所有者
+## 6. One owner for one behavior
 
-- ✅ `UiButton variant="primary"` 在首页、弹窗、设置页都是一致的；主题变更时一处修改全局同步。
-- ❌ `HomeButton`, `SettingsSaveButton`, `ModalConfirmBlue`, `BlueBtnV2` 实际同类但各写独立样式。
-- **修正**：组件层先行；通过变体表达语义差异，不靠页面名字复制组件。
+- **Good:** UiButton variant=primary behaves the same on Home, dialogs and Settings. Theme changes flow from one shared source.
+- **Bad:** HomeButton, SettingsSaveButton, ModalConfirmBlue and BlueBtnV2 implement essentially the same action with separate CSS.
+- **Fix:** Reuse primitives and expose meaningful variants instead of cloning components by route names.
 
-```css
-/* ❌ 页面各自重写，最终漂移 */
+~~~css
+/* Bad: route-specific styles drift. */
 .home-save { border-radius: 20px; background:#0071e3; }
 .dialog-save { border-radius: 8px; background:#6941c6; }
 
-/* ✅ 共享组件引用相同语义变量 */
-.ui-button--primary { border-radius:var(--spui-radius-button); background:var(--spui-accent); color:var(--spui-on-accent); }
-```
+/* Good: shared component uses semantic variables. */
+.ui-button--primary {
+  border-radius: var(--spui-radius-button);
+  background: var(--spui-accent);
+  color: var(--spui-on-accent);
+}
+~~~
 
-## 7. 动画：反馈明确 vs 处处弹跳
+## 7. Meaningful feedback versus bounce everywhere
 
-- ✅ 展示页第一次进入的卡片轻微渐入；按钮悬停 160–200ms；布局和状态切换不妨碍输入。
-- ❌ 页面每次刷新卡片都从屏外滑入；列表滚动每行都 bounce；按钮 hover 放大到 1.12 并抖动；弹窗关闭迟迟不响应。
-- **修正**：高频操作取消回弹；对减弱动态效果的系统设置提供替代；核心内容默认可见。
+- **Good:** Subtle first-visit entrances on promotional pages; 160–200ms Button hover; transitions do not obstruct actual input.
+- **Bad:** Cards slide from outside on every refresh, list rows bounce when scrolled, hovered Buttons scale to 1.12 and shake, dialogs refuse to close promptly.
+- **Fix:** Remove elastic response from high-frequency controls; respect reduced-motion preferences; keep essential content visible without JavaScript animation.
 
-## 8. 渐变：可选点睛 vs 所有标题都是霓虹
+## 8. Optional accent gradients versus neon on every heading
 
-- ✅ 展示主标题可以使用与品牌一致的有限渐变，但按钮和正文保持实色；开发工具页面甚至完全不需要渐变。
-- ❌ 粉紫蓝用于所有页面的大标题、菜单、图标、按钮、进度条；白字被浅亮渐变吞没。
-- **修正**：渐变默认关闭；有明确表达目的、可读性验证通过时才使用。
+- **Good:** A promotional headline may use a limited on-brand gradient; controls/body copy remain readable solids. Developer tools may need no gradient at all.
+- **Bad:** The same pink/purple/blue is applied to every title, menu, icon, Button and progress bar; white text vanishes on pale gradients.
+- **Fix:** Default to no gradient. Use it only with a justified visual role and tested readability.
 
-## 9. 导航：明确当前位置 vs 只靠微小色差
+## 9. Clear navigation state versus tiny color differences
 
-- ✅ 当前导航同时通过背景、字重、位置或标识符区分，hover 和 focus 可见；项目内一致。
-- ❌ 选中仅由 `#999` → `#888` 区分；点击区域只有几个字，触摸难以命中；导航使用装饰性 `div`。
-- **修正**：统一 `UiNavItem` / accessible tabs primitive，`aria-current` / 选中语义齐全。
+- **Good:** Current item is distinct through background/weight/position/meaningful marker, with visible hover and focus, consistent in the product.
+- **Bad:** Selected differs only from #999 to #888; click target is a few letters; navigation is a decorative div without semantics.
+- **Fix:** Shared UiNavItem or accessible Tabs primitive; correct aria-current and selection semantics, keyboard/touch targets.
 
-## 10. 输入与表单：完整状态 vs 漂亮静态框
+## 10. Real form states versus attractive static boxes
 
-- ✅ 每个输入框有 label、hint、required、focus、error、disabled；错误位置稳定，用户能理解如何修复。
-- ❌ 只用 placeholder 当 label；错误只变红框不说明原因；进入焦点后 outline:none 又没有替代焦点。
-- **修正**：集中使用 `UiField`，渲染可读错误文案并关联 aria-describedby。
+- **Good:** Every Field has label, hint, required (where applicable), focus, error and disabled treatment; errors stay near fields and explain correction.
+- **Bad:** Placeholder replaces label, error only changes border to red, focus uses outline:none without alternative.
+- **Fix:** Shared UiField; meaningful error text and aria-describedby associations.
 
-## 11. 状态反馈：语义完备 vs 胡乱标色
+## 11. Semantic status feedback versus arbitrary branding
 
-- ✅ 成功“已同步”+ 绿色状态点，错误“连接失败，请重试”+ 红色，处理中显示明确反馈。
-- ❌ 删除成功的消息用红色只是因为品牌主色是红；只有一个旋转圈；服务器断开只用一个小灰点暗示。
-- **修正**：语义状态独立于品牌色，文字/图标和颜色共同表达结果。
+- **Good:** Synced text + green success mark, Connection failed / Retry + error semantics, explicit pending feedback.
+- **Bad:** Successful deletion uses error red simply because brand accent is red; only a spinner conveys pending; server disconnection is a nearly invisible gray dot.
+- **Fix:** Semantic status separated from brand accent, combining readable words/icons and color.
 
-## 12. 响应式：信息重组 vs 简单缩小字号
+## 12. Responsive recomposition versus shrinking text
 
-- ✅ 窄屏改变网格和操作顺序，主按钮不遮挡，长标题可换行，表格可滚动或转详情列表。
-- ❌ 980px 固定宽度导致横向溢出；弹窗在 375px 视口被裁切；只将字体 18 改成 12 试图解决。
-- **修正**：布局依据可用空间重排，适当使用 minmax(0,1fr)，验证长文本和实际数据。
+- **Good:** Narrow views reflow Grid and action order; primary CTA remains reachable; long titles wrap; tables scroll or become navigable detail lists.
+- **Bad:** Fixed 980px causes overflow, dialog clips at 375px, or changing 18px text to 12px is mistaken for responsiveness.
+- **Fix:** Recompose by available space (for example minmax(0,1fr)), verifying long real labels and data.
 
-## 13. 深色模式：重新调色 vs 整体反色
+## 13. True dark-theme palette versus whole-screen inversion
 
-- ✅ 保持语义级差，用独立深色 surface、border、text、accent、on-accent；状态和 focus 对比验证。
-- ❌ `filter: invert(1)`；浅色按钮的白字不变而按钮改成浅紫，造成对比不足。
-- **修正**：显式定义 dark palette；在所有颜色模式测试常规和 focus 状态。
+- **Good:** Separate dark surface/border/text/accent/on-accent with coherent semantic contrast and focus.
+- **Bad:** Applying filter:invert(1), or preserving white text while Button background changes to an illegibly light purple.
+- **Fix:** Define explicit dark Tokens and test regular/focus states in every supported theme.
 
-## 14. 图标：清楚辅助 vs 随意堆装饰
+## 14. Meaningful icons versus decorative clutter
 
-- ✅ 一套图标集、一致的线宽/大小和对齐；icon-only 按钮有可访问名称；高信息密度场景谨慎使用图标。
-- ❌ 每个标题旁随机加 emoji；同页混用填充和线性图标；图标尺寸从 12 到 30 任意变化；用图标替代所有文字标签。
-- **修正**：统一 16/20/24px 档位，必要时保留文字；不因“看起来空”而塞装饰图标。
+- **Good:** One coherent icon family, consistent strokes/sizes/alignment; icon-only Buttons have accessible names; icons are restrained in dense interfaces.
+- **Bad:** Random emoji beside each title; mixed filled/outline icons, arbitrary 12–30px, every label replaced by a mystery symbol.
+- **Fix:** Use intentional 16/20/24px icon roles, retain words when helpful, never add an icon merely because an area looks empty.
 
-## 15. 数据真实性：真实状态 vs 假的完成感
+## 15. True business status versus simulated completion
 
-- ✅ 无数据就显示空状态、有错误就解释错误，示例交互明确标注演示。
-- ❌ 点击分析按钮只将固定 `0.86` 动画显示，却称为实际分析；保存按钮只变绿并不提交数据。
-- **修正**：视觉交互与业务操作分离；演示值必须清楚标注；正式功能必须接真实状态流。
+- **Good:** Show genuine empty/error states; clearly label demonstration interactions.
+- **Bad:** An Analyze button animates a fixed 0.86 as if a real model ran; Save turns green without persisting any data.
+- **Fix:** Distinguish visual feedback from business results, label demo data and connect production functions to actual state.
 
-## 16. 美学与性能：柔和、稳定 vs 过度材质效果
+## 16. Visual quality and performance versus excessive material effects
 
-- ✅ 少量阴影、简单位移/透明过渡、低内存、持续交互不卡顿。
-- ❌ 多层毛玻璃 backdrop-filter、噪点纹理、持续漂浮光球和复杂阴影同时运行，尤其在低配设备或高 DPI 上成本明显。
-- **修正**：删去无意义视觉效果，优先让输入、滚动、拖拽和弹窗稳定响应。
+- **Good:** Limited shadows, lightweight transforms/opacity, stable low-resource interaction.
+- **Bad:** Stacking backdrop-filter glass, noise, floating light orbs and heavy shadows, especially costly on low-end/high-DPI devices.
+- **Fix:** Remove effects without information value; prioritize responsive input, scroll, dragging and overlays.
 
-## 重要：审核时不能只说“不好看”
+## Reviewer requirement: "looks bad" is not an actionable finding
 
-每个问题都输出：**所在组件/页面 → 违反的规则 → 用户感知/维护成本 → 修复方式 → 验收证据**。建议对比真实截图；无截图只能说代码层风险，不能臆断渲染后的视觉效果。
+For each issue: **specific component/page → violated rule → user-facing or maintenance cost → proposed repair → test evidence**. Prefer actual before/after screenshots. Without them, report source-level risks, **not guessed rendered aesthetics**.
 
+## 17. Operational page headings: tasks first, not a marketing Hero
 
-## 17. 后台功能页标题：任务优先 vs 营销式 Hero（重点）
+- **Good:** Management/settings/lists/edit pages use one clear H1 (for example a real Account Management task), an optional brief explanation of a genuine constraint/scope, primary action adjacent to the title and toolbar/table close behind. Breadcrumbs represent real navigation.
+- **Bad:** Decorative category label above a huge 80px account title and verbose gray filler; or USER MANAGEMENT merely translates the next heading; every task page repeats English pretitle + giant title + slogan + 180px empty space.
+- **Fix:** Determine page purpose, then use UiPageHeader or an established equivalent; remove labels lacking new information, forced translations and giant decorative wrappers.
+- **Exceptions:** Brand/marketing/portfolio Heroes may legitimately use intentional eyebrows, English and large headings. Breadcrumb terminal label may match H1 without redundancy.
+- **Verify:** Core action and at least some real working content visible in typical supported first screen. Every pretitle has an explainable purpose.
+- See page-header-antipatterns.md and assets/page-header-antipattern-gallery.html.
 
-- ✅ **优秀**：管理/设置/列表/编辑页使用一个清楚的 H1（如「用户管理」），必要时短句描述真正的限制或范围，主操作与标题相邻，表格/工具栏紧随其后。面包屑只用于真实层级导航。
-- ❌ **差**：蓝色小字「账号与权限」+ 80px「用户管理」+ 大号灰色套话；或 `USER MANAGEMENT` 仅仅翻译下一行；功能页面全部复制「英文小字 + 巨型标题 + 宣传口号 + 180px 空白」。
-- **修正**：先识别页面类型，再用 `UiPageHeader`（或等价共享组件）呈现信息；去掉无新增信息的标签、重复英文和超大装饰区域。
-- **例外**：营销、品牌展示、作品集 Hero 可以包含经过设计的 Eyebrow、大字或英文；后台面包屑末级与 H1 同名可能完全合理，不能机械删除。
-- **验收**：常见窗口下核心操作和至少一部分业务内容进入首屏；标题附近不存在无法解释用途的英文/小字/口号。
-- **详见**：[page-header-antipatterns.md](page-header-antipatterns.md) 与可视化 `assets/page-header-antipattern-gallery.html`。
+## 18. Copy necessity: hierarchy versus decorative pseudo-information (v6.5)
 
-## 18. 文案必要性：信息层次 vs 假装饰标题（v6.5）
+- **Bad:** One analysis page stacks a generic English studio label, vague collaboration phrase, abstract slogan, "01 / Overview" and another instruction line, all repeating "this is an analysis page" without actual navigation value.
+- **Good:** Real product identity → actual object/repository identity → clear analysis page heading → meaningful activity/issue sections → real sources and sampling limitations.
+- **Preserve:** Verified brand taglines, actual breadcrumbs, legitimate chapter order and data provenance. Do **not** ban all microheadings mechanically.
 
-- ❌ 在同一仓库分析页同时显示 `ANALYSIS STUDIO`、`仓库活动与协作 · 交互原型`、`看见项目如何演进`、`01 / 总览`、`先看活动，再沿证据往下读`，重复表达“这是分析页”却没有新增导航信息。
-- ✅ 产品名 → 真实仓库身份 → `仓库分析` 页面标题 → `开发活动` / `Issue 处理` 等业务区块 → 真实来源和采样限制。
-- 保留：有明确品牌意义的副标、真实面包屑、正式章节顺序与数据来源；不是机械禁止所有小标题。
+## 19. Typography: critical content must be readable
 
-## 19. 排版可读性：重要内容需读得清楚
-
-- ❌ 抽象 H1 过大、主要标签变成极浅的 10px、图表刻度和 n 值几乎不可读。
-- ✅ 用角色化字号区分 PageTitle / Section / Metric / Chart / Metadata；保证深色和 200% 字体缩放场景的可读性，必要时减少刻度或重新分组，不通过无限缩小文字来“解决”密度。
-- 参见 `references/typography-hierarchy.md`：字号区间是建议而非无障碍标准的硬数值。
+- **Bad:** Abstract oversized H1 while real labels become faded 10px and chart ticks/sample n are illegible.
+- **Good:** Role-specific PageTitle / Section / Metric / Chart / Metadata sizes, sufficient dark-mode contrast and 200% text scaling. Reduce tick count or restructure groups instead of shrinking all text without limit.
+- See typography-hierarchy.md: suggested font ranges are **not mandatory accessibility font-size thresholds**.

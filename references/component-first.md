@@ -1,160 +1,160 @@
-> v4 范围提示：本 Skill 以 Web 前端为直接适用对象。旧版本个别原生 SwiftUI/AppKit 条目仅供设计语义迁移参考，不用于要求安装或生成原生 UI 源码。
+> v4 scope notice: MauForma's direct code rules apply to **Web frontends**. Historical SwiftUI/AppKit notes are transferable design semantics only, not instructions to install or generate native UI.
 
-# Component-First：先组件，再业务页面
+# Component-First — Components Before Business Pages
 
-本 Skill 最重要的工程约束：**产品界面不是由几十个独立设计的页面拼出来的，而是由一套视觉及行为一致的组件组合出来的。**
+The central engineering constraint: **A product UI is not dozens of separately designed pages; it is an assembly of components with coherent visuals and behavior.**
 
-## v6.18 · 从示例学习组件比例，不复刻来源界面
+## v6.18 — Learn component proportions from examples, not identifiable layouts
 
-用户原创参考可用于理解字体、图标、行高、表格密度、选中背景与容器的协调关系；不要在组件示例或 Storybook 中使用用户提供的截图、业务字段、Logo、域名或实际数据。新示例另建虚构场景、交互和导航，令设计原则可跨框架迁移。参照 `references/design-reference-learning-gate.md`；清爽工作台只能作为 `references/clean-enterprise-design.md` 可选风格，不应默认推广到作品、营销或文章。
+User-authored references may help identify useful type size, icon shape, row height, table density, selection backgrounds and container relationships. Never paste user screenshots, fields, logos, domains or real datasets into public component samples/Storybook. Invent synthetic subjects and interactions instead. See `references/design-reference-learning-gate.md`. The clean-workspace language in `references/clean-enterprise-design.md` is an **optional style**, not a default for portfolios, marketing or reading.
 
-## v6.17 · Icon 也是组件先行的设计产物
+## v6.17 — Icons are part of the component-first system
 
-在大量布局复制之前按 `references/icon-art-direction-gate.md` 审阅现有/候选图标库，确认一级导航与高频操作各自的对象/动作语义，再在 Gallery 中展示真实尺寸的整组 Icon 与 Label/Badge/Active/Focus/Theme。优先一个主 UI 图标家族，尺寸/轮廓/光学重量一致；必要时为品牌、插画或特殊领域使用受控例外。图标可以省略，但不能因为有 `Icon` 组件就填充抽象或无关图形。
+Before multiplying layouts, follow `references/icon-art-direction-gate.md`: identify actual objects/actions for high-frequency controls and top navigation; compare compatible icon sets and review the **whole family** at real size in Gallery with Label/Badge/Active/Focus/Theme. Prefer one coherent UI family for optical stroke/fill weight. Documented brand/illustration/specialist exceptions are allowed. Icons are **optional**; do not fill empty spaces with unrelated symbols merely because an `Icon` component exists.
 
-## v6.16 · 同级组件之间的空间由布局负责
+## v6.16 — Layout owns spacing between peer components
 
-按 `references/semantic-spacing-rhythm-gate.md` 先判断当前组件间属于内部从属、同级并列、跨区章节或连体结构；`Card` 只负责自己内容的 padding，不应该因为缺少 Layout/Stack 规范就让两个独立模块紧贴。共享 `PageSection/PanelGrid/Stack` 负责 spacing tokens 和响应式 gap，且上下/左右都要检查，不能只保证 CSS Grid 对齐；不要把全部同类组件一律加固定 margin。不同产品可有不同密度和艺术留白。
+Use `references/semantic-spacing-rhythm-gate.md` to classify inside, peer, section and connected relationships. A Card owns internal padding, **not** arbitrary outside spacing to the next Card. `PageSection/PanelGrid/Stack` should own tokens and responsive gaps on **both** axes. Perfect Grid column alignment cannot compensate for zero vertical gaps. Do not give all identical components a mandatory margin. Different products may need different densities and artistic whitespace.
 
-## v6.13 · 结构与尺寸先于视觉皮肤
+## v6.13 — Structure and geometry precede component skin
 
-在为每个页面组合 Card/Table/Button 前按 `references/surface-architecture-gate.md` 选主容器层级；不能把独立内容区全部包在同一巨型 Card 里才算“组件化”。使用 `references/control-geometry-gate.md` 确保按钮、Tab、Badge、工具条及行操作在父容器变化时完整可读；控件短标签不逐字堆叠，窄屏改成整体换行、结构重排或可访问菜单，所有状态须回归。
+Before combining Card/Table/Button on every page, use `references/surface-architecture-gate.md` to choose appropriate surface levels; componentization does not mean putting all content into a giant outer Card. `references/control-geometry-gate.md` keeps Buttons, Tabs, Badges, toolbars and row actions usable as parents shrink. Short action labels must not stack characters; reflow whole controls, reorganize rows or use accessible menus. Test every affected state.
 
-## v6.12 · 组件实现前必须先做视觉职责设计
+## v6.12 — Assign visual responsibilities before implementation
 
-所有 Web 项目通用：先读 `references/perceptual-hierarchy-gate.md` 确定真正的主/次信息，再读 `references/component-craft-gate.md`，对高频控件审查职责、结构、交互频率、视觉处理、状态与边界。仅实现一套可复用的 Button/Badge 并不意味着组件具有设计质量，多个“美观”原语组合也可能形成凌乱页面。避免把设计方向变成全站一套圆角/pill；不要在营销与阅读页面套用工作台密度。
+For all Web projects, read `references/perceptual-hierarchy-gate.md` to find real primary/secondary information, then `references/component-craft-gate.md` for actual component responsibilities, structure, frequency, appearance, states and edge cases. A reusable Button/Badge set alone does not guarantee good design; individually attractive primitives can form a disjointed page. Do not make rounded pills the one site-wide language or apply admin density to marketing/reading.
 
-## 为什么必须先做组件？
+## Why components first?
 
-同样的“保存”按钮，如果设置页写 `border-radius:8px`、编辑弹窗写 `12px`、首页写 `999px`，即使每一处单独看来都还行，整体仍会割裂。AI 在每张页面独立写 JSX/Vue/CSS 时尤其容易造成此问题。组件优先能把颜色、间距、圆角、交互状态、键盘行为和修复入口收敛到一个地方。
+If one “Save” Button has radius 8px in settings, 12px in an edit dialog and 999px on the home page, every instance may look plausible alone yet the product is inconsistent. AI-generated JSX/Vue/CSS especially encourages per-route divergence. Shared components centralize colors, spacing, radius, behavior, keyboard contracts and repair points.
 
-**不是必须从零造轮子**：如果已有 shadcn/ui、Reka UI、Radix、Ant Design、原生 SwiftUI Control，先评估并主题化其现有实现。只有当功能或视觉不足且确有需求时，再封装或新增。
+**Do not remake mature primitives by default.** When shadcn/ui, Reka UI, Radix, Ant Design or native SwiftUI controls already exist, evaluate and theme appropriately in their respective technical scopes. Only wrap/add when actual requirements justify it.
 
-## 基础控件首先来自成熟组件，不等于 Agent 自己写所有 Ui*
+## Primitive controls should reuse established libraries, not a new homemade Ui*
 
-每个含复杂交互控件的页面在开发前先执行 `references/component-library-first-gate.md`：盘点现有库与依赖；必要时自主选择与项目兼容的一套主方案，并**立即用它搭建** Select、DropdownMenu、Button、Checkbox、Radio、Switch、Dialog 等实际需要的基础控件。组件展示必须使用真实第三方组件或成熟 headless 原语，避免自己用 `div + click` 重写弹层、焦点、ARIA、键盘操作和选择逻辑。
+Any page with complex controls must first follow `references/component-library-first-gate.md`: inventory installed packages and pick one compatible primary solution when needed, then **actually use it** for required Select, DropdownMenu, Button, Checkbox, Radio, Switch and Dialog. Showcases use real vendor components or mature headless primitives, **not** `div + click` to rebuild overlay, focus, ARIA, keyboard and selection logic.
 
-`UiButton`、`UiSelect`、`UiDialog` 是业务 API、主题和语义适配层，**不是重造交互原语的许可证**。独特视觉由设计 Token 和组件覆盖完成；不能仅靠不同页面各自的 CSS 把第一版凑出来。特殊原生或自研实现必须解释为什么现有组件不合适，并在真实路由上验证。
+`UiButton`, `UiSelect` and `UiDialog` are business API/theme adapters, **not permission to reimplement accessible interaction engines**. Expressive visual character comes from tokens and shared components, not random page CSS. Native/custom specialist exceptions require a reason and real-route QA.
 
-## 开发门禁（强制）
+## Mandatory implementation gates
 
-1. **盘点并确定主库**：列出页面所需 UI pattern，识别框架与已装 UI 组件库，标记 `reuse / wrap / implement / native-exception / defer`。若没有成熟方案，先自主选定并接入，而不是直接手写。
-2. **冻结 token**：确定字体级差、颜色语义、密度模式、圆角层级、阴影和 motion；建立真实共享 token 文件。
-3. **最小组件集**：先用已选主库/原语完成本轮真正用到的 Button、Select、DropdownMenu、Input/Field、Checkbox、Dialog、Panel、Status 等。创建稳定的 props/events/slots API，避免暴露直接 `style` 作为唯一变体入口。
-4. **组件展示 / QA**：有可运行的组件 gallery / story，列出至少 normal、hover、focus、disabled、error、loading 等适用状态，使用长中文、英文、数字、空值测试排版。
-5. **页面组合**：只使用共享组件构造业务区域。布局层可自定义 grid/flex，但不在 `.settings button` 或某页 `<style scoped>` 中重复定义按钮颜色/圆角/阴影。
-6. **回归修正**：组件视觉问题修一次，所有引用处随之改变；新需求先考虑新增 semantic variant，而不是在某页 `!important` 覆盖。
+1. **Inventory and choose a primary solution:** Enumerate required UI patterns, actual installed library/framework, and decide `reuse / wrap / implement / native-exception / defer`. If no mature solution exists, select and integrate one; do not handwrite first.
+2. **Freeze tokens:** Establish typographic roles, semantic colors, density, radius, shadows and motion in one real shared token source.
+3. **Minimum needed set:** Build only required Button, Select, DropdownMenu, Input/Field, Checkbox, Dialog, Panel and Status with the chosen library/primitives. Stable props/events/slots API; no direct per-page `style` as the only variant control.
+4. **Gallery / QA:** Maintain a working component gallery/story for applicable normal, hover, focus, disabled, error and loading; use long Chinese/English, numbers and empty examples to test layout.
+5. **Business composition:** Compose pages from shared components. Grid/Flex layouts may be custom, but per-route `.settings button` or `<style scoped>` must not re-author foundational colors/radius/shadows.
+6. **Regression:** Fix a shared component once for all callers. New needs should first consider a semantic variant, not per-page `!important` patching.
 
-**可例外**：不进入产品的临时探索原型；一次性特殊可视化；原生系统强制控件。例外必须明确，不能用来绕过成品标准。
+**Valid exceptions:** Temporary exploration that will not ship; one-off specialist visualization; platform-mandated native controls. Exceptions must be explicit and cannot bypass product acceptance.
 
-## 推荐的组件层次
+## Suggested component ownership structure
 
-```
+```text
 src/
   styles/
-    tokens.css              # 单一语义色彩、间距、排版、圆角等设计变量
-    themes.css              # 主题映射，允许多个配色，不允许逐页改色
-    foundation.css          # reset / 全局字体 / focus / motion
+    tokens.css              # Semantic color/spacing/type/radius source
+    themes.css              # Central theme mapping, multiple palettes allowed
+    foundation.css          # Reset / global font / focus / motion
   components/
-    ui/                     # 无业务耦合，所有页面复用
+    ui/                     # Business-neutral reusable controls
       UiButton.vue
       UiField.vue
       UiPanel.vue
       UiDialog.vue
       UiNavItem.vue
       UiStatusBadge.vue
-      UiPageHeader.vue         # 用于管理/列表/设置等任务型页面，不是营销 Hero
+      UiPageHeader.vue       # Operational header, not marketing Hero
       UiFeedback.vue
-    patterns/               # 由基础组件组合的复合模式
+    patterns/               # Compositions of base primitives
       ConfirmAction.vue
       SearchToolbar.vue
       DataEmptyState.vue
   features/
     servers/
-      components/           # 仅服务此功能，但仍从 ui/ 组合
+      components/           # Feature-only components composed from ui/
       views/
     settings/
       views/
-  playground/               # 本地组件展示或项目已有 Storybook
+  playground/               # Local component gallery or existing Storybook
 ```
 
-命名和目录可根据项目框架调整；**稳定分层及单一组件所有权**才是强约束。
+Paths/names can vary by framework. **Stable layering and one owner per component role** are the actual requirements.
 
-## API 合同样例
+## Example component API contracts
 
-| 组件 | 最低配置 | 必须处理的状态 | 不要做的事 |
+| Component | Minimum inputs | Required states | Anti-pattern |
 | --- | --- | --- | --- |
-| `UiButton` | `variant`, `size`, `disabled`, `loading`, `type`, `click` | hover、active、focus-visible、disabled、loading | 在每个页面重新写按钮阴影/圆角 |
-| `UiField` | `label`, `id`, `value`, `hint`, `error`, `disabled` | focus、invalid、required、disabled | 只改红色边框不显示错误说明 |
-| `UiPanel` | `variant`, `padding`, `header` slot | default、inset、outlined | 把所有内容都装进悬浮大卡片 |
-| `UiDialog` | open/title/close/confirm | loading、error、Escape、焦点恢复 | 自己用 `div` 拼弹窗却不处理键盘焦点 |
-| `UiNavItem` | to/active/icon/label | hover、active、focus | 只靠颜色暗示所在页面 |
-| `UiStatusBadge` | semantic tone/size/label | neutral/success/warning/danger | 用主题强调色代替错误、成功颜色 |
-| `UiPageHeader` | title/description?/breadcrumbs?/actions/density | compact/comfortable、长标题、窄屏布局 | 每页重新做“英文小字 + 巨型标题 + 宣传口号” |
-| `UiFeedback` | kind/title/action | empty/loading/error/retry | 只显示 spinner 不说明发生了什么 |
+| `UiButton` | variant, size, disabled, loading, type, click | hover, active, focus-visible, disabled, loading | Repeating shadow/radius CSS per page |
+| `UiField` | label, id, value, hint, error, disabled | focus, invalid, required, disabled | Only drawing a red border without explaining error |
+| `UiPanel` | variant, padding, header slot | default, inset, outlined | Floating giant Card for all content |
+| `UiDialog` | open/title/close/confirm | loading, error, Escape, focus return | Hand-built div modal with missing keyboard behavior |
+| `UiNavItem` | to/active/icon/label | hover, active, focus | Active route signaled only by color |
+| `UiStatusBadge` | semantic tone/size/label | neutral/success/warning/danger | Using brand accent as success/error semantics |
+| `UiPageHeader` | title/description?/breadcrumbs?/actions/density | compact/comfortable, long title, narrow view | Eyebrow + huge title + slogan by default |
+| `UiFeedback` | kind/title/action | empty/loading/error/retry | Spinner with no useful outcome/state |
 
-可直接使用 `assets/component-contracts.json` 作为这些合同的基础；不要把示例清单误认为每个小项目都需要实现所有组件。
+`assets/component-contracts.json` can seed this model; **not every small project needs all these components**.
 
-## 页面标题也是一个需要统一的组件模式
+## Page titles are also a reusable component pattern
 
-当项目包含多个后台、列表、设置或详情页面时，应优先建立/复用 `UiPageHeader`。默认只呈现任务标题、可选增量说明、真实面包屑和关联动作。`UiPageHeader` 不是 marketing Hero；不应该自动生成 eyebrow、小英文、渐变标题、口号和超大留白。
+For multiple admin/list/settings/detail pages, prefer a shared `UiPageHeader` with direct task title, optional incremental help, authentic breadcrumbs and actions. It is **not a marketing Hero** and must not auto-generate English eyebrows, gradient headlines, slogans or huge whitespace.
 
 ```vue
-<UiPageHeader title="用户管理" density="compact">
+<UiPageHeader title="User Management" density="compact">
   <template #actions>
-    <UiButton variant="primary" @click="createUser">新增用户</UiButton>
+    <UiButton variant="primary" @click="createUser">Add user</UiButton>
   </template>
 </UiPageHeader>
 ```
 
-详细反面案例与例外规则：[page-header-antipatterns.md](page-header-antipatterns.md)。
+For cases and exceptions see [page-header-antipatterns.md](page-header-antipatterns.md).
 
-## 变体 API（Vue 示例）
+## Vue API variants — synthetic example
 
-**差：每个页面创造自己的按钮样式**
-
-```vue
-<button class="save-btn" style="background: #6941c6; border-radius: 12px;">保存</button>
-<!-- 另一页面又写 .confirm-btn { background:#0071e3; border-radius:8px } -->
-```
-
-**好：统一封装、明确意图**
+**Bad — each route invents a new Button style:**
 
 ```vue
-<UiButton variant="primary" :loading="saving" @click="save">保存</UiButton>
-<UiButton variant="secondary" @click="cancel">取消</UiButton>
-<UiButton variant="danger" @click="deleteItem">删除</UiButton>
+<button class="save-btn" style="background: #6941c6; border-radius: 12px;">Save</button>
+<!-- Another route .confirm-btn { background:#0071e3; border-radius:8px } -->
 ```
 
-`UiButton` 自己负责 variant → token、focus-visible、disabled/loading 状态。绝不要把 `:loading="true"` 仅做动画却仍能重复点击。
+**Good — consistent wrapper with explicit role:**
 
-## 推荐组件状态矩阵
+```vue
+<UiButton variant="primary" :loading="saving" @click="save">Save</UiButton>
+<UiButton variant="secondary" @click="cancel">Cancel</UiButton>
+<UiButton variant="danger" @click="deleteItem">Delete</UiButton>
+```
 
-| 状态 | 按钮 | 输入控件 | 导航 | 弹窗 |
+`UiButton` owns variant → token, focus-visible and disabled/loading behavior. `:loading="true"` must not be a purely visual animation that still permits duplicate submission.
+
+## Suggested state matrix
+
+| State | Button | Field | Navigation | Dialog |
 | --- | --- | --- | --- | --- |
-| default / hover | 背景对比与手型 | 细边框/聚焦前后区别 | 活跃行反馈 | 正常结构 |
-| keyboard focus | 可见 focus ring | focus ring + 正确 label | 聚焦目标清晰 | 焦点受控 |
-| disabled | 不触发 + 标识 | 不可编辑 + 视觉反馈 | 不可操作或不显示 | 禁用主操作 |
-| loading | 防重提交 + 明确反馈 | 视场景禁用 | 避免误导航 | 按钮进度/状态 |
-| error | 操作结果解释 | 错误文字 + aria-invalid | 必要时显示失败信息 | 保留输入和错误信息 |
-| content overflow | 长文换行策略 | 长文本正常显示 | 可截断并有完整提示 | 可滚动而不裁切 |
+| default / hover | Contrast and pointer affordance | Border and pre/post focus distinction | Active-row feedback | Correct base structure |
+| keyboard focus | Visible ring | Ring + correctly associated label | Clear focused target | Managed focus |
+| disabled | Does not activate, visibly marked | Not editable with feedback | Not actionable or omitted | Primary action disabled |
+| loading | Prevent repeat, clear progress/state | Disable when appropriate | Avoid false navigation | Accurate Button feedback |
+| error | Explain outcome | Error copy + aria-invalid | Failure context where relevant | Retain draft and useful error |
+| content overflow | Long label strategy | Show full field value | Optional truncation plus full label access | Scroll instead of clipping |
 
-## 工作量控制
+## Scope of component work
 
-- 组件优先 **不等于第一天制造 50 个原子组件**。按当前页面的真实需求优先化，构建一个稳定的最小集合。
-- 有现成 Reka UI / Radix primitives 时，不重写无障碍逻辑；封装主题层即可。
-- 出现第二处相同的 UI pattern 时，必须评估抽象成公共组件。最好在**第一处的设计阶段**就识别可复用模式。
-- CSS tokens 不等于组件；必须同时有共享样式和规范化交互 API。
+- Component-first **does not require creating 50 atomic components on day one**. Build a minimal stable set for the real page needs.
+- When mature Reka/Radix primitives exist, do not rewrite keyboard/ARIA; theme them.
+- When the **second instance** of an identical UI pattern appears, evaluate shared abstraction; ideally recognize reuse at the first design.
+- Tokens alone do not equal a component system: shared visual roles **and** normalized interactive APIs are needed.
 
-## Gate B 自检
+## Gate B checklist
 
-- [ ] 组件清单中每个条目都有 reuse / adapt / build 决策。
-- [ ] 同类控件只有一个样式所有者；不存在多个非语义重复变体。
-- [ ] 组件展示页包含真实文本和状态，至少做过一轮视觉审查。
-- [ ] 所有组件使用 token，并为键盘、错误、禁用和动态内容提供路径。
-- [ ] 页面不会为了挽救“局部好看”使用大量 `!important` 覆盖基础组件。
-- [ ] 任务型页面统一复用 PageHeader 模式，未把营销式 Hero、无意义英文小字、巨大空白变成固定模板。
+- [ ] Every item has a reuse/adapt/build decision.
+- [ ] Equivalent controls have one visual owner, not redundant unexplained variants.
+- [ ] Gallery contains actual copy and states with at least one visual review.
+- [ ] Components reference tokens and support keyboard/error/disabled/dynamic content.
+- [ ] Pages avoid `!important` patches to “save” one attractive local control.
+- [ ] Operational headers share PageHeader and do not make giant marketing Heros/empty English prefixes universal.
 
-## 桌面工作台组件（v6.3）
+## Desktop workbench components (v6.3)
 
-在实际项目需要时优先从现有 UI 库映射/封装 `UiSidebar / UiRecentItem / UiTopbar / UiDataTable / UiTabs / UiSearch / UiSplitPane`，各自职责与交互不同，不要为了统一而将所有对象列表都强行变成与主导航相同的 active 卡片。组件 QA 应分开记录 hover、selected、focus-visible、disabled、long-content、dark/light、collapsed 等状态，尤其不能删除键盘焦点来追求“克制”。参考 `references/sidebar-navigation-design.md`、`references/workspace-component-refinement.md` 与 `assets/sidebar-refinement-gallery.html`。这些是设计规范与概念示例，不是可以直接跨框架复制的生产组件源码。
+Where actual needs justify them, map or wrap `UiSidebar / UiRecentItem / UiTopbar / UiDataTable / UiTabs / UiSearch / UiSplitPane` from existing libraries. These have different roles; **do not force all object lists to look like the main active navigation Card**. QA covers hover, selected, focus-visible, disabled, long content, dark/light and collapsed separately. Never erase keyboard focus for “restraint.” See `references/sidebar-navigation-design.md`, `references/workspace-component-refinement.md` and `assets/sidebar-refinement-gallery.html`. These are design examples and contracts, **not production source to paste across frameworks**.

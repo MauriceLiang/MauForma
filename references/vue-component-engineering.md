@@ -1,27 +1,27 @@
-# Vue 3 / Nuxt：组件分工与响应式边界
+# Vue 3 / Nuxt — Component Ownership and Reactivity Boundaries
 
-参考 vuejs-ai 的 Vue Best Practices 思想，实际实现要遵循项目 Vue/Nuxt 版本和 Options API 既有约束。
+These rules take the *principles* of vuejs-ai Vue Best Practices, but actual implementation must respect the project's Vue/Nuxt versions and inherited Options API constraints.
 
-## 默认架构
+## Default architecture
 
-- 新 Vue 3 组件通常用 `<script setup lang="ts">` + SFC；既有 Options API 大项目按明确迁移计划推进，不强制局部重写。
-- Props 向下传值，Emits 向上传事件；可复用的逻辑放 composables，不把所有东西堆进全局 Pinia。
-- `ref/computed` 保持单一数据来源；避免滥用 watcher 形成状态回写循环，避免把 derivable state 再单独存。
-- 共享基础 `UiButton/UiField/UiDialog` 聚焦视觉与行为原语；列表加载、权限、业务查询在页面 feature 层。
-- 组件公共 API 说明 Props/Emits/Slots/错误与加载状态，并有可验证展示；不要以多页面复制 CSS 代替共享组件。
-- 数据密集组件的优化优先真实瓶颈；Vue 大列表渲染/异步组件/缓存只有在有证据时采用。
+- For new Vue 3 components, generally use SFCs with `<script setup lang="ts">`. For substantial existing Options API applications, follow an explicit migration plan instead of requiring a partial unapproved rewrite.
+- Props flow down; Emits communicate events upward. Put reusable behavior in composables, not every state in one global Pinia store.
+- Keep a **single source of truth** with `ref/computed`. Avoid watchers that write back into each other and reactive loops; do not separately store state that can be derived.
+- Shared foundational `UiButton/UiField/UiDialog` components own visuals and primitive behavior. Feature pages own list loading, permissions and business queries.
+- Public component APIs declare Props, Emits, Slots, loading/error states and have verifiable examples. Copying CSS across routes is not component reuse.
+- Optimize data-heavy components from **measured bottlenecks**; use virtualized Vue lists, async components and caches only with evidence.
 
-## 工程边界
+## Engineering boundaries
 
-Nuxt SSR 不在顶层访问 document/window；命令式动画在 mounted 后运行，卸载时清理。Vue Transition 优先处理简单显示隐藏；更复杂的动效按 `references/animation-engine-selection.md` 选库。
+Nuxt SSR must not access `document/window` at module top level. Start imperative animation after mount and clean it up on unmount. Prefer Vue Transition for simple visibility, with complex animation engines selected under `references/animation-engine-selection.md`.
 
-UI 主库已有 Element Plus/Ant Design Vue/Reka 等先继承，不强制迁移。使用 Vue 官方生态的测试方案验证组件状态和键盘、焦点、触摸交互。
+Inherit existing primary libraries such as Element Plus, Ant Design Vue or Reka rather than forcing migration. Use framework-appropriate tests to verify control states and keyboard, focus and touch interactions.
 
-## 质量门槛
+## Quality bar
 
-- 所有 Props/Emits 类型与默认值有明确意义；
-- 没有循环 watcher 和不必要的跨组件事件总线；
-- 空、错误、加载、禁用有演示和测试；
-- 构图遵循 Master 与当前页面 override，而不是每个 Vue 页面自创一套主色。
+- Every Prop/Emit type and default has a clear purpose.
+- No watcher loops or unnecessary global event buses.
+- Empty/error/loading/disabled states are demonstrated and tested.
+- Composition honors the project's Master design decisions and current page overrides; individual Vue pages must not each invent a new main color.
 
-参考：https://github.com/vuejs-ai/skills/tree/main/skills/vue-best-practices
+Source: https://github.com/vuejs-ai/skills/tree/main/skills/vue-best-practices

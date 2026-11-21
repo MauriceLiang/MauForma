@@ -1,63 +1,104 @@
-# Design Reference Learning Gate · 从优秀参考学习，不复制项目（v6.18）
+# Design Reference Learning Gate — Learn Principles Without Cloning Identifiable Source
 
-适用所有 Web 项目（Operate / Persuade / Read / Experience）和框架。用户提供的视觉参考，可能是其本人原创作品、历史页面、临时截图或公共案例。**不能擅自给来源贴“企业内部/第三方作品”等标签，也不能将参考素材直接作为仓库资产。** 参考只用于在当前任务中提炼设计规律，公开的 Skill 只收录可迁移的规范、独立原创代码与虚构内容。
+**Applies to:** User-supplied reference images, screenshots, authorized public examples and requested design-learning tasks. A screenshot is evidence for a visual discussion; **it is not automatic permission to copy its exact components, branding, assets or entire layout into a different project**.
 
-## Gate RL0 · 来源与发布边界（先于分析、编码和提交）
+## Gate RL0 — Source provenance, authorization and privacy
 
-1. **尊重真实归属**：用户明确是本人设计的作品，应按用户提供的归属理解；未知归属也不凭截图推断权利关系或商业背景。不要在公共文档中披露用户身份、所属组织、项目名称、网址、业务数据、联系方式、标志或可识别布局细节。
-2. **用户提供的参考图片不得入仓**：未经用户明确同意，不上传原图、裁剪/打码/模糊变体、重新编码或嵌入 base64；包括 Git commits、PR 描述、Actions artifacts、README、examples、测试截图和发布包。用户本轮明确要求不入仓时，**即使脱敏也禁止上传**。
-3. **区分研究与交付**：只允许提取匿名的抽象设计规则（视觉层级、字号与图标比例、选中态、颜色角色、信息密度等）；真正要做示例时**从空白代码构建新的产品场景**，使用虚构名称、数据与交互，不重现原页面的企业字段/业务模型/整体可识别结构。
-4. **不在公开提交记录描述敏感素材**：commit message、branch、PR title/body、issue、测试日志不能嵌入来自参考的真实信息；敏感内容不用于“测试是否被检测”的反例字符串。如果确有可能关联来源的参考元信息，留在当前会话的私下分析范围，不写入公开仓库。
-5. **版权与许可**：参考设计的学习不代表允许复制其素材。图标从**公开官方仓库**单独核对版本与许可证；自绘 Logo、商标、媒体、插图不得从参考页面提取。公开 demo 用到 MIT 等第三方图标，须包含相应许可通知。
-6. **工具/保存边界**：不主动通过 OCR、截图下载、Drive 或外部链接找可识别原始版本，不以“保存优秀案例”为理由重新上传。若用户将来专门授权保存素材，仍需确认允许的发布范围；此前“不入仓”的约束在未被明确撤销前始终生效。
+- Verify what was supplied: screenshot, URL, Figma frame, user-owned mockup or public design document. Identify available resolution and whether source assets can be used legally.
+- Separate **observed** visual structure from **inferred** CSS/framework/intent. Never claim a screenshot proves its component library, author intent or exact token values.
+- User-supplied screenshot/artifacts may contain identifiers, product data, brand marks and third-party rights. **Do not commit screenshots, pixel crops, extracted icons/logos, source URLs exposing private data, or renamed derivatives into public Skill repository, sample gallery or CI artifacts** without explicit user permission.
+- If a source is private or auth-gated, do not bypass access control. Explain what evidence remains available, or request authorized source access.
+- General knowledge (proximity, hierarchy, alignment, meaningful icon grammar, interaction patterns) may transfer; copied artwork, brands and proprietary UI source require separate authorization/license.
 
-这里的保护是**操作规范**：自动脚本无法全面检测泄漏的业务语义或可识别视觉结构；每次 PR 前需人工审阅全部新增文件与 commit/PR 文本。不得声称静态测试可证明零隐私泄漏。
+## Gate RL1 — Extract role and relationship, not a complete skin
 
-## Gate RL1 · 从视觉观察转为「原则—证据—条件」
+For a referenced page, describe:
+1. **Content/task:** Who uses the page and what action/reading objective dominates?
+2. **Composition:** Where does the main subject sit, how does layout group regions, and what is first-screen information priority?
+3. **Typographic roles:** Primary title/body/metadata/control, weight and line lengths at observed size.
+4. **Color semantics:** Neutral surfaces, accents, status/focus—not merely memorized HEX values.
+5. **Component behavior:** Distinguish observed open/selected/hover from states not visible in a static screenshot.
+6. **Adaptability:** Which relationships survive a different product, language or viewport? Which imagery and exact layouts should not be copied?
 
-建立 **Reference Insights Matrix**，每一项至少包含：
+Make recommendations grounded in **this target user's task**. If reference is a neat developer workspace, do not force it onto an expressive portfolio. Similarly, an experimental brand design need not become a dense administrator UI.
 
-`observed_trait → visual_effect → task_benefit → applicable_context → constraints/tradeoffs → transfer_rule → avoid_copying`
+## Gate RL2 — Convert learning into generic, original design decisions
 
-以“为什么舒服/为什么有效”为中心，而非“原图某个按钮是几 px”。
+- Name transferable principles such as "one clear selected state," "tables with readable row density," "typography and icon optical weight should align," or "a panel's boundary must convey grouping."
+- Use **new fictional content and original examples** in MauForma's own docs/assets/tests, never the user screenshot or text converted into a disguised example.
+- Example SVG icons in demos must come from actual licensed open-source sources or original artwork; retain required license notices. Do not infer an icon pack from pixel appearance alone.
+- Avoid using identical colors, section order, card proportions or a private page's information architecture as an implicit template for all products.
+- An approved Design DNA may document observed traits and project-specific decisions **in the user's own workspace**; do not move them to the general-public Skill.
 
-| 可提取的维度 | 通用的可检验观察 | 迁移时必须判断 |
+## Gate RL3 — Visual and functional verification
+
+Use a real rendered target app to compare intended transferable principles and actual functionality. Screenshots/DOM can flag type, spacing, layering and state risks; they cannot alone prove backend actions, accessibility or source-design fidelity.
+
+Record `observed / inferred / approved / not tested` for key aspects. Recheck relevant routes, responsive breakpoints, keyboard and high-value states. If reference comparison was only visual/static, say `NOT TESTED` for hidden interactions.
+
+## Negative cases and legitimate exceptions
+
+- **Bad:** User likes one product's Sidebar, so the Agent clones its colors, icon SVGs, labels and exact menu hierarchy into an unrelated SaaS.
+- **Bad:** An attractive screenshot is imported as a permanent demo file in the public MauForma repository without permission.
+- **Good:** Adopt the structural principle of a restrained selected background, optical icon alignment and coherent state colors; redesign actual labels and hierarchy for the new product.
+- **Valid exception:** The user explicitly owns and authorizes a source design, or grants licensed asset use. Even then, preserve provenance and scope.
+
+
+## Source-parity requirements from the original RL0–RL4 contract
+
+These conditions refine, and do not weaken, the gates above:
+
+- **Ownership must not be invented.** A user may have supplied their **own original design**, a historical page, a temporary screenshot or a public example. If the user says the work is theirs, respect that description. If ownership is unknown, do not infer that the material is corporate-internal or third-party solely from the screenshot.
+- **Do not publish any user's original reference image without explicit consent**, including cropped, blurred, redacted, re-encoded or Base64-embedded derivatives. The prohibition spans commits, branches, PR descriptions, GitHub Actions artifacts, README, examples, test screenshots and release packages. If the user explicitly said "do not commit this", even anonymized versions remain prohibited until that restriction is explicitly withdrawn.
+- Never disclose user identity, employer, project name, URL, business data, contact details, logo or uniquely identifiable layout in public examples/commit messages/issues/CI logs. Do not include such information even as deliberately rejected test strings.
+- **No proactive reverse sourcing.** Do not OCR the screenshot, download matching images, search Drive or external links for the identifiable original, or upload it again merely to save a good reference. Any future specific permission to save assets still requires confirming publication scope.
+- **Licenses:** Review publicly sourced icon versions and license notices separately through official repositories. Do not extract original brands, commercial fonts, artwork or UI components from the reference. Generic public demos using MIT or other licensed icon sets must retain applicable notices.
+- **Review-before-publication is a human/Agent responsibility.** A static script cannot prove that all business semantics and identifiable visuals were removed. Inspect all added files **and** PR/commit text before publication. An anonymous-looking screenshot is not proof of authorization.
+
+### RL1 — Reference Insights Matrix (mandatory fields)
+
+For each candidate principle, record:
+observed_trait → visual_effect → task_benefit → applicable_context → constraints/tradeoffs → transfer_rule → avoid_copying.
+
+| Transferable dimension | General observable relationship | Must be reconsidered for the new project |
 | --- | --- | --- |
-| Typography & Hierarchy | 主要导航、页面标题、数据行的字级/字重比例自然；元信息不盖过主体 | 字体度量、中文/英文、任务密度、视口、用户的字号偏好 |
-| Navigation & Selection | 当前项用**背景+文字/图标状态**建立明确焦点；状态克制且可扫描 | 导航是侧栏/顶部/分页？当前项是否有层级或未读数量？ |
-| Icon Art Direction | 同组符号轮廓简洁、负空间与视觉重量接近；符号和任务语义吻合 | 是否需要 icon？当前品牌与图标家族、真实业务含义、可访问名称 |
-| Color Roles | 大面积中性、有限强调色、必要语义状态色，各司其职 | 已确定品牌色不能擅改；清爽 ≠ 必须是蓝色、不能让低对比度危害可读性 |
-| Data Density | 表格列关系、行节奏与状态区分清楚；避免逐行大卡堆叠 | 大量数据和移动端策略；复杂表格/内容型卡片可能有正当用途 |
-| Surface & Spacing | 父布局控制间距，容器数量有语义依据；标题/数据层级清楚 | Table/List/Card/Editorial 的实际内容关系不同 |
-| Motion & Feedback | 交互反馈及时、动效不过度，选中/加载/结果不依赖额外装饰 | 用户已确认的 motion policy 与系统减少动效 |
+| Typography & Hierarchy | Natural scale and weight proportions across navigation, titles and rows; metadata does not overpower primary content | Font metrics, Chinese/English, task density, viewport, user preferences |
+| Navigation & Selection | Clear current item through restrained selected background plus text/icon state | Sidebar/top/tabs; hierarchical context and unread counts |
+| Icon Art Direction | Coherent contours, negative space and optical weight; matches real actions | Whether an icon is needed, brand, icon family, semantics and accessible names |
+| Color Roles | Mostly neutral surfaces, limited accents and meaningful status colors | Approved brand color may not change; restraint does not mean blue or illegible contrast |
+| Data Density | Table columns, row rhythm and state distinctions remain clear; avoid excessive Card-per-row patterns | Large datasets, mobile; complex Tables or content-driven Cards may be legitimate |
+| Surface & Spacing | Parent layout owns spacing; container count reflects meaning | Real relationships differ among Table/List/Card/editorial sections |
+| Motion & Feedback | Immediate interaction feedback; no gratuitous motion | Confirmed motion policy and OS reduced-motion preference |
 
-每项都要区分：**可迁移原则** vs **不能直接复制的表达**。示例可以借鉴“轻量选中背景与主色结合”，不能照搬原生 HEX、品牌 logo、原业务栏目或原记录。
+For each entry, separate a **transferable principle** from an expression that **must not be copied**. For example, a restrained selected background can transfer; exact source HEX, logos, original business sections and records cannot.
 
-## Gate RL2 · Compare, Abstract, Recompose（不是复刻）
+### RL2 — Observe → Abstract → Recompose → Compare → Validate
 
-1. **Observe**：分析空间、比例、图标、节奏、密度的客观关系，不宣称仅凭截图得出精确 CSS 值、真实组件库或动效。
-2. **Abstract**：把具体案例翻译成用途相对独立的设计约束；至少说明何时不适用，避免把后台风格强制推广到营销/阅读/作品站。
-3. **Recompose**：新 demo 使用**不同领域、不同栏目命名和不同数据字段**；允许相同的一般设计规律，不模拟原项目独有导航目录、产品流程或数据布局。
-4. **Compare**：对参考的目标感受做风格层面对比（清晰、轻盈、适度等），不把像素近似/截图相似度当目标。至少审一次“是否太像一个特定项目”，需要时重新组合。
-5. **Validate**：新例子经历 typography/icon/spacing/density/selected state/QA 浏览器检查；**自动几何通过不能证明美感**。以用户对新方案的反馈逐步完善原则，不擅自声明原参考的“官方设计系统”。
+1. **Observe** actual proportions, spacing, icon weight, visual rhythm and density. A screenshot alone cannot establish exact CSS values, the real component library or hidden motion.
+2. **Abstract** a domain-independent design constraint; explicitly note where it would **not** apply. Do not universalize a workbench look to marketing, reading and portfolio sites.
+3. **Recompose** an original demo with a **different domain, section labels, data fields and interactions**. Transfer general principles, not identifiable navigation, product flow or data layout.
+4. **Compare** qualitative target effects (clarity, lightness, restraint) without aiming for pixel similarity. Independently ask whether the result still resembles a single identifiable source; redesign if it does.
+5. **Validate** typography, icons, spacing, density, selected state and real-browser behavior. Passing geometry automation **does not prove aesthetic quality**; only user feedback can establish whether the proposed direction is accepted.
 
-## Gate RL3 · 通用 Skill 路由与设计选择
+### RL3 — Task-scope decisions
 
-- 用户说“我喜欢这套感觉”时，先报告分析结果和可提取能力；若明确让你优化 Skill，则把**原则与全新演示**交付，不要自动保存用户原图。
-- 项目已有 Design Tokens/品牌/UX 决定时应优先继承；以“可选风格方向”呈现 Clean Enterprise，不作为全站默认。
-- 非工作台可迁移局部原则：阅读页借鉴可读字号与导航克制；商品页借鉴色彩角色与 CTA 层级；作品站借鉴视觉噪音控制，不强推侧栏或高密度表格。
-- 设计参考并不意味着使用同一组件库。Element Plus、Ant Design、MUI、shadcn/ui 或无组件库都可实现相应规则；选型依据项目技术栈与任务性质。
-- 若用户明确要求**只分析不动代码**，不得在分析阶段创建公开内容。
+- If the user only expresses a preference for a visual feeling, report transferable insights first; when Skill optimization is explicitly requested, contribute general principles **and newly created synthetic examples**, never automatically save the screenshot.
+- Existing approved Design Tokens, product identity and UX decisions take priority. Clean Enterprise is an **optional profile**, never the mandatory default.
+- Transfer **particular** useful properties across different product types, not the entire workbench composition: readable type for reading; semantic CTA/color hierarchy for commerce; reduced noise for a portfolio; do not force a Sidebar or dense tables.
+- Similar visual principles do **not** require the same component library. Element Plus, Ant Design, MUI, shadcn/ui and native components can all implement them as justified by target stack and task.
+- If the user authorizes **analysis only**, do not create or modify public source during the analysis.
 
-## Gate RL4 · 发布前的核对
+### RL4 — Pre-publication checklist
 
-- [ ] 新增资源不含用户参考图片、其任何变体、文件路径/数据 URI/截图 artifact。
-- [ ] 未复制可识别组织/产品信息或真实数据；示例场景、导航命名、表字段和交互均为新建。
-- [ ] 参考知识只写为可迁移规则，标明适用前提和不适用场景。
-- [ ] 外部开源素材来自官方渠道且包含许可证；没有从参考页面提取。
-- [ ] 文档、PR 标题/描述、Git 提交和 CI 日志均不暴露来源识别信息。
-- [ ] 现有 Design Tokens、用户颜色/动效决定未被参考风格自动覆盖。
-- [ ] 独立 demo 在真实浏览器检查阅读、导航选中、过滤、表格密度、窄屏和放大模式。
-- [ ] 若未做真实产品测试，标记 `EXAMPLE VERIFIED ONLY`，不能宣称目标系统已经优化。
+- [ ] No original reference image or derivative, source path/data URI or screenshot artifact is introduced.
+- [ ] No identifiable person, organization, product or real data; sample names, menus, fields and interactions are newly invented.
+- [ ] Principles state where they apply **and do not** apply.
+- [ ] Licensed third-party assets come from verified official channels, with required notices; none extracted from a screenshot.
+- [ ] README, PR title/body, commits, Issues and CI logs disclose no identifying source data.
+- [ ] Inherited Tokens and explicit user color/motion choices remain authoritative.
+- [ ] The original synthetic demo was actually checked for reading, navigation, filtering, density, responsive and zoom states on real browser.
+- [ ] When the **real target product** was not tested, label any completed checks EXAMPLE VERIFIED ONLY rather than claiming the user's app was optimized.
 
-配套：`references/clean-enterprise-design.md`（可选清爽工作台档案）、`examples/design-reference-learning/reference-principles.json`（四类网站独立原则示例）、`examples/clean-enterprise-demo/index.html`（原创虚构演示）、`scripts/validate_design_reference.py`（静态契约/文件风险核验）、`tests/design_reference_browser_smoke.mjs`（示例浏览器测试）。
+Source-linked resources: references/clean-enterprise-design.md (optional profile); examples/design-reference-learning/reference-principles.json (independently invented cross-product patterns); examples/clean-enterprise-demo/index.html (original fictional demo); scripts/validate_design_reference.py (static resource/contract checks); tests/design_reference_browser_smoke.mjs (synthetic browser example). 
+
+Related: `references/design-dna-protocol.md`, `references/icon-art-direction-gate.md`, `references/clean-enterprise-design.md`, `references/browser-qa-protocol.md`.

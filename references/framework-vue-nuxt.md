@@ -1,76 +1,76 @@
-# Vue 3 / Nuxt · 深度支持实施规范
+# Vue 3 / Nuxt — Detailed Implementation Guide
 
-## 1. Vue 适合做什么？
+## 1. Appropriate use of Vue
 
-Vue 3 是渐进式前端 UI 框架。以单文件组件 `.vue` 组织模板、状态和局部样式；Composition API + `<script setup lang="ts">` 适合复用逻辑；Vue Router 处理 SPA 页面导航；Nuxt 提供基于 Vue 的 Web 应用框架能力，例如文件路由、SSR/SSG、服务端路由和数据加载。
+Vue 3 is a progressive frontend UI framework. Single-file `.vue` components organize templates, state and scoped styles; Composition API with `<script setup lang="ts">` helps reuse behavior; Vue Router handles SPA navigation. Nuxt adds file-based routing, SSR/SSG, server routes and data loading.
 
-**已有项目优先沿用现有工程结构**，不为了“统一”突然切换到 React 或重建脚手架。
+**Continue the existing project's architecture first.** Do not unexpectedly migrate it to React or rebuild scaffolding merely to “unify” a frontend.
 
-## 2. 建议代码分层（可根据现有目录调整）
+## 2. Suggested layers — adapt to current structure
 
 ```text
 src/
-  styles/tokens.css                 # 单一 Design Tokens 来源
-  components/ui/                   # 基础共享组件：UiButton/UiField/UiDialog
-  components/composites/           # 复合业务无关组件：PageHeader/SearchField
-  components/patterns/             # 列表页/设置页/详情页结构模板
-  features/users/                  # 按业务域组织组件/请求/类型
+  styles/tokens.css                 # Single design token source
+  components/ui/                   # Shared UiButton/UiField/UiDialog
+  components/composites/           # Domain-neutral PageHeader/SearchField
+  components/patterns/             # List/settings/detail page patterns
+  features/users/                  # Domain components, requests and types
   composables/                     # useTheme/usePagination/useKeyboardShortcut
-  stores/                          # 如需要，用 Pinia 维护客户端共享状态
-  services/                        # API 客户端、错误映射、鉴权
-  pages/ or views/                 # 页面组合逻辑
-  tests/                            # 组件与业务测试
+  stores/                          # Pinia when shared client state is needed
+  services/                        # API client, error mapping, auth
+  pages/ or views/                 # Page composition
+  tests/                           # Component and feature tests
 ```
 
-Nuxt 项目遵循 Nuxt 的 `pages/`、`components/`、`composables/`、`server/` 等约定，不强行塞入普通 Vue Vite 工程结构。
+Nuxt projects should follow Nuxt's `pages/`, `components/`, `composables/`, `server/` conventions; do not force them into a Vite/ordinary Vue layout.
 
-## 3. UI 技术路线
+## 3. UI technology routes
 
-| 可选方案 | 包含内容/作用 | 适用 | 注意 |
-|---|---|---|---|
-| Reka UI | Select/Dialog/Tabs/Popover/Navigation Menu/Splitter 等无样式行为原语、键盘与焦点管理 | 自建视觉体系，高可定制 | 需要自己封装风格 Tokens 与业务变体 |
-| shadcn-vue | 可复制的 Vue 组件源码、CLI、统一 Tailwind 风格，常以 Reka UI 构建 | 追求可维护和一致视觉的 Vue 应用 | 不是 React 的 shadcn/ui 组件源码，不混装 |
-| Element Plus | 表单、表格、分页、日期、弹窗等较完整的产品组件 | 数据密集型管理系统 | 先主题化而非叠另一套组件外观 |
-| Naive UI / Ant Design Vue | 业务丰富的组件套件 | 需要大量成熟控件 | 只选择一家作为主体系，避免风格割裂 |
-| Tailwind CSS / CSS Modules | 样式能力，不提供组件行为 | 可配合上述方案 | Tokens 集中，避免各页任意颜色/圆角 |
+| Option | Contents / purpose | Fits | Watch for |
+| --- | --- | --- | --- |
+| Reka UI | Unstyled Select/Dialog/Tabs/Popover/NavigationMenu/Splitter primitives, keyboard/focus | A highly custom visual system | Requires owned style tokens and business variants |
+| shadcn-vue | Copyable Vue component source, CLI and Tailwind style, often based on Reka UI | Consistent and maintainable Vue applications | Not React shadcn/ui source; never mix packages |
+| Element Plus | Substantial forms, tables, pagination, date and dialog suite | Data-intensive admin systems | Theme the installed library rather than adding another skin |
+| Naive UI / Ant Design Vue | Extensive enterprise components | Many mature controls needed | Select **one primary style system** |
+| Tailwind CSS / CSS Modules | Styling tools, not interaction engines | Alongside the above | Centralize tokens; avoid per-page colors and radii |
 
-**优先做**：审查现有 Dialog、Button、Input、Table；已有原语可用时复用，不重新写 div 弹窗。
+**First:** Audit current Dialog, Button, Input and Table. Reuse established primitives rather than rewriting a DIV-based dialog.
 
-## 4. 数据与交互
+## 4. Data and interaction
 
-- 组件局部临时状态：`ref` / `reactive` / `computed`。
-- 多页面共享的客户端状态（侧边栏、偏好设置、操作草稿）：Pinia（项目已用的优先）。不要把所有 API 响应复制进全局 store。
-- 远端服务端状态（查询缓存、重试、失效与同步）：`@tanstack/vue-query`，或 Nuxt 原生数据获取机制；不是 Pinia 的同义替代。
-- 分栏：优先 `Reka UI Splitter`，支持键盘操作，不需照搬 React `react-resizable-panels`。
-- 图表：Apache ECharts（配合项目 Vue 集成）适合复杂数据可视化；较轻场景也可以选择已有 Chart.js 方案。
-- 拖拽：检查 dnd-kit 对应 Vue adapter 的具体版本，或已有的 Vue 拖拽库；与按钮点击、触摸滚动、键盘行为兼容。
+- Local transient component state: `ref`, `reactive`, `computed`.
+- Shared cross-page client state (sidebar, user preferences, operation drafts): Pinia when appropriate; retain current project solution first. Do not copy all API responses into a global store.
+- Remote **server state** (query caching, retry, invalidation, synchronization): `@tanstack/vue-query` or Nuxt's native data-fetching tools. This is **not** synonymous with Pinia.
+- Resizable split panes: Prefer `Reka UI Splitter` with keyboard behavior; don't copy React `react-resizable-panels`.
+- Charts: Apache ECharts with the existing Vue integration for complex visuals; an existing Chart.js solution may suit lighter cases.
+- Drag and drop: Check the installed dnd-kit Vue adapter/version or established Vue drag libraries. Preserve Button clicks, touch scroll and keyboard accessibility.
 
-## 5. 动画适配
+## 5. Motion mapping
 
-1. 简单显示/隐藏：Vue `<Transition>` / `<TransitionGroup>` + CSS。
-2. 组件与布局动效：Motion for Vue（`motion-v`），按官方文档使用 `<motion />`。
-3. 复杂时序、SVG、物理特效：Anime.js v4（命令式，用 `ref` 指向组件 DOM；`onMounted` 后启动，`onUnmounted` 前取消/清理）或 GSAP。
-4. 滚动演示与复杂叙事：GSAP + ScrollTrigger，防止与框架渲染互相篡改布局属性。
-5. SSR：不要在 `setup` 顶层访问 `window` 或创建 DOM 动画，必要时仅客户端加载。
+1. Simple show/hide: Vue `<Transition>` / `<TransitionGroup>` plus CSS.
+2. Components and layout transitions: Motion for Vue (`motion-v`), using `<motion />` according to its official API.
+3. Complex timelines, SVG and physical effects: Anime.js v4 (imperative and scoped through a component ref; start after `onMounted` and cancel/clean before `onUnmounted`) or GSAP.
+4. Scroll-led narrative: GSAP + ScrollTrigger, avoiding conflicts with framework-managed layout properties.
+5. SSR: Do not access `window` or construct a DOM animation at the top of `setup`; load only on the client when needed.
 
-## 6. 组件先行验收
+## 6. Component-first acceptance
 
-- 先实现 `UiButton`、`UiField`、`UiPageHeader`，演示 disabled/loading/focus/error/long-text/dark。
-- 对齐 `examples/vue3-web-components.md` 的示范；真实项目根据已有库更改实现。
-- 业务页面应当组合共享组件和真实逻辑；仅为单个页面临时复制按钮 style 属于反例。
+- Start with `UiButton`, `UiField`, `UiPageHeader`; demonstrate disabled/loading/focus/error/long-text/dark states.
+- Compare the example `examples/vue3-web-components.md`; adapt implementation to actual installed components.
+- Business pages compose shared UI with real logic; copying one-off button styles into each page is an anti-pattern.
 
-## 7. Vue 3 / Nuxt 响应式、组件边界与性能专项门禁（按需）
+## 7. Vue 3 / Nuxt reactivity, ownership and performance gate — task-scoped
 
-- **单一真值源**：局部可推导值优先使用 `computed`，不要通过多个 `watch` 互相抄写状态；副作用由有明确职责的 watcher/事件处理负责。先核对组件职责、当前构建配置与响应式数据来源；小范围修复按实际症状只读取必要的 Vue 专项资料，**不要求加载整套所有框架 Skill**。
-- **数据流与组件 API**：Props 向下、Events 向上；仅为真实双向契约使用 `v-model`，避免在子组件偷偷修改父级状态。复杂组件可用明确的复合模式，不为拆分而拆分。
-- **Composables 生命周期**：DOM observer、计时器、全局事件、网络订阅、动效实例应在所属组件/组合函数内正确停止；SSR 时不在服务端创建浏览器对象。
-- **性能证据**：检查大量行 DOM、深层响应式对象的成本、重复请求、watcher 触发频率、切换主题时是否造成整页重建。必要时优化响应式边界，而不是默认添加昂贵的缓存层。
-- **表单与展示**：触发后显示实际等待/失败/重试状态，确保中文长标签、键盘操作、200% 字级与 reduced motion 仍然可用。
-- **目标环境优先**：仅桌面产品按最低桌面视口验收；移动端/RTL 等额外平台按真实需求开启，而不是在普通 Vue 项目默认加负担。
+- **Single source of truth:** Prefer `computed` for derivable local values, not chains of `watch` that mirror each other's state. Side effects belong to named watchers/event handlers. First inspect the component's responsibility, build configuration and data origin. A small fix needs only relevant Vue material; **do not load all framework Skills**.
+- **Data flow and API:** Props down, Events up; use `v-model` for genuine two-way contracts, not to modify parent state secretly from children. Use compound patterns for genuinely complex controls, not decomposition for its own sake.
+- **Composables lifecycle:** Stop DOM observers, timers, global handlers, network subscriptions and motion instances in their owning component/composable. Do not instantiate browser objects during SSR.
+- **Performance evidence:** Inspect large DOM row counts, deep-reactivity costs, duplicate requests, watcher frequency and whether theme changes remount the entire page. Optimize reactivity boundaries when justified rather than adding heavy caching by default.
+- **Forms/display:** Reflect real pending/error/retry after actions; long Chinese labels, keyboard, 200% text scaling and reduced motion must work.
+- **Target scope:** Desktop-only products require their minimum supported desktop viewport. Add mobile/RTL support only when genuinely in scope.
 
-测试先使用项目已有组件测试与浏览器工具；`scripts/mauforma_check.py` 提供低成本候选风险，不是 Vue 类型检查或运行时 E2E 的替代。
+Use the existing project's component and browser tests. `scripts/mauforma_check.py` collects low-cost static risk candidates; it does not replace Vue type checks or runtime E2E.
 
-官方参考：
+Official:
 - https://vuejs.org/guide/introduction.html
 - https://nuxt.com/docs
 - https://reka-ui.com/docs/overview/introduction

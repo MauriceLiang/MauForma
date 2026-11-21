@@ -1,114 +1,110 @@
-# Sidebar / 桌面侧边导航的成熟视觉规范
+# Sidebar — Mature Visual and Interaction Rules for Desktop Navigation
 
-> 讨论通用 Web 侧栏的可验证视觉与交互原则，所有正反案例均为合成场景，不是任何真实项目的截图复盘。侧栏形态、色彩和指示器并无唯一正确模板；当前任务和用户已确认的设计优先。
+These are verifiable general Web-sidebar principles; all good/bad scenarios are synthetic, **not diagnoses of real user screenshots**. There is no universally correct Sidebar shape, color or selection rail. Actual task and approved user design take precedence.
 
-## 图标系统是独立于导航配色的质量门槛
+## Icon-system quality is independent of sidebar color
 
-侧栏即使颜色/行高/字号都正确，如果 icon 只是按菜单名从库里随手挑选，也可能出现复杂难辨的 Git 拓扑、过密文件夹、过于抽象的化学器皿和视觉重量不统一。优先读 `references/icon-art-direction-gate.md`：**先判每个导航项是什么任务→比较两个经核实的图形候选→同屏观察整套风格→再进入共享 SidebarItem**，不能仅将所有 SVG 宽高/stroke 设成一样就宣称好看。
+Even a Sidebar with correct color, row height and text size can fail when arbitrary icon-name matches produce dense Git topology, illegible file-folder detail, abstract laboratory vessels and mismatched optical weights. Begin with `references/icon-art-direction-gate.md`: **determine each navigation item's task → compare two real/verified symbol candidates → review the whole family on one screen → adopt shared SidebarItem**. Identical SVG width/height/stroke is not proof of visual quality.
 
-实例：“项目比较”如果是仓库/技术项目之间的数据对照，可尝试简洁的相向箭头或比较图；若真是 Git 分支对比则 Git 图标正确。“研究分析”如果核心是散点/统计图，Chart/Scatter 可能比 Flask 清晰；真正实验管理又不同。**此处不是替所有项目固定图标名。** 必须看 16–24px 实际渲染与中文字重、图标 + Badge + Active 背景的整体关系；确认品牌图标不必和通用 UI icon 同形态。整组图标审查失败应更换候选，而非到处微调 margin 或加颜色。
+A “compare projects” operation might use simple opposing arrows rather than a Git-branch topology if it compares project data; if it truly compares Git branches, a Git icon may be right. “Research analysis” with scatter/statistical charts might better use Chart/Scatter than Flask; laboratory administration differs. **These are not mandated icon names.** Check the actual 16–24px render against Chinese weight, icon+Badge+Active background and the group as a whole; brand marks can differ from generic UI symbols. If the group fails, reconsider candidates instead of endlessly adjusting margins/colors.
 
-## 典型反例中的具体问题
+## Common synthetic failures and corrections
 
-| 观察 | 为什么值得纠正 | 应如何修复 |
+| Observation | Why it matters | Repair |
 | --- | --- | --- |
-| 深蓝灰背景、较亮的蓝色选中容器、青蓝色左侧竖条、橙色圆点并存 | 多种强化信号抢夺注意力；橙点的状态含义不明确 | 先统一中性色阶，只让**一个选中状态信号**主导；状态点必须有业务语义和文字/提示 |
-| 仓库分析和最近打开的条目都使用大面积同色选中块+竖条 | 功能导航与被打开的对象层级混淆 | 主导航表示当前路由；最近打开列表表示对象、焦点或当前工作项，采用更轻的强调或独立的选择语义 |
-| 底部原型提示卡和选中导航视觉接近 | 提示抢占日常操作的视觉权重 | 用低对比、中性色的辅助说明，并在布局上与底部账号/状态明确分组；可收起时提供入口 |
-| 大量纵向空白与相同的行高 | 并非错误，但没有体现内容层级 | 导航项 36–44px 级别、组间留白与内容列表按实际密度设定，优先保证可扫描性 |
-| 选中态除了底色和文字强化还叠加左侧亮条 | 多个信号表达同一状态，显得模板化 | 默认取消额外竖条，只保留**底色 + 文字/图标权重**；焦点指示是独立状态，不能因此删除 |
+| Deep blue-gray base, bright blue selected fill, cyan left rail, orange dot simultaneously | Multiple emphasis cues compete; orange state meaning unclear | Use one coherent neutral hierarchy and **one dominant selected signal**; every status dot needs business meaning and text/help |
+| Repository analysis nav and Recent entries use identical large fill+rail | Active destination vs opened object are confused | Main nav represents current route; Recent list represents an object/focus/working item and can use lighter distinct selection semantics |
+| Bottom prototype-note Card looks similar to active nav | Help competes with routine operations | Muted neutral help visually below nav, grouped separately from account/status; keep discoverability if collapsible |
+| Massive vertical whitespace plus uniform row heights | Not necessarily an error but may not reflect actual hierarchy | 36–44px nav-row starting range plus group spacing, adjusted to current density and scanability |
+| Selected adds bright left rail over already emphasized fill/text | Redundant signals create generic template feel | Default to **selected background + text/icon emphasis**, no extra rail; keyboard focus is a separate state, never remove it |
 
-## 0. 先问这一侧栏是什么
+## 0 — Identify the Sidebar's actual purpose first
 
-它可能是后台功能导航、IDE 项目树、树形文件浏览、阅读目录、创意展示的场景轨道、时间线或移动端抽屉。**不要将“不要竖条”误写为所有侧栏绝对禁用。**
+A sidebar might be administrative navigation, IDE project tree, file explorer, document contents, creative-scene rail, timeline or mobile Drawer. Do **not** turn “no bars” into a global prohibition on every sidebar line:
 
-- `Operate` 高频软件工作台：侧栏首先要稳定可扫描，选中态优先采用柔和背景与文字/图标对比。
-- `Read` 文档目录：层级/进度线可能有意义，只有当线条编码当前章节层级或阅读位置时才使用。
-- `Experience` 作品集/流程时间轴：轨道线本身可能是视觉语言；需要解释其含义而不是偷偷加装饰。
-- IDE 文件树或复杂分级导航：连接线可描述树形父子关系；此处的线不是“选中态二次加亮条”。
-- 强调可访问性：选中态必须能被视觉和语义识别；`aria-current="page"` 适用于当前导航链接，键盘焦点需独立可见。
+- **Operate:** Stable, scannable high-frequency navigation. Prefer subtle selected fill plus text/icon contrast.
+- **Read:** TOC hierarchy/progress lines may be meaningful when encoding chapter depth/current position.
+- **Experience:** Portfolio/story timeline rails may be a deliberate visual language with accountable meaning.
+- **IDE tree:** Connector lines represent parent-child structure, not secondary selected emphasis.
+- **Accessibility:** Selected must be visible and semantic: `aria-current="page"` on current route link; keyboard focus remains separately visible.
 
-## 1. 色彩不是随意选择几种“高级蓝”
+## 1 — Semantic colors, not arbitrary “premium blues”
 
-建立整套语义关系；旧版 `assets/sidebar-palette-examples.json` 只用于**色彩对比与状态结构校验**，不是最终推荐配色。用户真正选色与整页搭配参考 `references/sidebar-color-discovery.md` 和 `assets/sidebar-color-directions.json`：
+Old `assets/sidebar-palette-examples.json` is for **color/state relationship checks**, not a final palette. Whole-page user-led color selection belongs in `references/sidebar-color-discovery.md` and `assets/sidebar-color-directions.json`.
 
-| 角色 | 责任 |
+| Token role | Responsibility |
 | --- | --- |
-| `sidebar-bg` | 导航容器整体底色；不与主内容容器竞争 |
-| `sidebar-surface` | 需要背景的分组/页脚，常比 bg 微亮或微暗 |
-| `sidebar-hover` | 鼠标悬停，仅作为短暂反馈 |
-| `sidebar-selected` | 当前路由选择背景，**与 hover 明确区分** |
-| `sidebar-text` | 主文字；支持普通文本 4.5:1 的对比基准 |
-| `sidebar-text-muted` | 分类标题、次级信息；不能淡到几乎看不清 |
-| `sidebar-icon` | 图标层级服从文字；避免每种图标不同色彩 |
-| `sidebar-focus` | 键盘 `:focus-visible`，与路由 `selected` 无关 |
-| `sidebar-border` | 容器或非文本必要边界，不通过数条强描边堆层级 |
-| `sidebar-accent` | 品牌动作的强调色：不是每个导航高亮都要使用 |
+| `sidebar-bg` | Overall nav canvas; not competing with main content |
+| `sidebar-surface` | Group/footer surface distinct from bg if needed |
+| `sidebar-hover` | Temporary pointer hover feedback |
+| `sidebar-selected` | Current route fill, **distinct from hover** |
+| `sidebar-text` | Primary readable text; typical normal text contrast 4.5:1 |
+| `sidebar-text-muted` | Secondary/category labels, not nearly invisible |
+| `sidebar-icon` | Icon supports text hierarchy; not a random hue per icon |
+| `sidebar-focus` | Keyboard focus-visible **independent** of route selection |
+| `sidebar-border` | Container boundaries, not multiple heavy decorative rules |
+| `sidebar-accent` | Brand-action emphasis, not every active navigation element |
 
-**关系优先于绝对色值**：同色相或邻近中性色调的底色 → 轻微亮度区分 hover/selected → 主次文字亮度区分 → 唯一品牌强调用途 → 独立的语义成功/警告/错误。橙色不应随意作为“看起来活泼”的默认选中装饰点，但**真正的警告、未读和失败状态可以使用橙/红色**，并有文案、形状或 tooltip 表达，不是单靠颜色。
+**Relationships outrank literal colors:** Similar hue or adjacent neutral base → subtle luminance separation for hover/selected → primary/secondary text contrast → restrained brand accents → independent success/warning/error. Orange is not a default “lively” dot, **but actual warning/unread/failure can use orange/red** along with text, shape or Tooltip, not color alone. Dark mode needs its own palette rather than inverted light values; numerical checks of sampled colors cannot verify actual screenshot aesthetics.
 
-暗色模式要分别调色，而不是对浅色调色板反相。调色板检测只能检查指定的数值对比，无法证明整个截图的美观性与使用体验。
+## 2 — One dominant visual system for selected state
 
-## 2. 选中态只需一个主视觉系统
-
-推荐三种可选策略：
-
-| 策略 | 实现 | 适合 |
+| Strategy | Implementation | Appropriate use |
 | --- | --- | --- |
-| **A · Soft inset（默认推荐）** | 单块低饱和底色 + 对比清晰的文字/图标 + 适度字重变化；没有附加左侧高亮条 | 大多数管理后台、产品工作台 |
-| B · Text emphasis | 无选中块，以文字/图标权重和浅色背景节奏表示当前路径；有明确 hover/focus | 极简桌面工具、简洁阅读侧栏 |
-| **C · External active indicator（可选）** | 若需要短竖条，放置在**当前导航项外侧的独立 gutter**，与导航项圆角背景有间距；不得用导航项自己的彩色左边框/inset shadow 冒充 | 明确需要路由定位提示的侧栏 |
-| D · Contextual rail | **有明确语义的**目录层级线、时间轴或 TreeView guide；与现有底色的其他强调保持克制 | 阅读章节、层级导航、创意时间线 |
+| **A — Soft inset (default recommendation)** | Low-saturation single background with clear label/icon contrast and moderate weight; no additional left bar | Most admin/workspaces |
+| **B — Text emphasis** | No selected Card; font/icon weight and quiet region rhythm, independently visible hover/focus | Minimal desktop/read sidebars |
+| **C — External active indicator (optional)** | Short bar in **independent gutter outside nav item**, with visible separation from rounded fill; never use item border/inset shadow as imitation | Routes requiring clear location cue |
+| **D — Contextual rail** | Actual structural TOC hierarchy, timeline or Tree guide | Learning chapters, trees, creative timelines |
 
-不要一项状态同时使用：强底色 + 左侧发光亮条 + 渐变描边 + 强阴影 + 同色高亮图标。**外置选中指示条与彩色左边框不是同一个样式**：即使用户希望有竖条，也必须把短条放在导航项边界之外，不能简单给选中项加彩色 `border-left`、`border-inline-start`、内部 `box-shadow: inset` 或贴边的伪元素。树枝/时间线等结构性线条是另一种语义，不适用这项导航选中装饰规则。详见 `references/sidebar-selection-indicator-gate.md`。
+Avoid stacking a strong selected fill, glowing left bar, gradient outline, heavy shadow and tinted icon for one state. **External indicator and colored nav-item border are different shapes.** If a rail is justified, place it outside the item; `border-left`, `border-inline-start`, inset `box-shadow` and attached pseudo-elements are forbidden as substitute selected rails. Genuine tree/timeline connector lines have distinct semantics. See `references/sidebar-selection-indicator-gate.md`.
 
-选中状态 VS 其他状态：
-- Hover：暂时指针反馈，不能盖过 selected。
-- Selected：真实当前路由或当前工作对象，用正确的语义标识。
-- Focus-visible：**必须独立识别**，就算 selected 没有亮条也不能消除键盘 focus outline。
-- Disabled：不可点击与权限状态需要文字或提示，不能只变灰。
-- Loading/error：明确实际含义；不能为装饰随意放一颗橙点。
+State distinctions:
+- **Hover:** Temporary pointer feedback, not stronger than selected.
+- **Selected:** Current real route or working object with accurate semantics.
+- **Focus-visible:** **Separately visible**, even when selected has no rail.
+- **Disabled:** Explain nonactionable/permission state, not merely gray.
+- **Loading/error:** Reflect real meaning; no arbitrary orange dot.
 
-### 外置短竖条的布局约束（仅在选择该方案时）
+### External short-rail layout only when chosen
 
-- 指示器由导航行容器负责，**放在链接/按钮 DOM 外侧**（例如与 NavLink 并列的 `aria-hidden` 装饰节点），预留一致 gutter，不改变 NavItem 自身左边框、内部 padding、圆角和背景。
-- 只在当前路由显示；路由变更后从同一真实选中状态派生，其他行的标记透明或不渲染，所有行的文字起点保持对齐。
-- 竖条宜短且有可见间隙，不贴合按钮整个高度；焦点轮廓仍单独画出。窄屏/折叠态不让条形遮挡图标或被父级 `overflow:hidden` 截断。
-- 需要“无条、独立外置条、反例内嵌色边”对比时使用 `assets/sidebar-refinement-gallery.html`，其内嵌高亮仅是**错误对照**，不能作为复用代码。
+- Nav row owns the indicator, **outside link/Button DOM** as decorative sibling or parent element; reserve uniform gutter without changing NavItem left border, padding, radius or background.
+- Show for only the current route, deriving from actual router state. Other rows' indicators are transparent/absent, text starts aligned.
+- Keep rail short with visible positive gap; no clipping of icons or rails in collapsed/narrow Sidebar. Focus ring is still separate.
+- `assets/sidebar-refinement-gallery.html` compares no rail, valid external rail and invalid attached border. The attached example is a **negative** fixture, not reusable production code.
 
-## 3. 功能导航 / 最近打开 / 提示 / 用户区分层
+## 3 — Separate nav / recent / help / account areas
 
-1. **功能导航**：少量核心入口，按信息架构排序，活动路由可用 `aria-current="page"`。
-2. **最近打开**：更像可扫描对象列表；当前打开项可采用轻灰底或细字重，不机械复制功能导航的 active 背景；“最近访问”不等于“当前所在路由”，不要双重激活误导。
-3. **分组标签**：无功能的信息不使用强蓝高亮，颜色与字号低于内容标签。
-4. **帮助/提示模块**：默认低优先级，通常视觉权重低于导航；需要始终展示的安全或故障提示例外。
-5. **账户/设置区**：位置和反馈稳定，侧栏收起状态也能访问；底部固定区域在小窗口不遮挡导航。
-6. **滚动与折叠**：主导航区域可滚动，底部功能保留；键盘/屏幕阅读器顺序与视觉顺序一致。
+1. **Main navigation:** Core destinations sorted by IA; use `aria-current="page"` for active route.
+2. **Recent objects:** Scannable object list; active object may have lighter fill/weight. “Recently opened” does not necessarily equal “current route,” so avoid misleading double-active styles.
+3. **Group labels:** Information-free headings get no bright accent; type prominence lower than actual content.
+4. **Help/tip:** Usually supporting priority; permanent safety/failure warnings may have higher priority.
+5. **Account/settings:** Stable and reachable in collapsed nav; fixed bottom area must not obscure navigation in short windows.
+6. **Scroll/collapse:** Main nav may scroll, footer remains accessible, keyboard/screen-reader order matches visual sequence.
 
-## 4. 应纳入组件 API 和视觉测试
+## 4 — Component API and visual tests
 
-- `UiSidebar`、`UiNavItem`、`UiRecentItem`、`UiSidebarSection` 的职责不同：不能全部靠一套 `active` 样式混用。可选 `SelectionIndicator` 在 NavItem 外层行容器中独立渲染，不占 NavItem 内侧边框。
-- Props：`selected` 对应真实路由/工作对象、`badgeStatus` 对应真实业务信息；颜色只作为呈现派生结果。
-- Vue/React 沿用原有 RouterLink/NavLink 或框架导航，不能用 `div + onClick` 假链接。
-- 展示/验收：默认、hover、selected、focus-visible、disabled、collapsed、长中文/英文、窄窗口、浅色/深色；标注运行过与未运行的项目。
-- 在视觉对比中，**先问条形指示器编码了什么独立信息**，若无法解释则删去，而非按某个特定颜色禁用所有边线。
+- `UiSidebar`, `UiNavItem`, `UiRecentItem`, `UiSidebarSection` have distinct responsibilities; one `active` style does not fit all. Optional `SelectionIndicator` lives in outer row, not NavItem border.
+- Props: `selected` corresponds to real route/working object; `badgeStatus` means genuine business status. Color derives from semantics.
+- Reuse Vue/React RouterLink/NavLink or framework links; `div + onClick` is not a navigation link.
+- Gallery/QA: default, hover, selected, focus-visible, disabled, collapsed, long CJK/English, narrow view, light/dark **and 200% text scaling**. Record observed and unobserved cases.
+- Before adding rail ask **which independent information it encodes**. If no answer, remove it; never ban every colored line merely because of a particular hue.
 
-## 5. 必须出现的正反案例
+## 5 — Required positive and negative synthetic comparisons
 
-**差（合成反例）**：选中项自己的左边框被染成高饱和彩色，配合明亮底色与强图标，最近打开项也叠加同样强调，产生多个“当前项”的假象。
+**Bad:** Current nav link's own left border is heavily colored over bright fill/icons; Recent objects also duplicate it, creating multiple false “current locations.”
 
-**好（高频工作台）**：导航当前页只有低对比背景、稍强字体与图标，focus 只在键盘导航时显示；最近打开对象是更轻的列表选中/状态，橙点仅用于“构建失败”等实际状态并配标签。
+**Good for frequent work:** Current route uses restrained background, stronger label/icon; keyboard focus independently appears when navigating. Recent objects have lighter selection; orange dot only for a real “build failed” status with explanation.
 
-**可选正确形态**：当前路由项外侧 gutter 独立出现短竖条，中间有空隙，按钮背景与四边圆角保持完整；其他行没有彩条。**树形例外**：层级连接线负责表达结构，非普通导航选择边框。
+**Valid optional:** Short external rail in gutter, visible gap, intact four-sided item border/radius. Other rows have no rail. **Tree exception:** Connector lines encode hierarchy rather than nav item selected border.
 
-可打开 `assets/sidebar-refinement-gallery.html` 进行不同状态的概念对照，但该文件是原创示例，不是用户实际项目的修复截图。真实项目仍要对比实际页面后验收。
+`assets/sidebar-refinement-gallery.html` is an original conceptual demo, not a real user app screenshot or tested repair. Actual product QA remains required.
 
-## Sidebar 背景、选中态不能由 Agent 擅自决定
+## Sidebar palette and selection are user decisions
 
-面对已给出的侧栏截图，先分析**侧栏 / 主内容 / 顶栏 / 卡片 / 数据图**的整体颜色，不能只凭深色侧栏这一个区域觉得“科技感”而选深蓝。新建/重设计且颜色未定时，读取 [用户主导选色流程](sidebar-color-discovery.md) 与 [真实参考体系研究](sidebar-color-reference-cases.md)，推荐 2–3 套整页配色，并由用户决定。官方案例提供的是颜色语义与层级方法，不是可直接复制的品牌色。
+Given a Sidebar screenshot, inspect **Sidebar/Main/Topbar/Card/Chart** together, not just a dark sidebar that “looks technical.” For new/redesign without resolved color, read `references/sidebar-color-discovery.md` and `references/sidebar-color-reference-cases.md`, recommend 2–3 coordinated whole-page directions, and let the user decide. Official examples provide semantic color methods, not directly transferable brand HEX values.
 
-用户明确选择黑、白、绿、紫、蓝、具体 HEX，均应尊重；必要时调整**周围**的 text/selected/hover/focus/main 来符合对比要求，不能秘密篡改固定色。最终用 `assets/sidebar-color-preview.html` 的整页模型预览（只作概念）和真实项目截图对比。未经批准的推荐不可写入项目正式主题，真实已有已确认品牌色可继承。侧栏的独立 Token 仍归全站 MASTER 所有，不允许无理由与顶部栏/主内容出现第二套品牌色。
+Respect explicit black/white/green/purple/blue or specific HEX choices. Where contrast fails, adjust **surrounding** text/selected/hover/focus/main, not secretly rewrite the selected brand color. `assets/sidebar-color-preview.html` is a conceptual whole-page preview; verify on the actual app. Unapproved recommendations cannot be committed as final theme. Existing confirmed colors can be inherited. Sidebar tokens remain owned by global MASTER, not a competing brand theme.
 
-## 先决定是否需要侧边栏，再决定侧栏长什么样
+## Decide whether Sidebar is needed before styling it
 
-本文件只规定**当方案确实需要侧边栏时**的状态、颜色和组件行为；在新建/重设计前必须先读取 `references/navigation-architecture.md`。少量顶部平级栏目、手机 3–5 个高频导航、宽屏两级对象列表、全局顶部与局部侧边并存以及页面底部操作条，可能需要完全不同的导航架构，不能因“工作台”三字就自动左侧栏。不得把同一组路由在顶部、侧边、底部重复绘制。导航位置是独立决策，侧栏配色仍按 v6.6 用户确认。
+These rules apply **only after actual navigation architecture calls for a Sidebar**. For new or redesign first read `references/navigation-architecture.md`. A few top-level categories, mobile 3–5 core routes, dual-object lists in wide workbenches, Top+Side or a bottom action bar can need different navigation modes. “Workbench” alone does not mandate left navigation. Do not repeat the same route list in Top, Side and Bottom. Navigation placement is a separate decision from user-approved v6.6 colors.

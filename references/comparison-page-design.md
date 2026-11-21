@@ -1,82 +1,81 @@
-# Comparison UX & Chart Integrity · 比较是帮助判断差异，不是把图表并排（v6.10）
+# Comparison UX & Chart Integrity — Help Compare Differences, Not Just Arrange Charts (v6.10)
 
-## 触发与现状
+## Trigger and observed failure examples
 
-适用于项目、产品、套餐、技术选型与其他多对象比较。以下为合成界面反例及通用验证规则：
+Applies to projects, products, plans, technology selection and other multi-object comparisons. The following are illustrative UI cases and general verification requirements:
 
-- **图表内对齐被漏检**：左「相邻发布间隔」与右「发布节奏分布」的卡片上下边界相近，但 Plot Area、X 轴基线、数据标签和内部空白仍不同；右图末端“63天/60天/67天”等文字密集重叠。v6.9 仅确保外部网格并不能证明数据可读。
-- **比较流程缺少差异结论**：选定三个仓库后，右侧大趋势图、协作图、长说明、明细表堆叠；右侧「比较口径」大卡内真实有效内容很少；图例显示多个仓库而图中是否都有真实序列不清，右侧图表与下方数据表难以围绕同一指标对照。
-- **不要臆断**：截图无法确认数据来源是否正确、三个仓库是否都加载成功、隐藏系列是否被 tooltip 覆盖或是否有用户可见的额外交互。必须在实际数据模型和浏览器中复核。
+- **Interior alignment missed:** Cards for adjacent release intervals and cadence distribution appear to share outer edges, yet plot regions, X-axis baselines, labels and whitespace differ. Dense right-edge labels such as “63/60/67 days” collide. v6.9 exterior Grid integrity does **not** prove the charts are readable.
+- **No clear comparative insight:** After selecting three repositories, a large trends chart, collaboration chart, verbose explanation and table occupy space. A methodology Card contains little actual value. Legend names several repositories but it is unclear whether each has a genuine series, and metrics do not compare across chart/table consistently.
+- **No unsupported assumptions:** Screenshots do not prove source-data correctness, that all repositories loaded, whether a hidden series is revealed by Tooltip or whether additional interactions exist. Verify real data model and actual browser.
 
-## 参考研究 · 保留来源和可迁移边界
+## External research — preserve source and transfer limits
 
-| 网站/研究 | 真正值得借鉴 | 迁移到仓库比较 | 不要照抄 |
+| Site/research | Transferable value | How it informs repository comparison | Do not copy |
 | --- | --- | --- | --- |
-| [Nielsen Norman Group — Comparison Tables](https://www.nngroup.com/articles/comparison-tables/) | 选项列 + 属性行；同类属性一致、易扫描；突出差异；可选显示属性；小数量对比，移动端合理退化 | 选择 2–4 仓库，固定指标列，差异突出，控制维度 | 不强迫数据趋势全部转换为规格表 |
-| [RTINGS — Headphone Compare](https://www.rtings.com/headphones/tools/compare) | 先看主要差异，再看相同口径的逐项测试结果 | 先给出可信的指标差异摘要，更多细节展开 | 消费品评分/统一总分不能硬套开源项目 |
-| [Apple — Mac Compare](https://www.apple.com/mac/compare/) | 少量对比对象与对齐的参数行，类别分类可扫描 | 仓库作为列、活跃/维护/Issue/PR 等为行 | 它是商品规格比较，不是时间序列分析 |
-| [npmcharts — npm package comparison](https://www.npmcharts.com/compare) | 共享时间轴的多包趋势叠加，比较数量与单位保持一致 | 多仓库活跃度同时间范围、清晰系列图例和缺失点 | npm Downloads 不能直接类比 GitHub commits |
-| [EcosystemPulse — Package Comparisons](https://ecosystempulse.dev/comparisons.html) | 同维度且有来源的公共指标，不凭空制造一个赢家 | 只从共同采样/共同口径得出比较结论 | 不能用它的具体 npm 数字替代 GitHub 实际数据 |
-| [Baymard — Comparison Tool Examples](https://baymard.com/ecommerce-design-examples/39-comparison-tool) | 比较的选择流程和并排规格信息也可能让用户困惑；研究反例有价值 | 评估选仓库流程、阅读成本及反面案例 | 电子商务销售转化与数据分析工作台目标不同 |
-| [GitHub Docs — Comparing Commits](https://docs.github.com/en/pull-requests/how-tos/commit-changes/comparing-commits) | 明确 base/compare 差异与上下文来源 | 对于**分支/提交比较**可借鉴清晰对象选择 | 这是代码差异工具，不是多仓库趋势对比模板 |
+| [NN/g — Comparison Tables](https://www.nngroup.com/articles/comparison-tables/) | Option columns + aligned attribute rows, scanning and differences, optional properties, reasonable small-set/mobile fallback | Select 2–4 repositories, fixed metric column, highlight differences | Do not force every time-series into a specs table |
+| [RTINGS — Headphone Compare](https://www.rtings.com/headphones/tools/compare) | Main differences first, then comparable standardized test details | Start with credible metric differences, expand detail | Consumer scoring/aggregate ranks cannot be imposed on open-source projects |
+| [Apple — Mac Compare](https://www.apple.com/mac/compare/) | Few choices, aligned specifications and scannable categories | Repositories as columns, activity/maintenance/Issue/PR as rows | Product spec comparison is not time-series analytics |
+| [npmcharts](https://www.npmcharts.com/compare) | Several package trends share time axis, units and legible series labels | Repository trends on one time range with missing points explained | npm downloads ≠ GitHub commits |
+| [EcosystemPulse — Comparisons](https://ecosystempulse.dev/comparisons.html) | Comparable public-source metrics | Conclusions only from shared scope/coverage | Never substitute npm numbers for real GitHub data |
+| [Baymard — Comparison Examples](https://baymard.com/ecommerce-design-examples/39-comparison-tool) | Study useful and difficult selection/side-by-side patterns | Evaluate entity-picking friction and scan cost | Commerce conversion isn't the same goal |
+| [GitHub Docs — Comparing Commits](https://docs.github.com/en/pull-requests/how-tos/commit-changes/comparing-commits) | Clear base/compare selection and diff context | Branch/commit comparisons only | Not a multi-repository trends layout |
 
-NN/g 研究建议多对象比较通常先缩小到少量（动态表格常见 3–4 项），但这只是认知负担经验，不是“最多 4 仓库”的强制产品限制。更重要的是**标准可扫描结构、可移除对象、属性一致性、突出差异和提供明细入口**。移动端通常无法展示很多并排列，应明确对象切换/双对象并列/可横向滚动的取舍。
+NN/g's guidance often favors reducing comparisons to a small set (around 3–4 for dynamic tables). **This is a cognitive-load heuristic, not a hard maximum of four repositories.** More important: scannable standardized attributes, removable items, emphasized differences and access to details. Many columns need a deliberate mobile strategy—switch entities, compare two at once or allow meaningful horizontal scroll.
 
-## Gate C0 · 先定义“为什么比较”，再选模板
+## Gate C0 — Define the decision before selecting a layout
 
-至少识别：`decision_question`（用户希望知道什么）、`entities`（比较谁）、`metrics`（用什么口径比较）、`period`（时间区间）、`context`（跨项目是否可直接公平比较）、`output`（如何辅助判断）。不要把聚合统计、趋势分析、协作详情和冗长教程都铺在同一屏。
+Establish `decision_question` (what user wants to learn), `entities`, `metrics`, `period`, `context` (comparability across objects) and `output` (how conclusion is supported). Do not place every aggregate, series, collaboration detail and tutorial on the same screen.
 
-| 问题 | 方案 | 推荐场景 |
+| Question | Composition | Suggested use |
 | --- | --- | --- |
-| A 和 B 哪个更合适 | Side-by-side table + 关键差异 | 规格、维护状态、技术选型，离散属性可对齐 |
-| 多个项目谁更活跃/如何变化 | Shared-time-series overlay + 关键指标矩阵 | 2–4 个仓库活跃度、贡献者与 Issue/PR 时序 |
-| 项目规模不同如何看节奏 | 提供绝对值与**明确标注**的相对/人均指标切换 | 仓库代码量、贡献者基数差异大，避免绝对提交数误导 |
-| 只想比较近况 | 紧凑指标矩阵，展开二级图表 | 首屏决策，高频切换 |
-| 需要比较多个研究报告 | 对齐方法、样本量、覆盖窗口，并保留不兼容数据提示 | 专业分析，防止虚构综合“赢家” |
+| Which of A and B fits? | Side-by-side table + meaningful differences | Specs, maintenance, selection; comparable discrete attributes |
+| Which project is more active/how do they evolve? | Shared time series + metric matrix | 2–4 repository activity, contributors and issue/PR trends |
+| Different scale; how compare pace? | Switch absolute and **explicitly labeled** normalized/per-contributor values | Different repo size and contributor populations |
+| Recent state only | Compact metrics, optional charts on disclosure | First-screen decision and frequent switching |
+| Comparing reports | Align method, sample n and coverage; preserve incompatibility warning | Research; no invented composite “winner” |
 
-## Gate C1 · 可选的多对象比较结构
+## Gate C1 — Optional multi-object comparison structure
 
-1. **页头**：`项目比较` + 1 行明确的比较目标（例如“观察同一时间范围的提交与协作趋势”），不要加抽象营销副标题。
-2. **选择对象条**：2–4 个仓库 chips（可替换/删除），主内容区内可随时查看谁参与了对比，选中态与图例颜色/顺序稳定；需要 7+ 仓库时用搜索/选择 Popover 或抽屉，不长期占左侧三分之一空间。
-3. **紧凑差异摘要**：选择一个主要比较目标（活跃度/协作效率/版本节奏），只展示 2–3 个**确实可比较的差异**；如果样本不足，写“不可比较/暂无数据”，不得写“领先”或伪结论。
-4. **一个主趋势图**：相同 X 窗口/粒度/单位；每个已选对象要么有对应序列，要么在图例明确显示“无数据/覆盖不足”；图例颜色与仓库 chips 一致。若有 3 个 repo 选中但图只有一条可用线，必须清楚显示另外两条是无数据、隐藏还是错误。
-5. **指标对照表**：列为仓库、行为指标（如 完整周、Issue P50、PR P50、采集覆盖）；关键差异可轻量强调，但不能对不同时间口径或不同样本量的指标使用同一个排名。值为 `null` 时展示“— / 无数据”，绝对不能变成 `0`。
-6. **可选钻取**：点击一条指标/仓库跳到具体详情；导出 CSV 时保留对象 ID、指标、单位、窗口、n 值/覆盖状态。复杂比较方法说明采用可发现的“数据口径”展开项，不占整张空心高卡。
-7. **空/错误态**：不足 2 个仓库时突出“选择对象”，不画无意义单系列的“比较图”；失败/部分采集/超时则明确哪个仓库不可比。
-8. **页面宽度与滚动**：对象条、主图、矩阵共享内容边界；支持完整纵向滚动和固定栏末端安全。图例、表头、Plot Area、标签受 v6.9 + v6.10 双重检查。
+1. **Page header:** Direct “Compare Projects” + one actual decision goal line, such as “Compare commit and collaboration trends over the same time interval,” never generic slogan.
+2. **Selected object strip:** 2–4 removable/replacable repository chips in the main content, stable order/colors matching the legend. With 7+ entities use search/Popover/Drawer instead of dedicating one-third of page to permanent selector.
+3. **Compact differences:** Choose one primary comparative target and show only 2–3 **genuinely comparable** deltas. If insufficient sample, say “Not comparable/No data”—never fabricate leaders.
+4. **One main trend:** Shared X-axis window, aggregation and unit. Every selected object has a real series **or an explicit coverage/no-data state in legend**. For three selected and only one available series, identify the other two as missing, hidden or failed rather than implying all appeared.
+5. **Metric table:** Repositories as columns; rows include comparable measures (full weeks, Issue P50, PR P50, coverage). Highlight differences carefully; never rank data from incompatible windows or sample sizes. `null` displays dash/No data, **never 0**.
+6. **Optional drilldown:** Link metric/entity to detail; CSV exports include ID, metric, unit, window, n/coverage. Put advanced methodology in discoverable details, not an empty oversized Card.
+7. **Empty/error:** With fewer than two repositories, emphasize selecting an object instead of drawing a bogus single-series comparison; identify failures/partial collection/timeouts by entity.
+8. **Width and scroll:** Strip, chart and matrix share content edges; full vertical reachability and fixed-footer clearance. Check legends/headers/plot/labels under v6.9 and v6.10.
 
-## Gate C2 · 数据比较契约：数据正确高于“有三条彩色线”
+## Gate C2 — Data contract: truth outranks three colored lines
 
-用 `examples/comparison-contract-demo.json` 记录：
-- `selected_entity_ids` 必须和 `series[].entity_id` **一一对应**；没有观测值也要明确标 `no_data`，**不得仅填不存在的线以凑图例**。
-- 所有 `series[].points[].bucket` 在共享 `time_buckets` 中；一致的单位、聚合粒度、时间窗口。时序可有缺失桶，缺失用 `null` 并用 `missing_reason` 解释，不得补零。
-- 同一时间窗口上比较不同仓库时，检查各自覆盖区间；未覆盖部分不可填 0，也不可让渐进数据暗示完整。
-- 离散表格每个 metric 给出 `unit` / `direction` / `sample_size` / `coverage_status`。仅在明确统一口径时渲染同比差、排名或百分比。
-- 对已有 UI 截图中的三个已选仓库，不要把单条线包装成“多仓库对比已完成”。
+Record in `examples/comparison-contract-demo.json`:
 
-## Gate C3 · 图表内部对齐与标签冲突（新增检查）
+- `selected_entity_ids` must correspond **one-to-one** with `series[].entity_id`; if observations are absent, explicitly mark `no_data`. **Do not synthesize a nonexistent line just to populate legend.**
+- Every `series[].points[].bucket` belongs to common `time_buckets` with consistent unit/granularity/window. Missing buckets use `null` and `missing_reason`, not filled zeros.
+- Check each entity's coverage window; uncovered intervals cannot be zero or masquerade as complete.
+- Each discrete metric gives `unit`, `direction`, `sample_size`, `coverage_status`. Deltas, ranks or percentages only when definitions are actually comparable.
+- A screenshot with three selected objects and one visible line is not proof a multi-object comparison has been completed.
 
-**外框对齐只是第一层**。要把 Chart Header、Plot Region、Axis/Legend/Labels、Footnote 分开检查。
+## Gate C3 — Chart interior alignment and label collisions
 
-1. 同组可以比较的图表，Plot Area 的**顶部与底部基线**要可跟踪；对于不同类型图（柱状 vs 散点），允许独立绘图区高度，只要能够解释语义且标签没有互相抢位。不要让统一容器 height 掩盖内部空白/轴漂移。
-2. 折线图与柱状图的 X 轴日期格式、桶数、时间窗应相同；如果不同则明确表示“无法直接逐点比较”。不同 Y 轴单位不可强迫等比例。
-3. **数据标签碰撞**：两条文字/点和文字重叠、靠近边缘被裁、多个相近数值叠在同一个位置，必须修复。可用交替标注、智能布局、只显示关键极值、tooltip 或增大绘图内边距；不能无条件删除所有数值标签。
-4. Legend 必须对应实际可见/有数据/明确 unavailable 的对象；三条颜色应在浅深色有足够区分，并可键盘操作开关（交互图表）。
-5. 提供可选 `data-mf-chart-group`, `data-mf-chart-plot`, `data-mf-chart-label` 等 DOM 标注用于运行时审核；**Canvas 图内文字不一定能被 DOM 几何工具检测**，必须检查 ECharts/Chart 库的本机布局功能、真实截图与 tooltip。不要把没有标注的图表宣称自动检查通过。
-6. 值可以缩写但不能出现“85天/85天”叠加，也不能把单位、样本量缩到难读。
+**Outer Cards aligning is just the first layer.** Review Chart Header, Plot Region, Axis/Legend/Labels and Footnote separately:
 
-## Gate C4 · 浏览器与数据回归必经
+1. For comparable neighboring charts, plot top/bottom baselines should be traceable. Different chart kinds (bar vs scatter) may legitimately use different plot height when explained and labels do not compete. Equal outer Card height cannot disguise whitespace/axis drift.
+2. Date tick format, bucket count and time window should match for directly compared line/bar plots. If not, label “not directly comparable point by point.” Different Y-axis units do not need identical scale.
+3. **Text/data label collision:** Overlapping labels, numbers clipped near edges or multiple nearby values stacking at one coordinate must be repaired. Alternate placement, smart layout, key extrema only, tooltips or plot padding; do not blindly remove all numeric labels.
+4. Legend must correspond to actual visible/available or explicitly unavailable objects. Light/dark series colors distinguishable; interactive charts support keyboard toggling.
+5. Optional DOM annotations `data-mf-chart-group`, `data-mf-chart-plot`, `data-mf-chart-label` allow limited runtime heuristics. **Canvas chart text often cannot be inspected through DOM geometry**; review chart-engine native layout features, screenshots and Tooltips. No markup means no claim of automated inspection pass.
+6. Abbreviations may be valid, but two “85 days” labels must not overlap; unit/sample counts must stay legible.
 
-**静态计划检查** `python3 scripts/validate_comparison_contract.py examples/comparison-contract-demo.json --repository` 用于核对选择对象/系列/窗口/缺失/表格统一口径，不能检测真实 ECharts 绘图。
+## Gate C4 — Real browser and data regressions
 
-**实际浏览器检查** 可用 `node scripts/audit_comparison_ui.mjs --url http://127.0.0.1:5173/compare --out ./compare-audit`。它输出首屏/完整页与图表几何/标注冲突线索；如未找到带标注的绘图区，报告 `NOT AUDITED` 而不伪造 PASS。必须在真实 1440×900 / 1280×720 / 390×844 的桌面、矮窗口和手机视口复测，确认：
-- 改变仓库选择会联动图例、图表、表格和差异摘要；
-- 所有选中仓库的 data 状态可发现（含无数据）；
-- 对照表同一指标行对齐，移动端仍能理解同一行值；
-- 切换 30/90/180 天影响所有图表和表格且清楚标出覆盖范围；
-- 未提供真实样本不显示凭空编造的获胜者；
-- 图表标签不碰撞、不被裁，最后表格/操作按钮可滚动抵达。
+**Static plan:** `python3 scripts/validate_comparison_contract.py examples/comparison-contract-demo.json --repository` checks synthetic selection/series/window/missing/matrix consistency, **not actual ECharts visual output**.
 
-### v6.8 与 v6.9 的关系
+**Browser option:** `node scripts/audit_comparison_ui.mjs --url http://127.0.0.1:5173/compare --out ./compare-audit`. It provides first/full-page captures and geometry/label collision candidates. If no annotated plot, report `NOT AUDITED`, not invented PASS. On the *real application* check relevant 1440×900 / 1280×720 / 390×844 desktop, low-height and mobile views (as supported):
+- Selection changes update legend, series, table and difference summary together.
+- Each selected object has a discoverable data state, including no data.
+- Matrix rows align same metric; mobile can still compare corresponding values.
+- Switching 30/90/180 days updates all views with clear coverage.
+- Without real samples, no manufactured “winner.”
+- Labels don't collide/clip; final rows/actions reachable through scroll.
 
-v6.8 解决“应该展示哪些内容”，v6.9 解决“模块网格和底部完整性”，v6.10 解决**同类多对象怎么比较、图内对齐与数据一致性**。不能把比较页重新做成四张统计卡 + 两张大图 + 一块“口径说明”空白卡。真实用户风格/主题/密度选择优先。
+v6.8 curates content, v6.9 protects grids/scroll, and v6.10 governs **multi-object comparability, plot alignment and data correctness**. Do not rebuild comparison as four KPI Cards + two huge charts + empty methodology Card. User-approved theme/density remains authoritative.

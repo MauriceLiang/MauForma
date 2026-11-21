@@ -1,100 +1,100 @@
-# Component Library First — 基础交互组件优先复用门禁
+# Component Library First — Reuse Accessible Interaction Components
 
-> **适用**：所有有可见交互控件的 Web 项目（新建、重构、页面新增）。本规范约束 Agent 的**实际实现行为**，不是一个“可选的组件库推荐目录”。小型静态站、特殊可视化、用户明确要求原生方案等有例外，但需要说明。
+> **Applies to:** All Web projects with visible interactive controls, whether new pages, refactoring or new feature pages. This gate regulates **actual Agent implementation**, not a merely optional library list. Small static sites, specialist visualizations and explicitly native solutions can qualify for documented exceptions.
 
-## 权限与例外边界（B04，中英语义一致）
+## Authority and exception boundaries (B04, EN/ZH-equivalent)
 
-组件优先并不等于**无授权安装依赖**。先检查既有 UI 库、锁文件、项目规范和真实控件需求；“组件库优先”只适用于当前页面**实际需要的**交互控件，不要求每张页面都同时实现 Select、Combobox、Dialog 等全套组件。用户授权开发并允许按需修改项目依赖时，Agent 可以选择兼容且必要的主库、记录选择理由、影响的锁文件与验收结果；若用户禁止引入依赖或仅授权评审，优先复用原生语义控件，确实无法满足才报告阻塞。不得静默安装全局 Agent Hooks、改写全局环境或把跨框架组件当兼容。
+“Component-first” never grants permission to install unapproved dependencies. Inspect existing UI libraries, lockfiles, project conventions and actual control needs first. Apply the policy only to **controls actually required by the current page**, not an entire mandatory library showcase. When implementation and necessary dependency changes are delegated, the Agent can select a compatible primary library and document its rationale, lockfile impact and verification. If dependencies are prohibited or the task is review-only, reuse semantic native controls and report genuine blockers. Never silently install global Agent hooks, alter a global environment or treat cross-framework libraries as interchangeable.
 
-## 核心规则：能复用成熟组件，就不要重新造基础交互控件
+## Core rule: reuse mature controls instead of recreating interaction primitives
 
-**在编写第一个业务页面之前，必须完成组件来源决策并实际采用选定方案。** “组件优先”不等于先写自己的 `UiButton/UiSelect` 再在每个页面里覆盖 CSS；应优先复用项目已有的成熟组件，缺少时为当前技术栈主动选择一套主组件方案。共享 `Ui*` 只是封装与统一 theme 的适配层，不能重新实现 Select、Combobox、Menu、Dialog 的焦点与键盘引擎。
+**Choose and actually adopt the control implementation strategy before implementing the first business page.** Component-first does not mean authoring a home-grown `UiButton/UiSelect` set and patching CSS independently on every route. Prefer established components already in the project; where missing, proactively select a suitable main strategy. Shared `Ui*` wrappers are for stable APIs and themes, not rewrites of Select, Combobox, Menu or Dialog focus and keyboard engines.
 
-不可以因为用户没有主动说“用组件库”，就默认用手写的 `div + click + absolute` 下拉列表，或者让不同页面的选择框、按钮、选中状态各自实现。Agent 必须主动行动，不等待用户在第一版完成后指出控件粗糙。
+Do not default to handwritten `div + click + absolute` dropdowns merely because the user did not explicitly request a component library. Do not give every page different Select, Button or selected-state implementations. The Agent must act proactively rather than wait for the user to point out a weak first version.
 
-## Gate 0 · 盘点与选择（先于第一张业务页面）
+## Gate 0 — Inventory and selection, before the first business page
 
-1. **识别已有约束**：从 `package.json`、锁文件、实际 import、`components/ui/`、Provider、theme 文件查明框架、UI 主库、headless 原语、既有封装和是否已形成设计体系；检查用户明确指定的库与视觉方向。
-2. **列出本轮控件清单**：`Button / Input / Select / Combobox / MultiSelect / DropdownMenu / Checkbox / Radio / Switch / Tabs / Popover / Dialog / Tooltip / DatePicker` 等，只列实际需要的，不为没有用到的功能强装全套库。明确选项选择 vs 操作菜单 vs 可搜索组合框，避免仅凭图形相似就都当作 Dropdown。
-3. **按优先级自动决定**：
-   - **已有可靠组件** → `reuse`。继承原主库，修复主题/封装/视觉缺陷。不因审美偏好随意换库。
-   - **已有成熟主库但缺少某控件** → 查主库对应组件、官方配套或兼容的专业原语；先考虑局部补充，而不是第二套有样式主库。
-   - **新项目且没有主库** → Agent 主动根据框架、交互复杂度、视觉方向、组件覆盖度、维护成本与许可证选出**一套主方案**，并开始使用；不要把“建议 Element Plus/shadcn/ui”写在报告后却仍手写控件。
-   - **确实不需要交互控件**（静态文章、简洁介绍页）→ 可使用语义 HTML/CSS，不因本门禁引入大 UI 依赖。
-4. **选择结果简单记录**：框架、现有主库/是否新选、为什么选它、哪些复杂控件由它承担、主题接入点，以及偏离该主方案的例外。不是让用户填组件库问卷；已有约束足够时直接实施，只有影响品牌或技术方向的真实冲突才征询。
+1. **Existing constraints:** Inspect `package.json`, lockfile, actual imports, `components/ui/`, providers and theme files. Identify framework, main styled library, headless primitives, wrappers, existing design system and the user's approved library/visual direction.
+2. **Required controls for this task:** List only the needed Button, Input, Select, Combobox, MultiSelect, DropdownMenu, Checkbox, Radio, Switch, Tabs, Popover, Dialog, Tooltip, DatePicker, etc. Distinguish data selection, action menus and searchable selection; similar arrows do not imply identical functions.
+3. **Decision order:**
+   - Reliable existing components → **reuse**. Retain the main library; fix theme/wrapper/visual problems rather than replace it on taste alone.
+   - Mature existing library missing a control → check its own offering, official companion or compatible specialist primitive before adding another styled library.
+   - New project without a primary library → proactively choose and **actually use one primary solution** for the framework, interaction complexity, visual direction, coverage, maintenance cost and license. A recommendation written in a report without integration is not sufficient.
+   - No interactive controls needed (static article, small informational site) → semantic HTML/CSS is valid; do not install a large UI library to satisfy this gate.
+4. **Record a concise decision:** framework, reused or selected primary library and reason, complex controls it owns, theme integration and any justified exception. Do not ask the user to complete an unnecessary questionnaire when constraints already suffice. Ask only for conflicts with genuine brand or architecture impact.
 
-### 框架与组件路线（候选，不能跨框架照搬）
+### Framework-specific candidates — never transplant components across frameworks
 
-| 框架 | 优先考虑的**完整有样式**方案 | 高度定制视觉时的组件/原语方案 | 选型边界 |
+| Framework | Mature pre-styled candidates | Highly custom visual strategy | Boundary |
 | --- | --- | --- | --- |
-| Vue 3 / Nuxt | Element Plus、Naive UI、Ant Design Vue、PrimeVue、Arco Vue | shadcn-vue + Reka UI | 既有库优先；需检查 Nuxt SSR、theme、组件覆盖 |
-| React / Next | Ant Design、MUI、Mantine、PrimeReact | shadcn/ui + 当前项目采用的 Base UI 或 Radix、React Aria | React 方案不可安装成 Vue 包；确认当前组件原语 API |
-| Svelte / SvelteKit | 已有生态成熟 UI 套件 | shadcn-svelte / Bits UI | 按实际依赖版本和组件能力核对 |
-| Angular | Angular Material、NG-ZORRO、PrimeNG | Angular CDK + 自有视觉层 | Angular CDK 为原语而非现成皮肤 |
-| Solid | 与现有框架兼容的 UI 方案 | Kobalte / Ark UI（确认框架支持） | 检查支持状态，不能把 React 组件直接拿来用 |
-| Astro / Vanilla | 已用的原生语义控件或兼容组件 | 按交互岛框架选成熟原语/组件，必要时原生 | 少量静态表单不能无理由引入整套 SPA 框架 |
+| Vue 3 / Nuxt | Element Plus, Naive UI, Ant Design Vue, PrimeVue, Arco Vue | shadcn-vue + Reka UI | Existing solution first; check Nuxt SSR, themes and coverage |
+| React / Next | Ant Design, MUI, Mantine, PrimeReact | shadcn/ui + project's Base UI/Radix or React Aria | Never install a React package as a Vue component; check current primitive APIs |
+| Svelte / SvelteKit | Mature, actually supported ecosystem suite | shadcn-svelte / Bits UI | Verify installed versions and feature support |
+| Angular | Angular Material, NG-ZORRO, PrimeNG | Angular CDK with custom visual layer | Angular CDK provides primitives, not an automatic styled skin |
+| Solid | Compatible UI solution for the active project | Kobalte / Ark UI, after confirming framework support | Do not copy React components unchanged |
+| Astro / Vanilla | Current semantic native controls or compatible suite | Accessible components in the selected interactive-island framework, native where sensible | A simple static form is not a reason to install a full SPA stack |
 
-**“成熟”不是任意引库的借口**：比较现有方案的复用性、控件与状态覆盖、样式可控程度、依赖大小、框架/SSR 兼容性、许可证和可维护性。一个项目通常只选一套主**有样式组件语言**；headless 底座与自有样式层是合理的一组，不是“双主库”。
+“Mature” never means permission to add arbitrary dependencies. Compare reusability, components and states, styling flexibility, bundle/runtime weight, framework/SSR compatibility, license and maintainability. A project generally uses **one primary styled interaction language**; a headless base plus custom theme is a coherent stack, not two competing styled libraries.
 
-**既有项目组件混用必须走 [Component Consistency & Context-Aware Selection](component-consistency-and-selection-gate.md)：** Gate 0 不止读取已安装依赖，还要盘点实际 import、共用封装、原生 `<select>` 等同类控件及其展开面板。对同角色不同样式先决定继承的主设计语言，再统一组件来源与 tokens；不为单个控件盲目更换整库。选型必须考虑产品类型、现有审美、可访问性、交互复杂度、依赖/SSR/包体积及迁移风险。原生选项弹层可能由操作系统绘制，不能仅修改触发框 CSS 就声称展开后与应用一致。
+**Mixed controls in existing products must also pass [Component Consistency & Context-Aware Selection](component-consistency-and-selection-gate.md).** Inventory actual imports, shared wrappers and equivalent native `<select>` controls and their expanded surfaces—not only installed packages. Decide the inherited design language before unifying roles and tokens; do not replace the whole library for one control. Consider product type, approved aesthetic, accessibility, interaction complexity, dependencies/SSR/bundle size and migration cost. Native option menus may be OS-rendered; CSS on a closed trigger does not prove the popup matches.
 
-## Gate A · 第一版先完成基础组件，再铺业务页面
+## Gate A — Build necessary shared controls before multiplying business pages
 
-在批量开发前，先用真实将要采用的主库完成一个小型组件 Showcase/开发路由，至少包含**本轮需要的**高风险控件（例如 Select、DropdownMenu、Button、Checkbox/Radio、Switch、Dialog）：
+Before bulk implementation, create a small component Showcase/development route using the **actual selected library**, covering the high-risk controls needed for this task (e.g. Select, DropdownMenu, Button, Checkbox/Radio, Switch, Dialog):
 
-- **Select**：值、placeholder、选项列表、selected、disabled、clear（若支持）、长选项、无数据、方向与可视区域。
-- **Combobox / MultiSelect**：搜索、过滤、选中、多项移除、空结果、键盘与异步时的 loading；不能拿普通 Select 假装支持搜索。
-- **DropdownMenu**：这是“操作菜单”而不是数据选项；检查打开/关闭、当前高亮、危险动作、禁用项、键盘 Esc、外部点击和溢出定位。
-- **Button**：primary/secondary/quiet/danger 的真正语义，loading/disabled/focus/pressed 与图标间距，正常与紧凑布局下不逐字折行。
-- **Checkbox/Radio/Switch/Tabs**：checked/selected/indeterminate（适用时）、键盘焦点、状态区别、单选/多选行为，不能用同一个 Hover 样式冒充选中态。
-- **Dialog/Popover/Tooltip**：键盘操作、可访问名称、浮层定位、焦点进出、关闭/恢复、滚动区与触屏边界。
+- **Select:** Value, placeholder, options, selected, disabled, clear when supported, long options, empty options, placement and viewport boundaries.
+- **Combobox/MultiSelect:** Search, filtering, selection, multi-value removal, no results, keyboard and async loading. Do not misrepresent ordinary Select as searchable.
+- **DropdownMenu:** An *action menu*, not a list of data values. Check open/close, highlight, destructive/disabled actions, Escape, outside click and overflow positioning.
+- **Button:** Meaningful primary/secondary/quiet/danger roles; loading, disabled, focus, pressed, icon spacing, long labels and compact layout without character-by-character wrapping.
+- **Checkbox/Radio/Switch/Tabs:** Checked/selected/indeterminate where applicable, keyboard focus, distinct hover/selection states, single/multiple-choice behavior.
+- **Dialog/Popover/Tooltip:** Keyboard, accessible names, placement, focus entry/exit, closing/returning focus, scrolling and touch viewport bounds.
 
-使用**组件库正式提供的组件或 headless 原语**处理状态、ARIA、键盘、浮层、焦点和表单关联；Agent 的工作是做品牌 theme、组合与必要的适配层，而不是造一套简陋的下拉交互引擎。
+Use official library components or mature headless primitives for state, ARIA, keyboard, overlays, focus and form associations. The Agent provides a brand theme, composition and needed adapters—not a simplistic handwritten dropdown engine.
 
-### 合理原生控件例外
+### Valid native-control exceptions
 
-`<button>`、`<input>`、`<select>` 本身不是错误。用户明确要求系统原生体验、表单极简、移动设备平台选择器更合适、原生语义更可靠或性能/体积限制严格时，可以选择原生。**但必须是有意识的产品决策**：主题兼容、焦点、错误提示、尺寸、目标设备上的选择器外观和操作状态仍需实际检查。原生控件不应成为“没有选择库”的默认借口。不要仅靠 CSS 将原生 Select 强制画成伪自定义下拉而不保证列表一致性。
+`<button>`, `<input>` and `<select>` are not inherently wrong. They may be the best decision for an explicit native-system experience, very simple forms, mobile platform pickers, more reliable native semantics, or strict performance/package-size constraints. But it must be an **intentional product decision**. Verify theme compatibility, focus, error messaging, size, and actual picker appearance/behavior on target devices. Do not use native controls by default just to avoid selecting a library. Do not claim that styling the closed native Select with CSS also produces a fully custom or visually consistent options list.
 
-### 明确阻断的实现
+### Implementations this gate blocks
 
-- 不得用 `div + v-if/onClick + position:absolute` 或 `button + ul` 冒充成熟 Select/Menu，除非确有平台约束且实现可访问的完整键盘/焦点契约。
-- 不得在新业务页面把 Checkbox/Radio/Switch 的语义和状态从零写一遍，只因为纯 CSS 写得快。
-- 不得给每个业务页重新指定按钮圆角、颜色、阴影与 disabled 样式；统一从主库主题和共享适配层暴露变体。
-- 不得安装两套完整有样式组件库仅为了某个 Select 的外观；应先主题化现有库或选兼容原语。
-- 不得把 React Bits/Vue Bits、图标库或纯 Tailwind 工具类当成已经具备表单基础组件的证明。
-- 不得只在计划里写“采用某组件库”，但提交代码实际没有引用、安装、集成或组件使用证据。
+- Do not substitute `div + v-if/onClick + position:absolute` or `button + ul` for a mature Select/Menu, unless real platform constraints justify a full accessible focus/keyboard contract.
+- Do not reimplement Checkbox/Radio/Switch state and semantics from scratch merely because CSS is convenient.
+- Do not vary Button radius, colors, shadows and disabled state on every page. Expose shared variants through the library theme and adapters.
+- Do not install two fully styled suites just for the appearance of one Select; theme the existing suite or choose a compatible primitive.
+- Do not mistake React Bits/Vue Bits, icon packages or bare Tailwind utilities for a complete accessible form-control library.
+- Do not claim a library was adopted when committed code contains no real dependency, import/usage or integration evidence.
 
-## Gate B · 主题统一与组件所有权
+## Gate B — Unified theme and component ownership
 
-1. 通过应用级 ThemeProvider/ConfigProvider、CSS 变量或主库主题 API 配置字体、尺寸、语义颜色、圆角、边框、状态色、焦点与深浅模式；不要在业务页逐个覆盖主库内部 DOM。
-2. 只对需要共享语义的控件写 `UiButton/UiSelect/UiField/UiDialog` 等适配层，透传业务所需 props/events/slots，尊重受控值、表单提交和官方可访问能力。**适配不等于把库原语复制重写**。
-3. Select、Dropdown、Button、Checkbox、Tabs 等同屏控件要满足统一的控件高度、行高、左右内边距、圆角系统、图标风格和状态视觉语言；但允许主次不同、复杂度不同，不做“全部一样的胶囊”。
-4. 对组件库不能覆盖的独特交互可选第三方专业组件或自研，须写出“为什么不复用”、处理可访问性/性能/权限，并把它作为受控例外。项目不需要的组件不强制生成。
+1. Set typography, dimensions, semantic colors, radius, borders, states, focus, light/dark modes via app-level ThemeProvider/ConfigProvider, CSS variables or the primary library's theme API. Avoid per-page overrides of internal vendor DOM.
+2. Only create `UiButton/UiSelect/UiField/UiDialog` adapters where shared semantics justify them; forward relevant props/events/slots, controlled values and form submission while preserving library accessibility. **An adapter is not permission to copy the primitive's interaction engine.**
+3. Select, Dropdown, Button, Checkbox and Tabs should share coherent heights, typography, horizontal padding, radius systems, icon language and state feedback on a screen. Allow genuine primary/secondary and complexity distinctions; do not make every control an identical pill.
+4. Unique interactions not provided by the suite may use a specialist third-party component or a custom implementation only with a recorded reason why reuse does not work, accessibility/performance/permission handling, and a scoped exception. Do not generate unused controls.
 
-**既有项目也必须验收：** 不得仅展示一个新组件的 Showcase 就忽略旧页面已存在的原生/第三方混用。检查同一功能的 Select、Menu、Field 与 Dialog 在实际页面的关闭/展开、选中、键盘、焦点和主题状态；原生系统弹层不可见时如实报告 NOT TESTED，不将静态 tokens 视为视觉通过。
+**Existing products also require acceptance:** A new component Showcase does not excuse mixed native/vendor controls already in production views. Compare the same-purpose Select/Menu/Field/Dialog in closed/open, selected, keyboard, focus and theme states on actual routes. If native system overlays cannot be inspected, report `NOT TESTED`, not a visual pass based on static tokens.
 
-## Gate C · 首版交付验收（不能等用户反馈后再补）
+## Gate C — First delivery acceptance, before the user reports defects
 
-在业务页上线首轮内部评审前，必须用**真实业务路由**打开和操作高风险控件，而不只看 Storybook 或静态截图：
+Before the first internal review of business pages, **open real feature routes** and interact with the risky controls. Storybook and static screenshots are not sufficient.
 
-| 控件 | 必须观察的视觉和行为 |
+| Control | Required visual and behavioral checks |
 | --- | --- |
-| Select / Combobox | 展开时宽度和容器、菜单层级、选中/hover/focus 区别、长值、清空、箭头/回车/Esc、键盘焦点、选项滚动 |
-| DropdownMenu / Popover | 触发器位置、遮挡/边缘翻转、菜单宽度与行高、禁用/危险动作、关闭和焦点恢复 |
-| Button / IconButton | 主次/危险级、点击区域、图标间距、loading 防重复、disabled、focus-visible、长度和响应式 |
-| Checkbox / Radio / Switch / Tabs | checked/selected 是否足够清晰、是否有键盘操作、点击目标、禁用与错误状态 |
-| Dialog / DatePicker | 浮层位置、关闭/恢复、长内容、键盘、禁用日期/错误、主题与窄窗口 |
+| Select/Combobox | Open width/alignment, stacking, selected vs hover vs focus, long values, clear, arrows/Enter/Esc, keyboard focus, scrolling options |
+| DropdownMenu/Popover | Trigger anchor, clipping/edge flipping, width and row height, disabled/danger actions, close/focus return |
+| Button/IconButton | Primary/secondary/danger, hit target, icon spacing, duplicate-submission protection during loading, disabled, focus-visible, length and responsive wrapping |
+| Checkbox/Radio/Switch/Tabs | Clearly differentiated checked/selected, keyboard path, click target, disabled and error |
+| Dialog/DatePicker | Placement, close/focus return, long content, keyboard, unavailable dates/errors, theme and narrow windows |
 
-**验收结论分层**：实际在目标路由实测才可写 `VERIFIED`；只查组件配置/源码属于 `STATIC CHECK`；仅合成 Gallery 是 `DEMO ONLY`；没打开页面是 `NOT TESTED`。不能因为“库本身可访问”就宣称应用集成的对比度、位置、键盘和视觉已验收。
+**Evidence labels:** `VERIFIED` requires tests on the actual target route; source/config review is `STATIC CHECK`; synthetic gallery-only checks are `DEMO ONLY`; unopened pages are `NOT TESTED`. Library accessibility claims do not prove integrated application contrast, placement, keyboard behavior or appearance.
 
-**阻断条件**：第一版仍出现手写假下拉、选中/hover 不可区分、按钮风格跨页割裂、浮层被裁切或无法键盘完成核心路径时，先修复主组件与真实页面，再批量复制相同模式。
+**Block first-pass acceptance** while any handwritten fake Select remains, hover and selection cannot be distinguished, Buttons are visually inconsistent across pages, overlays clip, or a core keyboard path is unusable. Fix the primary component and real pages before copying the faulty pattern more widely.
 
-## 维护与来源
+## Maintenance and sources
 
-- `references/enterprise-ui-library-guide.md`：候选库的定位、组件覆盖和主题接入。
-- `references/framework-support-matrix.md`：框架兼容性与组件路线。
-- `references/component-first.md`、`references/component-craft-gate.md`：共享组件合同和视觉精修。
-- 官方 Select 行为说明：https://reka-ui.com/docs/components/select ，https://www.radix-ui.com/primitives/docs/components/select ，https://ui.shadcn.com/docs/components/base/select
-- 官方 UI/原语 API 会变化，例如 shadcn/ui 目前对 Base UI 与 Radix 提供不同实现。集成前必须核对项目依赖版本和对应文档；不能凭旧示例猜 API。
+- `references/enterprise-ui-library-guide.md`: Candidates, component coverage and theme integration.
+- `references/framework-support-matrix.md`: Framework support and library strategy.
+- `references/component-first.md` and `references/component-craft-gate.md`: Component contracts and craft.
+- Official Select references: https://reka-ui.com/docs/components/select , https://www.radix-ui.com/primitives/docs/components/select , https://ui.shadcn.com/docs/components/base/select
+- UI/primitive APIs evolve. For example, shadcn/ui may offer different implementations using Base UI and Radix. Verify the active project's dependency versions and corresponding official documentation before integrating; do not guess from stale examples.
 
-所有例子均为通用规范，不含任何用户产品的专有名称或截图。
+All examples are generic; no actual user product identifiers or screenshots are embedded.

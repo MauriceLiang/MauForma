@@ -1,110 +1,122 @@
-# 视觉与组件化验收量表（100 分）
+# Visual and Component Acceptance Rubric (100 Points)
 
-本量表适用于一次页面设计、组件体系落地或全站视觉重构。**先排除阻断项，再评总分。** 分数仅用于一致审核，不应替代用户的主观审美验收。
+Applies to one page design, a component-system implementation, or a full-site visual refactor. **Check blockers before calculating the total.** Scores support consistent review; they do **not** replace the user's subjective visual acceptance.
 
-## 评分细则
+## Score allocation
 
-| 维度 | 分值 | 高分标准 | 扣分典型 |
+| Dimension | Maximum | Strong result | Common deduction |
 | --- | ---: | --- | --- |
-| **组件化与复用** | **25** | 现有组件盘点，统一 UI 层，API/状态完备，页面只组合 | 每页独立按钮/输入框，复制样式 |
-| **视觉统一** | **20** | 语义 token、圆角层级、阴影、间距、主题明确 | 每页不同色、不同圆角或按钮变体 |
-| **可读性与对比度** | **15** | 字级可扫读，文字/控件/焦点对比合理 | 浅灰小字、渐变覆盖正文 |
-| **信息层次与留白** | **15** | 重要动作突出，密度与产品匹配，结构清晰 | 卡片泛滥、无焦点、巨量无意义空白、重复英文小标题、巨大营销式功能页 Hero |
-| **交互与状态完备** | **10** | hover/focus/disabled/loading/empty/error 清楚 | 假按钮、无键盘焦点、错误仅红框 |
-| **自适应与双模式** | **10** | 宽窄窗口稳定、必要时支持明暗 | 溢出/截断、暗色直接反色 |
-| **性能与视觉克制** | **5** | 动效目的明确，交互稳定，低成本 | 永续动画、过度模糊、操作阻塞 |
-| **合计** | **100** | | |
+| **Component architecture and reuse** | **25** | Inventory inherited components, unified UI layer, complete APIs/states, pages compose rather than reimplement | Every page defines independent Buttons/Inputs and duplicates CSS |
+| **Visual coherence** | **20** | Semantic tokens, justified radius hierarchy, shadows, spacing and theme | Inconsistent colors/radii/Button variants across routes |
+| **Readability and contrast** | **15** | Scannable type hierarchy, text/control/focus contrast | Pale tiny text, gradients covering body copy |
+| **Information hierarchy and whitespace** | **15** | Important actions stand out, density matches product, clear structure | Too many Cards, no focal point, useless blank areas, repetitive English eyebrows, marketing-style giant Hero on operational screens |
+| **Interactions and states** | **10** | Clear hover/focus/disabled/loading/empty/error | Pseudo-buttons, invisible keyboard focus, errors conveyed only by a red border |
+| **Responsiveness and theme modes** | **10** | Robust wide/narrow windows and light/dark when relevant | Overflow/cropping, crude inverse colors in dark theme |
+| **Performance and visual restraint** | **5** | Motion with purpose, stable interactions, controlled cost | Endless animation, heavy blur, blocked workflows |
+| **Total** | **100** | | |
 
-## 评分解释
+## Score interpretation
 
-- **90–100：优秀**：视觉品质与组件工程都可靠，可直接作为团队后续页面的基线。
-- **85–89：可交付**：主体系完整，无阻断问题，存在少量可接受的细节改进。
-- **70–84：需要修正**：有明显不一致或细节缺失，暂不作为统一样板推广。
-- **低于 70：不达标**：视觉/组件体系尚不稳定，应先回到 Gate A/B 修复。
-- **有任何阻断项**：无论总分多少，均为不通过。
+- **90–100 — Excellent:** Visual quality and component engineering are reliable enough to serve as a baseline for subsequent team pages.
+- **85–89 — Deliverable:** Main system complete and no blockers, with a few acceptable details still improvable.
+- **70–84 — Needs corrections:** Visible inconsistencies or incomplete details; do not promote as a shared template yet.
+- **Below 70 — Does not meet standard:** Return to Gate A/B for structural component and visual fixes.
+- **Any blocker:** **Fail regardless of total score.**
 
-## v6.21 · Product Fit 门禁优先于视觉总分
+## v6.21 — Product Fit precedes the visual score
 
-**先做产品适配的通过/不通过判断，再使用下方 100 分视觉与组件量表。** 主评分维度和总分不变，新增高优先级前置门禁：
+**Decide product fit as a binary pass/fail before using the 100-point rubric.** The weighted dimensions remain unchanged; add these higher-priority preconditions:
 
-| 产品任务问题 | 评审方式 | 结论 |
+| Product-task problem | Review method | Result |
 | --- | --- | --- |
-| 学习/消费者/创作/内容等核心页缺少真实主任务，只剩通用后台 KPI | 查看用户任务、主要 CTA 与必要内容 | 结构性 FAIL，返回 UX |
-| 用户不能理解下一步，或多个同级入口重复争抢主操作 | 核查 IA 与最短任务路径 | 结构性 FAIL |
-| 改版前后只有颜色、图标、圆角变化，旧任务错配仍存在 | 同状态/同视口对照 | 不承认“体验重构通过” |
-| 用户明确要求表现力或儿童教育风格，但 Agent 强制灰白/删 emoji | 对照批准的品牌及内容语义 | 不符合需求 |
-| 已确认页面只修一个按钮，却擅改导航/品牌 | 对照用户授权范围 | 范围违规 |
+| A learning, consumer, creative or reading screen has no real core task, only generic admin KPIs | Inspect primary user journey, CTA and essential content | Structural FAIL; return to UX |
+| Users cannot tell the next action or multiple peer entry points compete for primary importance | Examine IA and shortest task path | Structural FAIL |
+| Redesign changes colors/icons/radii only, preserving the original task mismatch | Compare identical viewport/state before/after | Do **not** accept as experience redesign |
+| User explicitly requested expressive or children's education design, but Agent forces gray-and-white and deletes emoji | Compare approved brand/content semantics | Does not meet requirements |
+| A scoped Button fix changes confirmed navigation or branding without authorization | Compare task authorization | Scope violation |
 
-参考 [产品体验路由](product-experience-routing-gate.md) 和 [分阶段精修](progressive-visual-refinement-gate.md)。**不要因统计组件对齐、Token 一致、圆角统一而给一个任务无效的核心页面高分。** 自动脚本的静态 PASS 不等于真实页面视觉或业务验收。
+See product-experience-routing-gate.md and progressive-visual-refinement-gate.md. **Do not award a high score to a core screen that cannot serve the user's task merely because Tokens, alignment and radii are consistent.** A static scan PASS is not real-page visual or business acceptance.
 
-## 一票否决 / Blockers
+## Immediate blockers / veto conditions
 
-1. 对于重复模式，仍然存在散落各页的独立按钮、输入、弹窗样式，导致实质性视觉分裂。
-2. 主题切换、配色或品牌色造成正文不可读、关键 UI 难以辨认、焦点看不到等严重可用性缺陷。
-3. 关键表单和动作不可使用或被视觉改造破坏（假保存、失效导航、丢失验证/错误文案）。
-4. 依赖动画/远程 CDN 才能看到核心内容，或 Reduced Motion 用户无法正常完成任务。
-5. 核心页面在目标窗口尺寸下丢失重要内容、被遮盖或无法操作。
-6. 明确要求原生平台惯例却为了效果破坏系统控件与辅助功能。
+1. Repeated control families still use unrelated Button/Input/Dialog implementations on different routes, causing substantial visual fragmentation.
+2. Theme toggling or brand/palette choices make body text, important controls or focus rings difficult or impossible to perceive.
+3. Key forms and actions fail or were broken by visual changes (fake save, broken navigation, missing validation/error feedback).
+4. Core content remains invisible unless animation/remote CDN succeeds, or reduced-motion users cannot complete the workflow.
+5. Critical content disappears, becomes occluded or cannot be operated at required target viewport sizes.
+6. The product explicitly calls for native platform conventions, but visual styling destroys native controls or accessibility.
 
-## 验收证据模板
+## Acceptance evidence template
 
-```text
-项目 / 页面：
-设计方向 / 主题 / density：
-原有组件盘点：
-共享组件新增或改造：
-受影响页面：
+~~~text
+Project / page:
+Visual direction / theme / density:
+Inherited component inventory:
+Shared components added or changed:
+Affected pages:
 
-Gate A（Token / Theme）：通过 / 不通过
-Gate B（Components）：通过 / 不通过
-Gate C（Screens & QA）：通过 / 不通过
-评分：组件 /25，统一 /20，可读 /15，层次 /15，状态 /10，适配 /10，性能 /5，总计 /100
-阻断问题：无 / 列出具体问题
-优秀案例（截图/组件/原因）：
-差的案例（截图/组件/违反规则/修复办法）：
-已测试尺寸/模式：
-构建 / 交互 / 无障碍 / 性能测试：
-未能验证项：
-下一步建议：
-```
+Gate A (Tokens / Theme): PASS / FAIL
+Gate B (Components): PASS / FAIL
+Gate C (Screens & QA): PASS / FAIL
+Score: components /25, coherence /20, readability /15, hierarchy /15, states /10, responsive /10, performance /5; total /100
+Blockers: none / exact findings
+Strong examples (screenshot/component/reason):
+Weak examples (screenshot/component/violated rule/fix):
+Tested viewports / modes:
+Build / interaction / accessibility / performance tests:
+Unverified cases:
+Next recommendation:
+~~~
 
-## Reviewer 注意事项
+## Reviewer requirements
 
-- 只看源码不能声称“视觉评分 98”已充分验证；实用证据应包含组件展示截图及至少一张业务页面截图。
-- 扣分需指出**具体 token、组件或页面**和可重复检查的理由，而不是形容词。
-- 一套好主题不等于没有错误；明暗、交互状态和实际密度必须一起看。
-- 对后台 / 工具页面，额外按 [page-header-antipatterns.md](page-header-antipatterns.md) 审查标题、语义重复、操作位置和首屏内容。此类问题应计入「信息层次与留白」和「可读性」，不因其他维度优秀而忽略。
+- Source-only inspection **cannot substantiate an actual visual score of 98**. Useful evidence includes component-showcase screenshots and at least one actual business-page screenshot.
+- Every deduction must point to a **specific Token, component or page** with a reproducible reason, not a vague adjective.
+- One good theme does not eliminate errors: review both themes, interactive states and real information density.
+- For admin/tools, additionally use page-header-antipatterns.md to review titles, semantic repetition, action placement and first-screen content. Count those defects under hierarchy/whitespace and readability, rather than excusing them because other dimensions look good.
 
-## v6.3 · 导航与高频组件 Review 追问
+## v6.3 — Navigation and frequent-component review
 
-在原有 100 分维度内审查，而不另起一套机械评分：对 Sidebar 重点检查**色阶统一、状态唯一主信号、导航与历史对象分层**，分别记入「视觉统一」「信息层次与留白」「交互与状态完备」。不因发现侧栏竖条直接扣分——先判断是否为树形结构/阅读章节/时间线等真实独立信息。如果同时存在亮底、亮条、发光与无意义橙点，则要求说明每一项的内容价值，并提供减少重复强调后的真实截图。
+Review within the **original 100-point weights**, not another mechanical scoring scale. Sidebar checks include coherent palette steps, one primary selection signal, and a visual distinction between navigation and historical items. Record issues under visual coherence, hierarchy/whitespace and interactions/states.
 
-其他组件参阅 `workspace-component-refinement.md`。任何评分必须有真实页面/状态证据，概念对照不是项目实际验收。
+Do **not** deduct points merely because there is a vertical Sidebar bar; first determine if it conveys genuine tree hierarchy, chapter navigation or timeline information. If selected items simultaneously carry a bright background, bright rail, glow and meaningless orange dot, require evidence of each cue's value and a new **actual screenshot** after removing duplicated emphasis.
 
-## v6.4 · 结构性失败优先于总评分
+For other controls, see workspace-component-refinement.md. Scores require real screen/state evidence; synthetic examples are not product acceptance.
 
-当某个 Operate 页面出现“巨大渐变 Hero/装饰模型抢占最大视觉面积 + 重要趋势图空白 + 高饱和洞察卡替代证据”时，应先判定是否存在**任务焦点与数据呈现的阻断问题**，而不是依靠组件复用和色板统一给高分。检视截图中真实的结构、标题、重要操作、主要数据来源与空状态；结构问题要回到 `composition-first-design.md`，对照不同信息排列并重做，而不是只更换主题色。
+## v6.4 — Structural failure outranks total score
 
-原有 100 分量表保留，但“用户任务是否被服务”是结构前置条件。无截图/未运行真实业务时，只能给出假设或静态规则检查，不能声称完整视觉评分通过。详细审查模板见 `visual-critique-loop.md`。
+On an Operate screen, a giant decorative gradient Hero or illustration may occupy most visual space while the important trend chart is empty and a bright insight Card replaces evidence. **First judge whether the user's task and data display are blocked**, rather than letting component reuse and consistent colors produce an excellent score.
 
-## v6.5 · 内容增量与读得懂比装饰密度更重要
+Inspect actual structure, headings, primary actions, key data sources and empty states. Structural defects return to composition-first-design.md for comparisons of materially different arrangements; a theme change alone is not a fix.
 
-将装饰性英文副标、重复小标题、伪章节编号和泄露的开发术语纳入原“信息层次与留白”项；重要 KPI 标签、图表轴/图例、n 值与采样说明的字号、对比及放大问题纳入原“可读性与对比度”项。若当前视觉设计无法正常读懂核心图表信息，不能因为统一了圆角/配色就给出高分。
+Keep the 100-point rubric, but **whether the user's task is served is a prior condition**. Without actual screenshots or a runnable product, report hypotheses or static findings—not complete visual acceptance. Detailed critique in visual-critique-loop.md.
 
-逐一审查：最醒目的 H1 是否也是最有价值的信息？抽象口号删掉是否损失用户任务？图例、刻度、来源在实际设备是否可读？200% 放大是否裁切？保留的小标题是否有合法的品牌/导航/章节含义？没有真实浏览器截图时不得声称排版已验收优秀。规则见 `semantic-copy-hygiene.md`、`typography-hierarchy.md`。
+## v6.5 — Information and legibility outrank decoration density
 
-## v6.8 · 主任务与内容负担先于总分
+Treat ornamental English labels, redundant subtitles, fake section numbers and developer jargon leaking into UI as hierarchy/whitespace problems. Include tiny unreadable KPI labels, chart axes/legends, sample sizes and data limitations in readability/contrast. **Do not give high scores for consistent radii/colors if users cannot read critical chart information.**
 
-若总览仍将主任务、三步教程、功能目录、重复说明并列，即使统一了按钮、Card 和间距，也先判定**内容优先级不合格，需要返工**。评审前问每块是否应当现在出现；次要内容去往哪里；首次和回访是否不同；总览与真实数据页是否使用合理不同密度。分析页的高密度可能是优点，前提是图表、状态、样本、来源和交互均可读。不能靠“卡片变少了”或“空白 40%”给高分。参见 `references/page-density-and-content-priority.md`。
+Review: Is the loudest H1 also the most valuable information? Can slogans be removed without harming a real task? Are axis labels, legends and sources legible on actual target hardware? Does 200% zoom crop content? Does a retained eyebrow serve valid brand, navigation or chapter purpose? No rendered browser screenshot means typography is not visually verified. See semantic-copy-hygiene.md and typography-hierarchy.md.
 
-## v6.9 · 布局对齐与最后内容可达性为阻断项
+## v6.8 — Main task and content burden precede scoring
 
-数据页同级模块因左右独立堆叠而形成无意第二行错位时，即使颜色、卡片边框、阴影合格，也应在信息/视觉层级项扣分并要求重新检查 Grid；但不能僵化要求所有卡片等宽等高。业务数据最后一条、可交互按钮或图表脚注如果在真实浏览器最大滚动位置仍不可见，属于**优先阻断**，不因截图好看而通过。对于只有单张截屏、无法证明是否可滚到底的情况，状态只能是待验证，而不是 PASS 或确认 FAIL。正式验收需要桌面/矮窗口/手机滚动终点截图及 fixed bar 遮挡检查；可选浏览器实测工具 `scripts/audit_rendered_layout.mjs`。
+If an overview simultaneously shows the main task, a three-step tutorial, a feature directory and repetitive instructions, **content priority fails** even if the Cards and Buttons share perfect design Tokens. Ask whether each module belongs on this visit; where secondary information can be found; how first and return visits differ; and whether an overview and a real data-analysis detail deserve different densities.
 
-## v6.10 · 比较页不能靠卡片总分掩盖缺失数据与绘图碰撞
+Higher density can be good for analytical work **when charts, statuses, sample sizes, data sources and interactions remain readable**. Neither "fewer Cards" nor "40% empty space" earns a high score by itself. See page-density-and-content-priority.md.
 
-对于多对象比较，“选中对象、图例、实际系列和表格列不一致且未解释”“明知采集缺失却按 0 补齐”“不同时间/单位自动宣称赢家”“图表重要标签重叠不可读”应作为阻断项。外框已对齐不能免除 Plot Region/Axis/Legend 检查。按用户任务审核是否能快速发现差异，而不是给四张整齐但无结论的卡片打高分。静态脚本只查数据契约，浏览器有条件时必须验证真实交互与截图。
+## v6.9 — Alignment and reachability of final content are blockers
 
-## v6.11 · 运行任务列表的阻断项与审美复核
+When independent left/right column stacking accidentally creates a misaligned next row on a data page, deduct hierarchy/layout points and recheck Grid even if shadows and colors are polished. This **does not** require equal-width/equal-height Cards everywhere.
 
-独立看任务中心，若状态统计大量占宽、任务行仍重复无意义说明、真正错误原因/可重试操作不容易找到，应判定 **任务信息架构需要返工**，不能因为卡片对齐、黑白配色与行间距一致就给出优秀分。静态的状态计数与实际列表不符、无分母绘制虚假进度、没有权限的重试、无法滚到最后记录或点击操作没有真实反馈为更高优先级阻断项。只有 Mock 截图/CI 通过时不能声称真实 API 验收。更多见 `references/task-center-run-monitor-design.md`。
+If the final data record, interactive action or chart footnote remains invisible at the **actual maximum browser scroll position**, this is a high-priority blocker. One screenshot with a Card touching the window bottom cannot demonstrate whether scrolling works; mark **NOT TESTED**, not automatic PASS or confirmed FAIL. Final acceptance needs desktop/short-window/mobile-end screenshots where supported, plus fixed footer occlusion checks. Optional rendered tool: scripts/audit_rendered_layout.mjs.
+
+## v6.10 — Comparison charts: missing data and plot collisions outweigh tidy Cards
+
+For multi-object comparison, block acceptance when selected entities, legends, plotted series or table columns disagree without explanation; missing measurements are filled with zero; incomparable time windows/units produce an invented "winner"; or important chart labels overlap. Matching outer Card frames does not prove aligned Plot Areas, axes or legends.
+
+Judge whether users can find meaningful differences quickly, not whether four neat Cards fill the screen. Static validators only assess data contracts; test real interactions/screenshots in browsers when feasible.
+
+## v6.11 — Run-monitor information hierarchy and actual actions
+
+For a task center, if status statistics consume most of the width, rows repeat useless stage explanations, or error causes/retry actions are hard to find, classify this as **information-architecture rework**, regardless of cohesive monochrome Cards and row spacing.
+
+Higher-priority blockers include status counts disagreeing with the list, fake progress without a known denominator, unauthorized retry actions, unreachable final records and clicks without meaningful feedback. Mock screenshots or CI alone never prove **real API** acceptance. See task-center-run-monitor-design.md.

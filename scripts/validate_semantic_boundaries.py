@@ -103,7 +103,12 @@ def validate_repository(root: Path = ROOT) -> list[str]:
                 problems.append(f"{label}: missing substantive field {field}")
         for language, doc in (("en", EN), ("zh", ZH)):
             body = sources[doc]
-            marker = f"## {label} — {rule.get('topic', '')}"
+            topic = str(rule.get("topic", ""))
+            # English runtime headings keep the same authoritative EN topic while
+            # omitting the Chinese translation after " / ". The bilingual source
+            # continues to require the exact original EN/ZH heading.
+            heading_topic = topic.split(" / ", 1)[0] if language == "en" else topic
+            marker = f"## {label} — {heading_topic}"
             if body.count(marker) != 1:
                 problems.append(f"{doc}: missing or repeated heading {label}")
             for field in ("trigger", "require", "exception", "never"):

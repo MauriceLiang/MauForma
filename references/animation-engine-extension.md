@@ -1,27 +1,27 @@
-# 新增动画引擎时的维护协议
+# Maintenance Protocol for New Animation Engines
 
-本 Skill 允许持续纳入新动画技术，但需先完成研究与验证，不因“看起来新颖”而无理由升级默认依赖。
+MauForma can incorporate new animation technologies over time, but only after research and validation. Novelty alone is not a reason to upgrade a default dependency.
 
-## 引擎评估表（每项必填）
+## Engine evaluation record — all fields required
 
-1. 名称、官方主页/文档、维护状态、当前主要版本与核对日期。
-2. 是否适合 Web：DOM/SVG/Canvas/WebGL/设计师素材；浏览器兼容性。
-3. 哪些框架可以直接使用（React、Vue、Svelte、Angular、Solid、Astro、Vanilla），真实包名与导入路径。
-4. 专长：基本过渡、状态驱动布局、时间轴、Scroll、路径、物理、拖拽、复杂角色动画等。
-5. API 与生命周期：挂载、取消、销毁、route change、SSR、StrictMode、observer 回收。
-6. 性能与构建成本：JS 体积、tree shaking、帧率、低端设备、动画退化方案。
-7. 可访问性：reduced-motion、键盘、焦点、可暂停循环。
-8. 授权与商业使用限制；第三方区块、素材及插件授权可能不同。
-9. 对现有 CSS/Motion/Anime.js/GSAP 的实际增益，是否只是重复能力。
-10. 至少一个真实示例、一个反面示例、一个失败回退测试。
+1. Name, official homepage/documentation, maintenance status, current major version and date checked.
+2. Web suitability: DOM/SVG/Canvas/WebGL/design assets and browser compatibility.
+3. Frameworks where it works directly (React, Vue, Svelte, Angular, Solid, Astro, Vanilla), with real package names and import paths.
+4. Strengths: basic transitions, state-driven layout, timelines, scroll, paths, physics, dragging or complex character animation.
+5. API and lifecycle: mount, cancel, destroy, route change, SSR, StrictMode and observer cleanup.
+6. Performance/build cost: JavaScript size, tree shaking, frame rate, low-end devices and animation fallbacks.
+7. Accessibility: reduced motion, keyboard, focus and pausing loops.
+8. Licensing and commercial restrictions; third-party blocks, assets and plugins may have separate licenses.
+9. Concrete benefits beyond existing CSS/Motion/Anime.js/GSAP; distinguish new capabilities from duplication.
+10. At least one working example, one negative example and one failure/fallback test.
 
-## 接纳规则
+## Adoption rules
 
-- 新引擎可以成为“候选”，不自动升级为全局默认。
-- 同一工程最多设置一个主要命令式动画引擎；多个引擎同时存在必须按独立区域和职责划分。
-- 加入时同步更新 `animation-engine-selection.md`、`animation-integration-lifecycle.md`、`examples/prompt-library-web.md` 与验证清单。
-- 不要宣称列出了所有可能动效：API 有限，但组合无限。
+- A new engine may enter the **candidate** list; it never automatically becomes a global default.
+- Set at most **one principal imperative animation engine per project**. Multiple engines require explicitly separated areas and responsibilities.
+- Update `animation-engine-selection.md`, `animation-integration-lifecycle.md`, `examples/prompt-library-web.md` and the validation checklist together when adopting an engine. 
+- Do not claim the catalog covers all possible effects: APIs are finite, but compositions are not.
 
-## v6.2 · 新增专项渲染能力的分类
+## v6.2 — Classify specialist rendering capabilities before adoption
 
-不能将所有 Canvas/WebGL/物理技术都误记为“动画引擎”。增加新工具时，先分组为动画编排 / 文本拆分 / 2D 渲染 / 3D 渲染 / DOM-WebGL / 图表 / 手绘 SVG / 描边 / 浏览器滤镜 / 粒子 / 物理，再对照 `assets/visual-tech-catalog.json`，确认现有技术无法解决后才新增依赖。关于组合、可访问性、移动端 GPU 限制和失败回退参见 `references/visual-tech-selection-12.md`。
+Do not misclassify all Canvas/WebGL/physics tools as animation engines. Assign new tools to a suitable category first: **animation orchestration / text splitting / 2D rendering / 3D rendering / DOM–WebGL / charts / hand-drawn SVG / strokes / browser filters / particles / physics**. Compare against `assets/visual-tech-catalog.json`, then add a dependency only after confirming that existing technology cannot meet the actual requirement. For composition, accessibility, mobile GPU limits and failure fallbacks, see `references/visual-tech-selection-12.md`.

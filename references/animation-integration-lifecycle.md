@@ -1,52 +1,52 @@
-# 动画引擎与组件生命周期：适用于所有 Web 框架
+# Animation Engines and Component Lifecycle — All Web Frameworks
 
-## v6.14 · 体验强度和动画生命周期必须共同验收
+## v6.14 — Motion intensity and animation lifecycle must pass together
 
-先根据 `references/motion-consent-experience-gate.md` 检查用户确认/继承/委托的动效选择；新增动画都要有可观察的状态作用、合法退出/反向与取消路径。用浏览器实测快速切换 Tab/路由、反复打开关闭 Dialog、减少动态效果切换（包括已经开始的动画）、系统偏好及弱性能场景。只在 CSS 里写 `prefers-reduced-motion` 并不能自动证明 JS 动画正确取消。
+First inspect approved/inherited/delegated motion choices under `references/motion-consent-experience-gate.md`. Every new animation must have observable state purpose and a legal exit, reversal and cancellation path. Test rapid Tab/route changes, repeated Dialog open/close, preference changes while animation is running, system reduced-motion settings and lower-performance scenarios. A `prefers-reduced-motion` CSS rule does **not** prove JavaScript animations cancel correctly.
 
-## 不可违反的技术安全线
+## Technical safety invariants
 
-- **DOM 所有权**：Vue/React/Svelte/Angular 管理 DOM 渲染。命令式引擎只能在组件挂载后按 `ref` 或作用域目标操作，不应跨组件 query 全站 `.card` 然后控制任意元素。
-- **清理**：组件销毁、路由切换、弹窗关闭、依赖变化时停止/回收时间轴、事件监听、Observers、ScrollTrigger、Rive/Lottie 运行实例。
-- **SSR**：服务端不能直接引用 `window/document`。动画在客户端 hook 中启动；首屏 HTML 应当在无 JS 动画时正常可见。
-- **冲突**：不要同时由 Tailwind transition、Motion、Anime.js 操纵同一元素的 `transform/opacity`；若组合，需要明确属性所有权与嵌套层。
-- **性能**：优先 `transform/opacity`，谨慎频繁更改 `width/height/top/left`、SVG path、blur 和大面积 box-shadow。避免大量强制同步测量布局。
-- **无障碍**：遵守 `prefers-reduced-motion`，允许暂停循环动效，动画不能阻止键盘焦点。需要延迟功能状态的操作必须按语义进行而不是依赖动画的 onComplete。
-- **测试**：快速打开/关闭、滚动中卸载、路由跳转、组件重挂载、长列表、低端机、动画依赖失效、减少动效偏好。
+- **DOM ownership:** Vue/React/Svelte/Angular control rendering. Imperative animation engines should target scoped refs or elements only after mount, not query all global `.card` instances across unrelated components.
+- **Cleanup:** Stop and release timelines, listeners, observers, ScrollTrigger and Rive/Lottie instances on unmount, route changes, dialog close or dependency changes.
+- **SSR:** Never access `window` or `document` during server execution. Start animation in client hooks; SSR/first-frame HTML must remain visible without JavaScript motion.
+- **Property conflicts:** Do not have Tailwind transitions, Motion and Anime.js all control the same element's `transform/opacity`. For deliberate combinations, specify property ownership and nested animation layers.
+- **Performance:** Prefer `transform/opacity`; handle frequent changes to `width/height/top/left`, SVG paths, blur and large box shadows cautiously. Avoid excessive forced synchronous layout measurements.
+- **Accessibility:** Respect `prefers-reduced-motion`, allow loops to pause, and never obstruct keyboard focus. Required business state updates should occur semantically, not depend on an animation `onComplete`.
+- **Tests:** Rapid open/close, unmount while scrolling, route changes, remount, long lists, low-end devices, missing animation dependencies and reduced-motion preferences.
 
 ## Vue 3
 
-- 先使用 `<Transition>`/`<TransitionGroup>`。
-- 命令式动画在 `onMounted` 中创建，作用于单个 `ref<HTMLElement | null>`。
-- `onUnmounted` / `onScopeDispose` 取消/还原；依赖改变时停止旧动画。
-- Nuxt 在客户端挂载后运行，或通过官方 `<ClientOnly>` 方案处理复杂 DOM 引擎。
+- Prefer native `<Transition>` and `<TransitionGroup>` first.
+- Construct imperative animations inside `onMounted`, scoped to `ref<HTMLElement | null>`.
+- Cancel/restore in `onUnmounted` or `onScopeDispose`; stop the old animation when dependencies change.
+- In Nuxt, run after client mount or use the official `<ClientOnly>` approach for advanced DOM engines.
 
 ## React / Next.js
 
-- 对 DOM 的命令式动画放在 `useEffect` / 按需 `useLayoutEffect`，返回 cleanup；不要在 render 内操作 DOM。
-- React StrictMode 开发环境可能模拟挂载/清理以暴露副作用；正确 cleanup 应当幂等。
-- Next App Router 的交互组件放在 client boundary，DOM 动画不要在 Server Component 模块顶层执行。
-- 纯声明式组件动效（Motion）应遵循自己的 presence/layout 协议；不要把动画对象暴露为全局变量。
+- Place imperative DOM motion in `useEffect` or, only when justified, `useLayoutEffect`, returning a cleanup function. Never manipulate DOM during render.
+- React StrictMode in development may simulate mount/cleanup to expose effects; cleanup must be idempotent.
+- Next App Router interactive components belong behind the client boundary; never execute DOM animation at Server Component module top level.
+- Declarative Motion components should follow their own presence/layout protocols rather than exposing animation instances as global variables.
 
-## Astro / 内容型页面
+## Astro and content-first pages
 
-- Islands 仅在需要交互的位置加载，避免整个站点变成客户端渲染。
-- 原生 CSS / WAAPI 优先，复杂动画尽量采用 IntersectionObserver 只在视口内激活。
+- Load interactive islands only where needed; do not turn the whole site into a client-rendered app for decoration.
+- Prefer CSS/WAAPI. Use IntersectionObserver for complex animation that should run only while visible.
 
-## 验收示例
+## Acceptance examples
 
-- 关闭弹窗后没有继续触发 toast 或更新已卸载组件。
-- 浏览器减少动效时弹窗仍立即可交互，主要文字即刻可见。
-- 快速点开关闭十次不会叠加十个监听器。
-- 列表筛选不会把数据重排动画误当数据真实值变化。
+- Closing a dialog does not later trigger a Toast or mutate an unmounted component.
+- With reduced-motion enabled, dialogs remain immediately interactive and primary text is visible at once.
+- Ten rapid open/close actions do not accumulate ten event listeners.
+- List filtering never makes a data-reorder animation look like a change in underlying real values.
 
-## v6.2 · Canvas/WebGL、图表与物理引擎
+## v6.2 — Canvas/WebGL, charts and physics
 
-- PixiJS / Three.js / Curtains.js：组件卸载时释放 renderer、scene 资源、材质、纹理、事件与 `requestAnimationFrame`；静态 DOM 保留语义与替代图片。需明确设备像素比上限与弱性能回退。
-- ECharts：容器 resize 与数据流分离，组件卸载 `dispose` 实例；图表可能不能代替屏幕阅读器可访问的数据摘要或表格。
-- tsParticles：可见时按需启动，后台与 `prefers-reduced-motion` 时暂停；释放实例和监听器。
-- Matter.js：物理世界、runner 与渲染层分离；清除 runner、world、鼠标约束和事件。
-- SplitText：处理字体加载、窄屏换行和重新拆分；撤回 DOM wrappers/动画实例，保留屏幕阅读器语义。
-- SVG Filter：浏览器原生能力，不代表没有 GPU 成本；大面积持续模糊和位移必须实测。
+- **PixiJS / Three.js / Curtains.js:** Release renderers, scene resources, materials, textures, listeners and `requestAnimationFrame` on unmount. Keep semantically meaningful static DOM and replacement imagery. Define pixel-ratio caps and low-performance fallbacks.
+- **ECharts:** Separate container resize handling from data flow; call `dispose` on unmount. Charts alone may not provide an accessible data summary/table for screen readers.
+- **tsParticles:** Start on demand when visible, pause in the background or with reduced motion, and dispose instances/listeners.
+- **Matter.js:** Keep physics world, runner and rendering separate; clear runner, world, mouse constraints and events.
+- **SplitText:** Handle font loading, line reflow and re-splitting on narrow screens. Reverse wrappers and animations when cleaning up while preserving screen-reader semantics.
+- **SVG Filter:** Browser-native does not mean zero GPU cost; measure large continuous blurs and displacement effects.
 
-验收至少覆盖首次启动、连续挂载/卸载 10 次、窗口宽度变化、减少动效、WebGL 失败、资源缺失、图表为空、浏览器切到后台。更多选型见 `references/visual-tech-selection-12.md`。
+Minimum checks: first launch, ten consecutive mount/unmount cycles, viewport-width changes, reduced motion, WebGL failure, missing assets, empty chart and background tab. See `references/visual-tech-selection-12.md` for further technology selection.

@@ -39,15 +39,15 @@ class SidebarPaletteTests(unittest.TestCase):
 
     def test_rail_is_not_prohibited_universally(self):
         doc = (ROOT / "references/sidebar-navigation-design.md").read_text("utf-8")
-        self.assertIn("时间轴", doc)
-        self.assertIn("例外", doc)
-        self.assertIn("树", doc)
+        self.assertIn("timeline", doc.lower())
+        self.assertIn("exception", doc.lower())
+        self.assertIn("tree", doc.lower())
 
     def test_seven_component_patterns_covered(self):
         s = (ROOT / "references/workspace-component-refinement.md").read_text("utf-8")
         for component in ("Sidebar", "Topbar", "Card", "Data table",
                           "Tabs", "Search", "Split pane"):
-            self.assertIn(component, s)
+            self.assertIn(component.casefold(), s.casefold())
 
     def test_gallery_switches_states_and_has_reduced_motion(self):
         s = (ROOT / "assets/sidebar-refinement-gallery.html").read_text("utf-8")
@@ -58,7 +58,7 @@ class SidebarPaletteTests(unittest.TestCase):
     def test_independent_external_rail_documented(self):
         guide = (ROOT / "references/sidebar-selection-indicator-gate.md").read_text("utf-8")
         for token in ("border-left", "border-inline-start", "box-shadow: inset",
-                      "aria-current", "aria-hidden", "外侧", "短"):
+                      "aria-current", "aria-hidden", "outside", "short"):
             self.assertIn(token, guide)
 
     def test_gallery_has_good_and_bad_visual_examples(self):

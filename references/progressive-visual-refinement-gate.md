@@ -1,88 +1,88 @@
-# Progressive Visual Refinement Gate · 分阶段视觉精修与去模板化（v6.21）
+# Progressive Visual Refinement Gate — Staged Improvement Without Template Imitation (v6.21)
 
-这份规范抽象的是“**分阶段诊断和收敛**”的设计方法，不复制其他 Skill 的表达、用户提供的截图、企业页面或任何真实数据。适用于后台、消费者、教育、内容、创作和展示网站。**不是“所有网页都变黑白、统一小圆角、全删 emoji”的固定审美。**
+This guide describes a transferable **staged diagnosis-and-convergence process**. It does not reproduce another Skill's writing, a user screenshot, enterprise page or real dataset. It applies to enterprise, consumer, educational, content, creative and showcase Web products. It **does not** mandate black-and-white themes, universally small radii or deleting all emoji.
 
-启动前先执行 [Product Experience Routing](product-experience-routing-gate.md)，明确页面的任务与结构。对结构性错误，必须先修改 UX；不能只做皮肤精修。
+Before beginning, run Product Experience Routing (product-experience-routing-gate.md) to understand the page's actual task and structure. If the structure is wrong, fix UX first; superficial styling is not a substitute.
 
-## UX 重构与 UI 精修的路线判断
+## Decide between UX restructuring and UI refinement
 
-| 发现的核心问题 | 正确路线 | 不算修复 |
+| Primary finding | Correct path | Not a valid fix |
 | --- | --- | --- |
-| 缺少该产品的独有主任务，像通用后台 | 返回 PX2/PX3，重做内容与主行动 | 只换配色、换图标、改圆角 |
-| 主路径正确，但间距、层级、颜色混乱 | 按 R0–R5 渐进精修 | 修了一个 token 宣称全页完成 |
-| 用户明确只要求一个按钮/图标/功能 Bug | 作用域内诊断 + 修复 + 回归 | 擅自改变导航和页面结构 |
-| 品牌明确要童趣、游戏化或高表现力 | 按确认的风格提纯规则，保留必要表达 | 强行变成低饱和企业管理面板 |
+| The product's distinctive main task is missing; page looks like a generic admin template | Return to PX2/PX3, redesign content and primary action | Changing only palette, icons or radius |
+| Main workflow is correct, but spacing/hierarchy/color is inconsistent | Progressive R0–R5 refinement | Declaring an entire page done after fixing one Token |
+| User requests only a specific button/icon/function bug | Scoped diagnosis, repair and regression | Unapproved navigation and page-architecture changes |
+| Brand intentionally calls for playful, game-like or expressive presentation | Refine within the confirmed direction, preserving necessary expression | Forcing a muted enterprise admin skin |
 
-## R0 · Baseline & Diagnosis（记录问题及正确部分）
+## R0 — Baseline & Diagnosis: record defects and existing strengths
 
-观察产品任务、当前设计决策、组件库、设计 Token、现有真实页面。记录相同路由/数据状态/视口的首屏、中段、底部以及关键交互；缺少浏览器时只能依据截图或源码并明确 NOT VERIFIED。分别列出 P0/P1 问题：任务缺失、视觉焦点不对、独立模块贴合、信息拥堵、图标与颜色无章法、响应式及可访问性缺陷。
+Inspect actual product tasks, established design decisions, installed component library, design Tokens and real pages. Capture beginning, middle, end and critical interactions on **the same route, data state and viewport**. Without browser access, use only provided screenshots/source and explicitly label **NOT VERIFIED**. Separately identify evidenced P0/P1 issues: missing task, wrong visual focus, unrelated panels touching, excessive information density, incoherent icons/color, responsive and accessibility failures.
 
-**Gate**：问题有位置、证据、用户影响、优先级和授权范围；没有依据不能硬凑缺陷。把已经正确的设计列为保留项，但不能将原有坏状态当成“正确 before”。
+**Gate:** Each finding must have a location, evidence, impact, priority and authorized scope. Do not invent defects to meet a quota. Record good existing decisions to protect them, but **do not call a bad inherited state a correct baseline**.
 
-## R1 · Experience & Composition（先决定视觉中心）
+## R1 — Experience & Composition: choose the real focal point first
 
-根据 PX2 的 Page Purpose Card 建立主任务、次行动与内容展示顺序。结构有问题时至少比较两个有实质不同信息组织方式的低保真方案；不能把“左侧栏 + 四个数字 + 列表”仅调成柔和颜色，就说重做体验。
+Use PX2's Page Purpose Card to define the main task, secondary actions and content sequence. If the structure is wrong, compare **at least two materially different low-fidelity information arrangements**; tinting a stock “sidebar + four numbers + list” is not an experience redesign.
 
-明确 3 秒第一眼应该注意什么；灰阶快扫可辅助判断，但不是用户研究。优先真实内容与下一行动，避免无意义的 KPI、假成果、装饰性开屏语和占位卡片。
+Identify what should catch attention within the first three seconds. A grayscale glance test may help, but is **not user research**. Prioritize real content and next actions; reject meaningless KPIs, fabricated outcomes, decorative hero slogans and filler cards.
 
-**Gate**：首屏焦点、信息优先级、主要行动与产品任务一致。否则停止外观精修，返回 R1/PX3。
+**Gate:** First-screen focus, information priority and primary action must match the user's task. If not, stop cosmetic refinements and return to R1/PX3.
 
-## R2 · Layout & Spacing（间距、格线、密度）
+## R2 — Layout & Spacing: relationships, grid and density
 
-**v6.22 场景排版检查**：在 Settings / Form / Hybrid 页面进入 R2 时，必须先通过 [Settings & Form Layout Gate](settings-form-layout-gate.md)：独立设置短控件左右排列（必要时窄屏折叠）、连续表单上下字段簇、混合区域按保存语义划分；分组留白和危险操作不能被“去掉外层卡片”一起删除。字段错误、控件压缩、保存/提交反馈是 R5 实际复验项目。
+**v6.22 settings/form/hybrid check:** On Settings, Form or Hybrid pages, first apply Settings & Form Layout Gate (settings-form-layout-gate.md). Individually saved settings normally place label and short control side by side (stack at narrow breakpoints if needed); consecutive form fields form vertical clusters; hybrid areas divide according to save/submit semantics. Removing a decorative outer Card must **not remove meaningful group spacing or dangerous-operation warnings**. Field errors, crushed controls and save/submit feedback must be retested at R5.
 
-区分 inside / peer / section / connected / anchored 的空间语义；检查行列对齐、父级 gap 与内 padding、页面尾部余量、滚动可达性、窄屏重排。独立内容区域不得无意零间距贴合，合法的 Tab 与 Panel、表头与数据可以共边。减少重复标题和多余卡片，而不是给所有容器机械设置相同的 16px。
+Distinguish inside / peer / section / connected / anchored spatial relationships. Check horizontal/vertical alignment, parent gap versus internal padding, page-end safe space, scroll reachability and narrow-screen reflow. Independent sections must not accidentally touch at zero gap; a genuine Tabs+Panel or table header/body may intentionally share an edge. Reduce redundant titles and needless cards instead of applying a mechanical 16px gap to every container.
 
-复用 [语义间距](semantic-spacing-rhythm-gate.md)、[间距回归](spacing-regression-protection-gate.md)、[视口安全](grid-alignment-and-viewport-safety.md) 的既有规则和检查工具。
+Reuse the existing contracts and tools in semantic-spacing-rhythm-gate.md, spacing-regression-protection-gate.md and grid-alignment-and-viewport-safety.md.
 
-**Gate**：多视口下分组、留白、对齐和内容可达性成立；不得靠隐藏溢出、负 margin 和局部 padding 伪装修复。
+**Gate:** Grouping, whitespace, alignment and content access must work at supported viewports. Hiding overflow, negative margins or unrelated local padding are **not acceptable disguises for a structural problem**.
 
-## R3 · Typography, Palette & Icons（统一视觉焦点并消除无依据装饰）
+## R3 — Typography, Palette & Icons: clear focus, justified decoration
 
-建立标题、关键数字、正文、说明和辅助信息的字体角色。按“品牌强调 / 主要行动 / 成功 / 警告 / 错误 / 数据 / 背景”明确色彩责任；新配色仍以用户已批准品牌决定为准，不自动换成灰蓝或黑白。
+Assign semantic type roles to titles, key numeric values, body copy, explanations and metadata. Give color explicit responsibilities: brand accent / primary action / success / warning / error / data / background. A new palette remains subordinate to confirmed brand decisions; **do not automatically replace an existing brand with gray-blue or black-and-white**.
 
-- **Emoji 有条件处理**：无业务价值的装饰性表情、与专业 icon 混排造成识别负担时，应删除或替换为同一风格的图标；如果 emoji 是社交内容、儿童教育、游戏化反馈、品牌明确的视觉资产，则保留并改善一致性，禁止全局删除。
-- **Icon 不是越多越专业**：根据对象语义、同组线条/光学重量与可访问名称选择，优先当前项目图标系统；必要时可只使用文字。
-- 检查背景、按钮、KPI、警告是否争夺第一焦点；颜色需要帮助区分语义，而非制造满屏彩色贴纸。
-- 尊重用户的清晰品牌方向与有意采用的艺术风格。
+- **Emoji are conditional:** Remove decorative emoji that convey no information or conflict with a professional icon family; replace with coherent icons when appropriate. **Retain and harmonize** emoji that are real social content, children's learning material, game feedback or approved brand assets. **Never delete emoji globally.**
+- **More icons are not inherently more professional:** Choose by object/action semantics, outline consistency, optical weight and accessible names, preferring existing project icons. Plain text may be better.
+- Check whether background, buttons, KPIs and warnings compete for the same first focal point. Color should clarify meaning, not wallpaper a screen with colorful stickers.
+- Respect an explicitly established brand identity and intentional art direction.
 
-**Gate**：灰阶仍能认出核心行动；色彩角色清楚；图标组有语义和一致性；重要内容对比度达标。
+**Gate:** Core actions remain discoverable in grayscale; semantic color roles are clear; icons have coherent meanings and families; essential content meets contrast requirements.
 
-## R4 · Radius, Surfaces & Component Finish（统一形态语法）
+## R4 — Radius, Surfaces & Component Finish: consistent shape grammar
 
-通过已有或新建的 radius-control / radius-panel / radius-overlay 等语义 Token 管理圆角，考虑容器嵌套与尺寸；**不要求每个角都相同像素**。统一同类按钮/输入/下拉的高度、文字基线、边距、边框、阴影、hover/focus/disabled/loading 等状态；清理无必要的浮层阴影、厚边框、大 pill 和卡片套卡片。
+Use inherited or new semantic Tokens (for example radius-control, radius-panel and radius-overlay) to coordinate corner radii based on size and nesting. **Do not mandate one radius value for every element**. For same-role Buttons, Fields and Dropdowns, unify heights, text baselines, spacing, borders, shadows and hover/focus/disabled/loading states. Remove needless floating shadows, heavy borders, giant pills and Card-inside-Card stacks.
 
-**Gate**：相同交互角色有统一外观与完整状态，圆角层级有理由，组件在长文本/低配/缩放/暗色下可用；不能牺牲行为和可访问性。
+**Gate:** Controls serving the same role have coherent appearances **and complete behaviors**; radius hierarchy is justified; long text, lower-end devices, zoom and dark theme still work. Behavior and accessibility may not be sacrificed.
 
-## R5 · Compare & Verify（同环境前后对照）
+## R5 — Compare & Verify in the same environment
 
-以同一页面、状态、设备宽度与主题比较 before/after；检查用户主任务是否更突出，首屏焦点是否改变，模块间距、排版、icon、表面与控件状态是否真正改进。必须看首屏、页面中段、末尾、滚动终点和窄屏/200% 字体，必要时加深色、RTL、长文本、异常状态。
+Compare before/after on the **same page, state, viewport and theme**. Verify the main task and first-screen focus, section spacing, typography, icons, surfaces and actual control states. Inspect beginning, middle, end, final scroll point, narrow supported viewport and **200% text scaling**. Include dark theme, RTL, long labels and error states when applicable to the actual product.
 
-脚本和 DOM 只检测可量化风险，**自动 PASS 不是审美优秀或用户体验已验证**。每条 R0 问题记录 FIXED & VERIFIED / UNFIXED(reason) / NOT AUDITED(reason)。无法运行页面或用户只要求评审时，必须说明未测，不能宣称真实产品修复完成。
+Scripts and DOM scans can identify measurable risks but **an automated PASS is not proof of aesthetic excellence or validated user experience**. Every R0 item must be reported as **FIXED & VERIFIED / UNFIXED(reason) / NOT AUDITED(reason)**. Without a runnable target or with review-only authorization, state the limits; do not claim the real product was repaired.
 
-## 高“AI 模板感”的真正判断
+## What actually makes a screen feel like an AI template?
 
-| 观察现象 | 根因优先判断 | 所属阶段 |
+| Observation | Primary root-cause hypothesis | Phase |
 | --- | --- | --- |
-| 换成另一个产品名仍然原样可用 | 任务结构可能通用化 | R1 |
-| 所有产品都默认侧栏+数字卡+表格 | 信息架构套模板 | R1/R2 |
-| 独立内容无间距、过多嵌套卡片 | 空间关系错误 | R2 |
-| emoji 贴纸、无语义图标、颜色到处争主角 | 视觉角色不清 | R3 |
-| 大面积渐变和阴影阻挡内容 | 配色/层级与表面不匹配 | R3/R4 |
-| 所有控件最大圆角、按钮尺寸不统一 | 形态语法不一致 | R4 |
-| 只换配色，主任务仍不存在 | UX 没有改变 | 必须退回 R1 |
+| Replacing the product name leaves the entire page generic and unchanged | Task structure may be too generic | R1 |
+| Every site starts with Sidebar + numeric Cards + table | Information architecture is templated | R1/R2 |
+| Unrelated modules touch or Cards nest needlessly | Incorrect spatial relationships | R2 |
+| Decorative emoji, meaningless icons, every color competing | Unclear visual roles | R3 |
+| Massive gradients/shadows obscure information | Color/hierarchy and surface choice conflict | R3/R4 |
+| Every control is a huge pill; button sizes diverge | Inconsistent shape grammar | R4 |
+| Palette changes but real task is still missing | UX was not improved | **Return to R1** |
 
-**注意**：渐变、emoji、丰富色彩、圆角、游戏化均可能符合品牌与真实用户任务；问题不在“用了什么”，而在“为什么使用、是否一致、是否妨碍任务”。
+**Important:** Gradients, emoji, rich colors, radius and playful/game-like design may all be appropriate to the brand and user's actual task. The question is **why**, whether applied coherently, and whether they obstruct work—not a blacklist of individual effects.
 
-## 分阶段交付记录
+## Staged delivery record
 
-| 阶段 | 证据 | 输出状态 |
+| Stage | Required evidence | Output |
 | --- | --- | --- |
-| R0 | 原图/运行页/源码、已确认设计和问题清单 | PASS / NOT AUDITED |
-| R1 | IA、主/次 CTA、结构对比 | PASS / FAIL / NOT TESTED |
-| R2 | Grid / Spacing / Viewport 截图与风险检查 | PASS / FAIL / NOT TESTED |
-| R3 | 字级、色彩、图标理由和对照 | PASS / FAIL / NOT TESTED |
-| R4 | Radius/Surface/Control 角色及状态 | PASS / FAIL / NOT TESTED |
-| R5 | 真实页面或用户验收记录、未解决问题 | PASS / FAIL / NOT TESTED |
+| R0 | Original screenshot/real page/source, confirmed decisions and findings | PASS / NOT AUDITED |
+| R1 | IA, primary/secondary CTAs and meaningful structure comparison | PASS / FAIL / NOT TESTED |
+| R2 | Grid/spacing/viewport evidence and risk scans | PASS / FAIL / NOT TESTED |
+| R3 | Typeface roles, color and icon rationale with comparisons | PASS / FAIL / NOT TESTED |
+| R4 | Radius/surface/control roles and states | PASS / FAIL / NOT TESTED |
+| R5 | Real-page or user acceptance evidence; unresolved issues | PASS / FAIL / NOT TESTED |
 
-本流程可往返、按任务跳过无关阶段，但**跳过不等于 PASS**。原用户参考只在当前会话中观察，不上传到公共仓库；示例使用独立构造的案例。参见 [阶段用例](../assets/refinement-stage-cases.json)。
+The workflow may revisit stages or skip irrelevant work for a scoped task, but **SKIPPED IS NOT PASS**. User reference images remain in the current authorized conversation; they must not be uploaded to the public repository. Demonstrations must be independently invented. See assets/refinement-stage-cases.json.

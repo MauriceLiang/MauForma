@@ -1,70 +1,72 @@
-# Browser QA：视觉方案与真实操作的联合验收
+# Browser QA — Joint Acceptance of Visual Design and Real Interactions
 
-本文件使用真实浏览器证据，而不是把静态检查等同于浏览器运行；相关开源方法论来源集中见 README。使用本项目已有 Playwright/浏览器测试设施；没有时先说明限制，不静默安装新浏览器或远程驱动。
+This protocol requires real-browser evidence rather than treating static checks as browser execution. Prefer the target project's existing Playwright/test tooling; if absent, state the limitation before installing anything. Never silently install a browser or remote driver.
 
-## v6.20 · 模糊优化的主动浏览器诊断
+## v6.20 — Active browser diagnosis for ambiguous UI polish
 
-用户只说“优化这个页面”时，**先对实际页面做基线无关的缺陷扫描**，不要把运行原有间距基线当作默认通过，也不要只跑 Skill 自带的 Mock。按 `references/proactive-visual-defect-discovery-gate.md` 从实际页面首/中/末、主要状态、宽窄屏检查空间/主次文字/组件/图标配色/交互；可运行 `node scripts/audit_existing_visual_defects.mjs --url <current-page>` 找到 Block/Grid/Flex 或简单包装层中可见面板的既有贴合。再用 v6.19 的 before/after 对比防止引入新问题。工具有覆盖盲点，实际页面未打开不得称为 Browser PASS；含用户隐私的截图和识别信息不得上传公共仓库或 CI artifact。
+For “improve this page,” **start with a baseline-free inspection of the actual page**. Neither a passing before-state spacing baseline nor a built-in Mock is sufficient. Follow `references/proactive-visual-defect-discovery-gate.md`: inspect beginning/middle/end, meaningful states and supported wide/narrow layouts across spacing, hierarchy, control density, icon/color and interaction/responsiveness. Where useful, `node scripts/audit_existing_visual_defects.mjs --url <current-page>` finds pre-existing touching framed panels in Block/Grid/Flex and simple wrapper structures. Compare before/after geometry afterward to protect good regions. Tool coverage is incomplete: never claim browser PASS without opening the actual page. Do not upload private screenshots or user data to public CI.
 
-## 通用标题前导识别（跨颜色、字体、字号和所有标题层级）
+## Universal title-prefix classification, independent of styling
 
-在页面新建、视觉优化与设计评审的授权范围内，依据 `references/title-prefix-role-gate.md` 查阅实际标题组。可执行 `node scripts/audit_title_prefixes.mjs --url http://localhost:3000 --selector main` 生成 `CANDIDATES_FOR_REVIEW`，覆盖常见 H1–H6 和 `role=heading` 前导结构，不能用其 `NO_CANDIDATES_OBSERVED` 声称页面没有眉题。候选必须由 Agent 核对真实角色与是否应作为独立标题前导；真实面包屑、状态、步骤和品牌不能误删。对伪元素、Canvas、图片文字、非语义视觉标题仍需渲染审查。**颜色、字号、字体不是候选定义**，已有页面和新内容均需检查，UI 修复后在真实页面复看。
+For creation, authorized visual polish and design review, use `references/title-prefix-role-gate.md` to inspect real heading groups. `node scripts/audit_title_prefixes.mjs --url http://localhost:3000 --selector main` emits `CANDIDATES_FOR_REVIEW` from common H1–H6 and `role=heading` structures. `NO_CANDIDATES_OBSERVED` **does not prove the page has no eyebrows**. The Agent must determine the meaning and correct position of each candidate. Preserve real breadcrumbs, statuses, steps and approved brand stories. Pseudo-elements, Canvas, image-embedded labels and non-semantic visual headings need visual review. **Color, font size and family never define a candidate.** Inspect inherited and new content; recheck the actual page after changes.
 
-## 组件来源与展开态一致性（新建和既有页面）
+## Component provenance and open-state consistency — new and existing UI
 
-依据 `references/component-consistency-and-selection-gate.md`，必须对同一语义用途的真实控件进行来源与视觉语言盘点：实际代码引入、主题/Tokens、原生或 headless 实现、共享适配层，以及**闭合与展开两种状态**。可使用 `node scripts/audit_control_consistency.mjs --url http://localhost:3000 --selector main` 找出原生 Select 与 ARIA 选择控件并存的候选；它不是库归属判定，也看不到所有系统级选项弹层。浏览器/操作系统绘制的 native select 菜单应在目标平台人工核对；未观察其展开态时结论为 NOT TESTED。检查键盘、选中、错误、焦点、深浅色、长文本和边界，不得以外层 input 的 CSS 一致替代弹层质量验证。
+Use `references/component-consistency-and-selection-gate.md` to map real imports, theme/tokens, native/headless implementations, shared adapters and **closed plus open states** of same-purpose controls. `node scripts/audit_control_consistency.mjs --url http://localhost:3000 --selector main` may flag native Select and ARIA selection controls coexisting, but cannot identify vendor implementations or all OS-level option popups. Native select menus drawn by the browser/OS need inspection on the actual target platform; if not observed, report `NOT TESTED`. Verify keyboard, selection, errors, focus, dark/light, long labels and viewport boundaries. Styling the trigger is not proof the option popup is consistent.
 
-## 浏览器先观察再操作（B14）
+## Inspect the browser before inventing selectors (B14)
 
-先启动或复用用户授权的目标项目服务，记录服务启动/关闭范围；访问实际路由后先读取**当前渲染 DOM、可访问名称、可见控件与状态**，然后才确定 Playwright 选择器，禁止根据页面猜测 selector 或虚构运行中的按钮。记录 Console、页面异常与相关网络请求错误；不能用 `networkidle` 单一条件判断 SPA/流式请求已完成，应结合有语义的可见状态与实际加载条件。完成验证后正确清理本次启动的服务与测试资源，不能终止用户原本运行的服务。
+Reuse or start an authorized project server, documenting which process is under test and which processes may be shut down. **Read the current rendered DOM, accessible names, controls and visible states before selecting Playwright locators**; never guess a selector or a live button from a prompt. Record console exceptions and relevant network/server failures. `networkidle` alone is not a sufficient readiness condition for SPAs or streaming apps; combine actual visible semantic readiness with the relevant loading state. Close only resources started for this test; never kill the user's pre-existing service.
 
-## Dynamic Motion Rehearsal（适用于有动效的实际页面）
+## Dynamic Motion Rehearsal
 
-对新建/变更的关键交互，不以“CSS transition 已定义”或“截了一张最终图”作为完成。遵循 `references/motion-craft-and-continuity.md` 的连续性设计与 `references/motion-rehearsal-and-evidence.md` 的质量门禁，记录前/中/后帧，真实速度观察、逆向中断、最小支持视口和 reduced-motion。按需使用 `scripts/motion_rehearsal.mjs` **在操作前启动 rAF 及 pointer 事件取样**，再以实际页面选择器采集屏幕、几何和可疑位置跳变；`CAPTURED_FOR_REVIEW` 仅代表收集到证据，仍需人工复看才能得出视觉结论。商业后台无需模拟假鼠标故事，营销演示不能充当业务 E2E。
+For newly introduced or changed *important* interactions, a CSS transition declaration or final screenshot does not establish quality. Follow `references/motion-craft-and-continuity.md` and `references/motion-rehearsal-and-evidence.md`. Capture before/during/after, real-speed playback, reverse/interruption, the smallest supported viewport and reduced-motion behavior. When appropriate, run `scripts/motion_rehearsal.mjs` to begin rAF/pointer sampling **before** the interaction, then capture frames, geometry and possible positional jumps using selectors read from the real DOM. `CAPTURED_FOR_REVIEW` means evidence was collected, **not** aesthetically or functionally verified. Developer tools do not need promotional fake-mouse animations; a marketing demo cannot stand in for backend E2E.
 
-## 必选验收矩阵（按实际项目选用）
+## Required acceptance matrix — only within the product's actual scope
 
-- 视口：**先依据产品声明的支持范围**选择，如桌面 1440px、最小支持桌面视口或用户指定断点；**仅支持移动端时**检查 390px 等手机宽度，不强迫纯 PC 产品新增手机适配。所有支持视口均检查横向溢出、主视觉裁切、字断行与布局回流。
-- 可访问性：Tab / Shift+Tab 焦点路线、Esc 关闭浮层、表单标签、错误信息及错误字段聚焦、可见焦点、语义正确、对比度；不要无替代地移除 focus outline 或阻止正常粘贴。
-- 主题/设置：浅色/深色（项目支持的）、缩放/系统字体、`prefers-reduced-motion`、低性能回退；仅在产品支持 RTL 时测试对应语言、`dir` 与 CSS logical properties。对支持多语言的日期/金额/数量使用 locale-aware 格式，不能仅凭 IP 推断语言。
-- 真实流程：输入/保存/失败/重试/空状态/权限变化/加载完成；破坏性操作应有明确确认或可撤销路径，加载/验证错误可定位且可恢复；不要用只有静态 Mock 的页面冒充真实服务端。
-- 视觉对照：MASTER 与页面 override、当前确认的方案、组件展示页与实际截图；检查焦点、首屏 CTA、留白、信息密度和效果。
-- 运行记录：构建、类型检查、UI 单测、E2E（按项目已有命令）；浏览器 Console 与网络错误。
+- **Viewport:** Follow declared support. A desktop app might require 1440px and its minimum desktop width; a mobile-only site may use 390px. Never force phone layouts on desktop-only products. At every supported viewport, check horizontal overflow, visual cropping, line breaks and reflow.
+- **Accessibility:** Tab/Shift+Tab, Esc closing, form labels, error focus, focus-visible, semantic controls, contrast and meaningful accessibility state. Never remove focus outlines without an alternative or block normal paste.
+- **Themes/settings:** Test supported light/dark, system zoom/text scaling, `prefers-reduced-motion` and lower-end fallback. Only test RTL when the target product supports it. Dates, money and numeric values in multilingual apps need locale-aware formatting; do not guess locale from IP.
+- **Real actions:** Input/save/failure/retry/empty/permission/loading. Destructive actions need confirmation or undo; failures must identify and recover the affected operation. A static Mock cannot prove a real server save.
+- **Visual comparison:** Compare project MASTER and page overrides, approved plan, component showcase and real screenshots. Check focus, first-screen CTA, whitespace, density and state feedback.
+- **Engineering evidence:** Actual build, type checking, unit tests and applicable E2E; inspect browser console and request/server errors.
 
-### 外部前端规范的时效边界
+### Freshness of external frontend standards
 
-外部 Web UI 规范可能变化。只有在任务范围允许联网且确实查询到新规则时才能说“已按最新规则复核”，报告来源与检索时间；否则按当前项目固定版本和已有文档验收，并说明可能存在时效差异。静态报告的 `file:line` 是待人工复现的问题线索，不是自动 WCAG 认证。详见 `references/semantic-boundaries.zh-CN.md`（B09、B10、B14、B15）。
+Official Web UI guidance changes. Claim “verified against latest guidance” only after authorized research into current rules, with source and date. Otherwise follow the project's pinned versions and known rules, stating limitations. A static `file:line` hint is not WCAG certification. See `references/semantic-boundaries.zh-CN.md` / `references/semantic-boundaries.en.md` for B09/B10/B14/B15 (read only the relevant boundary).
 
-## 审查报告格式
+## Review report fields
 
-`page | viewport | light/dark | flow | expected | observed | screenshot-path | code-location | severity | fix | re-tested`。
+`page | viewport | light/dark | flow | expected | observed | screenshot-path | code-location | severity | fix | re-tested`.
 
-清楚标注三种结果：`PASS`（真运行）、`FAIL`（可复现）、`NOT RUN`（条件不满足），禁止把计划的测试写为已通过。
+Status labels: `PASS` (actually executed), `FAIL` (reproduced) and `NOT RUN` (conditions unmet). A planned test is never a pass.
 
-## 优先级
+## Severity
 
-P0：表单不可用、按钮不可到达、数据不真实、内容被遮挡；P1：严重溢出/对比度/无法关闭模态；P2：排版不一致、无效装饰、轻微动效不合理。
+- **P0:** Unusable form, inaccessible action, fake data or occluded essential content.
+- **P1:** Severe overflow/contrast failure, modal cannot be closed.
+- **P2:** Typographic inconsistency, decorative clutter, mild motion defects.
 
-## 可用工具
+## Tools and boundaries
 
-- 项目自带 Playwright 或相关浏览器工具优先；不自带时按授权安装，禁止修改业务运行环境后宣称“无变化”。
-- 静态扫描：`python3 scripts/audit_frontend.py path/to/src` 只提供启发式风险线索；`python3 scripts/mauforma_check.py --root path/to/project --changed src/App.vue --format json` 提供差量结构化报告与有限期限的豁免。浏览器验证独立记录 `NOT_TESTED`，开发者须人工复核。
-- 可执行基线：`python3 -m unittest discover -s tests` 与现有 `scripts/validate_*.py`。
+- Prefer the project's existing Playwright or browser automation. If absent, install only within granted permissions; do not change the business runtime then claim no changes were made.
+- Static scanner `python3 scripts/audit_frontend.py path/to/src` emits heuristic hints only. `python3 scripts/mauforma_check.py --root path/to/project --changed src/App.vue --format json` adds scoped findings and expiring waivers; browser coverage still reports `NOT_TESTED` until executed.
+- Executable baseline: `python3 -m unittest discover -s tests` plus applicable `scripts/validate_*.py`.
 
-## 反面
+## Invalid evidence
 
-截图不能证明后端接口实现；一张桌面图不能证明手机断点；grep 到 `prefers-reduced-motion` 字符串也不证明整站真正尊重减少动画设置。
+A screenshot does not prove server behavior. One desktop shot does not prove mobile support. Finding a `prefers-reduced-motion` literal does not prove site-wide reduced-motion compliance.
 
-## v6.9 · 页面末端完整性与共享网格复测
+## v6.9 — Final content reachability and shared-grid regression
 
-新增真实浏览器要求：对有长数据、发布记录、多个 Grid 图表的页面，必须验证**初始视口 + 滚动到最末端**。只截图全页顶端不能证明底部可达。可运行 `node scripts/audit_rendered_layout.mjs --url http://127.0.0.1:5173/releases --out layout-audit`，它输出 viewport 初始/末端截图和报告，需要项目已有 Playwright 或用户授权后安装；脚本没运行时为 NOT RUN。
+For lengthy data/release timelines/multi-chart grids, inspect **initial viewport and scroll-to-end**. A first-screen screenshot cannot prove the last item is reachable. `node scripts/audit_rendered_layout.mjs --url http://127.0.0.1:5173/releases --out layout-audit` produces initial/final viewport captures and a report, using the project's installed Playwright or an authorized install. When not run, report `NOT RUN`.
 
-检查浏览器滚动所有者是 document 还是内部 `main-scroll`、最后可交互/内容项滚动可达、fixed BottomBar 不覆盖、safe-area/page-end padding、无意横向溢出、同排数据卡片起点。对于未打标注的第三方组件，脚本可能无法知道“哪个是最后的有意义的内容”；可以在项目上使用 `data-mf-bottom-content`、`data-mf-grid-row`、`data-mf-grid-panel`、`data-mf-fixed-bar` 辅助判断，不能靠脚本提示直接删除或改组件。截图恰好拍在底边 ≠ 已确认裁切，滚动终点实际仍不可达才是高优先级问题。
+Find the real scroll owner (document vs inner `main-scroll`), verify the last interactive/content item, fixed BottomBar overlap, safe-area/final padding and accidental horizontal scrolling. Inspect shared data cards' top alignment. For third-party components without semantic annotations, use optional `data-mf-bottom-content`, `data-mf-grid-row`, `data-mf-grid-panel`, `data-mf-fixed-bar`. A screenshot near the lower edge is not sufficient evidence of clipping; only a genuinely unreachable endpoint is a major defect.
 
-## v6.10 · 比较页 Browser QA（覆盖不止 DOM Card）
+## v6.10 — Comparison page browser QA beyond cards
 
-使用用户实际选定的对象与采样数据，执行选择仓库 → 检查选中对象/legend/series/table columns → 时间窗口变更 → 数据缺失/部分覆盖 → 手机宽度 → 滚动最后一行。标注 `data-mf-selected-id` / `data-mf-legend-id` / `data-mf-series-id` / `data-mf-chart-group` / `data-mf-chart-plot` / `data-mf-chart-label` 能帮助 `scripts/audit_comparison_ui.mjs` 提供几何风险线索，但 Canvas 的轴刻度/标签通常不在普通 DOM 中，必须看真实绘图截图或采用图表引擎内部 API；无结构支持时报告 NOT AUDITED。外框等高 ≠ Plot Area/Axis 等高或标签无重叠。不得以“已跑静态测试”代替浏览器截图。
+Using the user's actually selected objects and sample data, run: select repository → inspect selected IDs, legend, series and table columns → change time window → test missing/partial data → smallest supported mobile layout where applicable → scroll to final row. Optional `data-mf-selected-id`, `data-mf-legend-id`, `data-mf-series-id`, `data-mf-chart-group`, `data-mf-chart-plot`, `data-mf-chart-label` annotations make geometry checks possible in `scripts/audit_comparison_ui.mjs`. Canvas axes/labels are rarely in normal DOM; inspect real chart renders or official engine APIs. Without access, report `NOT AUDITED`. Equal outer Card heights do **not** establish equal plot area/axis alignment or absence of overlapping labels.
 
-## v6.11 · 任务列表与详情的浏览器 QA
+## v6.11 — Run-monitor list and details browser QA
 
-对 Run Monitor 需实测过滤状态计数及可见任务是否一致、进度是否有实际分子/分母、恢复按钮是否只出现在合法任务、点击详情后是否显示真正阶段/日志、搜索/排序是否保持视图上下文。检查 1440×900 与 390×844 下列表行、长 ID、触摸/键盘和滚动末端。独立概念示例的 `tests/task_center_browser_smoke.mjs` 使用本地 Mock 并对 2 个视口截图；**真实业务**还要集成真实 API、权限、错误、重复操作、后台状态变化与任务重试 E2E，不能因为示例按钮改变了本地内存就称“真实重试完成”。详细规范见 `references/task-center-run-monitor-design.md`。
+Verify that filtered statuses and counts match visible tasks, progress uses genuine numerator/denominator, recovery buttons appear only in legal states, detail navigation shows actual stages/logs, and search/sort preserve context. Check appropriate 1440×900 and 390×844 layouts only when supported, including long IDs, touch/keyboard and final scroll. `tests/task_center_browser_smoke.mjs` uses local Mock data in two viewport screenshots; a real system also needs integration with its real API, permissions, failures, double submissions, background state changes and retries. A local-memory button update does **not** prove actual backend retry. See `references/task-center-run-monitor-design.md`.

@@ -1,67 +1,65 @@
-# Proactive Visual Defect Discovery Gate · 模糊优化必须主动找现有问题
+# Proactive Visual Defect Discovery Gate — Vague UI Improvement Requires Finding Existing Problems
 
-MauForma 是设计与实现 Skill，不只是把用户明确指出的问题翻译成 CSS。**当用户只说“优化一下页面 / 打磨视觉 / 看起来更专业 / 用 MauForma 改进”时，Agent 必须先主动检查真实页面，建立缺陷清单，再选择并完成最有价值的修复。** 不得以用户没有逐条指出问题为由跳过页面整体审查；也不得未经授权改变既定品牌、数据含义或动效决定。
+MauForma is a design **and implementation** Skill, not a tool that merely converts user-reported symptoms into CSS. When a user says “polish the page,” “make this look professional” or “improve with MauForma,” **inspect the real page first**, establish evidenced defects, prioritize and actually repair the most important ones. The user need not enumerate each flaw. Do not change approved branding, data semantics or motion decisions without authority.
 
-## 在视觉缺陷前增加 UX 根因筛查
+## Diagnose UX causes before visual decoration
 
-收到模糊“优化首页/更好看/去 AI 味”时，先基于 [产品体验路由](product-experience-routing-gate.md) 判断：这是后台、消费者、学习、内容、创作还是其他产品，用户此刻最重要的任务是什么？若主任务缺失或导航与产品目标明显错配，问题优先级高于配色、间距、emoji、圆角。此时进入 [分阶段精修](progressive-visual-refinement-gate.md) 的 **R1 信息架构修复**，不能把原布局更换配色当作完成。
+For an ambiguous request to “improve the home page” or “remove the AI-template feel,” apply [product experience routing](product-experience-routing-gate.md): admin, consumer, learning, content, creative or another intent—and the user's actual primary task. If that task is missing or the navigation does not serve the product, the problem outranks colors, spacing, emoji or radius. Use [progressive refinement](progressive-visual-refinement-gate.md), **R1 information architecture**, rather than merely recoloring the old layout.
 
-已批准布局上的局部缺陷仍按原 D0 的 scoped route 修复，不强制重新设计。原有五维视觉检查继续执行，但不是 UX 的替代品。
+An isolated issue within an approved layout stays scoped under Gate D0; it never automatically authorizes a redesign. The existing five-dimensional visual checklist still matters but does not replace UX diagnosis.
 
-## Gate D0 · 任务语义决定默认模式
+## Gate D0 — Let task semantics select the work mode
 
-| 用户表达 | 默认路径 | 避免 |
+| User intent | Default execution | Avoid |
 | --- | --- | --- |
-| 模糊的视觉优化、精修、提升观感、改好看 | **diagnose → prioritize → repair → verify**；整页主动审查，优先真实缺陷 | 只统一字号/圆角/配色然后宣布成功 |
-| 用户指出一个视觉问题（如模块贴合） | 先诊断该问题和直接相关邻接区域 → 修复 → 检查是否带来新问题 | 仅改一段 CSS 不看相邻布局 |
-| 只要求具体 Bug（如修复搜索提交报错） | 有边界的局部修复与相关 UI 回归 | 为此强制整个网站重设计 |
-| 只请求评估/报告，不授权改代码 | 诊断与排序，报告问题和原因，不改仓库 | 自动动用设计系统改动 |
-| 没有可访问的运行页面 | 静态样式/布局结构审查 + 用户提供的截图分析；准确标注未验证范围 | 假装跑过浏览器或只展示演示页结果 |
+| General visual polish / aesthetic refinement | **diagnose → prioritize → repair → verify** the actual page, including inherited defects | Unifying typography/radius/colors and claiming completion |
+| One identified visual issue (e.g. touching panels) | Reproduce that issue and directly adjacent area → fix → check regressions | Change one CSS declaration without checking its neighbors |
+| Specific functional bug only (e.g. submit failure) | Scoped fix and relevant UI regression | Mandatory site-wide redesign |
+| Review/report with no edit permission | Diagnose, rank and report without changing source | Unapproved design-system edits |
+| No accessible running page | Source-based structure/style inspection plus user-provided screenshots, explicitly marked as unverified | Pretending to test a browser or treating a demo as the product |
 
-## Gate D1 · First inspect, then design：缺陷清单不是装饰性流程
+## Gate D1 — Inspect the real page before designing
 
-启动页面优化时按优先级扫 **真实页面**（当前路由 + 相关状态 + 滚动中部/底部）：
+Examine actual affected routes, states, mid-page content and scroll end, prioritizing:
 
-1. **结构/空间**：独立 Section、同级数据卡/图表行与相邻全宽区块是否意外零间距？先从当前页面识别已存在的缺陷；保持良好间距，但不能因为“保留现状”而保护已经错误的零间距。卡片内 padding 无法代替外部 gap。检查横纵分离：同排有列间距而下一排完全贴上去也是错误信号。
-2. **层级/文字与页头基线**：P0/P1 是否过小或太淡？有没有大字体无信息量装饰占主次、正文难读、数据标签和图轴模糊？**无论页面类型、配色、字体与字号，都检查原有及新增的 H1–H6/卡片/区块/弹窗/自定义标题组的前导文字**，先按 `references/title-prefix-role-gate.md` 识别结构关系，再按 `references/page-header-antipatterns.md` Gate H-Base/H0 分类，给出 `keep / merge / move / split / delete`；保留信息不等于保留眉题视觉呈现。不能因为它早已存在就跳过。
-3. **组件/内容与贴边彩条**：是否所有功能都包巨卡、多个独立卡片视觉粘连、按钮尺寸与用途不符、表格/列表密度不适合业务、空数据却用大占位？**检查原有和新增 Card/Panel/Section 的彩色单侧边框、贴边伪元素、渐变、内阴影等是否与容器边框粘连**；默认清理，确有独立用途再改为有间隙的外置短标记。详见 `references/surface-edge-accent-gate.md` Gate S0。
-4. **组件来源与展开态一致性**：盘点原生、第三方、headless、自写控件是否在同一操作区域混用并产生断裂，重点检查 Select/Combobox、Dropdown、Dialog 的**真实展开态**和字体/密度/边框/圆角/阴影/焦点等视觉语义；先按 `references/component-consistency-and-selection-gate.md` 判断原有体系与产品类型，再决定复用或替换，不按 CSS 字面相同判断一致。可用 `scripts/audit_control_consistency.mjs` 做 DOM 候选盘点；它不能检测系统级弹层或证明组件来自哪家库。
-5. **图标/色彩**：图标语义、轮廓、光学重量和文字是否协调？色彩是否服务品牌/状态，而不是无理由铺强饱和块？注意用户已有配色选择不得擅改。
-6. **交互/响应式**：选中、hover、focus、加载与错误状态是否有效？Tab/弹窗/筛选是否真实可用？文本放大、窄屏和滚动到底是否不溢出、不遮挡？动效遵循已选强度。
+1. **Structure and spacing:** Are independent Sections, peer data/chart cards or full-width regions unintentionally at zero gap? Identify pre-existing failures rather than protecting them as “the current design.” Card padding does not substitute for a gap *between* cards. A layout with horizontal column gaps but no vertical row gaps is also suspicious.
+2. **Hierarchy, typography and title prefixes:** Is important P0/P1 text tiny or low contrast while empty decorative titles dominate? Are chart labels and axes unreadable? On **every page type, color, font and size**, inspect inherited and new pre-title lines across H1–H6, cards, sections, dialogs and custom title components. First recognize structural roles with `references/title-prefix-role-gate.md`, then H-Base/H0 in `references/page-header-antipatterns.md`; decide `keep / merge / move / split / delete`. Valuable content does not automatically justify an ornamental pre-title. Old content is not exempt.
+3. **Components, content and attached accent bars:** Are all functions buried in huge nested Cards, unrelated surfaces visually touching, button geometry inappropriate, tables needlessly sparse, or empty data shown as oversized placeholders? Inspect **new and existing** Card/Panel/Section single-edge strips, pseudo-elements, inset shadows and gradients that touch their rounded borders. Remove decorative bars by default; a meaningful indicator must stand **outside** with a visible gap (Gate S0, `references/surface-edge-accent-gate.md`).
+4. **Control provenance and expanded-state consistency:** Identify native, vendor, headless and hand-built controls mixed within the same task area. Inspect the *actually opened* Select/Combobox, Dropdown and Dialog as well as typography, density, borders, radius, shadows and focus. Use `references/component-consistency-and-selection-gate.md` to decide whether existing components should be reused or replaced according to product type, not matching CSS strings. `scripts/audit_control_consistency.mjs` can surface DOM candidates but cannot inspect OS-owned menus or identify the component vendor.
+5. **Icon and color:** Check icon meaning, shape and optical weight; colors should support brand and state, not gratuitous saturation. Do not silently change a user-approved palette.
+6. **Interaction and responsiveness:** Are selected, hover, focus, loading and error states real? Do tabs/dialogs/filters work? Are text zoom, narrow windows and scrolling to the end usable without overflow or occlusion? Respect the approved motion intensity.
 
-至少挑出能够从运行页面或可信源码佐证的 **Top 3 风险项**；没有真实缺陷不能硬凑三个“为了设计而设计”的问题。按严重性/用户收益排序，不只挑容易改颜色的低价值项。
+Identify the **top three evidenced risks when they exist**; do not invent three problems in a healthy page. Rank by severity and user benefit, not how easily a color can be changed. A concise record is `page | issue | evidence | confidence | impact | severity | proposed fix | verification`. Before a code fix, decide whether two surfaces are independent (gap needed) or intentionally connected (shared edge may be correct). Assigning every gap an arbitrary 16px is not a design decision.
 
-输出精简审查记录可用 `page | issue | evidence | confidence | impact | severity | proposed fix | verification`；代码修复前确认**语义关系**：独立的应分开，真正连体的可共边。仅把所有 gap 变成固定 16px 不算设计。
+## Gate D2 — Discover inherited failures and protect good existing behavior
 
-## Gate D2 · 先发现已存在的问题，再做前后回归
+The v6.19 `before → after` regression check guards against **new regressions** but cannot reveal a defect already present in the before state. Use both tracks:
 
-v6.19 的 `before → after` 检查防止**引入新的退化**，但无法检测 before 中已经存在的缺陷（如原本两个独立 Card 就粘在一起）。因此必须双路径：
+- **Baseline-free discovery:** `node scripts/audit_existing_visual_defects.mjs --url <current-page> --out /tmp/visual-audit.json`. Without baseline or DOM annotations, the script can flag likely unintended contact among framed surfaces across block flow, Grid/Flex and simple transparent wrappers. It reuses `audit_panel_spacing` hints and allows justified connected components. It does not prove semantics.
+- **Preserve correct spacing (v6.19):** Run `scripts/audit_panel_spacing.mjs --baseline before.json` around changes. Protect good spacing and confirmed spatial roles, but never excuse an inherited zero-gap defect merely because it was in the baseline.
+- **Explicit role contract:** If available, `scripts/audit_spacing_rhythm.mjs --contract ...` checks role-specific gaps/tokens. A synthetic annotated demo pass is not evidence about an unannotated real page.
+- **Title copy is an independent semantic audit:** Geometry scans cannot judge whether an eyebrow/Logo/Tagline is meaningful. Use `scripts/audit_title_prefixes.mjs` to collect heading-level structural candidates irrespective of color/font/size; verify actual copy, approved brand/navigation roles and placement. Do not auto-delete from CSS keywords.
+- **Accent bars require their own visual inspection:** Spacing PASS does not prove attached Card bars are absent. Inspect real border, radius, DOM and computed styles. Neither inherited code nor arbitrary bar removal is acceptable; protect legitimate focus, charts and timelines.
+- **Human visual judgment remains essential:** Canvas, transparent frameless areas, portals, sticky elements, animation/scroll, overlays and complex composition may evade DOM heuristics. Small gaps are not universally bad; the target is *accidental contact between unrelated blocks*. A geometric warning needs semantic confirmation; a script PASS does not establish aesthetic quality.
+- **Insufficient evidence:** When there are too few visible framed panels or the page is inaccessible, report `NOT AUDITED`, not PASS. Still inspect available screenshots, DOM and CSS, report blind spots and do not demand facts the user already provided.
 
-- **发现当前缺陷（本版新增）**：`node scripts/audit_existing_visual_defects.mjs --url <current-page> --out /tmp/visual-audit.json`。它**不需要 before 基线，也不需要添加 DOM 标记**，能在实际渲染的普通 Block 流、Grid/Flex 和透明包装层内寻找明显边框 panel 的相互贴合。它复用原有 `audit_panel_spacing` 风险扫描，对可见的连体结构提供有理由的例外。
-- **保护已正确的部分（v6.19）**：修改前后用 `scripts/audit_panel_spacing.mjs --baseline before.json`，防止正常间距大幅缩小。默认保留**良好设计和已经确认的空间角色**，但不能把“保留历史坏状态”作为忽略缺陷的理由。
-- **有业务语义契约时**：`scripts/audit_spacing_rhythm.mjs --contract ...` 继续负责明确的间距角色/Token。无标记真实页面不能只报告这个脚本的 Demo PASS。
-- **标题前导是独立语义检查**：现有几何/间距扫描器不判断 eyebrow/Logo/Tagline 是否必要，其 PASS 不等于标题文案通过；可用 `scripts/audit_title_prefixes.mjs` 收集**所有标题层级**的 DOM 候选（只负责结构发现，不依赖颜色/字体/字号），必须阅读真实文案、核实品牌与导航角色、判断呈现位置，不能靠 CSS 关键词批量删除。
-- **彩条是独立外观检查**：间距扫描 PASS 不证明卡片侧边没有贴边彩条；需检查渲染后的外框、圆角、DOM 和计算样式。不能用“原来就有”豁免，也不能误删真实焦点、图表或时间线。
-- **重点补充人眼判断**：Canvas 绘图、背景透明无边框区块、portal、sticky、动画/滚动、叠层、复杂布局不一定被 DOM 启发式识别。少量距离不是所有场景都有错，错误主要是**无意且不相干的模块接触**。几何工具报错应先确认语义再修，工具 PASS 也不证明审美合格。
-- **主动判断异常结果**：如果扫描没发现有意义的 panel 或缺乏访问权限，结果是 `NOT AUDITED` 而不是 `PASS`。仍然尽力审已有截图、DOM 与 CSS，报告盲区；不借机要求用户提供重复信息。
+## Gate D3 — Close the loop by actually fixing defects
 
-## Gate D3 · 修复闭环：不只是在报告中列出问题
+1. Attach a real location and root-cause hypothesis to each P0/P1 defect. When evidence and authorization suffice, update the actual layout/styles/components—not just a report. Brand-changing or risky behavior follows existing user-decision gates.
+2. Fix structure and spatial roles first, then color, typography details or motion. Change the parent Grid/Stack's gap/relationships where appropriate, not negative margins, `!important` overrides or card padding that hides the problem.
+3. Reload the **same real page** and compare the original defect before/after. Recheck inherited title preambles and attached Card strips even if they were not in the changed diff. An unfixed old defect cannot be called verified. Keep valid `connected` exceptions but never add a blanket connected flag to the whole site.
+4. Also check responsiveness, 200% text zoom, changed states and scroll-end reachability. A bundled synthetic smoke test proves only its fixture.
+5. Report one of `FOUND → FIXED → VERIFIED`, `FOUND → UNFIXED(reason)`, or `NOT AUDITED(reason)`. Running a script alone does not qualify as successful design completion.
 
-1. 给每个 P0/P1 缺陷附上实际位置与具体原因；如果证据充分且在授权范围内，应真正修改样式/布局/组件代码；需要改变品牌/高风险行为的方案需遵循现有用户决策门禁。
-2. 先修结构和空间角色，再调色、字体细节或动效。空间问题优先修改父 Grid/Stack 的 gap/布局关系，而不是在每张卡片用负 margin、`!important` 或内部 padding 伪装。
-3. 修后重载**同一个真实页面**，对原问题重新诊断，比较视觉效果；**页头前导及卡片贴边彩条在 before 已存在时也必须核实 after 的处理结果与保留理由，不能只看新增 diff**。旧问题仍然存在不得宣布验收完成。保留合法 `connected` 例外，且不允许通过把全站统一标记为 connected 绕过问题。
-4. 同时检查响应式、200% 字体、状态变更与滚动终点。只跑独立演示页的 smoke 测试不能证明目标应用已修复。
-5. 交付结果区分 `FOUND → FIXED → VERIFIED`、`FOUND → UNFIXED(reason)`、`NOT AUDITED(reason)`。可以给出持续性问题，但不能将“跑了一条脚本”直接称为完成设计。
+## Gate D4 — Scope and privacy
 
-## Gate D4 · 限制与隐私
+- **Do not infer source ownership.** User screenshots are evidence for the current task. When the user excludes them from the repository, never commit their originals, crops, blurred variants, identifiable content, URLs, PR attachments or test screenshots to a public repository.
+- Browser scanners should emit abstract geometry by default; the caller provides the CLI URL. Never automatically upload private/commercial screenshots to public CI artifacts or commit them to the repository.
+- The gate does not enforce one UI template across all sites. Operate, Persuade, Read and Experience share diagnosis steps but have different media ratios, spatial expression and density.
+- Genuinely separate semantic regions should not accidentally share an edge even in restrained/minimal design; genuinely connected surfaces may use zero gap. The decision is about **relationship**, not a global 16px rule.
 
-- **不推断来源归属**。用户提供的设计截图仅用于当前分析；明确不入仓时，不得把截图、裁剪、模糊处理后的图、可识别数据、URL、PR 附件或测试截图提交到公共仓库。
-- 浏览器脚本默认只输出抽象几何，CLI URL 由使用者提供；对于含私人/商业信息的真实应用，不应自动把原始截图上传 CI artifact 或写到公共仓库。
-- 本 Gate 不是全站强制一个 UI 模板；Operate、Persuade、Read、Experience 四类页面均使用同一诊断流程，但有不同的图文比例、空间表达和密度。
-- 语义明确的不同模块即使处于“克制/极简”风格，也不应无意共边；真正组合表面可以继续 0 gap。判断的是**关系**，不是“一刀切所有模块 16px”。
+## Execution checks
 
-## 执行检查
-
-- 参考：`references/spacing-regression-protection-gate.md`、`references/semantic-spacing-rhythm-gate.md`、`references/visual-critique-loop.md`、`references/browser-qa-protocol.md`。
-- 模糊意图触发示例：`assets/proactive-audit-trigger-cases.json`、`scripts/validate_proactive_audit.py`（静态决策，不证明 AI 必然执行）。
-- 不依赖基线的浏览器风险检查：`scripts/audit_existing_visual_defects.mjs`、`tests/existing_visual_defect_browser_smoke.mjs`（原创合成 DOM，非用户源图）。
+- See `references/spacing-regression-protection-gate.md`, `references/semantic-spacing-rhythm-gate.md`, `references/visual-critique-loop.md` and `references/browser-qa-protocol.md`.
+- Ambiguous-intent fixtures: `assets/proactive-audit-trigger-cases.json` and `scripts/validate_proactive_audit.py` (static decisions, never proof of actual Agent compliance).
+- Baseline-free browser hints: `scripts/audit_existing_visual_defects.mjs` and `tests/existing_visual_defect_browser_smoke.mjs` (original synthetic DOM only, not user-supplied source).

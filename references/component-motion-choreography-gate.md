@@ -1,65 +1,69 @@
-# Component Motion Choreography Gate · 让组件动起来，而不只让页面转场（v6.15）
+# Component Motion Choreography Gate — Animate Actual Components, Not Only Page Transitions (v6.15)
 
-**适用**：所有 Web 项目与框架；遵守 `references/motion-consent-experience-gate.md` 中用户已确认/继承/明确委托的强度。此 Gate 修补了 v6.14 的缺口：Agent 做一个路由 fade、Dialog fade 就自称“交互动效已完成”，却遗漏常用组件的状态变化。**动效质量不是动画数量**，而是足够有记忆点的局部过渡、清楚的因果、稳定的手感和可中断的实现。
+**Applies:** All Web products/frameworks, subject to the motion intensity already confirmed, inherited or explicitly delegated under references/motion-consent-experience-gate.md. This gate closes a v6.14 gap: an Agent could implement one route fade or Dialog fade and declare "interaction motion complete" while leaving everyday components with abrupt state changes. **Motion quality is not the number of animations.** It is meaningful local transitions, clear causality, stable tactile feel and interruptible implementation.
 
-## Gate CM0 · Component Interaction Inventory（组件比页面优先）
+## Gate CM0 — Component Interaction Inventory, before page-level effects
 
-设计前列出当前产品**真实存在**且用户会操作的控件/组件，标注高频频率、显著性、是否有**可观察状态变化**。不要幻想不存在的组件、只为动效新增卡片。最少覆盖实际有的以下类型：
-- Button / CTA：pointer、press、loading/result；区分高频次操作与重要确认。
-- Tabs / Segmented / Filter / Navigation：选中指示器从旧位置过渡到新位置，内容与焦点保持连续；不要只做全页淡入。
-- Accordion / Disclosure / Drawer / Popover / Dialog：从触发点展开/收拢、遮罩与内容空间、取消、focus restore；不仅单独 opacity。
-- List / Card / Grid / Table：排序/增删/筛选前后位置连续性、焦点/选择、按需 detail preview；**不是把上百行逐条飞入**。
-- Input / Select / Search / Form：focus/validation、清空与结果、过滤的状态与位置变化；输入准确性优先。
-- Toggle / Checkbox / Radio / Slider：滑块/轨道/标记状态映射与触摸反馈，尊重原生语义。
-- Data Visualization / Status / Progress：真实数据变化适度插值、tooltip/crosshair/比较选中；绝不捏造进度和“正在增长”的数值。
-- Media / Commerce / Learning / Creative：媒体切换、产品变体、课程展开、作品焦点或叙事连接；同一策略不应强加给所有域。
+Before designing motion, inventory controls and components that **actually exist and are operated by users**. Record interaction frequency, importance and **observable state changes**. Never invent missing controls or add Cards just to have something to animate. Consider each relevant family **only when present**:
 
-**执行层级**：对每个重要的真实交互，给出 `motion | immediate-feedback | intentionally-static` 三选一，并解释为什么。用户选择 `none` 时允许全部为即时反馈，但焦点、选中、结果必须可感知；`balanced/expressive` 时不能“只有页面动画，组件全是 static”。**没有控件的领域不强制添加控件，局部 Bug 不扩大为全站重做**。
+- **Button / CTA:** Pointer, press, loading/result; distinguish frequent actions from important confirmations.
+- **Tabs / Segmented / Filters / Navigation:** Move selected indicators continuously from previous to next positions while content and focus remain coherent; a full-page fade alone is insufficient.
+- **Accordion / Disclosure / Drawer / Popover / Dialog:** Opening/closing from a trigger, spatial relationship of content/backdrop, cancellation and focus restoration; not merely opacity.
+- **List / Card / Grid / Table:** Preserve positional relationships when sorting/adding/deleting/filtering, focus/selection and optional detail preview. **Do not fly hundreds of rows in one by one.**
+- **Input / Select / Search / Form:** Focus/validation, clear/results and filter transitions; accurate input comes first.
+- **Toggle / Checkbox / Radio / Slider:** Thumb/track/check state and touch feedback, respecting native semantics.
+- **Data Visualization / Status / Progress:** Moderate interpolation of **true** data, tooltip/crosshair/comparison selection; never invent progress or rising values.
+- **Media / Commerce / Learning / Creative:** Media switches, product variants, chapter disclosure, artwork focus or connected narrative. Do not impose one motion treatment across all domains.
 
-## Gate CM1 · Motion Art Direction（有识别度的组件动效，而非套用同一种 fade）
+**Decision per important real interaction:** Choose **motion / immediate-feedback / intentionally-static**, with an actual reason. A user's **none** choice allows immediate static feedback for all components, but focus, selection and outcome must still be perceptible. For **balanced/expressive**, route-only animation while every important control remains static does not satisfy the selected direction. **Do not add controls that the page lacks; a narrow bug fix must not become a whole-product redesign.**
 
-每个实际动效声明：
-`component → trigger → from/to state → visual mechanism → timing/easing → purpose → cancel/reverse → reduced-mode → implementation owner → evidence`。
+## Gate CM1 — Motion Art Direction: recognizable component behavior, not a universal fade
 
-按用途在不同机制中择其一，**不是所有组件都必须具备所有机制**：
-1. **Indicator travel / continuity**：Tab underline、Segment handle、侧栏选中背景从 A 到 B 连续移动（位置/尺寸）；不等于另一个 `opacity:0→1`。
-2. **Spatial reveal / disclosure**：Accordion 内容区域高度与边界流畅展开，Drawer 有方向/来源，焦点/出口立即可用。
-3. **State morph / tactile response**：Toggle thumb、复选标记、按钮按压/确认；触感而非弹跳大杂烩。
-4. **Layout continuity**：筛选/删除/排序时其他对象**保留空间位置关系**，按需 FLIP/Motion layout/TransitionGroup；过渡不打断真实结果。
-5. **Semantic feedback**：上传/保存/错误的状态徽记、短促反馈、提示；语义文字必先同步。
-6. **Visual discovery / storytelling**：商品图文 hover 质感、作品聚焦、图像切换与少量共享元素；高频表格不做鼠标跟踪光效，触摸设备提供等效反馈。
+Specify for each actual effect:
 
-**防重复模式**：不能把所有按钮都 `scale(.98)`、所有 Card hover 都 `translateY(-4px)`、所有分区都 fade+slide 作为完整动效设计。同一页面至少检查**交互机制是否因角色而不同**；不是为凑数量乱加五种。推荐以**一个或少量标志性动效**建立产品手感，其余高频组件保持连贯、克制；有明确品牌要求可例外。通用 Hover 色变是有效反馈但不能冒充“组件动效创意已完成”。
+component → trigger → from/to state → visual mechanism → timing/easing → purpose → cancel/reverse → reduced-mode → implementation owner → evidence.
 
-**动效与文案和可访问性共存**：小按钮文本不得断字、读数/错误及时显示、Keyboard focus 不隐形；不要把 aria-hidden 错加给必读信息。禁止依赖 hover 才能发现核心按钮。
+Choose only mechanisms relevant to the component; **not every component needs every mechanism**:
 
-## Gate CM2 · 推荐工作流：先呈现候选体验，后写实现
+1. **Indicator travel / continuity:** Tab underline, segmented thumb or selected sidebar background moves from A to B with meaningful position/size continuity. It is **not** simply another opacity 0→1.
+2. **Spatial reveal / disclosure:** Accordion height and bounding surface expand smoothly; Drawer has a logical direction/source; focus and exit remain immediately usable.
+3. **State morph / tactile feedback:** Toggle thumb, checkbox checkmark, Button press/confirmation—tactility, not indiscriminate bouncing.
+4. **Layout continuity:** After filter, delete or sort, surrounding objects **retain spatial identity**. Use FLIP, Motion layout or TransitionGroup when necessary, without delaying actual business results.
+5. **Semantic feedback:** Upload/save/error status badge, short tactile feedback and notices; **update semantic text immediately before ornamentation**.
+6. **Visual discovery / storytelling:** Product imagery and text, artwork focus, image transitions or a small number of shared elements. Do not use cursor-following light effects on high-frequency data tables; provide equivalent feedback on touch.
 
-- 对新项目/重大交互改版，继续执行 v6.14 用户动效强度确认；**用户只选 B/C 等强度，Agent 还要主动挑选适合本产品的组件动效方案**，而非继续追问每个按钮。举例：一个工作台可以主打平滑 segmented indicator + 编辑行的局部布局衔接；课程可主打渐进式章节展开与答案反馈；商品可以主打变体图像连续过渡。
-- 先展示小范围 **Component Motion Showcase**：2–4 个最重要的真实组件，在 `none / selected-level / reduced-motion` 下的状态演示，说明独特之处及不用动效时的状态。小修无需再次走完整展示。
-- 对创意需求，按顺序查看 `references/creative-component-libraries.md`、`references/animation-engine-selection.md` 和既有 114 配方目录；参考技术方案而非机械复制样式。选择同框架/同版本的实现；使用 React Bits / Vue Bits / Inspira / Motion / GSAP 前核对来源、依赖/许可证、SSR/移动端性能。**不必为常规 indicator/accordion 安装动画库**。
-- 项目级 Motion Tokens 既包含时长/曲线，也包含**角色化机制**：`interactive-control`、`selection-indicator`、`disclosure`、`layout-change`、`feedback`、`spotlight`。不要把整站所有动画绑定到一个 `--duration` 而忽视频率、距离与内容优先级。
+**Anti-repetition:** Scaling every Button to 0.98, moving every Card up 4px on hover or fading/sliding every section is **not a complete motion design**. Check that mechanisms reflect different interaction roles, but do **not** add five effects just to meet a quota. Prefer **one or a few signature effects** for identity, while ordinary controls remain restrained and coherent. A genuinely approved expressive brand can justify more. Basic hover color change is valid feedback, **not proof that the component-motion creative brief is finished**.
 
-## Gate CM3 · 什么时候应该不动
+**Text, usability and accessibility must survive:** Short Button labels must not break character by character; numbers/errors should update promptly; keyboard focus remains visible; never mark essential readable information aria-hidden; important controls must not be discoverable only on hover.
 
-- 没有状态变化、用户不可操作的装饰；某些长阅读正文、密集表格每次刷新的全量 stagger；高频交易与敏感操作需要瞬时确认时的长过渡。
-- 用户明确选择无额外动效，或 `prefers-reduced-motion: reduce`：保留 selected/focus/结果的**即时静态表现**；背景自动循环/视差/3D 需要禁用或提供可停手段。
-- 动效会导致 CLS、重排错列、误导数值、跳过键盘焦点、窄屏裁切、变慢或低端设备掉帧时先修功能、降级或删除。**不能用“性能不好”作为完全不探索组件动效的默认借口**；可以选择更简单的机制。
-- 遵守已有确认偏好；用户没有要求超范围创意时不额外改色、换框架或大改布局。
+## Gate CM2 — Recommend an experience before implementing it
 
-## Gate CM4 · Real Interaction QA（当前 v6.14 的测试缺口）
+- For new projects or major interactive redesigns, retain the v6.14 user-choice gate for motion intensity. When the user selects a B/C intensity, the Agent **must also propose product-specific component mechanisms**, not ask the user to specify each Button. A workbench may feature smooth segmented-indicator motion plus local row reflow; learning content may use chapter disclosure and answer feedback; commerce may emphasize continuity between variant images.
+- Show a small **Component Motion Showcase** first when warranted: **2–4 high-value actual components** in **none / selected-level / reduced-motion** modes, describing their distinctive behavior and readable static outcomes. A small local repair need not repeat this full showcase.
+- For authorized creative work, consult references/creative-component-libraries.md, references/animation-engine-selection.md and the existing 114-recipe catalog in that order when relevant. Transfer technical methods without mechanically copying skins. Confirm actual framework/version, dependencies, licenses, SSR and mobile performance before adopting React Bits, Vue Bits, Inspira, Motion or GSAP. **Ordinary indicators and Accordions do not automatically need an animation library.**
+- Project Motion Tokens should describe duration and easing **plus semantic mechanism roles**: interactive-control, selection-indicator, disclosure, layout-change, feedback, spotlight. Do not bind every transition to one global --duration without considering frequency, travel distance and content priority.
 
-**必要证据不是“动画 class 存在”，而是实际触发：**
-1. 从产品交互清单核对高价值组件有没有 `motion / feedback / static(reason)`，不能拿路由转场算组件覆盖。
-2. 浏览器触发 Button、Tab、Disclosure、Toggle、List、Feedback 等实际存在的状态变化，取**交互前/进行中/结束**状态，检查位置或高度/插值行为，而不仅仅 `animationDuration > 0`。
-3. 快速反复切换、逆向、失焦、未登录/错误、窄屏和 200% 字体，验证状态不迟到、交互不被遮挡、不会中途冻住或发生多重动画冲突。
-4. reduced-motion 开关前后测相同业务结果与焦点，非必要运动立即减弱/关闭。不同框架必须在真实目标页面复核而不是只测 standalone demo。
-5. **明确测试边界**：结构/覆盖清单的 JSON 校验不证明美感、CSS 有动画不代表有交互；独立实验页的通过不代表真实项目页面已通过。
+## Gate CM3 — When the right motion is no motion
 
-## 相关规范
+- Decoration without actionable state changes; full stagger on every refresh of long reading content or dense data tables; slow transitions for high-frequency transactions and sensitive tasks that require immediate confirmation.
+- Explicit user **no-extra-motion** or prefers-reduced-motion: preserve **immediate static** selected/focus/result state; disable or provide stopping mechanisms for auto-looping backgrounds, parallax and 3D.
+- If motion causes CLS, misaligned rows, false-looking values, skipped keyboard focus, narrow-viewport clipping, slow interaction or frame drops on weak devices, fix the behavior, reduce complexity or remove the effect. **Poor performance is not blanket justification to never explore purposeful component motion**; start with a simpler mechanism.
+- Honor the confirmed user direction; do not change palette, framework or large-scale layout just because the user did not request additional creative scope.
 
-外部设计体系、实现库和可访问性标准的致谢与来源索引集中在 README；选用任何库之前仍须核对官方当前 API、依赖和许可证。
+## Gate CM4 — Real Interaction QA, closing the v6.14 gap
 
-本规则的实际操作须进一步执行 `references/motion-craft-and-continuity.md`（分镜、对象身份、邻居让位、图文与锚点）和 `references/motion-rehearsal-and-evidence.md`（完整过程、反向/中断、采样与复验）。
+Required evidence is an **actually triggered state change**, not the existence of an animation CSS class.
 
-本规则必须与 `references/motion-consent-experience-gate.md`、`references/component-craft-gate.md`、`references/control-geometry-gate.md` 和 `references/animation-integration-lifecycle.md` 一起使用。
+1. Cross-check the interaction inventory for each high-value real component and document **motion / feedback / static(reason)**. A route transition does **not** count as component coverage.
+2. Trigger real Button, Tab, Disclosure, Toggle, List and Feedback interactions where present. Capture **before / during / settled** states, checking geometry, height or interpolated relationship, not only animationDuration > 0.
+3. Test rapid repeat, reversal, focus loss, unauthorized/error cases, narrow viewport and **200% text scaling**. The state must not arrive late, the UI must not become obscured/frozen, and engines must not compete for the same property.
+4. Compare identical business outcomes and focus in normal versus **reduced-motion** settings. Nonessential movement should immediately reduce or stop. Verify in the **actual target product** under its real framework, not just a standalone synthetic demo.
+5. **Evidence boundaries:** JSON structure/coverage validation does not prove aesthetics; CSS declarations do not prove interaction; passing a demo does **not** certify the user's real product.
+
+## Related standards
+
+External systems, implementation sources and accessibility credits are indexed in the repository README. Confirm current official APIs, dependencies and licenses before adopting any implementation library.
+
+Real implementation must additionally use references/motion-craft-and-continuity.md (storyboard, identity, neighboring layout, text/media and anchors) and references/motion-rehearsal-and-evidence.md (full transition, reversing/interrupting, sampling and recapture).
+
+Use together with references/motion-consent-experience-gate.md, references/component-craft-gate.md, references/control-geometry-gate.md and references/animation-integration-lifecycle.md.
