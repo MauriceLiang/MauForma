@@ -144,3 +144,7 @@ Even with matching Card frames, audit plot-internal Axis/Legend/Label geometry p
 ## Task center is not a fixed "giant KPIs plus long list" template
 
 For async jobs, crawlers, Agent Runs and CI/CD records, consult task-center-run-monitor-design.md and applicable lessons from GitHub Actions, GitLab, Trigger.dev, Inngest, Linear and Vercel. First determine if users prioritize spotting anomalies, following progress or processing human action queues. Start with scannable records, actionable status filtering, truthful stage/progress, permitted controls and on-demand logs. Avoid giant side KPI Cards, oversized empty rows, uniform tiny text and repeated "percentage unknown" filler. Status/progress/retry depend on **real data, lifecycle and permissions**. Inherit user-approved colors/navigation/density.
+
+## Original-source cross-reference parity
+
+When a confirmed design system actually fits the user task, references/clean-enterprise-design.md is an optional profile only, never a global default. For structural Top/Side/Bottom choices use references/navigation-architecture.md; navigation selection is independent of color authorization.
