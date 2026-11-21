@@ -39,9 +39,9 @@ class SidebarPaletteTests(unittest.TestCase):
 
     def test_rail_is_not_prohibited_universally(self):
         doc = (ROOT / "references/sidebar-navigation-design.md").read_text("utf-8")
-        self.assertIn("时间轴", doc)
-        self.assertIn("例外", doc)
-        self.assertIn("树", doc)
+        self.assertIn("timeline", doc.lower())
+        self.assertIn("exception", doc.lower())
+        self.assertIn("tree", doc.lower())
 
     def test_seven_component_patterns_covered(self):
         s = (ROOT / "references/workspace-component-refinement.md").read_text("utf-8")
