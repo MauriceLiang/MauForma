@@ -31,6 +31,33 @@ class RuntimeEnglishContractTests(unittest.TestCase):
         self.assertTrue(all(x["translated_status"] == "reviewed_second_pass"
                             for x in self.manifest["entries"]))
 
+    def test_readmes_reflect_reviewed_migration_and_retain_chinese_semantic_qa(self):
+        inventory = json.loads(
+            (ROOT / "assets/i18n-phase2-migration-inventory.json").read_text("utf-8")
+        )
+        statuses = [entry["status"] for entry in inventory["files"]]
+        self.assertEqual(inventory["migration_status"], "complete_reviewed")
+        self.assertEqual(statuses.count("reviewed_second_pass"), 83)
+        self.assertEqual(statuses.count("existing_english_pending_language_audit"), 4)
+        self.assertEqual(statuses.count("bilingual_qa_exception"), 1)
+
+        for name in ("README.md", "README.zh-CN.md"):
+            readme = (ROOT / name).read_text("utf-8")
+            for anchor in ("83", "4", "references/semantic-boundaries.zh-CN.md",
+                           "assets/i18n-phase2-translation-contract.json"):
+                self.assertIn(anchor, readme, f"{name}: missing {anchor}")
+
+        english_readme = (ROOT / "README.md").read_text("utf-8")
+        chinese_readme = (ROOT / "README.zh-CN.md").read_text("utf-8")
+        self.assertNotIn("references are primarily Chinese today", english_readme)
+        self.assertNotIn("其中部分仍为中文", chinese_readme)
+
+        chinese_boundaries = (ROOT / "references/semantic-boundaries.zh-CN.md").read_text("utf-8")
+        self.assertIn("B01", chinese_boundaries)
+        self.assertIn("B15", chinese_boundaries)
+        self.assertTrue(all(entry.get("semantic_pair_examples")
+                            for entry in self.manifest["entries"]))
+
     def test_missing_critical_boundary_is_rejected(self):
         changed = copy.deepcopy(self.manifest)
         changed["entries"][0]["required_english_fragments"] += ["UNTRANSLATED CRITICAL BOUNDARY"]
