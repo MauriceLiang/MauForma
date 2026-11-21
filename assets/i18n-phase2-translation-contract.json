@@ -1669,6 +1669,36 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/animejs-easing-complete.md",
+      "source_blob_sha": "4e4de154a0c29a1789c57181878f8eaee4d23d8d",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "45 built-in easing names",
+        "Four timing directions",
+        "Six official extended easing functions",
+        "cubicBezier",
+        "steps(count",
+        "irregular",
+        "spring({mass",
+        "prefers-reduced-motion"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "完整的官方名称表（不含无限可调的参数组合）",
+          "target_en": "excluding unbounded parameterized combinations"
+        },
+        {
+          "source_zh": "不适合需要连贯的界面迁移",
+          "target_en": "Unsuitable for an interface transition that must be continuous"
+        },
+        {
+          "source_zh": "避免在模态框、密集表格、重复操作中反复弹跳",
+          "target_en": "avoid repeated bouncing in dialogs"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
