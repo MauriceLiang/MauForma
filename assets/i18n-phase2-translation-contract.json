@@ -304,7 +304,9 @@
           "target_en": "Users may deliberately choose"
         }
       ],
-      "allowed_cjk_fragments": []
+      "allowed_cjk_fragments": [
+        "蛋糕 店铺 摄影 到店"
+      ]
     },
     {
       "path": "references/animation-integration-lifecycle.md",
