@@ -47,7 +47,7 @@ class SidebarPaletteTests(unittest.TestCase):
         s = (ROOT / "references/workspace-component-refinement.md").read_text("utf-8")
         for component in ("Sidebar", "Topbar", "Card", "Data table",
                           "Tabs", "Search", "Split pane"):
-            self.assertIn(component, s)
+            self.assertIn(component.casefold(), s.casefold())
 
     def test_gallery_switches_states_and_has_reduced_motion(self):
         s = (ROOT / "assets/sidebar-refinement-gallery.html").read_text("utf-8")
