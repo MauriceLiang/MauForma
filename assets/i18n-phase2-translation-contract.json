@@ -959,6 +959,76 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/whitespace-and-surface-composition.md",
+      "source_blob_sha": "f35b192e8eb37bef0042e525ca25fda7ae64bc64",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Macro",
+        "Meso",
+        "Micro",
+        "Surface Necessity",
+        "NOT RUN"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "卡片与卡片几乎贴合不总是坏事",
+          "target_en": "Touching Cards are not always bad"
+        },
+        {
+          "source_zh": "不能通过删除所有外部 gap",
+          "target_en": "outside gaps"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/grid-alignment-and-viewport-safety.md",
+      "source_blob_sha": "1a1e57f4d8044a35a0ca9312ec28938dd3ce125a",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Gate G1",
+        "Gate G2",
+        "Gate V1",
+        "Gate V2",
+        "Gate V3",
+        "200%",
+        "scroll"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不对称（asymmetry）≠ 不对齐",
+          "target_en": "Asymmetry ≠ misalignment"
+        },
+        {
+          "source_zh": "正常情况：内容高度超过视口",
+          "target_en": "Content taller than the viewport scrolls naturally"
+        }
+      ],
+      "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/component-first.md",
+      "source_blob_sha": "c823e3de14cd36119f21f0907a5ae91938459c3b",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "Mandatory implementation gates",
+        "UiPageHeader",
+        "Component-First",
+        "Gate B"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "不是必须从零造轮子",
+          "target_en": "Do not remake mature primitives by default"
+        },
+        {
+          "source_zh": "稳定分层及单一组件所有权",
+          "target_en": "Stable layering and one owner"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }

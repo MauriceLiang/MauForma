@@ -110,7 +110,7 @@
       "path": "references/component-first.md",
       "source_blob_sha": "c823e3de14cd36119f21f0907a5ae91938459c3b",
       "source_bytes": 12419,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/component-library-first-gate.md",
@@ -248,7 +248,7 @@
       "path": "references/grid-alignment-and-viewport-safety.md",
       "source_blob_sha": "1a1e57f4d8044a35a0ca9312ec28938dd3ce125a",
       "source_bytes": 11274,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/grid-alignment-case.md",
@@ -524,7 +524,7 @@
       "path": "references/whitespace-and-surface-composition.md",
       "source_blob_sha": "f35b192e8eb37bef0042e525ca25fda7ae64bc64",
       "source_bytes": 7841,
-      "status": "pending_language_and_semantic_audit"
+      "status": "translated_pending_independent_review"
     },
     {
       "path": "references/workspace-component-refinement.md",
