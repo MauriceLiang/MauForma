@@ -9,7 +9,7 @@ This is a **task-specific interpretation aid**, not a second entrypoint. Start w
 - **Forbidden**: Never infer that a Skill style override outranks the user's approved choices.
 - **Deep references**: `SKILL.md`, `references/project-design-hierarchy.md`
 
-## B02 — Language vs product locale
+## B02 — Language vs product locale (instruction language is not product language)
 - **Trigger**: An Agent reads English instructions or works on a localized UI
 - **Required**: Keep replies and product copy in the user's or existing product locale; verify actual text, CJK wrapping and numbers.
 - **Exception**: Translate product copy only if the user requests localization or the product requirements require that locale.
