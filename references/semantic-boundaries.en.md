@@ -3,7 +3,7 @@
 This is a **task-specific interpretation aid**, not a second entrypoint. Start with SKILL.md. Read only the relevant B-code if a question concerns authority, language, scope, exceptions or verification. The paired Chinese source is semantic-boundaries.zh-CN.md. The machine-readable source is assets/semantic-boundary-contract.json; test both versions before changing either.
 
 ## B01 — Task authority
-- **Trigger**: Any design or implementation request
+- **Trigger**: Any design, implementation or review request
 - **Required**: Preserve explicit user instructions, approved design decisions and existing functional contracts; scope changes to the asked task.
 - **Exception**: A user-approved redesign may intentionally replace the affected visual direction; record which decisions changed.
 - **Forbidden**: Never infer that a Skill style override outranks the user's approved choices.
@@ -33,7 +33,7 @@ This is a **task-specific interpretation aid**, not a second entrypoint. Start w
 ## B05 — Optional visual effects
 - **Trigger**: Liquid glass, cinematic/looping motion or experimental effects appear in a task
 - **Required**: Use such effects only when explicitly requested or clearly inherited from an approved product brief; test fallback and accessibility.
-- **Exception**: A marketing illustration may be deliberately expressive; a dense workbench may remain static and compact.
+- **Exception**: When authorized, a marketing illustration may be deliberately expressive; a dense workbench may remain static and compact.
 - **Forbidden**: Never make a demo effect or aesthetic preset a global default for all pages.
 - **Deep references**: `references/liquid-glass-optics.md`, `references/motion-craft-and-continuity.md`
 
@@ -53,7 +53,7 @@ This is a **task-specific interpretation aid**, not a second entrypoint. Start w
 
 ## B08 — Figma authority
 - **Trigger**: A user asks to implement an existing Figma design
-- **Required**: Identify exact design file, frame/node, source assets, design context and screenshot when available; compare real implementation at the same viewport.
+- **Required**: Identify exact design file, frame/node, authorized source assets, design context and screenshot when available; compare real implementation at the same viewport.
 - **Exception**: Desktop current-selection is available only with a compatible desktop connection; remote providers may require explicit Figma file and node URL. Screenshot-only work is approximate.
 - **Forbidden**: Never fabricate Figma tool access, unprovided asset details or unconditional pixel-perfect parity.
 - **Deep references**: `references/figma-fidelity-workflow.md`, `references/execution-handbook.en.md`
@@ -74,7 +74,7 @@ This is a **task-specific interpretation aid**, not a second entrypoint. Start w
 
 ## B11 — Review vs implement
 - **Trigger**: Review-only, bug-fix, redesign or general polish request
-- **Required**: Review-only means findings without edits; a scoped fix requires actual regression checks; major redesign includes design direction and broader QA.
+- **Required**: Review-only means findings without edits; a scoped fix requires actual regression checks; major redesign requires confirming design direction before implementation and broader QA.
 - **Exception**: Independent formal design critique is valuable for substantial visual change but not mandatory for a one-line bug fix.
 - **Forbidden**: Never turn a review request into source edits or a tiny fix into an unrequested interview.
 - **Deep references**: `references/design-craft-loop.md`, `SKILL.md`
@@ -82,7 +82,7 @@ This is a **task-specific interpretation aid**, not a second entrypoint. Start w
 ## B12 — Design drift meaning
 - **Trigger**: An observed token, schema or design-document drift is reported
 - **Required**: Distinguish tool version drift, schema drift and product truth drift; code-derived token snapshots are observations, not approved design decisions.
-- **Exception**: Mechanical migration may be suggested for schema changes with explicit approval; truth drift requires checking real product intent and rendered evidence.
+- **Exception**: With explicit approval, schema changes may be migrated mechanically; truth drift requires checking real product intent and rendered evidence.
 - **Forbidden**: Never silently overwrite MASTER or brand decisions to make drift checks green.
 - **Deep references**: `references/project-design-hierarchy.md`, `references/skill-gap-workflows.md`
 
