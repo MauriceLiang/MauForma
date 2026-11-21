@@ -2,6 +2,11 @@
 
 Design quality comes from repeated observation, informed decisions, implementation and real evidence. This guidance applies across marketing, tools, learning, editorial, data and creative experiences. It is not an invitation to redesign unrelated features when a user requested a narrow fix.
 
+
+**Task modes (not interchangeable):** **shape** = new product or major structural design; **polish** = existing UI refinement with inherited design; **review** = evidence-based critique without unrequested edits; **fidelity** = implementation against an authorized reference; **fix** = scoped bug reproduction and repair. A mode does not authorize altering unrelated product behavior.
+
+**Seven required craft domains for applicable screens:** Typography; **Color & Contrast**; **Spatial Design**; Motion; **Interaction States**; Responsive behavior; **UX Writing**. Evaluate each in relation to the real task and its information hierarchy rather than imposing a universal appearance. Findings follow evidence → observed problem → **root cause** hypothesis → severity **P0/P1/P2/P3** → repair → real retest. A claim of visual **fidelity** requires an authorized source and same-viewport comparison; a synthetic demo alone never suffices.
+
 ## Design craft is a process, not a preset aesthetic
 
 A refined UI is not automatically minimalist, symmetrical, low saturation or filled with Cards. Strong editorial asymmetry, immersive product visuals, dense professional controls and quiet workspaces can all be correct when intentional. Begin by finding the **actual subject and user's job**, rather than selecting a favorite background color.
