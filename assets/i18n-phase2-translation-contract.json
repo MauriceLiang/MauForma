@@ -1043,7 +1043,7 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "组件复用不等于相同视觉结构",
+          "source_zh": "组件复用**不等于相同视觉结构**",
           "target_en": "Reuse **does not** imply identical appearance"
         },
         {
@@ -1068,11 +1068,11 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "设置页不强制左右排",
+          "source_zh": "不能因为页面标题出现“设置”就机械推断全部控件应左右排",
           "target_en": "does not imply every field must use a horizontal row layout"
         },
         {
-          "source_zh": "Mock 动画不证明保存成功",
+          "source_zh": "不能把 Mock 的动画反馈当真实保存成功",
           "target_en": "Mock animation is not evidence"
         }
       ],
@@ -1116,7 +1116,7 @@
       ],
       "semantic_pair_examples": [
         {
-          "source_zh": "只图标按钮须有可访问名称",
+          "source_zh": "无可见文案的按钮必须有完整可访问名称",
           "target_en": "Icon-only Buttons require an accessible name"
         },
         {
