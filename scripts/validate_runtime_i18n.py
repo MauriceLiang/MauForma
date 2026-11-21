@@ -27,6 +27,30 @@ def inspect(contract: dict, root: Path = ROOT) -> list[str]:
     entries = contract.get("entries", [])
     if not isinstance(entries, list) or not entries:
         return errors + ["Translated runtime file list is required"]
+    inventory_file = root / "assets/i18n-phase2-migration-inventory.json"
+    if not inventory_file.is_file():
+        errors.append("Full reference migration inventory is required")
+    else:
+        inv = json.loads(inventory_file.read_text("utf-8"))
+        records = inv.get("files", [])
+        if inv.get("migration_status") != "partial":
+            errors.append("Do not claim full migration while references remain pending")
+        if not isinstance(records, list):
+            errors.append("Reference inventory must list all files")
+            records = []
+        paths = [r.get("path") for r in records if isinstance(r, dict)]
+        if len(paths) != len(set(paths)):
+            errors.append("Duplicate files in full migration inventory")
+        for entry in entries:
+            found = next((r for r in records if isinstance(r, dict) and r.get("path") == entry.get("path")), None)
+            if found is None:
+                errors.append(f"{entry.get('path')}: missing from full reference inventory")
+            elif (found.get("status") != "translated_pending_independent_review"
+                  or found.get("source_blob_sha") != entry.get("source_blob_sha")):
+                errors.append(f"{entry.get('path')}: inventory and source blob mismatch")
+        pending = [r for r in records if isinstance(r, dict) and r.get("status") == "pending_language_and_semantic_audit"]
+        if not pending and contract.get("status") == "partial_migration":
+            errors.append("No pending inventory documents: verify completion status explicitly")
     seen: set[str] = set()
     for entry in entries:
         if not isinstance(entry, dict):
