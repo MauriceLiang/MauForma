@@ -86,7 +86,7 @@ State distinctions:
 - `UiSidebar`, `UiNavItem`, `UiRecentItem`, `UiSidebarSection` have distinct responsibilities; one `active` style does not fit all. Optional `SelectionIndicator` lives in outer row, not NavItem border.
 - Props: `selected` corresponds to real route/working object; `badgeStatus` means genuine business status. Color derives from semantics.
 - Reuse Vue/React RouterLink/NavLink or framework links; `div + onClick` is not a navigation link.
-- Gallery/QA: default, hover, selected, focus-visible, disabled, collapsed, long CJK/English, narrow view, light/dark. Record observed and unobserved cases.
+- Gallery/QA: default, hover, selected, focus-visible, disabled, collapsed, long CJK/English, narrow view, light/dark **and 200% text scaling**. Record observed and unobserved cases.
 - Before adding rail ask **which independent information it encodes**. If no answer, remove it; never ban every colored line merely because of a particular hue.
 
 ## 5 — Required positive and negative synthetic comparisons
