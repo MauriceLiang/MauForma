@@ -2161,6 +2161,47 @@
         }
       ],
       "allowed_cjk_fragments": []
+    },
+    {
+      "path": "references/creative-component-libraries.md",
+      "source_blob_sha": "c5bccc5a3b8c927ced585bf3f70907703b4c98ae",
+      "translated_status": "translated_pending_independent_review",
+      "required_english_fragments": [
+        "React Bits Pro",
+        "Vue Bits",
+        "Inspira UI",
+        "Magic UI",
+        "Aceternity UI",
+        "Split Text",
+        "Blur Text",
+        "Aurora",
+        "Liquid Chrome",
+        "Gooey Nav",
+        "### Vue Bits",
+        "selection scorecard",
+        "total ≥8",
+        "Immediate veto",
+        "prefers-reduced-motion"
+      ],
+      "semantic_pair_examples": [
+        {
+          "source_zh": "Pro 资源收费，不得当作免费复制",
+          "target_en": "Paid: do not copy Pro assets as though they were free"
+        },
+        {
+          "source_zh": "不是组件 API 一比一对应",
+          "target_en": "Not a one-to-one API mapping"
+        },
+        {
+          "source_zh": "至少 8 分才考虑引入，但一票否决条件更优先",
+          "target_en": "A numerical 8 does not override these blockers"
+        },
+        {
+          "source_zh": "创意库不得代替基础组件库",
+          "target_en": "Never replace with a creative effect component"
+        }
+      ],
+      "allowed_cjk_fragments": []
     }
   ]
 }
