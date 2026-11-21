@@ -95,7 +95,7 @@ class RuntimeEnglishContractTests(unittest.TestCase):
                 "assets/i18n-semantic-regression-matrix.zh-CN.md",
                 (ROOT / readme).read_text("utf-8")
             )
-        self.assertIn("not a", matrix.lower())
+        self.assertIn("不是新的 Agent 执行入口", matrix)
         self.assertIn("STATIC CHECK", matrix)
 
     def test_semantic_regression_preserves_high_risk_original_conditions(self):
