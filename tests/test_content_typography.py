@@ -77,7 +77,7 @@ class ReadabilityRulesTests(unittest.TestCase):
         checklist = (ROOT / "references/visual-qa.md").read_text("utf-8")
         for word in ("pre-H1", "do not retain", "PageHeader"):
             self.assertIn(word, skill)
-        for word in ("Gate H0", "首版", "overline", "kicker"):
+        for word in ("Gate H0", "first-pass", "overline", "kicker"):
             self.assertIn(word, guide)
         self.assertIn("首版硬门禁", checklist)
 
@@ -111,7 +111,7 @@ class ReadabilityRulesTests(unittest.TestCase):
 
     def test_source_guide_preserves_legitimate_small_headings(self):
         text = (ROOT / "references/semantic-copy-hygiene.md").read_text("utf-8")
-        for term in ("面包屑", "品牌", "数据来源", "功能性"):
+        for term in ("breadcrumb", "brand", "data sources", "functional guidance"):
             self.assertIn(term, text)
 
 
