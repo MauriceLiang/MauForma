@@ -20,7 +20,7 @@ class LiquidGlassGuideTests(unittest.TestCase):
 
     def test_video_layers_and_optional_blur_are_distinct(self):
         text = (ROOT / "references/liquid-glass-optics.md").read_text("utf-8")
-        for word in ("透明", "折射", "高光", "阴影", "可选背景模糊"):
+        for word in ("Transmission", "Refraction", "Specular", "Elevation", "Optional background blur"):
             self.assertIn(word, text)
         self.assertIn("模糊过强", text)
 
