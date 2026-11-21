@@ -20,7 +20,7 @@ MauForma 帮助 Agent 在设计和开发网页时先理解真实用户任务，�
 
 **Agent 唯一执行入口为 [SKILL.md](SKILL.md)**，英文核心操作说明见 [execution-handbook.en.md](references/execution-handbook.en.md)；本中文 README 用于阅读和使用说明，不是第二份 Agent 执行文件。
 
-**国际化说明**：英文入口与英文执行手册可直接供国际 Agent 使用；专项参考资料按实际任务读取，其中部分仍为中文。**语言转换不改变用户的品牌、业务、交互与产品界面语言**。行为规范位于 `SKILL.md` 和 `references/`，合成演示位于 `examples/`、`assets/`，检查工具位于 `scripts/`。Token 和执行质量不能凭文件体积推断；版本历史通过 Git 提交和 GitHub Releases 查询，不写进执行入口。
+**国际化说明**：第二阶段英文参考资料迁移已经完成，并进行了**有明确范围的第二轮语义复核**：`references/` 中 **83 份**原中文资料已翻译为英文，**4 份**原本就是英文；中文 [`semantic-boundaries.zh-CN.md`](references/semantic-boundaries.zh-CN.md) **有意保留**，用于中英文规则核对及语义回归。[`assets/i18n-phase2-translation-contract.json`](assets/i18n-phase2-translation-contract.json) 保留中文原文片段与英文语义锚点，[审核记录](assets/i18n-phase2-semantic-review.md) 说明检查范围及局限。英文无法保证完全无歧义，重要边界仍需要中英文对照和后续回归验证；静态检查不能替代真实 Agent 行为验收。**语言转换不改变用户的品牌、业务、交互与产品界面语言**。行为规范位于 `SKILL.md` 和 `references/`，合成演示位于 `examples/`、`assets/`，检查工具位于 `scripts/`。Token 和执行质量不能凭文件体积推断；版本历史通过 Git 提交和 GitHub Releases 查询，不写进执行入口。
 
 **标题前导识别不绑定任何配色、字体或字号**：Agent 必须依据与后续标题的结构关系、实际信息价值及呈现位置，审查 H1–H6、卡片、区块和弹窗的既有与新增眉题。真实章节、步骤、状态和品牌信息可以保留，但未必应以标题上方的装饰文字呈现。详见 [通用标题前导语义规则](references/title-prefix-role-gate.md)。
 
