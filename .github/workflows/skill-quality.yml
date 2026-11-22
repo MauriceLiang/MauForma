@@ -56,6 +56,9 @@ jobs:
           node --check scripts/audit_panel_spacing.mjs
           node --check scripts/audit_existing_visual_defects.mjs
           node --check scripts/audit_title_prefixes.mjs
+          node --check scripts/validate_title_prefix_review.mjs
+          node --check tests/title_prefix_review_contract.mjs
+          node tests/title_prefix_review_contract.mjs
           node --check scripts/audit_control_consistency.mjs
           node --check tests/control_consistency_browser_smoke.mjs
           node --check tests/title_prefix_browser_smoke.mjs
