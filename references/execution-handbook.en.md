@@ -30,6 +30,8 @@ Build a single source of truth for semantic tokens: background, surface, text, m
 
 Creative media projects can be cinematic and asymmetric. Dense business UI can be restrained and compact. Quality means visual purpose, not universal minimalism. State colors mean real system state; decorative color does not substitute for hierarchy.
 
+**Gate H-S: self-sufficient heading first.** On every affected H1–H6, card, section, dialog and visual title group, default to one clear heading with **no** preliminary category/explanation. Remove an inherited or generated pretitle when deleting it loses no independent user information; vague "context" or visual-hierarchy claims cannot justify KEEP. If useful information would disappear, move it to its semantic owner by default. Keep a pretitle only with specific evidence for the **information it adds** and **why it must remain immediately above the title**. Treat unresolved candidates as a review blocker, not as an automatic pass; when target browser access exists, record before/after results and use the title-prefix review validator. This is a review-completeness aid, not automatic semantic judgment.
+
 ## 4. Page-header copy: H-Base and H0
 
 Inspect every existing and newly introduced microheading, eyebrow, overline, kicker, mixed-language prefix or decorative number placed above the real H1 on affected routes.
