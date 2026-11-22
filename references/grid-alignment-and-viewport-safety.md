@@ -6,6 +6,10 @@
 
 A satisfactory horizontal gutter does not authorize zero vertical `row-gap` across rows. Record the pre-edit baseline of independent modules on existing pages and follow `references/spacing-regression-protection-gate.md`, comparing the same route, viewport, font size and data. `scripts/audit_panel_spacing.mjs` can find likely touching panels without DOM annotations; intentionally connected Tab/Panel remains an exception. **Insufficient scan coverage is not a pass**.
 
+## Gate LO — Layout can align while compact labels still overlap
+
+Large-panel gutters, shared Grid lines and global horizontal overflow checks cannot detect a short Badge, status label or attribution pill painting across a neighboring tag. **All new and polished Web interfaces** must review independent visible labels, text and controls for surface-over-surface, text-over-text and text-under-foreign-surface collisions, plus real reading order and visual legibility. Reflow or stack content rather than disguising the collision with `z-index`, clipping or changed colors. Use `references/visual-overlap-and-legibility-gate.md`; the real-browser `scripts/audit_label_collisions.mjs` is also integrated into existing-defect and rendered-layout audits. Its coverage is not a full aesthetic judgment.
+
 ## Alignment may pass while gaps fail
 
 Perfect shared row starts/column edges **do not prove inside/peer/section spacing is correct**. Two chart Cards can have a good `column-gap` but `row-gap:0` to the following full-width section, accidentally merging surfaces. New and major redesigns must also execute `references/semantic-spacing-rhythm-gate.md` after Gate G1: distinguish independent chapters from genuinely connected structures, verify roles/row-column rhythm and gap when a layout becomes one column. Scroll-end safety padding is **not** section spacing and cannot replace it.
