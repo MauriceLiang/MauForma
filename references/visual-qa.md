@@ -174,7 +174,7 @@ See references/component-consistency-and-selection-gate.md; scripts/audit_contro
 5. Score per references/ui-review-rubric.md; **fix blockers before acceptance**.
 6. Without real browser or screenshot tooling, explicitly state **"static source review only; real rendered result NOT VERIFIED"**.
 
-## Title self-sufficiency (all pages, not just operational H1)
+## Gate H-S — Title self-sufficiency (all pages, not just operational H1)
 
 - [ ] Does each heading communicate the page/section/object on its own, **without an automatic decorative pretitle**? The ordinary outcome is one clear heading.
 - [ ] For *every* visible H1–H6, Card, Section, Dialog and equivalent visual heading, do inherited and newly introduced pre-title lines survive a removal test? If deletion loses no independent information, **DELETE** rather than rationalizing "context".
