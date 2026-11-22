@@ -70,15 +70,15 @@ class ReadabilityRulesTests(unittest.TestCase):
     def test_all_heading_levels_are_scanned_for_source_prefix_candidates(self):
         for level in range(2, 7):
             with self.subTest(level=level):
-                html = f'<p class="intro">模块导览 · 功能说明</p>\\n<h{level}>主标题</h{level}>'
+                html = f'<p class="intro">模块导览 · 功能说明</p>\n<h{level}>主标题</h{level}>'
                 self.assertIn("title-prefix-before-heading", self.rules(html))
 
     def test_intermediate_wrapper_before_h2_is_a_candidate(self):
-        html = '<span class="muted">模块类型 · 视觉演示</span>\\n<div class="group"><h2>模型说明</h2></div>'
+        html = '<span class="muted">模块类型 · 视觉演示</span>\n<div class="group"><h2>模型说明</h2></div>'
         self.assertIn("title-prefix-before-heading", self.rules(html))
 
     def test_real_breadcrumb_before_h2_is_not_static_decoration(self):
-        html = '<span class="breadcrumb">项目 / 设置</span>\\n<h2>权限设置</h2>'
+        html = '<span class="breadcrumb">项目 / 设置</span>\n<h2>权限设置</h2>'
         self.assertNotIn("title-prefix-before-heading", self.rules(html))
 
     def test_real_breadcrumb_not_misclassified_as_eyebrow(self):
