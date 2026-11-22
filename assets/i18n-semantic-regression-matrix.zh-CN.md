@@ -319,3 +319,21 @@
 | 证据与结论 | STATIC CHECK / BILINGUAL REVIEWED / BEHAVIOR VERIFIED；列出实际证据和未测试项 |
 
 **长期原则：保留原中文可追溯性，英文负责执行，双语对照负责防止含义偏移。** 不因英语表达简洁而省略中文里的限制条件，也不因中文版本存在就忽略后续经批准的新规则。
+
+## 6. 2026-11-22 新增规则：主标题自足（Gate H-S）中英语义回归
+
+> **规则来源：**本次用户明确批准的通用设计规则升级，不属于 83 份历史中文原稿的机械翻译。不可变原始 Git 基线及原文件 SHA 保持不变。英文执行入口为 `SKILL.md` 和 `references/title-prefix-role-gate.md`；本节只提供中文语义对照与防曲解检查。
+
+| 中文设计意图（必须保持） | 英文执行契约（含义对应） | 防止的误解 |
+| --- | --- | --- |
+| 默认仅用一个清晰、能独立说明内容的标题，不主动生成标题前装饰性说明。 | Self-sufficient heading by default; no separate pre-title line. | 不能先生成小标题再找借口保留。 |
+| 删除上方文字不会损失**独立的、必要的**用户信息时，应删除。 | If removal loses no independent user information, DELETE. | “有助于理解”“补充上下文”“更精致”本身不是必要信息。 |
+| 小标题有独立信息价值，也**不自动取得**放在标题上方的资格。 | Prove independent information **and** above-heading placement independently. | 不能把“有意义”偷换为“应该放在上方”。 |
+| 真正的面包屑、章节、步骤、状态、来源、权限、品牌身份不得盲删；优先移到正确语义位置。 | Preserve real navigation, chapter, step, state, source and approved identity; prefer MOVE/MERGE to semantic owner. | 不能一刀切删除、隐藏或误改真实信息。 |
+| 所有页面类型和 H1–H6、卡片、分区、弹窗都适用，既有内容不豁免。 | Every page type and heading group, inherited and new content. | 不能只检查任务页 H1 或只修新写的组件。 |
+| 对尚未完成语义判断的候选，不得声称视觉验收通过。 | Unreviewed candidates block VERIFIED; before/after closure requires evidence. | 不能以扫描脚本、合成测试或通过 CI 冒充真实产品验证。 |
+
+**回归判定：**若英语表述弱化了默认无前导、信息损失举证、保留位置举证或既有内容整改，应认定为语义漂移并补测。若英语表述导致删除真实导航、章节、信息来源或已批准的品牌叙事，也应认定为错误。
+
+**工具边界：**`scripts/audit_readability.py` 只是静态候选提示；`scripts/audit_title_prefixes.mjs` 发现实际 DOM 候选但不会决定语义；`scripts/validate_title_prefix_review.mjs` 只检查每个候选是否有决策、保留证据及前后关系是否处理，不自动证明保留理由真实、UI 美观或业务行为正确。真实页面仍需人工/Agent 观察与复验，无法运行则标为 STATIC CHECK / NOT TESTED。
+
