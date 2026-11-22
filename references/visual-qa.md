@@ -174,6 +174,13 @@ See references/component-consistency-and-selection-gate.md; scripts/audit_contro
 5. Score per references/ui-review-rubric.md; **fix blockers before acceptance**.
 6. Without real browser or screenshot tooling, explicitly state **"static source review only; real rendered result NOT VERIFIED"**.
 
+## Title self-sufficiency (all pages, not just operational H1)
+
+- [ ] Does each heading communicate the page/section/object on its own, **without an automatic decorative pretitle**? The ordinary outcome is one clear heading.
+- [ ] For *every* visible H1–H6, Card, Section, Dialog and equivalent visual heading, do inherited and newly introduced pre-title lines survive a removal test? If deletion loses no independent information, **DELETE** rather than rationalizing "context".
+- [ ] If information is lost, was it preferentially MOVED/MERGED into real navigation, chapter/stepper, status, source, scope or below-title explanation? For each exceptional **KEEP**, is there distinct evidence of information value **and why this must stay above the title**?
+- [ ] Were all candidates resolved and affected before/after rendered views checked? When feasible run `scripts/audit_title_prefixes.mjs` followed by `scripts/validate_title_prefix_review.mjs`; static/synthetic checks do not certify a real page. No unresolved candidate may be reported as VERIFIED.
+
 ## Operational page headings / AI template patterns
 
 - [ ] **Hard first-delivery gate:** Operational management/workbench/settings/data/list/edit H1 has **no explanatory pretitle**, uppercased fake category, ornamental number or letter-spaced overline, even if not an exact repeat of H1.
