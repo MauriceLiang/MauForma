@@ -14,6 +14,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
+import {auditLabelCollisions} from "./audit_label_collisions.mjs";
 
 const args=process.argv.slice(2);
 const take=(flag,fallback)=>{const i=args.indexOf(flag);return i>=0?args[i+1]:fallback;};
@@ -46,6 +47,10 @@ try{
    // Projects with async data should wait explicitly in their own E2E suite.
    await page.screenshot({path:path.join(output,value+"-initial.png")});
    run.screenshots.push(value+"-initial.png");
+   const initialLabelAudit=await auditLabelCollisions(page,{selector:mainSelector});
+   run.labelCollisionAudit={initial:initialLabelAudit};
+   run.issues.push(...initialLabelAudit.issues.map(item=>item.code+": "+item.first+" versus "+item.second));
+   if(initialLabelAudit.coverage?.limited)run.issues.push("Label collision coverage limit reached; examine this route manually");
    const measurement=await page.evaluate(({mainSelector,lastSelector})=>{
      const errors=[],warnings=[];
      const main=document.querySelector(mainSelector);
@@ -124,6 +129,13 @@ try{
    await page.waitForTimeout(120);
    await page.screenshot({path:path.join(output,value+"-end.png")});
    run.screenshots.push(value+"-end.png");
+   const endingLabelAudit=await auditLabelCollisions(page,{selector:mainSelector});
+   run.labelCollisionAudit.end=endingLabelAudit;
+   for(const item of endingLabelAudit.issues){
+     const detail=item.code+": "+item.first+" versus "+item.second;
+     if(!run.issues.includes(detail))run.issues.push(detail);
+   }
+   if(endingLabelAudit.coverage?.limited&&!run.issues.includes("Label collision coverage limit reached; examine this route manually"))run.issues.push("Label collision coverage limit reached; examine this route manually");
    Object.assign(run,measurement);
    run.issues.push(...measurement.errors);
    run.warnings.push(...measurement.warnings);

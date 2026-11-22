@@ -12,6 +12,17 @@
 - [ ] Were **real** setting-save failures, validation errors/success, keyboard focus and last-item scrolling tested? If not, are they labeled NOT TESTED?
 - [ ] Is a synthetic browser demo PASS kept distinct from actual user-product verification? See references/settings-form-layout-gate.md.
 
+## Gate LO — Readable layout, independent label collisions and optical feasibility
+
+- [ ] On **every new or affected existing page**, do independent Badge/pills, tags, metadata, links, status labels and controls overlap each other's borders/backgrounds, even where glyphs appear separate? Unintended surface collision is a visible defect.
+- [ ] Does any visible text collide with another line or enter a neighboring painted label? Are source/license/long ID and mixed CJK/Latin words fully understandable, not clipped or silently obscured?
+- [ ] Do flex/grid peers reflow, wrap or stack with appropriate gaps at the minimum **supported** viewport, 100% and 200% text zoom and realistic longer localized strings? Desktop-only tools need their smallest supported desktop, not invented phone support.
+- [ ] Is reading order natural and optical grouping coherent after the collision fix? Check actual screenshot, font contrast, whitespace, clear control boundaries, selected/focus/expanded states, error/loading content and end-of-scroll. A geometry-only PASS cannot establish visual/reading quality.
+- [ ] For visual polish, did the Agent inspect and repair **pre-existing** collisions, rather than preserving bad original layout? For new UI, did it verify the first implemented representative group before propagating it?
+- [ ] When the real browser is available, was `scripts/audit_label_collisions.mjs` (or the integrated viewport/defect audit) used as candidate evidence, were flagged pairs resolved, and were the same route/state/viewport recaptured? False positives and intentional layers require **specific local reasons**; do not hide independent text with an exception.
+
+See `references/visual-overlap-and-legibility-gate.md` and `references/grid-alignment-and-viewport-safety.md`. Mark inaccessible real-page states NOT TESTED rather than pretending a synthetic browser fixture certifies a product.
+
 ## Proactive defect discovery for vague prompts
 
 - [ ] If the user only said "improve/polish this page", did the Agent **proactively inspect existing real-page defects**, rather than waiting for every problem to be listed?

@@ -108,6 +108,22 @@ class LayoutIntegrityTests(unittest.TestCase):
         for token in ('data-variant="masonry"','data-variant="shared-grid"','data-variant="hero-span"','id="scroll-shell"','id="last-release"'):
             self.assertIn(token,s)
 
+    def test_compact_label_overlap_gate_is_integrated(self):
+        gate=(ROOT/"references/visual-overlap-and-legibility-gate.md").read_text("utf-8")
+        skill=(ROOT/"SKILL.md").read_text("utf-8")
+        existing=(ROOT/"scripts/audit_existing_visual_defects.mjs").read_text("utf-8")
+        rendered=(ROOT/"scripts/audit_rendered_layout.mjs").read_text("utf-8")
+        audit=(ROOT/"scripts/audit_label_collisions.mjs").read_text("utf-8")
+        workflow=(ROOT/".github/workflows/skill-quality.yml").read_text("utf-8")
+        for term in ("LO0", "LO1", "LO2", "LO3", "surface–surface", "text–text", "text–foreign-surface"):
+            self.assertIn(term,gate)
+        self.assertIn("Gate LO",skill)
+        self.assertIn("auditLabelCollisions",existing)
+        self.assertIn("auditLabelCollisions",rendered)
+        for code in ("COMPACT_LABEL_SURFACE_OVERLAP","READABLE_TEXT_COLLISION","TEXT_OBSCURED_BY_COMPACT_SURFACE"):
+            self.assertIn(code,audit)
+        self.assertIn("node tests/label_collision_browser_smoke.mjs",workflow)
+
     def test_browser_script_contains_actual_end_screenshot(self):
         s=(ROOT/"scripts/audit_rendered_layout.mjs").read_text("utf-8")
         for token in ("scrollHeight","scrollTop","-end.png","data-mf-grid-row","data-mf-fixed-bar"):

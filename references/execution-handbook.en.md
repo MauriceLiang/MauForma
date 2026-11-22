@@ -32,6 +32,10 @@ Creative media projects can be cinematic and asymmetric. Dense business UI can b
 
 **Gate H-S: self-sufficient heading first.** On every affected H1–H6, card, section, dialog and visual title group, default to one clear heading with **no** preliminary category/explanation. Remove an inherited or generated pretitle when deleting it loses no independent user information; vague "context" or visual-hierarchy claims cannot justify KEEP. If useful information would disappear, move it to its semantic owner by default. Keep a pretitle only with specific evidence for the **information it adds** and **why it must remain immediately above the title**. Treat unresolved candidates as a review blocker, not as an automatic pass; when target browser access exists, record before/after results and use the title-prefix review validator. This is a review-completeness aid, not automatic semantic judgment.
 
+## Gate LO — Visual feasibility and independent label collision
+
+**On newly created and existing UI**, test visible text, metadata, chips, badges, buttons, status/source/licensing strings and compact framed labels for overlap at the supported viewports and font scales. Two separate pills that share a border region are invalid even when their glyph boxes do not cross; text under another label's painted background is equally invalid. Use natural flex/grid gaps and responsive wrapping/stacking instead of clipped text, arbitrary z-index or negative offsets. Inspect reading order, contrast, grouping and actual screenshot alongside geometry; use `scripts/audit_label_collisions.mjs` or the integrated `audit_existing_visual_defects` / `audit_rendered_layout`, and recapture the affected real UI before claiming VERIFIED. An intentional anchored overlay must preserve readable information and focus; this is not a universal ban on composition layers. See `references/visual-overlap-and-legibility-gate.md`.
+
 ## 4. Page-header copy: H-Base and H0
 
 Inspect every existing and newly introduced microheading, eyebrow, overline, kicker, mixed-language prefix or decorative number placed above the real H1 on affected routes.

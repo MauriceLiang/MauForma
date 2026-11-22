@@ -48,6 +48,8 @@ The **single Agent entrypoint is [SKILL.md](SKILL.md)** (English-first and task-
 6. **Motion is behavioral craft.** Show immediate response, preserve state continuity, respect reduced motion and allow interruption. Strong effects are valuable when purposeful, not by default ([Motion Craft](references/motion-craft-and-continuity.md); [Motion Rehearsal](references/motion-rehearsal-and-evidence.md)).
 7. **Verify, don't merely assert.** Static checks are hints. A synthetic demo is not evidence that the user's real product, API or actual animation passed.
 
+**Layout and reading feasibility (Gate LO):** A page can compile and its grid can align while two independent pills overlap or one Badge background obscures neighboring metadata. For new pages and existing UI polish, audit compact label surfaces and readable text at real supported viewports and 200% text zoom; repair the layout and verify with screenshots. Use [`scripts/audit_label_collisions.mjs`](scripts/audit_label_collisions.mjs) or the integrated layout/defect tools and the [universal legibility gate](references/visual-overlap-and-legibility-gate.md). Geometry warnings are review evidence, not a substitute for visual judgment.
+
 ## Quick start
 
 Install this repository as a Skill in your Agent's supported skills directory and invoke **mauforma** for Web product tasks. The actual installation path depends on the Agent host. Most design guidance is reference documentation; **do not install every listed library**.

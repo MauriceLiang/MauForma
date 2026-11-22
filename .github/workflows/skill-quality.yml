@@ -46,6 +46,8 @@ jobs:
           python3 scripts/validate_page_content_plan.py examples/page-content-plan-demo.json --repository
           python3 scripts/validate_layout_integrity.py examples/layout-integrity-demo.json --repository
           node --check scripts/audit_rendered_layout.mjs
+          node --check scripts/audit_label_collisions.mjs
+          node --check tests/label_collision_browser_smoke.mjs
           python3 scripts/validate_comparison_contract.py examples/comparison-contract-demo.json --repository
           python3 scripts/validate_task_center.py examples/task-center-demo.json --repository
           node --check scripts/audit_comparison_ui.mjs
@@ -116,6 +118,8 @@ jobs:
         run: node tests/control_consistency_browser_smoke.mjs
       - name: Validate style-agnostic title-prefix candidates at all heading levels
         run: node tests/title_prefix_browser_smoke.mjs
+      - name: Validate compact label overlap, readability and responsive wrapping in Chromium
+        run: node tests/label_collision_browser_smoke.mjs
       - name: Validate settings/form layout in Chromium
         run: node tests/settings_form_browser_smoke.mjs
       - name: Validate external sidebar selection rail geometry and bad edge-border rejection

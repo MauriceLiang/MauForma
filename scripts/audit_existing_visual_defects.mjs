@@ -13,6 +13,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {auditPanelSpacing} from './audit_panel_spacing.mjs';
+import {auditLabelCollisions} from './audit_label_collisions.mjs';
 
 export async function auditExistingVisualDefects(page,options={}){
  const broad=await page.evaluate((opt)=>{
@@ -90,7 +91,8 @@ export async function auditExistingVisualDefects(page,options={}){
   return {issues,measurements,candidateCount:candidates.length};
  },options);
  const old=await auditPanelSpacing(page,{selector:options.selector||'main',requirePairs:false});
- const issues=[...broad.issues];
+ const labels=await auditLabelCollisions(page,{selector:options.selector||'main'});
+ const issues=[...broad.issues,...labels.issues.map(issue=>({...issue,source:'compact-label/readability-audit'}))];
  for(const i of old.issues){
   if(['UNJUSTIFIED_PANEL_CONTACT','PANEL_OVERLAP','VERY_TIGHT_PANEL_GAP','ASYMMETRIC_GRID_SPACING','HORIZONTAL_OVERFLOW'].includes(i.code)){
    issues.push({...i,source:'direct-grid-flex-audit'});
@@ -102,8 +104,8 @@ export async function auditExistingVisualDefects(page,options={}){
  if(broad.measurements.length===0 && old.observations.length===0)
   issues.push({code:'NO_ADJACENCY_EVIDENCE',severity:'warning',detail:'No candidate adjacencies; inspect actual page visually'});
  return{
-  passed:!issues.some(x=>x.severity==='error'),
-  issues,coverage:{framedCandidates:broad.candidateCount,nearPairs:broad.measurements.length,directGridPairs:old.observations.length},
+  passed:labels.passed&&!issues.some(x=>x.severity==='error'),
+  issues,coverage:{framedCandidates:broad.candidateCount,nearPairs:broad.measurements.length,directGridPairs:old.observations.length,compactLabelAudit:labels.coverage},
   measurements:broad.measurements,viewport:old.viewport,
   scope:'baseline-free visual defect triage; not an aesthetic score, semantics or full-page coverage guarantee'
  };
