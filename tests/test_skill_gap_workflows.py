@@ -55,6 +55,18 @@ class SkillGapTests(unittest.TestCase):
         waivers.write_text(json.dumps([{"rule_id": "MF101", "file": "../outside", "reason": "short", "expires": "2000-01-01"}]), encoding="utf-8")
         cli("mauforma_check.py", "--root", self.root, "--changed", "ui.jsx", "--waivers", waivers, expected=2)
 
+    def test_default_static_checker_surfaces_h2_prefix_as_review_risk(self):
+        page = self.root / "View.vue"
+        page.write_text('<p class="intro">模块分类 · 导览</p>\n<h2>模型概览</h2>',
+                        encoding="utf-8")
+        out = json.loads(cli("mauforma_check.py", "--root", self.root,
+                             "--changed", "View.vue", "--format", "json"))
+        hints = [x for x in out["findings"] if x["rule_id"] == "MF108"]
+        self.assertEqual(len(hints), 1)
+        self.assertEqual(hints[0]["severity"], "medium")
+        self.assertEqual(hints[0]["status"], "STATIC_RISK")
+        self.assertEqual(out["browser_verification"], "NOT_TESTED")
+
     def test_resumable_workflow_does_not_replace_existing(self):
         preview = json.loads(cli("feature_design_flow.py", "--project-root", self.root,
                                  "--feature", "settings-page", "--action", "init", "--mode", "Operate"))

@@ -24,11 +24,13 @@ PATTERNS = [
     ("developer-notes-visible", re.compile(r"(?:ECharts\s*(?:tooltip|brush|zoom)|保留原生.{0,35}(?:tooltip|缩放与点选)|(?:React|Vue)\s*组件(?:库)?)", re.I),
      "Check whether an implementation detail has leaked into user-facing copy."),
 ]
-# Advisory-only detection: plain markup directly preceding an H1. The gate is
-# semantic and must be reviewed in the real PageHeader; dynamic components
-# and legitimate navigation cannot be fully recognized by static regex.
-PRETITLE_BEFORE_H1 = re.compile(
-    r"<(?P<tag>span|small|p|div)\b(?P<attrs>[^>]*)>(?P<label>[^<\r\n]{3,110})</(?P=tag)>\s*<h1\b",
+# Advisory-only candidate discovery for simple text-before-heading patterns at
+# H1-H6, including one plain intermediate wrapper. This is NOT a parser:
+# shared components, visual pseudo-headings and deep nesting need rendered DOM QA.
+PRETITLE_BEFORE_HEADING = re.compile(
+    r"<(?P<tag>span|small|p|div)\b(?P<attrs>[^>]*)>"
+    r"(?P<label>[^<\r\n]{3,110})</(?P=tag)>"
+    r"\s*(?:<div\b[^>]*>\s*)?<(?P<heading>h[1-6])\b",
     re.I,
 )
 EXEMPT_PRETITLE_ATTRS = re.compile(r"breadcrumb|aria-current|role=[\"\']navigation|brand-tagline|official-tagline", re.I)
@@ -42,17 +44,20 @@ def analyze(text: str, path: str = "<input>") -> list[dict]:
     findings: list[dict] = []
     # Source-level candidates only: the reviewer must verify whether the
     # preceding line is decorative, a real breadcrumb, or a necessary state.
-    for match in PRETITLE_BEFORE_H1.finditer(text):
+    for match in PRETITLE_BEFORE_HEADING.finditer(text):
         if EXEMPT_PRETITLE_ATTRS.search(match.group("attrs")):
             continue
         label = match.group("label").strip()
         if not label or not re.search(r"[\w\u4e00-\u9fff]", label):
             continue
         line_num = text.count("\n", 0, match.start()) + 1
+        heading = match.group("heading").lower()
         findings.append({
-            "file": path, "line": line_num, "rule": "page-header-pretitle-before-h1",
+            "file": path, "line": line_num,
+            "rule": "page-header-pretitle-before-h1" if heading == "h1" else "title-prefix-before-heading",
+            "heading_level": heading,
             "level": "review",
-            "reason": "Functional pages must not auto-render an explanatory eyebrow or microheading before H1; check genuine breadcrumbs and status semantics.",
+            "reason": "Default to one self-sufficient heading. Check whether removing this pretitle loses independent information; if not, delete it. Legitimate breadcrumbs, source, chapter and status must be preserved in their proper role. Source regex is advisory, not semantic proof.",
             "excerpt": label[:190],
         })
     for line_num, line in enumerate(text.splitlines(), 1):

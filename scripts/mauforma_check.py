@@ -9,6 +9,7 @@ import sys
 from datetime import date
 from pathlib import Path
 from audit_frontend import scan, collect_files, EXT
+from audit_readability import analyze as analyze_copy
 
 def inspect(root: Path, changed: list[str], waivers: list[dict]) -> dict:
     findings = []
@@ -41,6 +42,27 @@ def inspect(root: Path, changed: list[str], waivers: list[dict]) -> dict:
                 "waiver_reason": match["reason"] if match else None,
                 "needs_browser": True, "confidence": "HEURISTIC"
             })
+        # Source-level heading hints are advisory: an actual product reviewer
+        # still decides whether information and above-heading placement matter.
+        if path.suffix in {".html", ".vue", ".jsx", ".tsx"}:
+            for hint in analyze_copy(path.read_text("utf-8", errors="replace"), relative):
+                if hint["rule"] not in {"page-header-pretitle-before-h1", "title-prefix-before-heading"}:
+                    continue
+                file = relative
+                key = (file, hint["line"], "MF108")
+                if key in seen:
+                    continue
+                seen.add(key)
+                match = next((w for w in accepted if w["rule_id"] == "MF108" and w["file"] == file), None)
+                findings.append({
+                    "file": file, "line": hint["line"], "rule_id": "MF108",
+                    "severity": "medium",
+                    "evidence": "Possible title preamble before " + hint.get("heading_level", "heading")
+                                + ": " + hint["excerpt"] + ". Check independent information and placement.",
+                    "status": "WAIVED" if match else "STATIC_RISK",
+                    "waiver_reason": match["reason"] if match else None,
+                    "needs_browser": True, "confidence": "HEURISTIC"
+                })
     return {
         "status": "BLOCKED" if invalid_waivers else "STATIC_RISKS" if any(x["status"] == "STATIC_RISK" for x in findings) else "STATIC_ONLY",
         "findings": sorted(findings, key=lambda x: (x["file"], x["line"], x["rule_id"])),

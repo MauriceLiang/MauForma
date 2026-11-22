@@ -8,6 +8,20 @@ An **eyebrow / overline / kicker / pretitle** is a *relationship*, not a CSS cla
 
 Determine the element's **structural relationship** first, its **information role** second and its **presentation role** third. The meaning of its words and the appropriateness of the *preamble presentation* are separate decisions. Meaningful content may still be incorrectly presented as a decorative title prefix.
 
+## Gate H-S — Self-sufficient heading by default (all page types)
+
+**Default: write a clear, self-sufficient heading and no separate pre-title line.** Most category labels, dual-language explanations, rhetorical overlines, feature introductions and visual-rhythm indices merely restate what the heading or nearby interface already tells the reader. The burden of proof is on **retaining or introducing** a pretitle, not on deleting one. This applies equally to inherited UI and new work, H1–H6, and functional, scientific, learning, editorial, brand and creative contexts; genuine meaning is protected, but a page type alone is not an exemption.
+
+Run these three counterfactual tests **in order**:
+
+1. **Remove the line mentally.** Can users still identify the content or action from the heading and nearby UI *without losing independent navigation, status, scope, source, chapter order or approved identity*? If yes, **DELETE the redundant line**. Merely saying it "provides context," "looks polished," "adds hierarchy," "improves UX" or "explains the area" is not evidence of information loss.
+2. **Demand specific added information.** If removing it loses something real, state exactly *what* is lost, *who* needs it, and where that information is supported by the product. A category word, loose synonym, generic explanatory translation or repeated mode name does not automatically add value.
+3. **Prove why the text belongs above the heading.** Even genuinely valuable information should normally move to its owner: breadcrumbs/navigation, a stepper, a status or version badge, data scope/source beside relevant data, or concise below-title help. **KEEP as a separate pretitle only if this exact placement has a justified, nonduplicated role**, including explicit approved editorial/brand narrative. Do not turn real progress or a verified state into ornamental small type.
+
+**Default decisions:** no extra pretitle in new UI; DELETE inherited filler; MOVE legitimate but misplaced data; MERGE a useful qualifier into the heading; SPLIT brand/status from generic filler; KEEP only with two distinct concrete reasons (independent information **and** above-heading placement). Do not remove actual structured navigation, course chapters, sources, permissions or safety information to make a page superficially sparse.
+
+**Completion gate for scoped UI polish:** every candidate from affected real routes must have a reviewed decision and, for KEEP, a substantiated semantic role, information-loss explanation, placement reason and evidence. Re-check the rendered result after implementing DELETE/MOVE/MERGE/SPLIT. Unreviewed candidates, vague KEEP rationales or still-present unjustified prefixes **block a claim of VERIFIED**. Use `scripts/audit_title_prefixes.mjs` for candidate discovery and `scripts/validate_title_prefix_review.mjs` for a mechanical **review-completeness** check when the target project and Playwright are available. The validator cannot judge true brand meaning or replace human/Agent visual inspection; otherwise report STATIC CHECK or NOT TESTED instead of inventing evidence.
+
 ## Mandatory three-pass decision
 
 ### Pass A — Discover potential title prefixes, not just H1

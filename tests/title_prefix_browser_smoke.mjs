@@ -25,11 +25,14 @@ try {
         <section><nav id="breadcrumb" aria-label="Breadcrumb"><a href="#home">Workspace</a> / Billing</nav><h2>Billing</h2></section>
         <section><span class="prefix" id="status">Offline</span><div role="heading" aria-level="3">Service</div></section>
         <section><h3>Standalone title</h3><p>No prefix here.</p></section>
+        <section><span class="prefix">模块分类 · 功能导览</span><h4>Interactive visualizer</h4></section>
+        <section><span class="prefix">SECTION CATEGORY</span><div><h5>Component overview</h5></div></section>
+        <section><span class="prefix">MODULE CONTEXT</span><h6>Model preview</h6></section>
         </main></body></html>`);
       const report = await auditTitlePrefixes(page);
       const titles = report.candidates.map(x => x.title).sort();
-      assert.deepEqual(titles, ['Billing', 'Choose source', 'Projects', 'Service'], 'Discovered title-group prefixes at ' + width);
-      assert.equal(report.inspected_headings, 5);
+      assert.deepEqual(titles, ['Billing', 'Choose source', 'Component overview', 'Interactive visualizer', 'Model preview', 'Projects', 'Service'], 'Discovered title-group prefixes at ' + width);
+      assert.equal(report.inspected_headings, 8);
       assert.ok(report.candidates.every(x => x.semantic_decision === 'UNREVIEWED'),
         'Scanner must never auto-approve or auto-delete content');
       assert.equal(report.verification, 'NOT_VERIFIED');
@@ -40,7 +43,7 @@ try {
     }
   }
   assert.equal(new Set(signatureSets).size, 1, 'Candidates must not change across colors, font families, weights, sizes or viewports');
-  console.log('Style-invariant title-prefix discovery PASS: 3 unrelated visual styles x 2 widths, H1/H2/H3/role=heading and legitimate semantic examples');
+  console.log('Style-invariant title-prefix discovery PASS: 3 unrelated visual styles x 2 widths, H1–H6/role=heading and legitimate semantic examples');
 } finally {
   await browser.close();
 }

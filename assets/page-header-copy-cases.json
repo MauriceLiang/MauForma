@@ -154,6 +154,39 @@
       "approved": true,
       "expected_action": "keep",
       "reason": "明确的展览主题及叙事前导，非功能解释"
+    },
+    {
+      "id": "new-science-card-pretitle",
+      "product_type": "scientific_visualization",
+      "lifecycle": "new",
+      "role": "decorative_explanation",
+      "pretitle": "模型类型 · 可视化导览",
+      "main_title": "交互式器官模型",
+      "approved": false,
+      "expected_action": "delete",
+      "reason": "主标题已经说明对象，前导只是重复模块类别"
+    },
+    {
+      "id": "legacy-card-duplicate-caption",
+      "product_type": "operate",
+      "lifecycle": "existing",
+      "role": "decorative_explanation",
+      "pretitle": "数据管理中心 · 管理视图",
+      "main_title": "数据管理",
+      "approved": false,
+      "expected_action": "delete",
+      "reason": "换一种说法解释标题，不提供新增信息"
+    },
+    {
+      "id": "real-step-displayed-in-stepper",
+      "product_type": "learning",
+      "lifecycle": "existing",
+      "role": "actual_step",
+      "pretitle": "第 2 / 4 步",
+      "main_title": "选择练习",
+      "approved": false,
+      "expected_action": "move",
+      "reason": "真实进度不可丢失，但应放在步骤导航中而非作为装饰性前导"
     }
   ]
 }

@@ -109,6 +109,16 @@ class RuntimeEnglishContractTests(unittest.TestCase):
         self.assertIn("confirming design direction", rules["B11"]["require_en"])
         self.assertIn("With explicit approval", rules["B12"]["exception_en"])
 
+    def test_heading_self_sufficiency_has_chinese_semantic_regression_guard(self):
+        matrix = (ROOT / "assets/i18n-semantic-regression-matrix.zh-CN.md").read_text("utf-8")
+        skill = (ROOT / "SKILL.md").read_text("utf-8")
+        guide = (ROOT / "references/title-prefix-role-gate.md").read_text("utf-8")
+        for phrase in ("主标题自足", "独立的、必要的", "不自动取得", "既有内容不豁免"):
+            self.assertIn(phrase, matrix)
+        self.assertIn("Gate H-S", skill)
+        self.assertIn("Self-sufficient heading by default", guide)
+        self.assertIn("validate_title_prefix_review.mjs", skill)
+
     def test_missing_critical_boundary_is_rejected(self):
         changed = copy.deepcopy(self.manifest)
         changed["entries"][0]["required_english_fragments"] += ["UNTRANSLATED CRITICAL BOUNDARY"]
