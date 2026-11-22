@@ -49,6 +49,24 @@ class PageHeaderCopyContractTests(unittest.TestCase):
         case["expected_action"] = "keep"
         self.assertTrue(validate_cases(mutated))
 
+    def test_new_scientific_card_pretitle_must_not_be_justified_as_context(self) -> None:
+        mutated = copy.deepcopy(self.examples)
+        case = next(c for c in mutated["cases"] if c["id"] == "new-science-card-pretitle")
+        case["expected_action"] = "keep"
+        self.assertTrue(validate_cases(mutated))
+
+    def test_existing_duplicate_card_caption_is_not_grandfathered(self) -> None:
+        mutated = copy.deepcopy(self.examples)
+        case = next(c for c in mutated["cases"] if c["id"] == "legacy-card-duplicate-caption")
+        case["expected_action"] = "keep"
+        self.assertTrue(validate_cases(mutated))
+
+    def test_true_step_preserved_but_moved_to_stepper(self) -> None:
+        mutated = copy.deepcopy(self.examples)
+        case = next(c for c in mutated["cases"] if c["id"] == "real-step-displayed-in-stepper")
+        case["expected_action"] = "delete"
+        self.assertTrue(validate_cases(mutated))
+
     def test_every_page_archetype_must_be_included(self) -> None:
         mutated = copy.deepcopy(self.examples)
         mutated["cases"] = [
