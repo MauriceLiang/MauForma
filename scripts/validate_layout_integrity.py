@@ -21,6 +21,9 @@ REQUIRED = (
  "examples/layout-integrity-demo.json",
  "scripts/validate_layout_integrity.py",
  "scripts/audit_rendered_layout.mjs",
+ "scripts/audit_label_collisions.mjs",
+ "references/visual-overlap-and-legibility-gate.md",
+ "tests/label_collision_browser_smoke.mjs",
  "tests/test_layout_integrity.py",
 )
 
