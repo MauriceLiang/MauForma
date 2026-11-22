@@ -4,6 +4,12 @@
 >
 > **Purpose:** Remove title preambles without information value, while preserving real navigation, approved brand narrative, legitimate chapters, necessary states and sources. Historical presence is not proof of a valid information role. H-Base/H0 focuses primarily on H1: **every H1–H6, Card, Section, Dialog and custom heading group must also pass [Title-Prefix Role Gate](title-prefix-role-gate.md).**
 
+## Gate H-S — Default to one self-sufficient heading
+
+For **all title levels and page modes**, begin with a direct title that tells the reader what the page, section or object is. **Do not add a second pre-title layer by default**, and do not preserve inherited explanatory labels merely because they already exist. Test whether removing the pretitle loses independently necessary information not already supplied by the heading or surrounding navigation, data and controls. If nothing important is lost, DELETE. This is a stronger default than finding a plausible-sounding reason to KEEP. "Provides context", "creates a premium feeling" and "adds visual hierarchy" alone are not sufficient justifications.
+
+If information *is* lost, first move it to the correct owner (breadcrumb, chapter/stepper, status, source, scope, below-title instructions). KEEP above the title only with evidence of both independent information value **and a specific need for that placement**. Intentional approved narrative, legitimate chapters and real navigable hierarchy remain possible. See `references/title-prefix-role-gate.md` (Gate H-S) for the evidence and completion contract, including H2–H6 and Card/Section/Dialog titles.
+
 ## Gate H-Base — Mandatory review of existing and new title copy on every page
 
 **Trigger:** Any new page design, visual polish/refactor, heading/Hero-related fix or page review. A vague request to polish an existing product also triggers this audit. A purely functional bug completely unrelated to titles does *not* require site-wide heading cleanup. Examine **actually rendered content first**, then locate its origin in PageHeader props, Hero/Intro components, localization strings or slots; do not depend on a literal `h1` or `eyebrow` class.
