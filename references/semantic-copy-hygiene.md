@@ -2,6 +2,10 @@
 
 This gate asks whether visible copy adds **real information** on every kind of Web page; it is not a recap of one project's screenshots. Operate and Read contexts commonly prioritize task and data clarity. Brand, marketing and creative contexts can preserve supporting language with a genuine narrative function.
 
+## Title self-sufficiency — a stronger default than decorative explanation
+
+**One readable, informative heading is the normal result.** A pretitle that paraphrases, translates, categorizes or merely introduces an already-clear heading is expendable even when the prefix has a different font, color, language or CSS class. Do not demand proof that it is "harmful" before deleting it; instead demand proof of independent information loss before keeping it. Even useful data does not justify an ornamental line above the heading: move status, sources, period, steps and mode information to the relevant control or metadata area. Approved brand/editorial narratives and genuinely necessary sections remain valid, with evidence for both meaning and placement. Gate H-S in `references/title-prefix-role-gate.md` applies to inherited and newly generated UI.
+
 ## Synthetic counterexamples and appropriate handling
 
 | Fictional UI copy | Issue | Appropriate action |
