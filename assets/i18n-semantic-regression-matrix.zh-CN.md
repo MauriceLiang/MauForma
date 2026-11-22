@@ -337,3 +337,20 @@
 
 **工具边界：**`scripts/audit_readability.py` 只是静态候选提示；`scripts/audit_title_prefixes.mjs` 发现实际 DOM 候选但不会决定语义；`scripts/validate_title_prefix_review.mjs` 只检查每个候选是否有决策、保留证据及前后关系是否处理，不自动证明保留理由真实、UI 美观或业务行为正确。真实页面仍需人工/Agent 观察与复验，无法运行则标为 STATIC CHECK / NOT TESTED。
 
+## 7. 2026-11-22 新增规则：标签碰撞与可读布局（Gate LO）语义回归
+
+> 本次由用户明确要求的**新增通用 UI 质量门禁**，并非对历史 83 份中文规范的重新翻译。保持不可变历史中文原稿 Git 基线及 SHA 不变。英文执行规范见 `SKILL.md` 与 `references/visual-overlap-and-legibility-gate.md`，本节用于中文意图回归。
+
+| 中文必须保留的语义 | 对应英文执行含义 | 不得曲解为 |
+| --- | --- | --- |
+| **新建页面和已有页面优化**都要主动检查，不得因旧代码已存在而豁免。 | All new and existing affected UI must be reviewed; inherited defects are not exempt. | 仅检测本次新增的组件。 |
+| 不同标签的**轮廓/背景重叠**本身就是视觉缺陷，即使文字表面没有相撞。 | Independent compact painted labels overlapping is a collision. | 只判断文字是否碰撞，忽略胶囊边框覆盖。 |
+| 文字与文字相撞，或文字被另一标签的背景挡住，必须作为可读性问题处理。 | Text-text collision and text-versus-foreign-surface occlusion are actionable. | 调整层级或加裁剪，让下层内容消失就算修复。 |
+| 检查布局、阅读顺序、对比度、间距、整体观感及操作可行性。 | Geometry **and** reading order, contrast, visual feasibility, interactive states. | 只要 DOM 几何扫描 PASS 就等于设计已完成。 |
+| 检查产品声明支持的最小视口、100%/200% 字体与相关真实状态；桌面专用页面不被强制要求手机适配。 | Verify supported viewport(s), 100%/200% text and applicable interaction states; no forced mobile support. | 所有产品必须测固定 390px 手机视口。 |
+| 真正有语义的浮层或图像标记可以合理叠放，但不得遮挡必要文字与操作；不允许全局豁免。 | Real anchored overlays may layer with local semantics, never at cost of readable text or controls. | 全面禁止所有 Overlay、Tooltip、Dialog 与艺术构图。 |
+| 自动检测为候选证据，必须在实际页面复验；无法访问浏览器时标记未测试，不得宣称 VERIFIED。 | Rendered geometry is heuristic evidence, not visual proof; unresolved collisions block VERIFIED. | 合成用例通过即代表任意项目的视觉验收通过。 |
+
+**重点防回归：**英文不能把“标签背景重叠”弱化为“只有字压住字时才算问题”；不能把“新旧页面”缩成“仅新生成的页面”；不能省去文字完整性、阅读路径、可访问性和视觉感受的人工/Agent 评审。对多语言或长元数据，优先换行、栅格/弹性布局和合理分组，不得以静默省略真实来源、版权或状态信息作为修复。
+
+**测试边界：**`scripts/audit_label_collisions.mjs` 识别可见 DOM 中紧凑标签和文字的几何重叠，不检测 Canvas/图片内文字，也不证明字体、颜色与布局审美合格。回归用例覆盖多视口、100%/200% 字体与重叠/修复对比，真实产品依旧要检查路由、状态和屏幕截图。
